@@ -1,0 +1,7 @@
+upload_dir = 12456551277401
+site_url = 
+name = sense-music.jpg
+type = application/octet-stream
+tmp_name = C:\PROGRA~1\EASYPH~1\\tmp\php32.tmp
+error = No error
+size = 81758

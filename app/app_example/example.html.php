@@ -1,0 +1,200 @@
+<?
+	// s&eacute;curit&eacute;
+	defined('JL') or die('Error 401');
+
+	class HTML_example {
+
+		// affichage des messages syst&egrave;me
+	public static function messages(&$messages) {
+			global $langue;
+			include("lang/app_example.".$_GET['lang'].".php");
+
+			// s'il y a des messages &agrave; afficher
+			if(count($messages)) {
+			?>
+				<h2><?php echo $lang_appexample["Messages"];?></h2>
+				<div class="messages">
+				<?
+					// affiche les messages
+					JL::messages($messages);
+				?>
+				</div>
+			<?
+			}
+
+		}
+		
+		function get_contacts(&$row, &$inviter, $messages =array()){
+			include("lang/app_example.".$_GET['lang'].".php");
+			$oi_services=$inviter->getPlugins();
+
+				JL::makeSafe($row);
+			?>
+			<script type='text/javascript'>
+				function toggleAll(element) 
+				{
+				var form = document.forms.openinviter, z = 0;
+				for(z=0; z<form.length;z++)
+					{
+					if(form[z].type == 'checkbox')
+						form[z].checked = element.checked;
+					}
+				}
+			</script>
+			
+			<div class="app_body">
+				<div class="contenu">
+
+					<?
+						// affichage des messages
+						HTML_example::messages($messages);
+
+					?>
+					<form action='' method='POST' name='openinviter'>
+						<table align='center'  cellspacing='2' cellpadding='0' style='border:none;'>
+							<tr>
+								<td><label for='nom_box'><?php echo $lang_appexample["Nom"];?></label></td>
+								<td><input type='text' name='nom_box' value='<? echo $row->prenom_box; ?>'></td>
+							</tr>
+							<tr>
+								<td><label for='prenom_box'><?php echo $lang_appexample["Prenom"];?></label></td>
+								<td><input type='text' name='prenom_box' value='<? echo $row->prenom_box; ?>'></td>
+							</tr>
+							<tr>
+								<td><label for='email_box'><?php echo $lang_appexample["Email"];?></label></td>
+								<td><input type='text' name='email_box' value='<? echo $row->email_box; ?>'></td>
+							</tr>
+							<tr>
+								<td><label for='password_box'><?php echo $lang_appexample["Mdp"];?></label></td>
+								<td><input type='password' name='password_box' value='<? echo $row->password_box; ?>'></td>
+							</tr>
+							<tr>
+								<td><label for='provider_box'><?php echo $lang_appexample["BoiteOuReseau"];?></label></td>
+								<td><select name='provider_box'>
+									<option value=''></option>
+						<?
+							foreach ($oi_services as $type=>$providers){
+						?>		
+								<optgroup label='<? echo $inviter->pluginTypes[$type]; ?>'>
+						<?
+								foreach ($providers as $provider=>$details){
+						?>
+									<option value='<? echo $provider; ?>' <?  if($_POST['provider_box']==$provider){ echo 'selected';}?> ><? echo $details['name']; ?></option>
+						<?
+								}
+						?>
+								</optgroup>
+						<?	
+							}
+						?>
+						
+								</select></td>
+							</tr>
+							<tr>
+								<td colspan='2'><input type='checkbox' style="size:20px; width:20px" name="newsletter" id="newsletter" value="1" checked><?php echo $lang_appexample["JeDesireRecevoirNewsletter"];?></td>
+							</tr>
+							<tr>
+								<td colspan='2' align='center'><input type='submit' name='import' value='<?php echo $lang_appexample["ImporterContacts"];?>'></td>
+							</tr>
+						</table>
+						<input type='hidden' name='action' value='get_contacts_submit'>
+					</form>
+					
+					<br><br>
+				</div>
+			</div>
+			<div class="clear"> </div>
+			<?
+		}
+		
+		
+		public static function send_invites(&$row, &$inviter, &$plugType, $messages =array()){
+			include("lang/app_example.".$_GET['lang'].".php");
+
+				JL::makeSafe($row);
+			?>
+			<script type='text/javascript'>
+				function toggleAll(element) 
+				{
+				var form = document.forms.openinviter, z = 0;
+				for(z=0; z<form.length;z++)
+					{
+					if(form[z].type == 'checkbox')
+						form[z].checked = element.checked;
+					}
+				}
+			</script>
+			
+			<div class="app_body">
+				<div class="contenu">
+
+					<?
+						// affichage des messages
+						HTML_example::messages($messages);
+
+					?>
+					<form action='' method='POST' name='openinviter'>
+					<?
+						$inviter->startPlugin($row->provider_box);
+						$inviter->login($row->email_box,$row->password_box);
+						$contacts=$inviter->getMyContacts();
+					
+						if ($inviter->showContacts()){
+					?>
+							<table class='thTable' align='center' cellspacing='0' cellpadding='0'><tr class='thTableHeader'><td colspan='<? if($plugType=='email'){ echo "3";} else{ echo "2";} ?>'>Your contacts</td></tr>
+					<?
+							if (count($contacts)==0){
+					?>
+								<tr class='thTableOddRow'><td align='center' style='padding:20px;' colspan='<? if($plugType=='email'){ echo "3";} else{ echo "2";} ?>'>You do not have any contacts in your address book.</td></tr>
+					<?
+							}else{
+					?>
+								<tr class='thTableDesc'><td><input type='checkbox' onChange='toggleAll(this)' name='toggle_all' title='Select/Deselect all' checked>Invite?</td><td>Name</td><? if($plugType=='email'){ echo "<td>E-mail</td>";} ?></tr>
+					<?
+								//$odd=true;
+								$counter=0;
+				
+								foreach ($contacts as $email=>$name){
+						
+									$counter++;
+						
+									if ($odd) 
+										$class='style="background-color:grey;"'; 
+									else 
+										$class='';
+					?>
+									<tr <? echo $class; ?>><td><input name='check_<? echo $counter; ?>' value='<? echo $counter; ?>' type='checkbox' class='thCheckbox' checked><input type='hidden' name='email_<? echo $counter; ?>' value='<? echo $email; ?>'><input type='hidden' name='name_<? echo $counter; ?>' value='<? echo $name; ?>'></td><td><? echo $name; ?></td><? if($plugType=='email'){ echo "<td>".$email."</td>";} ?></tr>
+					<?
+									$odd=!$odd;
+								}
+					?>
+								<tr class='thTableFooter'><td colspan='<? if($plugType=='email'){ echo "3";} else{ echo "2";} ?>' style='padding:3px;'><input type='submit' name='send' value='Send invites' class='thButton'></td></tr>
+					<?
+							}
+					?>
+							</table>
+					<?	
+						}
+					?>
+						<table class='thTable' cellspacing='0' cellpadding='0' style='border:none;'>
+							<tr class='thTableRow'><td align='right' valign='top'><label for='message_box'>Message</label></td><td><textarea rows='5' cols='50' name='message_box' class='thTextArea' style='width:300px;'><? echo $row->message_box; ?></textarea></td></tr>
+						</table>
+						<input type='hidden' name='action' value='send_invites_submit'>
+					<?
+					/*
+						<input type='hidden' name='provider_box' value='{$_POST['provider_box']}'>
+						<input type='hidden' name='email_box' value='{$_POST['email_box']}'>
+						<input type='hidden' name='oi_session_id' value='{$_POST['oi_session_id']}'>";
+					*/
+					?>
+					</form>
+					<br><br>
+				</div>
+			</div>
+			<div class="clear"> </div>
+			<?
+		}
+	}
+?>
+
+

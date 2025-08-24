@@ -1,0 +1,298 @@
+body { font: 13px/18px Trebuchet MS, "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, sans-serif; background-color: #fff; color: #000; background-attachment:fixed; overflow-x: hidden }
+
+
+body, h1, h2, h3, h4, p, fieldset, legend, ul, li, form, input, img, div, span, label, tr, object, table {
+	margin: 0px;
+	padding: 0px;
+	border: none;
+}
+
+
+label {
+	font-weight:bold;
+	cursor: pointer;
+}
+
+a:link, a:hover, a:active, a:visited {
+	color: #c32a2c;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+
+hr {border: 1px dashed #4a4a41; }
+
+
+p {
+	/*padding: 10px 10px 10px 0px;*/
+}
+
+
+
+h1 { font-family: "Impact", Arial, Helvetica, sans-serif; font-size: 26px; line-height: 30px; color:#4a4a41; font-weight:normal; letter-spacing:1px; margin:0px; padding:5px 0px 0px 0px }
+h2 { font-weight:bold; font-size: 18px; line-height: 20px; color:#4a4a41;}
+h3 { font-weight:bold; font-size: 13px; line-height: 16px; color:#4a4a41;}
+h4 { font-weight: bold; font-size: 16px; line-height: 18px; color:#4a4a41;}
+
+
+h2 a:link, h2 a:hover, h2 a:active, h2 a:visited {
+	color: #c32a2c;
+}
+
+p.m {
+	padding: 10px 20px 10px 20px;
+}
+
+div.table {
+	text-align: left;
+}
+
+div.clear {
+	clear: both;
+	height: 1px;
+	font-size: 1px;
+	line-height: 1px;
+}
+
+span.homme{
+	color:#006E96;
+}
+
+span.femme{
+	color:#fd4e8c;
+}
+
+div.body {
+	width: 600px;
+	margin: auto;
+	padding:0;
+}
+
+div.content {
+	width: 590px;
+	text-align: justify;
+	padding: 5px;
+}
+
+div.contentl {
+	float: left;
+	width: 190px;
+}
+
+div.colr {
+	width: 390px;
+	overflow: hidden;
+	float: right;
+}
+
+
+h3 a:link, h3 a:hover, h3 a:active, h3 a:visited {
+	color: #4a4a41;
+	text-decoration: underline;
+}
+
+/*Affichage Resultats*/
+
+h3.result{
+	color: white;
+	background-color: #82817d;
+	padding: 5px 7px;
+	text-transform: uppercase;
+}
+
+h3.result div.search_affichage{
+	float:right;
+	text-transform: none;
+}
+
+table.result{
+	background-color:#82817d;
+}
+
+
+/*Menu_categorie*/
+ 
+table.menu_cat {
+	background-color:#c32a2c;
+	height:26px;
+}
+
+table.menu_cat td a:link, table.menu_cat td a:hover, table.menu_cat td a:active, table.menu_cat td a:visited {
+	color: #fff;
+	text-decoration: none;
+	background: #c32a2c;
+	font-size: 13px;
+	text-align: center;
+	font-weight: bold;
+	padding: 4px 9px;
+}
+
+table.menu_cat td a:hover {
+	background: #fff;
+	color:#c32a2c;
+}
+
+table.menu_cat td.active a:link, table.menu_cat td.active a:hover, table.menu_cat td.active a:active, table.menu_cat td.active a:visited {
+	background: #fff;
+	color:#c32a2c;
+}
+
+
+
+
+span.lo_online {
+	color: #009900;
+	font-weight: bold;
+}
+
+span.lo_offline {
+	color: #777;
+}
+
+div.profil{
+	background-color: #ccc;
+	padding:10px;
+}
+
+div.profil img{
+	width:170px;
+	margin-bottom:10px;
+}
+
+div.actions{
+	border: 1px solid #c32a2c;
+	padding:5px;
+}
+
+table.actions{
+	margin:6px;
+	width:166px;
+	background-color: #fff;
+	border:1px solid #c32a2c;
+}
+
+table.actions tr td{
+	padding:3px;
+}
+
+table.actions tr td.img{
+	width:20px;
+}
+
+table.message{
+	background-color: #c32a2c;
+}
+
+table.message tr a{
+	color:#fff;
+}
+
+table.actions_secondaire img{
+	width:12px;
+	margin-right:5px;
+}
+
+table.actions_secondaire{
+	font-size:11px;
+}
+
+/*Pages Mails*/
+
+h3.result{
+	color: white;
+	background-color: #82817d;
+	padding: 5px 7px;
+	text-transform: uppercase;
+}
+
+table.result{
+	background-color:#82817d;
+	padding:5px;
+}
+
+table.result td img.big{
+	border:1px solid #4a4a41;
+}
+
+table.result table.miniatures td.miniature img{
+	border:1px solid #4a4a41;
+	cursor: pointer;
+}
+
+h3.detail{
+	color: white;
+	background-color: #4a4a41;
+	padding: 5px;
+}
+
+h3.detail a{
+	color: white;
+}
+
+
+table.detail_table {
+	width:100%;
+	border:1px solid #4a4a41;
+	text-align:left;
+	background-color:#fff;
+}
+
+table.detail_table td h3{
+	background-color: #82817d;
+	padding: 5px;
+	color: white;
+}
+
+table.detail_table td.result{
+	padding: 5px 0;
+	border-bottom:1px dashed #82817d;
+}
+
+table.detail_table td.key{
+	vertical-align:top;
+	font-weight:bold;
+	padding: 5px;
+	border-bottom:1px dashed #82817d;
+}
+
+table.detail_table td.fin{
+	border-bottom:none;
+}
+
+table.detail_table td.annonce{
+	padding:10px;
+	text-align:justify;
+}
+
+table.detail_table td.photo{
+	width:220px;
+	padding:5px;
+}
+
+table.detail_table td.photo img{
+	border:1px solid #82817d;
+}
+
+table.detail_table td.groupe{
+	width:110px;
+	padding:5px;
+}
+
+table.detail_table td.groupe img{
+	border:1px solid #82817d;
+}
+
+table.detail_table td.detail_enfant{
+	vertical-align:bottom;
+	padding:0 5px 5px 0;
+}
+
+table.detail_enfant{
+	border:1px dashed #82817d;
+	padding:5px;
+}
+
+

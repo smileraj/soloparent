@@ -1,0 +1,62 @@
+<?php
+
+	// s&eacute;curit&eacute;
+	defined('JL') or die('Error 401');
+
+	global $user, $app, $action, $langue, $db;
+	include("lang/app_mod.".$_GET['lang'].".php");
+
+	$id	= JL::getVar('id', 0);
+
+	// variable pour d&eacute;terminer quel <li> est en class="active"
+	$active = -1;
+
+	if($app == 'temoignage') {
+		$menu = 1;
+	} elseif($app == 'appel_a_temoins') {
+		$menu = 2;
+	} elseif($app == 'presse') {
+		$menu = 3;
+	}
+
+
+
+	if($menu){
+		?>
+		<table class="menu_cat" cellpadding="0" cellspacing="0">
+			<tr>
+		<?
+			switch($menu){
+				
+				case 3:
+					?>
+						<td><a href="<? echo JL::url('index.php?app=presse&action=videos').'&lang='.$_GET['lang']; ?>" title="<?php echo $lang_mod["Videos"];?>"><?php echo $lang_mod["Videos"];?></a></td>
+						<td><a href="<? echo JL::url('index.php?app=presse&action=articles').'&lang='.$_GET['lang']; ?>" title="<?php echo $lang_mod["Articles"];?>"><?php echo $lang_mod["Articles"];?></a></td>
+						<td><a href="<? echo JL::url('index.php?app=presse&action=radios').'&lang='.$_GET['lang']; ?>" title="<?php echo $lang_mod["Radios"];?>"><?php echo $lang_mod["Radios"];?></a></td>
+						<td><a href="<? echo JL::url('index.php?app=presse&action=affiches').'&lang='.$_GET['lang']; ?>" title="<?php echo $lang_mod["Affiches"];?>"><?php echo $lang_mod["Affiches"];?></a></td>
+					<?
+				break;
+				
+				case 2:
+					?>
+						<td><a href="<? echo JL::url('index.php?app=appel_a_temoins&action=info').'&lang='.$_GET['lang']; ?>" title="<?php echo $lang_mod["Informations"];?>"><?php echo $lang_mod["Informations"];?></a></td>
+						<td><a href="<? echo JL::url('index.php?app=appel_a_temoins').'&lang='.$_GET['lang']; ?>" title="<?php echo $lang_mod["TousLesAppelsATemoins"];?>"><?php echo $lang_mod["TousLesAppelsATemoins"];?></a></td>
+						<td><a href="<? echo JL::url('index.php?app=appel_a_temoins&action=new').'&lang='.$_GET['lang']; ?>" title="<?php echo $lang_mod["LancerUnAppelATemoins"];?>"><?php echo $lang_mod["LancerUnAppelATemoins"];?></a></td>
+					<?
+				break;
+				
+				case 1:
+				default:
+					?>
+						<td><a href="<? echo JL::url('index.php?app=temoignage&action=infos').'&lang='.$_GET['lang']; ?>" title="<?php echo $lang_mod["Informations"];?>"><?php echo $lang_mod["Informations"];?></a></td>
+						<td><a href="<? echo JL::url('index.php?app=temoignage').'&lang='.$_GET['lang']; ?>" title="<?php echo $lang_mod["TousLesTemoignages"];?>"><?php echo $lang_mod["TousLesTemoignages"];?></a></td>
+						<td><a href="<? echo JL::url('index.php?app=temoignage&action=edit').'&lang='.$_GET['lang']; ?>" title="<?php echo $lang_mod["JeDesireTemoigner"];?>"><?php echo $lang_mod["JeDesireTemoigner"];?></a></td>
+					<?
+				break;
+			}
+		?>	
+			</tr>
+		</table>
+		<?
+		
+	}

@@ -1,0 +1,73 @@
+a.loginMdpOublie:link, a.loginMdpOublie:hover, a.loginMdpOublie:active, a.loginMdpOublie:visited {
+	right: 390px;
+}
+div.footer{
+	font-size:9px;
+}
+div.blocs4 div.bloc3 a.image {
+	height:65px;
+	line-height:20px;
+	padding-top:115px;
+	font-size:12px;
+}
+div.inscriptionMini h2 {
+	font-size:11px;
+}
+div.inscriptionMini a {
+	font-size:9px;
+}
+div.blocs4 h2 {
+	font-size:11px;
+}
+div.abonnement h1{
+	font-size:17px;
+}
+a.btnProfilPanel.btnParrainage{
+	/* padding-top:0; */
+	font-size:9px;
+}
+div.user_menu a.username:link, div.user_menu a.username:hover, div.user_menu a.username:active, div.user_menu a.username:visited {
+	font-size:10px;
+}
+div.child_bar a:link, div.child_bar a:hover, div.child_bar a:active, div.child_bar a:visited {
+	width:120px;
+}
+
+
+div.user_menu ul {
+left:15px;
+width:215px;
+}
+
+div.banner_top {
+	background: url(images/banner_top-de.jpg) no-repeat;
+}
+
+div.banner_right {
+	background: url(images/pub-right-de.jpg) top no-repeat;
+}
+
+div.banner_right250 {
+	width: 300px;
+	height: 250px;
+	padding-top: 20px;
+	background: url(images/pub-right-250-de.jpg) top no-repeat;
+}
+
+input.loginLogInput {
+	right: 225px;
+}
+
+
+label.loginLogLabel {
+	right: 335px;
+}
+
+div.profil_banner {
+	width: 728px;
+	height: 90px;
+	padding: 30px 0 0 0;
+	background: url(images/banner_profil-de.jpg) no-repeat;
+	background-position: 0 10px;
+	clear: both;
+}

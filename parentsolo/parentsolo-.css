@@ -1,0 +1,6613 @@
+/*
+	rose fonc&eacute;:	CC0066
+	rose clair: F9B9D4
+	orange: FF6600
+	violet: 9c0054
+*/
+
+body, h1, h2, h3, p, fieldset, legend, ul, li, form, input, img, div, span, label, table, tr, td, th, object {
+	margin: 0px;
+	padding: 0px;
+	border: none;
+}
+
+body {
+	text-align: center;
+	background: #000000 url(images/bg.jpg) top repeat-x;
+	padding: 0 0 10px 0;
+}
+
+body, table {
+	font-family: Verdana, Arial;
+	font-size: 11px;
+	color: #ffffff;
+}
+
+label {
+	cursor: pointer;
+	font-weight: bold;
+}
+
+a:link, a:hover, a:active, a:visited {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+div.clear {
+	clear: both;
+	height: 1px;
+	font-size: 1px;
+	line-height: 1px;
+}
+
+div.site {
+	width: 990px;
+	margin: auto;
+	margin-top: 0px;
+	text-align: left;
+}
+
+div.header {
+	width: 100%;
+	height: 196px;
+	background: url(images/header.gif) no-repeat;
+	background-position: 0px 11px;
+}
+
+div.body {
+	width: 990px;
+	background: url(images/body.gif) repeat-y;
+}
+
+div.footer {
+	width: 980px;
+	height: 20px;
+	padding: 8px 0 0 10px;
+	background: url(images/footer.gif) no-repeat;
+	font-size: 10px;
+}
+
+div.site, div.header, div.body, div.footer {
+	position: relative;
+	left: 0;
+	top: 0;
+}
+
+div.banner_top {
+	position: absolute;
+	right: 0px;
+	top: 17px;
+	width: 738px;
+	height: 102px;
+	background: url(images/banner_top.jpg) no-repeat;
+	padding: 16px 0 0 12px;
+	z-index: 10;
+}
+
+div.banner_right {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	width: 120px;
+	height: 700px;
+	padding-top: 20px;
+	background: url(images/pub-right.jpg) top no-repeat;
+}
+
+div.banner_right250 {
+	width: 250px;
+	height: 250px;
+	padding-top: 20px;
+	background: url(images/pub-right-250.jpg) top no-repeat;
+}
+
+ul.menu {
+	position: absolute;
+	left: 239px;
+	top: 162px;
+	width: 751px;
+	height: 34px;
+}
+
+ul.menu li {
+	list-style: none;
+	display: block;
+	float: left;
+	width: 83px;
+	height: 34px;
+	background: url(images/menu-off.jpg) no-repeat;
+	text-transform: uppercase;
+	font-size: 11px;
+	text-align: center;
+}
+
+ul.menu li.active {
+	background: url(images/menu-on.jpg) no-repeat;
+}
+
+ul.menu li.last {
+	width: 87px;
+	background: url(images/menu-last-off.jpg) no-repeat;
+}
+
+ul.menu li.activeLast {
+	background: url(images/menu-last-on.jpg) no-repeat;
+}
+
+ul.menu li a:link, ul.menu li a:hover, ul.menu li a:active, ul.menu li a:visited {
+	display: block;
+	width: 83px;
+	height: 18px;
+	color: #fff;
+	padding: 16px 0 0 0;
+	text-decoration: none;
+}
+
+ul.menu li a:hover {
+	background: url(images/menu-on.jpg) no-repeat;
+	color: #FF6600;
+}
+
+ul.menu li.active a:link, ul.menu li.active a:hover, ul.menu li.active a:active, ul.menu li.active a:visited {
+	color: #FF6600;
+}
+
+ul.menu li.last a:link, ul.menu li.last a:hover, ul.menu li.last a:active, ul.menu li.last a:visited {
+	display: block;
+	width: 87px;
+	height: 18px;
+	color: #CC0066;
+}
+
+ul.menu li.last a:hover {
+	background: url(images/menu-last-on.jpg) no-repeat;
+	color: #F9B9D4;
+}
+
+div.chatAlert {
+	width: 208px;
+	height: 47px;
+	position: absolute;
+	top: 105px;
+	right: 135px;
+	padding: 33px 11px 0px 0px;
+	background: url(images/chatAlert.gif) no-repeat;
+	font-weight: bold;
+	color: #000;
+	cursor: pointer;
+	text-align: center;
+	z-index: 20;
+}
+
+div.footer a:link, div.footer a:hover, div.footer a:active, div.footer a:visited, div.footer span.copyright {
+	color: #999;
+}
+
+div.footer span.copyright {
+	position: absolute;
+	right: 10px;
+	top: 8px;
+}
+
+div.actu  {
+	width: 855px;
+	height: 100px;
+	padding: 290px 0 0 0;
+	position: relative;
+	left: 0;
+	top: 0;
+}
+
+div.actu  h1 {
+	display: block;
+	height: 16px;
+	line-height: 16px;
+	background: url(images/flower.jpg) left no-repeat;
+	padding: 0 0 0 25px;
+	font-size: 12px;
+	font-weight: bold;
+	color: #CC0066;
+	position: absolute;
+	bottom: 100px;
+	left: 20px;
+}
+
+div.actu  ul {
+	display: block;
+	width: 425px;
+	position: absolute;
+	bottom: 0px;
+	left: 20px;
+}
+
+div.actu  ul li {
+	display: block;
+	height: 28px;
+	line-height: 12px;
+	list-style: none;
+	background: url(images/coeur.jpg) left no-repeat;
+	padding: 2px 0 0 25px;
+}
+
+div.actu  ul li span {
+	font-style: italic;
+	font-size: 10px;
+	color: #999;
+}
+
+div.actu  ul li a:link, div.actu  ul li a:hover, div.actu  ul li a:active, div.actu  ul li a:visited {
+	color: #fff;
+}
+
+a.smartbox-home:link, a.smartbox-home:hover, a.smartbox-home:active, a.smartbox-home:visited {
+	width: 280px;
+	height: 105px;
+	padding: 10px 5px 0 126px;
+	position: absolute;
+	right: 5px;
+	bottom: 0;
+	background: url(images/smartbox-home.jpg) no-repeat;
+	color: #FF9F3E;
+	font-weight: bold;
+}
+
+#imageflow {
+	width: 585px;
+	height: 250px;
+	position: absolute;
+	left: 30px;
+	top: 0px;
+}
+
+#imageflow  .clear {
+	clear:both;
+}
+
+#imageflow  #loading {
+	text-align:center;
+	width:100%;
+	padding: 10px 0 10px 0;
+}
+
+#imageflow  #loading img {
+	position:relative;
+}
+
+#imageflow  #images {
+	visibility:hidden;
+}
+
+#imageflow #images img { 
+	position:absolute; 
+	top:0px;
+	border: none;
+}
+
+div.inscriptionMini {
+	width: 220px;
+	height: 252px;
+	background: url(images/inscription-mini.gif) no-repeat;
+	position: absolute;
+	right: 140px;
+	top: 10px;
+}
+
+div.inscriptionMini h2 {
+	display: block;
+	width: 100%;
+	text-align: center;
+	color: #fff;
+	font-size: 12px;
+	font-weight: bold;
+	text-transform: uppercase;
+	height: 34px;
+	line-height: 30px;
+	padding: 1px 0 0 0;
+}
+
+div.inscriptionMini table {
+	width: 220px;
+	margin: 5px 0 0 0;
+}
+
+div.inscriptionMini table td.key {
+	font-weight: bold;
+	padding: 5px 0 5px 10px;
+	width: 70px;
+}
+
+div.inscriptionMini a:link, div.inscriptionMini a:hover, div.inscriptionMini a:active, div.inscriptionMini a:visited {
+	display: block;
+	width: 118px;
+	height: 27px;
+	line-height: 24px;
+	color: #fff;
+	position: absolute;
+	left: 51px;
+	bottom: 18px;
+	text-align: center;
+}
+
+div.inscriptionMini select.size2 {
+	width: 40px;
+}
+
+div.inscriptionMini select.size4 {
+	width: 60px;
+}
+div.inscriptionMini select.size5, div.inscriptionMini td#villes select {
+	width: 110px;
+}
+
+div.blocs4 {
+	width: 850px;
+	padding: 10px 0 0 10px;
+}
+
+div.blocs4 div.bloc1, div.blocs4 div.bloc2, div.blocs4 div.bloc3, div.blocs4 div.bloc4, div.blocs4 div.bloc-sep {
+	float: left;
+	text-align: justify;
+	line-height: 15px;
+}
+
+div.blocs4 div.bloc-sep {
+	width: 20px;
+	height: 377px;
+	background: url(images/bloc-sep.jpg) center no-repeat;
+}
+
+div.blocs4 div.bloc1, div.blocs4 div.bloc2, div.blocs4 div.bloc3, div.blocs4 div.bloc4 {
+	width: 195px;
+}
+
+div.blocs4 div a.image:link, div.blocs4 div a.image:hover, div.blocs4 div a.image:active, div.blocs4 div a.image:visited {
+	display: block;
+	border: none;
+	color: #BE0272;
+	font-weight: bold;
+}
+
+div.blocs4 div.bloc1 a.image {
+	width: 195px;
+	height: 55px;
+	padding: 125px 0 0 0;
+	text-align: center;
+	font-size: 16px;
+	background: url(images/lafamily.jpg) top no-repeat;
+}
+
+div.blocs4 div.bloc2 a.image {
+	width: 100px;
+	height: 60px;
+	padding: 120px 95px 0 0;
+	text-align: center;
+	font-size: 16px;
+	line-height: 18px;
+	background: url(images/accueil-concept.jpg) top no-repeat;
+}
+
+div.blocs4 div.bloc3 a.image {
+	width: 135px;
+	height: 60px;
+	padding: 120px 60px 0 0;
+	text-align: center;
+	font-size: 20px;
+	line-height: 20px;
+	background: url(images/accueil-3.jpg) top no-repeat;
+}
+
+div.blocs4 div.bloc4 a.image {
+	width: 195px;
+	height: 158px;
+	padding: 22px 0 0 0;
+	text-align: center;
+	font-size: 16px;
+	background: url(images/accueil-4.jpg) top no-repeat;
+}
+
+div.blocs4 h2 {
+	display: block;
+	background: url(images/flower.jpg) left no-repeat;
+	height: 20px;
+	line-height: 20px;
+	font-size: 12px;
+	text-transform: uppercase;
+	color: #F9B9D4;
+	margin: 5px 0 10px 0;
+	padding: 0 0 0 27px;
+	font-weight: normal;
+}
+
+div.blocs4 a:link, div.blocs4 a:hover, div.blocs4 a:active, div.blocs4 a:visited {
+	color: #FF6600;
+}
+
+div.blocs4 div.bloc2 a.image:hover {
+	text-decoration: none;
+}
+
+a.lfm, a.onefm {
+	position: absolute;
+	top: 133px;
+	z-index: 15;
+}
+
+a.lfm {
+	right: 89px;
+}
+
+a.onefm {
+	right: 0px;
+}
+
+a.aat {
+	position: absolute;
+	top: 170px;
+	left: 255px;
+	z-index: 2;
+}
+
+div.noPhotoPopIn {
+	background: url(images/popin.gif) no-repeat;
+	width: 143px;
+	height: 55px;
+	color: #000;
+	font-size: 11px;
+	position: absolute;
+	top: 10px;
+	right: -110px;
+	z-index: 2;
+	padding: 27px 30px 0px 35px;
+	cursor: pointer;
+}
+
+div.messages {
+	padding: 20px;
+	border-top: solid 2px #333;
+	border-bottom: solid 2px #333;
+	background: #111;
+}
+
+div.messages span.error, div.messages span.valid, div.messages span.warning {
+	display: block;
+	font-weight: bold;
+	font-size: 12px;
+	padding: 0px 0px 10px 25px;
+	line-height: 18px;
+}
+
+div.messages span.error {
+	background: url(images/msg-error.gif) left top no-repeat;
+	color: #FF0000;
+}
+
+div.messages span.valid {
+	background: url(images/msg-valid.gif) left top no-repeat;
+	color: #00FF00;
+}
+
+div.messages span.warning {
+	background: url(images/msg-warning.gif) left top no-repeat;
+	color: #ffbb00;
+}
+
+div.messages span a:link, div.messages span a:hover, div.messages span a:active, div.messages span a:visited {
+	color: #FF6600;
+}
+
+div.abonnement {
+	width: 760px;
+	height: 1200px;
+	background: url(images/abonnement.jpg) no-repeat;
+	background-position: 145px 53px;
+	position: relative;
+	left: 0;
+	top: 0;
+}
+
+div.abonnement a.btn_abonner {
+	position: absolute;
+	bottom: 0;
+	right: 200px;
+}
+
+div.abonnement table.tarifs {
+	width: 462px;
+	position: absolute;
+	left: 160px;
+	top: 129px;
+	color: #000;
+}
+
+div.abonnement table.tarifs th, div.abonnement table.tarifs td {
+	text-align: center;
+	vertical-align: middle;
+}
+
+div.abonnement table.tarifs th {
+	height: 40px;
+}
+
+div.abonnement table.tarifs td {
+	height: 25px;
+}
+
+div.abonnement table.tarifs th.typeabo {
+	width: 95px;
+}
+
+div.abonnement table.tarifs td.key {
+	text-align: left;
+}
+
+div.abonnement div.offres {
+	width: 472px;
+	height: 232px;
+	position: absolute;
+	left: 144px;
+	top: 490px;
+	background: url(images/offres.jpg) no-repeat;
+	padding-top: 8px;
+}
+
+div.abonnement div.offres a:link, div.abonnement div.offres a:hover, div.abonnement div.offres a:active, div.abonnement div.offres a:visited {
+	display:block;
+	text-decoration: none;
+	width: 472px;
+	height: 55px;
+	position: relative;
+	left: 0;
+	top: 0;
+	margin:0;
+}
+
+div.abonnement div.offres img {
+	visibility: hidden;
+	position: absolute;
+	left: 9px;
+	top: 18px;
+}
+
+div.abonnement div.offres span.parmois {
+	position: absolute;
+	left: 35px;
+	top: 8px;
+	font-size: 18px;
+	color: #cf0072;
+}
+
+div.abonnement div.offres span.total {
+	position: absolute;
+	left: 35px;
+	top: 30px;
+	font-size: 11px;
+	color: #000;
+}
+
+div.abonnement div.offres span {
+	cursor: pointer;
+}
+
+span.imp {
+	color: red;
+}
+
+div.abonnement h2, div.paypal_return h1, div.paypal_return h2 {
+	color: #CC0066;
+	font-size: 16px;
+	display: block;
+	width: 450px;
+	height: 20px;
+	background: url(images/flower.jpg) left no-repeat;
+	padding: 0;
+	text-transform: uppercase;
+	padding-left: 30px;
+	margin: 20px 0 0 0;
+}
+
+div.abonnement h2.methode {
+	position: absolute;
+	top: 760px;
+	left: 80px;
+	margin: 0;
+	width: 600px;
+}
+
+div.abonnement a.methode:link, div.abonnement a.methode:hover, div.abonnement a.methode:active, div.abonnement a.methode:visited {
+	display: block;
+	width: 200px;
+	height: 170px;
+	position: absolute;
+	top: 800px;
+	text-decoration: none;
+}
+
+div.abonnement a.m1 {
+	left: 70px;
+}
+
+div.abonnement a.m2 {
+	left: 280px;
+}
+
+div.abonnement a.m3 {
+	left: 490px;
+}
+
+div.abonnement div.aboStart {
+	position: absolute;
+	width: 600px;
+	height: 150px;
+	left: 80px;
+	top: 990px;
+}
+
+div.aboTop {
+	background: url(images/aboTop.jpg) bottom no-repeat;
+	height: 20px;
+	margin: 0;
+	padding: 0;
+	width: 600px;
+}
+
+p.aboCenter {
+	background: url(images/aboCenter.jpg) repeat-y;
+	padding: 5px 10px 5px 10px;
+	margin: 0;
+	color: #000;
+	width: 580px;
+}
+
+div.aboBottom {
+	background: url(images/aboBottom.jpg) top no-repeat;
+	height: 11px;
+	margin: 0;
+	padding: 0;
+	width: 600px;
+}
+
+div.paypal_return {
+	width: 650px;
+	float: left;
+	padding: 50px 0px 50px 50px;
+}
+
+div.paypal_return div {
+	width: 600px;
+}
+
+div.popin {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 254px;
+	height: 84px;
+	border: solid 2px #fff;
+	background: #CF0072;
+	z-index: 5000;
+	visibility: hidden;
+	padding: 3px;
+	cursor: pointer;
+}
+
+div.popin p {
+	width: 167px;
+	padding: 10px 0 40px 0;
+	display: block;
+	float: right;
+	text-align: center;
+	color: #fff;
+}
+	
+div.popin a {
+	font-weight: bold;
+	color: #ff6600;
+}
+
+div.popin a.photo img {
+	width: 82px;
+	height: 82px;
+	border: none;
+}
+
+div.popin a.photo:link, div.popin a.photo:hover, div.popin a.photo:active, div.popin a.photo:visited {
+	width: 82px;
+	height: 82px;
+	float: left;
+	display: block;
+	text-decoration: none;
+	border: solid 1px #fff;
+}
+
+div.popin div.icon {
+	width: 254px;
+	height: 30px;
+	clear: both;
+}
+
+#lightbox {
+	background-color:#fff;
+	padding: 10px;
+	border-bottom: 2px solid #666;
+	border-right: 2px solid #666;
+}
+#lightboxDetails {
+	font-size: 0.8em;
+	padding-top: 0.4em;
+}	
+#lightboxCaption {float: left; padding:0;}
+#keyboardMsg {float: right;}
+#closeButton {top: 5px; right: 5px;}
+
+#lightbox img {border: none; clear: both;} 
+#overlay img {border: none;}
+
+#overlay {background-image: url(images/overlay.png);}
+
+* html #overlay {
+	background-color: #333;
+	back\ground-color: transparent;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/overlay.png", sizingMethod="scale");
+}
+
+div.app_body {
+	float: right;
+	width: 735px;
+	padding: 0 5px 0 0;
+}
+
+div.profil_left {
+	position: relative;
+	left: 0;
+	top: 0;
+	width: 240px;
+	padding: 0;
+}
+
+div.profil_left h2.notice {
+	position: absolute;
+	left: 15px;
+	top: 10px;
+	display: block;
+	width: 190px;
+	color: #CC0066;
+	font-size: 16px;
+	text-transform: uppercase;
+	background: url(images/flowerStep.jpg) left no-repeat;
+	padding: 0 0 0 28px;
+	font-weight: normal;
+}
+
+div.stepType1, div.stepType2, div.stepType3 {
+	height: 474px;
+	background: url(images/stepType1.jpg) center no-repeat;
+	padding: 30px 0 0 0;
+}
+
+div.profil_left p {
+	padding: 10px 15px 10px 15px;
+}
+
+div.app_body h2, div.app_body h1.search, div.app_body h1.aat, h1.points {
+	font-size: 16px;
+	font-weight: normal;
+	color: #CC0066;
+	padding: 0 0 0 27px;
+	background: url(images/flower.jpg) left no-repeat;
+	text-transform: uppercase;
+	margin: 15px 0 10px 0;
+}
+
+div.abonnement h1 {
+	position: absolute;
+	left: 170px;
+	top: 70px;
+	font-size: 18px;
+	font-weight: bold;
+	color: #CF0077;
+	text-transform: uppercase;
+	background: none;
+}
+
+div.app_body hr {
+	margin: 20px 0 0 0;
+	border: solid 1px #CC0066;
+}
+
+div.app_body table.profil_table {
+	width: 730px;
+}
+
+div.app_body table.profil_table td {
+	padding: 5px;
+}
+
+div.app_body table.profil_table td.key {
+	font-weight: bold;
+}
+
+div.app_body select.genreCanton {
+	width: 100px;
+}
+
+#step1gender {
+	color: #FF6600;
+}
+
+div.app_body table.profil_table input {
+	height: 18px;
+	line-height: 18px;
+	border: solid 1px #ccc;
+}
+
+#codesecurite {
+	width: 20px;
+}
+
+span.capQ {
+	color: #CC0066;
+}
+
+div.login {
+	background: green;
+	width: 600px;
+	height: 35px;
+	position: absolute;
+	top: 160px;
+	right: 0;
+	z-index: 2;
+}
+
+label.loginLogLabel, input.loginLogInput, label.loginPassLabel, input.loginPassInput, input.loginOkButton, a.loginMdpOublie {
+	position: absolute;
+}
+
+label.loginLogLabel, label.loginPassLabel {
+	top: 172px;
+}
+
+input.loginLogInput, input.loginPassInput {
+	width: 100px;
+	height: 16px;
+	line-height: 16px;
+	border: solid 1px #ccc;
+	top: 170px;
+}
+
+input.loginLogInput {
+	right: 200px;
+}
+
+input.loginPassInput {
+	right: 45px;
+}
+
+label.loginLogLabel {
+	right: 310px;
+}
+
+label.loginPassLabel {
+	right: 155px;
+}
+
+input.loginOkButton {
+	right: 10px;
+	top: 167px;
+}
+
+a.loginMdpOublie:link, a.loginMdpOublie:hover, a.loginMdpOublie:active, a.loginMdpOublie:visited {
+	color: #FF6600;
+	right: 370px;
+	top: 168px;
+	display: block;
+	text-align: right;
+	font-size: 10px;
+}
+
+input.badLogin {
+	border: solid 1px #cc0000;
+	background: #ff7f7f;
+}
+
+ul.photoRules {
+	margin: 0 0 20px 20px;
+}
+
+table.toolbarsteps {
+	width: 100%;
+	height: 80px;
+}
+
+table.toolbarsteps td.left {
+	width: 33%;
+	text-align: left;
+}
+
+table.toolbarsteps td.center {
+	width: 33%;
+	text-align: center;
+}
+
+table.toolbarsteps td.right {
+	width: 33%;
+	text-align: right;
+}
+
+a.bouton:link, a.bouton:hover, a.bouton:active, a.bouton:visited {
+	display: block;
+	width: 157px;
+	height: 40px;
+	text-align: center;
+	line-height: 20px;
+	color: #CC0066;
+	font-size: 12px;
+	margin: 20px 0 20px 0;
+}
+
+a.supprimer:link, a.supprimer:hover, a.supprimer:active, a.supprimer:visited {
+	background: url(images/supprimer.jpg) no-repeat;
+	float: left;
+}
+
+a.restaurer:link, a.restaurer:hover, a.restaurer:active, a.restaurer:visited {
+	background: url(images/restaurer.jpg) no-repeat;
+	float: left;
+}
+
+a.archiver:link, a.archiver:hover, a.archiver:active, a.archiver:visited {
+	background: url(images/archiver.jpg) no-repeat;
+	float: left;
+}
+
+a.vider_corbeille:link, a.vider_corbeille:hover, a.vider_corbeille:active, a.vider_corbeille:visited {
+	background: url(images/vider_corbeille.jpg) no-repeat;
+	margin: 20px auto 0 auto;
+}
+
+a.repondre:link, a.repondre:hover, a.repondre:active, a.repondre:visited {
+	background: url(images/repondre.jpg) no-repeat;
+	float: left;
+}
+
+a.step_next:link, a.step_next:hover, a.step_next:active, a.step_next:visited {
+	background: url(images/etapeSuivante.jpg) no-repeat;
+	float: right;
+}
+
+a.page_next:link, a.page_next:hover, a.page_next:active, a.page_next:visited {
+	background: url(images/page_next.jpg) no-repeat;
+	float: right;
+}
+
+a.step_previous:link, a.step_previous:hover, a.step_previous:active, a.step_previous:visited {
+	background: url(images/etapePrecedente.jpg) no-repeat;
+	float: left;
+}
+
+a.page_previous:link, a.page_previous:hover, a.page_previous:active, a.page_previous:visited {
+	background: url(images/page_previous.jpg) no-repeat;
+	float: left;
+}
+
+a.step_fin:link, a.step_fin:hover, a.step_fin:active, a.step_fin:visited {
+	background: url(images/remettreAPlusTard.jpg) no-repeat;
+	margin: auto;
+	color: #fff;
+}
+
+a.return_home:link, a.return_home:hover, a.return_home:active, a.return_home:visited {
+	background: url(images/retourAccueil.jpg) no-repeat;
+	margin: auto;
+	color: #fff;
+}
+
+a.finaliser:link, a.finaliser:hover, a.finaliser:active, a.finaliser:visited {
+	background: url(images/etapeFinaliser.jpg) no-repeat;
+	float: right;
+}
+
+a.validate:link, a.validate:hover, a.validate:active, a.validate:visited {
+	background: url(images/etapeValider.jpg) no-repeat;
+	float: right;
+}
+
+a.rechercher:link, a.rechercher:hover, a.rechercher:active, a.rechercher:visited {
+	background: url(images/rechercher.jpg) no-repeat;
+	float: right;
+}
+
+a.rechercher2:link, a.rechercher2:hover, a.rechercher2:active, a.rechercher2:visited {
+	background: url(images/rechercher.jpg) no-repeat;
+	float: left;
+	margin: 0 0 0 20px;
+}
+
+a.enregistrer:link, a.enregistrer:hover, a.enregistrer:active, a.enregistrer:visited {
+	background: url(images/enregistrer.jpg) no-repeat;
+	float: right;
+}
+
+a.annuler:link, a.annuler:hover, a.annuler:active, a.annuler:visited {
+	background: url(images/annuler.jpg) no-repeat;
+}
+
+a.envoyer:link, a.envoyer:hover, a.envoyer:active, a.envoyer:visited {
+	background: url(images/envoyer.jpg) no-repeat;
+}
+
+#chars_limit {
+	color: #CC0066;
+}
+
+textarea.annonce {
+	width: 100%;
+	height: 250px;
+}
+
+select.select_profil {
+	width: 250px;
+}
+
+select.select_profil100 {
+	width: 165px;
+}
+
+div.child_bar a:link, div.child_bar a:hover, div.child_bar a:active, div.child_bar a:visited {
+	display: block;
+	padding: 0 0 0 20px;
+	width: 100px;
+	height: 16px;
+	line-height: 16px;
+	margin: 0 0 3px 0;
+}
+
+div.child_bar a.child_minus {
+	background: url(images/moins.jpg) left no-repeat;
+	color: #CC0000;
+}
+
+div.child_bar a.child_plus {
+	background: url(images/plus.jpg) left no-repeat;
+	color: #00CC00;
+}
+
+div.app_body table.profil_table td.childPhoto {
+	width: 150px;
+}
+
+div.app_body table.profil_table td.childPhoto div.miniature {
+	padding: 0 0 20px 20px;
+}
+
+div.app_body table.profil_table td.childPhoto div.swfu_btn {
+	clear: both;
+}
+
+span.childTitle {
+	display: block;
+	padding: 0 0 2px 0;
+	font-weight: bold;
+}
+
+table.table_search select, table.table_search input {
+	width: 175px;
+}
+
+table.table_search select.select50 {
+	width: 80px;
+}
+
+table.table_search input.searchRadio {
+	width: 16px;
+	height: 16px;
+}
+
+table.profil_table table.table_search td.param {
+	padding: 0 0 0 50px;
+	font-weight: bold;
+}
+
+table.search_form select.age {
+	width: 65px;
+}
+
+table.search_form td.param {
+	padding: 0 0 0 20px;
+	font-weight: bold;
+}
+
+table.search_form span.genre {
+	color: #ff6600;
+}
+
+table.search_form td {
+	padding: 5px;
+}
+
+div.app_body table.table_step9 td.disclaimer {
+	padding: 0 0 30px 0;
+}
+
+div.app_body table.table_step9 td.key {
+	padding: 0 0 0 150px;
+}
+
+div.app_body table.table_step9 input {
+	width: 210px;
+}
+
+div.app_body table.table_step9 input.telephone {
+	width: 180px;
+}
+
+div.app_body table.table_step9 span.indicatif {
+	display: block;
+	width: 30px;
+	float: left;
+	font-size: 14px;
+}
+
+.pink{color: #CC0066;font-weight: bold;}
+.black{color: #000;font-weight: bold;}
+.orange{color: #FF6600;font-weight: bold;}
+.green{color: #00CC00;font-weight: bold;}
+.red{color: #CC0000;font-weight: bold;}
+.grey{color: #333333;font-weight: bold;}
+
+
+div.user_menu {
+	width: 238px;
+	height: 285px;
+	background: url(images/userMenu.jpg) right top no-repeat;
+	position: relative;
+	left: 0;
+	top: 0;
+}
+
+div.user_menu img.photo {
+	position: absolute;
+	left: 20px;
+	top: 15px;
+	width: 109px;
+	height: 109px;
+	border: solid 1px #fff;
+}
+
+div.user_menu a.username:link, div.user_menu a.username:hover, div.user_menu a.username:active, div.user_menu a.username:visited {
+	position: absolute;
+	left: 140px;
+	top: 113px;
+	color: #CC0066;
+	font-weight: bold;
+	font-size: 12px;
+}
+
+div.user_menu ul {
+	width: 210px;
+	position: absolute;
+	left: 20px;
+	top: 135px;
+}
+
+div.user_menu ul li {
+	list-style: none;
+	height: 20px;
+	line-height: 20px;
+}
+
+div.user_menu ul li a:link, div.user_menu ul li a:hover, div.user_menu ul li a:active, div.user_menu ul li a:visited {
+	color: #fff;
+}
+
+div.user_menu a.logout:link, div.user_menu a.logout:hover, div.user_menu a.logout:active, div.user_menu a.logout:visited {
+	position: absolute;
+	left: 145px;
+	top: 10px;
+	color: #FF6600;
+	font-weight: normal;
+	font-size: 11px;
+}
+
+div.user_menu a.informations:link, div.user_menu a.informations:hover, div.user_menu a.informations:active, div.user_menu a.informations:visited {
+	position: absolute;
+	left: 140px;
+	top: 50px;
+	color: #FF6600;
+	font-weight: normal;
+	font-size: 11px;
+}
+
+span.statut1, span.statut2 {
+	cursor: help;
+	padding: 2px 0px 2px 20px;
+	height: 16px;
+	line-height: 16px;
+}
+
+span.statut1 {
+	background: url(images/confirmed1.gif) left no-repeat;
+	color: #00af40;
+}
+
+span.statut2 {
+	background: url(images/confirmed2.gif) left no-repeat;
+	color: #BBB;
+}
+
+div.user_menu a.abo:link, div.user_menu a.abo:hover, div.user_menu a.abo:active, div.user_menu a.abo:visited {
+	display: block;
+	width: 208px;
+	height: 14px;
+	line-height: 12px;
+	text-align: center;
+	color: #fff;
+	font-size: 11px;
+	background: url(images/abonnez-vous.gif) top no-repeat;
+	margin: 4px 0 0 0;
+	text-decoration: none;
+}
+
+div.user_menu a.abo:hover {
+	background: url(images/abonnez-vous.gif) bottom no-repeat;
+	color: #cc0066;
+}
+
+div.user_menu table.groupes {
+	position: absolute;
+	left: 0px;
+	top: 160px;
+}
+
+div.user_menu table.groupes th {
+	font-size: 12px;
+	font-weight: bold;
+	color: #000;
+	padding: 0 0 5px 15px;
+}
+
+div.user_menu table.groupes td {
+	padding: 0 5px 0 5px;
+	height: 40px;
+	text-align: left;
+	overflow: hidden;
+	vertical-align: middle;
+}
+
+div.user_menu table.groupes td.photo {
+	width: 35px;
+	padding: 0 0 0 15px;
+}
+
+div.user_menu table.groupes td.photo img {
+	border: solid 1px #ccc;
+}
+
+div.user_menu table.groupes td  a:link, div.user_menu table.groupes td  a:hover, div.user_menu table.groupes td  a:active, div.user_menu table.groupes td  a:visited {
+	color: #fff;
+	text-decoration: none;
+}
+
+div.user_menu table.groupes td  a:hover {
+	text-decoration: underline;
+}
+  
+div.panel_left {
+	width: 480px;
+	float: left;
+	padding: 10px 0 0 0;
+}
+
+div.panel_right {
+	width: 250px;
+	float: left;
+	padding: 10px 0 0 0;
+}
+
+div.panel_right div.bloc_top {
+	width: 250px;
+	height: 5px;
+	line-height: 5px;
+	font-size: 1px;
+	background: url(images/temoignage-bg.jpg) top no-repeat;
+	margin: 10px 0 0 0;
+}
+
+div.panel_right div.bloc_center {
+	width: 232px;
+	border-left: solid 1px #9c0054;
+	border-right: solid 1px #9c0054;
+	padding: 5px 8px 2px 8px;
+	color: #fff;
+	text-align: justify;
+}
+
+div.panel_right div.bloc_bottom {
+	width: 250px;
+	height: 5px;
+	line-height: 5px;
+	font-size: 1px;
+	background: url(images/temoignage-bg.jpg) bottom no-repeat;
+}
+
+div.panel_right div.bloc_center a:link, div.panel_right div.bloc_center a:hover, div.panel_right div.bloc_center a:active, div.panel_right div.bloc_center a:visited {
+	color: #ff6600;
+}
+
+div.panel_right div.bloc_center span {
+	color: #cc0066;
+	text-transform: uppercase;
+	font-size: 12px;
+	display: block;
+	padding: 0 0 10px 0;
+}
+
+div.panel_right div.bloc_center p {
+	padding: 8px 0 8px 0;
+}
+
+div.panel_right div.bloc_center p img {
+	margin: 0 5px 0 0;
+	float: left;
+	border: solid 1px #fff;
+}
+
+div.appel_texte img {
+	margin: 0 5px 5px 0;
+	float: left;
+	border: solid 1px #fff;
+}
+
+div.panel_right div.bloc_center div.m10 {
+	margin: 10px 0 0 0;
+}
+
+div.panel_right div.bloc_center a.btnNoirRose:link, div.panel_right div.bloc_center a.btnNoirRose:hover, div.panel_right div.bloc_center a.btnNoirRose:active, div.panel_right div.bloc_center a.btnNoirRose:visited {
+	display: block;
+	width: 111px;
+	height: 18px;
+	line-height: 18px;
+	text-align: center;
+	background: url(images/bouton-noir-rose.jpg) no-repeat;
+	background-position: 0 0;
+	font-size: 10px;
+	color: #fff;
+	text-decoration: none;
+}
+
+div.panel_right div.bloc_center a.btnNoirRose:hover {
+	background-position: 0 -18px;
+}
+
+div.panel_right div.bloc_center a.gauche {
+	float: left;
+}
+
+div.panel_right div.bloc_center a.droite {
+	float: right;
+}
+
+div.panel_left div.recherche {
+	width: 472px;
+	height: 159px;
+	background: url(images/rechercheRapide.jpg) no-repeat;
+	position: relative;
+	left: 0;
+	top: 0;
+}
+
+div.panel_left div.recherche input.btnRecherche {
+	position: absolute;
+	left: 280px;
+	top: 105px;
+}
+
+div.panel_left div.recherche div.titre {
+	width: 100%;
+	text-align: center;
+	color: #000;
+	text-transform: uppercase;
+	font-size: 14px;
+	padding: 7px 0 7px 0;
+}
+
+div.panel_left div.recherche div.texte {
+	padding: 0 10px 0 10px;
+}
+
+div.panel_left div.recherche select.enfants {
+	width: 80px;
+}
+
+div.panel_left div.recherche select.age {
+	width: 50px;
+}
+
+div.panel_left div.recherche select#search_canton_id, div.panel_left div.recherche select#search_ville_id {
+	width: 120px;
+}
+
+div.panel_left div.recherche label {
+	font-weight: normal;
+}
+
+div.panel_left div.preview4 {
+	height: 150px;
+	padding: 0 0 0 14px;
+}
+
+div.panel_left div.preview4 div.preview {
+	width: 100px;
+	height: 146px;
+	background: url(images/preview.jpg) no-repeat;
+	float: left;
+	padding: 5px 0 0 5px;
+}
+
+div.panel_left div.preview4 div.preview img {
+	width: 89px;
+	height: 89px;
+	border: solid 1px #fff;
+}
+
+div.panel_left div.preview4 div.preview a.desc:link, div.panel_left div.preview4 div.preview a.desc:hover, div.panel_left div.preview4 div.preview a.desc:active, div.panel_left div.preview4 div.preview a.desc:visited {
+	color: #fff;
+	text-decoration: none;
+	text-align: center;
+	display: block;
+	width: 95px;
+	padding: 5px 0 5px 0;
+}
+
+div.panel_left div.preview4 a.more:link, div.panel_left div.preview4 a.more:hover, div.panel_left div.preview4 a.more:active, div.panel_left div.preview4 a.more:visited {
+	display: block;
+	width: 28px;
+	height: 156px;
+	background: url(images/preview-plus.jpg) center no-repeat;
+	float: left;
+}
+
+div.redac1 {	
+	background: url(images/redac1.jpg)  no-repeat;
+}
+
+div.redac2 {
+	background: url(images/redac2.jpg) no-repeat;
+}
+
+div.redac3 {
+	background: url(images/redac3.jpg) no-repeat;
+}
+
+div.redac {
+	width: 228px;
+	padding: 180px 0 30px 10px;
+	text-align: justify;
+	background-position: 10px 10px;
+}
+
+div.redac span.titre {
+	display: block;
+	background: url(images/flower.jpg) left no-repeat;
+	height: 20px;
+	line-height: 20px;
+	font-size: 14px;
+	text-transform: uppercase;
+	color: #F9B9D4;
+	margin: 5px 0 10px 0;
+	padding: 0 0 0 27px;
+	font-weight: normal;
+}
+
+div.redac a:link, div.redac a:hover, div.redac a:active, div.redac a:visited,
+div.contenu a:link, div.contenu a:hover, div.contenu a:active, div.contenu a:visited {
+	color: #FF6600;
+}
+
+div.contenu a.return_home:link, div.contenu a.return_home:hover, div.contenu a.return_home:active, div.contenu a.return_home:visited {
+	margin: 30px auto 20px auto;
+	color: #fff;
+}
+
+div.contenu a.envoyer:link, div.contenu a.envoyer:hover, div.contenu a.envoyer:active, div.contenu a.envoyer:visited {
+	color: #cc0066;
+	margin-left: 10px;
+}
+
+div.contenu{
+	padding: 10px 10px 10px 0px;
+}
+
+div.contenu p {
+	padding: 10px;
+}
+
+div.contenu ul {
+	padding: 10px 0px 10px 40px;
+}
+
+div.contenu h1 {
+	display: block;
+	color: #CC0066;
+	font-size: 16px;
+	text-transform: uppercase;
+	background: url(images/flower.jpg) bottom left no-repeat;
+	padding: 0 0 0 28px;
+	margin: 0 0 10px 0;
+	font-weight: normal;
+}
+
+div.contenu h1 span {
+	font-size: 11px;
+	color: #CCC;
+	font-style: italic;
+	text-transform: lowercase;
+}
+
+div.contact input, div.contact select {
+	width: 300px;
+	border: solid 1px #ccc;
+}
+
+div.contact textarea {
+	width: 300px;
+	height: 100px;
+	border: solid 1px #ccc;
+}
+
+fieldset.membre {
+	border: solid 1px #ccc;
+	width: 500px;
+	padding: 10px;
+	margin: 10px 0 0 0;
+}
+
+fieldset.membre legend {
+	font-weight: bold;
+	color: #cc0066;
+	padding: 0 10px 0 10px;
+}
+
+fieldset.membre table td {
+	padding: 5px;
+}
+
+table.profil_menu {
+	width: 732px;
+	height: 30px;
+	background: url(images/profil-menu.jpg) no-repeat;
+	margin: 10px 0 10px 0;
+}
+
+table.profil_menu td {
+	list-style: none;
+	text-align: center;
+	height: 20px;
+	line-height: 20px;
+	float: left;
+	padding: 3px 0px 3px 9px;
+	text-transform: uppercase;
+	white-space: nowrap;
+}
+
+table.profil_menu td a:link, table.profil_menu td a:hover, table.profil_menu td a:active, table.profil_menu td a:visited {
+	display: block;
+	width: 100%;
+	height: 20px;
+	padding: 0 4px 0 0;
+	color: #fff;
+}
+
+table.profil_menu td a:hover {
+	background: #333;
+	text-decoration: none;
+}
+
+table.profil_menu td.active {
+	background: url(images/profil-menu-left.jpg) no-repeat;
+	background-position: 5px 3px;
+}
+
+table.profil_menu td.active a:link, table.profil_menu td.active a:hover, table.profil_menu td.active a:active, table.profil_menu td.active a:visited {
+	background: #cc0066 url(images/profil-menu-right.jpg) right no-repeat;
+}
+
+table.profil_menu td.active a:hover {
+	color: #fff;
+}
+
+div.profil_bloc_left {
+	float: left;
+	width: 240px;
+}
+
+div.profil_bloc_right {
+	width: 495px;
+	float: right;
+	position: relative;
+	left: 0;
+	top: 0;
+	padding: 155px 0 0 0;
+}
+
+div.profil_bloc_left a.bouton {
+	font-size: 11px;
+	margin: 10px 0 0 0;
+}
+
+div.profil_toolbar {
+	width: 167px;
+	height: 143px;
+	background: url(images/toolbar.jpg) no-repeat;
+	position: absolute;
+	right: 3px;
+	top: 0;
+}
+
+div.profil_bloc_right h1 {
+	display: block;
+	position: absolute;
+	left: 0px;
+	top: 5px;
+	font-size: 16px;
+	color: #cc0066;
+	padding: 0 0 0 22px;
+	height: 20px;
+	line-height: 20px;
+	margin: 0;
+}
+
+div.profil_bloc_right h1.h {
+	background: url(images/h.jpg) no-repeat;
+}
+
+div.profil_bloc_right  h1.f {
+	background: url(images/f.jpg) no-repeat;
+}
+
+div.profil_bloc_right  span.date_inscription {
+	position: absolute;
+	left: 4px;
+	top: 30px;
+	color: #FF6600;
+	font-size: 10px;
+}
+
+div.profil_bloc_right span.last_online {
+	position: absolute;
+	left: 4px;
+	top: 50px;
+	font-size: 10px;
+	color: #fff;
+}
+
+span.lo_online {
+	color: #009900;
+	font-weight: bold;
+}
+
+span.lo_today {
+	color: #ed0092;
+	font-weight: bold;
+}
+
+span.lo_yesterday {
+	color: #FF9933;
+	font-weight: bold;
+}
+
+span.lo_week {
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+span.lo_weeks {
+	color: #999999;
+	font-weight: bold;
+}
+
+div.profil_bloc_right div.top {
+	width: 492px;
+	height: 10px;
+	line-height: 10px;
+	font-size: 10px;
+	background: url(images/profil_top.jpg) no-repeat;
+}
+
+div.profil_bloc_right div.center {
+	width: 470px;
+	border-left: solid 1px #cc0066;
+	border-right: solid 1px #cc0066;
+	padding: 0 10px 0 10px;
+}
+
+div.profil_bloc_right div.bottom {
+	width: 492px;
+	height: 10px;
+	background: url(images/profil_bottom.jpg) no-repeat;
+}
+
+div.profil_bloc_right div.center h2 {
+	margin: 0 0 10px 0;
+}
+
+div.profil_toolbar a.btn:link, div.profil_toolbar a.btn:hover, div.profil_toolbar a.btn:active, div.profil_toolbar a.btn:visited {
+	position: absolute;
+	left: 5px;
+	display: block;
+	width: 157px;
+	height: 21px;
+	line-height: 21px;
+	text-align: center;
+	font-size: 11px;
+	background: url(images/toolbar-btn.gif) no-repeat;
+	text-decoration: none;
+}
+
+
+div.profil_toolbar a.btn_message:link, div.profil_toolbar a.btn_message:hover, div.profil_toolbar a.btn_message:active, div.profil_toolbar a.btn_message:visited,
+div.profil_toolbar a.btn_rose:link, div.profil_toolbar a.btn_rose:hover, div.profil_toolbar a.btn_rose:active, div.profil_toolbar a.btn_rose:visited {
+	color: #cc0066;
+	background-position: 0 0;
+}
+
+div.profil_toolbar a.btn_rose:hover,
+div.profil_toolbar a.btn_message:hover {
+	color: #fff;
+	background-position: 0 -21px;
+}
+
+div.profil_toolbar a.btn_chat:link, div.profil_toolbar a.btn_chat:hover, div.profil_toolbar a.btn_chat:active, div.profil_toolbar a.btn_chat:visited {
+	color: #fff;
+	background-position: 0 -21px;
+}
+
+div.profil_toolbar a.btn_chat:hover {
+	color: #cc0066;
+	background-position: 0 0;
+}
+
+div.profil_toolbar a.btn_message {
+	top: 5px;
+}
+
+div.profil_toolbar a.btn_rose {
+	top: 30px;
+}
+
+div.profil_toolbar a.btn_chat {
+	top: 55px;
+}
+
+div.profil_toolbar a.btn2:link, div.profil_toolbar a.btn2:hover, div.profil_toolbar a.btn2:active, div.profil_toolbar a.btn2:visited {
+	position: absolute;
+	left: 5px;
+	display: block;
+	height: 15px;
+	line-height: 15px;
+	text-align: left;
+	font-size: 10px;
+	text-decoration: none;
+	padding: 0 0 0 20px;
+	color: #fff;
+}
+
+div.profil_toolbar a.btn2:hover {
+	color: #ff6600;
+}
+
+div.profil_toolbar a.btn_favoris:link, div.profil_toolbar a.btn_favoris:hover, div.profil_toolbar a.btn_favoris:active, div.profil_toolbar a.btn_favoris:visited {
+	background: url(images/btn_favoris.jpg) left no-repeat;
+}
+
+div.profil_toolbar a.btn_black:link, div.profil_toolbar a.btn_black:hover, div.profil_toolbar a.btn_black:active, div.profil_toolbar a.btn_black:visited {
+	background: url(images/btn_black.jpg) left no-repeat;
+}
+
+div.profil_toolbar a.btn_abus:link, div.profil_toolbar a.btn_abus:hover, div.profil_toolbar a.btn_abus:active, div.profil_toolbar a.btn_abus:visited {
+	background: url(images/btn_abus.jpg) left no-repeat;
+}
+
+div.profil_toolbar a.btn_favoris {
+	top: 80px;
+}
+
+div.profil_toolbar a.btn_black {
+	top: 100px;
+}
+
+div.profil_toolbar a.btn_abus {
+	top: 120px;
+}
+
+div.profil_bloc_left div.top {
+	width: 230px;
+	height: 5px;
+	background: url(images/profil-photo-top.jpg) no-repeat;
+}
+
+div.profil_bloc_left div.bottom {
+	width: 230px;
+	height: 15px;
+	background: url(images/profil-photo-bottom.jpg) top no-repeat;
+}
+
+div.profil_bloc_left div.photos {
+	width: 228px;
+	border-left: solid 1px #db9fb9;
+	border-right: solid 1px #db9fb9;
+	position: relative;
+	left: 0;
+	top: 0;
+	background: #000;
+}
+
+div.profil_bloc_left div.photos0 {
+	height: 270px;
+}
+
+div.profil_bloc_left div.photos1 {
+	height: 308px;
+}
+
+div.profil_bloc_left div.photos * {
+	position: absolute;
+}
+
+div.profil_bloc_left div.photos img.big {
+	left: 4px;
+	top: 0;
+}
+
+div.profil_bloc_left div.photos img.mini {
+	width: 35px;
+	height: 35px;
+	bottom: 0;
+	cursor: pointer;
+}
+
+div.profil_bloc_left div.photos img.photo0 {
+	left: 5px;
+}
+
+div.profil_bloc_left div.photos img.photo1 {
+	left: 42px;
+}
+
+div.profil_bloc_left div.photos img.photo2 {
+	left: 79px;
+}
+
+div.profil_bloc_left div.photos img.photo3 {
+	left: 116px;
+}
+
+div.profil_bloc_left div.photos img.photo4 {
+	left: 153px;
+}
+
+div.profil_bloc_left div.photos img.photo5 {
+	left: 190px;
+}
+
+div.profil_bloc_left div.profil_mini {
+	width: 215px;
+	background: url(images/profil-mini.jpg) top no-repeat;
+	padding: 10px 0 0 15px;
+}
+
+div.profil_bloc_left div.profil_mini td {
+	padding: 5px 0 5px 0;
+}
+
+div.profil_bloc_left div.profil_mini td.key {
+	color: #cc0066;
+	font-weight: bold;
+	width: 80px;
+}
+
+div.profil_bloc_right div.center table td {
+	padding: 5px 0 5px 10px;
+}
+
+div.profil_bloc_right div.center table td.key {
+	color: #ff6600;
+	width: 150px;
+}
+
+div.profil_bloc_right div.center div.enfant {
+	overflow: hidden;
+	width: 470px;
+	height: 270px;
+}
+
+div.profil_bloc_right div.center div.enfant table.enfantSlide {
+	position: relative;
+	top: 0px;
+	left: 0px;
+}
+
+div.profil_bloc_right div.center div.enfant table.enfantSlide td,
+div.profil_bloc_right div.center div.enfant table.enfantSlide td div.enfantProfil {
+	width: 470px;
+	height: 270px;
+	padding: 0;
+	vertical-align: top;
+	text-align: left;
+}
+
+div.profil_bloc_right div.center div.enfant table.enfantSlide td div.enfantProfil {
+	position: relative;
+	top: 0px;
+	left: 0px;
+}
+
+div.profil_bloc_right div.center div.enfant table.enfantSlide td div.enfantProfil table.enfantProfilInfos {
+	position: absolute;
+	left: 230px;
+	bottom: 0px;
+}
+
+div.profil_bloc_right div.center div.enfant table.enfantSlide td div.enfantProfil table.enfantProfilInfos td {
+	height: 20px;
+	line-height: 20px;
+}
+
+div.profil_bloc_right div.center div.enfant table.enfantSlide td div.enfantProfil table.enfantProfilInfos td.key {
+	width: 75px;
+	color: #ff6600;
+}
+
+div.profil_bloc_right div.center div.enfant table.enfantSlide div.enfantPhoto {
+	width: 470px;
+	height: 270px;
+}
+
+div.profil_bloc_right div.center div.enfant table.enfantSlide a.vide {
+	visibility: hidden;
+}
+
+div.profil_bloc_right div.center div.enfant table.enfantSlide a.prev,
+div.profil_bloc_right div.center div.enfant table.enfantSlide a.next {
+	display: block;
+	position: absolute;
+	width: 31px;
+	height: 35px;
+	bottom: 0;
+	background: url(images/photoNav.jpg) no-repeat;
+	text-decoration: none;
+}
+
+div.profil_bloc_right div.center div.enfant table.enfantSlide a.prev {
+	background-position: 0 0;
+	right:31px;
+}
+
+div.profil_bloc_right div.center div.enfant table.enfantSlide a.next {
+	background-position: -31px 0;
+	right: 0;
+}
+
+div.profil_bloc_right div.center div.enfant table.enfantSlide a.prev:hover {
+	background-position: 0 -35px;
+	right: 31px;
+}
+
+div.profil_bloc_right div.center div.enfant table.enfantSlide a.next:hover {
+	background-position: -31px -35px;
+	right: 0;
+}
+
+table.messages_table td {
+	padding: 0 5px 0 5px;
+	vertical-align: top;
+	height: 55px;
+}
+
+table.messages_table td.pre img {
+	width: 50px;
+	height: 50px;
+	border: solid 1px #FFF;
+}
+
+table.messages_table td.exp {
+	width: 150px;
+}
+
+table.messages_table td.flbl {
+	width: 125px;
+}
+
+table.messages_table td.suppr {
+	width: 25px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+table.messages_table a:link, table.messages_table a:hover, table.messages_table a:active, table.messages_table a:visited {
+	color: #cc0066;
+}
+
+table.messages_table td.exp a {
+	font-size: 13px;
+}
+
+table.messages_table td.titre a:link, table.messages_table td.titre a:hover, table.messages_table td.titre a:active, table.messages_table td.titre a:visited {
+	text-decoration: none;
+	display: block;
+	width: 505px;
+	height: 45px;
+	padding: 5px 5px 0 7px;
+	font-weight: bold;
+	position: relative;
+	left: 0;
+	top: 0;
+}
+
+table.messages_table td.titre a span.date {
+	color: #000;
+	position: absolute;
+	left: 7px;
+	bottom: 5px;
+	font-size: 10px;
+}
+
+table.messages_table td.titre a {
+	background: url(images/messages.jpg) no-repeat;
+	background-position: 0 0;
+}
+
+table.messages_table td.titre a.non_lu {
+	background-position: 0 -50px;
+}
+
+table.messages_table td.titre a.Rose {
+	background-position: 0 -100px;
+}
+
+table.messages_table td.titre a.non_luRose {
+	background-position: 0 -150px;
+}
+
+table.messages_table td.titre a:hover {
+	color: #fff;
+}
+
+table td.pagination {
+	padding: 25px 0 0 0;
+	vertical-align: top;
+}
+
+table td.pagination a:link, table td.pagination a:hover, table td.pagination a:active, table td.pagination a:visited {
+	color: #ff6600;
+}
+
+table td.pagination a.active {
+	color: #ffffff;
+	font-weight: bold;
+}
+
+table.message_table td {
+	padding: 5px;
+	vertical-align: top;
+}
+
+table.message_table a.envoyer {
+	margin: 20px 0 0 10px;
+}
+
+table.message_table input, table.message_table textarea, table.message_table select.msgtxt {
+	width: 500px;
+	border: solid 1px #ccc;
+}
+
+table.message_table input.msgtxt, table.message_table textarea.msgtxt, table.message_table select.msgtxt {
+	width: 400px;
+}
+
+table.message_table input.msgtxt2, table.message_table textarea.msgtxt2 {
+	width: 340px;
+}
+
+table.message_table textarea {
+	height: 200px;
+}
+
+table.message_table div.disclaimer {
+	width: 450px;
+	height: 35px;
+	background: #FFFF00 url(images/warning.jpg) left no-repeat;
+	color: #333;
+	padding: 5px 10px 0 40px;
+	margin: 0px;
+	font-size: 11px;
+	font-style: italic;
+	border: solid 1px #ccc;
+}
+
+table.message_table td.tdTitre a:link, table.message_table td.tdTitre a:hover, table.message_table td.tdTitre a:active, table.message_table td.tdTitre a:visited {
+	color: #FF6600;
+}
+
+table.message_table td.tdTitre {
+	height: 30px;
+}
+
+table.message_table td.tdToolbar {
+	vertical-align: top;
+}
+
+table.message_table td.tdToolbar a {
+	margin-left: 10px;
+}
+
+table.messages_table, table.message_table {
+	margin: 10px 0 0 0;
+}
+
+table.message_table td.rose_signification {
+	padding: 0 0 0 10px;
+	text-align: justify;
+	width: 390px;
+}
+
+table.message_table td.message_photo img {
+	width: 89px;
+	height: 89px;
+	border: solid 1px #fff;
+}
+
+td.rose_signification span.rose {
+	font-weight: bold;
+	font-size: 14px;
+}
+
+td.rose_signification p.rose {
+	padding: 10px;
+	font-style: italic;
+}
+
+table.message_table table.fleurPreview {
+	float: left;
+	width: 150px;
+	margin: 0px 0px 15px 15px;
+}
+
+table.message_table table.fleurPreview td {
+	padding: 0px;
+	margin: 0px;
+}
+
+table.message_table table.fleurPreview td.tdRadio {
+	text-align: center;
+	width: 30px;
+}
+
+table.message_table table.fleurPreview input {
+	width: 16px;
+}
+
+table.profil_table div.conditions {
+	width: 520px;
+	margin: 0 0 0 100px;
+}
+
+#divConditions {
+	width: 500px;
+	height: 300px;
+	overflow-y: scroll;
+	border: solid 1px #ccc;
+	padding: 10px;
+	text-align: justify;
+	margin: 0 0 10px 0;
+}
+
+table.profil_table td.tdConditions input {
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	width: 100px;
+	border: solid 1px #ccc;
+	cursor: not-allowed;
+}
+
+table.profil_table td.tdConditions input.accept {
+	border: solid 1px #00cc00;
+	cursor: pointer;
+}
+
+table.profil_table td.tdConditions input.refuse {
+	border: solid 1px #cc0000;
+	cursor: pointer;
+}
+
+table.profil_table td.tdConditions span.accepted {
+	font-weight: bold;
+	color: #00cc00;
+}
+
+table.profil_table td.tdConditions span.refused {
+	font-weight: bold;
+	color: #cc0000;
+}
+
+p.notificationNotice {
+	padding: 10px;
+}
+
+p.parrainageNotice {
+	padding: 10px 10px 40px 10px;
+}
+
+textarea.textareaParrainage {
+	width: 400px;
+	height: 100px;
+	margin: 0 0 20px 0;
+}
+
+table.profil_menu td.affichage {
+	font-weight: bold;
+	color: #000;
+	text-align: right;
+}
+
+table.searchnavbar a.step_next, table.searchnavbar a.step_previous {
+	margin: 0;
+}
+
+table.searchnavbar {
+	width: 100%;
+	height: 50px;
+	margin-top: 10px;
+}
+
+table.searchnavbar td {
+	vertical-align: top;
+}
+
+table.searchnavbar td.left {
+	padding: 0 0 0 10px;
+	width: 165px;
+	text-align: left;
+}
+
+table.searchnavbar td.center {
+	padding: 3px 0 0 0;
+	text-align: center;
+}
+
+table.searchnavbar td.right {
+	padding: 0 10px 0 0;
+	width: 165px;
+	text-align: right;
+}
+
+table.searchnavbar td.center a:link, table.searchnavbar td.center a:hover, table.searchnavbar td.center a:active, table.searchnavbar td.center a:visited {
+	color: #ff0066;
+}
+
+table.searchnavbar td.center a:hover {
+	color: #ff6600;
+}
+
+table.searchnavbar td.center a.active {
+	color: #ffffff;
+	font-weight: bold;
+}
+
+div.profil_liste_top, div.profil_liste_bottom {
+	width: 732px;
+	height: 5px;
+	line-height: 5px;
+	font-size: 1px;
+	background: url(images/recherche-bg.jpg) no-repeat;
+}
+
+div.profil_liste_top {
+	background-position: 0 0;
+}
+
+div.profil_liste_bottom {
+	background-position: 0 -5px;
+	height: 15px;
+}
+
+div.profil_liste_center {
+	width: 730px;
+	height: 91px;
+	border-left: solid 1px #9c0054;
+	border-right: solid 1px #9c0054;
+	position: relative;
+	left: 0px;
+	top: 0px;
+}
+
+div.profil_galerie {
+	width: 365px;
+	height: 106px;
+	float: left;
+}
+
+div.profil_galerie_top, div.profil_galerie_bottom {
+	width: 360px;
+	height: 5px;
+	line-height: 5px;
+	font-size: 1px;
+	background: url(images/recherche-bg2.jpg) no-repeat;
+}
+
+div.profil_galerie_top {
+	background-position: 0 0;
+}
+
+div.profil_galerie_bottom {
+	background-position: 0 -5px;
+	height: 15px;
+}
+
+div.profil_galerie_center {
+	width: 358px;
+	height: 91px;
+	border-left: solid 1px #9c0054;
+	border-right: solid 1px #9c0054;
+	position: relative;
+	left: 0px;
+	top: 0px;
+}
+
+div.profil_liste_center  a.profil, div.profil_galerie_center  a.profil {
+	position: absolute;
+	display: block;
+	width: 115px;
+	height: 40px;
+	text-align: center;
+	line-height: 20px;
+	color: #CC0066;
+	font-size: 12px;
+	right: 10px;
+	bottom: -3px;
+	background: url(images/profil.jpg) no-repeat;
+}
+
+div.profil_liste_center  img.photo, div.profil_galerie_center  img.photo {
+	position: absolute;
+	border: solid 1px #fff;
+	left: 4px;
+	top: 0;
+}
+
+div.profil_liste_center  a.username:link, div.profil_liste_center  a.username:hover, div.profil_liste_center  a.username:active, div.profil_liste_center  a.username:visited, 
+div.profil_galerie_center  a.username:link, div.profil_galerie_center  a.username:hover, div.profil_galerie_center  a.username:active, div.profil_galerie_center  a.username:visited {
+	position: absolute;
+	color: #FF6600;
+	font-weight: bold;
+	font-size: 14px;
+	left: 100px;
+	top: 0px;
+}
+
+div.profil_liste_center  p.desc, div.profil_galerie_center  p.desc {
+	position: absolute;
+	left: 103px;
+	top: 17px;
+	font-size: 10px;
+	font-weight: bold;
+	/*width: 125px;
+	height: 25px;
+	overflow: hidden;*/
+}
+
+div.profil_liste_center  p.annonce {
+	position: absolute;
+	left: 330px;
+	top: 5px;
+	font-size: 11px;
+	width: 260px;
+	height: 80px;
+	line-height: 13px;
+	text-align: justify;
+	overflow: hidden;
+}
+
+div.profil_liste_center  p.last_online, div.profil_galerie_center  p.last_online {
+	position: absolute;
+	width: 120px;
+	right: 8px;
+	top: 10px;
+	font-size: 11px;
+	text-align: center;
+}
+
+div.profil_liste_center  p.last_online span, div.profil_galerie_center  p.last_online span {
+	font-size: 10px;
+}
+
+div.profil_liste_center div.toolbar {
+	position: absolute;
+	left: 100px;
+	top: 48px;
+	width: 225px;
+	height: 40px;
+}
+
+div.profil_galerie_center div.toolbar {
+	position: absolute;
+	left: 100px;
+	top: 44px;
+	width: 130px;
+	height: 40px;
+}
+
+div.profil_liste_center a.btn, div.profil_galerie_center a.btn {
+	position: absolute;
+	display: block;
+	height: 18px;
+	line-height: 18px;
+	background: url(images/icones.jpg) no-repeat;
+	width: 50px;
+	padding: 0 0 0 22px;
+	font-size: 10px;
+}
+
+div.profil_galerie_center a.btn {
+	width: 107px;
+}
+
+div.profil_liste_center a.btn:link, div.profil_liste_center a.btn:active, div.profil_liste_center a.btn:visited,
+div.profil_galerie_center a.btn:link, div.profil_galerie_center a.btn:active, div.profil_galerie_center a.btn:visited {
+	color: #ddd;
+}
+
+div.profil_liste_center a.btn:hover,
+div.profil_galerie_center a.btn:hover {
+	color: #ff6600;
+}
+
+div.profil_liste_center a.btn0,
+div.profil_galerie_center a.btn0 {
+	background-position: 0 -90px;
+	top: 0;
+	left: 0;
+}
+
+div.profil_liste_center a.btn1,
+div.profil_galerie_center a.btn1 {
+	background-position: 0 -72px;
+	top: 20px;
+	left: 0px;
+}
+
+div.profil_liste_center a.btn2,
+div.profil_galerie_center a.btn2 {
+	background-position: 0 -54px;
+	top: 0;
+	left: 73px;
+}
+
+div.profil_liste_center a.btn3 {
+	background-position: 0 -36px;
+	top: 20px;
+	left: 73px;
+}
+
+div.profil_liste_center a.btn4 {
+	background-position: 0 -18px;
+	top: 0;
+	left: 150px;
+}
+
+div.profil_liste_center a.btn5 {
+	background-position: 0 0;
+	top: 20px;
+	left: 150px;
+}
+
+table.flbl_table td {
+	padding: 20px 10px 5px 10px;
+}
+
+table.flbl_table td.photo {
+	padding: 20px 10px 5px 20px;
+}
+
+p.flbl_notice {
+	padding: 5px;
+}
+
+p.flbl_notice a, table.flbl_table td.key a {
+	color: #ff6600;
+}
+
+table.flbl_table {
+	margin: 0 0 0 40px;
+	background: url(images/flbl.jpg) no-repeat;
+	width: 610px;
+	height: 257px;
+}
+
+table.flbl_table td.key input {
+	width: 450px;
+	height: 18px;
+}
+
+table.flbl_table a.annuler {
+	float: left;
+}
+
+table.flbl_table td.btns {
+	padding: 0 130px 0 10px;
+}
+
+table.appel td.key {
+	width: 100px;
+}
+
+div.appel_a_temoins div.center {
+	padding: 10px;
+	width: 710px;
+	text-align: justify;
+	border-right: solid 1px #9c0054;
+	border-left: solid 1px #9c0054;
+	position: relative;
+	left: 0;
+	top: 0;
+}
+
+div.appel_a_temoins div.center h3 a:link, div.appel_a_temoins div.center h3 a:hover, div.appel_a_temoins div.center h3 a:active, div.appel_a_temoins div.center h3 a:visited {
+	font-size: 12px;
+	color: #ff6600;
+	display: block;
+	padding: 0 0 0 30px;
+	margin: 0 0 10px 0;
+	background: url(images/flower.jpg) center left no-repeat;
+	line-height: 20px;
+}
+
+div.appel_a_temoins div.center h3 a span {
+	color: #fff;
+}
+
+div.appel_a_temoins div.center img {
+	float: left;
+	margin: 0 10px 0 0;
+	border: solid 1px #fff;
+}
+
+div.appel_a_temoins div.center a.more:link , div.appel_a_temoins div.center a.more:hover , div.appel_a_temoins div.center a.more:active , div.appel_a_temoins div.center a.more:visited {
+	color: #ff6600;
+	position: absolute;
+	right: 10px;
+	bottom: 5px;
+} 
+
+div.appel_a_temoins div.top {
+	height: 5px;
+	line-height: 5px;
+	width: 732px;
+	background: url(images/recherche-bg.jpg) top no-repeat;
+	font-size: 5px;
+	margin-top: 10px;
+}
+
+div.appel_a_temoins div.bottom {
+	height: 5px;
+	line-height: 5px;
+	width: 732px;
+	background: url(images/recherche-bg.jpg) bottom no-repeat;
+	font-size: 5px;
+}
+
+div.appel_a_temoins div.appel_annonce {
+	padding: 10px 20px 10px 10px;
+	text-align: justify;
+}
+
+div.appel_a_temoins div.center a:link, div.appel_a_temoins div.center a:hover, div.appel_a_temoins div.center a:active, div.appel_a_temoins div.center a:visited {
+	color: #ff6600;
+}
+
+div.appel_a_temoins span.infos {
+	font-weight: bold;
+	text-decoration: underline;
+	color: #cc0066;
+}
+
+div.radio {
+	padding: 10px 0 0 0;
+	width: 230px;
+	float: left;
+}
+
+div.radiog {
+	padding-left: 100px;
+}
+
+div.radio1 {
+	width: 220px;
+	height: 10px;
+	background: url(images/radio.jpg) top no-repeat;
+	font-size: 10px;
+	line-height: 10px;
+}
+
+div.radio2 {
+	width: 200px;
+	padding: 0 10px 0 10px;
+	background: #fff;
+	text-align: center;
+}
+
+div.radio3 {
+	width: 220px;
+	height: 10px;
+	background: url(images/radio.jpg) bottom no-repeat;
+	clear:both;
+}
+
+div.contenu div.radio2 a.active:link, div.contenu div.radio2 a.active:hover, div.contenu div.radio2 a.active:active, div.contenu div.radio2 a.active:visited {
+	font-weight: bold;
+	color: #ff6600;
+}
+
+div.groupe_liste_body {
+	height: 120px;
+	position: relative;
+	left: 0;
+	top: 0;
+}
+
+div.groupe_liste_body img.photo {
+	border: solid 1px #fff;
+	position: absolute;
+	left: 5px;
+	top: 5px;
+	width: 110px;
+	height: 110px;
+}
+
+div.groupe_liste_body a.titre:link, div.groupe_liste_body a.titre:hover, div.groupe_liste_body a.titre:active, div.groupe_liste_body a.titre:visited {
+	position: absolute;
+	left: 125px;
+	top: 5px;
+	color: #ff6600;
+	font-size: 13px;
+	text-decoration: none;
+}
+
+div.groupe_liste_body a.titre:hover {
+	text-decoration: underline;
+}
+
+div.groupe_liste_body p {
+	display: block;
+	width: 450px;
+	height: 60px;
+	position: absolute;
+	left: 125px;
+	top: 27px;
+	text-align: justify;
+}
+
+div.groupe_liste_body a.rejoindre_groupe:link, div.groupe_liste_body a.rejoindre_groupe:hover, div.groupe_liste_body a.rejoindre_groupe:active, div.groupe_liste_body a.rejoindre_groupe:visited {
+	display: block;
+	width: 101px;
+	height: 51px;
+	background: url(images/rejoindre-groupe.jpg) bottom no-repeat;
+	color: #fff;
+	padding: 4px 10px 0 10px;
+	position: absolute;
+	right: 10px;
+	bottom: 5px;
+	text-align: center;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+div.groupe_liste_body a.rejoindre_groupe:hover {
+	background: url(images/rejoindre-groupe.jpg) top no-repeat;
+}
+
+div.groupe_liste_body span.nouveau {
+	text-transform:uppercase;
+	font-size: 14px;
+	font-weight: bold;
+	display: block;
+	width: 121px;
+	text-align: center;
+	color: #CC0066;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}
+
+div.groupe_liste_body span.popularite {
+	position: absolute;
+	left: 125px;
+	bottom: 10px;
+	color: #ccc;
+	font-size: 10px;
+	text-decoration: none;
+}
+
+div.groupe_liste_body div.popularite {
+	position: absolute;
+	left: 190px;
+	bottom: 12px;
+	width: 80px;
+	height: 16px;
+	background: url(images/popularite.jpg) no-repeat;
+}
+
+div.groupe_liste_body div.populariteBarreBg {
+	position: absolute;
+	left: 190px;
+	bottom: 6px;
+	width: 80px;
+	height: 3px;
+	background: #222;
+	font-size: 1px;
+	line-height: 1px;
+}
+
+div.groupe_liste_body div.populariteBarreBg div {
+	height: 3px;
+	font-size: 1px;
+	line-height: 1px;
+}
+
+div.groupe_liste_body div.populariteBarreBg div.rang0,
+div.groupe_liste_body div.populariteBarreBg div.rang5 {
+	visibility: hidden;
+}
+
+div.groupe_liste_body div.populariteBarreBg div.rang1 {
+	background: #DF5A0D;
+}
+
+div.groupe_liste_body div.populariteBarreBg div.rang2 {
+	background: #A9ABD1;
+}
+
+div.groupe_liste_body div.populariteBarreBg div.rang3 {
+	background: #FFD614;
+}
+
+div.groupe_liste_body div.populariteBarreBg div.rang4 {
+	background: #CC0000;
+}
+
+div.groupe_liste_body div.groupe_rejoint {
+	width: 101px;
+	height: 55px;
+	line-height: 12px;
+	background: url(images/groupe-rejoint.jpg) top no-repeat;
+	color: #fff;
+	padding: 35px 10px 0 10px;
+	position: absolute;
+	right: 10px;
+	bottom: 2px;
+	text-align: center;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+div.groupe_liste_body  span.stats_membres {
+	position: absolute;
+	left: 290px;
+	bottom: 10px;
+	font-weight: bold;
+}
+
+div.groupe_liste_body div.groupe_statut {
+	height: 16px;
+	position: absolute;
+	top: 3px;
+	left: 5px;
+	z-index: 10;
+	background: black;
+	border: solid 1px #ccc;
+	width: 105px;
+	padding: 1px 0 1px 5px;
+}
+
+div.groupe_liste_body div.groupe_rejoint a:link, div.groupe_liste_body div.groupe_rejoint a:hover, div.groupe_liste_body div.groupe_rejoint a:active, div.groupe_liste_body div.groupe_rejoint a:visited {
+	color: #ff6600;
+	text-decoration: none;
+}
+
+div.groupe_liste_body div.groupe_rejoint a:hover {
+	text-decoration: underline;
+}
+
+div.groupe_search_body {
+	height: 27px;
+	line-height: 25px;
+	text-align: center;
+	position: relative;
+	left: 0;
+	top: 0;
+}
+
+div.groupe_search_body table.groupe_recherche {
+	position: absolute;
+	left: 25px;
+	top: 0px;
+}
+
+div.groupe_search_body table.groupe_recherche td {
+	height: 18px;
+	text-align: left;
+	font-weight: bold;
+	padding: 0 20px 0 0;
+}
+
+div.groupe_search_body table.groupe_recherche td.key {
+	font-weight: bold;
+	padding: 0 10px 0 0;
+}
+
+div.groupe_search_body .input_groupe {
+	width: 160px;
+}
+
+div.groupe_search_body input.input_groupe {
+	border: solid 1px #999;
+}
+
+div.groupe_search_body input.sub {
+	visibility: hidden;
+	width: 1px;
+	height: 1px;
+}
+
+div.groupe_search_body a.sub:link, div.groupe_search_body a.sub:hover, div.groupe_search_body a.sub:active, div.groupe_search_body a.sub:visited {
+	display: block;
+	width: 111px;
+	height: 18px;
+	line-height: 18px;
+	color: #fff;
+	background: url(images/bouton-noir-rose.jpg) top no-repeat;
+	font-size: 11px;
+	padding: 0;
+	margin: 0 0 0 0;
+	text-align: center;
+	text-decoration: none;
+	font-weight: normal;
+}
+
+div.groupe_search_body a.sub:hover {
+	background: url(images/bouton-noir-rose.jpg) bottom no-repeat;
+}
+
+span.subh2 {
+	display: block;
+	padding: 0 0 20px 0;
+}
+
+div.groupe_liste_body h1.titre {
+	position: absolute;
+	left: 125px;
+	top: 5px;
+	color: #ff6600;
+	font-size: 13px;
+	text-decoration: none;
+}
+
+div.groupe_liste_body div.minh {
+	height: 122px;
+	width: 1px;
+	visibility: hidden;
+	background: green;
+	float: left;
+}
+
+div.groupe_membre {
+	float: left;
+	width: 90px;
+	height: 155px;
+	text-align: center;
+	background: #333;
+	background: url(images/preview.jpg) top left no-repeat;
+	padding: 6px 10px 0 5px;
+}
+
+div.groupe_membre img {
+	border: solid 1px #999;
+	margin: 0 0 6px 0;
+}
+
+div.groupe_membre .username, div.groupe_membre a.username:link, div.groupe_membre a.username:hover, div.groupe_membre a.username:active div.groupe_membre a.username:visited {
+	color: #FF6600;
+}
+
+div.profil_bloc_right div.center  table.tableGroupesProfil td {
+	vertical-align: middle;
+	text-align: left;
+}
+
+table.tableGroupesProfil td.titre a:link, table.tableGroupesProfil td.titre a:hover, table.tableGroupesProfil td.titre a:active, table.tableGroupesProfil td.titre a:visited {
+	color: #ff6600;
+	text-decoration: none;
+}
+
+table.tableGroupesProfil td.titre a:hover {
+	text-decoration: underline;
+}
+
+div.profil_bloc_right div.center  table.tableGroupesProfil td.image {
+	width: 35px;
+	height: 45px;
+	padding: 0;
+}
+
+div.profil_bloc_right div.center  table.tableGroupesProfil td.image img {
+	border: solid 1px #ccc;
+}
+
+div.profil_bloc_right div.center  table.tableGroupesProfil td.titre {
+	width: 180px;
+	height: 40px;
+	padding: 0 15px 5px 10px;
+}
+
+span.fondateur {
+	position: absolute;
+	top: 22px;
+	left: 140px;
+	font-size: 10px;
+}
+
+span.fondateur a:link, span.fondateur a:hover, span.fondateur a:active, span.fondateur a:visited {
+	color: #cc0066;
+	text-decoration: none;
+}
+
+span.fondateur a:hover {
+	text-decoration: underline;
+}
+
+p.noaccess {
+	padding:30px 0 0 0;
+	text-align:center;
+	position: relative;
+	margin-top: 30px;
+}
+
+p.noaccessh {
+	background: url(images/h.jpg) center top no-repeat;
+}
+
+p.noaccessf {
+	background: url(images/f.jpg) center top no-repeat;
+}
+
+a.btnForumEM {
+	display: block;
+	width: 98px;
+	height: 30px;
+	background: url(images/btn-forum-entre-mamans.jpg) no-repeat;
+	position: absolute;
+	right: 0;
+	top: 70px;
+	color: #fff;
+	text-decoration: none;
+	text-align: center;
+	padding: 5px 0 0 0;
+	font-size: 10px;
+}
+
+a.btnForumEM:link, a.btnForumEM:active, a.btnForumEM:visited {
+	background-position: 0 0;
+}
+
+a.btnForumEM:hover {
+	background-position: 0 -35px;
+}
+
+img.AATlogo {
+	float:left;
+	margin: 0 10px 0 0;
+}
+
+table.pointsTable {
+	margin: 0 0 20px 0;
+	width: 100%;
+}
+
+table.pointsTable img.star {
+	float: left;
+	margin: 0 5px 0 0;
+}
+
+table.pointsTable th, table.pointsTable td {
+	padding: 5px;
+}
+
+table.pointsTable th {
+	background: #333;
+	color: #cc0066;
+	font-weight: bold;
+	text-align: left;
+}
+
+table.pointsTable tr.tr0 td {
+	background: #000;
+}
+
+table.pointsTable tr.tr1 td {
+	background: #111;
+}
+
+table.pointsTable th.padLeft, table.pointsTable td.padLeft {
+	padding-left: 30px;
+}
+
+table.pointsTable th.tdPos, table.pointsTable td.tdPos {
+	width: 100px;
+	text-align: center;
+}
+
+table.pointsTable th.pointsVal, table.pointsTable td.pointsVal {
+	text-align: right;
+	padding-right: 100px;
+}
+
+p.pointsP {
+	padding: 0px 10px 20px 10px;
+}
+
+p.pointsP a:link, p.pointsP a:hover, p.pointsP a:active, p.pointsP a:visited,
+table.pointsTable  a:link, table.pointsTable  a:hover, table.pointsTable  a:active, table.pointsTable  a:visited {
+	color: #ff5500;
+}
+
+a.btnProfilPanel {
+	display: block;
+	width: 98px;
+	height: 30px;
+	background: url(images/btn-solofleurs.jpg) no-repeat;
+	position: absolute;
+	color: #cc0066;
+	text-decoration: none;
+	text-align: center;
+	padding: 5px 0 0 0;
+	font-size: 10px;
+	font-weight: bold;
+}
+
+a.btnProfilPanel:link, a.btnProfilPanel:active, a.btnProfilPanel:visited {
+	background-position: 0 0;
+}
+
+a.btnProfilPanel:hover {
+	background-position: 0 -35px;
+}
+
+a.btnSolofleur {
+	right: 0;
+	top: 70px;
+}
+
+a.btnParrainage {
+	right: 0;
+	top: 30px;
+}
+
+div.app_points {
+	text-align: justify;
+}
+
+div.panel-actu {
+	width: 238px;
+	height: 204px;
+	background: url(images/panel-actu.jpg) right no-repeat;
+}
+
+div.panel-actu ul {
+	list-style: none;
+	padding: 10px 10px 0 20px;
+}
+
+div.panel-actu ul li {
+	background: url(images/panel-coeur.jpg) no-repeat;
+	padding: 0 5px 10px 45px;
+}
+
+div.panel-actu ul li a:link, div.panel-actu ul li a:hover, div.panel-actu ul li a:active, div.panel-actu ul li a:visited {
+	color: #fff;
+	text-decoration: none;
+}
+
+div.panel-actu ul li a:hover {
+	text-decoration: underline;
+}
+
+div.panel-actu ul li span {
+	color: #999;
+	font-size: 10px;
+}
+
+div.panel-actu h3 {
+	color: #CC0066;
+	padding: 5px 0 0 20px;
+}
+
+a.msglink:link, a.msglink:hover, a.msglink:active, a.msglink:visited {
+	color: #CC0066;
+}
+
+div.gagnantDuMois {
+	width: 473px;
+	height: 190px;
+	background: url(images/gagnant-du-mois.jpg) bottom no-repeat;
+	padding: 15px 0 0 0;
+	position: relative;
+	left: 0;
+	top: 0;
+}
+
+div.gagnantDuMois a.btnNoirRose:link, div.gagnantDuMois a.btnNoirRose:hover, div.gagnantDuMois a.btnNoirRose:active, div.gagnantDuMois a.btnNoirRose:visited {
+	display: block;
+	width: 111px;
+	height: 18px;
+	line-height: 18px;
+	text-align: center;
+	background: url(images/bouton-noir-rose.jpg) no-repeat;
+	background-position: 0 0;
+	font-size: 10px;
+	color: #fff;
+	text-decoration: none;
+	position: absolute;
+	left: 200px;
+	bottom: 10px;
+}
+
+div.gagnantDuMois a.btnNoirRose:hover {
+	background-position: 0 -18px;
+}
+
+div.gagnantDuMois span.titre, div.gagnantDuMois p, div.gagnantDuMois img, div.gagnantDuMois ul {
+	position: absolute;
+}
+
+div.gagnantDuMois span.titre {
+	font-size: 14px;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #000;
+	display: block;
+	width: 100%;
+	text-align: center;
+	left: 0;
+	top: 23px;
+}
+
+div.gagnantDuMois img {
+	left: 10px;
+	top: 50px;
+	border: solid 1px #fff;
+}
+
+div.gagnantDuMois p {
+	display: block;
+	width: 255px;
+	height: 100px;
+	text-align: justify;
+	right: 10px;
+	top: 50px;	
+}
+
+div.gagnantDuMois ul {
+	list-style: none;
+	padding: 0;
+	left: 125px;
+	bottom: 45px;
+}
+
+div.gagnantDuMois ul li {
+	height: 16px;
+}
+
+div.gagnantDuMois ul li a:link, div.gagnantDuMois ul li a:hover, div.gagnantDuMois ul li a:active, div.gagnantDuMois ul li a:visited {
+	color: #CC0066;
+	font-weight: bold;
+}
+
+img.ptsTemoignage {
+	border: solid 1px #fff;
+	float: left;
+	margin: 0 10px 5px 0;
+}
+
+div.pointsTemoignage {
+	height: 140px;
+	border: solid 1px #111;
+	margin: 10px 0 0 0;
+	position: relative;
+	left: 0;
+	top: 0;
+}
+
+div.pointsTemoignage a.aPhoto {
+	display: block;
+	width: 130px;
+	height: 130px;
+	text-align: center;
+	position: absolute;
+	left: 0;
+	top: 10px;
+}
+
+div.pointsTemoignage a.aPhoto:link, div.pointsTemoignage a.aPhoto:hover, div.pointsTemoignage a.aPhoto:active, div.pointsTemoignage a.aPhoto:visited {
+	text-decoration: none;
+	color: #CC0066;
+}
+div.pointsTemoignage a.aPhoto img {
+	border: solid 1px #fff;
+}
+
+div.pointsTemoignage a.aPhoto span {
+	display: block;
+	height: 16px;
+	line-height: 16px;
+}
+
+div.pointsTemoignage p {
+	display: block;
+	width: 580px;
+	height: 108px;
+	position: absolute;
+	right: 15px;
+	top: 30px;
+	overflow: hidden;
+	text-align: justify;
+}
+
+div.pointsTemoignage a.btnNoirRose:link, div.pointsTemoignage a.btnNoirRose:hover, div.pointsTemoignage a.btnNoirRose:active, div.pointsTemoignage a.btnNoirRose:visited {
+	display: block;
+	width: 111px;
+	height: 18px;
+	line-height: 18px;
+	text-align: center;
+	background: url(images/bouton-noir-rose.jpg) no-repeat;
+	background-position: 0 0;
+	font-size: 10px;
+	color: #fff;
+	text-decoration: none;
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+}
+
+div.pointsTemoignage a.btnNoirRose:hover {
+	background-position: 0 -18px;
+}
+
+div.pointsTemoignage a.titre {
+	position: absolute;
+	left: 140px;
+	top: 10px;
+	display: block;
+	padding: 0 0 0 26px;
+	line-height: 16px;
+	height: 16px;
+	background: url(images/flower.jpg) left no-repeat;
+	color: #cc0066;
+}
+
+div.profil_banner {
+	width: 728px;
+	height: 90px;
+	padding: 30px 0 0 0;
+	background: url(images/banner-profil.jpg) no-repeat;
+	background-position: 0 10px;
+	clear: both;
+}/*
+	rose fonc&eacute;:	CC0066
+	rose clair: F9B9D4
+	orange: FF6600
+	violet: 9c0054
+*/
+
+body, h1, h2, h3, p, fieldset, legend, ul, li, form, input, img, div, span, label, table, tr, td, th, object {
+	margin: 0px;
+	padding: 0px;
+	border: none;
+}
+
+body {
+	text-align: center;
+	background: #000000 url(images/bg.jpg) top repeat-x;
+	padding: 0 0 10px 0;
+}
+
+body, table {
+	font-family: Verdana, Arial;
+	font-size: 11px;
+	color: #ffffff;
+}
+
+label {
+	cursor: pointer;
+	font-weight: bold;
+}
+
+a:link, a:hover, a:active, a:visited {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+div.clear {
+	clear: both;
+	height: 1px;
+	font-size: 1px;
+	line-height: 1px;
+}
+
+div.site {
+	width: 990px;
+	margin: auto;
+	margin-top: 0px;
+	text-align: left;
+}
+
+div.header {
+	width: 100%;
+	height: 196px;
+	background: url(images/header.gif) no-repeat;
+	background-position: 0px 11px;
+}
+
+div.body {
+	width: 990px;
+	background: url(images/body.gif) repeat-y;
+}
+
+div.footer {
+	width: 980px;
+	height: 20px;
+	padding: 8px 0 0 10px;
+	background: url(images/footer.gif) no-repeat;
+	font-size: 10px;
+}
+
+div.site, div.header, div.body, div.footer {
+	position: relative;
+	left: 0;
+	top: 0;
+}
+
+div.banner_top {
+	position: absolute;
+	right: 0px;
+	top: 17px;
+	width: 738px;
+	height: 102px;
+	background: url(images/banner_top.jpg) no-repeat;
+	padding: 16px 0 0 12px;
+	z-index: 10;
+}
+
+div.banner_right {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	width: 120px;
+	height: 700px;
+	padding-top: 20px;
+	background: url(images/pub-right.jpg) top no-repeat;
+}
+
+div.banner_right250 {
+	width: 250px;
+	height: 250px;
+	padding-top: 20px;
+	background: url(images/pub-right-250.jpg) top no-repeat;
+}
+
+ul.menu {
+	position: absolute;
+	left: 239px;
+	top: 162px;
+	width: 751px;
+	height: 34px;
+}
+
+ul.menu li {
+	list-style: none;
+	display: block;
+	float: left;
+	width: 83px;
+	height: 34px;
+	background: url(images/menu-off.jpg) no-repeat;
+	text-transform: uppercase;
+	font-size: 11px;
+	text-align: center;
+}
+
+ul.menu li.active {
+	background: url(images/menu-on.jpg) no-repeat;
+}
+
+ul.menu li.last {
+	width: 87px;
+	background: url(images/menu-last-off.jpg) no-repeat;
+}
+
+ul.menu li.activeLast {
+	background: url(images/menu-last-on.jpg) no-repeat;
+}
+
+ul.menu li a:link, ul.menu li a:hover, ul.menu li a:active, ul.menu li a:visited {
+	display: block;
+	width: 83px;
+	height: 18px;
+	color: #fff;
+	padding: 16px 0 0 0;
+	text-decoration: none;
+}
+
+ul.menu li a:hover {
+	background: url(images/menu-on.jpg) no-repeat;
+	color: #FF6600;
+}
+
+ul.menu li.active a:link, ul.menu li.active a:hover, ul.menu li.active a:active, ul.menu li.active a:visited {
+	color: #FF6600;
+}
+
+ul.menu li.last a:link, ul.menu li.last a:hover, ul.menu li.last a:active, ul.menu li.last a:visited {
+	display: block;
+	width: 87px;
+	height: 18px;
+	color: #CC0066;
+}
+
+ul.menu li.last a:hover {
+	background: url(images/menu-last-on.jpg) no-repeat;
+	color: #F9B9D4;
+}
+
+div.chatAlert {
+	width: 208px;
+	height: 47px;
+	position: absolute;
+	top: 105px;
+	right: 135px;
+	padding: 33px 11px 0px 0px;
+	background: url(images/chatAlert.gif) no-repeat;
+	font-weight: bold;
+	color: #000;
+	cursor: pointer;
+	text-align: center;
+	z-index: 20;
+}
+
+div.footer a:link, div.footer a:hover, div.footer a:active, div.footer a:visited, div.footer span.copyright {
+	color: #999;
+}
+
+div.footer span.copyright {
+	position: absolute;
+	right: 10px;
+	top: 8px;
+}
+
+div.actu  {
+	width: 855px;
+	height: 100px;
+	padding: 290px 0 0 0;
+	position: relative;
+	left: 0;
+	top: 0;
+}
+
+div.actu  h1 {
+	display: block;
+	height: 16px;
+	line-height: 16px;
+	background: url(images/flower.jpg) left no-repeat;
+	padding: 0 0 0 25px;
+	font-size: 12px;
+	font-weight: bold;
+	color: #CC0066;
+	position: absolute;
+	bottom: 100px;
+	left: 20px;
+}
+
+div.actu  ul {
+	display: block;
+	width: 425px;
+	position: absolute;
+	bottom: 0px;
+	left: 20px;
+}
+
+div.actu  ul li {
+	display: block;
+	height: 28px;
+	line-height: 12px;
+	list-style: none;
+	background: url(images/coeur.jpg) left no-repeat;
+	padding: 2px 0 0 25px;
+}
+
+div.actu  ul li span {
+	font-style: italic;
+	font-size: 10px;
+	color: #999;
+}
+
+div.actu  ul li a:link, div.actu  ul li a:hover, div.actu  ul li a:active, div.actu  ul li a:visited {
+	color: #fff;
+}
+
+a.smartbox-home:link, a.smartbox-home:hover, a.smartbox-home:active, a.smartbox-home:visited {
+	width: 280px;
+	height: 105px;
+	padding: 10px 5px 0 126px;
+	position: absolute;
+	right: 5px;
+	bottom: 0;
+	background: url(images/smartbox-home.jpg) no-repeat;
+	color: #FF9F3E;
+	font-weight: bold;
+}
+
+#imageflow {
+	width: 585px;
+	height: 250px;
+	position: absolute;
+	left: 30px;
+	top: 0px;
+}
+
+#imageflow  .clear {
+	clear:both;
+}
+
+#imageflow  #loading {
+	text-align:center;
+	width:100%;
+	padding: 10px 0 10px 0;
+}
+
+#imageflow  #loading img {
+	position:relative;
+}
+
+#imageflow  #images {
+	visibility:hidden;
+}
+
+#imageflow #images img { 
+	position:absolute; 
+	top:0px;
+	border: none;
+}
+
+div.inscriptionMini {
+	width: 220px;
+	height: 252px;
+	background: url(images/inscription-mini.gif) no-repeat;
+	position: absolute;
+	right: 140px;
+	top: 10px;
+}
+
+div.inscriptionMini h2 {
+	display: block;
+	width: 100%;
+	text-align: center;
+	color: #fff;
+	font-size: 12px;
+	font-weight: bold;
+	text-transform: uppercase;
+	height: 34px;
+	line-height: 30px;
+	padding: 1px 0 0 0;
+}
+
+div.inscriptionMini table {
+	width: 220px;
+	margin: 5px 0 0 0;
+}
+
+div.inscriptionMini table td.key {
+	font-weight: bold;
+	padding: 5px 0 5px 10px;
+	width: 70px;
+}
+
+div.inscriptionMini a:link, div.inscriptionMini a:hover, div.inscriptionMini a:active, div.inscriptionMini a:visited {
+	display: block;
+	width: 118px;
+	height: 27px;
+	line-height: 24px;
+	color: #fff;
+	position: absolute;
+	left: 51px;
+	bottom: 18px;
+	text-align: center;
+}
+
+div.inscriptionMini select.size2 {
+	width: 40px;
+}
+
+div.inscriptionMini select.size4 {
+	width: 60px;
+}
+div.inscriptionMini select.size5, div.inscriptionMini td#villes select {
+	width: 110px;
+}
+
+div.blocs4 {
+	width: 850px;
+	padding: 10px 0 0 10px;
+}
+
+div.blocs4 div.bloc1, div.blocs4 div.bloc2, div.blocs4 div.bloc3, div.blocs4 div.bloc4, div.blocs4 div.bloc-sep {
+	float: left;
+	text-align: justify;
+	line-height: 15px;
+}
+
+div.blocs4 div.bloc-sep {
+	width: 20px;
+	height: 377px;
+	background: url(images/bloc-sep.jpg) center no-repeat;
+}
+
+div.blocs4 div.bloc1, div.blocs4 div.bloc2, div.blocs4 div.bloc3, div.blocs4 div.bloc4 {
+	width: 195px;
+}
+
+div.blocs4 div a.image:link, div.blocs4 div a.image:hover, div.blocs4 div a.image:active, div.blocs4 div a.image:visited {
+	display: block;
+	border: none;
+	color: #BE0272;
+	font-weight: bold;
+}
+
+div.blocs4 div.bloc1 a.image {
+	width: 195px;
+	height: 55px;
+	padding: 125px 0 0 0;
+	text-align: center;
+	font-size: 16px;
+	background: url(images/lafamily.jpg) top no-repeat;
+}
+
+div.blocs4 div.bloc2 a.image {
+	width: 100px;
+	height: 60px;
+	padding: 120px 95px 0 0;
+	text-align: center;
+	font-size: 16px;
+	line-height: 18px;
+	background: url(images/accueil-concept.jpg) top no-repeat;
+}
+
+div.blocs4 div.bloc3 a.image {
+	width: 135px;
+	height: 60px;
+	padding: 120px 60px 0 0;
+	text-align: center;
+	font-size: 20px;
+	line-height: 20px;
+	background: url(images/accueil-3.jpg) top no-repeat;
+}
+
+div.blocs4 div.bloc4 a.image {
+	width: 195px;
+	height: 158px;
+	padding: 22px 0 0 0;
+	text-align: center;
+	font-size: 16px;
+	background: url(images/accueil-4.jpg) top no-repeat;
+}
+
+div.blocs4 h2 {
+	display: block;
+	background: url(images/flower.jpg) left no-repeat;
+	height: 20px;
+	line-height: 20px;
+	font-size: 12px;
+	text-transform: uppercase;
+	color: #F9B9D4;
+	margin: 5px 0 10px 0;
+	padding: 0 0 0 27px;
+	font-weight: normal;
+}
+
+div.blocs4 a:link, div.blocs4 a:hover, div.blocs4 a:active, div.blocs4 a:visited {
+	color: #FF6600;
+}
+
+div.blocs4 div.bloc2 a.image:hover {
+	text-decoration: none;
+}
+
+a.lfm, a.onefm {
+	position: absolute;
+	top: 133px;
+	z-index: 15;
+}
+
+a.lfm {
+	right: 89px;
+}
+
+a.onefm {
+	right: 0px;
+}
+
+a.aat {
+	position: absolute;
+	top: 170px;
+	left: 255px;
+	z-index: 2;
+}
+
+div.noPhotoPopIn {
+	background: url(images/popin.gif) no-repeat;
+	width: 143px;
+	height: 55px;
+	color: #000;
+	font-size: 11px;
+	position: absolute;
+	top: 10px;
+	right: -110px;
+	z-index: 2;
+	padding: 27px 30px 0px 35px;
+	cursor: pointer;
+}
+
+div.messages {
+	padding: 20px;
+	border-top: solid 2px #333;
+	border-bottom: solid 2px #333;
+	background: #111;
+}
+
+div.messages span.error, div.messages span.valid, div.messages span.warning {
+	display: block;
+	font-weight: bold;
+	font-size: 12px;
+	padding: 0px 0px 10px 25px;
+	line-height: 18px;
+}
+
+div.messages span.error {
+	background: url(images/msg-error.gif) left top no-repeat;
+	color: #FF0000;
+}
+
+div.messages span.valid {
+	background: url(images/msg-valid.gif) left top no-repeat;
+	color: #00FF00;
+}
+
+div.messages span.warning {
+	background: url(images/msg-warning.gif) left top no-repeat;
+	color: #ffbb00;
+}
+
+div.messages span a:link, div.messages span a:hover, div.messages span a:active, div.messages span a:visited {
+	color: #FF6600;
+}
+
+div.abonnement {
+	width: 760px;
+	height: 1200px;
+	background: url(images/abonnement.jpg) no-repeat;
+	background-position: 145px 53px;
+	position: relative;
+	left: 0;
+	top: 0;
+}
+
+div.abonnement a.btn_abonner {
+	position: absolute;
+	bottom: 0;
+	right: 200px;
+}
+
+div.abonnement table.tarifs {
+	width: 462px;
+	position: absolute;
+	left: 160px;
+	top: 129px;
+	color: #000;
+}
+
+div.abonnement table.tarifs th, div.abonnement table.tarifs td {
+	text-align: center;
+	vertical-align: middle;
+}
+
+div.abonnement table.tarifs th {
+	height: 40px;
+}
+
+div.abonnement table.tarifs td {
+	height: 25px;
+}
+
+div.abonnement table.tarifs th.typeabo {
+	width: 95px;
+}
+
+div.abonnement table.tarifs td.key {
+	text-align: left;
+}
+
+div.abonnement div.offres {
+	width: 472px;
+	height: 232px;
+	position: absolute;
+	left: 144px;
+	top: 490px;
+	background: url(images/offres.jpg) no-repeat;
+	padding-top: 8px;
+}
+
+div.abonnement div.offres a:link, div.abonnement div.offres a:hover, div.abonnement div.offres a:active, div.abonnement div.offres a:visited {
+	display:block;
+	text-decoration: none;
+	width: 472px;
+	height: 55px;
+	position: relative;
+	left: 0;
+	top: 0;
+	margin:0;
+}
+
+div.abonnement div.offres img {
+	visibility: hidden;
+	position: absolute;
+	left: 9px;
+	top: 18px;
+}
+
+div.abonnement div.offres span.parmois {
+	position: absolute;
+	left: 35px;
+	top: 8px;
+	font-size: 18px;
+	color: #cf0072;
+}
+
+div.abonnement div.offres span.total {
+	position: absolute;
+	left: 35px;
+	top: 30px;
+	font-size: 11px;
+	color: #000;
+}
+
+div.abonnement div.offres span {
+	cursor: pointer;
+}
+
+span.imp {
+	color: red;
+}
+
+div.abonnement h2, div.paypal_return h1, div.paypal_return h2 {
+	color: #CC0066;
+	font-size: 16px;
+	display: block;
+	width: 450px;
+	height: 20px;
+	background: url(images/flower.jpg) left no-repeat;
+	padding: 0;
+	text-transform: uppercase;
+	padding-left: 30px;
+	margin: 20px 0 0 0;
+}
+
+div.abonnement h2.methode {
+	position: absolute;
+	top: 760px;
+	left: 80px;
+	margin: 0;
+	width: 600px;
+}
+
+div.abonnement a.methode:link, div.abonnement a.methode:hover, div.abonnement a.methode:active, div.abonnement a.methode:visited {
+	display: block;
+	width: 200px;
+	height: 170px;
+	position: absolute;
+	top: 800px;
+	text-decoration: none;
+}
+
+div.abonnement a.m1 {
+	left: 70px;
+}
+
+div.abonnement a.m2 {
+	left: 280px;
+}
+
+div.abonnement a.m3 {
+	left: 490px;
+}
+
+div.abonnement div.aboStart {
+	position: absolute;
+	width: 600px;
+	height: 150px;
+	left: 80px;
+	top: 990px;
+}
+
+div.aboTop {
+	background: url(images/aboTop.jpg) bottom no-repeat;
+	height: 20px;
+	margin: 0;
+	padding: 0;
+	width: 600px;
+}
+
+p.aboCenter {
+	background: url(images/aboCenter.jpg) repeat-y;
+	padding: 5px 10px 5px 10px;
+	margin: 0;
+	color: #000;
+	width: 580px;
+}
+
+div.aboBottom {
+	background: url(images/aboBottom.jpg) top no-repeat;
+	height: 11px;
+	margin: 0;
+	padding: 0;
+	width: 600px;
+}
+
+div.paypal_return {
+	width: 650px;
+	float: left;
+	padding: 50px 0px 50px 50px;
+}
+
+div.paypal_return div {
+	width: 600px;
+}
+
+div.popin {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 254px;
+	height: 84px;
+	border: solid 2px #fff;
+	background: #CF0072;
+	z-index: 5000;
+	visibility: hidden;
+	padding: 3px;
+	cursor: pointer;
+}
+
+div.popin p {
+	width: 167px;
+	padding: 10px 0 40px 0;
+	display: block;
+	float: right;
+	text-align: center;
+	color: #fff;
+}
+	
+div.popin a {
+	font-weight: bold;
+	color: #ff6600;
+}
+
+div.popin a.photo img {
+	width: 82px;
+	height: 82px;
+	border: none;
+}
+
+div.popin a.photo:link, div.popin a.photo:hover, div.popin a.photo:active, div.popin a.photo:visited {
+	width: 82px;
+	height: 82px;
+	float: left;
+	display: block;
+	text-decoration: none;
+	border: solid 1px #fff;
+}
+
+div.popin div.icon {
+	width: 254px;
+	height: 30px;
+	clear: both;
+}
+
+#lightbox {
+	background-color:#fff;
+	padding: 10px;
+	border-bottom: 2px solid #666;
+	border-right: 2px solid #666;
+}
+#lightboxDetails {
+	font-size: 0.8em;
+	padding-top: 0.4em;
+}	
+#lightboxCaption {float: left; padding:0;}
+#keyboardMsg {float: right;}
+#closeButton {top: 5px; right: 5px;}
+
+#lightbox img {border: none; clear: both;} 
+#overlay img {border: none;}
+
+#overlay {background-image: url(images/overlay.png);}
+
+* html #overlay {
+	background-color: #333;
+	back\ground-color: transparent;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/overlay.png", sizingMethod="scale");
+}
+
+div.app_body {
+	float: right;
+	width: 735px;
+	padding: 0 5px 0 0;
+}
+
+div.profil_left {
+	position: relative;
+	left: 0;
+	top: 0;
+	width: 240px;
+	padding: 0;
+}
+
+div.profil_left h2.notice {
+	position: absolute;
+	left: 15px;
+	top: 10px;
+	display: block;
+	width: 190px;
+	color: #CC0066;
+	font-size: 16px;
+	text-transform: uppercase;
+	background: url(images/flowerStep.jpg) left no-repeat;
+	padding: 0 0 0 28px;
+	font-weight: normal;
+}
+
+div.stepType1, div.stepType2, div.stepType3 {
+	height: 474px;
+	background: url(images/stepType1.jpg) center no-repeat;
+	padding: 30px 0 0 0;
+}
+
+div.profil_left p {
+	padding: 10px 15px 10px 15px;
+}
+
+div.app_body h2, div.app_body h1.search, div.app_body h1.aat, h1.points {
+	font-size: 16px;
+	font-weight: normal;
+	color: #CC0066;
+	padding: 0 0 0 27px;
+	background: url(images/flower.jpg) left no-repeat;
+	text-transform: uppercase;
+	margin: 15px 0 10px 0;
+}
+
+div.abonnement h1 {
+	position: absolute;
+	left: 170px;
+	top: 70px;
+	font-size: 18px;
+	font-weight: bold;
+	color: #CF0077;
+	text-transform: uppercase;
+	background: none;
+}
+
+div.app_body hr {
+	margin: 20px 0 0 0;
+	border: solid 1px #CC0066;
+}
+
+div.app_body table.profil_table {
+	width: 730px;
+}
+
+div.app_body table.profil_table td {
+	padding: 5px;
+}
+
+div.app_body table.profil_table td.key {
+	font-weight: bold;
+}
+
+div.app_body select.genreCanton {
+	width: 100px;
+}
+
+#step1gender {
+	color: #FF6600;
+}
+
+div.app_body table.profil_table input {
+	height: 18px;
+	line-height: 18px;
+	border: solid 1px #ccc;
+}
+
+#codesecurite {
+	width: 20px;
+}
+
+span.capQ {
+	color: #CC0066;
+}
+
+div.login {
+	background: green;
+	width: 600px;
+	height: 35px;
+	position: absolute;
+	top: 160px;
+	right: 0;
+	z-index: 2;
+}
+
+label.loginLogLabel, input.loginLogInput, label.loginPassLabel, input.loginPassInput, input.loginOkButton, a.loginMdpOublie {
+	position: absolute;
+}
+
+label.loginLogLabel, label.loginPassLabel {
+	top: 172px;
+}
+
+input.loginLogInput, input.loginPassInput {
+	width: 100px;
+	height: 16px;
+	line-height: 16px;
+	border: solid 1px #ccc;
+	top: 170px;
+}
+
+input.loginLogInput {
+	right: 200px;
+}
+
+input.loginPassInput {
+	right: 45px;
+}
+
+label.loginLogLabel {
+	right: 310px;
+}
+
+label.loginPassLabel {
+	right: 155px;
+}
+
+input.loginOkButton {
+	right: 10px;
+	top: 167px;
+}
+
+a.loginMdpOublie:link, a.loginMdpOublie:hover, a.loginMdpOublie:active, a.loginMdpOublie:visited {
+	color: #FF6600;
+	right: 370px;
+	top: 168px;
+	display: block;
+	text-align: right;
+	font-size: 10px;
+}
+
+input.badLogin {
+	border: solid 1px #cc0000;
+	background: #ff7f7f;
+}
+
+ul.photoRules {
+	margin: 0 0 20px 20px;
+}
+
+table.toolbarsteps {
+	width: 100%;
+	height: 80px;
+}
+
+table.toolbarsteps td.left {
+	width: 33%;
+	text-align: left;
+}
+
+table.toolbarsteps td.center {
+	width: 33%;
+	text-align: center;
+}
+
+table.toolbarsteps td.right {
+	width: 33%;
+	text-align: right;
+}
+
+a.bouton:link, a.bouton:hover, a.bouton:active, a.bouton:visited {
+	display: block;
+	width: 157px;
+	height: 40px;
+	text-align: center;
+	line-height: 20px;
+	color: #CC0066;
+	font-size: 12px;
+	margin: 20px 0 20px 0;
+}
+
+a.supprimer:link, a.supprimer:hover, a.supprimer:active, a.supprimer:visited {
+	background: url(images/supprimer.jpg) no-repeat;
+	float: left;
+}
+
+a.restaurer:link, a.restaurer:hover, a.restaurer:active, a.restaurer:visited {
+	background: url(images/restaurer.jpg) no-repeat;
+	float: left;
+}
+
+a.archiver:link, a.archiver:hover, a.archiver:active, a.archiver:visited {
+	background: url(images/archiver.jpg) no-repeat;
+	float: left;
+}
+
+a.vider_corbeille:link, a.vider_corbeille:hover, a.vider_corbeille:active, a.vider_corbeille:visited {
+	background: url(images/vider_corbeille.jpg) no-repeat;
+	margin: 20px auto 0 auto;
+}
+
+a.repondre:link, a.repondre:hover, a.repondre:active, a.repondre:visited {
+	background: url(images/repondre.jpg) no-repeat;
+	float: left;
+}
+
+a.step_next:link, a.step_next:hover, a.step_next:active, a.step_next:visited {
+	background: url(images/etapeSuivante.jpg) no-repeat;
+	float: right;
+}
+
+a.page_next:link, a.page_next:hover, a.page_next:active, a.page_next:visited {
+	background: url(images/page_next.jpg) no-repeat;
+	float: right;
+}
+
+a.step_previous:link, a.step_previous:hover, a.step_previous:active, a.step_previous:visited {
+	background: url(images/etapePrecedente.jpg) no-repeat;
+	float: left;
+}
+
+a.page_previous:link, a.page_previous:hover, a.page_previous:active, a.page_previous:visited {
+	background: url(images/page_previous.jpg) no-repeat;
+	float: left;
+}
+
+a.step_fin:link, a.step_fin:hover, a.step_fin:active, a.step_fin:visited {
+	background: url(images/remettreAPlusTard.jpg) no-repeat;
+	margin: auto;
+	color: #fff;
+}
+
+a.return_home:link, a.return_home:hover, a.return_home:active, a.return_home:visited {
+	background: url(images/retourAccueil.jpg) no-repeat;
+	margin: auto;
+	color: #fff;
+}
+
+a.finaliser:link, a.finaliser:hover, a.finaliser:active, a.finaliser:visited {
+	background: url(images/etapeFinaliser.jpg) no-repeat;
+	float: right;
+}
+
+a.validate:link, a.validate:hover, a.validate:active, a.validate:visited {
+	background: url(images/etapeValider.jpg) no-repeat;
+	float: right;
+}
+
+a.rechercher:link, a.rechercher:hover, a.rechercher:active, a.rechercher:visited {
+	background: url(images/rechercher.jpg) no-repeat;
+	float: right;
+}
+
+a.rechercher2:link, a.rechercher2:hover, a.rechercher2:active, a.rechercher2:visited {
+	background: url(images/rechercher.jpg) no-repeat;
+	float: left;
+	margin: 0 0 0 20px;
+}
+
+a.enregistrer:link, a.enregistrer:hover, a.enregistrer:active, a.enregistrer:visited {
+	background: url(images/enregistrer.jpg) no-repeat;
+	float: right;
+}
+
+a.annuler:link, a.annuler:hover, a.annuler:active, a.annuler:visited {
+	background: url(images/annuler.jpg) no-repeat;
+}
+
+a.envoyer:link, a.envoyer:hover, a.envoyer:active, a.envoyer:visited {
+	background: url(images/envoyer.jpg) no-repeat;
+}
+
+#chars_limit {
+	color: #CC0066;
+}
+
+textarea.annonce {
+	width: 100%;
+	height: 250px;
+}
+
+select.select_profil {
+	width: 250px;
+}
+
+select.select_profil100 {
+	width: 165px;
+}
+
+div.child_bar a:link, div.child_bar a:hover, div.child_bar a:active, div.child_bar a:visited {
+	display: block;
+	padding: 0 0 0 20px;
+	width: 100px;
+	height: 16px;
+	line-height: 16px;
+	margin: 0 0 3px 0;
+}
+
+div.child_bar a.child_minus {
+	background: url(images/moins.jpg) left no-repeat;
+	color: #CC0000;
+}
+
+div.child_bar a.child_plus {
+	background: url(images/plus.jpg) left no-repeat;
+	color: #00CC00;
+}
+
+div.app_body table.profil_table td.childPhoto {
+	width: 150px;
+}
+
+div.app_body table.profil_table td.childPhoto div.miniature {
+	padding: 0 0 20px 20px;
+}
+
+div.app_body table.profil_table td.childPhoto div.swfu_btn {
+	clear: both;
+}
+
+span.childTitle {
+	display: block;
+	padding: 0 0 2px 0;
+	font-weight: bold;
+}
+
+table.table_search select, table.table_search input {
+	width: 175px;
+}
+
+table.table_search select.select50 {
+	width: 80px;
+}
+
+table.table_search input.searchRadio {
+	width: 16px;
+	height: 16px;
+}
+
+table.profil_table table.table_search td.param {
+	padding: 0 0 0 50px;
+	font-weight: bold;
+}
+
+table.search_form select.age {
+	width: 65px;
+}
+
+table.search_form td.param {
+	padding: 0 0 0 20px;
+	font-weight: bold;
+}
+
+table.search_form span.genre {
+	color: #ff6600;
+}
+
+table.search_form td {
+	padding: 5px;
+}
+
+div.app_body table.table_step9 td.disclaimer {
+	padding: 0 0 30px 0;
+}
+
+div.app_body table.table_step9 td.key {
+	padding: 0 0 0 150px;
+}
+
+div.app_body table.table_step9 input {
+	width: 210px;
+}
+
+div.app_body table.table_step9 input.telephone {
+	width: 180px;
+}
+
+div.app_body table.table_step9 span.indicatif {
+	display: block;
+	width: 30px;
+	float: left;
+	font-size: 14px;
+}
+
+.pink{color: #CC0066;font-weight: bold;}
+.black{color: #000;font-weight: bold;}
+.orange{color: #FF6600;font-weight: bold;}
+.green{color: #00CC00;font-weight: bold;}
+.red{color: #CC0000;font-weight: bold;}
+.grey{color: #333333;font-weight: bold;}
+
+
+div.user_menu {
+	width: 238px;
+	height: 285px;
+	background: url(images/userMenu.jpg) right top no-repeat;
+	position: relative;
+	left: 0;
+	top: 0;
+}
+
+div.user_menu img.photo {
+	position: absolute;
+	left: 20px;
+	top: 15px;
+	width: 109px;
+	height: 109px;
+	border: solid 1px #fff;
+}
+
+div.user_menu a.username:link, div.user_menu a.username:hover, div.user_menu a.username:active, div.user_menu a.username:visited {
+	position: absolute;
+	left: 140px;
+	top: 113px;
+	color: #CC0066;
+	font-weight: bold;
+	font-size: 12px;
+}
+
+div.user_menu ul {
+	width: 210px;
+	position: absolute;
+	left: 20px;
+	top: 135px;
+}
+
+div.user_menu ul li {
+	list-style: none;
+	height: 20px;
+	line-height: 20px;
+}
+
+div.user_menu ul li a:link, div.user_menu ul li a:hover, div.user_menu ul li a:active, div.user_menu ul li a:visited {
+	color: #fff;
+}
+
+div.user_menu a.logout:link, div.user_menu a.logout:hover, div.user_menu a.logout:active, div.user_menu a.logout:visited {
+	position: absolute;
+	left: 145px;
+	top: 10px;
+	color: #FF6600;
+	font-weight: normal;
+	font-size: 11px;
+}
+
+div.user_menu a.informations:link, div.user_menu a.informations:hover, div.user_menu a.informations:active, div.user_menu a.informations:visited {
+	position: absolute;
+	left: 140px;
+	top: 50px;
+	color: #FF6600;
+	font-weight: normal;
+	font-size: 11px;
+}
+
+span.statut1, span.statut2 {
+	cursor: help;
+	padding: 2px 0px 2px 20px;
+	height: 16px;
+	line-height: 16px;
+}
+
+span.statut1 {
+	background: url(images/confirmed1.gif) left no-repeat;
+	color: #00af40;
+}
+
+span.statut2 {
+	background: url(images/confirmed2.gif) left no-repeat;
+	color: #BBB;
+}
+
+div.user_menu a.abo:link, div.user_menu a.abo:hover, div.user_menu a.abo:active, div.user_menu a.abo:visited {
+	display: block;
+	width: 208px;
+	height: 14px;
+	line-height: 12px;
+	text-align: center;
+	color: #fff;
+	font-size: 11px;
+	background: url(images/abonnez-vous.gif) top no-repeat;
+	margin: 4px 0 0 0;
+	text-decoration: none;
+}
+
+div.user_menu a.abo:hover {
+	background: url(images/abonnez-vous.gif) bottom no-repeat;
+	color: #cc0066;
+}
+
+div.user_menu table.groupes {
+	position: absolute;
+	left: 0px;
+	top: 160px;
+}
+
+div.user_menu table.groupes th {
+	font-size: 12px;
+	font-weight: bold;
+	color: #000;
+	padding: 0 0 5px 15px;
+}
+
+div.user_menu table.groupes td {
+	padding: 0 5px 0 5px;
+	height: 40px;
+	text-align: left;
+	overflow: hidden;
+	vertical-align: middle;
+}
+
+div.user_menu table.groupes td.photo {
+	width: 35px;
+	padding: 0 0 0 15px;
+}
+
+div.user_menu table.groupes td.photo img {
+	border: solid 1px #ccc;
+}
+
+div.user_menu table.groupes td  a:link, div.user_menu table.groupes td  a:hover, div.user_menu table.groupes td  a:active, div.user_menu table.groupes td  a:visited {
+	color: #fff;
+	text-decoration: none;
+}
+
+div.user_menu table.groupes td  a:hover {
+	text-decoration: underline;
+}
+  
+div.panel_left {
+	width: 480px;
+	float: left;
+	padding: 10px 0 0 0;
+}
+
+div.panel_right {
+	width: 250px;
+	float: left;
+	padding: 10px 0 0 0;
+}
+
+div.panel_right div.bloc_top {
+	width: 250px;
+	height: 5px;
+	line-height: 5px;
+	font-size: 1px;
+	background: url(images/temoignage-bg.jpg) top no-repeat;
+	margin: 10px 0 0 0;
+}
+
+div.panel_right div.bloc_center {
+	width: 232px;
+	border-left: solid 1px #9c0054;
+	border-right: solid 1px #9c0054;
+	padding: 5px 8px 2px 8px;
+	color: #fff;
+	text-align: justify;
+}
+
+div.panel_right div.bloc_bottom {
+	width: 250px;
+	height: 5px;
+	line-height: 5px;
+	font-size: 1px;
+	background: url(images/temoignage-bg.jpg) bottom no-repeat;
+}
+
+div.panel_right div.bloc_center a:link, div.panel_right div.bloc_center a:hover, div.panel_right div.bloc_center a:active, div.panel_right div.bloc_center a:visited {
+	color: #ff6600;
+}
+
+div.panel_right div.bloc_center span {
+	color: #cc0066;
+	text-transform: uppercase;
+	font-size: 12px;
+	display: block;
+	padding: 0 0 10px 0;
+}
+
+div.panel_right div.bloc_center p {
+	padding: 8px 0 8px 0;
+}
+
+div.panel_right div.bloc_center p img {
+	margin: 0 5px 0 0;
+	float: left;
+	border: solid 1px #fff;
+}
+
+div.appel_texte img {
+	margin: 0 5px 5px 0;
+	float: left;
+	border: solid 1px #fff;
+}
+
+div.panel_right div.bloc_center div.m10 {
+	margin: 10px 0 0 0;
+}
+
+div.panel_right div.bloc_center a.btnNoirRose:link, div.panel_right div.bloc_center a.btnNoirRose:hover, div.panel_right div.bloc_center a.btnNoirRose:active, div.panel_right div.bloc_center a.btnNoirRose:visited {
+	display: block;
+	width: 111px;
+	height: 18px;
+	line-height: 18px;
+	text-align: center;
+	background: url(images/bouton-noir-rose.jpg) no-repeat;
+	background-position: 0 0;
+	font-size: 10px;
+	color: #fff;
+	text-decoration: none;
+}
+
+div.panel_right div.bloc_center a.btnNoirRose:hover {
+	background-position: 0 -18px;
+}
+
+div.panel_right div.bloc_center a.gauche {
+	float: left;
+}
+
+div.panel_right div.bloc_center a.droite {
+	float: right;
+}
+
+div.panel_left div.recherche {
+	width: 472px;
+	height: 159px;
+	background: url(images/rechercheRapide.jpg) no-repeat;
+	position: relative;
+	left: 0;
+	top: 0;
+}
+
+div.panel_left div.recherche input.btnRecherche {
+	position: absolute;
+	left: 280px;
+	top: 105px;
+}
+
+div.panel_left div.recherche div.titre {
+	width: 100%;
+	text-align: center;
+	color: #000;
+	text-transform: uppercase;
+	font-size: 14px;
+	padding: 7px 0 7px 0;
+}
+
+div.panel_left div.recherche div.texte {
+	padding: 0 10px 0 10px;
+}
+
+div.panel_left div.recherche select.enfants {
+	width: 80px;
+}
+
+div.panel_left div.recherche select.age {
+	width: 50px;
+}
+
+div.panel_left div.recherche select#search_canton_id, div.panel_left div.recherche select#search_ville_id {
+	width: 120px;
+}
+
+div.panel_left div.recherche label {
+	font-weight: normal;
+}
+
+div.panel_left div.preview4 {
+	height: 150px;
+	padding: 0 0 0 14px;
+}
+
+div.panel_left div.preview4 div.preview {
+	width: 100px;
+	height: 146px;
+	background: url(images/preview.jpg) no-repeat;
+	float: left;
+	padding: 5px 0 0 5px;
+}
+
+div.panel_left div.preview4 div.preview img {
+	width: 89px;
+	height: 89px;
+	border: solid 1px #fff;
+}
+
+div.panel_left div.preview4 div.preview a.desc:link, div.panel_left div.preview4 div.preview a.desc:hover, div.panel_left div.preview4 div.preview a.desc:active, div.panel_left div.preview4 div.preview a.desc:visited {
+	color: #fff;
+	text-decoration: none;
+	text-align: center;
+	display: block;
+	width: 95px;
+	padding: 5px 0 5px 0;
+}
+
+div.panel_left div.preview4 a.more:link, div.panel_left div.preview4 a.more:hover, div.panel_left div.preview4 a.more:active, div.panel_left div.preview4 a.more:visited {
+	display: block;
+	width: 28px;
+	height: 156px;
+	background: url(images/preview-plus.jpg) center no-repeat;
+	float: left;
+}
+
+div.redac1 {	
+	background: url(images/redac1.jpg)  no-repeat;
+}
+
+div.redac2 {
+	background: url(images/redac2.jpg) no-repeat;
+}
+
+div.redac3 {
+	background: url(images/redac3.jpg) no-repeat;
+}
+
+div.redac {
+	width: 228px;
+	padding: 180px 0 30px 10px;
+	text-align: justify;
+	background-position: 10px 10px;
+}
+
+div.redac span.titre {
+	display: block;
+	background: url(images/flower.jpg) left no-repeat;
+	height: 20px;
+	line-height: 20px;
+	font-size: 14px;
+	text-transform: uppercase;
+	color: #F9B9D4;
+	margin: 5px 0 10px 0;
+	padding: 0 0 0 27px;
+	font-weight: normal;
+}
+
+div.redac a:link, div.redac a:hover, div.redac a:active, div.redac a:visited,
+div.contenu a:link, div.contenu a:hover, div.contenu a:active, div.contenu a:visited {
+	color: #FF6600;
+}
+
+div.contenu a.return_home:link, div.contenu a.return_home:hover, div.contenu a.return_home:active, div.contenu a.return_home:visited {
+	margin: 30px auto 20px auto;
+	color: #fff;
+}
+
+div.contenu a.envoyer:link, div.contenu a.envoyer:hover, div.contenu a.envoyer:active, div.contenu a.envoyer:visited {
+	color: #cc0066;
+	margin-left: 10px;
+}
+
+div.contenu{
+	padding: 10px 10px 10px 0px;
+}
+
+div.contenu p {
+	padding: 10px;
+}
+
+div.contenu ul {
+	padding: 10px 0px 10px 40px;
+}
+
+div.contenu h1 {
+	display: block;
+	color: #CC0066;
+	font-size: 16px;
+	text-transform: uppercase;
+	background: url(images/flower.jpg) bottom left no-repeat;
+	padding: 0 0 0 28px;
+	margin: 0 0 10px 0;
+	font-weight: normal;
+}
+
+div.contenu h1 span {
+	font-size: 11px;
+	color: #CCC;
+	font-style: italic;
+	text-transform: lowercase;
+}
+
+div.contact input, div.contact select {
+	width: 300px;
+	border: solid 1px #ccc;
+}
+
+div.contact textarea {
+	width: 300px;
+	height: 100px;
+	border: solid 1px #ccc;
+}
+
+fieldset.membre {
+	border: solid 1px #ccc;
+	width: 500px;
+	padding: 10px;
+	margin: 10px 0 0 0;
+}
+
+fieldset.membre legend {
+	font-weight: bold;
+	color: #cc0066;
+	padding: 0 10px 0 10px;
+}
+
+fieldset.membre table td {
+	padding: 5px;
+}
+
+table.profil_menu {
+	width: 732px;
+	height: 30px;
+	background: url(images/profil-menu.jpg) no-repeat;
+	margin: 10px 0 10px 0;
+}
+
+table.profil_menu td {
+	list-style: none;
+	text-align: center;
+	height: 20px;
+	line-height: 20px;
+	float: left;
+	padding: 3px 0px 3px 9px;
+	text-transform: uppercase;
+	white-space: nowrap;
+}
+
+table.profil_menu td a:link, table.profil_menu td a:hover, table.profil_menu td a:active, table.profil_menu td a:visited {
+	display: block;
+	width: 100%;
+	height: 20px;
+	padding: 0 4px 0 0;
+	color: #fff;
+}
+
+table.profil_menu td a:hover {
+	background: #333;
+	text-decoration: none;
+}
+
+table.profil_menu td.active {
+	background: url(images/profil-menu-left.jpg) no-repeat;
+	background-position: 5px 3px;
+}
+
+table.profil_menu td.active a:link, table.profil_menu td.active a:hover, table.profil_menu td.active a:active, table.profil_menu td.active a:visited {
+	background: #cc0066 url(images/profil-menu-right.jpg) right no-repeat;
+}
+
+table.profil_menu td.active a:hover {
+	color: #fff;
+}
+
+div.profil_bloc_left {
+	float: left;
+	width: 240px;
+}
+
+div.profil_bloc_right {
+	width: 495px;
+	float: right;
+	position: relative;
+	left: 0;
+	top: 0;
+	padding: 155px 0 0 0;
+}
+
+div.profil_bloc_left a.bouton {
+	font-size: 11px;
+	margin: 10px 0 0 0;
+}
+
+div.profil_toolbar {
+	width: 167px;
+	height: 143px;
+	background: url(images/toolbar.jpg) no-repeat;
+	position: absolute;
+	right: 3px;
+	top: 0;
+}
+
+div.profil_bloc_right h1 {
+	display: block;
+	position: absolute;
+	left: 0px;
+	top: 5px;
+	font-size: 16px;
+	color: #cc0066;
+	padding: 0 0 0 22px;
+	height: 20px;
+	line-height: 20px;
+	margin: 0;
+}
+
+div.profil_bloc_right h1.h {
+	background: url(images/h.jpg) no-repeat;
+}
+
+div.profil_bloc_right  h1.f {
+	background: url(images/f.jpg) no-repeat;
+}
+
+div.profil_bloc_right  span.date_inscription {
+	position: absolute;
+	left: 4px;
+	top: 30px;
+	color: #FF6600;
+	font-size: 10px;
+}
+
+div.profil_bloc_right span.last_online {
+	position: absolute;
+	left: 4px;
+	top: 50px;
+	font-size: 10px;
+	color: #fff;
+}
+
+span.lo_online {
+	color: #009900;
+	font-weight: bold;
+}
+
+span.lo_today {
+	color: #ed0092;
+	font-weight: bold;
+}
+
+span.lo_yesterday {
+	color: #FF9933;
+	font-weight: bold;
+}
+
+span.lo_week {
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+span.lo_weeks {
+	color: #999999;
+	font-weight: bold;
+}
+
+div.profil_bloc_right div.top {
+	width: 492px;
+	height: 10px;
+	line-height: 10px;
+	font-size: 10px;
+	background: url(images/profil_top.jpg) no-repeat;
+}
+
+div.profil_bloc_right div.center {
+	width: 470px;
+	border-left: solid 1px #cc0066;
+	border-right: solid 1px #cc0066;
+	padding: 0 10px 0 10px;
+}
+
+div.profil_bloc_right div.bottom {
+	width: 492px;
+	height: 10px;
+	background: url(images/profil_bottom.jpg) no-repeat;
+}
+
+div.profil_bloc_right div.center h2 {
+	margin: 0 0 10px 0;
+}
+
+div.profil_toolbar a.btn:link, div.profil_toolbar a.btn:hover, div.profil_toolbar a.btn:active, div.profil_toolbar a.btn:visited {
+	position: absolute;
+	left: 5px;
+	display: block;
+	width: 157px;
+	height: 21px;
+	line-height: 21px;
+	text-align: center;
+	font-size: 11px;
+	background: url(images/toolbar-btn.gif) no-repeat;
+	text-decoration: none;
+}
+
+
+div.profil_toolbar a.btn_message:link, div.profil_toolbar a.btn_message:hover, div.profil_toolbar a.btn_message:active, div.profil_toolbar a.btn_message:visited,
+div.profil_toolbar a.btn_rose:link, div.profil_toolbar a.btn_rose:hover, div.profil_toolbar a.btn_rose:active, div.profil_toolbar a.btn_rose:visited {
+	color: #cc0066;
+	background-position: 0 0;
+}
+
+div.profil_toolbar a.btn_rose:hover,
+div.profil_toolbar a.btn_message:hover {
+	color: #fff;
+	background-position: 0 -21px;
+}
+
+div.profil_toolbar a.btn_chat:link, div.profil_toolbar a.btn_chat:hover, div.profil_toolbar a.btn_chat:active, div.profil_toolbar a.btn_chat:visited {
+	color: #fff;
+	background-position: 0 -21px;
+}
+
+div.profil_toolbar a.btn_chat:hover {
+	color: #cc0066;
+	background-position: 0 0;
+}
+
+div.profil_toolbar a.btn_message {
+	top: 5px;
+}
+
+div.profil_toolbar a.btn_rose {
+	top: 30px;
+}
+
+div.profil_toolbar a.btn_chat {
+	top: 55px;
+}
+
+div.profil_toolbar a.btn2:link, div.profil_toolbar a.btn2:hover, div.profil_toolbar a.btn2:active, div.profil_toolbar a.btn2:visited {
+	position: absolute;
+	left: 5px;
+	display: block;
+	height: 15px;
+	line-height: 15px;
+	text-align: left;
+	font-size: 10px;
+	text-decoration: none;
+	padding: 0 0 0 20px;
+	color: #fff;
+}
+
+div.profil_toolbar a.btn2:hover {
+	color: #ff6600;
+}
+
+div.profil_toolbar a.btn_favoris:link, div.profil_toolbar a.btn_favoris:hover, div.profil_toolbar a.btn_favoris:active, div.profil_toolbar a.btn_favoris:visited {
+	background: url(images/btn_favoris.jpg) left no-repeat;
+}
+
+div.profil_toolbar a.btn_black:link, div.profil_toolbar a.btn_black:hover, div.profil_toolbar a.btn_black:active, div.profil_toolbar a.btn_black:visited {
+	background: url(images/btn_black.jpg) left no-repeat;
+}
+
+div.profil_toolbar a.btn_abus:link, div.profil_toolbar a.btn_abus:hover, div.profil_toolbar a.btn_abus:active, div.profil_toolbar a.btn_abus:visited {
+	background: url(images/btn_abus.jpg) left no-repeat;
+}
+
+div.profil_toolbar a.btn_favoris {
+	top: 80px;
+}
+
+div.profil_toolbar a.btn_black {
+	top: 100px;
+}
+
+div.profil_toolbar a.btn_abus {
+	top: 120px;
+}
+
+div.profil_bloc_left div.top {
+	width: 230px;
+	height: 5px;
+	background: url(images/profil-photo-top.jpg) no-repeat;
+}
+
+div.profil_bloc_left div.bottom {
+	width: 230px;
+	height: 15px;
+	background: url(images/profil-photo-bottom.jpg) top no-repeat;
+}
+
+div.profil_bloc_left div.photos {
+	width: 228px;
+	border-left: solid 1px #db9fb9;
+	border-right: solid 1px #db9fb9;
+	position: relative;
+	left: 0;
+	top: 0;
+	background: #000;
+}
+
+div.profil_bloc_left div.photos0 {
+	height: 270px;
+}
+
+div.profil_bloc_left div.photos1 {
+	height: 308px;
+}
+
+div.profil_bloc_left div.photos * {
+	position: absolute;
+}
+
+div.profil_bloc_left div.photos img.big {
+	left: 4px;
+	top: 0;
+}
+
+div.profil_bloc_left div.photos img.mini {
+	width: 35px;
+	height: 35px;
+	bottom: 0;
+	cursor: pointer;
+}
+
+div.profil_bloc_left div.photos img.photo0 {
+	left: 5px;
+}
+
+div.profil_bloc_left div.photos img.photo1 {
+	left: 42px;
+}
+
+div.profil_bloc_left div.photos img.photo2 {
+	left: 79px;
+}
+
+div.profil_bloc_left div.photos img.photo3 {
+	left: 116px;
+}
+
+div.profil_bloc_left div.photos img.photo4 {
+	left: 153px;
+}
+
+div.profil_bloc_left div.photos img.photo5 {
+	left: 190px;
+}
+
+div.profil_bloc_left div.profil_mini {
+	width: 215px;
+	background: url(images/profil-mini.jpg) top no-repeat;
+	padding: 10px 0 0 15px;
+}
+
+div.profil_bloc_left div.profil_mini td {
+	padding: 5px 0 5px 0;
+}
+
+div.profil_bloc_left div.profil_mini td.key {
+	color: #cc0066;
+	font-weight: bold;
+	width: 80px;
+}
+
+div.profil_bloc_right div.center table td {
+	padding: 5px 0 5px 10px;
+}
+
+div.profil_bloc_right div.center table td.key {
+	color: #ff6600;
+	width: 150px;
+}
+
+div.profil_bloc_right div.center div.enfant {
+	overflow: hidden;
+	width: 470px;
+	height: 270px;
+}
+
+div.profil_bloc_right div.center div.enfant table.enfantSlide {
+	position: relative;
+	top: 0px;
+	left: 0px;
+}
+
+div.profil_bloc_right div.center div.enfant table.enfantSlide td,
+div.profil_bloc_right div.center div.enfant table.enfantSlide td div.enfantProfil {
+	width: 470px;
+	height: 270px;
+	padding: 0;
+	vertical-align: top;
+	text-align: left;
+}
+
+div.profil_bloc_right div.center div.enfant table.enfantSlide td div.enfantProfil {
+	position: relative;
+	top: 0px;
+	left: 0px;
+}
+
+div.profil_bloc_right div.center div.enfant table.enfantSlide td div.enfantProfil table.enfantProfilInfos {
+	position: absolute;
+	left: 230px;
+	bottom: 0px;
+}
+
+div.profil_bloc_right div.center div.enfant table.enfantSlide td div.enfantProfil table.enfantProfilInfos td {
+	height: 20px;
+	line-height: 20px;
+}
+
+div.profil_bloc_right div.center div.enfant table.enfantSlide td div.enfantProfil table.enfantProfilInfos td.key {
+	width: 75px;
+	color: #ff6600;
+}
+
+div.profil_bloc_right div.center div.enfant table.enfantSlide div.enfantPhoto {
+	width: 470px;
+	height: 270px;
+}
+
+div.profil_bloc_right div.center div.enfant table.enfantSlide a.vide {
+	visibility: hidden;
+}
+
+div.profil_bloc_right div.center div.enfant table.enfantSlide a.prev,
+div.profil_bloc_right div.center div.enfant table.enfantSlide a.next {
+	display: block;
+	position: absolute;
+	width: 31px;
+	height: 35px;
+	bottom: 0;
+	background: url(images/photoNav.jpg) no-repeat;
+	text-decoration: none;
+}
+
+div.profil_bloc_right div.center div.enfant table.enfantSlide a.prev {
+	background-position: 0 0;
+	right:31px;
+}
+
+div.profil_bloc_right div.center div.enfant table.enfantSlide a.next {
+	background-position: -31px 0;
+	right: 0;
+}
+
+div.profil_bloc_right div.center div.enfant table.enfantSlide a.prev:hover {
+	background-position: 0 -35px;
+	right: 31px;
+}
+
+div.profil_bloc_right div.center div.enfant table.enfantSlide a.next:hover {
+	background-position: -31px -35px;
+	right: 0;
+}
+
+table.messages_table td {
+	padding: 0 5px 0 5px;
+	vertical-align: top;
+	height: 55px;
+}
+
+table.messages_table td.pre img {
+	width: 50px;
+	height: 50px;
+	border: solid 1px #FFF;
+}
+
+table.messages_table td.exp {
+	width: 150px;
+}
+
+table.messages_table td.flbl {
+	width: 125px;
+}
+
+table.messages_table td.suppr {
+	width: 25px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+table.messages_table a:link, table.messages_table a:hover, table.messages_table a:active, table.messages_table a:visited {
+	color: #cc0066;
+}
+
+table.messages_table td.exp a {
+	font-size: 13px;
+}
+
+table.messages_table td.titre a:link, table.messages_table td.titre a:hover, table.messages_table td.titre a:active, table.messages_table td.titre a:visited {
+	text-decoration: none;
+	display: block;
+	width: 505px;
+	height: 45px;
+	padding: 5px 5px 0 7px;
+	font-weight: bold;
+	position: relative;
+	left: 0;
+	top: 0;
+}
+
+table.messages_table td.titre a span.date {
+	color: #000;
+	position: absolute;
+	left: 7px;
+	bottom: 5px;
+	font-size: 10px;
+}
+
+table.messages_table td.titre a {
+	background: url(images/messages.jpg) no-repeat;
+	background-position: 0 0;
+}
+
+table.messages_table td.titre a.non_lu {
+	background-position: 0 -50px;
+}
+
+table.messages_table td.titre a.Rose {
+	background-position: 0 -100px;
+}
+
+table.messages_table td.titre a.non_luRose {
+	background-position: 0 -150px;
+}
+
+table.messages_table td.titre a:hover {
+	color: #fff;
+}
+
+table td.pagination {
+	padding: 25px 0 0 0;
+	vertical-align: top;
+}
+
+table td.pagination a:link, table td.pagination a:hover, table td.pagination a:active, table td.pagination a:visited {
+	color: #ff6600;
+}
+
+table td.pagination a.active {
+	color: #ffffff;
+	font-weight: bold;
+}
+
+table.message_table td {
+	padding: 5px;
+	vertical-align: top;
+}
+
+table.message_table a.envoyer {
+	margin: 20px 0 0 10px;
+}
+
+table.message_table input, table.message_table textarea, table.message_table select.msgtxt {
+	width: 500px;
+	border: solid 1px #ccc;
+}
+
+table.message_table input.msgtxt, table.message_table textarea.msgtxt, table.message_table select.msgtxt {
+	width: 400px;
+}
+
+table.message_table input.msgtxt2, table.message_table textarea.msgtxt2 {
+	width: 340px;
+}
+
+table.message_table textarea {
+	height: 200px;
+}
+
+table.message_table div.disclaimer {
+	width: 450px;
+	height: 35px;
+	background: #FFFF00 url(images/warning.jpg) left no-repeat;
+	color: #333;
+	padding: 5px 10px 0 40px;
+	margin: 0px;
+	font-size: 11px;
+	font-style: italic;
+	border: solid 1px #ccc;
+}
+
+table.message_table td.tdTitre a:link, table.message_table td.tdTitre a:hover, table.message_table td.tdTitre a:active, table.message_table td.tdTitre a:visited {
+	color: #FF6600;
+}
+
+table.message_table td.tdTitre {
+	height: 30px;
+}
+
+table.message_table td.tdToolbar {
+	vertical-align: top;
+}
+
+table.message_table td.tdToolbar a {
+	margin-left: 10px;
+}
+
+table.messages_table, table.message_table {
+	margin: 10px 0 0 0;
+}
+
+table.message_table td.rose_signification {
+	padding: 0 0 0 10px;
+	text-align: justify;
+	width: 390px;
+}
+
+table.message_table td.message_photo img {
+	width: 89px;
+	height: 89px;
+	border: solid 1px #fff;
+}
+
+td.rose_signification span.rose {
+	font-weight: bold;
+	font-size: 14px;
+}
+
+td.rose_signification p.rose {
+	padding: 10px;
+	font-style: italic;
+}
+
+table.message_table table.fleurPreview {
+	float: left;
+	width: 150px;
+	margin: 0px 0px 15px 15px;
+}
+
+table.message_table table.fleurPreview td {
+	padding: 0px;
+	margin: 0px;
+}
+
+table.message_table table.fleurPreview td.tdRadio {
+	text-align: center;
+	width: 30px;
+}
+
+table.message_table table.fleurPreview input {
+	width: 16px;
+}
+
+table.profil_table div.conditions {
+	width: 520px;
+	margin: 0 0 0 100px;
+}
+
+#divConditions {
+	width: 500px;
+	height: 300px;
+	overflow-y: scroll;
+	border: solid 1px #ccc;
+	padding: 10px;
+	text-align: justify;
+	margin: 0 0 10px 0;
+}
+
+table.profil_table td.tdConditions input {
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	width: 100px;
+	border: solid 1px #ccc;
+	cursor: not-allowed;
+}
+
+table.profil_table td.tdConditions input.accept {
+	border: solid 1px #00cc00;
+	cursor: pointer;
+}
+
+table.profil_table td.tdConditions input.refuse {
+	border: solid 1px #cc0000;
+	cursor: pointer;
+}
+
+table.profil_table td.tdConditions span.accepted {
+	font-weight: bold;
+	color: #00cc00;
+}
+
+table.profil_table td.tdConditions span.refused {
+	font-weight: bold;
+	color: #cc0000;
+}
+
+p.notificationNotice {
+	padding: 10px;
+}
+
+p.parrainageNotice {
+	padding: 10px 10px 40px 10px;
+}
+
+textarea.textareaParrainage {
+	width: 400px;
+	height: 100px;
+	margin: 0 0 20px 0;
+}
+
+table.profil_menu td.affichage {
+	font-weight: bold;
+	color: #000;
+	text-align: right;
+}
+
+table.searchnavbar a.step_next, table.searchnavbar a.step_previous {
+	margin: 0;
+}
+
+table.searchnavbar {
+	width: 100%;
+	height: 50px;
+	margin-top: 10px;
+}
+
+table.searchnavbar td {
+	vertical-align: top;
+}
+
+table.searchnavbar td.left {
+	padding: 0 0 0 10px;
+	width: 165px;
+	text-align: left;
+}
+
+table.searchnavbar td.center {
+	padding: 3px 0 0 0;
+	text-align: center;
+}
+
+table.searchnavbar td.right {
+	padding: 0 10px 0 0;
+	width: 165px;
+	text-align: right;
+}
+
+table.searchnavbar td.center a:link, table.searchnavbar td.center a:hover, table.searchnavbar td.center a:active, table.searchnavbar td.center a:visited {
+	color: #ff0066;
+}
+
+table.searchnavbar td.center a:hover {
+	color: #ff6600;
+}
+
+table.searchnavbar td.center a.active {
+	color: #ffffff;
+	font-weight: bold;
+}
+
+div.profil_liste_top, div.profil_liste_bottom {
+	width: 732px;
+	height: 5px;
+	line-height: 5px;
+	font-size: 1px;
+	background: url(images/recherche-bg.jpg) no-repeat;
+}
+
+div.profil_liste_top {
+	background-position: 0 0;
+}
+
+div.profil_liste_bottom {
+	background-position: 0 -5px;
+	height: 15px;
+}
+
+div.profil_liste_center {
+	width: 730px;
+	height: 91px;
+	border-left: solid 1px #9c0054;
+	border-right: solid 1px #9c0054;
+	position: relative;
+	left: 0px;
+	top: 0px;
+}
+
+div.profil_galerie {
+	width: 365px;
+	height: 106px;
+	float: left;
+}
+
+div.profil_galerie_top, div.profil_galerie_bottom {
+	width: 360px;
+	height: 5px;
+	line-height: 5px;
+	font-size: 1px;
+	background: url(images/recherche-bg2.jpg) no-repeat;
+}
+
+div.profil_galerie_top {
+	background-position: 0 0;
+}
+
+div.profil_galerie_bottom {
+	background-position: 0 -5px;
+	height: 15px;
+}
+
+div.profil_galerie_center {
+	width: 358px;
+	height: 91px;
+	border-left: solid 1px #9c0054;
+	border-right: solid 1px #9c0054;
+	position: relative;
+	left: 0px;
+	top: 0px;
+}
+
+div.profil_liste_center  a.profil, div.profil_galerie_center  a.profil {
+	position: absolute;
+	display: block;
+	width: 115px;
+	height: 40px;
+	text-align: center;
+	line-height: 20px;
+	color: #CC0066;
+	font-size: 12px;
+	right: 10px;
+	bottom: -3px;
+	background: url(images/profil.jpg) no-repeat;
+}
+
+div.profil_liste_center  img.photo, div.profil_galerie_center  img.photo {
+	position: absolute;
+	border: solid 1px #fff;
+	left: 4px;
+	top: 0;
+}
+
+div.profil_liste_center  a.username:link, div.profil_liste_center  a.username:hover, div.profil_liste_center  a.username:active, div.profil_liste_center  a.username:visited, 
+div.profil_galerie_center  a.username:link, div.profil_galerie_center  a.username:hover, div.profil_galerie_center  a.username:active, div.profil_galerie_center  a.username:visited {
+	position: absolute;
+	color: #FF6600;
+	font-weight: bold;
+	font-size: 14px;
+	left: 100px;
+	top: 0px;
+}
+
+div.profil_liste_center  p.desc, div.profil_galerie_center  p.desc {
+	position: absolute;
+	left: 103px;
+	top: 17px;
+	font-size: 10px;
+	font-weight: bold;
+	/*width: 125px;
+	height: 25px;
+	overflow: hidden;*/
+}
+
+div.profil_liste_center  p.annonce {
+	position: absolute;
+	left: 330px;
+	top: 5px;
+	font-size: 11px;
+	width: 260px;
+	height: 80px;
+	line-height: 13px;
+	text-align: justify;
+	overflow: hidden;
+}
+
+div.profil_liste_center  p.last_online, div.profil_galerie_center  p.last_online {
+	position: absolute;
+	width: 120px;
+	right: 8px;
+	top: 10px;
+	font-size: 11px;
+	text-align: center;
+}
+
+div.profil_liste_center  p.last_online span, div.profil_galerie_center  p.last_online span {
+	font-size: 10px;
+}
+
+div.profil_liste_center div.toolbar {
+	position: absolute;
+	left: 100px;
+	top: 48px;
+	width: 225px;
+	height: 40px;
+}
+
+div.profil_galerie_center div.toolbar {
+	position: absolute;
+	left: 100px;
+	top: 44px;
+	width: 130px;
+	height: 40px;
+}
+
+div.profil_liste_center a.btn, div.profil_galerie_center a.btn {
+	position: absolute;
+	display: block;
+	height: 18px;
+	line-height: 18px;
+	background: url(images/icones.jpg) no-repeat;
+	width: 50px;
+	padding: 0 0 0 22px;
+	font-size: 10px;
+}
+
+div.profil_galerie_center a.btn {
+	width: 107px;
+}
+
+div.profil_liste_center a.btn:link, div.profil_liste_center a.btn:active, div.profil_liste_center a.btn:visited,
+div.profil_galerie_center a.btn:link, div.profil_galerie_center a.btn:active, div.profil_galerie_center a.btn:visited {
+	color: #ddd;
+}
+
+div.profil_liste_center a.btn:hover,
+div.profil_galerie_center a.btn:hover {
+	color: #ff6600;
+}
+
+div.profil_liste_center a.btn0,
+div.profil_galerie_center a.btn0 {
+	background-position: 0 -90px;
+	top: 0;
+	left: 0;
+}
+
+div.profil_liste_center a.btn1,
+div.profil_galerie_center a.btn1 {
+	background-position: 0 -72px;
+	top: 20px;
+	left: 0px;
+}
+
+div.profil_liste_center a.btn2,
+div.profil_galerie_center a.btn2 {
+	background-position: 0 -54px;
+	top: 0;
+	left: 73px;
+}
+
+div.profil_liste_center a.btn3 {
+	background-position: 0 -36px;
+	top: 20px;
+	left: 73px;
+}
+
+div.profil_liste_center a.btn4 {
+	background-position: 0 -18px;
+	top: 0;
+	left: 150px;
+}
+
+div.profil_liste_center a.btn5 {
+	background-position: 0 0;
+	top: 20px;
+	left: 150px;
+}
+
+table.flbl_table td {
+	padding: 20px 10px 5px 10px;
+}
+
+table.flbl_table td.photo {
+	padding: 20px 10px 5px 20px;
+}
+
+p.flbl_notice {
+	padding: 5px;
+}
+
+p.flbl_notice a, table.flbl_table td.key a {
+	color: #ff6600;
+}
+
+table.flbl_table {
+	margin: 0 0 0 40px;
+	background: url(images/flbl.jpg) no-repeat;
+	width: 610px;
+	height: 257px;
+}
+
+table.flbl_table td.key input {
+	width: 450px;
+	height: 18px;
+}
+
+table.flbl_table a.annuler {
+	float: left;
+}
+
+table.flbl_table td.btns {
+	padding: 0 130px 0 10px;
+}
+
+table.appel td.key {
+	width: 100px;
+}
+
+div.appel_a_temoins div.center {
+	padding: 10px;
+	width: 710px;
+	text-align: justify;
+	border-right: solid 1px #9c0054;
+	border-left: solid 1px #9c0054;
+	position: relative;
+	left: 0;
+	top: 0;
+}
+
+div.appel_a_temoins div.center h3 a:link, div.appel_a_temoins div.center h3 a:hover, div.appel_a_temoins div.center h3 a:active, div.appel_a_temoins div.center h3 a:visited {
+	font-size: 12px;
+	color: #ff6600;
+	display: block;
+	padding: 0 0 0 30px;
+	margin: 0 0 10px 0;
+	background: url(images/flower.jpg) center left no-repeat;
+	line-height: 20px;
+}
+
+div.appel_a_temoins div.center h3 a span {
+	color: #fff;
+}
+
+div.appel_a_temoins div.center img {
+	float: left;
+	margin: 0 10px 0 0;
+	border: solid 1px #fff;
+}
+
+div.appel_a_temoins div.center a.more:link , div.appel_a_temoins div.center a.more:hover , div.appel_a_temoins div.center a.more:active , div.appel_a_temoins div.center a.more:visited {
+	color: #ff6600;
+	position: absolute;
+	right: 10px;
+	bottom: 5px;
+} 
+
+div.appel_a_temoins div.top {
+	height: 5px;
+	line-height: 5px;
+	width: 732px;
+	background: url(images/recherche-bg.jpg) top no-repeat;
+	font-size: 5px;
+	margin-top: 10px;
+}
+
+div.appel_a_temoins div.bottom {
+	height: 5px;
+	line-height: 5px;
+	width: 732px;
+	background: url(images/recherche-bg.jpg) bottom no-repeat;
+	font-size: 5px;
+}
+
+div.appel_a_temoins div.appel_annonce {
+	padding: 10px 20px 10px 10px;
+	text-align: justify;
+}
+
+div.appel_a_temoins div.center a:link, div.appel_a_temoins div.center a:hover, div.appel_a_temoins div.center a:active, div.appel_a_temoins div.center a:visited {
+	color: #ff6600;
+}
+
+div.appel_a_temoins span.infos {
+	font-weight: bold;
+	text-decoration: underline;
+	color: #cc0066;
+}
+
+div.radio {
+	padding: 10px 0 0 0;
+	width: 230px;
+	float: left;
+}
+
+div.radiog {
+	padding-left: 100px;
+}
+
+div.radio1 {
+	width: 220px;
+	height: 10px;
+	background: url(images/radio.jpg) top no-repeat;
+	font-size: 10px;
+	line-height: 10px;
+}
+
+div.radio2 {
+	width: 200px;
+	padding: 0 10px 0 10px;
+	background: #fff;
+	text-align: center;
+}
+
+div.radio3 {
+	width: 220px;
+	height: 10px;
+	background: url(images/radio.jpg) bottom no-repeat;
+	clear:both;
+}
+
+div.contenu div.radio2 a.active:link, div.contenu div.radio2 a.active:hover, div.contenu div.radio2 a.active:active, div.contenu div.radio2 a.active:visited {
+	font-weight: bold;
+	color: #ff6600;
+}
+
+div.groupe_liste_body {
+	height: 120px;
+	position: relative;
+	left: 0;
+	top: 0;
+}
+
+div.groupe_liste_body img.photo {
+	border: solid 1px #fff;
+	position: absolute;
+	left: 5px;
+	top: 5px;
+	width: 110px;
+	height: 110px;
+}
+
+div.groupe_liste_body a.titre:link, div.groupe_liste_body a.titre:hover, div.groupe_liste_body a.titre:active, div.groupe_liste_body a.titre:visited {
+	position: absolute;
+	left: 125px;
+	top: 5px;
+	color: #ff6600;
+	font-size: 13px;
+	text-decoration: none;
+}
+
+div.groupe_liste_body a.titre:hover {
+	text-decoration: underline;
+}
+
+div.groupe_liste_body p {
+	display: block;
+	width: 450px;
+	height: 60px;
+	position: absolute;
+	left: 125px;
+	top: 27px;
+	text-align: justify;
+}
+
+div.groupe_liste_body a.rejoindre_groupe:link, div.groupe_liste_body a.rejoindre_groupe:hover, div.groupe_liste_body a.rejoindre_groupe:active, div.groupe_liste_body a.rejoindre_groupe:visited {
+	display: block;
+	width: 101px;
+	height: 51px;
+	background: url(images/rejoindre-groupe.jpg) bottom no-repeat;
+	color: #fff;
+	padding: 4px 10px 0 10px;
+	position: absolute;
+	right: 10px;
+	bottom: 5px;
+	text-align: center;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+div.groupe_liste_body a.rejoindre_groupe:hover {
+	background: url(images/rejoindre-groupe.jpg) top no-repeat;
+}
+
+div.groupe_liste_body span.nouveau {
+	text-transform:uppercase;
+	font-size: 14px;
+	font-weight: bold;
+	display: block;
+	width: 121px;
+	text-align: center;
+	color: #CC0066;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}
+
+div.groupe_liste_body span.popularite {
+	position: absolute;
+	left: 125px;
+	bottom: 10px;
+	color: #ccc;
+	font-size: 10px;
+	text-decoration: none;
+}
+
+div.groupe_liste_body div.popularite {
+	position: absolute;
+	left: 190px;
+	bottom: 12px;
+	width: 80px;
+	height: 16px;
+	background: url(images/popularite.jpg) no-repeat;
+}
+
+div.groupe_liste_body div.populariteBarreBg {
+	position: absolute;
+	left: 190px;
+	bottom: 6px;
+	width: 80px;
+	height: 3px;
+	background: #222;
+	font-size: 1px;
+	line-height: 1px;
+}
+
+div.groupe_liste_body div.populariteBarreBg div {
+	height: 3px;
+	font-size: 1px;
+	line-height: 1px;
+}
+
+div.groupe_liste_body div.populariteBarreBg div.rang0,
+div.groupe_liste_body div.populariteBarreBg div.rang5 {
+	visibility: hidden;
+}
+
+div.groupe_liste_body div.populariteBarreBg div.rang1 {
+	background: #DF5A0D;
+}
+
+div.groupe_liste_body div.populariteBarreBg div.rang2 {
+	background: #A9ABD1;
+}
+
+div.groupe_liste_body div.populariteBarreBg div.rang3 {
+	background: #FFD614;
+}
+
+div.groupe_liste_body div.populariteBarreBg div.rang4 {
+	background: #CC0000;
+}
+
+div.groupe_liste_body div.groupe_rejoint {
+	width: 101px;
+	height: 55px;
+	line-height: 12px;
+	background: url(images/groupe-rejoint.jpg) top no-repeat;
+	color: #fff;
+	padding: 35px 10px 0 10px;
+	position: absolute;
+	right: 10px;
+	bottom: 2px;
+	text-align: center;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+div.groupe_liste_body  span.stats_membres {
+	position: absolute;
+	left: 290px;
+	bottom: 10px;
+	font-weight: bold;
+}
+
+div.groupe_liste_body div.groupe_statut {
+	height: 16px;
+	position: absolute;
+	top: 3px;
+	left: 5px;
+	z-index: 10;
+	background: black;
+	border: solid 1px #ccc;
+	width: 105px;
+	padding: 1px 0 1px 5px;
+}
+
+div.groupe_liste_body div.groupe_rejoint a:link, div.groupe_liste_body div.groupe_rejoint a:hover, div.groupe_liste_body div.groupe_rejoint a:active, div.groupe_liste_body div.groupe_rejoint a:visited {
+	color: #ff6600;
+	text-decoration: none;
+}
+
+div.groupe_liste_body div.groupe_rejoint a:hover {
+	text-decoration: underline;
+}
+
+div.groupe_search_body {
+	height: 27px;
+	line-height: 25px;
+	text-align: center;
+	position: relative;
+	left: 0;
+	top: 0;
+}
+
+div.groupe_search_body table.groupe_recherche {
+	position: absolute;
+	left: 25px;
+	top: 0px;
+}
+
+div.groupe_search_body table.groupe_recherche td {
+	height: 18px;
+	text-align: left;
+	font-weight: bold;
+	padding: 0 20px 0 0;
+}
+
+div.groupe_search_body table.groupe_recherche td.key {
+	font-weight: bold;
+	padding: 0 10px 0 0;
+}
+
+div.groupe_search_body .input_groupe {
+	width: 160px;
+}
+
+div.groupe_search_body input.input_groupe {
+	border: solid 1px #999;
+}
+
+div.groupe_search_body input.sub {
+	visibility: hidden;
+	width: 1px;
+	height: 1px;
+}
+
+div.groupe_search_body a.sub:link, div.groupe_search_body a.sub:hover, div.groupe_search_body a.sub:active, div.groupe_search_body a.sub:visited {
+	display: block;
+	width: 111px;
+	height: 18px;
+	line-height: 18px;
+	color: #fff;
+	background: url(images/bouton-noir-rose.jpg) top no-repeat;
+	font-size: 11px;
+	padding: 0;
+	margin: 0 0 0 0;
+	text-align: center;
+	text-decoration: none;
+	font-weight: normal;
+}
+
+div.groupe_search_body a.sub:hover {
+	background: url(images/bouton-noir-rose.jpg) bottom no-repeat;
+}
+
+span.subh2 {
+	display: block;
+	padding: 0 0 20px 0;
+}
+
+div.groupe_liste_body h1.titre {
+	position: absolute;
+	left: 125px;
+	top: 5px;
+	color: #ff6600;
+	font-size: 13px;
+	text-decoration: none;
+}
+
+div.groupe_liste_body div.minh {
+	height: 122px;
+	width: 1px;
+	visibility: hidden;
+	background: green;
+	float: left;
+}
+
+div.groupe_membre {
+	float: left;
+	width: 90px;
+	height: 155px;
+	text-align: center;
+	background: #333;
+	background: url(images/preview.jpg) top left no-repeat;
+	padding: 6px 10px 0 5px;
+}
+
+div.groupe_membre img {
+	border: solid 1px #999;
+	margin: 0 0 6px 0;
+}
+
+div.groupe_membre .username, div.groupe_membre a.username:link, div.groupe_membre a.username:hover, div.groupe_membre a.username:active div.groupe_membre a.username:visited {
+	color: #FF6600;
+}
+
+div.profil_bloc_right div.center  table.tableGroupesProfil td {
+	vertical-align: middle;
+	text-align: left;
+}
+
+table.tableGroupesProfil td.titre a:link, table.tableGroupesProfil td.titre a:hover, table.tableGroupesProfil td.titre a:active, table.tableGroupesProfil td.titre a:visited {
+	color: #ff6600;
+	text-decoration: none;
+}
+
+table.tableGroupesProfil td.titre a:hover {
+	text-decoration: underline;
+}
+
+div.profil_bloc_right div.center  table.tableGroupesProfil td.image {
+	width: 35px;
+	height: 45px;
+	padding: 0;
+}
+
+div.profil_bloc_right div.center  table.tableGroupesProfil td.image img {
+	border: solid 1px #ccc;
+}
+
+div.profil_bloc_right div.center  table.tableGroupesProfil td.titre {
+	width: 180px;
+	height: 40px;
+	padding: 0 15px 5px 10px;
+}
+
+span.fondateur {
+	position: absolute;
+	top: 22px;
+	left: 140px;
+	font-size: 10px;
+}
+
+span.fondateur a:link, span.fondateur a:hover, span.fondateur a:active, span.fondateur a:visited {
+	color: #cc0066;
+	text-decoration: none;
+}
+
+span.fondateur a:hover {
+	text-decoration: underline;
+}
+
+p.noaccess {
+	padding:30px 0 0 0;
+	text-align:center;
+	position: relative;
+	margin-top: 30px;
+}
+
+p.noaccessh {
+	background: url(images/h.jpg) center top no-repeat;
+}
+
+p.noaccessf {
+	background: url(images/f.jpg) center top no-repeat;
+}
+
+a.btnForumEM {
+	display: block;
+	width: 98px;
+	height: 30px;
+	background: url(images/btn-forum-entre-mamans.jpg) no-repeat;
+	position: absolute;
+	right: 0;
+	top: 70px;
+	color: #fff;
+	text-decoration: none;
+	text-align: center;
+	padding: 5px 0 0 0;
+	font-size: 10px;
+}
+
+a.btnForumEM:link, a.btnForumEM:active, a.btnForumEM:visited {
+	background-position: 0 0;
+}
+
+a.btnForumEM:hover {
+	background-position: 0 -35px;
+}
+
+img.AATlogo {
+	float:left;
+	margin: 0 10px 0 0;
+}
+
+table.pointsTable {
+	margin: 0 0 20px 0;
+	width: 100%;
+}
+
+table.pointsTable img.star {
+	float: left;
+	margin: 0 5px 0 0;
+}
+
+table.pointsTable th, table.pointsTable td {
+	padding: 5px;
+}
+
+table.pointsTable th {
+	background: #333;
+	color: #cc0066;
+	font-weight: bold;
+	text-align: left;
+}
+
+table.pointsTable tr.tr0 td {
+	background: #000;
+}
+
+table.pointsTable tr.tr1 td {
+	background: #111;
+}
+
+table.pointsTable th.padLeft, table.pointsTable td.padLeft {
+	padding-left: 30px;
+}
+
+table.pointsTable th.tdPos, table.pointsTable td.tdPos {
+	width: 100px;
+	text-align: center;
+}
+
+table.pointsTable th.pointsVal, table.pointsTable td.pointsVal {
+	text-align: right;
+	padding-right: 100px;
+}
+
+p.pointsP {
+	padding: 0px 10px 20px 10px;
+}
+
+p.pointsP a:link, p.pointsP a:hover, p.pointsP a:active, p.pointsP a:visited,
+table.pointsTable  a:link, table.pointsTable  a:hover, table.pointsTable  a:active, table.pointsTable  a:visited {
+	color: #ff5500;
+}
+
+a.btnProfilPanel {
+	display: block;
+	width: 98px;
+	height: 30px;
+	background: url(images/btn-solofleurs.jpg) no-repeat;
+	position: absolute;
+	color: #cc0066;
+	text-decoration: none;
+	text-align: center;
+	padding: 5px 0 0 0;
+	font-size: 10px;
+	font-weight: bold;
+}
+
+a.btnProfilPanel:link, a.btnProfilPanel:active, a.btnProfilPanel:visited {
+	background-position: 0 0;
+}
+
+a.btnProfilPanel:hover {
+	background-position: 0 -35px;
+}
+
+a.btnSolofleur {
+	right: 0;
+	top: 70px;
+}
+
+a.btnParrainage {
+	right: 0;
+	top: 30px;
+}
+
+div.app_points {
+	text-align: justify;
+}
+
+div.panel-actu {
+	width: 238px;
+	height: 204px;
+	background: url(images/panel-actu.jpg) right no-repeat;
+}
+
+div.panel-actu ul {
+	list-style: none;
+	padding: 10px 10px 0 20px;
+}
+
+div.panel-actu ul li {
+	background: url(images/panel-coeur.jpg) no-repeat;
+	padding: 0 5px 10px 45px;
+}
+
+div.panel-actu ul li a:link, div.panel-actu ul li a:hover, div.panel-actu ul li a:active, div.panel-actu ul li a:visited {
+	color: #fff;
+	text-decoration: none;
+}
+
+div.panel-actu ul li a:hover {
+	text-decoration: underline;
+}
+
+div.panel-actu ul li span {
+	color: #999;
+	font-size: 10px;
+}
+
+div.panel-actu h3 {
+	color: #CC0066;
+	padding: 5px 0 0 20px;
+}
+
+a.msglink:link, a.msglink:hover, a.msglink:active, a.msglink:visited {
+	color: #CC0066;
+}
+
+div.gagnantDuMois {
+	width: 473px;
+	height: 190px;
+	background: url(images/gagnant-du-mois.jpg) bottom no-repeat;
+	padding: 15px 0 0 0;
+	position: relative;
+	left: 0;
+	top: 0;
+}
+
+div.gagnantDuMois a.btnNoirRose:link, div.gagnantDuMois a.btnNoirRose:hover, div.gagnantDuMois a.btnNoirRose:active, div.gagnantDuMois a.btnNoirRose:visited {
+	display: block;
+	width: 111px;
+	height: 18px;
+	line-height: 18px;
+	text-align: center;
+	background: url(images/bouton-noir-rose.jpg) no-repeat;
+	background-position: 0 0;
+	font-size: 10px;
+	color: #fff;
+	text-decoration: none;
+	position: absolute;
+	left: 200px;
+	bottom: 10px;
+}
+
+div.gagnantDuMois a.btnNoirRose:hover {
+	background-position: 0 -18px;
+}
+
+div.gagnantDuMois span.titre, div.gagnantDuMois p, div.gagnantDuMois img, div.gagnantDuMois ul {
+	position: absolute;
+}
+
+div.gagnantDuMois span.titre {
+	font-size: 14px;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #000;
+	display: block;
+	width: 100%;
+	text-align: center;
+	left: 0;
+	top: 23px;
+}
+
+div.gagnantDuMois img {
+	left: 10px;
+	top: 50px;
+	border: solid 1px #fff;
+}
+
+div.gagnantDuMois p {
+	display: block;
+	width: 255px;
+	height: 100px;
+	text-align: justify;
+	right: 10px;
+	top: 50px;	
+}
+
+div.gagnantDuMois ul {
+	list-style: none;
+	padding: 0;
+	left: 125px;
+	bottom: 45px;
+}
+
+div.gagnantDuMois ul li {
+	height: 16px;
+}
+
+div.gagnantDuMois ul li a:link, div.gagnantDuMois ul li a:hover, div.gagnantDuMois ul li a:active, div.gagnantDuMois ul li a:visited {
+	color: #CC0066;
+	font-weight: bold;
+}
+
+img.ptsTemoignage {
+	border: solid 1px #fff;
+	float: left;
+	margin: 0 10px 5px 0;
+}
+
+div.pointsTemoignage {
+	height: 140px;
+	border: solid 1px #111;
+	margin: 10px 0 0 0;
+	position: relative;
+	left: 0;
+	top: 0;
+}
+
+div.pointsTemoignage a.aPhoto {
+	display: block;
+	width: 130px;
+	height: 130px;
+	text-align: center;
+	position: absolute;
+	left: 0;
+	top: 10px;
+}
+
+div.pointsTemoignage a.aPhoto:link, div.pointsTemoignage a.aPhoto:hover, div.pointsTemoignage a.aPhoto:active, div.pointsTemoignage a.aPhoto:visited {
+	text-decoration: none;
+	color: #CC0066;
+}
+div.pointsTemoignage a.aPhoto img {
+	border: solid 1px #fff;
+}
+
+div.pointsTemoignage a.aPhoto span {
+	display: block;
+	height: 16px;
+	line-height: 16px;
+}
+
+div.pointsTemoignage p {
+	display: block;
+	width: 580px;
+	height: 108px;
+	position: absolute;
+	right: 15px;
+	top: 30px;
+	overflow: hidden;
+	text-align: justify;
+}
+
+div.pointsTemoignage a.btnNoirRose:link, div.pointsTemoignage a.btnNoirRose:hover, div.pointsTemoignage a.btnNoirRose:active, div.pointsTemoignage a.btnNoirRose:visited {
+	display: block;
+	width: 111px;
+	height: 18px;
+	line-height: 18px;
+	text-align: center;
+	background: url(images/bouton-noir-rose.jpg) no-repeat;
+	background-position: 0 0;
+	font-size: 10px;
+	color: #fff;
+	text-decoration: none;
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+}
+
+div.pointsTemoignage a.btnNoirRose:hover {
+	background-position: 0 -18px;
+}
+
+div.pointsTemoignage a.titre {
+	position: absolute;
+	left: 140px;
+	top: 10px;
+	display: block;
+	padding: 0 0 0 26px;
+	line-height: 16px;
+	height: 16px;
+	background: url(images/flower.jpg) left no-repeat;
+	color: #cc0066;
+}
+
+div.profil_banner {
+	width: 728px;
+	height: 90px;
+	padding: 30px 0 0 0;
+	background: url(images/banner-profil.jpg) no-repeat;
+	background-position: 0 10px;
+	clear: both;
+}

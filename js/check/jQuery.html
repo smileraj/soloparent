@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)https://demos.jquerymobile.com/1.2.0/docs/forms/switch/ -->
+<html class="ui-mobile"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!--<base href="https://demos.jquerymobile.com/1.2.0/docs/forms/switch/">--><base href=".">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>jQuery Mobile Docs - Switch</title>
+	<link rel="stylesheet" href="jquery.mobile.css">
+	<script src="jquery-1.7.1.min.js"></script>
+	<script src="jquery.mobile-1.2.0.js"></script>
+
+</head>
+<body class="ui-mobile-viewport ui-overlay-c">
+
+
+	<div data-role="content" class="ui-content" role="main">
+		<div class="content-primary">
+
+		<form action="https://demos.jquerymobile.com/1.2.0/docs/forms/switch/#" method="get">
+			
+    
+<select name="flip-1" id="flip-1" data-role="slider" class="ui-slider-switch">
+				<option value="off">Off</option>
+				<option value="on">On</option>
+			</select><div role="application" class="ui-slider ui-slider-switch ui-btn-down-c ui-btn-corner-all"><span class="ui-slider-label ui-slider-label-a ui-btn-active ui-btn-corner-all" role="img" style="width: 100%;">On</span><span class="ui-slider-label ui-slider-label-b ui-btn-down-c ui-btn-corner-all" role="img" style="width: 0%;">Off</span><div class="ui-slider-inneroffset"><a href="https://demos.jquerymobile.com/1.2.0/docs/forms/switch/#" class="ui-slider-handle ui-btn ui-shadow ui-btn-corner-all ui-slider-handle-snapping ui-btn-up-c" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" role="slider" aria-valuemin="0" aria-valuemax="1" aria-valuenow="on" aria-valuetext="On" title="On" aria-labelledby="flip-1-label" style="left: 100%;"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text"></span></span></a></div></div> 
+			
+			
+			<h2>Longer labels</h2>
+			<p>The control is proportionally scaled, so to use longer labels one can just add a line of CSS setting the switch to the desired width. For example, given the following markup:</p>
+<pre><code>
+&lt;div class="containing-element"&gt;
+	&lt;label for="flip-min"&gt;Flip switch:&lt;/label&gt;
+	&lt;select name="flip-min" id="flip-min" data-role="slider"&gt;
+		&lt;option value="off"&gt;Switch Off&lt;/option&gt;
+		&lt;option value="on"&gt;Switch On&lt;/option&gt;
+	&lt;/select&gt;
+&lt;/div&gt;
+</code></pre>
+	
+			<p><code>.containing-element .ui-slider-switch { width: 9em }</code> will produce:</p>
+		
+			<style type="text/css" media="screen">
+			.containing-element .ui-slider-switch { width: 9em; }
+			</style>
+			
+			<div class="containing-element">
+				<label for="flip-min" id="flip-min-label" class="ui-slider">Flip switch:</label>
+				<select name="flip-min" id="flip-min" data-role="slider" class="ui-slider-switch">
+					<option value="off">Switch Off</option>
+					<option value="on">Switch On</option>
+				</select><div role="application" class="ui-slider ui-slider-switch ui-btn-down-c ui-btn-corner-all"><span class="ui-slider-label ui-slider-label-a ui-btn-active ui-btn-corner-all" role="img" style="width: 0%;">Switch On</span><span class="ui-slider-label ui-slider-label-b ui-btn-down-c ui-btn-corner-all" role="img" style="width: 100%;">Switch Off</span><div class="ui-slider-inneroffset"><a href="https://demos.jquerymobile.com/1.2.0/docs/forms/switch/#" class="ui-slider-handle ui-btn ui-shadow ui-btn-corner-all ui-slider-handle-snapping ui-btn-up-c" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" role="slider" aria-valuemin="0" aria-valuemax="1" aria-valuenow="off" aria-valuetext="Switch Off" title="Switch Off" aria-labelledby="flip-min-label" style="left: 0%;"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text"></span></span></a></div></div> 
+			</div>
+			
+			<p>As some default styles hinge on fieldcontains, note that you may have to ensure that custom styles apply to switches within fieldcontains by using <code>.ui-field-contain div.ui-slider-switch { width: […]; }</code>.</p>
+			
+			<h2>Mini version</h2>
+
+			<p>For a more compact version that is useful in toolbars and tight spaces, add the <code>data-mini="true"</code> attribute to the element to create a <a href="https://demos.jquerymobile.com/1.2.0/docs/forms/forms-all-mini.html" class="ui-link">mini version</a>. </p>
+
+<pre><code>	
+&lt;label for="flip-mini"&gt;Flip switch:&lt;/label&gt;
+&lt;select name="flip-mini" id="flip-mini" data-role="slider" <strong>data-mini="true"</strong>&gt;
+	&lt;option value="off"&gt;Off&lt;/option&gt;
+	&lt;option value="on"&gt;On&lt;/option&gt;
+&lt;/select&gt;
+</code></pre>
+			
+			<p>This will produce a flip switch that is not as tall as the standard version and has a smaller text size.</p>
+			<label for="flip-mini" id="flip-mini-label" class="ui-slider">Flip switch:</label>
+			<select name="flip-mini" id="flip-mini" data-role="slider" data-mini="true" class="ui-slider-switch">
+				<option value="off">Off</option>
+				<option value="on">On</option>
+			</select><div role="application" class="ui-slider ui-slider-switch ui-btn-down-c ui-btn-corner-all ui-slider-mini"><span class="ui-slider-label ui-slider-label-a ui-btn-active ui-btn-corner-all" role="img" style="width: 0%;">On</span><span class="ui-slider-label ui-slider-label-b ui-btn-down-c ui-btn-corner-all" role="img" style="width: 100%;">Off</span><div class="ui-slider-inneroffset"><a href="https://demos.jquerymobile.com/1.2.0/docs/forms/switch/#" class="ui-slider-handle ui-btn ui-shadow ui-btn-corner-all ui-slider-handle-snapping ui-btn-up-c" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" role="slider" aria-valuemin="0" aria-valuemax="1" aria-valuenow="off" aria-valuetext="Off" title="Off" aria-labelledby="flip-mini-label" style="left: 0%;"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text"></span></span></a></div></div>
+			
+
+			<h2>Field containers</h2>
+			 <p>Optionally wrap the switch markup in a container with the <code>data-role="fieldcontain"</code> attribute to help visually group it in a longer form.</p>
+
+<pre><code>	
+<strong>&lt;div data-role="fieldcontain"&gt;
+</strong>&lt;label for="flip-2"&gt;Flip switch:&lt;/label&gt;
+	&lt;select name="flip-2" id="flip-2" data-role="slider"&gt;
+		&lt;option value="nope"&gt;Nope&lt;/option&gt;
+		&lt;option value="yep"&gt;Yep&lt;/option&gt;
+	&lt;/select&gt; 
+<strong>&lt;/div&gt;
+</strong></code></pre>	
+		<p>The flip toggle switch is now displayed like this:</p>
+		<div data-role="fieldcontain" class="ui-field-contain ui-body ui-br"><label for="flip-2" id="flip-2-label" class="ui-slider">Flip switch:</label><select name="flip-2" id="flip-2" data-role="slider" class="ui-slider-switch">
+				<option value="nope">Nope</option>
+				<option value="yep">Yep</option>
+			</select><div role="application" class="ui-slider ui-slider-switch ui-btn-down-c ui-btn-corner-all"><span class="ui-slider-label ui-slider-label-a ui-btn-active ui-btn-corner-all" role="img" style="width: 0%;">Yep</span><span class="ui-slider-label ui-slider-label-b ui-btn-down-c ui-btn-corner-all" role="img" style="width: 100%;">Nope</span><div class="ui-slider-inneroffset"><a href="https://demos.jquerymobile.com/1.2.0/docs/forms/switch/#" class="ui-slider-handle ui-btn ui-shadow ui-btn-corner-all ui-slider-handle-snapping ui-btn-up-c" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" role="slider" aria-valuemin="0" aria-valuemax="1" aria-valuenow="nope" aria-valuetext="Nope" title="Nope" aria-labelledby="flip-2-label" style="left: 0%;"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text"></span></span></a></div></div></div>
+						
+				
+		<h2>Theming the flip switch</h2>	
+		
+		<p>Like all form elements, this widget will automatically inherit the theme from its parent container. To choose a specific theme color swatch, specify the <code>data-theme</code> attribute on the <code>select</code> and specify a swatch letter.</p>	
+		
+<pre><code>	
+&lt;div data-role="fieldcontain"&gt;
+	&lt;label for="flip-3"&gt;Flip switch:&lt;/label&gt;
+	&lt;select name="flip-3" id="flip-3" data-role="slider" data-theme="a"&gt;
+		&lt;option value="no"&gt;No&lt;/option&gt;
+		&lt;option value="yes"&gt;Yes&lt;/option&gt;
+	&lt;/select&gt; 
+&lt;/div&gt;
+</code></pre>	
+				<p>This results in a switch with the swatch "a" colors for the handle. Note that the lefthand "on" state gets the active state color.</p>
+				<div data-role="fieldcontain" class="ui-field-contain ui-body ui-br"><label for="flip-3" id="flip-3-label" class="ui-slider">Flip switch:</label><select name="flip-3" id="flip-3" data-role="slider" data-theme="a" class="ui-slider-switch">
+						<option value="hate">Hate</option>
+						<option value="love">Love</option>
+					</select><div role="application" class="ui-slider ui-slider-switch ui-btn-down-c ui-btn-corner-all"><span class="ui-slider-label ui-slider-label-a ui-btn-active ui-btn-corner-all" role="img" style="width: 0%;">Love</span><span class="ui-slider-label ui-slider-label-b ui-btn-down-c ui-btn-corner-all" role="img" style="width: 100%;">Hate</span><div class="ui-slider-inneroffset"><a href="https://demos.jquerymobile.com/1.2.0/docs/forms/switch/#" class="ui-slider-handle ui-btn ui-btn-up-a ui-shadow ui-btn-corner-all ui-slider-handle-snapping" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" role="slider" aria-valuemin="0" aria-valuemax="1" aria-valuenow="hate" aria-valuetext="Hate" title="Hate" aria-labelledby="flip-3-label" style="left: 0%;"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text"></span></span></a></div></div></div>
+				
+				<p>Here is a swatch "e" variation:</p>
+				<div data-role="fieldcontain" class="ui-field-contain ui-body ui-br"><label for="flip-4" id="flip-4-label" class="ui-slider">Flip switch:</label><select name="flip-4" id="flip-4" data-role="slider" data-theme="e" class="ui-slider-switch">
+						<option value="no">No</option>
+						<option value="yes">Yes</option>
+					</select><div role="application" class="ui-slider ui-slider-switch ui-btn-down-c ui-btn-corner-all"><span class="ui-slider-label ui-slider-label-a ui-btn-active ui-btn-corner-all" role="img" style="width: 0%;">Yes</span><span class="ui-slider-label ui-slider-label-b ui-btn-down-c ui-btn-corner-all" role="img" style="width: 100%;">No</span><div class="ui-slider-inneroffset"><a href="https://demos.jquerymobile.com/1.2.0/docs/forms/switch/#" class="ui-slider-handle ui-btn ui-btn-up-e ui-shadow ui-btn-corner-all ui-slider-handle-snapping" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="e" role="slider" aria-valuemin="0" aria-valuemax="1" aria-valuenow="no" aria-valuetext="No" title="No" aria-labelledby="flip-4-label" style="left: 0%;"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text"></span></span></a></div></div></div>
+		
+		<p>It is also possible to theme the track of the flip switch by adding the <code>data-track-theme</code> attribute and specifying the chosen swatch letter on the <code>select</code>.</p>
+<p>Here's an example of a flip switch with the swatch "a" applied to the track and swatch "c" applied to the handle:</p>		
+
+<pre><code>	
+&lt;div data-role="fieldcontain"&gt;
+        &lt;label for="flip-5"&gt;Flip switch:&lt;/label&gt;
+        &lt;select name="flip-5" id="flip-5" data-role="slider" data-theme="c" data-track-theme="a"&gt;
+                &lt;option value="no"&gt;No&lt;/option&gt;
+                &lt;option value="yes"&gt;Yes&lt;/option&gt;
+        &lt;/select&gt;
+&lt;/div&gt;
+</code></pre>
+
+<div data-role="fieldcontain" class="ui-field-contain ui-body ui-br"><label for="flip-5" id="flip-5-label" class="ui-slider">Flip switch:</label><select name="flip-5" id="flip-5" data-role="slider" data-theme="c" data-track-theme="a" class="ui-slider-switch">
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+    </select><div role="application" class="ui-slider ui-slider-switch ui-btn-down-a ui-btn-corner-all"><span class="ui-slider-label ui-slider-label-a ui-btn-active ui-btn-corner-all" role="img" style="width: 0%;">Yes</span><span class="ui-slider-label ui-slider-label-b ui-btn-down-a ui-btn-corner-all" role="img" style="width: 100%;">No</span><div class="ui-slider-inneroffset"><a href="https://demos.jquerymobile.com/1.2.0/docs/forms/switch/#" class="ui-slider-handle ui-btn ui-shadow ui-btn-corner-all ui-slider-handle-snapping ui-btn-up-c" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" role="slider" aria-valuemin="0" aria-valuemax="1" aria-valuenow="no" aria-valuetext="No" title="No" aria-labelledby="flip-5-label" style="left: 0%;"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text"></span></span></a></div></div></div>
+		
+		
+		<h2>Calling the switch plugin</h2>
+
+<p>This plugin will auto-initialize on any page that contains a <code>select</code> with the <code>data-role="slider"</code> attribute. However, if needed you can directly call the <code>slider</code> plugin on any selector, just like any jQuery plugin:</p>
+<pre><code>
+$('select').slider();			
+</code></pre>
+    
+		</form>
+	</div><!--/content-primary -->		
+	
+	
+
+</div><!-- /content -->
+
+	
+</div><!-- /page --></body></html>

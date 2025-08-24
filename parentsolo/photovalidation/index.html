@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Facebook like Face Detection with jQuery</title>
+	
+	<style>
+		.image_block{
+			float:left;
+			margin: 10px;
+		}
+		.findface{
+			float:left;
+		}
+		.rightside{
+			float:right;
+		}
+		.face {
+			border:2px solid #FFF;
+			cursor: pointer;
+		}
+		.tags{
+			margin: 10px;
+		}
+	</style>
+	
+	<script src="js/jquery-1.7.2.js"></script> 
+		<script src="js/facedetection/ccv.js"></script> 
+		<script src="js/facedetection/face.js"></script>
+		<script src="js/jquery.facedetection.js"></script> 
+	<script>
+//alert('hi');
+		var tagnumber = 1;
+
+		$(document).ready(function(){
+		
+			//when you hover on a photo
+			$('.findface').click(function(){
+
+				//set $(this) in a variable to avoid conflict
+				var $this = $(this);	
+
+				//find the exact face and make it display:block
+				$($this).parent().find('.face').show();			
+
+				//find whether the faces are already detected or not
+				//if not then call the faceDetection() to find the faces
+				if(!($($this).hasClass('done'))){
+					var coords = $($this).faceDetection({
+						complete:function() {
+							$($this).addClass('done');
+						}
+					});
+					//alert(coords);
+					if(coords==''){
+					alert('hello');
+					}
+					else{
+					alert('hello esle');
+					}
+					/*for (var i = 0; i < coords.length; i++) {
+						$('<div>', {
+							'class':'face',
+							'css': {
+								'position':	'absolute',
+								'left':		coords[i].positionX +'px',
+								'top':		coords[i].positionY +'px',
+								'width': 	coords[i].width		+'px',
+								'height': 	coords[i].height	+'px'
+							}
+						})
+						.appendTo($($this).parent());
+					}*/
+				}
+			})/*.mouseleave(function(){
+				//hide the face once the mouse leaves the photo
+				$(this).parent().find('.face').hide();		
+			});*/
+			
+			
+			//show the faces once the mouse enter the photo
+			/*$(document).on('hover', '.face', function(){
+				$(this).parent().find('.face').show();			
+			});
+			
+			//when you click the face box (white box) add a new tag
+			$(document).on('click', '.face', function(){
+			alert('test');
+				var $thisface = $(this);
+				
+				//find if the face is already tagged
+				if($thisface.hasClass('tagAdded')){
+					//if then show alert
+					alert('tag added already');
+				}else{
+					//otherwise add the tag and add a class 'tagAdded'.
+					$thisface.addClass('tagAdded');
+					
+					//set the tag identity, so when you hover the tag the face box should appear
+					var tagidentity = 'tag'+tagnumber;
+					$thisface.addClass(tagidentity);
+					$(this).parent().find('.tags').append('<a href="#" id="'+tagidentity+'" class="tag">'+tagidentity+'</a><br />');
+				}
+				
+				//incrementing tag number
+				tagnumber++;
+			});
+			
+			//when hove on the tag show the exact face tagged and also hide when the mouse leaves
+			$(document).on('hover', '.tag', function(){
+				var $thisid = $(this).attr('id');
+				$('.'+$thisid).show();
+			}).on('mouseleave','.tag',function(){
+				var $thisid = $(this).attr('id');
+				$('.'+$thisid).hide();
+			});	*/		
+		});
+	</script>
+	
+</head>
+<body>
+	<h2>Click on the face to add "tag" after the box appear</h2>
+	<div id="img_container1">
+			
+			<div class="image_block">
+				<img src="img/sample-image2.jpg" class="findface" />
+				<div class="rightside">
+					<h1>Couple 1</h1>
+					<div class="tags"></div>
+				</div>
+			</div>
+			
+			<div class="image_block">
+				<img src="img/887424.jpg" class="findface" />
+				<div class="rightside">
+					<h1>Couple 1</h1>
+					<div class="tags"></div>
+				</div>
+			</div>
+			<div class="image_block">
+				<img src="img/founder.png" class="findface" />
+				<div class="rightside">
+					<h1>Couple 1</h1>
+					<div class="tags"></div>
+				</div>
+			</div>
+			<div class="image_block">
+				<img src="img/chairman.jpg" class="findface" />
+				<div class="rightside">
+					<h1>Couple 1</h1>
+					<div class="tags"></div>
+				</div>
+			</div><div class="image_block">
+				<img src="img/5580132-photo-1-small.gif" class="findface" />
+				<div class="rightside">
+					<h1>Couple 1</h1>
+					<div class="tags"></div>
+				</div>
+			</div>
+			
+			
+	</div>		
+</body>
+</html>

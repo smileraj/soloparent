@@ -1,0 +1,136 @@
+.main.title{
+    margin-bottom: 20px;
+}
+.header .title span{
+    line-height: 30px;
+}
+.header .action{
+    text-align: right;
+}
+code, samp, kbd {
+	font-family: "Courier New", Courier, monospace, sans-serif;
+	text-align: left;
+	color: #555;
+}
+pre code {
+	line-height: 1.6em;
+	font-size: 13px;
+}
+pre {
+	padding: 0 0.5em 0.3em 0.7em;
+	border-left: 11px solid #03A9F4;
+	margin: 15px 0 1.7em 0.3em;
+	width: 100%;
+}
+/* target IE7 and IE6 */
+*:first-child+html pre {
+	padding-bottom: 2em;
+}
+.code{
+    padding: 0 25px 15px 0px;
+    float: left;
+}
+.demo{
+    width: 300px;
+    height: 300px;
+    float: left;
+    margin-right: 15px;
+}
+.demo.list{
+    width: 100%;
+    height: auto;
+}
+.demo.list .crop-element{
+    width: 200px;
+    height: 200px;
+    float: left;
+    margin: 5px 0 5px 5px;
+}
+.crop-element span.label,
+.crop-element p.info{
+    pointer-events: none;
+    color: #807e7e;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+}
+.crop-element p.info{
+    line-height: 20px;
+    font-size: 16px;
+    bottom: 20px;
+    display: inline;
+}
+.crop-element span.label{
+    display:table;
+    white-space:normal;
+    line-height: 15px;
+    font-size: 12px;
+    top: 40%;
+    display: inline;
+}
+.crop-element.not-empty span.label,
+.crop-element.not-empty p.info{
+    display: none;
+}
+.circle{
+    border-radius: 50%;
+}
+.profile-picture img{
+    height: 100%;
+}
+
+/*Change colors*/
+#crop-editor{
+    background-color: #333;
+}
+/*Buttons: resize image*/
+#crop-editor .resize-handle-ne, 
+#crop-editor .resize-handle-se, 
+#crop-editor .resize-handle-nw, 
+#crop-editor .resize-handle-sw{
+    background-color: #fff;
+}
+/*Top status label*/
+#crop-editor .current-status{
+    color: #fff;
+    text-shadow: #333 0px 0px 5px;
+}
+/*Main menu buttons*/
+#crop-editor .editor-main-menu button{
+    color: #fff;
+}
+/*Right menu*/
+.image-resolutions button{
+    color: #fff;
+}
+/*Edit current picture*/
+.crop-element > .edit{
+    background-color: #333;
+    color: #fff;
+}
+/*Fixed left menu*/
+.image-actions button{
+    color: #fff;
+}
+/*Buttons in left side of image*/
+.btn-crop-tool{
+    color: #fff;
+}
+/*Crop area*/
+#crop-editor .crop-area{
+    background-color: rgba(255, 255, 255, 0.25);
+    border: dashed 2px #39f;
+}
+/*Buttons: resize crop area*/
+.resize-crop.top{
+    border-color: transparent transparent #39f transparent;
+}
+.resize-crop.bottom{
+    border-color: #39f transparent transparent transparent;
+}
+.resize-crop.left{
+    border-color: transparent #39f transparent transparent;
+}
+.resize-crop.right{
+    border-color: transparent transparent transparent #39f;
+}

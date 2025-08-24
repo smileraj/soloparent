@@ -1,0 +1,303 @@
+body, h1, h2, h3, p, fieldset, legend, ul, li, form, input, img, div, span, label, table, tr, td, th, object {
+	margin: 0px;
+	padding: 0px;
+	border: none;
+}
+
+body, table {
+	font-family: Verdana, Arial;
+	font-size: 12px;
+	color: #ffffff;
+}
+
+body {
+	background: #000000;
+}
+
+label {
+	cursor: pointer;
+}
+
+a:link, a:hover, a:active, a:visited {
+	color: #df8b37;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+div.clear {
+	clear: both;
+	height: 1px;
+	font-size: 1px;
+	line-height: 1px;
+}
+
+div.chatBody {
+	width: 800px;
+	height: 600px;
+	position: relative;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	background: black url(images/chatBg.jpg) repeat-x;
+}
+
+div.chatConversations {
+	width: 150px;
+	height: 600px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	overflow: hidden;
+}
+
+div.chatConversations2 {
+	width: 150px;
+	height: 600px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	overflow: hidden;
+	z-index: 1;
+}
+
+div.chatContent {
+	width: 650px;
+	height: 600px;
+	position: absolute;
+	left: 150px;
+	top: 0;
+	overflow: hidden;
+}
+
+div.conversationUsername0, div.conversationUsername1, div.conversationUsernameOn, div.conversationCloseOff, div.conversationCloseOn {
+	float: left;
+	height: 20px;
+	line-height: 20px;
+	cursor: pointer;
+}
+
+div.conversationUsername0, div.conversationUsername1, div.conversationUsernameOn {
+	width: 120px;
+	font-weight: bold;
+	padding-left: 10px;
+	color: #fff;
+	margin-top: 2px;
+}
+
+div.conversationUsername0 {
+	background: #000 url(images/chatUserOff.jpg);
+}
+
+div.conversationUsername1 {
+	background: #000 url(images/chatClignoter.gif);
+}
+
+div.conversationUsernameOn {
+	background: #000 url(images/chatUserOn.jpg);
+	cursor: pointer;
+}
+
+div.conversationCloseOff {
+	width: 20px;
+	background: #000 url(images/chatCloseOff.jpg);
+}
+
+div.conversationCloseOn {
+	width: 20px;
+	background: #000 url(images/chatCloseOn.jpg);
+	cursor: pointer;
+}
+
+div.chatMessages {
+	width: 500px;
+	height: 600px;
+	float: left;
+	background: url(images/fond-chat.png) no-repeat;
+	background-position: 0 20px;
+}
+
+div.disclaimer {
+	background: #FFFF00 url(images/warning.jpg) left no-repeat;
+	color: #333;
+	width: 450px;
+	height: 33px;
+	padding: 5px 10px 0 40px;
+	margin: 0px;
+	font-size: 11px;
+	font-style: italic;
+	border-bottom: solid 2px #060606;
+}
+
+div.messages {
+	color: #000;
+	width: 500px;
+	height: 410px;
+	overflow: scroll;
+	overflow-x: hidden;
+	padding: 0px;
+	margin: 0px;
+}
+
+div.message {
+	width: 465px;
+	padding: 5px 0px 5px 10px;
+}
+
+div.message img{
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+div.message p {
+	padding: 5px;
+	text-align: justify;
+}
+
+div.message span.h {
+	color: #00F;
+	font-weight: bold;
+}
+
+div.message span.f {
+	color: #FF339C;
+	font-weight: bold;
+}
+
+div.message span.system {
+	color: #000;
+	font-weight: bold;
+}
+
+div.message span.heure {
+	color: #AAA;
+	font-size: 10px;
+	font-style: italic;
+}
+
+div.message a {
+	font-weight: bold;
+}
+
+div.smilies {
+	width: 495px;
+	height: 20px;
+	background: #FAA9D2;
+	padding: 5px 0px 0px 5px;
+}
+
+div.smilies img {
+	cursor: pointer;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+div.formulaire {
+	width: 500px;
+	height: 125px;
+	background: #F77FBD url(images/fond-message.jpg) no-repeat;
+	position: relative;
+	top: 0;
+	left: 0;
+}
+
+div.formulaire textarea.texte {
+	width: 386px;
+	height: 108px;
+	border: 0;
+	position: absolute;
+	top: 8px;
+	left: 12px;
+}
+
+div.formulaire div.envoyer {
+	width: 90px;
+	height: 30px;
+	position: absolute;
+	top: 90px;
+	left: 408px;
+	cursor: pointer;
+}
+
+div.chatUsers {
+	float: left;
+	width: 140px;
+	text-align: right;
+	padding: 10px 10px 0px 0px;
+}
+
+div.user_to {
+	width: 140px;
+	height: 440px;
+	cursor: pointer;
+}
+
+div.user_from {
+	width: 140px;
+	height: 150px;
+}
+
+div.chatUsers img {
+	float: right;
+	border: solid 1px #fff;
+}
+
+div.chatUsers span {
+	display: block;
+	width: 137px;
+	font-weight: bold;
+	color: #FF9F40;
+	float: right;
+	padding-right: 3px;
+}
+
+div.chatUsers div.sep1, div.chatUsers div.sep2 {
+	float: right;
+	width: 130px;
+	height: 15px;
+}
+
+div.chatUsers div.sep1 {
+	background: url(images/chatSeparation1.jpg) top no-repeat;
+}
+
+div.chatUsers div.sep2 {
+	background: url(images/chatSeparation2.jpg) top no-repeat;
+}
+
+div.chatContent div.chatHelp {
+	width: 650px;
+	height: 600px;
+	overflow-y: scroll;
+}
+
+div.chatContent div.chatHelp h2 {
+	color: #ed0092;
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 14px;
+	text-align: left;
+	line-height: 20px;
+	height: 20px;
+	margin: 20px 0px 5px 0px;
+}
+
+div.chatContent div.chatHelp ul {
+	margin-left: 30px;
+}
+
+div.chatContent div.chatHelp p {
+	text-align: justify;
+	padding: 20px;
+}
+
+#loadingSend {
+	visibility: hidden;
+	position: absolute;
+	right: 70px;
+	bottom: 40px;
+}

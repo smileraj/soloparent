@@ -1,0 +1,222 @@
+
+div.flash {
+	width: 375px;
+	margin: 10px 5px;
+	border-color: #D9E4FF;
+
+	-moz-border-radius-topleft : 5px;
+	-webkit-border-top-left-radius : 5px;
+    -moz-border-radius-topright : 5px;
+    -webkit-border-top-right-radius : 5px;
+    -moz-border-radius-bottomleft : 5px;
+    -webkit-border-bottom-left-radius : 5px;
+    -moz-border-radius-bottomright : 5px;
+    -webkit-border-bottom-right-radius : 5px;
+
+}
+
+
+input[disabled]{ border: 1px solid #ccc } /* FF 2 Fix */
+
+
+#btnSubmit { margin: 0 0 0 155px ; }
+
+.progressWrapper {
+	width: 265px;
+	overflow: hidden;
+}
+
+.progressContainer {
+	margin: 5px;
+	padding: 4px;
+	border: solid 1px #E8E8E8;
+	background-color: #F7F7F7;
+	overflow: hidden;
+}
+/* Message */
+.message {
+	margin: 1em 0;
+	padding: 10px 20px;
+	border: solid 1px #FFDD99;
+	background-color: #FFFFCC;
+	overflow: hidden;
+}
+/* Error */
+.red {
+	border: solid 1px #B50000;
+	background-color: #FFEBEB;
+}
+
+/* Current */
+.green {
+	border: solid 1px #DDF0DD;
+	background-color: #F0F5FF;
+}
+
+/* Complete */
+.blue {
+	border: solid 1px #CEE2F2;
+	background-color: #f5fff0;
+}
+
+.progressName {
+	font-size: 8pt;
+	font-weight: 700;
+	color: #555;
+	width: 220px;
+	height: 14px;
+	text-align: left;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.progressBarInProgress,
+.progressBarComplete,
+.progressBarError {
+	font-size: 0;
+	width: 0%;
+	height: 2px;
+	background-color: blue;
+	margin-top: 2px;
+}
+
+.progressBarComplete {
+	width: 100%;
+	background-color: green;
+	visibility: hidden;
+}
+
+.progressBarError {
+	width: 100%;
+	background-color: red;
+	visibility: hidden;
+}
+
+.progressBarStatus {
+	margin-top: 2px;
+	width: 265px;
+	font-size: 7pt;
+	font-family: Arial;
+	text-align: left;
+	white-space: nowrap;
+}
+
+a.progressCancel {
+	font-size: 0;
+	display: block;
+	height: 14px;
+	width: 14px;
+	background-image: url(images/cancelbutton.gif);
+	background-repeat: no-repeat;
+	background-position: -14px 0px;
+	float: right;
+}
+
+a.progressCancel:hover {
+	background-position: 0px 0px;
+}
+
+
+/* -- SWFUpload Object Styles ------------------------------- */
+.swfupload {
+	vertical-align: top;
+	width: 120px;
+	height: 40px;
+}
+
+.swfu_btn {
+	width: 120px;
+	height: 40px;
+	background: url(images/btnBrowse.jpg) no-repeat;
+	margin-left: 10px;
+}
+
+.swfu_limit {
+	background: red;
+}
+
+.photos_nouvelles, .photos_enregistrees {
+	padding: 0px 10px 10px 10px;
+	margin: 20px 0px 0px 0px;
+}
+
+.photos_nouvelles legend, .photos_enregistrees legend {
+	font-weight: bold;
+	color: #0066FF;
+}
+
+.photo_mini {
+	float: left;
+	width: 110px;
+	margin-top: 10px;
+}
+
+.photo_mini table {
+	font-size: 12px;
+	border: solid 1px #ccc;
+}
+
+.photo_mini label {
+	cursor: pointer;
+}
+
+.effacer {
+	padding-left: 25px;
+	background: url(../images/delete.jpg) 5px 3px no-repeat;
+	height: 16px;
+	line-height: 16px;
+}
+
+.divFileProgressContainer {
+	margin-top: 10px;
+	padding: 5px;
+}
+
+div.miniature {
+	float: left;
+	width: 120px;
+	height: 160px;
+	text-align: center;
+}
+
+div.miniature div.cadre {
+	width: 111px;
+	height: 111px;
+}
+
+div.miniature img{
+	border: solid 1px #fff;
+}
+
+div.miniature a:link, div.miniature a:hover, div.miniature a:active, div.miniature a:visited {
+	display: block;
+	padding-left: 18px;
+	line-height: 20px;
+	height: 20px;
+	width: 65px;
+	margin: auto;
+	color: #fff;
+	text-decoration: none;
+	font-size: 11px;
+}
+
+div.miniature a:hover {
+	text-decoration: underline;
+}
+
+div.miniature a.btnDelete {
+	background: url(images/delete.jpg) left no-repeat;
+}
+
+div.miniature a.yes {
+	background: url(images/yes.jpg) left no-repeat;
+}
+
+div.miniature a.no {
+	background: url(images/toggle.jpg) left no-repeat;
+}
+
+div#thumbnails {
+	height: 160px;
+	padding: 10px 0 0 0;
+}
