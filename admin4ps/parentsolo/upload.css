@@ -1,0 +1,38 @@
+#upload, #upload_accueil, #upload_news_publi, #upload_actu_ps{
+	padding:10px;
+	font-weight:bold;
+	text-align:center;
+	background:#87764e;
+	color:#fff;
+	width:100px;
+	cursor:pointer !important;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius: 5px;
+	box-shadow: 2px 2px 2px #40453e;
+	text-transform: uppercase;
+	text-shadow: 1px 1px 1px #40453e;
+}
+.hover, .hover, .hover{
+	background:rgba(204,0,0,0.7);
+}
+
+#status, #status_accueil, #status_news_publi, #status_actu_ps{
+	font-family:Arial; padding:10px;
+}
+ul#files, ul#files_accueil, ul#files_news_publi, ul#files_actu_ps{ list-style:none; padding:0; margin:0; }
+ul#files li, ul#files_accueil li, ul#files_news_publi li, ul#files_actu_ps li{ padding:10px; margin-bottom:2px; float:left; margin-right:10px; width:90px;}
+ul#files li img, ul#files_accueil li img, ul#files_news_publi li img, ul#files_actu_ps li img{ max-width:90px; }
+li.success, li.success_accueil, li.success_news_publi, li.success_actu_ps{ background:#99f099; border:1px solid #339933; }
+li.error, li.error_accueil, li.error_news_publi, li.error_actu_ps{ background:#f0c6c3; border:1px solid #cc6622; }
+
+ul#files_error, ul#files_accueil_error, ul#files_news_publi_error, ul#files_actu_ps_error { list-style:none; padding:0; margin:0; }
+ul#files_error li, ul#files_accueil_error li, ul#files_news_publi_error li, ul#files_actu_ps_error li{ padding:10px; margin-bottom:2px; float:left; margin-right:10px;}
+/*.darkbg{
+	background:#ddd !important;
+}*/
+ul#files_accueilTemp, ul#files_accueilOK, ul#filesTemp, ul#filesOK{ list-style:none; padding:0; margin:0; }
+ul#files_accueilTemp li, ul#files_accueilOK li, ul#filesTemp li, ul#filesOK li{ padding:10px; margin-bottom:2px; float:left; margin-right:10px; width:90px; text-align:center;}
+ul#files_accueilTemp li img, ul#files_accueilOK li img, ul#filesTemp li img, ul#filesOK li img{ max-width:90px; margin-bottom:5px;}
+.file_accueilOK, .files_accueilOK, .fileOK{ border:1px solid #ddd; }
+.file_accueilTemp, .files_accueilTemp, .fileTemp { background: rgb(240, 216, 153); border:1px solid rgb(153, 108, 51); }

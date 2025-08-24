@@ -1,0 +1,8 @@
+upload_dir = ../images/articles/13378840773938
+site_url = http://www.babybook.ch
+name = Movenpick.jpg
+type = application/octet-stream
+tmp_name = /tmp/phpOEdjDj
+couper = 
+error = No error
+size = 29625

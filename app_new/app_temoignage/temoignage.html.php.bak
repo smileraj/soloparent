@@ -1,0 +1,382 @@
+<?php
+
+	// MODEL
+	defined('JL') or die('Error 401');
+	
+	class temoignage_HTML {
+	
+	
+		// affichage des messages système
+		function messages(&$messages) {
+			global $langue;
+			include("lang/app_temoignage.".$_GET['lang'].".php");
+
+			// s'il y a des messages à afficher
+			if(count($messages)) {
+			?>
+				<h2 class="messages parentsolo_title_h3"><?php echo $lang_apptemoignage["MessagesParentsolo"];?></h2>
+				<div class="messages">
+				<?
+					// affiche les messages
+					JL::messages($messages);
+				?>
+				</div>
+				<br />
+			<?
+			}
+
+		}
+		
+		function infos(&$contenu) {
+			global $db, $template;
+			//Information On The Stories
+		?>
+			
+			<div class="parentsolo_txt_center"><h2 class="barre parentsolo_title parentsolo_mt_40"><? echo $contenu->titre;?></h2>
+			<div class="wedd-seperator parentsolo_pb_10"><img src="images/bg_img/saprator.png" alt=""></div>
+			</div>
+			<div class="texte_explicatif">
+				<? echo  $contenu->texte; ?>
+			</div>
+					
+		<?
+		
+		}
+		
+		function listall(&$temoignages, &$search) {
+			include("lang/app_temoignage.".$_GET['lang'].".php");
+			global $db, $template;
+			
+			$nb_temoignages		= count($temoignages);
+			$rayon			= 5;
+			$debut			= ($search['page'] - $rayon) >= 1 ? $search['page'] - $rayon : 1;
+			$fin			= ($search['page'] + $rayon) <= $search['page_total'] ? $search['page'] + $rayon : $search['page_total'];
+		//all the stories
+		?>
+			
+			<div class="parentsolo_txt_center"><h2 class="barre parentsolo_title parentsolo_mt_40 "><?php echo $lang_apptemoignage["TousLesTemoignages"];?></h2>
+			<div class="wedd-seperator parentsolo_pb_10"><img src="images/bg_img/saprator.png" alt=""></div>
+			</div>
+			<div class="row parentsolo_pt_15">
+    <div class="col-md-12">
+        
+    
+			
+		<?
+							$i = 1;
+							
+							if(is_array($temoignages) && $nb_temoignages){
+																
+								$nb_fin = ($nb_temoignages < 6 ) ? $nb_temoignages : 6;
+								
+								for($j=0; $j<$nb_fin; $j++) {
+									
+									$temoignage = $temoignages[$j];
+									
+									// limitation de la longueur du titre
+									if(strlen($temoignage->titre) > LISTE_TITRE_CHAR) {
+										$temoignage->titre = substr($temoignage->titre, 0, LISTE_TITRE_CHAR).'...';
+									}
+									
+									// limitation de la longueur de l'intro
+									$temoignage->texte = strip_tags(html_entity_decode($temoignage->texte));
+									if(strlen($temoignage->texte) > LISTE_INTRO_CHAR) {
+										//$temoignage->texte = substr($temoignage->texte, 0, LISTE_INTRO_CHAR).'...';
+										$temoignage->texte = substr($temoignage->texte, 0, 150).'...';
+									}
+									
+									// à placer toujours après les 2 limitations
+									JL::makeSafe($temoignage, 'texte');
+									
+									// récup la photo de l'utilisateur
+									$photo = JL::userGetPhoto($temoignage->user_id, 'profil', '', $temoignage->photo_defaut);
+
+									// photo par défaut
+									if(!$photo) {
+										$photo = SITE_URL.'/parentsolo/images/parent-solo-profil-'.$temoignage->genre.'-'.$_GET['lang'].'.jpg';
+									}
+									
+									if($i%2 == 1){ echo '<tr>';}
+						?>
+									<div class="col-md-6 col-sm-12"><div class="col-md-12 col-sm-12  testimonials-style-2 parentsolo_pl-r">
+            <div class="col-md-3 col-sm-4 col-sx-4 parentsolo_pl_0 Parentsolo_imgbg_color">
+                <div class="box">
+                    <div class="outer">
+                        <div class="round">
+                            <a href="<? echo JL::url('index.php?app=temoignage&action=lire&id='.$temoignage->id.'&lang='.$_GET['lang']); ?>" title="<? echo $lang_apptemoignage["LireLeTemoignage"]; ?>">
+                                <img width="100" height="100" src="<? echo $photo; ?>" class="attachment-70x70 size-70x70 wp-post-image" alt="26" srcset="<? echo $photo; ?>" sizes="(max-width: 70px) 100vw, 70px">
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-9 col-sm-8 col-sx-8">
+                <div class="parentsolo_pt_15 parentsolo_pl_15 parentsolo_pb_15">
+                    <h2 class="name parentsolo_pt_10"><? echo $temoignage->username; ?></h2>
+                    <div class="text-box testimonialbox parentsolo_pt_10 parentsolo_pb_10">
+                        <? echo $temoignage->texte; ?>
+						</div>
+                    <a href="<? echo JL::url('index.php?app=temoignage&action=lire&id='.$temoignage->id.'&lang='.$_GET['lang']); ?>" title="<? echo $lang_apptemoignage["LireLeTemoignage"];?>">
+						<h6 class="parentsolo_text-right parentsolo_txt_clr parentsolo_txt_overflow"><? echo $temoignage->titre; ?></h6>
+					</a>
+                </div>
+            </div>
+        </div></div>
+									
+									
+						<?
+									if($i%2 == 0){echo "</tr>"; }
+								
+								$i++;
+							}
+							
+							if($i%2!=1){
+								while($i%2!=1){
+									echo '<td class="preview_liste_off"></td>';
+									if($i%2 == 0){echo "</tr>"; }
+									
+									$i++;
+								}
+							}
+							
+						}else{
+					?>
+							<tr>
+								<td align="middle">
+									<? echo $lang_apptemoignage["AucunTemoignage"]; ?>
+								</td>
+							</tr>-->
+					<?
+						}
+					?>
+						</div>
+</div>
+			<table class="result search_previews" cellpadding="0" cellspacing="0" width="100%">
+				<tr>
+					<td class="pub">
+						<?JL::loadMod('pub'); ?>
+					</td>
+				</tr>
+			</table>
+		<?	
+			if($nb_temoignages > 6){
+		?>
+		<div class="row">
+    <div class="col-md-12">		
+		<?
+								for($j=6; $j<$nb_temoignages; $j++) {
+									$temoignage = $temoignages[$j];
+									
+									// limitation de la longueur du titre
+									if(strlen($temoignage->titre) > LISTE_TITRE_CHAR) {
+										$temoignage->titre = substr($temoignage->titre, 0, LISTE_TITRE_CHAR).'...';
+									}
+									
+									// limitation de la longueur de l'intro
+									$temoignage->texte = strip_tags(html_entity_decode($temoignage->texte));
+									if(strlen($temoignage->texte) > LISTE_INTRO_CHAR) {
+										//$temoignage->texte = substr($temoignage->texte, 0, LISTE_INTRO_CHAR).'...';
+										$temoignage->texte = substr($temoignage->texte, 0, 150).'...';
+									}
+									
+									// à placer toujours après les 2 limitations
+									JL::makeSafe($temoignage, 'texte');
+									
+									// récup la photo de l'utilisateur
+									$photo = JL::userGetPhoto($temoignage->user_id, 'profil', '', $temoignage->photo_defaut);
+
+									// photo par défaut
+									if(!$photo) {
+										$photo = SITE_URL.'/parentsolo/images/parent-solo-profil-'.$temoignage->genre.'-'.$_GET['lang'].'.jpg';
+									}
+					
+									if($i%2 == 1){ echo '<tr>';}
+								
+								?>
+								
+								<div class="col-md-6 col-sm-12"><div class="col-md-12 col-sm-12  testimonials-style-2 parentsolo_pl-r">
+            <div class="col-md-3 col-sm-4 col-sx-4  parentsolo_pl_0 Parentsolo_imgbg_color">
+                <div class="box">
+                    <div class="outer">
+                        <div class="round">
+                            <a href="<? echo JL::url('index.php?app=temoignage&action=lire&id='.$temoignage->id.'&lang='.$_GET['lang']); ?>" title="<? echo $lang_apptemoignage["LireLeTemoignage"]; ?>">
+                               <img width="100" height="100" src="<? echo $photo; ?>" class="attachment-70x70 size-70x70 wp-post-image" alt="26" srcset="<? echo $photo; ?>" sizes="(max-width: 70px) 100vw, 70px">
+                           </a>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-9 col-sm-8 col-sx-8">
+                <div class="parentsolo_pt_15 parentsolo_pl_15 parentsolo_pb_15">
+                    <h2 class="name parentsolo_pt_10"><? echo $temoignage->username; ?></h2>
+                    <div class="text-box testimonialbox parentsolo_pt_10 parentsolo_pb_10">
+                        <? echo $temoignage->texte; ?>
+						</div>
+                    <a href="<? echo JL::url('index.php?app=temoignage&action=lire&id='.$temoignage->id.'&lang='.$_GET['lang']); ?>" title="<? echo $lang_apptemoignage["LireLeTemoignage"];?>">
+						<h6 class="parentsolo_text-right parentsolo_txt_clr parentsolo_txt_overflow"><? echo $temoignage->titre; ?></h6>
+					</a>
+                </div>
+            </div>
+        </div>
+								</div>
+						
+								
+					<?
+									if($i%2 == 0){echo "</tr>"; }
+									
+									$i++;
+								}
+								
+								if($i%2!=1){
+									while($i%2!=1){
+										echo '<td class="preview_liste_off"></td>';
+										if($i%2 == 0){echo "</tr>"; }
+										
+										$i++;
+									}
+								}
+		?>
+							</div>
+</div>
+		<?
+			}
+		?>
+		
+					<div class="col-md-12 parentsolo_plr_0">
+					<div class="col-md-12 parentsolo_pagination parentsolo_plr_0" >
+						<div class="col-md-3 text-left">
+									<? // page précédente
+									if($search['page'] > 1) { ?>
+										<a href="<? echo JL::url(SITE_URL.'/index.php?app=temoignage&action=listall&page='.($search['page']-1).'&'.$langue); ?>" class="bouton envoyer" title="<?php echo $lang_apptemoignage["PagePrecedente"];?>">&laquo; <?php echo $lang_apptemoignage["PagePrecedente"];?></a>
+									<? } ?>
+							</div>
+							<div class="col-md-6 text-center page_nav">
+									<span class="orange"><?php echo $search['page_total'] == 1 ? $lang_apptemoignage["Page"] : $lang_apptemoignage["Pages"];?></span>:
+									<? if($debut > 1) { ?> <a href="<? echo JL::url(SITE_URL.'/index.php?app=temoignage&action=listall&page=1'.'&'.$langue); ?>" title="<?php echo $lang_apptemoignage["Debut"];?>"><?php echo $lang_apptemoignage["Debut"];?></a> ...<? }?>
+									<?
+										for($i=$debut; $i<=$fin; $i++) {
+										?>
+											 <a href="<? echo JL::url(SITE_URL.'/index.php?app=temoignage&action=listall&page='.$i.'&'.$langue); ?>" title="<?php echo $lang_apptemoignage["Page"];?> <? echo $i; ?>" <? if($i == @search['page']) { ?>class="active"<? } ?>><? echo $i; ?></a>
+										<?
+										}
+									?>
+									<? if($fin < $search['page_total']) { ?> ... <a href="<? echo JL::url(SITE_URL.'/index.php?app=temoignage&action=listall&page='.$search['page_total'].'&'.$langue); ?>" title="<?php echo $lang_apptemoignage["Fin"];?> <? echo $search['page_total']; ?>"><?php echo $lang_apptemoignage["Fin"];?></a><? }?> <i>(<? echo $search['result_total']; ?> <? echo $search['result_total'] > 1 ? ''.$lang_apptemoignage["Temoignages"].'' : ''.$lang_apptemoignage["Temoignage"].''; ?>)</i>
+								</div>
+							<div class="col-md-3 text-right">
+									<? // page suivante
+									if($search['page'] < $search['page_total']) { ?>
+										<a href="<? echo JL::url(SITE_URL.'/index.php?app=temoignage&action=listall&page='.($search['page']+1).'&'.$langue); ?>" class="bouton envoyer" title="<?php echo $lang_apptemoignage["PageSuivante"];?>"><?php echo $lang_apptemoignage["PageSuivante"];?> &raquo;</a>
+									<? } ?>
+							</div>
+					</div>
+				</div>
+					
+		<?
+			
+		
+		}
+		
+		function lire(&$temoignage) {
+			include("lang/app_temoignage.".$_GET['lang'].".php");
+			global $db;
+			
+			JL::makeSafe($temoignage, 'texte');
+			
+			// récup la photo de l'utilisateur
+			$photo = JL::userGetPhoto($temoignage->user_id, '220', 'profil', $temoignage->photo_defaut);
+
+			// photo par défaut
+			if(!$photo) {
+				$photo = SITE_URL.'/parentsolo/images/parent-solo-220-'.$temoignage->genre.'-'.$_GET['lang'].'.jpg';
+			}
+		?>
+		
+			<div class="parentsolo_txt_center"><h2 class="barre parentsolo_title parentsolo_mt_40"><?php echo $temoignage->titre;?></h2>
+			<div class="wedd-seperator parentsolo_pb_10"><img src="images/bg_img/saprator.png" alt=""></div>
+			</div>
+				<div class="row parentsolo_pt_15">
+					<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12  story_section">
+                                       <div class="story_section"> <div class="wd_img_round">
+                                            <img src="<? echo $photo; ?>" alt="">
+                                            <div class="overlay">
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                       
+					</div>
+                                    </div>
+					<!--<div class="col-md-4">
+						<img src="<?// echo $photo; ?>" alt="<?// echo $temoignage->username; ?>" />
+					</div>-->
+					<div class="col-md-8">
+						<p class="parrainageNotice"><? echo nl2br($temoignage->texte); ?><br />
+						<h6 class="parentsolo_text-right parentsolo_txt_clr"><? echo $lang_apptemoignage["TemoignagePublieLePar"]; ?></h6></p>
+					</div>
+				</div>
+			   
+		<?
+		
+		}
+		
+		
+		function edit(&$contenu, $temoignage, $messages) {
+			include("lang/app_temoignage.".$_GET['lang'].".php");
+			global $db, $user, $action;
+			
+			JL::makeSafe($contenu, 'texte');
+			/* want to testify */
+		?>
+			
+			<div class="parentsolo_txt_center"><h2 class="barre parentsolo_title parentsolo_mt_40"><?php echo $contenu->titre; ?></h2>
+			<div class="wedd-seperator parentsolo_pb_10"><img src="images/bg_img/saprator.png" alt=""></div>
+			</div>
+			<div class="texte_explicatif">
+				<? echo $contenu->texte; ?>
+			</div>
+			<br />
+		<?
+			if(count($messages)){
+				// affichage des messages
+				temoignage_HTML::messages($messages, false);
+			}
+		?>
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3 parentsolo_form_style">
+				<form name="temoignage" action="<? echo JL::url('index.php?app=temoignage&action=edit').'&lang='.$_GET['lang']; ?>" method="post">
+				
+				<h3 class="parentsolo_title_h3 parentsolo_txt_center"><? echo $lang_apptemoignage["VotreTemoignage"]; ?></h3>
+				<div class="row bottompadding">
+							
+							<div class="col-md-12">
+								<input type="text" name="titre" id="titre" maxlength="20" placeholder="<? echo $lang_apptemoignage["Titre"]; ?>" value="<?php echo $temoignage->titre; ?>" />
+							</div>
+				</div>
+				<div class="row bottompadding">
+							
+							<div class="col-md-12">
+								<textarea name="texte" style="width:100%; height: 155px;" id="texte" rows="10"  placeholder="<? echo $lang_apptemoignage["Texte"]; ?>" ><?php echo $temoignage->texte; ?></textarea>
+							</div></div>
+							<div class="row bottompadding">
+							<div class="col-md-12 col-md-12 parentsolo_txt_center parentsolo_mt_40">
+								<a href="javascript:document.temoignage.submit();" class="bouton envoyer parentsolo_btn"><?php echo $lang_apptemoignage["Envoyer"];?></a>
+							</div>
+							</div>
+				
+				
+				<input type="hidden" name="app" value="temoignage" />
+				<input type="hidden" name="action" value="envoyer" />
+			</form>
+			</div>
+		</div>
+			
+    
+		<?
+		
+		}
+		
+	}
+?>

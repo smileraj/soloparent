@@ -1,0 +1,227 @@
+<?php
+
+	// MODEL
+	defined('JL') or die('Error 401');
+	
+	class head_HTML {
+
+		// vérifie si l'utilisateur veut se log ou est log, et renseigne la variable global $user
+		function head($userProfilMini,$userStats) {
+			include("lang/app_head.".$_GET['lang'].".php");
+			global $db, $template, $user, $langue, $auth, $action, $app;
+			
+			$navArr=array();
+			$navString="";
+			if(count($_GET)>1){
+				foreach($_GET as $key => $value){
+					if($key!='lang'){
+						$navArr[]="$key=$value";
+					}
+				}
+				$navString= "&".implode("&",$navArr);
+			}
+            
+			if($_GET['lang']=='fr'){
+                //Fran&ccedil;ais <img style='width: 16px; border: inherit; vertical-align: bottom; margin: inherit;' src='".SITE_URL."/images/icons/fr.png'>- 
+			    $navString = "  
+                <a href='".$_SERVER['PHP_SELF']."?lang=de".$navString."'>Deutsch</a> <img style='width: 16px; border: inherit; vertical-align: bottom; margin: inherit;' src='".SITE_URL."/images/icons/de.png'> 
+                - <a href='".$_SERVER['PHP_SELF']."?lang=en".$navString."'>English</a> <img style='width: 16px; border: inherit; vertical-align: bottom; margin: inherit;' src='".SITE_URL."/images/icons/en.png'> ";
+			}
+            elseif($_GET['lang']=='en'){ 
+			    $navString = "<a href='".$_SERVER['PHP_SELF']."?lang=fr".$navString."'>Fran&ccedil;ais</a> <img style='width: 16px; border: inherit; vertical-align: bottom; margin: inherit;' src='".SITE_URL."/images/icons/fr.png'> 
+                - <a href='".$_SERVER['PHP_SELF']."?lang=de".$navString."'>Deutsch</a> <img style='width: 16px; border: inherit; vertical-align: bottom; margin: inherit;' src='".SITE_URL."/images/icons/de.png'> 
+                ";  //- English <img style='width: 16px; border: inherit; vertical-align: bottom; margin: inherit;' src='".SITE_URL."/images/icons/en.png'>
+			}
+            elseif($_GET['lang']=='de'){
+                //- Deutsch <img style='width: 16px; border: inherit; vertical-align: bottom; margin: inherit;' src='".SITE_URL."/images/icons/de.png'>   
+			    $navString = "<a href='".$_SERVER['PHP_SELF']."?lang=fr".$navString."'>Fran&ccedil;ais</a> <img style='width: 16px; border: inherit; vertical-align: bottom; margin: inherit;' src='".SITE_URL."/images/icons/fr.png'> 
+                - <a href='".$_SERVER['PHP_SELF']."?lang=en".$navString."'>English</a> <img style='width: 16px; border: inherit; vertical-align: bottom; margin: inherit;' src='".SITE_URL."/images/icons/en.png'>";
+			}
+            else{
+			    $navString = "<a href='".$_SERVER['PHP_SELF']."?lang=fr".$navString."'>Fran&ccedil;ais</a> <img style='width: 16px; border: inherit; vertical-align: bottom; margin: inherit;' src='".SITE_URL."/images/icons/fr.png'> 
+                - <a href='".$_SERVER['PHP_SELF']."?lang=de".$navString."'>Deutsch</a> <img style='width: 16px; border: inherit; vertical-align: bottom; margin: inherit;' src='".SITE_URL."/images/icons/de.png'> 
+                - <a href='".$_SERVER['PHP_SELF']."?lang=en".$navString."'>English</a> <img style='width: 16px; border: inherit; vertical-align: bottom; margin: inherit;' src='".SITE_URL."/images/icons/en.png'>";
+			}
+		?>
+		
+			<div id="banner_leader_board">
+				
+				<div class="small"><?php echo $lang_apphead["Publicite"];?></div>
+				<div id='leaderboard'>
+					<!--<a href="http://www.swiss.com" target="_blank"><img src="http://www.parentsolo.ch/images/swiss.gif"></a> -->
+                    
+                     <?
+                     if($_GET['lang']=="fr"){
+                     ?>    
+                     <!-- config scripts -->
+                    <script type="text/javascript">
+                    var setgbpartnertag464 = false; if(typeof(setgbtargetingobj) == 'undefined') {var setgbtargetingobj = {};} 
+                    var gbuseSSL = 'https:' == document.location.protocol;
+                    var gbconfigdomain = (gbuseSSL ? 'https:' + "//secure.gbucket.ch/" : 'http:' + "//gbucket.ch/");
+                    var gbadtagdomain = (gbuseSSL ? 'https:' + "//secure.gbucket.ch/" : 'http:' + "//gbucket.ch/"); 
+                    document.write('<scr'+'ipt type="text/javascript" id="gbconfigscript" src="' + gbconfigdomain + 'CH/ch_config_desktop.js"></scr'+'ipt>');
+                    document.write('<scr'+'ipt type="text/javascript" id="gbadtag" src="' + gbadtagdomain + 'CH/BlatMedias/Online/FR_Parentsolo_RoS_incl_Home_allAdFormats.js"></scr'+'ipt>');
+                    </script>
+                    
+                    <!-- 728x90, 994x250 -->
+                    <div id="div-ad-gds-464-1">
+                    <script type="text/javascript">
+                    gbcallslot464("div-ad-gds-464-1", "");
+                    </script>
+                    </div>
+                    <?
+                     }
+                     
+                     if($_GET['lang']=="de"){
+                    ?>
+                       <!-- config scripts -->
+                        <script type="text/javascript">
+                        var setgbpartnertag522 = false; if(typeof(setgbtargetingobj) == 'undefined') {var setgbtargetingobj = {};} 
+                        var gbuseSSL = 'https:' == document.location.protocol;
+                        var gbconfigdomain = (gbuseSSL ? 'https:' + "//secure.gbucket.ch/" : 'http:' + "//gbucket.ch/");
+                        var gbadtagdomain = (gbuseSSL ? 'https:' + "//secure.gbucket.ch/" : 'http:' + "//gbucket.ch/"); 
+                        document.write('<scr'+'ipt type="text/javascript" id="gbconfigscript" src="' + gbconfigdomain + 'CH/ch_config_desktop.js"></scr'+'ipt>');
+                        document.write('<scr'+'ipt type="text/javascript" id="gbadtag" src="' + gbadtagdomain + 'CH/BlatMedias/Online/DE_Parentsolo_RoS_incl_Home_allAdFormats.js"></scr'+'ipt>');
+                        </script>
+
+                        <!-- 728x90, 940x250 -->
+                        <div id="div-ad-gds-522-1">
+                        <script type="text/javascript">
+                        gbcallslot522("div-ad-gds-522-1", "");
+                        </script>
+                        </div>
+                    <?
+                     }
+                     
+                     if($_GET['lang']=="en") {
+                    ?>
+                        <!-- config scripts -->
+                        <script type="text/javascript">
+                        var setgbpartnertag526 = false; if(typeof(setgbtargetingobj) == 'undefined') {var setgbtargetingobj = {};} 
+                        var gbuseSSL = 'https:' == document.location.protocol;
+                        var gbconfigdomain = (gbuseSSL ? 'https:' + "//secure.gbucket.ch/" : 'http:' + "//gbucket.ch/");
+                        var gbadtagdomain = (gbuseSSL ? 'https:' + "//secure.gbucket.ch/" : 'http:' + "//gbucket.ch/"); 
+                        document.write('<scr'+'ipt type="text/javascript" id="gbconfigscript" src="' + gbconfigdomain + 'CH/ch_config_desktop.js"></scr'+'ipt>');
+                        document.write('<scr'+'ipt type="text/javascript" id="gbadtag" src="' + gbadtagdomain + 'CH/BlatMedias/Online/EN_Parentsolo_RoS_incl_Home_allAdFormats.js"></scr'+'ipt>');
+                        </script>
+                    
+                    
+                       <!-- 728x90, 994x250 -->
+                        <div id="div-ad-gds-526-1">
+                        <script type="text/javascript">
+                        gbcallslot526("div-ad-gds-526-1", "");
+                        </script>
+                        </div>
+                     <?
+                     }
+                     ?>
+				</div>
+				
+			</div>
+			
+			<div id="banner_top">
+				<img src="<? echo $template;?>/images/pastille_pourcentage_<? echo $_GET['lang']; ?>.png" alt="ParentSolo.ch"  />
+				<!--<?php echo $lang_apphead["Papas"];?>: <span class="homme">43%</span><br />
+				<?php echo $lang_apphead["Mamans"];?>: <span class="femme">57%</span>-->
+			</div>
+			
+
+			<div class="header">
+				<div class="connexion">
+					<div class="langues"><?php echo $navString;?></div>
+				<?
+					if(!$user->id){
+						$style = $auth == 'login' ? 'style="background: #e75c55; border: 1px solid"' : 'style="border: 1px solid"';
+					?>
+					
+						
+						<h3><?php echo $lang_apphead["DejaMembre"];?></h3>
+						<form action="index.php?lang=<? echo $_GET['lang'];?>" method="post">
+							<table cellpadding="0" cellspacing="0" width="100%">
+								<tr>
+									<td valign="top">
+										<label for="username"><?php echo $lang_apphead["Pseudo"];?> </label><br />
+										<input type="text" name="username" id="username" <? echo $style; ?> class="connexion" value="">
+									</td>
+									<td valign="top">
+										<label for="mdp"><?php echo $lang_apphead["MotDePasse"];?> </label><br />
+										<input type="password" name="pass" id="pass" <? echo $style; ?> class="connexion" value=""><br />
+										<a href="<? echo JL::url('index.php?app=mdp').'&lang='.$_GET['lang'];?>"><?php echo $lang_apphead["MotDePasseOublie"];?></a>
+									</td>
+									<td valign="middle">
+										<input type="submit" class="envoyer" value="<?php echo $lang_apphead["Connexion"];?>" />
+									</td>
+								</tr>
+							</table>
+							
+							<input type="hidden" name="site_url" id="site_url" value="<? echo SITE_URL; ?>" />
+							<input type="hidden" name="lang" id="lang" value="<?php echo $_GET["lang"];?>" />
+							<input type="hidden" name="auth" value="<? echo $user->id ? 'logout' : 'login'; ?>" />
+							
+						</form>
+					
+				<?
+					}else{
+						
+						$photo = JL::userGetPhoto($userProfilMini->id, '109', 'profil', $userProfilMini->photo_defaut);
+						
+						// photo par défaut
+						if(!$photo) {
+							$photo 			= SITE_URL.'/parentsolo/images/parent-solo-109-'.$userProfilMini->genre.'-'.$_GET['lang'].'.jpg';
+							$noPhotoPopIn	= true;
+						}
+				?>		
+				
+						<h3><? echo $userProfilMini->username; ?></h3>
+						<table cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="photo" valign="top"><a href="<? echo JL::url('index.php?app=profil&action=step2&'.$langue); ?>" title="<?php echo $lang_apphead["VoirMonProfil"];?>"><img src="<? echo $photo; ?>" alt="<? echo $user->username; ?>" class="photo" /></a></td>
+								<td valign="bottom">
+									<b><?php echo $lang_apphead["Statut"];?>:</b> <span class="statut<? echo $user->confirmed; ?>" title="<? echo $title; ?>"><? echo $user->confirmed ==2 ? $lang_apphead["EnAttenteDeValidation"] :  $lang_apphead["Confirme"]; ?></span>
+									<br />
+									<?
+										// abonné
+										if($user->gold_limit_date != '0000-00-00' && strtotime($user->gold_limit_date) >= time()) {
+									?>
+											<b><?php echo $lang_apphead["FinDAbonnement"];?>:</b> <span class="black"><? echo date('d/m/y', strtotime($user->gold_limit_date)); ?></span>
+									<?
+										} else {
+									?>
+											<a href="<? echo JL::url('index.php?app=abonnement&action=tarifs'.'&'.$langue); ?>" title="<?php echo $lang_apphead["AboPourToute"];?>" class="abo"><?php echo $lang_apphead["AbonnezVous"];?> !</a>
+									<?
+										}
+									?>
+								</td>
+								<td valign="top">
+									<a href="<? echo JL::url('index.php?auth=logout'.'&'.$langue); ?>" title="<?php echo $lang_apphead["LogoutTitle"];?>" class="logout"><?php echo $lang_apphead["Deconnexion"];?></a>
+								</td>
+							</tr>
+						</table>
+				
+				<? // pas de photo, on affiche le popin
+						if($noPhotoPopIn) { 
+				?>
+							<div class="noPhotoPopIn" id="noPhotoPopIn" onClick="document.location='<? echo JL::url('index.php?app=profil&action=step2'.'&'.$langue); ?>';"><div style="margin: 15px 0 0 0"><?php echo $lang_apphead["AugmentezVosChancesPhoto"];?>!</div></div>
+							<script language="javascript" type="text/javascript">
+								var timerAlert2;
+								$('noPhotoPopIn').fade('hide');
+								noPhotoPopIn(0);
+							</script>
+				<? 
+						}
+					}
+				
+				?>
+			</div>
+						
+				
+			
+				<a href="<? echo SITE_URL; ?>/index.php?lang=<? echo $_GET['lang']; ?>" title="<? echo SITE_DESCRIPTION; ?>" class="logo" ><img src="<? echo $template;?>/images/logo_<? echo $_GET['lang']; ?>.jpg" alt="ParentSolo.ch"  /></a>
+				
+			</div>
+		<?
+		
+		}
+		
+	}
+?>

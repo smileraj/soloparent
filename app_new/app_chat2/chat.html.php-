@@ -1,0 +1,217 @@
+<?php
+
+	// sécurité
+	defined('JL') or die('Error 401');
+
+class HTML_chat {
+	
+	function chatTemplate($key, $user_id_to = 0) {
+		global $user;
+		
+		// chemin du template
+		$template	= SITE_URL.'/'.SITE_TEMPLATE;
+		
+	?>
+	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+	<html lang="fr">
+		<head>
+			<title>ParentSoloChat</title>
+			<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+			<link href="<? echo $template.'/app_chat2.css'; ?>" rel="stylesheet" type="text/css">
+			<link href="<? echo $template; ?>/favicon.ico" rel="shortcut icon" type="image/x-icon">
+			<script type="text/javascript" src="<? echo SITE_URL; ?>/js/mootools.js"></script>
+			<script type="text/javascript" src="<? echo SITE_URL; ?>/js/app_chat.js"></script>
+		</head>
+		
+		<body>
+			
+			<form name="chat" action="#" method="post">
+			<div class="chatBody">
+				
+				<div class="chatConversations" id="chatConversations">
+					<div class="conversationUsernameOn" id="chatHelp" onClick="chatLoadHelp();">Aide</div>
+					<div class="conversationCloseOff" style="visibility:hidden;">&nbsp;</div>
+				</div>
+				<div class="chatConversations2" id="chatConversations2">&nbsp;</div>
+				<div class="chatContent" id="chatContent">
+				Chargement du chat...
+				</div>
+			</div>
+			
+			<input type="hidden" name="user_id_from" id="user_id_from" value="<? echo $user->id; ?>">
+			<input type="hidden" name="key" id="key" value="<? echo $key; ?>">
+			<input type="hidden" name="site_url" id="site_url" value="<? echo SITE_URL; ?>">
+			</form>
+			
+			<script type="text/javascript">
+			var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+			document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+			</script>
+			<script type="text/javascript">
+			try {
+			var pageTracker = _gat._getTracker("UA-6463477-2");
+			pageTracker._trackPageview();
+			} catch(err) {}</script>
+			<script language="javascript" type="text/javascript">
+				
+				chatLoadHelp();
+				chatGetConversations(<? echo $user_id_to; ?>);
+				
+				var timerConversations = 0;
+				var timerMessages = 0;
+				try{if(timerConversations){clearInterval(timerConversations);timerConversations = 0;}timerConversations = setInterval('chatGetConversations(0)', 3000);}catch(e){}
+				try{if(timerMessages){clearInterval(timerMessages);timerMessages = 0;}timerMessages = setInterval('chatGetNewMessages()', 3000);}catch(e){}
+			</script>
+		</body>
+
+		
+	</html>
+	<?
+	}
+	
+}
+?><?php
+
+	// sécurité
+	defined('JL') or die('Error 401');
+
+class HTML_chat {
+	
+	function chatTemplate($key, $user_id_to = 0) {
+		global $user;
+		
+		// chemin du template
+		$template	= SITE_URL.'/'.SITE_TEMPLATE;
+		
+	?>
+	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+	<html lang="fr">
+		<head>
+			<title>ParentSoloChat</title>
+			<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+			<link href="<? echo $template.'/app_chat2.css'; ?>" rel="stylesheet" type="text/css">
+			<link href="<? echo $template; ?>/favicon.ico" rel="shortcut icon" type="image/x-icon">
+			<script type="text/javascript" src="<? echo SITE_URL; ?>/js/mootools.js"></script>
+			<script type="text/javascript" src="<? echo SITE_URL; ?>/js/app_chat.js"></script>
+		</head>
+		
+		<body>
+			
+			<form name="chat" action="#" method="post">
+			<div class="chatBody">
+				
+				<div class="chatConversations" id="chatConversations">
+					<div class="conversationUsernameOn" id="chatHelp" onClick="chatLoadHelp();">Aide</div>
+					<div class="conversationCloseOff" style="visibility:hidden;">&nbsp;</div>
+				</div>
+				<div class="chatConversations2" id="chatConversations2">&nbsp;</div>
+				<div class="chatContent" id="chatContent">
+				Chargement du chat...
+				</div>
+			</div>
+			
+			<input type="hidden" name="user_id_from" id="user_id_from" value="<? echo $user->id; ?>">
+			<input type="hidden" name="key" id="key" value="<? echo $key; ?>">
+			<input type="hidden" name="site_url" id="site_url" value="<? echo SITE_URL; ?>">
+			</form>
+			
+			<script type="text/javascript">
+			var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+			document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+			</script>
+			<script type="text/javascript">
+			try {
+			var pageTracker = _gat._getTracker("UA-6463477-2");
+			pageTracker._trackPageview();
+			} catch(err) {}</script>
+			<script language="javascript" type="text/javascript">
+				
+				chatLoadHelp();
+				chatGetConversations(<? echo $user_id_to; ?>);
+				
+				var timerConversations = 0;
+				var timerMessages = 0;
+				try{if(timerConversations){clearInterval(timerConversations);timerConversations = 0;}timerConversations = setInterval('chatGetConversations(0)', 3000);}catch(e){}
+				try{if(timerMessages){clearInterval(timerMessages);timerMessages = 0;}timerMessages = setInterval('chatGetNewMessages()', 3000);}catch(e){}
+			</script>
+		</body>
+
+		
+	</html>
+	<?
+	}
+	
+}
+?><?php
+
+	// sécurité
+	defined('JL') or die('Error 401');
+
+class HTML_chat {
+	
+	function chatTemplate($key, $user_id_to = 0) {
+		global $user;
+		
+		// chemin du template
+		$template	= SITE_URL.'/'.SITE_TEMPLATE;
+		
+	?>
+	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+	<html lang="fr">
+		<head>
+			<title>ParentSoloChat</title>
+			<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+			<link href="<? echo $template.'/app_chat2.css'; ?>" rel="stylesheet" type="text/css">
+			<link href="<? echo $template; ?>/favicon.ico" rel="shortcut icon" type="image/x-icon">
+			<script type="text/javascript" src="<? echo SITE_URL; ?>/js/mootools.js"></script>
+			<script type="text/javascript" src="<? echo SITE_URL; ?>/js/app_chat.js"></script>
+		</head>
+		
+		<body>
+			
+			<form name="chat" action="#" method="post">
+			<div class="chatBody">
+				
+				<div class="chatConversations" id="chatConversations">
+					<div class="conversationUsernameOn" id="chatHelp" onClick="chatLoadHelp();">Aide</div>
+					<div class="conversationCloseOff" style="visibility:hidden;">&nbsp;</div>
+				</div>
+				<div class="chatConversations2" id="chatConversations2">&nbsp;</div>
+				<div class="chatContent" id="chatContent">
+				Chargement du chat...
+				</div>
+			</div>
+			
+			<input type="hidden" name="user_id_from" id="user_id_from" value="<? echo $user->id; ?>">
+			<input type="hidden" name="key" id="key" value="<? echo $key; ?>">
+			<input type="hidden" name="site_url" id="site_url" value="<? echo SITE_URL; ?>">
+			</form>
+			
+			<script type="text/javascript">
+			var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+			document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+			</script>
+			<script type="text/javascript">
+			try {
+			var pageTracker = _gat._getTracker("UA-6463477-2");
+			pageTracker._trackPageview();
+			} catch(err) {}</script>
+			<script language="javascript" type="text/javascript">
+				
+				chatLoadHelp();
+				chatGetConversations(<? echo $user_id_to; ?>);
+				
+				var timerConversations = 0;
+				var timerMessages = 0;
+				try{if(timerConversations){clearInterval(timerConversations);timerConversations = 0;}timerConversations = setInterval('chatGetConversations(0)', 3000);}catch(e){}
+				try{if(timerMessages){clearInterval(timerMessages);timerMessages = 0;}timerMessages = setInterval('chatGetNewMessages()', 3000);}catch(e){}
+			</script>
+		</body>
+
+		
+	</html>
+	<?
+	}
+	
+}
+?>

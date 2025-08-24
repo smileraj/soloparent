@@ -1,0 +1,1 @@
+<?php	class JLModel {			var $_params;		var $_data;		var $_lists;		var $_messages;				function JLModel() {			$this->_params		= array();			$this->_data		= array();			$this->_messages	= array();		}			}?>

@@ -1,0 +1,423 @@
+body { font: 13px/18px Trebuchet MS, "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, sans-serif; background-color: #e0e0e0; color: #000; background-attachment:fixed; overflow-x: hidden }
+
+
+body, h1, h2, h3, h4, p, fieldset, legend, ul, li, form, img, div, span, label, tr, object, table {
+	margin: 0px;
+	padding: 0px;
+	border: none;
+}
+
+input {
+	margin: 0px;
+	padding: 0px;
+}
+
+
+label {
+	font-weight:bold;
+	cursor: pointer;
+}
+
+ul {
+	list-style: none;
+}
+
+a:link, a:hover, a:active, a:visited {
+	color: #C32a2c;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+
+hr {color: #fff; background-color: #fff; border: 3px dotted #b4ada5; border-style: none none dotted; }
+
+h1 { font-size: 26px; line-height: 30px; color:#3f443d; font-weight:normal; letter-spacing:1px; margin:0px; padding:5px 0px 0px 0px }
+h2 { font-weight:normal; font-size: 22px; line-height: 24px; letter-spacing:1px; margin: 0px; color:#c32a2c;}
+h3 { font-weight:normal; font-size: 18px; line-height: 20px; letter-spacing:1px; margin: 0px; color:#3f443d; text-transform:uppercase;}
+h4 { font-weight: bold; font-size: 16px; line-height: 16px; color:#3f443d;}
+
+
+h2 a:link, h2 a:hover, h2 a:active, h2 a:visited {
+	color: #3f443d;
+}
+
+div.header, div.footer, div.bande, div.login {
+	width: 100%;
+	
+}
+
+div.header {
+	background-color: rgb(34,34,34);
+	
+}
+
+div.header img.logo{
+	width:250px;
+	margin:10px;
+}
+
+div.body {
+	width: 990px;
+	margin: auto;
+	position: relative;
+	top: 0px;
+	left: 0;
+}
+
+div.content {
+	width: 990px;
+	text-align: justify;
+	padding: 0px;
+	margin-top:10px;
+	padding-bottom:20px;
+	min-height: 100%;
+	position: relative;
+}
+
+div.contentl ul{
+	padding: 10px 0 10px 40px;
+}
+
+
+div.colc {
+	width: 170px;
+	float: left;
+	overflow: hidden;
+	padding:  0 10px 0 0;
+	margin:0;
+}
+
+div.colr {
+	width: 800px;
+	overflow: hidden;
+	float: right;
+
+}
+div.clear {
+	clear: both;
+	height: 1px;
+	font-size: 1px;
+	line-height: 1px;
+}
+
+div.around_login {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 500px;
+	height: 190px;
+	margin-top: -95px;
+	margin-left: -250px;
+	text-align: center;
+}
+
+div.login {
+	padding: 80px 0px;
+}
+
+div.login table{
+	margin:auto;
+	width:350px;
+	padding:50px;
+	background-color: #f3f4f6;
+	-moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+div.login td {
+	padding-left: 10px;
+	font-weight: bold;
+	font-size: 12px;
+}
+
+div.login td.errorLogin {
+    padding: 10px 5px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #FFEBEB;
+    border: 1px solid #B50000;
+    color: red;
+}
+
+td.key {
+	font-weight: bold;
+	width: 150px;
+	height:10px;
+	padding: 5px 20px;
+	text-align: left;
+}
+
+td.key_long {
+	font-weight: bold;
+	height:10px;
+	padding: 5px 20px;
+	text-align: left;
+}
+
+a.envoyer {
+	cursor: pointer;
+	background-color: #3b3f40;
+	border:none;
+	font-family: "Impact", Arial, Helvetica, sans-serif;
+	font-style:normal;
+	font-weight:normal;
+	color:#fff;
+	font-size:18px;
+	padding: 7px;
+	-moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+	letter-spacing:1px;
+	font-weight:normal;
+}
+
+input.envoyer {
+	cursor: pointer;
+	background-color: #3b3f40;
+	border:none;
+	font-family: "Impact", Arial, Helvetica, sans-serif;
+	font-style:normal;
+	font-weight:normal;
+	color:#fff;
+	font-size:18px;
+	padding: 7px;
+	-moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+	letter-spacing:1px;
+	font-weight:normal;
+}
+
+div.userlog{
+	position:absolute;
+	right: 10px;
+	top: 55px;
+	color:#FFF;
+}
+
+div.menu {
+}
+
+
+div.menu a { color: #000; font-weight:normal}
+
+
+div.menuBody {
+	background: #c32a2c;
+	padding: 5px 15px 15px 15px;
+	-moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+div.menuBody h2 {
+	font-weight:normal; font-size: 24px; line-height: 20px; color:rgb(34,34,34);
+	padding: 10px 0 0 0px;
+}
+
+div.menuBody h3 {
+	font-weight:normal; font-size: 18px; line-height: 20px; color:#fff;
+	padding: 20px 0 0 0px; letter-spacing:1px;
+}
+
+div.menu ul {
+	padding-left: 0px;
+}
+
+div.menu ul li {
+	padding: 5px 0px;
+	border-bottom: 1px dotted #000;
+	font-size:12px;
+	font-weight:normal;
+}
+
+div.filtre{
+    padding: 0 10px 10px;
+}
+
+div.tableAdmin {
+	background-color:#FFFFFF;
+	padding:20px;
+	font-weight:normal;
+	font-size:13px;
+}
+
+div.tableAdmin th{
+	border-bottom: 3px dotted #81827C;
+    color: #000000;
+    height: 25px;
+    padding: 15px 5px 0;
+    font-size:12px;
+    text-transform: uppercase;
+    vertical-align: middle;
+}
+
+div.tableAdmin tr.list td{
+	padding: 15px 0px;
+	border-bottom: 1px dotted #CCCCCC;
+}
+
+div.tableAdmin tr.list_photos td{
+	padding: 15px 0;
+	border-bottom: 1px solid #000;
+}
+
+div.tableAdmin tr.list_photos td div.profilPhoto{
+	display:inline-table;
+}
+
+div.tableAdmin tr.list_photos td div.profilPhoto img{
+	width: 100px;
+}
+
+div.titlebar {
+	background-color:rgb(34,34,34);
+	padding:10px;
+	font-weight:normal;
+}
+div.titlebar h2 {
+	margin: 7px 0;
+}
+
+table{
+	width:100%;
+}
+
+div.toolbar{
+	float:right;
+	margin:10px 0;
+}
+
+div.toolbar a{
+	cursor: pointer;
+	background-color: #fff;
+	border:1px solid #fff;;
+	font-family: "Impact", Arial, Helvetica, sans-serif;
+	font-style:normal;
+	background-color:#c32a2c;
+	color:#fff;
+	font-size:18px;
+	padding: 7px;
+	-moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+	letter-spacing:1px;
+	font-weight:normal;
+	text-decoration:none;
+}
+
+div.toolbar a:hover{
+	background-color:#fff;
+	color:#c32a2c;
+	border:1px solid #c32a2c;
+}
+
+div.messages div.valid{
+	padding: 20px;
+	border: solid 2px #00FF00;
+	background:#fff;
+}
+
+div.messages div.error{
+	padding: 20px;
+	border: solid 2px #FF0000;
+	background:#fff;
+}
+
+div.messages div.warning{
+	padding: 20px;
+	border: solid 2px #FFBB00;
+	background:#fff;
+}
+
+div.messages span.error, div.messages span.valid, div.messages span.warning {
+	display: block;
+	font-weight: bold;
+	font-size: 13px;
+	padding: 0px 0px 10px 25px;
+	line-height: 18px;
+}
+
+div.messages span.error {
+	background: url(../../parentsolo/images/msg-error.png) left top no-repeat;
+}
+
+div.messages span.valid {
+	background: url(../../parentsolo/images/msg-valid.png) left top no-repeat;
+}
+
+div.messages span.warning {
+	background: url(../../parentsolo/images/msg-warning.png) left top no-repeat;
+}
+
+/*Mailing*/
+div.mailingProgressBar {
+	width: 200px;
+	height: 20px;
+	background: #eee;
+	float: left;
+	margin-right: 10px;
+	border: solid 1px #000;
+	position: relative;
+	left: 0;
+	top: 0;
+	overflow: hidden;
+}
+
+div.mailingProgressBar div {
+	height: 20px;
+	background: #00AA00;
+	width: 1%;
+
+}
+
+div.mailingProgressBar span {
+	display: block;
+	height: 20px;
+	line-height: 20px;
+	text-align: left;
+	position: absolute;
+	left: 10px;
+	top: 0;
+	color: #000;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+/*Profil*/
+
+tr.warning td{
+	background:#870000;
+}
+
+tr.warning a{
+	color:#fff;
+}
+
+tr.jours3 td {
+	background: #FFA;
+}
+
+tr.jours3 a {
+	color: #C06;
+}
+
+
+div.footer {
+    height: 20px;
+    width: 100%;
+}
+
+#bloc_recadre {
+ width: 109px;
+ height: 109px;
+ position: absolute;
+ background: url(images/transparent.png);
+ filter: alpha(opacity=50);
+ border: 1px solid #000;
+}
+

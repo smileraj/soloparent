@@ -1,0 +1,277 @@
+
+div.flash {
+	width: 375px;
+	margin: 10px 5px;
+	border-color: #D9E4FF;
+
+	-moz-border-radius-topleft : 5px;
+	-webkit-border-top-left-radius : 5px;
+    -moz-border-radius-topright : 5px;
+    -webkit-border-top-right-radius : 5px;
+    -moz-border-radius-bottomleft : 5px;
+    -webkit-border-bottom-left-radius : 5px;
+    -moz-border-radius-bottomright : 5px;
+    -webkit-border-bottom-right-radius : 5px;
+
+}
+
+
+input[disabled]{ border: 1px solid #ccc } /* FF 2 Fix */
+
+
+#btnSubmit { margin: 0 0 0 155px ; }
+
+.progressWrapper {
+	width: 265px;
+	overflow: hidden;
+}
+
+.progressContainer {
+	margin: 5px;
+	padding: 4px;
+	border: solid 1px #E8E8E8;
+	background-color: #F7F7F7;
+	overflow: hidden;
+}
+/* Message */
+.message {
+	margin: 1em 0;
+	padding: 10px 20px;
+	border: solid 1px #FAE6F1;
+	background-color: #FAE6F1;
+	overflow: hidden;
+}
+/* Error */
+.red {
+	border: solid 1px #B50000;
+	background-color: #FFEBEB;
+}
+
+/* Current */
+.green {
+	border: solid 1px #DDF0DD;
+	background-color: #F0F5FF;
+}
+
+/* Complete */
+.blue {
+	border: solid 1px #CEE2F2;
+	background-color: #f5fff0;
+}
+
+.progressName {
+	font-size: 8pt;
+	font-weight: 700;
+	color: #555;
+	width: 220px;
+	height: 14px;
+	text-align: left;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.progressBarInProgress,
+.progressBarComplete,
+.progressBarError {
+	font-size: 0;
+	width: 0%;
+	height: 2px;
+	background-color: blue;
+	margin-top: 2px;
+}
+
+.progressBarComplete {
+	width: 100%;
+	background-color: green;
+	visibility: hidden;
+}
+
+.progressBarError {
+	width: 100%;
+	background-color: red;
+	visibility: hidden;
+}
+
+.progressBarStatus {
+	margin-top: 2px;
+	width: 265px;
+	font-size: 7pt;
+	font-family: Arial;
+	text-align: left;
+	white-space: nowrap;
+}
+
+a.progressCancel {
+	font-size: 0;
+	display: block;
+	height: 14px;
+	width: 14px;
+	background-image: url(images/cancelbutton.gif);
+	background-repeat: no-repeat;
+	background-position: -14px 0px;
+	float: right;
+}
+
+a.progressCancel:hover {
+	background-position: 0px 0px;
+}
+
+
+/* -- SWFUpload Object Styles ------------------------------- */
+.swfupload {
+	vertical-align: top;
+	width: 120px;
+	height: 40px;
+}
+
+.swfu_btn {
+	width: 120px;
+	height: 40px;
+	background: url(images/parcourir.jpg) no-repeat;
+	cursor: pointer;
+}
+
+.swfu_btnG {
+	width: 120px;
+	height: 40px;
+	background: url(images/parcourir_gris.jpg) no-repeat;
+	cursor: pointer;
+}
+
+.swfu_limit {
+	background: red;
+}
+
+.swfuDesc {
+	padding: 5px;
+	color: #fff;
+}
+
+.swfuDesc p {
+	padding-bottom: 20px;
+}
+
+#thumbnails {
+	padding-top: 10px;
+}
+
+.divFileProgressContainer {
+	margin-top: 10px;
+	padding: 5px;
+}
+
+div.miniature {
+	float: left;
+	width: 100px;
+	height: 110px;
+	text-align: center;
+	margin-right: 10px;
+}
+
+div.miniature a:link, div.miniature a:hover, div.miniature a:active, div.miniature a:visited {
+	display: block;
+	padding-left: 18px;
+	line-height: 20px;
+	height: 20px;
+	width: 75px;
+	margin: auto;
+	color: orange;
+	text-decoration: none;
+	font-size: 11px;
+	margin-top: 3px;
+}
+
+div.miniature a:hover {
+	text-decoration: underline;
+}
+
+div.miniature a.btnDelete {
+	background: url(images/no.gif) left no-repeat;
+}
+
+div.miniature a.yes {
+	background: url(images/yes.gif) left no-repeat;
+}
+
+div.miniature a.no {
+	background: none;
+}
+
+div.miniature img {
+	width: 75px;
+	height: 75px;
+}
+
+table.photo {
+	width: 400px;
+	height: 122px;
+	border: solid 1px #666;
+	margin-bottom: 10px;
+	background: url(images/photo.jpg) repeat-x;
+}
+
+table.photo td {
+	padding: 5px;
+	vertical-align: top;
+}
+
+table.photo a.btnAlign {
+	display: block;
+	padding-left: 20px;
+	margin: 2px 10px 0 0;
+	float: left;
+	line-height: 16px;
+	height: 16px;
+}
+
+table.photo a.ri {
+	background: url(images/align-right.gif) left no-repeat;
+}
+
+table.photo a.ce {
+	background: url(images/align-center.gif) left no-repeat;
+}
+
+table.photo a.le {
+	background: url(images/align-left.gif) left no-repeat;
+}
+
+table.photo td.photoToolbar {
+	height: 38px;
+	padding: 5px 5px 0 5px;
+}
+
+table.photo td.photoToolbar a {
+	display: block;
+	width: 190px;
+	height: 25px;
+	line-height: 25px;
+	border: solid 1px #666;
+	text-align: center;
+	background: url(images/bouton.jpg) repeat-x;
+	color: #333;
+}
+
+table.photo td.photoToolbar a:hover {
+	border: solid 1px #000;
+	text-decoration: none;
+	color: #000;
+}
+
+table.photo td.photoToolbar a.btnLeft {
+	float: left;
+}
+
+table.photo td.photoToolbar a.btnRight {
+	float: right;
+}
+
+table.photo td.photoToolbar a span.suppr {
+	background: url(images/no.gif) left no-repeat;
+	padding-left: 20px;
+}
+
+table.photo td.photoToolbar a span.def {
+	background: url(images/yes.gif) left no-repeat;
+	padding-left: 20px;
+}
