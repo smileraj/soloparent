@@ -1,5 +1,8 @@
 <?php
-
+$user_email = $user_email ?? 'your email address';
+$profil = $profil ?? (object) ['username' => 'User'];
+$enfant_num = $enfant_num ?? 'child';
+$langue = $langue ?? 'fr';
 $lang_appprofil = array(
 "upload_file" => "Upload",
 "crop_photo"=>"Add Photo",

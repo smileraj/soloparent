@@ -78,7 +78,7 @@
 		
 		function getData() {
 			global $contact, $user;
-			
+			$contact = $contact ?? new stdClass();
 			if($user->id){
 				$contact->email					= $user->email;
 			}else{

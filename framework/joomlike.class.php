@@ -389,7 +389,7 @@ echo "<script type='text/javascript'>console.log('$message');</script>";
 				return false;
 			}
 		}
-		public static function notificationBasique($type = 'visite', $profil_id) {
+		public static function notificationBasique($profil_id,$type = 'visite') {
 			global $langue;
 			include("lang/app_framework.".$_GET['lang'].".php");
 			global $db, $user;

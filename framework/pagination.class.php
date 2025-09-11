@@ -1,1 +1,82 @@
-<?php	class JLPagination {			var $page;		var $pageList;		var $pageTotal;		var $resultsLimit;		var $rayon;				function JLPagination($rayon) {			$this->page 			= 1;			$this->pages 			= array();			$this->pageTotal 		= 1;			$this->resultsLimit 	= 1;			$this->rayon			= $rayon;			$this->resultsNb		= 0;		}						// définit la page active		function setPage($page) {			$this->page = $page < 1 ? 1 : $page;		}						// détermine le nombre total de pages		function setPageTotal($resultsNb, $resultsLimit) {			$this->resultsNb 		= $resultsNb;			$this->resultsLimit 	= $resultsLimit;			$this->pageTotal 		= ceil($resultsNb/$resultsLimit);		}						// détermine la clause LIMIT à appliquer		function getLimit() {			return (($this->page - 1) * $this->resultsLimit).', '.$this->resultsLimit;		}						// barre de navigation: liens pages et affichages		function setPageList($debutTexte = 'D&eacute;but', $finTexte = 'Fin') {						// variables			$debut		= ($this->page - $this->rayon) >= 1 ? $this->page - $this->rayon : 1;			$fin		= ($this->page + $this->rayon) <= $this->pageTotal ? $this->page + $this->rayon : $this->pageTotal;						// début si non affiché dans le rayon			if($debut > 1) {				$pageObj			= new StdClass();				$pageObj->value		= 1;				$pageObj->text		= $debutTexte;				$this->pageList[]	= $pageObj;			}			// pour chaque page			for($i=$debut; $i<=$fin; $i++) {				$pageObj			= new StdClass();				$pageObj->value		= $i;				$pageObj->text		= $i;				$this->pageList[]	= $pageObj;			}						// fin si non affichée dans le rayon			if($fin < $this->pageTotal) {				$pageObj			= new StdClass();				$pageObj->value		= $this->pageTotal;				$pageObj->text		= $finTexte;				$this->pageList[]	= $pageObj;			}					}			}	?>
+<?php
+
+class JLPagination
+{
+    public int $page;
+    public array $pageList;
+    public int $pageTotal;
+    public int $resultsLimit;
+    public int $rayon;
+    public int $resultsNb;
+
+    public function __construct(int $rayon)
+    {
+        $this->page         = 1;
+        $this->pageList     = [];
+        $this->pageTotal    = 1;
+        $this->resultsLimit = 1;
+        $this->rayon        = $rayon;
+        $this->resultsNb    = 0;
+    }
+
+    /**
+     * Set active page
+     */
+    public function setPage(int $page): void
+    {
+        $this->page = $page < 1 ? 1 : $page;
+    }
+
+    /**
+     * Calculate total number of pages
+     */
+    public function setPageTotal(int $resultsNb, int $resultsLimit): void
+    {
+        $this->resultsNb    = $resultsNb;
+        $this->resultsLimit = max(1, $resultsLimit);
+        $this->pageTotal    = (int) ceil($resultsNb / $this->resultsLimit);
+    }
+
+    /**
+     * Get SQL LIMIT clause
+     */
+    public function getLimit(): string
+    {
+        return (($this->page - 1) * $this->resultsLimit) . ', ' . $this->resultsLimit;
+    }
+
+    /**
+     * Build page navigation links
+     */
+    public function setPageList(string $debutTexte = 'DÃ©but', string $finTexte = 'Fin'): void
+    {
+        $this->pageList = []; // reset each time
+
+        $debut = max(1, $this->page - $this->rayon);
+        $fin   = min($this->page + $this->rayon, $this->pageTotal);
+
+        // Add first page link if outside rayon
+        if ($debut > 1) {
+            $pageObj        = new stdClass();
+            $pageObj->value = 1;
+            $pageObj->text  = $debutTexte;
+            $this->pageList[] = $pageObj;
+        }
+
+        // Add main pages
+        for ($i = $debut; $i <= $fin; $i++) {
+            $pageObj        = new stdClass();
+            $pageObj->value = $i;
+            $pageObj->text  = (string) $i;
+            $this->pageList[] = $pageObj;
+        }
+
+        // Add last page link if outside rayon
+        if ($fin < $this->pageTotal) {
+            $pageObj        = new stdClass();
+            $pageObj->value = $this->pageTotal;
+            $pageObj->text  = $finTexte;
+            $this->pageList[] = $pageObj;
+        }
+    }
+}

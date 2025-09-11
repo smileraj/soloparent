@@ -1,6 +1,11 @@
 <?php
-session_start();
-if($_REQUEST['option']=='common'){
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+$option = $_REQUEST['option'] ?? null;
+if ($option === 'common') {
+	
 require_once('../../config.php');
 	// framework joomlike
 require_once('../../framework/joomlike.class.php');
@@ -11,7 +16,7 @@ $db	= new DB();
 $value=$_REQUEST['checkvalue'];
 $user=$_REQUEST['userid'];
 $query="UPDATE user set on_off_status='$value' where id='$user'";
-$result1 = mysql_query ($query);
+$result1 = $db->getConnexion()->query($query);
  if($result1!=mysql_query){
 }
 else{
@@ -21,7 +26,13 @@ else{
 	defined('JL') or die('Error 401');	
 	class head_HTML {
 	// v&eacute;rifie si l'utilisateur veut se log ou est log, et renseigne la variable global $user
-		public static function head($userProfilMini,$userStats,$userpercentage,$perannounce,$userStats,$useronstatus) {
+	public static function head(
+		$userProfilMini = [],
+    $userStats = [],
+    $userpercentage = 0,
+    $perannounce = '',
+    $userStats2 = [],
+    $useronstatus = '') {
 			include("lang/app_head.".$_GET['lang'].".php");
 			global $db, $template, $user, $langue, $auth, $action, $app;
 			$navArr=array();
@@ -66,7 +77,7 @@ else{
 				<div id='leaderboard'>
 					<!--<a href="http://www.swiss.com" target="_blank"><img src="http://www.parentsolo.ch/images/swiss.gif"></a> -->
                     
-                     <? if($app != 'home') {
+                     <?php if($app != 'home') {
                      if($_GET['lang']=="fr"){
                      ?>    
                      <!-- config scripts -->
@@ -137,7 +148,7 @@ else{
 			</div>
 			
 			<!--<div id="banner_top">
-				<img src="<?  echo $template;?>/images/pastille_pourcentage_<?  echo $_GET['lang']; ?>.png" alt="ParentSolo.ch"  />
+				<img src="<?php  echo $template;?>/images/pastille_pourcentage_<?php  echo $_GET['lang']; ?>.png" alt="ParentSolo.ch"  />
 				<?php echo $lang_apphead["Papas"];?>: <span class="homme">43%</span><br />
 				<?php echo $lang_apphead["Mamans"];?>: <span class="femme">57%</span>
 			</div>
@@ -155,7 +166,7 @@ else{
       <div class="container-fluid">
 	  <div class="col-md-4  col-sm-3 col-xs-9 menu_right_side float_right"> 
 		<ul class="nav navbar-nav navbar-right"> 
-		  <li  class="border_rght col_sm_remove_li"><a href="<? echo JL::url('index.php?app=profil&action=inscription').'&lang='.$_GET['lang']; ?>" title="<? echo $lang_apphead["join_link"];?>"><? echo $lang_apphead["join_link"];?></a></li>
+		  <li  class="border_rght col_sm_remove_li"><a href="<?php echo JL::url('index.php?app=profil&action=inscription').'&lang='.$_GET['lang']; ?>" title="<?php echo $lang_apphead["join_link"];?>"><?php echo $lang_apphead["join_link"];?></a></li>
             <li  class="border_rght"><a href="#"  data-toggle="modal" data-target="#myModal"><?php echo $lang_apphead["Connexion"];?></a></li>
            
 			 <li class="dropdown">
@@ -180,10 +191,10 @@ else{
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-		  <li class="border_rght"><a href="<? echo JL::url('index.php').'?lang='.$_GET['lang']; ?>" title="<? echo $lang_apphead["home_menu"];?>"><? echo $lang_apphead["home_menu"];?></a></li>
-			<li class="border_rght"><a href="<? echo JL::url('index.php?app=event').'&lang='.$_GET['lang']; ?>" title="<? echo $lang_apphead["event_menu"];?>"><? echo $lang_apphead["event_menu"];?></a></li>
-			<li class="border_rght"><a href="<? echo JL::url('index.php?app=contenu&id=2').'&lang='.$_GET['lang']; ?>" title="<? echo $lang_apphead["uce_menu"];?>"><? echo $lang_apphead["uce_menu"];?></a></li>
-			<li><a href="<? echo JL::url('index.php?app=contact').'&lang='.$_GET['lang']; ?>" title="<? echo $lang_apphead["contact_menu"];?>"><? echo $lang_apphead["contact_menu"];?></a></li>		
+		  <li class="border_rght"><a href="<?php echo JL::url('index.php').'?lang='.$_GET['lang']; ?>" title="<?php echo $lang_apphead["home_menu"];?>"><?php echo $lang_apphead["home_menu"];?></a></li>
+			<li class="border_rght"><a href="<?php echo JL::url('index.php?app=event').'&lang='.$_GET['lang']; ?>" title="<?php echo $lang_apphead["event_menu"];?>"><?php echo $lang_apphead["event_menu"];?></a></li>
+			<li class="border_rght"><a href="<?php echo JL::url('index.php?app=contenu&id=2').'&lang='.$_GET['lang']; ?>" title="<?php echo $lang_apphead["uce_menu"]; ?>"><?php echo $lang_apphead["uce_menu"]; ?></a></li>
+			<li><a href="<?php echo JL::url('index.php?app=contact').'&lang='.$_GET['lang']; ?>" title="<?php echo $lang_apphead["contact_menu"];?>"><?php echo $lang_apphead["contact_menu"];?></a></li>		
 		</ul>
           
         </div><!--/.nav-collapse --></div>
@@ -191,7 +202,7 @@ else{
       </div>
     </nav>
          </header>
-			<?
+			<?php
 		}
 		else{
 			?>
@@ -202,13 +213,13 @@ else{
 }
 }
 		</style>
-			<?
+			<?php
 		}
 			?>
 			<div class="header">
 				<div class="col-lg-4 connexion">
 					<!--<div class="langues"><?php echo $navString;?></div>-->
-			<?
+			<?php
 				if(!$user->id){//$style = $auth == 'login' ? 'style=" border:1px solid ;"' : 'style="border: border:1px solid ;"';
 /* $style = $auth == 'login' ? 'style="border: 1px solid "' : 'style="border: 1px solid"';
 				$Error_message = $auth == 'login' ? 'style="display: block ! important; font-size: 13px; color: red; padding-bottom: 10px; 
@@ -217,7 +228,7 @@ text-align: center;"' : 'style="display:none !important;border:1px solid;"';
 $error_style = $auth == 'login' ? 'style="display: block ! important;"' : 'style="display:none !important;"';
 				//$error_class1 = $auth == 'login' ? 'in display' : '';
 $error_ses = $auth == 'login' ? '1' : ''; */
-if($user->login=='login'){
+if (isset($user) && isset($user->login) && $user->login === 'login') {
 $style='style="border: 1px solid';
 $Error_message = 'style="display: block ! important; font-size: 13px; color: red; padding-bottom: 10px; text-align: center;"';
 $error_style ='style="display: block ! important;"';
@@ -254,7 +265,7 @@ background: rgba(47, 47, 47, 0.72);
 			}
 			</style>
 
-		<div <? echo $error_style; ?> class="modal fade  <? if($error_ses=='1'){
+		<div <?php echo $error_style; ?> class="modal fade  <?php if($error_ses=='1'){
 		echo "in display";
 		}
 		else{
@@ -269,14 +280,14 @@ background: rgba(47, 47, 47, 0.72);
           <h5 class="modal-title"><?php echo $lang_apphead["DejaMembre"];?></h5>
         </div>
         <div class="modal-body">
-          <form action="index.php?lang=<? echo $_GET['lang'];?>" method="post">
+          <form action="index.php?lang=<?php echo $_GET['lang'];?>" method="post">
 		   <div class="row"><div class="col-md-12">
-										<span <? echo $Error_message; ?> style="display:none;"  ><?php echo $lang_apphead["error_msg"];?></span></div></div>
+										<span <?php echo $Error_message; ?> style="display:none;"  ><?php echo $lang_apphead["error_msg"];?></span></div></div>
 		  <div class="row"><div class="col-md-12">
-										<input type="text" name="username" id="username" <? echo $style; ?> class="connexion" value="" placeholder="<?php echo $lang_apphead["Pseudo"];?>"></div></div>
+										<input type="text" name="username" id="username" <?php echo $style??''; ?> class="connexion" value="" placeholder="<?php echo $lang_apphead["Pseudo"];?>"></div></div>
 		  <div class="row"><div class="col-md-12">
-										<input type="password" name="pass" id="pass" <? echo $style; ?> class="connexion" value="" placeholder="<?php echo $lang_apphead["MotDePasse"];?>"><br />
-		  <a href="<? echo JL::url('index.php?app=mdp').'&lang='.$_GET['lang'];?>"><?php echo $lang_apphead["MotDePasseOublie"];?></a>
+										<input type="password" name="pass" id="pass" <?php echo $style??''; ?> class="connexion" value="" placeholder="<?php echo $lang_apphead["MotDePasse"];?>"><br />
+		  <a href="<?php echo JL::url('index.php?app=mdp').'&lang='.$_GET['lang'];?>"><?php echo $lang_apphead["MotDePasseOublie"];?></a>
 		  </div></div>
 		  <div class="row"><div class="col-md-12 text_left">
 		  <input type="submit" class="envoyer btn_stl" value="<?php echo $lang_apphead["Connexion"];?>" />
@@ -285,12 +296,12 @@ background: rgba(47, 47, 47, 0.72);
 								<tr>
 									<td valign="top">
 										<label for="username"><?php echo $lang_apphead["Pseudo"];?> </label><br />
-										<input type="text" name="username" id="username" <? echo $style; ?> class="connexion" value="">
+										<input type="text" name="username" id="username" <?php echo $style; ?> class="connexion" value="">
 									</td>
 									<td valign="top">
 										<label for="mdp"><?php echo $lang_apphead["MotDePasse"];?> </label><br />
-										<input type="password" name="pass" id="pass" <? echo $style; ?> class="connexion" value=""><br />
-										<a href="<? echo JL::url('index.php?app=mdp').'&lang='.$_GET['lang'];?>"><?php echo $lang_apphead["MotDePasseOublie"];?></a>
+										<input type="password" name="pass" id="pass" <?php echo $style; ?> class="connexion" value=""><br />
+										<a href="<?php echo JL::url('index.php?app=mdp').'&lang='.$_GET['lang'];?>"><?php echo $lang_apphead["MotDePasseOublie"];?></a>
 									</td>
 									<td valign="middle">
 										
@@ -298,9 +309,9 @@ background: rgba(47, 47, 47, 0.72);
 								</tr>
 							</table>-->
 							
-							<input type="hidden" name="site_url" id="site_url" value="<? echo SITE_URL; ?>" />
+							<input type="hidden" name="site_url" id="site_url" value="<?php echo SITE_URL; ?>" />
 							<input type="hidden" name="lang" id="lang" value="<?php echo $_GET["lang"];?>" />
-							<input type="hidden" name="auth" value="<? echo $user->id ? 'logout' : 'login'; ?>" />
+							<input type="hidden" name="auth" value="<?php echo $user->id ? 'logout' : 'login'; ?>" />
 							
 						</form>
         </div>
@@ -640,7 +651,7 @@ if($photo1==0 && $perannounce->annonce!='' && ($userpercentage->taille_id!=0 || 
 				
 				
 
-						<!--<h3><? // echo $userProfilMini->username; ?></h3>-->
+						<!--<h3><?php // echo $userProfilMini->username; ?></h3>-->
 						<div class="col-lg-12">
 						<!--<div class="col-lg-4">
 						<div class="rd-navbar-toggle_login mobile_res_lang" style="margin-top:65%;">
@@ -660,17 +671,17 @@ if($photo1==0 && $perannounce->annonce!='' && ($userpercentage->taille_id!=0 || 
 							<ul class="nav profileavat navbar-nav-custom pull-right">
 						<li class="dropdown">
 							<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" title="<?php echo $lang_apphead["VoirMonProfil"];?>">
-							<img src="<? echo $photo; ?>" alt="<? echo $user->username; ?>" class="img-circle profile-avatar">
+							<img src="<?php echo $photo; ?>" alt="<?php echo $user->username; ?>" class="img-circle profile-avatar">
 							<i class="fa fa-angle-down"></i>
 							</a>
 						<ul class="dropdown-menu dropdown-menu-right">
                                     <li class="dropdown-header">
-                                   <h4 class="text-uppercase m-0"><? echo $userProfilMini->username; ?></h4> 
+                                   <h4 class="text-uppercase m-0"><?php echo $userProfilMini->username; ?></h4> 
 				
-						  <small class="uppercase-bold text-strong text-transparent-black"><b><?php echo $lang_apphead["Statut"];?>:</b> <span class="statut<? echo $user->confirmed; ?>" title="<? echo $title; ?>"><? echo $user->confirmed ==2 ? $lang_apphead["EnAttenteDeValidation"] :  $lang_apphead["Confirme"]; ?></span></small>
+						  <small class="uppercase-bold text-strong text-transparent-black"><b><?php echo $lang_apphead["Statut"];?>:</b> <span class="statut<?php echo $user->confirmed; ?>" title="<?php echo $title; ?>"><?php echo $user->confirmed ==2 ? $lang_apphead["EnAttenteDeValidation"] :  $lang_apphead["Confirme"]; ?></span></small>
                                     </li>
 									<li>
-										<a href="<? echo JL::url('index.php?app=profil&action=step1&'.$langue); ?>" class="abo" title="<?php echo $lang_apphead["VoirMonProfil"];?>"><i class="fa fa-user fa-fw pull-right"></i><?php echo $lang_apphead["VoirMonProfil"];?></a>
+										<a href="<?php echo JL::url('index.php?app=profil&action=step1&'.$langue); ?>" class="abo" title="<?php echo $lang_apphead["VoirMonProfil"];?>"><i class="fa fa-user fa-fw pull-right"></i><?php echo $lang_apphead["VoirMonProfil"];?></a>
 									</li>
                                     <li>
                                      
@@ -678,12 +689,12 @@ if($photo1==0 && $perannounce->annonce!='' && ($userpercentage->taille_id!=0 || 
 										// abonn&eacute;
 										if($user->gold_limit_date != '0000-00-00' && strtotime($user->gold_limit_date) >= time()) {
 									?>
-									<small class="uppercase-bold text-strong text-transparent-black  parentsolo_sub"><b><?php echo $lang_apphead["FinDAbonnement"];?>  :</b> <span class="parentsolo_sub"><? echo date('d/m/y', strtotime($user->gold_limit_date)); ?></span></small>
+									<small class="uppercase-bold text-strong text-transparent-black  parentsolo_sub"><b><?php echo $lang_apphead["FinDAbonnement"];?>  :</b> <span class="parentsolo_sub"><?php echo date('d/m/y', strtotime($user->gold_limit_date)); ?></span></small>
 											
 									<?
 										} else {
 									?>
-											<a href="<? echo JL::url('index.php?app=abonnement&action=tarifs'.'&'.$langue); ?>" title="<?php echo $lang_apphead["AboPourToute"];?>" class="abo"><i class="fa fa-inbox fa-fw pull-right"></i> <?php echo $lang_apphead["AbonnezVous"];?> !</a>
+											<a href="<?php echo JL::url('index.php?app=abonnement&action=tarifs'.'&'.$langue); ?>" title="<?php echo $lang_apphead["AboPourToute"];?>" class="abo"><i class="fa fa-inbox fa-fw pull-right"></i> <?php echo $lang_apphead["AbonnezVous"];?> !</a>
 									<?
 										}
 									?>
@@ -691,7 +702,7 @@ if($photo1==0 && $perannounce->annonce!='' && ($userpercentage->taille_id!=0 || 
                                     </li>
                                     
                                     <li>    
-                                       <a href="<? echo JL::url('index.php?auth=logout'.'&'.$langue); ?>" title="<?php echo $lang_apphead["LogoutTitle"];?>" class="logout"><i class="fa fa-power-off fa-fw pull-right"></i><?php echo $lang_apphead["Deconnexion"];?></a>
+                                       <a href="<?php echo JL::url('index.php?auth=logout'.'&'.$langue); ?>" title="<?php echo $lang_apphead["LogoutTitle"];?>" class="logout"><i class="fa fa-power-off fa-fw pull-right"></i><?php echo $lang_apphead["Deconnexion"];?></a>
                                         </a>
                                     </li>
                                 </ul>
@@ -706,13 +717,13 @@ if($photo1==0 && $perannounce->annonce!='' && ($userpercentage->taille_id!=0 || 
 							
 						<div class="tile profile-widget" style="display:none;">
 						<section class="tile-widget bginfo">
-							<a href="<? echo JL::url('index.php?app=profil&action=step1&'.$langue); ?>" title="<?php echo $lang_apphead["VoirMonProfil"];?>">
-							<img src="<? echo $photo; ?>" alt="<? echo $user->username; ?>" class="img-circle profile-avatar">
+							<a href="<?php echo JL::url('index.php?app=profil&action=step1&'.$langue); ?>" title="<?php echo $lang_apphead["VoirMonProfil"];?>">
+							<img src="<?php echo $photo; ?>" alt="<?php echo $user->username; ?>" class="img-circle profile-avatar">
 							</a>
 							<div class="row">
 							   <div class="col-md-12">
-								  <h4 class="text-uppercase m-0"><? echo $userProfilMini->username; ?></h4>
-								  <small class="uppercase-bold text-strong text-transparent-black"><b><?php echo $lang_apphead["Statut"];?>:</b> <span class="statut<? echo $user->confirmed; ?>" title="<? echo $title; ?>"><? echo $user->confirmed ==2 ? $lang_apphead["EnAttenteDeValidation"] :  $lang_apphead["Confirme"]; ?></span></small>
+								  <h4 class="text-uppercase m-0"><?php echo $userProfilMini->username; ?></h4>
+								  <small class="uppercase-bold text-strong text-transparent-black"><b><?php echo $lang_apphead["Statut"];?>:</b> <span class="statut<?php echo $user->confirmed; ?>" title="<?php echo $title; ?>"><?php echo $user->confirmed ==2 ? $lang_apphead["EnAttenteDeValidation"] :  $lang_apphead["Confirme"]; ?></span></small>
 							   </div>
 							</div>
 							<div class="row bgbottom">
@@ -721,17 +732,17 @@ if($photo1==0 && $perannounce->annonce!='' && ($userpercentage->taille_id!=0 || 
 										// abonn&eacute;
 										if($user->gold_limit_date != '0000-00-00' && strtotime($user->gold_limit_date) >= time()) {
 									?>
-											<b><?php echo $lang_apphead["FinDAbonnement"];?>:</b> <span class="black"><? echo date('d/m/y', strtotime($user->gold_limit_date)); ?></span>
+											<b><?php echo $lang_apphead["FinDAbonnement"];?>:</b> <span class="black"><?php echo date('d/m/y', strtotime($user->gold_limit_date)); ?></span>
 									<?
 										} else {
 									?>
-											<a href="<? echo JL::url('index.php?app=abonnement&action=tarifs'.'&'.$langue); ?>" title="<?php echo $lang_apphead["AboPourToute"];?>" class="abo"><?php echo $lang_apphead["AbonnezVous"];?> !</a>
+											<a href="<?php echo JL::url('index.php?app=abonnement&action=tarifs'.'&'.$langue); ?>" title="<?php echo $lang_apphead["AboPourToute"];?>" class="abo"><?php echo $lang_apphead["AbonnezVous"];?> !</a>
 									<?
 										}
 									?>
 								 </div>
 								 <div class="col-md-6 nopadding">
-									<a href="<? echo JL::url('index.php?auth=logout'.'&'.$langue); ?>" title="<?php echo $lang_apphead["LogoutTitle"];?>" class="logout"><?php echo $lang_apphead["Deconnexion"];?></a>
+									<a href="<?php echo JL::url('index.php?auth=logout'.'&'.$langue); ?>" title="<?php echo $lang_apphead["LogoutTitle"];?>" class="logout"><?php echo $lang_apphead["Deconnexion"];?></a>
 								 </div>
 							</div>	
 							<div class="divider"></div>
@@ -742,16 +753,16 @@ if($photo1==0 && $perannounce->annonce!='' && ($userpercentage->taille_id!=0 || 
 							
 						</div>
 				
-				<? // pas de photo, on affiche le popin
+				<?php // pas de photo, on affiche le popin
 						if($noPhotoPopIn) { 
 				?>
-							<div class="noPhotoPopIn" id="noPhotoPopIn" onClick="document.location='<? echo JL::url('index.php?app=profil&action=step2'.'&'.$langue); ?>';"><div ><?php echo $lang_apphead["AugmentezVosChancesPhoto"];?>!</div></div>
+							<div class="noPhotoPopIn" id="noPhotoPopIn" onClick="document.location='<?php echo JL::url('index.php?app=profil&action=step2'.'&'.$langue); ?>';"><div ><?php echo $lang_apphead["AugmentezVosChancesPhoto"];?>!</div></div>
 							<script language="javascript" type="text/javascript">
 								var timerAlert2;
 								$('noPhotoPopIn').fade('hide');
 								noPhotoPopIn(0);
 							</script>
-				<? 
+				<?php 
 						}
 					}
 				
@@ -763,7 +774,7 @@ if($photo1==0 && $perannounce->annonce!='' && ($userpercentage->taille_id!=0 || 
 			<section class="skew-1-1 top_skew homepage_headerstyle bg-images-baner section-md-50 section-16 header_top_fixed text-center Logo_homepage" style="margin-top:0px;">
 				
 					<div class="shell position-r logo_res_wth mobile_res_logo">
-						<a href="<? echo SITE_URL; ?>/index.php?lang=<? echo $_GET['lang']; ?>" title="<?// echo SITE_DESCRIPTION; ?>" class="logo" ><img src="<? echo $template;?>/images/logo_<? echo $_GET['lang']; ?>.png" alt="ParentSolo.ch"  /></a>
+						<a href="<?php echo SITE_URL; ?>/index.php?lang=<?php echo $_GET['lang']; ?>" title="<?// echo SITE_DESCRIPTION; ?>" class="logo" ><img src="<?php echo $template;?>/images/logo_<?php echo $_GET['lang']; ?>.png" alt="ParentSolo.ch"  /></a>
 					</div>
 			
 				
@@ -774,14 +785,14 @@ if($photo1==0 && $perannounce->annonce!='' && ($userpercentage->taille_id!=0 || 
 								?>
 								<section class="skew-1-1 bg-images-baner section-md-50 section-16 header_top_fixed text-left" style="margin-top:0px;">
 			<div class="position-r logo_res_wth mobile_res_logo" style="text-align:left;" >
-				<a href="<? echo SITE_URL; ?>/index.php?lang=<? echo $_GET['lang']; ?>" title="<?// echo SITE_DESCRIPTION; ?>" class="logo" ><img src="<? echo $template;?>/images/logo_<? echo $_GET['lang']; ?>.png" alt="ParentSolo.ch"  class="image_logo_login" /></a>
+				<a href="<?php echo SITE_URL; ?>/index.php?lang=<?php echo $_GET['lang']; ?>" title="<?// echo SITE_DESCRIPTION; ?>" class="logo" ><img src="<?php echo $template;?>/images/logo_<?php echo $_GET['lang']; ?>.png" alt="ParentSolo.ch"  class="image_logo_login" /></a>
 			</div>
 			</section>
 			
 			<header class="page-head" >
 			
 				<!--<div class="shell position-r logo_res_wth mobile_res">
-	<a href="<? echo SITE_URL; ?>/index.php?lang=<? echo $_GET['lang']; ?>" title="<?// echo SITE_DESCRIPTION; ?>" class="logo" ><img src="<? echo $template;?>/images/logo_<? echo $_GET['lang']; ?>.png" alt="ParentSolo.ch"  /></a>
+	<a href="<?php echo SITE_URL; ?>/index.php?lang=<?php echo $_GET['lang']; ?>" title="<?// echo SITE_DESCRIPTION; ?>" class="logo" ><img src="<?php echo $template;?>/images/logo_<?php echo $_GET['lang']; ?>.png" alt="ParentSolo.ch"  /></a>
 </div>-->
 <nav class="navbar navbar-default menubar_fixed admin_menu_link" style="    background: #000000; border:0px; border-left: 0px; border-right: 0px;">
       <div class="container-fluid">
@@ -849,23 +860,23 @@ $.ajax({
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav" style="margin-top: 10px;">
 		  <li class="border_rght">
-		  <a href="<? echo JL::url('index.php?app=message&action=inbox&').'lang='.$_GET['lang']; ?>" ><span class="alert_box_top"><? echo $userStats->message_new; ?></span>
+		  <a href="<?php echo JL::url('index.php?app=message&action=inbox&').'lang='.$_GET['lang']; ?>" ><span class="alert_box_top"><?php echo $userStats->message_new; ?></span>
 		  <i class="gi gi-message_new text-light-op"></i>
 		  
 		  </a>
 
 		  </li>
-<li class="border_rght"><a href="javascript:void(0)" onClick="windowOpen('ParentSoloChat','<? echo JL::url('index.php?app=chat&'.$langue); ?>','800px','600px');"><span class="alert_box_top"><span  class="result_menu_data">0</span></span> <i class="fa fa-comments text-light-op"></i></a>
+<li class="border_rght"><a href="javascript:void(0)" onClick="windowOpen('ParentSoloChat','<?php echo JL::url('index.php?app=chat&'.$langue); ?>','800px','600px');"><span class="alert_box_top"><span  class="result_menu_data">0</span></span> <i class="fa fa-comments text-light-op"></i></a>
 						</li>
-			<li class="border_rght"><a href="<? echo JL::url('index.php?app=message&action=flowers').'&lang='.$_GET['lang']; ?>" ><span class="alert_box_top"><? echo $userStats->fleur_new; ?></span> <i class="gi gi-flower text-light-op"></i></a>
+			<li class="border_rght"><a href="<?php echo JL::url('index.php?app=message&action=flowers').'&lang='.$_GET['lang']; ?>" ><span class="alert_box_top"><?php echo $userStats->fleur_new; ?></span> <i class="gi gi-flower text-light-op"></i></a>
 			
 			</li>
-			<li class="border_rght"><a href="<? echo JL::url('index.php?app=search&action=visits').'&lang='.$_GET['lang']; ?>" >
-			<span class="alert_box_top"><? echo $userStats->visite_total; ?></span> <i class="gi gi-user text-light-op"></i></a>
+			<li class="border_rght"><a href="<?php echo JL::url('index.php?app=search&action=visits').'&lang='.$_GET['lang']; ?>" >
+			<span class="alert_box_top"><?php echo $userStats->visite_total; ?></span> <i class="gi gi-user text-light-op"></i></a>
 	
 
 			</li>
-			<li><a href="<? echo JL::url('index.php?app=points&action=mespoints').'&lang='.$_GET['lang']; ?>" ><span class="alert_box_top"><? echo $userStats->points_total; ?></span> 
+			<li><a href="<?php echo JL::url('index.php?app=points&action=mespoints').'&lang='.$_GET['lang']; ?>" ><span class="alert_box_top"><?php echo $userStats->points_total; ?></span> 
 			<i class="gi gi-coins text-light-op"></i></a>											
 
 

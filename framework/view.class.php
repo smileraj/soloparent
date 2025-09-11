@@ -1,1 +1,58 @@
-<?php	class JLView {				function JLView() {		}				function messages(&$messages, $admin = true) {					if(count($messages)) {							// variables				$stringMessages = '';				$className		= 'warning';				$validMessage	= 0;				$errorMessage	= 0;								// s'il y a des messages à afficher				if(count($messages)) {					// pour chaque message					foreach($messages as $message) {						$stringMessages .= $message;						if(preg_match('/"valid"/', $message)) {							$validMessage++;						} elseif(preg_match('/"error"/', $message)) {							$errorMessage++;						}					}				}								// détermine la classe à utiliser				if($validMessage && !$errorMessage) {					$className	= 'valid';				}								if($admin) {									// panel					JLPanel::open();									}								?>					<div class="messages <? echo $className; ?>">					<?						echo $stringMessages;					?>					</div>				<?php								if($admin) {									// panel					JLPanel::close();								}						}					}			}?>
+<?php
+
+class JLView
+{
+    public function __construct()
+    {
+        // Nothing special on init
+    }
+
+    /**
+     * Display messages
+     *
+     * @param array $messages
+     * @param bool  $admin
+     */
+    public function messages(array &$messages, bool $admin = true): void
+    {
+        if (!count($messages)) {
+            return;
+        }
+
+        $stringMessages = '';
+        $className      = 'warning';
+        $validMessage   = 0;
+        $errorMessage   = 0;
+
+        // Build messages and detect type
+        foreach ($messages as $message) {
+            $stringMessages .= $message;
+            if (preg_match('/"valid"/', $message)) {
+                $validMessage++;
+            } elseif (preg_match('/"error"/', $message)) {
+                $errorMessage++;
+            }
+        }
+
+        // Determine CSS class
+        if ($validMessage && !$errorMessage) {
+            $className = 'valid';
+        }
+
+        // Open panel for admin
+        if ($admin && class_exists('JLPanel')) {
+            JLPanel::open();
+        }
+
+        ?>
+        <div class="messages <?php echo htmlspecialchars($className, ENT_QUOTES, 'UTF-8'); ?>">
+            <?php echo $stringMessages; ?>
+        </div>
+        <?php
+
+        // Close panel for admin
+        if ($admin && class_exists('JLPanel')) {
+            JLPanel::close();
+        }
+    }
+}

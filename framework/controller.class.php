@@ -1,1 +1,73 @@
-<?php	class JLController {			var $appName;				function JLController($appNameNew) {			$this->setAppName($appNameNew);		}				function setAppName($appNameNew) {			$this->appName = $appNameNew;		}						/*			charge un élément (model, vue, autre...)			$elementType (string): model, view			$elementName (string): nom de l'élément, exemple le model "Toto", ce qui donnera le fichier modelToto.php			$elementCustomName (string): nom à donner à l'élément ajouté au controller, exemple modelTotoQuiTue			$admin (bool): composant front-end (false) ou back-end (true) ?			$appLoad (string): nom de l'application à partir de laquelle charger l'élément (par défaut on prendra l'appli du controller)		*/		function addElement($elementType, $elementName = '', $elementCustomName = '', $admin = false, $appLoad = '') {					// détermine si c'est une appli front ou back			if(!$admin) { // app coté front				$path	= SITE_PATH;			} else { // app coté back				$path	= SITE_PATH_ADMIN;			}						// appli custom à charger ou celle de l'appli du controller ?			if(!$appLoad) {				$appLoad = $this->appName;			}						// include la view			include_once($path.'/app/app_'.$appLoad.'/'.$elementType.ucwords($elementName).'.php');						// nom custom ?			if(!$elementCustomName) {				$elementCustomName = $elementName ? $elementName : $elementType;			}						// instancie la vue de l'élément			$elementClassName				= $appLoad.ucwords($elementType).ucwords($elementName);			$this->{$elementCustomName} 	= new $elementClassName;					}				// voir définition addElement()		function addView($viewName = '', $viewCustomName = '', $admin = false, $appLoad = '') {			$this->addElement('view', $viewName, $viewCustomName, $admin, $appLoad);		}				// voir définition addElement()		function addModel($modelName = '', $modelCustomName = '', $admin = false, $appLoad = '') {			$this->addElement('model', $modelName, $modelCustomName, $admin, $appLoad);		}			}	?>
+<?php
+
+class JLController
+{
+    private string $appName;
+
+    public function __construct(string $appNameNew)
+    {
+        $this->setAppName($appNameNew);
+    }
+
+    public function setAppName(string $appNameNew): void
+    {
+        $this->appName = $appNameNew;
+    }
+
+    /**
+     * Load an element (model, view, etc.)
+     *
+     * @param string $elementType model|view
+     * @param string $elementName Example: "Toto" â†’ loads "modelToto.php"
+     * @param string $elementCustomName Optional alias name for this element
+     * @param bool   $admin True = backend app, False = frontend app
+     * @param string $appLoad Optional app name to load element from
+     */
+    public function addElement(
+        string $elementType,
+        string $elementName = '',
+        string $elementCustomName = '',
+        bool $admin = false,
+        string $appLoad = ''
+    ): void {
+        // Path based on admin or frontend
+        $path = $admin ? SITE_PATH_ADMIN : SITE_PATH;
+
+        // If no custom app given, use this controllerâ€™s app
+        if (empty($appLoad)) {
+            $appLoad = $this->appName;
+        }
+
+        $file = $path . '/app/app_' . $appLoad . '/' . $elementType . ucwords($elementName) . '.php';
+
+        if (!file_exists($file)) {
+            throw new RuntimeException("Element file not found: " . $file);
+        }
+
+        include_once $file;
+
+        // If no custom name, fallback to element type/name
+        if (empty($elementCustomName)) {
+            $elementCustomName = $elementName ?: $elementType;
+        }
+
+        // Example: MyAppViewHome, MyAppModelUser
+        $elementClassName = $appLoad . ucwords($elementType) . ucwords($elementName);
+
+        if (!class_exists($elementClassName)) {
+            throw new RuntimeException("Class $elementClassName not found in $file");
+        }
+
+        $this->{$elementCustomName} = new $elementClassName();
+    }
+
+    public function addView(string $viewName = '', string $viewCustomName = '', bool $admin = false, string $appLoad = ''): void
+    {
+        $this->addElement('view', $viewName, $viewCustomName, $admin, $appLoad);
+    }
+
+    public function addModel(string $modelName = '', string $modelCustomName = '', bool $admin = false, string $appLoad = ''): void
+    {
+        $this->addElement('model', $modelName, $modelCustomName, $admin, $appLoad);
+    }
+}

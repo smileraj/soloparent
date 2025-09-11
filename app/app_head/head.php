@@ -6,7 +6,12 @@
 	require_once('head.html.php');
 	
 	global $db,$user,$action;
-	
+	$userProfilMini = $userProfilMini ?? null;
+	$userStats       = $userStats ?? null;
+	$userpercentage  = $userpercentage ?? 0;
+	$perannounce     = $perannounce ?? '';
+	$useronstatus    = $useronstatus ?? null;
+
 		
 
 	if($user->id){

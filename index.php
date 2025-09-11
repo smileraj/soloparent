@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 	// session php
 	session_start();
@@ -9,9 +12,9 @@
    if($date_jour >= $date_suspension){
 		
 	 include('offline-2016.php'); exit;
-		
+	 
 	}else{
-
+		
 		// mode offline avec erreur 404: � d�commenter que lorsque l'on veut masquer le site en d�v
 	 include('offline.php'); 
 

@@ -196,6 +196,6 @@
 	
     
 	//affichage
-	home_HTML::home(JL::getVar('auth',''), $profils,  $list, $temoignage, $home_1, $home_2, $home_3, $home_4, $partenaire_1, $actualites, $box_menu_2,$events);
+	home_HTML::home($profils,  $list, $temoignage, $home_1, $home_2, $home_3, $home_4, $partenaire_1, $actualites, $box_menu_2,$events,JL::getVar('auth',''));
 ?>
 
