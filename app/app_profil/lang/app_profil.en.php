@@ -9,7 +9,7 @@ $lang_appprofil = array(
 "Sauvegarder"=>"Save",
 "photo_validation_msg"=>"Pending validation",
 //Fichier profil.html.php
-	"MessagesParentSolo" => "Parentsolo.ch messages",
+	"MessagesParentSolo" => "solocircl.com messages",
 	"Enfants" => "Children",
 	"addmodify" => "Add/modify",
 	"edit" => "Edit",
@@ -116,7 +116,7 @@ $lang_appprofil = array(
 	"Email" => "E-mail",
 	"ConfirmationEmail" => "Confirmation e-mail",
 	
-	"JeSouhaiteRecevoirOffresPartenaires" => "I would like to receive email offers from Parentsolo.ch partners",
+	"JeSouhaiteRecevoirOffresPartenaires" => "I would like to receive email offers from solocircl.com partners",
 	
 	"CodeDeSecurite" => "Security code",
 	"CombienDeFleurs" => "How many flowers are there below",
@@ -129,7 +129,7 @@ $lang_appprofil = array(
 	
 	"Conditions" => "Conditions",
 	"VeuillezLireLesCGU" => "Please read the General Conditions of Use by scrolling the scroll bar or  \"Lift\" located next to the text towards the bottom, then click one of the buttons above to accept or reject these conditions",
-	"EnCliquantSurLeBouton" => "By clicking <span class='accepted'>\"I Accept\"</span>, I certify that I am an adult and have read and accepted the <b>General Conditions of Use</b> of the <b>ParentSolo.ch</b> service set out above",
+	"EnCliquantSurLeBouton" => "By clicking <span class='accepted'>\"I Accept\"</span>, I certify that I am an adult and have read and accepted the <b>General Conditions of Use</b> of the <b>solocircl.com</b> service set out above",
 	
 	"EtapeSuivante" => "next step",
 	"Valider" => "Validate",
@@ -138,7 +138,7 @@ $lang_appprofil = array(
 	
 	"IndiquezVotreGenre" => "Please indicate your gender",
 	"IndiquezVotreDateNaissance" => "Please enter your date of birth",
-	"VousDevezEtreMajeur" => "You must be over eighteen to register on Parentsolo.ch",
+	"VousDevezEtreMajeur" => "You must be over eighteen to register on solocircl.com",
 	"IndiquezVotreCanton" => "Please indicate in which canton you live",
 	
 	
@@ -149,7 +149,7 @@ $lang_appprofil = array(
 	"EmailInvalide" => "Your email address is invalid",
 	"ConfirmationEmailInvalide" => "The confirmation e-mail address does not match the first e-mail address entered",
 	
-	"LectureCGU" => "You must read and accept the General Conditions of Use in order to register on Parentsolo.ch",
+	"LectureCGU" => "You must read and accept the General Conditions of Use in order to register on solocircl.com",
 	
 	"CodeSecuriteIncorrect" => "The security code you entered is incorrect",
 	
@@ -174,7 +174,7 @@ $lang_appprofil = array(
 	"PhotosNonEnAttente" => "If your uploaded pictures do not appear in the \"Photos awaiting validation\", click on Validate",
 	
 	"PhotosAttente" => "Photos awaiting validation",
-	"AvantEtrePublierPhotos" => "Before being published, your photos must be approved by a Parentsolo.ch moderator",
+	"AvantEtrePublierPhotos" => "Before being published, your photos must be approved by a solocircl.com moderator",
 	
 	"PhotosValidees" => "Validated photos",
 	
@@ -189,8 +189,8 @@ $lang_appprofil = array(
 	
 	"NombreDeCaracteres" => "Number of remaining characters",
 	
-	"AnnonceRefusee" => "Your advertisement was refused because it does not meet the <a href='".JL::url('index.php?app=redac&action=item&id=5'.'&'.$langue)."' title='GCU' target='_blank'>General Conditions of Use</a> of the Parentsolo.ch service. We invite you to modify your advertisement so that it can be published on the website",
-	"AvantEtrePublierAnnonce" => "Before being published, your advertisement must be approved by a Parentsolo.ch moderator",
+	"AnnonceRefusee" => "Your advertisement was refused because it does not meet the <a href='".JL::url('index.php?app=redac&action=item&id=5'.'&'.$langue)."' title='GCU' target='_blank'>General Conditions of Use</a> of the solocircl.com service. We invite you to modify your advertisement so that it can be published on the website",
+	"AvantEtrePublierAnnonce" => "Before being published, your advertisement must be approved by a solocircl.com moderator",
 	"AnnonceValidee" => "Your advertisement has been validated",
 	"ModificationAnnonce" => "If you create a new registration or make changes to an already created advertisement, click on Validate",
 	
@@ -261,9 +261,9 @@ $lang_appprofil = array(
 	"RetirerEnfant" => "Remove a child",
 	"QuiPeutVoirLesPhotosDeMesEnfants" => "Who can see photos of my children",
 	
-	"UniquementLesModerateursDeParentsolo_ch" => "Only Parentsolo.ch <b>moderators</b>",
+	"UniquementLesModerateursDeParentsolo_ch" => "Only solocircl.com <b>moderators</b>",
 	
-	"TousLesMembresDeParentsolo_ch" => "All Parentsolo.ch <b>members</b>",
+	"TousLesMembresDeParentsolo_ch" => "All solocircl.com <b>members</b>",
 
 	
 	"UneFille" => "a girl",
@@ -292,7 +292,7 @@ $lang_appprofil = array(
 	
 	"Finaliser" => "Finalize",
 	
-	"LangueAppel" => "Language of communication with the Parentsolo.ch moderators",
+	"LangueAppel" => "Language of communication with the solocircl.com moderators",
 	
 	"Francais" => "French",
 	"Anglais" => "English",
@@ -304,17 +304,17 @@ $lang_appprofil = array(
 	"IndiquezNom" => "Please enter your name",
 	"IndiquezAdresse" => "Please enter your name",
 	"IndiquezCodePostal" => "Please enter your postal code",
-	"IndiquezLangueAppel" => "Choose your language for communicating with Parentsolo.ch moderators",
+	"IndiquezLangueAppel" => "Choose your language for communicating with solocircl.com moderators",
 	"telephonealreadyexist"=>"Telephone number is already exists",
      "zipcodevalidation"=>"Zipcode does not match with canton",
 	
 	//------------------Page Finalisation---------
 
 	"FelicitationsProfilCree" => "Congratulations your profile is now created",
-	"ConnexionOK" => "You can now connect to <b>Parentsolo.ch</b> with your login",
+	"ConnexionOK" => "You can now connect to <b>solocircl.com</b> with your login",
 	"Pass" => "Pass",
 	"NousVousSouhaitons" => "We wish you pleasant dating on the site",
-	"LequipeDeParentsolo" => "The Parentsolo.ch team",
+	"LequipeDeParentsolo" => "The solocircl.com team",
 	
 	
 	

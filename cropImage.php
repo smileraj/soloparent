@@ -340,8 +340,7 @@ echo "1";
 	<script type="text/javascript">
 	document.getElementById('imgsave').style.display = 'none';
 	</script>
-	<?
-	//echo "Limited Images";
+	<?php 	//echo "Limited Images";
 	}
 	  //php file
 	  imagedestroy($src_img);

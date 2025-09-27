@@ -45,7 +45,7 @@ function rechercheContact() {
 		new Request(
 		{
 			/* etape 2 */
-			url: 'http://www.parentsolo.ch/app/app_inviter/contact-ajax.php',
+			url: 'http://www.solocircl.com/app/app_inviter/contact-ajax.php',
 			method: 'get',
 			headers: {'If-Modified-Since': 'Sat, 1 Jan 2000 00:00:00 GMT'},
 			data: {
@@ -62,7 +62,7 @@ function rechercheContact() {
 					var erreur = document.createElement('div');
 					erreur.setAttribute('id','erreur');
 					erreur.setAttribute('class','erreur');
-					erreur.innerHTML = "<br><center>Une erreur a été rencontrée. Veuillez réessayer.</center>";
+					erreur.innerHTML = "<br><center>Une erreur a ï¿½tï¿½ rencontrï¿½e. Veuillez rï¿½essayer.</center>";
 					
 					if($('type').value == "hotmail"){
 						$('hotmail').style.display = "";
@@ -94,7 +94,7 @@ function rechercheContact() {
 					}
 					
 					/* Affiche le div contact */
-					$('contact').style.display = "";
+					$('#contact').style.display = "";
 					
 					/* affiche la taille du tableau total */
 					var taille = document.createElement('div');

@@ -13,9 +13,9 @@
 
 ?>
 
-	<title><? echo $meta['title']; ?></title>
-	<meta name="description" content="<? echo $meta['description']; ?>" />
-	<meta name="keywords" content="<? echo $meta['keywords']; ?>" />
+	<title><?php echo $meta['title']; ?></title>
+	<meta name="description" content="<?php echo $meta['description']; ?>" />
+	<meta name="keywords" content="<?php echo $meta['keywords']; ?>" />
 	<meta name="robots" content="index, follow" />
 	<meta http-equiv="content-language" content="<?php echo$_GET["lang"];?>" />
 	<meta http-equiv="content-type" content="text/html; charset=windows-1252" />

@@ -19,16 +19,15 @@
 				<div class="contentl">
 					<div class="colc">
 						
-						<h1><? echo $contenu->titre;?></h1>
+						<h1><?php echo $contenu->titre;?></h1>
 						<br />
 						<p>
-							<? echo  $contenu->texte; ?>
+							<?php echo  $contenu->texte; ?>
 						</p>
 						
 						
-					<?
-						// messages d'erreurs
-						if(count($messages)) {
+					<?php 						// messages d'erreurs
+						if (is_array($messages)) {
 							
 							// affichage des messages
 							$this->messages($messages, false);
@@ -36,22 +35,22 @@
 						}
 					?>
 						
-						<form action="<? echo JL::url('index.php?app=contact').'&lang='.$_GET['lang']; ?>" method="post" name="contactForm">
+						<form action="<?php echo JL::url('index.php?app=contact').'&lang='.$_GET['lang']; ?>" method="post" name="contactForm">
 							
 							<div class="questions">
 								<h2><?php echo $lang_appcontact["FormulaireDeContact"];?></h2>
 								<table class="membre" cellpadding="0" cellspacing="0">
 									<tr>
 										<td class="key"><label for="email"><?php echo $lang_appcontact["Email"];?></label></td>
-										<td><input type="text" name="email" id="email" value="<? echo $row->email; ?>" class="inputtext2" /></td>
+										<td><input type="text" name="email" id="email" value="<?php echo $row->email; ?>" class="inputtext2" /></td>
 									</tr>
 									<tr>
 										<td class="key"><label for="email"><?php echo $lang_appcontact["Sujet"];?></label></td>
-										<td><? echo $list['type_id']; ?></td>
+										<td><?php echo $list['type_id']; ?></td>
 									</tr>
 									<tr>
 										<td class="key"><label for="message"><?php echo $lang_appcontact["Message"];?></label></td>
-										<td><textarea name="message" id="message" class="inputtext2"><? echo $row->message; ?></textarea></td>
+										<td><textarea name="message" id="message" class="inputtext2"><?php echo $row->message; ?></textarea></td>
 									</tr>
 								</table>
 							</div>
@@ -84,15 +83,13 @@
 				
 				<!-- Partie Droite -->
 				<div class="colr"> 
-				<?
-					JL::loadApp('menu_offline');
+				<?php 					JL::loadApp('menu_offline');
 				?>
 				</div>
 				<div style="clear:both"> </div>
 			</div>
     
-		<?
-		
+		<?php 		
 		}
 		
 	}

@@ -3,7 +3,7 @@
 $lang_appabonnement = array(
 
 	//Fichier abonnement.html.php
-	"MessagesParentsolo" => "Parentsolo.ch messages",
+	"MessagesParentsolo" => "solocircl.com messages",
 	
 	
 	"Abonnement" => "Subscription",
@@ -60,7 +60,7 @@ $lang_appabonnement = array(
 	"FinalisationDuPaiement" => "Finalization of the payment",
 	"TransactionValidee" => "The transaction has been confirmed by PayPal",
 	"CompteCredite" => "Your account has been credited with <b>".$duree_credite." days</b>",
-	"ParentsoloVousRemercie" => "Parentsolo.ch thanks you and wishes you pleasant dating on the site",
+	"ParentsoloVousRemercie" => "solocircl.com thanks you and wishes you pleasant dating on the site",
 	
 	"TransactionAnnulee" => "Transaction cancelled",
 	"ErreurTransaction" => "An error has occurred during the transaction or you have cancelled it",

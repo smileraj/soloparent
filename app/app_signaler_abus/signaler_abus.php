@@ -59,7 +59,7 @@
 		$list			= array();
 
 		// r&eacute;cup les donn&eacute;es temporaires
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row->{$key}	= JL::getVar($key, $value);
 			}
@@ -107,7 +107,7 @@
 		$row		= new stdClass();
 
 		// r&eacute;cup les donn&eacute;es temporaires
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row->{$key}	= JL::getVar($key, $value);
 			}
@@ -148,7 +148,7 @@
 			$sujet = "Signalement d'abus de ".$username." (par ".$user->username.": ".$user->email.")";
 
 			// envoi du message
-			JL::mail('info@parentsolo.ch', '[ Signaler un abus ] '.$sujet, nl2br($sujet." \n\n".$row->message));
+			JL::mail('info@solocircl.com', '[ Signaler un abus ] '.$sujet, nl2br($sujet." \n\n".$row->message));
 			//JL::mail('m.jombart@babybook.ch', '[ Abus ] '.$sujet, nl2br($sujet." \n\n".$row->message));
 
 			JL::redirect(SITE_URL.'/index.php?app=signaler_abus&user_id_to='.$row->user_id_to.'&msg=sent&'.$langue);

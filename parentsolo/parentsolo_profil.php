@@ -13,29 +13,28 @@
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr" >
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" >
 
 
 	<head>
-		<?
-			// module de gestion automatis&eacute;e des meta tags
+		<?php 			// module de gestion automatis&eacute;e des meta tags
 			JL::loadMod('meta');
 		?>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="<? echo $template.'/'.SITE_TEMPLATE.'_profil.css?'.$version; ?>" rel="stylesheet" type="text/css" />
-			<!--<link href="<? echo $template.'/'; ?>new_style/css/bootstrap.css" rel="stylesheet" type="text/css" />-->
-		<link href="<? echo $template.'/'; ?>new_style/css/reset.css" rel="stylesheet" type="text/css" />
-		<link href="<? echo $template.'/'; ?>new_style/css/color.css" rel="stylesheet" type="text/css" />
-		<link href="<? echo $template; ?>/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+	<link href="<?php echo $template.'/'.SITE_TEMPLATE.'_profil.css?'.$version; ?>" rel="stylesheet" type="text/css" />
+			<!--<link href="<?php echo $template.'/'; ?>new_style/css/bootstrap.css" rel="stylesheet" type="text/css" />-->
+		<link href="<?php echo $template.'/'; ?>new_style/css/reset.css" rel="stylesheet" type="text/css" />
+		<link href="<?php echo $template.'/'; ?>new_style/css/color.css" rel="stylesheet" type="text/css" />
+		<link href="<?php echo $template; ?>/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 		
 		
 		<!--home page style-->
-		<link href="<? echo $template.'/'.SITE_TEMPLATE.'.css?'.$version; ?>" rel="stylesheet" type="text/css" />
-		<link href="<? echo $template.'/'; ?>new_style/css/main.css" rel="stylesheet" type="text/css" />
-		<link href="<? echo $template.'/'; ?>plugins.css" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="<? echo $template.'/'; ?>new_style/css/bootstrap-toggle.css">
+		<link href="<?php echo $template.'/'.SITE_TEMPLATE.'.css?'.$version; ?>" rel="stylesheet" type="text/css" />
+		<link href="<?php echo $template.'/'; ?>new_style/css/main.css" rel="stylesheet" type="text/css" />
+		<link href="<?php echo $template.'/'; ?>plugins.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="<?php echo $template.'/'; ?>new_style/css/bootstrap-toggle.css">
 		
-		<script src="<? echo $template.'/'; ?>photovalidation/js/jquery-1.7.2.js"></script>
+		<script src="<?php echo $template.'/'; ?>photovalidation/js/jquery-1.7.2.js"></script>
 <style>
 .Dboot-preloader {
             /* padding-top: 20%; */
@@ -340,8 +339,7 @@ top: 160px;right: 10px;position: fixed;z-index: 22;color: #fff;font-size: 13px;b
 	 margin-top:10%;
 	 } */
 </style>
-<?
-			if($user->id){
+<?php 			if($user->id){
 				?>
 				<script>
 					jQuery.noConflict();
@@ -394,31 +392,27 @@ $('#alert_box_chat').hide();
 	})
 	})(jQuery);
 				</script>
-<link href="<? echo $template.'/'; ?>css/carousel/owl.carousel.css" rel="stylesheet">
-<link href="<? echo $template.'/'; ?>css/carousel/owl.theme.css" rel="stylesheet">
+<link href="<?php echo $template.'/'; ?>css/carousel/owl.carousel.css" rel="stylesheet">
+<link href="<?php echo $template.'/'; ?>css/carousel/owl.theme.css" rel="stylesheet">
 <!-- Animation CSS -->
-<link href="<? echo $template.'/'; ?>css/carousel/wedding-font-styles.css" rel="stylesheet">
-		<?
-			}
+<link href="<?php echo $template.'/'; ?>css/carousel/wedding-font-styles.css" rel="stylesheet">
+		<?php 			}
 				?>
 		<!--end home page style-->
 		
-		<link href="<? echo $template; ?>/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+		<link href="<?php echo $template; ?>/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 		
-		<!--<script type="text/javascript" src="<? echo SITE_URL; ?>/js/mootools.js?<? echo $version; ?>"></script>-->
-		<script type="text/javascript" src="<? echo SITE_URL; ?>/js/swfobject/swfobject.js"></script>
-		<script type="text/javascript" src="<? echo SITE_URL; ?>/js/lightbox/lightbox.js"></script>
-		<?
-			if($app == 'profil') {
+		<!--<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/mootools.js?<?php echo $version; ?>"></script>-->
+		<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/swfobject/swfobject.js"></script>
+		<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/lightbox/lightbox.js"></script>
+		<?php 			if($app == 'profil') {
 			?>
 
-				<script type="text/javascript" src="<? echo SITE_URL; ?>/js/app_profil.js?<? echo $version; ?>"></script>
+				<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/app_profil.js?<?php echo $version; ?>"></script>
 
-			<?
-			}
+			<?php 			}
 			?>
-					<?
-                    
+					<?php                     
 			//Head pub Goldbach
 			/*if($_GET['lang']!="de"){
 				?>
@@ -456,23 +450,22 @@ googletag.cmd.push(function () {
                 googletag.pubads().setTargeting(key, NUGGarr[key].toString());
                 }
 });
-googletag.defineSlot('/8373/CH/Helvetica-Media/CH_Parentsolo.ch_EX/ROS-excl-Homepage/FR_ROS-excl-Home_allAdformats', [[728, 90], [728, 300]], 'leaderboard').addService(googletag.pubads())
+googletag.defineSlot('/8373/CH/Helvetica-Media/CH_solocircl.com_EX/ROS-excl-Homepage/FR_ROS-excl-Home_allAdformats', [[728, 90], [728, 300]], 'leaderboard').addService(googletag.pubads())
 .setTargeting("gender", "")
 .setTargeting("age", "")
 .setTargeting("plz", "")
 .setTargeting("kant", "")
 .setTargeting("remnant", ["1", "2", "3", "4", "5"]);
-googletag.defineSlot('/8373/CH/Helvetica-Media/CH_Parentsolo.ch_EX/ROS-excl-Homepage/FR_ROS-excl-Home_allAdformats', [[160, 600], [300, 600]], 'wideskyscraper').addService(googletag.pubads())
+googletag.defineSlot('/8373/CH/Helvetica-Media/CH_solocircl.com_EX/ROS-excl-Homepage/FR_ROS-excl-Home_allAdformats', [[160, 600], [300, 600]], 'wideskyscraper').addService(googletag.pubads())
 .setTargeting("remnant", ["1", "2", "3", "4", "5"]);
-googletag.defineSlot('/8373/CH/Helvetica-Media/CH_Parentsolo.ch_EX/ROS-excl-Homepage/FR_ROS-excl-Home_allAdformats', [300, 250], 'mediumrectangle').addService(googletag.pubads())
+googletag.defineSlot('/8373/CH/Helvetica-Media/CH_solocircl.com_EX/ROS-excl-Homepage/FR_ROS-excl-Home_allAdformats', [300, 250], 'mediumrectangle').addService(googletag.pubads())
 .setTargeting("remnant", ["1", "2", "3", "4", "5"]);
-googletag.defineOutOfPageSlot('/8373/CH/Helvetica-Media/CH_Parentsolo.ch_EX/ROS-excl-Homepage/FR_ROS-excl-Home_allAdformats', 'outofpage').addService(googletag.pubads());
+googletag.defineOutOfPageSlot('/8373/CH/Helvetica-Media/CH_solocircl.com_EX/ROS-excl-Homepage/FR_ROS-excl-Home_allAdformats', 'outofpage').addService(googletag.pubads());
 googletag.pubads().enableSyncRendering();
 googletag.pubads().enableSingleRequest();
 googletag.enableServices();
 </script>
-			<?
-			}else{
+			<?php 			}else{
 				?>
 				<!-- nugg.ad tag to insert at the beginning of page BEFORE Google Publisher tags - Don't change anything below--->
 
@@ -525,8 +518,7 @@ googletag.pubads().enableSingleRequest();
 googletag.enableServices();
 </script>
 
-				<?
-			} */
+				<?php 			} */
 			
 		
 		?>
@@ -535,89 +527,81 @@ googletag.enableServices();
 
 	<body>
 	<div class="Dboot-preloader text-center">
-    <img src="<? echo SITE_URL;?>/chat2/templates/img/loader.gif" width="400"/>
+    <img src="<?php echo SITE_URL;?>/chat2/templates/img/loader.gif" width="400"/>
 </div>
-    <?/*
+    <?php /*
 		<script type="text/javascript">
-			var WlWebsiteId="parentsolo.ch";
+			var WlWebsiteId="solocircl.com";
 			var WlContentGroup="Default";
 			var WlAC= true;
 			document.write('<scr'+'ipt language="JavaScript" src="http://rc.ch.adlink.net/Tag/adlink/JS/Ch/'+WlWebsiteId+'/Gt.js"></scr'+'ipt>');
 		</script>
-     */?>   
+     */ ?>   
         
 		<!--<div class="body" id="top">-->
 		<!--home style--><div  class="page" id="res_Menu_id" >
 		
 		<div class="content">
             <div class="content_inner">
-			<? 
+			<?php 
 				JL::loadApp('head');
 			?>
 				<div class="content1" <?php if($user->id){ echo "style='background: #b90003;'"; } ?>>
 					<div class="<?php if($user->id){ } else { echo 'shell'; }?> text-left">
-				<?
-							if($user->id){
+				<?php 							if($user->id){
 ?>								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 hidden-xs  hidden-sm">
 						
-						<?
-								JL::loadMod('menu');
+						<?php 								JL::loadMod('menu');
 							
 						?>
 					</div>
 					<div class="hidden-md  hidden-lg">
 						
-						<?
-								JL::loadMod('menu');
+						<?php 								JL::loadMod('menu');
 							
 						?>
 					</div>
 					<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 parentsolo_shadow">
 						<div class="col-lg-9   parentsolo_pt_15">
-						<?
-							
+						<?php 							
 						
 							JL::loadMod('menu_offline');	
 						?>
 							
-						<?
-							// charge l'application demand&eacute;e
+						<?php 							// charge l'application demand&eacute;e
 							JL::loadBody();
 						
 						?>
 						</div>
-					<? }
+					<?php }
 					else{
 						?>
 					<div class="col-lg-12 parentsolo_shadow">
 						<div class="col-lg-9   parentsolo_pt_15">
-						<?
-							
+						<?php 							
 						
 							JL::loadMod('menu_offline');	
 						?>
 							
-						<?
-							// charge l'application demand&eacute;e
+						<?php 							// charge l'application demand&eacute;e
 							JL::loadBody();
 						
 						?>
 						</div>
-					<?
-					}
+					<?php 					}
 					?>
 
 			
 
 					<div class="col-lg-3"> 
-						<? JL::loadMod('menu_right'); ?>
+						<?php JL::loadMod('menu_right'); ?>
 					</div>
 					</div> 
 </div>
 					<div style="clear:both"> </div>
 				</div>
 				<div class="hidden-xs">
-				<div class="chatbox_alert_stl" id="alert_box_chat" style="display:none !important; text-align:center; background:rgba(0, 0, 0, 0) !important;    top: 160px;" onClick="windowOpen('ParentSoloChat','<? echo JL::url('index.php?app=chat&'.$langue); ?>','800px','600px');">
+				<div class="chatbox_alert_stl" id="alert_box_chat" style="display:none !important; text-align:center; background:rgba(0, 0, 0, 0) !important;    top: 160px;" onClick="windowOpen('ParentSoloChat','<?php echo JL::url('index.php?app=chat&'.$langue); ?>','800px','600px');">
 				<!--<embed src='sound/notify.mp3' autostart='false' width='0' height='0' id='sound1' enablejavascript='true'>-->
 				
 				<i class="fa fa-heart" style="font-size: 140px;    color: #f00;"></i><span style="position: absolute;  left: 60px;  margin-top: 45px;  z-index: 24;  font-size: 14px;"><span class="result_data"></span> 
@@ -625,11 +609,11 @@ googletag.enableServices();
 				<?php if($_GET["lang"]=="de"){ echo " Nieuw <br>ericht";  }?>
 				<?php if($_GET["lang"]=="fr") { echo "Nouveau <br>Message "; }?>
 				</span>	</div></div>
-				<div id="chatbox_val" style="display:none;"><div class="chatbox_alert_stl" onClick="windowOpen('ParentSoloChat','<? echo JL::url('index.php?app=chat&'.$langue); ?>','800px','600px');"><span class="result_data"></span> 
+				<div id="chatbox_val" style="display:none;"><div class="chatbox_alert_stl" onClick="windowOpen('ParentSoloChat','<?php echo JL::url('index.php?app=chat&'.$langue); ?>','800px','600px');"><span class="result_data"></span> 
 							<i class="fa fa-comments"></i></div></div>
 							
-						<div class="chatAlert" id="chatAlert1"  onClick="windowOpen('ParentSoloChat','<? echo JL::url('index.php?app=chat&'.$langue); ?>','800px','600px');"></div></div>
-			<?			
+						<div class="chatAlert" id="chatAlert1"  onClick="windowOpen('ParentSoloChat','<?php echo JL::url('index.php?app=chat&'.$langue); ?>','800px','600px');"></div></div>
+			<?php
 						JL::loadMod('footer'); 
 						
 						JL::loadMod('popin_last_event');
@@ -646,18 +630,18 @@ googletag.enableServices();
    
    
   					
-<script src="<? echo $template.'/'; ?>new_style/js/jquery.js"></script>
-<script src="<? echo $template.'/'; ?>photovalidation/bootstrap/dist/js/bootstrap.min.js"></script>		
-    <script type="text/javascript" src="<? echo $template.'/'; ?>new_style/js/plugins/flipclock/flipclock.js"></script>
-    <script type="text/javascript" src="<? echo $template.'/'; ?>new_style/js/plugins/smoothscroll/smoothscroll.js"></script>
+<script src="<?php echo $template.'/'; ?>new_style/js/jquery.js"></script>
+<script src="<?php echo $template.'/'; ?>photovalidation/bootstrap/dist/js/bootstrap.min.js"></script>		
+    <script type="text/javascript" src="<?php echo $template.'/'; ?>new_style/js/plugins/flipclock/flipclock.js"></script>
+    <script type="text/javascript" src="<?php echo $template.'/'; ?>new_style/js/plugins/smoothscroll/smoothscroll.js"></script>
    <!-- --photo validation---->
   
- <script type="text/javascript" src="<? echo $template.'/'; ?>new_style/js/plugins/revolution/js/jquery.themepunch.tools.min.js"></script>
-    <script type="text/javascript" src="<? echo $template.'/'; ?>new_style/js/plugins/revolution/js/jquery.themepunch.revolution.min.js"></script>
-    <script type="text/javascript" src="<? echo $template.'/'; ?>new_style/js/plugins/fancybox/jquery.fancybox.js"></script>
-    <script src="<? echo $template.'/'; ?>new_style/js/plugins/owl/owl.carousel.min.js" type="text/javascript"></script>
-   <script type="text/javascript" src="<? echo $template.'/'; ?>new_style/js/custom.js"></script>
-   <script type="text/javascript" src="<? echo $template.'/'; ?>new_style/js/bootstrap-toggle.js"></script>
+ <script type="text/javascript" src="<?php echo $template.'/'; ?>new_style/js/plugins/revolution/js/jquery.themepunch.tools.min.js"></script>
+    <script type="text/javascript" src="<?php echo $template.'/'; ?>new_style/js/plugins/revolution/js/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript" src="<?php echo $template.'/'; ?>new_style/js/plugins/fancybox/jquery.fancybox.js"></script>
+    <script src="<?php echo $template.'/'; ?>new_style/js/plugins/owl/owl.carousel.min.js" type="text/javascript"></script>
+   <script type="text/javascript" src="<?php echo $template.'/'; ?>new_style/js/custom.js"></script>
+   <script type="text/javascript" src="<?php echo $template.'/'; ?>new_style/js/bootstrap-toggle.js"></script>
 <script>
     jQuery.noConflict();
 (function($) {	
@@ -789,7 +773,7 @@ $(".sidebar-icon").click(function() {
                 toggle = !toggle;
             });*/
 </script>
-						<script src="<? echo $template.'/'; ?>js/carousel/owl.carousel.js"></script>
+						<script src="<?php echo $template.'/'; ?>js/carousel/owl.carousel.js"></script>
     <!-- Theme JS -->
     <script>
 	// Friend Section Carousel
@@ -824,9 +808,8 @@ $(document).ready(function(){
 	   
 
 <!--end photo validation-->
-<script type="text/javascript" src="<? echo SITE_URL; ?>/js/mootools.js?<? echo $version; ?>"></script>
-						<?
-					// charge le module de message d'alerte de derneirs &eacute;v&eacute;nements(popin)
+<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/mootools.js?<?php echo $version; ?>"></script>
+						<?php 					// charge le module de message d'alerte de derneirs &eacute;v&eacute;nements(popin)
 						
 					}
 					
@@ -839,7 +822,7 @@ $(document).ready(function(){
 		
 		
 		
-			<? 
+			<?php 
 				
 				// charge l'application demand&eacute;e
 				//JL::loadBody();

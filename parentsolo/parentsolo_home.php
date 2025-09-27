@@ -12,22 +12,21 @@
 	$version = 'v60';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr" >
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" >
 <head>
-		<?
-			// module de gestion automatis&eacute;e des meta tags
+		<?php 			// module de gestion automatis&eacute;e des meta tags
 			JL::loadMod('meta');
 		?>	
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link href="<? echo $template.'/'.SITE_TEMPLATE.'.css?'.$version; ?>" rel="stylesheet" type="text/css" />
-		<link href="<? echo $template.'/'; ?>css/loader.css" rel="stylesheet" type="text/css" />
-		<link href="<? echo $template.'/'; ?>new_style/css/main.css" rel="stylesheet" type="text/css" />
+		<link href="<?php echo $template.'/'.SITE_TEMPLATE.'.css?'.$version; ?>" rel="stylesheet" type="text/css" />
+		<link href="<?php echo $template.'/'; ?>css/loader.css" rel="stylesheet" type="text/css" />
+		<link href="<?php echo $template.'/'; ?>new_style/css/main.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" type="text/css" href="js/check/jquery.tzCheckbox/jquery.tzCheckbox.css" />
 		<?php
 			/*if($_GET['lang']!="fr"){
 				?>
-					<link href="<? echo $template.'/'.SITE_TEMPLATE.'.'.$_GET['lang'].'.css'; ?>" rel="stylesheet" type="text/css" />
+					<link href="<?php echo $template.'/'.SITE_TEMPLATE.'.'.$_GET['lang'].'.css'; ?>" rel="stylesheet" type="text/css" />
 				<?php
 			}*/
 		?><link rel="stylesheet" href="js/check/radios-to-slider.css" type="text/css" />
@@ -37,25 +36,24 @@
 		<link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Dancing+Script|Quicksand|Satisfy" rel="stylesheet">
-		<link href="<? echo $template; ?>/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+		<link href="<?php echo $template; ?>/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-	<script src="js/check/jquery-1.10.2.min.js"></script>
-		<script type="text/javascript" src="<? echo SITE_URL; ?>/js/lightbox/lightbox.js"></script>		
+	<!-- <script src="js/check/jquery-1.10.2.min.js"></script> -->
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+		<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/lightbox/lightbox.js"></script>		
 			
-		<script type="text/javascript" src="<? echo SITE_URL; ?>/js/swfobject/swfobject.js"></script>
-		<script type="text/javascript" src="<? echo SITE_URL; ?>/js/lightbox/lightbox.js"></script>
-		<?
-			if($app == 'home') {
+		<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/swfobject/swfobject.js"></script>
+		<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/lightbox/lightbox.js"></script>
+		<?php 			if($app == 'home') {
 			
 		?>
-				<script type="text/javascript" src="<? echo SITE_URL; ?>/js/app_home.js?<? echo $version; ?>"></script>
-				<script type="text/javascript" src="<? echo SITE_URL; ?>/js/swfobject/swfobject.js"></script>
-		<?
-			
+				<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/app_home.js?<?php echo $version; ?>"></script>
+				<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/swfobject/swfobject.js"></script>
+		<?php 			
 			} elseif($app == 'profil') {
 			?>
 
-				<? if(in_array($action, array('step2', 'step2submit', 'step7', 'step7submit'))) {
+				<?php if(in_array($action, array('step2', 'step2submit', 'step7', 'step7submit'))) {
 					/*if ($_GET["lang"]!="fr") {
 						//echo $_GET["lang"];
 						$jsUpExt = "-".$_GET["lang"];
@@ -63,47 +61,40 @@
 						$jsUpExt = "";
 					}*/
 					?>
-					<script type="text/javascript" src="<? echo SITE_URL; ?>/js/swfupload<?php /*echo $jsUpExt;*/ ?>/swfupload.js"></script>
-					<script type="text/javascript" src="<? echo SITE_URL; ?>/js/swfupload<?php /*echo $jsUpExt;*/ ?>/js/handlers.js?<? echo $version; ?>"></script>
-					<link rel="stylesheet" type="text/css" href="<? echo SITE_URL; ?>/js/swfupload<?php /*echo $jsUpExt;*/ ?>/default.css">
-				<? }?>
+					<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/swfupload<?php /*echo $jsUpExt;*/ ?>/swfupload.js"></script>
+					<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/swfupload<?php /*echo $jsUpExt;*/ ?>/js/handlers.js?<?php echo $version; ?>"></script>
+					<link rel="stylesheet" type="text/css" href="<?php echo SITE_URL; ?>/js/swfupload<?php /*echo $jsUpExt;*/ ?>/default.css">
+				<?php }?>
 
-				<script type="text/javascript" src="<? echo SITE_URL; ?>/js/app_profil.js?<? echo $version; ?>"></script>
+				<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/app_profil.js?<?php echo $version; ?>"></script>
 
-				<? if($action == 'step6') { ?>
-					<script type="text/javascript" src="<? echo SITE_URL; ?>/js/app_search.js"></script>
-				<? } ?>
+				<?php if($action == 'step6') { ?>
+					<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/app_search.js"></script>
+				<?php } ?>
 
-			<?
-			} elseif($app == 'search') {
+			<?php 			} elseif($app == 'search') {
 			?>
-				<script type="text/javascript" src="<? echo SITE_URL; ?>/js/app_search.js"></script>
-			<?
-			} elseif($app == 'message') {
+				<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/app_search.js"></script>
+			<?php 			} elseif($app == 'message') {
 			?>
-				<script type="text/javascript" src="<? echo SITE_URL; ?>/js/app_message.js?<? echo $version; ?>"></script>
+				<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/app_message.js?<?php echo $version; ?>"></script>
 
-			<?
-			} elseif($app == 'redac') {
+			<?php 			} elseif($app == 'redac') {
 			?>
 				
-			<?
-			} elseif($app == 'groupe' && in_array($action, array('edit', 'save'))) {
+			<?php 			} elseif($app == 'groupe' && in_array($action, array('edit', 'save'))) {
 			?>
-				<script type="text/javascript" src="<? echo SITE_URL; ?>/js/app_groupe.js"></script>
-				<script type="text/javascript" src="<? echo SITE_URL; ?>/js/swfupload/swfupload.js"></script>
-				<script type="text/javascript" src="<? echo SITE_URL; ?>/js/swfupload/js/handlers.js?<? echo $version; ?>"></script>
-				<link rel="stylesheet" type="text/css" href="<? echo SITE_URL; ?>/js/swfupload/default.css">
-			<?
-			}
+				<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/app_groupe.js"></script>
+				<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/swfupload/swfupload.js"></script>
+				<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/swfupload/js/handlers.js?<?php echo $version; ?>"></script>
+				<link rel="stylesheet" type="text/css" href="<?php echo SITE_URL; ?>/js/swfupload/default.css">
+			<?php 			}
 			if($app == 'inviter'){
 			?>
-				<script type="text/javascript" src="<? echo SITE_URL; ?>/js/app_inviter.js"></script>
-			<?
-			}
+				<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/app_inviter.js"></script>
+			<?php 			}
 		?>
-		<?
-			//Head pub Goldbach
+		<?php 			//Head pub Goldbach
 			 /*if($_GET['lang']=="de") {
                
 				?>
@@ -170,8 +161,7 @@ googletag.pubads().enableSyncRendering();
 googletag.enableServices();
 }
 </script>
-				<?
-			}else{
+				<?php 			}else{
 			?>
 				<script type="text/javascript">
 var setgbprotocoll = 'https:' == document.location.protocol;
@@ -216,10 +206,10 @@ googletag.cmd.push(function() {
 for (var key in setgbtargetingobj) {
 googletag.pubads().setTargeting(key, setgbtargetingobj[key].toString());
 }
-googletag.defineSlot('8373/CH/Helvetica-Media/CH_Parentsolo.ch_EX/Homepage/FR_Homepage_allAdformats', setgbldbSizes, 'leaderboard').addService(googletag.pubads());
-googletag.defineSlot('8373/CH/Helvetica-Media/CH_Parentsolo.ch_EX/Homepage/FR_Homepage_allAdformats', setgbskySizes, 'skyscraper').addService(googletag.pubads());
-googletag.defineSlot('8373/CH/Helvetica-Media/CH_Parentsolo.ch_EX/Homepage/FR_Homepage_allAdformats', setgbrecSizes, 'content').addService(googletag.pubads());
-googletag.defineOutOfPageSlot('8373/CH/Helvetica-Media/CH_Parentsolo.ch_EX/Homepage/FR_Homepage_allAdformats', 'outofpage').addService(googletag.pubads());
+googletag.defineSlot('8373/CH/Helvetica-Media/CH_solocircl.com_EX/Homepage/FR_Homepage_allAdformats', setgbldbSizes, 'leaderboard').addService(googletag.pubads());
+googletag.defineSlot('8373/CH/Helvetica-Media/CH_solocircl.com_EX/Homepage/FR_Homepage_allAdformats', setgbskySizes, 'skyscraper').addService(googletag.pubads());
+googletag.defineSlot('8373/CH/Helvetica-Media/CH_solocircl.com_EX/Homepage/FR_Homepage_allAdformats', setgbrecSizes, 'content').addService(googletag.pubads());
+googletag.defineOutOfPageSlot('8373/CH/Helvetica-Media/CH_solocircl.com_EX/Homepage/FR_Homepage_allAdformats', 'outofpage').addService(googletag.pubads());
 googletag.pubads().collapseEmptyDivs();
 googletag.enableServices();
 });
@@ -228,15 +218,15 @@ else{
 for (var key in setgbtargetingobj) {
 googletag.pubads().setTargeting(key, setgbtargetingobj[key].toString());
 }
-googletag.defineSlot('8373/CH/Helvetica-Media/CH_Parentsolo.ch_EX/Homepage/FR_Homepage_allAdformats', setgbldbSizes, 'leaderboard').addService(googletag.pubads());
-googletag.defineSlot('8373/CH/Helvetica-Media/CH_Parentsolo.ch_EX/Homepage/FR_Homepage_allAdformats', setgbskySizes, 'skyscraper').addService(googletag.pubads());
-googletag.defineSlot('8373/CH/Helvetica-Media/CH_Parentsolo.ch_EX/Homepage/FR_Homepage_allAdformats', setgbrecSizes, 'content').addService(googletag.pubads());
-googletag.defineOutOfPageSlot('8373/CH/Helvetica-Media/CH_Parentsolo.ch_EX/Homepage/FR_Homepage_allAdformats', 'outofpage').addService(googletag.pubads());
+googletag.defineSlot('8373/CH/Helvetica-Media/CH_solocircl.com_EX/Homepage/FR_Homepage_allAdformats', setgbldbSizes, 'leaderboard').addService(googletag.pubads());
+googletag.defineSlot('8373/CH/Helvetica-Media/CH_solocircl.com_EX/Homepage/FR_Homepage_allAdformats', setgbskySizes, 'skyscraper').addService(googletag.pubads());
+googletag.defineSlot('8373/CH/Helvetica-Media/CH_solocircl.com_EX/Homepage/FR_Homepage_allAdformats', setgbrecSizes, 'content').addService(googletag.pubads());
+googletag.defineOutOfPageSlot('8373/CH/Helvetica-Media/CH_solocircl.com_EX/Homepage/FR_Homepage_allAdformats', 'outofpage').addService(googletag.pubads());
 googletag.pubads().enableSyncRendering();
 googletag.enableServices();
 }
 </script>
-<?     
+<?php     
 			} */ 
 		?>
        
@@ -264,13 +254,13 @@ googletag.enableServices();
              </div>
         </div>
     </div>
-       <?/*
+       <?php /*
 		<script type="text/javascript">
-			var WlWebsiteId="parentsolo.ch";
+			var WlWebsiteId="solocircl.com";
 			var WlContentGroup="Default";
 			var WlAC= true;
 			document.write('<scr'+'ipt language="JavaScript" src="http://rc.ch.adlink.net/Tag/adlink/JS/Ch/'+WlWebsiteId+'/Gt.js"></scr'+'ipt>');
-		</script>   */?>
+		</script>   */ ?>
         
 	<!--<div class="body " id="top">-->			
 	<!--data url new theme style-->
@@ -293,22 +283,22 @@ jQuery.noConflict();
 });
 })(jQuery);
 </script>
-	<!--<script src="<? echo $template.'/'; ?>js/js/commonjs.js"></script>-->   
-	<script src="<? echo $template.'/'; ?>js/main.js"></script>
-	<script src="<? echo $template.'/'; ?>js/modernizr.custom.17475.js"></script>
-    <script type="text/javascript" src="<? echo $template.'/'; ?>js/jquery.elastislide.js"></script>	
-	 <script src="<? echo $template.'/'; ?>new_style/js/jquery.js"></script>
+	<!--<script src="<?php echo $template.'/'; ?>js/js/commonjs.js"></script>-->   
+	<script src="<?php echo $template.'/'; ?>js/main.js"></script>
+	<script src="<?php echo $template.'/'; ?>js/modernizr.custom.17475.js"></script>
+    <script type="text/javascript" src="<?php echo $template.'/'; ?>js/jquery.elastislide.js"></script>	
+	 <script src="<?php echo $template.'/'; ?>new_style/js/jquery.js"></script>
 	  <script src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="<? echo $template.'/'; ?>new_style/js/plugins/flipclock/flipclock.js"></script>
-    <script type="text/javascript" src="<? echo $template.'/'; ?>new_style/js/plugins/smoothscroll/smoothscroll.js"></script>
+    <script type="text/javascript" src="<?php echo $template.'/'; ?>new_style/js/plugins/flipclock/flipclock.js"></script>
+    <script type="text/javascript" src="<?php echo $template.'/'; ?>new_style/js/plugins/smoothscroll/smoothscroll.js"></script>
     <!-- REVOLUTION JS FILES -->
-    <script type="text/javascript" src="<? echo $template.'/'; ?>new_style/js/plugins/revolution/js/jquery.themepunch.tools.min.js"></script>
-    <script type="text/javascript" src="<? echo $template.'/'; ?>new_style/js/plugins/revolution/js/jquery.themepunch.revolution.min.js"></script>
-    <script type="text/javascript" src="<? echo $template.'/'; ?>new_style/js/plugins/fancybox/jquery.fancybox.js"></script>
-    <script src="<? echo $template.'/'; ?>new_style/js/plugins/owl/owl.carousel.min.js" type="text/javascript"></script>
-   <script type="text/javascript" src="<? echo $template.'/'; ?>new_style/js/custom.js"></script>
-   <!-- <script src="<? echo $template.'/'; ?>js/core.min.js"></script> -->
-    <script src="<? echo $template.'/'; ?>js/script.js"></script>
+    <script type="text/javascript" src="<?php echo $template.'/'; ?>new_style/js/plugins/revolution/js/jquery.themepunch.tools.min.js"></script>
+    <script type="text/javascript" src="<?php echo $template.'/'; ?>new_style/js/plugins/revolution/js/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript" src="<?php echo $template.'/'; ?>new_style/js/plugins/fancybox/jquery.fancybox.js"></script>
+    <script src="<?php echo $template.'/'; ?>new_style/js/plugins/owl/owl.carousel.min.js" type="text/javascript"></script>
+   <script type="text/javascript" src="<?php echo $template.'/'; ?>new_style/js/custom.js"></script>
+   <!-- <script src="<?php echo $template.'/'; ?>js/core.min.js"></script> -->
+    <script src="<?php echo $template.'/'; ?>js/script.js"></script>
 				<script>
 jQuery.noConflict();
 (function($) {
@@ -420,5 +410,5 @@ $(window).bind('scroll', function () {
 				</script>
 				
 				
-				<script type="text/javascript" src="<? echo SITE_URL; ?>/js/mootools.js?<? echo $version; ?>"></script>
+				<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/mootools.js?<?php echo $version; ?>"></script>
 	</body>

@@ -1,12 +1,8 @@
 <?php
+declare(strict_types=1);
 
 class JLView
 {
-    public function __construct()
-    {
-        // Nothing special on init
-    }
-
     /**
      * Display messages
      *
@@ -15,7 +11,7 @@ class JLView
      */
     public function messages(array &$messages, bool $admin = true): void
     {
-        if (!count($messages)) {
+        if (empty($messages)) {
             return;
         }
 
@@ -27,9 +23,9 @@ class JLView
         // Build messages and detect type
         foreach ($messages as $message) {
             $stringMessages .= $message;
-            if (preg_match('/"valid"/', $message)) {
+            if (str_contains($message, '"valid"')) {
                 $validMessage++;
-            } elseif (preg_match('/"error"/', $message)) {
+            } elseif (str_contains($message, '"error"')) {
                 $errorMessage++;
             }
         }
@@ -43,13 +39,11 @@ class JLView
         if ($admin && class_exists('JLPanel')) {
             JLPanel::open();
         }
-
         ?>
-        <div class="messages <?php echo htmlspecialchars($className, ENT_QUOTES, 'UTF-8'); ?>">
-            <?php echo $stringMessages; ?>
+        <div class="messages <?= htmlspecialchars($className, ENT_QUOTES, 'UTF-8'); ?>">
+            <?= $stringMessages /* escaped earlier if needed */ ?>
         </div>
         <?php
-
         // Close panel for admin
         if ($admin && class_exists('JLPanel')) {
             JLPanel::close();

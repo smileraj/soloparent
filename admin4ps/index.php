@@ -1,5 +1,7 @@
 <?php
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 	// session php
 	session_start();
 	
@@ -26,6 +28,7 @@
 	if($app=='mailing_auto'){
 		require_once(SITE_PATH.'/framework/mysql2.class.php');
 	}else{
+		
 		require_once(SITE_PATH.'/framework/mysql.class.php');
 	}
 	$db	= new DB();

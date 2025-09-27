@@ -5,7 +5,7 @@ $lang_groupe = array(
 
 	//------------------Page groupe.html.php ---------
 
-	"MessagesParentsolo" => "Messages Parentsolo.ch",
+	"MessagesParentsolo" => "Messages solocircl.com",
 	
 	"MesGroupes" => " Mes groupes",
 	"General" => "G&eacute;n&eacute;ral",
@@ -118,7 +118,7 @@ $lang_groupe = array(
 	
 	
 	
-	"PhotoEnAttenteValidation" => "Cette photo est en attente de validation par un mod&eacute;rateur de Parentsolo.ch <br/><br/>Tant que la nouvelle photo sera en attente de validation, l'ancienne photo sera toujours utilis&eacute;e",
+	"PhotoEnAttenteValidation" => "Cette photo est en attente de validation par un mod&eacute;rateur de solocircl.com <br/><br/>Tant que la nouvelle photo sera en attente de validation, l'ancienne photo sera toujours utilis&eacute;e",
 	
 	
 	"ConfirmationAnnulation" => "Voulez-vous vraiment annuler la cr&eacute;ation de ce groupe",
@@ -147,12 +147,12 @@ $lang_groupe = array(
 	"QuitterGroupeReussi" => "Vous avez quitt&eacute; le groupe",
 	
 	"GroupeEnregistre" => "Groupe enregistr&eacute;",
-	"GroupesSoumisAValidation" => "Toute cr&eacute;ation ou modification d'un groupe est v&eacute;rifi&eacute;e par un mod&eacute;rateur de Parentsolo.ch avant d'&ecirc;tre publi&eacute; ou non sur le site",
+	"GroupesSoumisAValidation" => "Toute cr&eacute;ation ou modification d'un groupe est v&eacute;rifi&eacute;e par un mod&eacute;rateur de solocircl.com avant d'&ecirc;tre publi&eacute; ou non sur le site",
 	"AffichageGroupeDansListe" => "Votre nouveau groupe ou les modifications apport&eacute;es &agrave; celui-ci seront visibles dans l'onglet \"Tous les groupes\" apr&egrave;s validation par ce mod&eacute;rateur",
 	
 	"NonFondateurGroupe" => "Vous ne pouvez pas modifer ce groupe car vous n'&ecirc;tes pas le fondateur de celui-ci",
 	
-	"GroupeVerouille" => "Ce groupe a &eacute;t&eacute; verouill&eacute; par un mod&eacute;rateur de Parentsolo.ch, vous ne pouvez donc plus le modifier",
+	"GroupeVerouille" => "Ce groupe a &eacute;t&eacute; verouill&eacute; par un mod&eacute;rateur de solocircl.com, vous ne pouvez donc plus le modifier",
 	
 	"RejoindreGroupeInexistant" => "Le groupe que vous tentez de rejoindre n'existe pas ou plus",
 	
@@ -162,8 +162,8 @@ $lang_groupe = array(
 	
 	
 	
-	"VerificationModificationsGroupe" => "Toutes les modifications effectu&eacute;es sur un groupe devront &ecirc;tre v&eacute;rifi&eacute;es par un mod&eacute;rateur de ParentSolo.ch avant d'&ecirc;tre publi&eacute;es ou non sur le site",
-	"VerificationCreationGroupe" => "Votre groupe devra &ecirc;tre v&eacute;rifi&eacute; par un mod&eacute;rateur de Parentsolo.ch avant d'&ecirc;tre publi&eacute; ou non sur le site",
+	"VerificationModificationsGroupe" => "Toutes les modifications effectu&eacute;es sur un groupe devront &ecirc;tre v&eacute;rifi&eacute;es par un mod&eacute;rateur de solocircl.com avant d'&ecirc;tre publi&eacute;es ou non sur le site",
+	"VerificationCreationGroupe" => "Votre groupe devra &ecirc;tre v&eacute;rifi&eacute; par un mod&eacute;rateur de solocircl.com avant d'&ecirc;tre publi&eacute; ou non sur le site",
 	
 	
 	"IndiquezTitre" => "Veuillez indiquer le titre de votre groupe, s'il vous pla&icirc;t",

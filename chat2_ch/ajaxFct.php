@@ -328,7 +328,7 @@
 					$messages[2]->genre			= 'system';
 					$messages[2]->username		= 'ParentSolo';
 					$messages[2]->date_envoi	= date('Y-m-d H:i:s');
-					$messages[2]->texte			= $langChat["sysMessage_5"];//'ParentSolo.ch vous remercie pour votre compréhension.';
+					$messages[2]->texte			= $langChat["sysMessage_5"];//'solocircl.com vous remercie pour votre compréhension.';
 
 
 					// affiche le messages
@@ -342,7 +342,7 @@
 					$messages[0]->genre			= 'system';
 					$messages[0]->username		= 'ParentSolo';
 					$messages[0]->date_envoi	= date('Y-m-d H:i:s');
-					$messages[0]->texte			= $langChat["sysMessage_6"];//'Seuls les membres abonnés à Parentsolo.ch peuvent envoyer des messages sur le chat. [[[lien-abonnement]]]';
+					$messages[0]->texte			= $langChat["sysMessage_6"];//'Seuls les membres abonnés à solocircl.com peuvent envoyer des messages sur le chat. [[[lien-abonnement]]]';
 
 					// affiche le messages
 					displayMessages($messages);
@@ -465,17 +465,16 @@
 				}
 
 				// traitement du message
-				$texte	= setSmilies(nl2br(htmlentities($message->texte)));
-				$texte	= str_replace('[[[lien-abonnement]]]', '<a href="'.SITE_URL.'/index.php?app=abonnement&action=tarifs" title="M\'abonner &agrave; Parentsolo.ch" target="_blank">[ Cliquez ici pour vous abonner ]</a>', $texte);
+				$texte	= setSmilies(nl2br(JL::makeSafe($message->texte)));
+				$texte	= str_replace('[[[lien-abonnement]]]', '<a href="'.SITE_URL.'/index.php?app=abonnement&action=tarifs" title="M\'abonner &agrave; solocircl.com" target="_blank">[ Cliquez ici pour vous abonner ]</a>', $texte);
 
 				?>
 				<div class="message_<?php echo ($user->id==$message->user_id_from)?"from":"to";?>">
-					<span class="<? echo $message->genre; ?>"><? echo $message->username; ?></span><br>
-					<span class="heure"><? echo date('d/m/Y', strtotime($message->date_envoi)); ?> &agrave; <? echo date('H:i:s', strtotime($message->date_envoi)); ?></span>
-					<p><? echo $texte; ?></p>
+					<span class="<?php echo $message->genre; ?>"><?php echo $message->username; ?></span><br>
+					<span class="heure"><?php echo date('d/m/Y', strtotime($message->date_envoi)); ?> &agrave; <?php echo date('H:i:s', strtotime($message->date_envoi)); ?></span>
+					<p><?php echo $texte; ?></p>
 				</div>
-			<?
-			}
+			<?php 			}
 		}
 
 	}
@@ -562,16 +561,15 @@
 		global $lang_id;
 		// aide
 		/*?>
-		<div class="conversationUsername<? echo $user_id_to ? '0' : 'On'; ?>" id="chatHelp" onClick="document.location='<? echo SITE_URL.'/index2.php?app=chat&lang='.$lang_id; ?>';">Aide</div>
+		<div class="conversationUsername<?php echo $user_id_to ? '0' : 'On'; ?>" id="chatHelp" onClick="document.location='<?php echo SITE_URL.'/index2.php?app=chat&lang='.$lang_id; ?>';">Aide</div>
 		<div class="conversationCloseOff" style="visibility:hidden;">&nbsp;</div>
-		<?
-*/
+		<?php */
 		// pour chaque conversation
 		foreach($conversations as $conversation) {
 
-			?><div class="conv<? echo ($conversation->id != $user_id_to) ? $conversation->nouveau : 'On'; ?>" id="conv_<? echo $conversation->id; ?>" onClick="getConvUserInfos(<? echo $conversation->id; ?>);">
-			<div onclick="closeConv(<? echo$conversation->id; ?>);" class="close"></div>
-			<p><? echo $conversation->username; ?></p></div>
+			?><div class="conv<?php echo ($conversation->id != $user_id_to) ? $conversation->nouveau : 'On'; ?>" id="conv_<?php echo $conversation->id; ?>" onClick="getConvUserInfos(<?php echo $conversation->id; ?>);">
+			<div onclick="closeConv(<?php echo$conversation->id; ?>);" class="close"></div>
+			<p><?php echo $conversation->username; ?></p></div>
 			
 			
 			<?php

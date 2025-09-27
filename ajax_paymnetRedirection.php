@@ -45,7 +45,7 @@ $ogone_SHASIGN_val = sha1($ogone_SHASIGN_alias);
 				var timerPaypal=setInterval("form2();", 100);
 		</script>
 			
-			<? 
+			<?php 
 			}*/
 			?>
 			
@@ -125,8 +125,7 @@ $_SESSION['CANCELURL_saved'] = $_POST["CANCELURL"];
 				function form2(){try{clearInterval(timerPaypal);}catch(e){}document.form2.submit();}
 				var timerPaypal=setInterval("form2();", 50);
 		</script>
-			<?
-}
+			<?php }
 else {
 $ogone_SHA = 'Parentsoloch@123';
 $ogone_PSPID = $_POST["PSPID"];
@@ -218,8 +217,7 @@ $ogone_video_name = $ogone_video_name;
 				var timerPaypal=setInterval("form1();", 50);
 		</script>
 <form>
-<?
-
+<?php 
 }
 }
 else{

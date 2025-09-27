@@ -1,7 +1,5 @@
 <?php
-
-	// s&eacute;curit&eacute;
-	defined('JL') or die('Error 401');
+defined('JL') or die('Error 401');
 
 	global $user, $db, $langue;
 			include("lang/app_mod.".$_GET['lang'].".php");
@@ -72,45 +70,40 @@
 		?>
 
 		<div class="popin" id="popin">
-		<?
-			// s'il y a un message &agrave; afficher
+		<?php 			// s'il y a un message &agrave; afficher
 			if($message) {
 			?>
-				<a class="photo" style="background: url(<? echo $photo; ?>) top repeat-x;" href="<? echo JL::url('index.php?app=profil&action=view&id='.$userFrom->id.'&'.$langue); ?>"></a>
-				<p style="background: url(<? echo SITE_URL; ?>/parentsolo/images/event-<? echo $userFrom->last_event_type; ?>.png) bottom no-repeat;"><a href="<? echo JL::url('index.php?app=profil&action=view&id='.$userFrom->id.'&'.$langue); ?>" title="<?php echo $userFrom->genre == 'h' ? $lang_mod["VoirSonProfilH"] : $lang_mod["VoirSonProfilF"];?>"><? echo $userFrom->username; ?></a> <? echo $message; ?></p>
-			<?
-			}
+				<a class="photo" style="background: url(<?php echo $photo; ?>) top repeat-x;" href="<?php echo JL::url('index.php?app=profil&action=view&id='.$userFrom->id.'&'.$langue); ?>"></a>
+				<p style="background: url(<?php echo SITE_URL; ?>/parentsolo/images/event-<?php echo $userFrom->last_event_type; ?>.png) bottom no-repeat;"><a href="<?php echo JL::url('index.php?app=profil&action=view&id='.$userFrom->id.'&'.$langue); ?>" title="<?php echo $userFrom->genre == 'h' ? $lang_mod["VoirSonProfilH"] : $lang_mod["VoirSonProfilF"];?>"><?php echo $userFrom->username; ?></a> <?php echo $message; ?></p>
+			<?php 			}
 		?>
 		</div>
 
 		<script type="text/javascript">
 			var popinTimer = 0;
-			window.addEvent('domready', function(){
+			window.addEventListener('domready', function(){
 				var element = 'popin';
 
-				$(element).addEvent('click', function(){this.fade(0);});
+				$(element).on('click', function(){this.fadeOut(0);});
 
-				window.onresize = function(){positionPopIn(element, <? echo $elementRight; ?>, <? echo $elementBottom; ?>, 1)};
-				window.onscroll = function(){positionPopIn(element, <? echo $elementRight; ?>, <? echo $elementBottom; ?>, 1)};
+				window.onresize = function(){positionPopIn(element, <?php echo $elementRight; ?>, <?php echo $elementBottom; ?>, 1)};
+				window.onscroll = function(){positionPopIn(element, <?php echo $elementRight; ?>, <?php echo $elementBottom; ?>, 1)};
 
-				$(element).fade('hide');
+				$(element).fadeOut('hide');
 
-				<?
-				// s'il y a un message &agrave; afficher
+				<?php 				// s'il y a un message &agrave; afficher
 				if($message) {
 				?>
-					positionPopIn(element,<? echo $elementRight; ?>,<? echo $elementBottom; ?>,1);
-					$(element).fade('show');
+					positionPopIn(element,<?php echo $elementRight; ?>,<?php echo $elementBottom; ?>,1);
+					$(element).fadeOut('show');
 
-					popinTimer = setInterval('popinFade("'+element+'");', 4000);
+					popinTimer = setInterval('popinfadeOut("'+element+'");', 4000);
 
-				<?
-				}
+				<?php 				}
 				?>
 			});
 		</script>
-	<?
-
+	<?php 
 	}
 
 ?>

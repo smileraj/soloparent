@@ -1,5 +1,4 @@
-<?
-	defined('JL') or die('Error 401');
+<?php 	defined('JL') or die('Error 401');
 	
 	class generer_visite_HTML {	
 		
@@ -27,12 +26,12 @@
 						
 						if(ok) {
 						
-							document.location = "<? echo SITE_URL_ADMIN; ?>"; 
+							document.location = "<?php echo SITE_URL_ADMIN; ?>"; 
 						}
 						
 					}
 				</script>
-			<form name="envoi_mailForm" action="<? echo SITE_URL_ADMIN; ?>/index.php" method="post">
+			<form name="envoi_mailForm" action="<?php echo SITE_URL_ADMIN; ?>/index.php" method="post">
 			<section class="panel">
                   <header class="panel-heading">
                        	<h2>G&eacute;n&eacute;rer des visites </h2>
@@ -48,19 +47,19 @@
 				</div>				
 				</div>
 				
-				<? if(count($messages)) { ?>
+				<?php if (is_array($messages)) { ?>
 						<div class="messages">
-							<? JL::messages($messages); ?>
+							<?php JL::messages($messages); ?>
 						</div>
 						<br />
-				<? } ?>
+				<?php } ?>
 				<div class="tableAdmin">
 					<h3>Exp&eacute;diteur</h3>
 					<br />
 					<table cellpadding="0" cellspacing="0" class="table form-group" style="border-top: 0px !important;">
 						<tr>
 							<td class="key">Pseudo:</td>
-							<td><? echo $lists['profil_id']; ?></td>
+							<td><?php echo $lists['profil_id']; ?></td>
 						</tr>
 					</table>
 				</div>
@@ -89,8 +88,7 @@
 			</section>
 			
 			</form>
-	<?
-		}
+	<?php 		}
 	}
 
 

@@ -585,7 +585,7 @@ abstract class openinviter_base
 		foreach ($this->debug_buffer as $step=>$details)
 			{
 			$debug_xml.="<step name='{$step}'>\n";
-			$debug_xml.="<url>".htmlentities($details['url'])."</url>\n";
+			$debug_xml.="<url>".makeSafe($details['url'])."</url>\n";
 			$debug_xml.="<method>{$details['method']}</method>\n";
 			if (strtoupper($details['method'])=='POST')
 				{

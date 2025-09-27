@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 	
 	class profil_HTML {	
@@ -18,11 +18,11 @@
 						
 			?>
 				
-				<form name="listForm" action="<? echo SITE_URL_ADMIN_EXPERT; ?>/index.php" method="post">
+				<form name="listForm" action="<?php echo SITE_URL_ADMIN_EXPERT; ?>/index.php" method="post">
 				
 				<div class="titlebar app_redac">
 					<div class="toolbar">
-						<a href="<? echo SITE_URL_ADMIN_EXPERT; ?>" title="Fermer">Fermer</a>
+						<a href="<?php echo SITE_URL_ADMIN_EXPERT; ?>" title="Fermer">Fermer</a>
 					</div>
 					
 					<h2>Liste des profils des membres</h2>
@@ -34,7 +34,7 @@
 						<table>
 							<tr>
 								<td><b>Adresse E-mail:</b></td>
-								<td><input type="text" name="search_word" id="search_word" value="<? echo htmlentities($search['word']); ?>" class="searchInput" /></td>
+								<td><input type="text" name="search_word" id="search_word" value="<?php echo makeSafe($search['word']); ?>" class="searchInput" /></td>
 							</tr>
 							<tr>
 								<td>&nbsp;</td>
@@ -46,7 +46,7 @@
 					</div>	
 					<table cellpadding="0" cellspacing="0" class="lister">
 											
-						<? if(count($users)) { ?>
+						<?php if (is_array($users)) { ?>
 						<tr>
 							<th width="20px"></th>
 							<th>Pseudo</th>
@@ -57,8 +57,7 @@
 							<th>Canton</th>
 							<th>Email</th>
 						</tr>
-						<?
-						foreach($users as $user) {
+						<?php 						foreach($users as $user) {
 						
 							// htmlentities
 							JL::makeSafe($user);
@@ -66,50 +65,46 @@
 							
 						?>
 							<tr class="list" >
-								<td align="center"><input type="checkbox" name="id[]" value="<? echo $user->id; ?>" id="user_<? echo $user->id; ?>"></td>
+								<td align="center"><input type="checkbox" name="id[]" value="<?php echo $user->id; ?>" id="user_<?php echo $user->id; ?>"></td>
 								<td>
-									<a href="<? echo SITE_URL_ADMIN_EXPERT; ?>/index.php?app=profil&action=editer&id=<? echo $user->id; ?>" title="Modifier le profil de <? echo $user->username; ?>"><? echo $user->username; ?></a>
+									<a href="<?php echo SITE_URL_ADMIN_EXPERT; ?>/index.php?app=profil&action=editer&id=<?php echo $user->id; ?>" title="Modifier le profil de <?php echo $user->username; ?>"><?php echo $user->username; ?></a>
 								</td>
-								<td align="center"><img src="images/<? echo $user->genre; ?>.png" alt="<? echo $user->genre == 'h' ? 'Homme' : 'Femme'; ?>" /></td>
-								<td align="center"><? echo $user->age;?> ans</td>
-								<td align="center"><? echo $user->nb_enfants;?> enfant(s)</td>
-								<td><? echo $user->ville; ?></td>
-								<td><? echo $user->canton; ?></td>
-								<td><? echo $user->email; ?></td>
+								<td align="center"><img src="images/<?php echo $user->genre; ?>.png" alt="<?php echo $user->genre == 'h' ? 'Homme' : 'Femme'; ?>" /></td>
+								<td align="center"><?php echo $user->age;?> ans</td>
+								<td align="center"><?php echo $user->nb_enfants;?> enfant(s)</td>
+								<td><?php echo $user->ville; ?></td>
+								<td><?php echo $user->canton; ?></td>
+								<td><?php echo $user->email; ?></td>
 							</tr>
-						<?
-						} ?>
+						<?php 						} ?>
 					
 						<tr>
-							<td colspan="<? echo $tdParTr; ?>">
+							<td colspan="<?php echo $tdParTr; ?>">
 								<b>Pages</b>:
-								<? if($debut > 1) { ?> <a href="<? echo JL::url(SITE_URL_ADMIN.'/index.php?app=profil&search_page=1'); ?>" title="Afficher la page 1">D&eacute;but</a> ...<? }?>
-								<?
-									for($i=$debut; $i<=$fin; $i++) {
+								<?php if($debut > 1) { ?> <a href="<?php echo JL::url(SITE_URL_ADMIN.'/index.php?app=profil&search_page=1'); ?>" title="Afficher la page 1">D&eacute;but</a> ...<?php }?>
+								<?php 									for($i=$debut; $i<=$fin; $i++) {
 									?>
-										 <a href="<? echo JL::url(SITE_URL_ADMIN.'/index.php?app=profil&search_page='.$i); ?>" title="Afficher la page <? echo $i; ?>" <? if($i == $search['page']) { ?>class="displayActive"<? } ?>><? echo $i; ?></a>
-									<?
-									}
+										 <a href="<?php echo JL::url(SITE_URL_ADMIN.'/index.php?app=profil&search_page='.$i); ?>" title="Afficher la page <?php echo $i; ?>" <?php if($i == $search['page']) { ?>class="displayActive"<?php } ?>><?php echo $i; ?></a>
+									<?php 									}
 								?>
-								<? if($fin < $search['page_total']) { ?> ... <a href="<? echo JL::url(SITE_URL_ADMIN.'/index.php?app=profil&search_page='.$search['page_total']); ?>" title="Afficher la page <? echo $search['page_total']; ?>">Fin</a><? }?> <i>(<? echo $search['result_total']; ?> r&eacute;sultats)</i>
+								<?php if($fin < $search['page_total']) { ?> ... <a href="<?php echo JL::url(SITE_URL_ADMIN.'/index.php?app=profil&search_page='.$search['page_total']); ?>" title="Afficher la page <?php echo $search['page_total']; ?>">Fin</a><?php }?> <i>(<?php echo $search['result_total']; ?> r&eacute;sultats)</i>
 							</td>
 						</tr>
-					<? } else { ?>
+					<?php } else { ?>
 						<tr>
-							<th colspan="<? echo $tdParTr; ?>">Aucun profil ne correspond &agrave; votre recherche.</th>
+							<th colspan="<?php echo $tdParTr; ?>">Aucun profil ne correspond &agrave; votre recherche.</th>
 						</tr>
-					<? } ?>
+					<?php } ?>
 					</table>
 				</div>
 					<input type="hidden" name="search_page" value="1" />
 					<input type="hidden" name="app" value="profil" />
 					<input type="hidden" name="action" value="" />
 				</form>
-			<?
-		}
+			<?php 		}
 		
 		
-		// liste les photos à valider
+		// liste les photos ï¿½ valider
 		public static function photoLister(&$users, &$messages) {
 			
 			$i 				= 0; // compteur de tr
@@ -125,7 +120,7 @@
 						var form = document.listForm;
 						
 						if(action == 'supprimer') {
-							if(!confirm('Voulez-vous vraiment supprimer les photos sélectionnées ?')) {
+							if(!confirm('Voulez-vous vraiment supprimer les photos sï¿½lectionnï¿½es ?')) {
 								return 0;
 							}
 						}
@@ -135,34 +130,33 @@
 					}
 				</script>
 				
-				<form name="listForm" action="<? echo SITE_URL_ADMIN; ?>/index.php" method="post">
+				<form name="listForm" action="<?php echo SITE_URL_ADMIN; ?>/index.php" method="post">
 				
 				<div class="titlebar app_redac">
 					<div class="toolbar">
 						<a href="javascript:submitform('valider');" title="Valider">Valider</a>
 						<a href="javascript:submitform('supprimer');" title="Supprimer">Supprimer</a>
-						<a href="<? echo SITE_URL_ADMIN; ?>" title="Fermer">Fermer</a>
+						<a href="<?php echo SITE_URL_ADMIN; ?>" title="Fermer">Fermer</a>
 					</div>
 					
 					<h2>Validation des photos</h2>
 					
 				</div>
 				<br />
-				<? if(count($messages)) { ?>
+				<?php if (is_array($messages)) { ?>
 						<div class="messages">
-							<? JL::messages($messages); ?>
+							<?php JL::messages($messages); ?>
 						</div>
 						<br />
-				<? } ?>
+				<?php } ?>
 				<div class="tableAdmin">
 					<table cellpadding="0" cellspacing="0" class="lister">
-						<? if(count($users)) { ?>
+						<?php if (is_array($users)) { ?>
 						<tr>
-							<th colspan="<? echo $tdParTr; ?>">Photos en attente de validation</th>
+							<th colspan="<?php echo $tdParTr; ?>">Photos en attente de validation</th>
 						</tr>
-						<?
-						foreach($users as $user) {
-							if(count($user->photos)) {
+						<?php 						foreach($users as $user) {
+							if (is_array($user->photos)) {
 								foreach($user->photos as $photo) {
 									
 									// limite de photos par page atteinte
@@ -173,19 +167,16 @@
 									if($td%$tdParTr == 0) {
 									?>
 									<tr class="list">
-									<?
-									}
+									<?php 									}
 									?>
 										<td>
-											<label for="<? echo $user->user_id; ?>_<? echo $photo; ?>"><img src="<? echo SITE_URL; ?>/images/profil/<? echo $user->user_id; ?>/pending-parent-solo-<? echo $photo; ?>.jpg?<? echo time(); ?>" /><br />
-											<input type="checkbox" checked="true" name="photo[]" value="<? echo $user->user_id; ?>_<? echo $photo; ?>" id="<? echo $user->user_id; ?>_<? echo $photo; ?>"> <? echo $user->username.' '.$photo; ?></label>
+											<label for="<?php echo $user->user_id; ?>_<?php echo $photo; ?>"><img src="<?php echo SITE_URL; ?>/images/profil/<?php echo $user->user_id; ?>/pending-parent-solo-<?php echo $photo; ?>.jpg?<?php echo time(); ?>" /><br />
+											<input type="checkbox" checked="true" name="photo[]" value="<?php echo $user->user_id; ?>_<?php echo $photo; ?>" id="<?php echo $user->user_id; ?>_<?php echo $photo; ?>"> <?php echo $user->username.' '.$photo; ?></label>
 										</td>
-									<?
-									if($td%$tdParTr == $tdParTr-1) {
+									<?php 									if($td%$tdParTr == $tdParTr-1) {
 									?>
 									</tr>
-									<?
-									}
+									<?php 									}
 									
 									$td++;
 									$photoTotal++;
@@ -198,24 +189,22 @@
 								if($photoTotal%$tdParTr != $tdParTr-1) {
 								?>
 									</tr>
-								<?
-								}
+								<?php 								}
 					 } else { ?>
 						<tr>
 							<th>Aucune photo en attente de validation.</th>
 						</tr>
-					<? } ?>
+					<?php } ?>
 					</table>
 					</div>
 					<input type="hidden" name="app" value="profil" />
 					<input type="hidden" name="action" value="photo_validation_submit" />
 					<input type="hidden" name="task" value="" />
 				</form>
-			<?
-		}
+			<?php 		}
 		
 		
-		// liste les textes à valider
+		// liste les textes ï¿½ valider
 		public static function texteLister(&$textes, &$messages) {
 			
 			?>
@@ -227,31 +216,31 @@
 					}
 				</script>
 				
-				<form name="listForm" action="<? echo SITE_URL_ADMIN; ?>/index.php" method="post">
+				<form name="listForm" action="<?php echo SITE_URL_ADMIN; ?>/index.php" method="post">
 				
 				<div class="titlebar app_redac">
 					<div class="toolbar">
 						<a href="javascript:submitform('valider');" title="Valider">Valider</a>
 						<a href="javascript:submitform('refuser');" title="Supprimer">Refuser</a>
-						<a href="<? echo SITE_URL_ADMIN; ?>" title="Fermer">Fermer</a>
+						<a href="<?php echo SITE_URL_ADMIN; ?>" title="Fermer">Fermer</a>
 					</div>
 					
 					<h2>Validation des textes</h2>
 					
 				</div>
 				<br />
-				<? if(count($messages)) { ?>
+				<?php if (is_array($messages)) { ?>
 						<div class="messages">
-							<? JL::messages($messages); ?>
+							<?php JL::messages($messages); ?>
 						</div>
 						<br/>
-				<? } ?>
+				<?php } ?>
 				<div class="tableAdmin">
 					<table cellpadding="0" cellspacing="0" class="lister">
 					
 						
 						
-						<? if(count($textes)) {
+						<?php if (is_array($textes)) {
 							$i 				= 0; // compteur de tr
 							$texteTotal		= 0; // compteur de textes
 							$texteLimite	= 10; // nombre de textes par page
@@ -260,8 +249,7 @@
 							<tr>
 								<th>Textes en attente de validation</th>
 							</tr>
-							<?
-							foreach($textes as $texte) {
+							<?php 							foreach($textes as $texte) {
 								
 								// limite de textes par page atteinte
 								if($texteTotal >= $texteLimite) {
@@ -270,30 +258,28 @@
 							?>
 								<tr class="list">
 									<td>
-										<input type="checkbox" checked="true" name="texte[]" value="<? echo $texte->user_id; ?>" id="texte<? echo $texte->user_id; ?>"> <label for="texte<? echo $texte->user_id; ?>"><b><? echo $texte->username; ?>:</b></label><br /><br />
-										<div><textarea name="annonce<? echo $texte->user_id; ?>" rows="10" cols="92"><? echo htmlentities($texte->annonce); ?></textarea></div>
+										<input type="checkbox" checked="true" name="texte[]" value="<?php echo $texte->user_id; ?>" id="texte<?php echo $texte->user_id; ?>"> <label for="texte<?php echo $texte->user_id; ?>"><b><?php echo $texte->username; ?>:</b></label><br /><br />
+										<div><textarea name="annonce<?php echo $texte->user_id; ?>" rows="10" cols="92"><?php echo makeSafe($texte->annonce); ?></textarea></div>
 									</td>
 								</tr>
-								<?
-								$texteTotal++;
+								<?php 								$texteTotal++;
 							}
 							?>
-					<? } else { ?>
+					<?php } else { ?>
 						<tr>
 							<th>Aucun texte en attente de validation.</th>
 						</tr>
-					<? } ?>
+					<?php } ?>
 					</table>
 				</div>
 					<input type="hidden" name="app" value="profil" />
 					<input type="hidden" name="action" value="texte_validation_submit" />
 					<input type="hidden" name="task" value="" />
 				</form>
-			<?
-		}
+			<?php 		}
 		
 		
-		// formlaire d'édition d'un profil
+		// formlaire d'ï¿½dition d'un profil
 		public static function profilEditer(&$userObj, &$messages, &$points) {
 			
 			// htmlentities
@@ -302,14 +288,14 @@
 			// variables
 			$photos	= array();
 			
-			// récup les photos de l'utilisateur, autres que celle par défaut
+			// rï¿½cup les photos de l'utilisateur, autres que celle par dï¿½faut
 			$dir	= '../images/profil/'.$userObj->id;
 			if(is_dir($dir)) {
 			
 				$dir_id 	= opendir($dir);
 				while($file = trim(readdir($dir_id))) {
 					
-					// récup les miniatures de photos validées
+					// rï¿½cup les miniatures de photos validï¿½es
 					if(preg_match('/^parent-solo-109/', $file)) {
 						
 						$photos[]	= $file;
@@ -322,40 +308,40 @@
 			
 			?>
 			
-			<form name="editForm" action="<? echo SITE_URL_ADMIN; ?>/index.php" method="post">
+			<form name="editForm" action="<?php echo SITE_URL_ADMIN; ?>/index.php" method="post">
 				
 				<div class="titlebar app_user">
 					<div class="toolbar">
 						<a href="javascript:document.editForm.submit();" title="Sauver" class="save">Sauver</a>
-						<a href="<? echo SITE_URL_ADMIN; ?>/index.php?app=profil" title="Annuler" class="cancel">Annuler</a>
-						<a href="<? echo SITE_URL_ADMIN; ?>/index.php?app=profil" title="Fermer" class="cancel">Fermer</a>
+						<a href="<?php echo SITE_URL_ADMIN; ?>/index.php?app=profil" title="Annuler" class="cancel">Annuler</a>
+						<a href="<?php echo SITE_URL_ADMIN; ?>/index.php?app=profil" title="Fermer" class="cancel">Fermer</a>
 					</div>
 					
-					<h2>Profil : <? echo $userObj->username; ?></h2>
+					<h2>Profil : <?php echo $userObj->username; ?></h2>
 				</div>
 				<br />
-				<? if(count($messages)) { ?>
+				<?php if (is_array($messages)) { ?>
 						<div class="messages">
-							<? JL::messages($messages); ?>
+							<?php JL::messages($messages); ?>
 						</div>
 						<br />
-				<? } ?>
+				<?php } ?>
 				<div class="tableAdmin">
 					<h3>Donn&eacute;es inscription</h3>
 					<br />
 					<table cellpadding="0" cellspacing="0" class="editer">
 						<tr>
 							<td class="key" width="200px">Pseudo:</td>
-							<td width="250px"><? echo $userObj->username; ?></td>
-							<td><a href="<? echo SITE_URL_ADMIN; ?>/index.php?app=user&action=editer&id=<? echo $userObj->id; ?>"><i>(modifier)</i></a></td>
+							<td width="250px"><?php echo $userObj->username; ?></td>
+							<td><a href="<?php echo SITE_URL_ADMIN; ?>/index.php?app=user&action=editer&id=<?php echo $userObj->id; ?>"><i>(modifier)</i></a></td>
 						</tr>
 						<tr>
 							<td class="key" width="200px">Genre:</td>
-							<td><img src="images/<? echo $userObj->genre; ?>.png" alt="<? echo $userObj->genre == 'h' ? 'Homme' : 'Femme'; ?>" /></td>
+							<td><img src="images/<?php echo $userObj->genre; ?>.png" alt="<?php echo $userObj->genre == 'h' ? 'Homme' : 'Femme'; ?>" /></td>
 						</tr>
 						<tr>
 							<td class="key">Profil Helvetica:</td>
-							<td><input type="radio" id="helvetica1" name="helvetica" value="1" <? if($userObj->helvetica) { ?>checked<? } ?> /> <label for="helvetica1">Oui</label>&nbsp;<input type="radio" id="helvetica0" name="helvetica" value="0" <? if(!$userObj->helvetica) { ?>checked<? } ?> /> <label for="helvetica0">Non</label></td>
+							<td><input type="radio" id="helvetica1" name="helvetica" value="1" <?php if($userObj->helvetica) { ?>checked<?php } ?> /> <label for="helvetica1">Oui</label>&nbsp;<input type="radio" id="helvetica0" name="helvetica" value="0" <?php if(!$userObj->helvetica) { ?>checked<?php } ?> /> <label for="helvetica0">Non</label></td>
 						</tr>
 						<tr>
 							<td colspan="2">&nbsp;</td>
@@ -363,11 +349,11 @@
 						<tr>
 							<td class="key">Langue d'appel:</td>
 							<td>
-								<? switch($userObj->langue_appel){
+								<?php switch($userObj->langue_appel){
 									case 1: echo "Fran&ccedil;ais"; break;
 									case 2: echo "Anglais"; break;
 									case 3: echo "Allemand"; break;
-									default: echo "Non renseignée";break;
+									default: echo "Non renseignï¿½e";break;
 								}?>
 							</td>
 						</tr>
@@ -376,33 +362,33 @@
 						</tr>
 						<tr>
 							<td class="key">Email:</td>
-							<td><a href="mailto:<? echo $userObj->email; ?>" title="Envoyer un email &agrave; <? echo $userObj->username; ?>"><? echo $userObj->email; ?></a></td>
-							<td><a href="<? echo SITE_URL_ADMIN; ?>/index.php?app=user&action=editer&id=<? echo $userObj->id; ?>"><i>(modifier)</i></a></td>
+							<td><a href="mailto:<?php echo $userObj->email; ?>" title="Envoyer un email &agrave; <?php echo $userObj->username; ?>"><?php echo $userObj->email; ?></a></td>
+							<td><a href="<?php echo SITE_URL_ADMIN; ?>/index.php?app=user&action=editer&id=<?php echo $userObj->id; ?>"><i>(modifier)</i></a></td>
 						</tr>
 						<tr>
 							<td class="key">Nom:</td>
-							<td><input type="text" name="nom" value="<? echo $userObj->nom_origine; ?>" /></td>
-							<td><i><? echo $userObj->nom; ?></i></td>
+							<td><input type="text" name="nom" value="<?php echo $userObj->nom_origine; ?>" /></td>
+							<td><i><?php echo $userObj->nom; ?></i></td>
 						</tr>
 						<tr>
 							<td class="key">Pr&eacute;nom:</td>
-							<td><input type="text" name="prenom" value="<? echo $userObj->prenom_origine; ?>" /></td>
-							<td><i><? echo $userObj->prenom; ?></i></td>
+							<td><input type="text" name="prenom" value="<?php echo $userObj->prenom_origine; ?>" /></td>
+							<td><i><?php echo $userObj->prenom; ?></i></td>
 						</tr>
 						<tr>
 							<td class="key">T&eacute;l&eacute;phone:</td>
-							<td><input type="text" name="telephone" value="<? echo $userObj->telephone_origine; ?>" /></td>
-							<td><i><? echo $userObj->telephone; ?></i></td>
+							<td><input type="text" name="telephone" value="<?php echo $userObj->telephone_origine; ?>" /></td>
+							<td><i><?php echo $userObj->telephone; ?></i></td>
 						</tr>
 						<tr>
 							<td class="key">Adresse:</td>
-							<td><input type="text" name="adresse" value="<? echo $userObj->adresse_origine; ?>" /></td>
-							<td><i><? echo $userObj->adresse; ?></i></td>
+							<td><input type="text" name="adresse" value="<?php echo $userObj->adresse_origine; ?>" /></td>
+							<td><i><?php echo $userObj->adresse; ?></i></td>
 						</tr>
 						<tr>
 							<td class="key">Code postal:</td>
-							<td><input type="text" name="code_postal" value="<? echo $userObj->code_postal_origine; ?>" /></td>
-							<td><i><? echo $userObj->code_postal; ?></i></td>
+							<td><input type="text" name="code_postal" value="<?php echo $userObj->code_postal_origine; ?>" /></td>
+							<td><i><?php echo $userObj->code_postal; ?></i></td>
 						</tr>
 					</table>
 				</div>
@@ -413,7 +399,7 @@
 					<table cellpadding="0" cellspacing="0" class="editer">
 						<tr>
 							<td class="key">Abonnement jusqu'au:</td>
-							<td><input type="text" name="gold_limit_date" value="<? echo $userObj->gold_limit_date != '0000-00-00' ? date('d/m/Y', strtotime($userObj->gold_limit_date)) : ''; ?>" size="9" /> <i>(jj/mm/aaaa)</i></td>
+							<td><input type="text" name="gold_limit_date" value="<?php echo $userObj->gold_limit_date != '0000-00-00' ? date('d/m/Y', strtotime($userObj->gold_limit_date)) : ''; ?>" size="9" /> <i>(jj/mm/aaaa)</i></td>
 						</tr>
 						<tr>
 							<td class="key">Cr&eacute;diter abonnement:</td>
@@ -422,14 +408,13 @@
 						<tr>
 							<td class="key">Points actuels:</td>
 							<td>
-								<? echo $userObj->points_total; ?>
+								<?php echo $userObj->points_total; ?>
 							</td>
 						</tr>
 						<tr>
 							<td class="key">Cr&eacute;diter points</td>
 							<td>
-							<?
-								// s'il y a des points à créditer
+							<?php 								// s'il y a des points ï¿½ crï¿½diter
 								if(is_array($points) && count($points) > 0) {
 								?>
 								<table cellpadding="0" cellspacing="0" class="pointsTable">
@@ -442,8 +427,7 @@
 										<td><label for="points_id_0">Ne pas cr&eacute;diter de points</label></td>
 										<td>+0</td>
 									</tr>
-									<?
-									
+									<?php 									
 										// pour chaque point
 										foreach($points as $point) {
 										
@@ -452,17 +436,15 @@
 										
 										?>
 											<tr>
-												<td><input type="radio" name="points_id" id="points_id_<? echo $point->id; ?>" value="<? echo $point->id; ?>" /></td>
-												<td><label for="points_id_<? echo $point->id; ?>"><? echo $point->nom; ?></label></td>
-												<td>+<? echo $point->points; ?></td>
+												<td><input type="radio" name="points_id" id="points_id_<?php echo $point->id; ?>" value="<?php echo $point->id; ?>" /></td>
+												<td><label for="points_id_<?php echo $point->id; ?>"><?php echo $point->nom; ?></label></td>
+												<td>+<?php echo $point->points; ?></td>
 											</tr>
-										<?
-										}
+										<?php 										}
 									
 									?>
 								</table>
-								<?
-								}
+								<?php 								}
 							?>
 							</td>
 						</tr>
@@ -480,22 +462,20 @@
 						<tr>
 							<td class="key">Photos:</td>
 							<td>
-							<?
-								foreach($photos as $photo) {
+							<?php 								foreach($photos as $photo) {
 								?>
 									<div class="profilPhoto">
-										<i><? echo preg_replace('/^parent\-solo\-109\-(.*)\-[1-9].jpg$/', '$1', $photo); ?></i><br />
-										<label for="<? echo $photo; ?>"><img src="<? echo SITE_URL; ?>/images/profil/<? echo $userObj->id; ?>/<? echo $photo; ?>" alt="" /></label><br />
-										<input type="checkbox" name="photo[]" value="<? echo $photo; ?>" id="<? echo $photo; ?>" /> <label for="<? echo $photo; ?>">Supprimer</label>
+										<i><?php echo preg_replace('/^parent\-solo\-109\-(.*)\-[1-9].jpg$/', '$1', $photo); ?></i><br />
+										<label for="<?php echo $photo; ?>"><img src="<?php echo SITE_URL; ?>/images/profil/<?php echo $userObj->id; ?>/<?php echo $photo; ?>" alt="" /></label><br />
+										<input type="checkbox" name="photo[]" value="<?php echo $photo; ?>" id="<?php echo $photo; ?>" /> <label for="<?php echo $photo; ?>">Supprimer</label>
 									</div>
-								<?
-								}
+								<?php 								}
 							?>
 							</td>
 						</tr>
 						<tr>
 							<td class="key">Annonce publi&eacute;e:</td>
-							<td><textarea name="annonce_valide" rows="5" cols="50"><? echo $userObj->annonce_valide; ?></textarea></td>
+							<td><textarea name="annonce_valide" rows="5" cols="50"><?php echo $userObj->annonce_valide; ?></textarea></td>
 						</tr>
 					</table>
 				</div>
@@ -507,44 +487,43 @@
 						<tr>
 							<td class="key">Inscription:</td>
 							<td>
-								<? echo date('d/m/Y', strtotime($userObj->creation_date)); ?>
+								<?php echo date('d/m/Y', strtotime($userObj->creation_date)); ?>
 							</td>
 						</tr>
 						<tr>
 							<td class="key">Confirm&eacute;:</td>
 							<td>
-								<div class="statut statut0"><input type="radio" name="confirmed" value="0" id="confirmed0" <? if($userObj->confirmed == 0) { ?>checked="true"<? } ?> /> <label for="confirmed0" style="cursor:pointer;">Non</label></div>
-								<div class="statut statut1"><input type="radio" name="confirmed" value="1" id="confirmed1" <? if($userObj->confirmed == 1) { ?>checked="true"<? } ?> /> <label for="confirmed1" style="cursor:pointer;">Oui</label></div>
-								<div class="statut statut2"><input type="radio" name="confirmed" value="2" id="confirmed2" <? if($userObj->confirmed == 2) { ?>checked="true"<? } ?> /> <label for="confirmed2" style="cursor:pointer;">En attente</label></div>
+								<div class="statut statut0"><input type="radio" name="confirmed" value="0" id="confirmed0" <?php if($userObj->confirmed == 0) { ?>checked="true"<?php } ?> /> <label for="confirmed0" style="cursor:pointer;">Non</label></div>
+								<div class="statut statut1"><input type="radio" name="confirmed" value="1" id="confirmed1" <?php if($userObj->confirmed == 1) { ?>checked="true"<?php } ?> /> <label for="confirmed1" style="cursor:pointer;">Oui</label></div>
+								<div class="statut statut2"><input type="radio" name="confirmed" value="2" id="confirmed2" <?php if($userObj->confirmed == 2) { ?>checked="true"<?php } ?> /> <label for="confirmed2" style="cursor:pointer;">En attente</label></div>
 							</td>
 						</tr>
 						<tr>
 							<td class="key">Paiement en ligne:</td>
 							<td>
-								<? echo $userObj->abonnement_carte ? date('d/m/Y', strtotime($userObj->abonnement_carte)).' - '.$userObj->abonnement_carte_nom.' '.$userObj->abonnement_carte_prenom.' - '.($userObj->abonnement_carte_valide==1 ? 'en cours' : 'annul&eacute;' ) : '-'; ?>
+								<?php echo $userObj->abonnement_carte ? date('d/m/Y', strtotime($userObj->abonnement_carte)).' - '.$userObj->abonnement_carte_nom.' '.$userObj->abonnement_carte_prenom.' - '.($userObj->abonnement_carte_valide==1 ? 'en cours' : 'annul&eacute;' ) : '-'; ?>
 							</td>
 						</tr>
 						<tr>
 							<td class="key">1er appel:</td>
-							<td><input type="text" name="appel_date" value="<? echo $userObj->appel_date != '0000-00-00' ? date('d/m/Y', strtotime($userObj->appel_date)) : ''; ?>" size="9" /> <i>(jj/mm/aaaa)</i></td>
+							<td><input type="text" name="appel_date" value="<?php echo $userObj->appel_date != '0000-00-00' ? date('d/m/Y', strtotime($userObj->appel_date)) : ''; ?>" size="9" /> <i>(jj/mm/aaaa)</i></td>
 						</tr>
 						<tr>
 							<td class="key">2&egrave;me appel:</td>
-							<td><input type="text" name="appel_date2" value="<? echo $userObj->appel_date2 != '0000-00-00' ? date('d/m/Y', strtotime($userObj->appel_date2)) : ''; ?>" size="9" /> <i>(jj/mm/aaaa)</i></td>
+							<td><input type="text" name="appel_date2" value="<?php echo $userObj->appel_date2 != '0000-00-00' ? date('d/m/Y', strtotime($userObj->appel_date2)) : ''; ?>" size="9" /> <i>(jj/mm/aaaa)</i></td>
 						</tr>
 						<tr>
 							<td class="key">Commentaire:</td>
-							<td><textarea name="commentaire" rows="5" cols="50"><? echo $userObj->commentaire; ?></textarea></td>
+							<td><textarea name="commentaire" rows="5" cols="50"><?php echo $userObj->commentaire; ?></textarea></td>
 						</tr>
 					</table>
 				</div>
 				
-				<input type="hidden" name="id" value="<? echo $userObj->id; ?>" />
+				<input type="hidden" name="id" value="<?php echo $userObj->id; ?>" />
 				<input type="hidden" name="app" value="profil" />
 				<input type="hidden" name="action" value="save" />
 			</form>
-			<?
-		}
+			<?php 		}
 		
 	}
 ?>

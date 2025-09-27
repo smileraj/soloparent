@@ -13,14 +13,14 @@ function effacer_recherche_avance() {
 }
 
 function afficher_critere(critere) {
-	$('critere_'+critere).style.display ='block';
-	$('critere_'+critere).style.width ='100%';
+	$('#critere_'+critere).style.display ='block';
+	$('#critere_'+critere).style.width ='100%';
 	$(critere+'_voir_plus').style.display ='none';
 	$(critere+'_voir_moins').style.display ='inline';
 }
 
 function effacer_critere(critere) {
-	$('critere_'+critere).style.display ='none';
+	$('#critere_'+critere).style.display ='none';
 	$(critere+'_voir_plus').style.display ='inline';
 	$(critere+'_voir_moins').style.display ='none';
 }

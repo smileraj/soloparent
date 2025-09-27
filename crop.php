@@ -323,8 +323,7 @@ file_put_contents('images/profil/'.$upload_dir.'/temp-parent-solo-enfant-'.$but_
 }
 	else{
 	?>
-	<?
-	//echo "Limited Images";
+	<?php 	//echo "Limited Images";
 	}
 	  //php file
 

@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 
 	class HTML_login {
@@ -9,16 +9,15 @@
 			global $user;
 		?>
 		<div class="login">
-		<form action="<? echo SITE_URL_ADMIN; ?>/index.php" name="login" method="post">
+		<form action="<?php echo SITE_URL_ADMIN; ?>/index.php" name="login" method="post">
 			<table cellpadding="0" cellspacing="0">
-				<? // si utilisateur log
+				<?php // si utilisateur log
 				if($user->id) {
 				?>
 					<tr class="loginright">
-						<td>Bienvenue <span class="pink"><? echo $user->username; ?></span></td><td><input type="image" src="<? echo SITE_URL; ?>/parentsolo/images/logout.jpg" /></td>
+						<td>Bienvenue <span class="pink"><?php echo $user->username; ?></span></td><td><input type="image" src="<?php echo SITE_URL; ?>/parentsolo/images/logout.jpg" /></td>
 					</tr>
-				<?
-				} else {
+				<?php 				} else {
 					
 					// demande d'authentification ?
 					$auth	= JL::getVar('auth', '');
@@ -32,10 +31,10 @@
 						<td><input type="password" name="pass" id="pass" value="" class="loginText" /></td>
 					</tr>
 					<td>
-						<td><input type="image" src="<? echo SITE_URL; ?>/parentsolo/images/login-ok.jpg" /></td>
+						<td><input type="image" src="<?php echo SITE_URL; ?>/parentsolo/images/login-ok.jpg" /></td>
 					</tr>
 					
-					<? // demande de login échouée
+					<?php // demande de login ï¿½chouï¿½e
 					if($auth == 'login') {
 					?>
 					<tr>
@@ -43,19 +42,16 @@
 							<span class="pink">Login ou mot de passe incorrect(s) !</span>
 						</td>
 					</tr>
-					<?
-					}
+					<?php 					}
 					?>
 					
-				<?
-				} ?>
+				<?php 				} ?>
 			</table>
-			<input type="hidden" name="auth" value="<? echo $user->id ? 'logout' : 'login'; ?>" />
+			<input type="hidden" name="auth" value="<?php echo $user->id ? 'logout' : 'login'; ?>" />
 		</form>
 		</div>
 
-<?
-		}
+<?php 		}
 	
 	}
 ?>

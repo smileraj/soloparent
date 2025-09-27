@@ -3,7 +3,7 @@
 $lang_apptemoignage = array(
 
 	//View
-	"MessagesParentsolo" => "Parentsolo.ch messages",
+	"MessagesParentsolo" => "solocircl.com messages",
 	
 	
 	//*Listes de tous les témoignages
@@ -47,7 +47,7 @@ $lang_apptemoignage = array(
 	"VeuillezIndiquerTitre" => "Please enter the title of your story",
 	"VeuillezIndiquerTexte" => "Please enter the text of your story",
 
-	"TemoignageEnvoye" => "Your story has been sent!<br /> A ParentSolo.ch moderator will check it in order to publish it or not, in either case you'll be notified by email.",
+	"TemoignageEnvoye" => "Your story has been sent!<br /> A solocircl.com moderator will check it in order to publish it or not, in either case you'll be notified by email.",
 	
 	
 	

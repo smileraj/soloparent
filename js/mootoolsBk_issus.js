@@ -247,7 +247,7 @@ if(A!=undefined){F=A+F;break;}}E.positions[D]=F;}return(E.positions[D]%C.a==C.b)
 }});Element.Events.domready={onAdd:function(A){if(Browser.loaded){A.call(this);}}};(function(){var B=function(){if(Browser.loaded){return ;}Browser.loaded=true;
 window.fireEvent("domready");document.fireEvent("domready");};switch(Browser.Engine.name){case"webkit":(function(){(["loaded","complete"].contains(document.readyState))?B():arguments.callee.delay(50);
 })();break;case"trident":var A=document.createElement("div");(function(){($try(function(){A.doScroll("left");return $(A).inject(document.body).set("html","temp").dispose();
-}))?B():arguments.callee.delay(50);})();break;default:window.addEvent("load",B);document.addEvent("DOMContentLoaded",B);}})();var JSON=new Hash({encode:function(B){switch($type(B)){case"string":return'"'+B.replace(/[\x00-\x1f\\"]/g,JSON.$replaceChars)+'"';
+}))?B():arguments.callee.delay(50);})();break;default:window.addEventListener("load",B);document.addEvent("DOMContentLoaded",B);}})();var JSON=new Hash({encode:function(B){switch($type(B)){case"string":return'"'+B.replace(/[\x00-\x1f\\"]/g,JSON.$replaceChars)+'"';
 case"array":return"["+String(B.map(JSON.encode).filter($defined))+"]";case"object":case"hash":var A=[];Hash.each(B,function(E,D){var C=JSON.encode(E);if(C){A.push(JSON.encode(D)+":"+C);
 }});return"{"+A+"}";case"number":case"boolean":return String(B);case false:return"null";}return null;},$specialChars:{"\b":"\\b","\t":"\\t","\n":"\\n","\f":"\\f","\r":"\\r",'"':'\\"',"\\":"\\\\"},$replaceChars:function(A){return JSON.$specialChars[A]||"\\u00"+Math.floor(A.charCodeAt()/16).toString(16)+(A.charCodeAt()%16).toString(16);
 },decode:function(string,secure){if($type(string)!="string"||!string.length){return null;}if(secure&&!(/^[,:{}\[\]0-9.\-+Eaeflnr-u \n\r\t]*$/).test(string.replace(/\\./g,"@").replace(/"[^"\\\n\r]*"/g,""))){return null;
@@ -524,9 +524,9 @@ function chatGetNewConversations(site_url, user_id_from, key) {
 
 			if(messagesNb != '' && messagesNb != '0') {
 				if(messagesNb == '1') {
-					$('chatAlert').set('html', 'Vous avez <span class="pink">1</span> nouveau<br /> message sur le chat !');
+					$('#chatAlert1').set('html', 'Vous avez <span class="pink">1</span> nouveau<br /> message sur le chat !');
 				} else {
-					$('chatAlert').set('html', 'Vous avez <span class="pink">'+messagesNb+'</span> nouveaux<br /> messages sur le chat !');
+					$('#chatAlert1').set('html', 'Vous avez <span class="pink">'+messagesNb+'</span> nouveaux<br /> messages sur le chat !');
 				}
 
 				if(sonJoue == 0) {
@@ -538,7 +538,9 @@ function chatGetNewConversations(site_url, user_id_from, key) {
 			} else {
 				try{clearInterval(timerAlert);}catch(e){}
 				timerAlert = 0;
-				$('chatAlert').fade('hide');
+				if ($('#chatAlert1').length) {
+        $('#chatAlert').fadeOut('slow'); // hides it slowly
+    }
 			}
 
 		},
@@ -548,11 +550,11 @@ function chatGetNewConversations(site_url, user_id_from, key) {
 }
 
 function chatAlert() {
-	$('chatAlert').fade('toggle');
+	$('#chatAlert1').fadeOut('toggle');
 }
 
 function noPhotoPopIn(i) {
-	$('noPhotoPopIn').fade('toggle');
+	$('noPhotoPopIn').fadeOut('toggle');
 
 	if(timerAlert2) {
 		try{clearInterval(timerAlert2);}catch(e){}
@@ -646,9 +648,9 @@ function getScrollXY() {
 
 }
 
-function popinFade(element) {
+function popinfadeOut(element) {
 	if(popinTimer){
 		clearInterval(popinTimer);
-		$(element).fade(0);
+		$(element).fadeOut(0);
 	}
 }

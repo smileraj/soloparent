@@ -3,7 +3,7 @@
 $lang_apptemoignage = array(
 
 	//View
-	"MessagesParentsolo" => "Messages Parentsolo.ch",
+	"MessagesParentsolo" => "Messages solocircl.com",
 	
 	
 	//*Listes de tous les t&eacute;moignages
@@ -47,7 +47,7 @@ $lang_apptemoignage = array(
 	"VeuillezIndiquerTitre" => "Veuillez indiquer le titre de votre t&eacute;moignage s'il vous pla&icirc;t",
 	"VeuillezIndiquerTexte" => "Veuillez indiquer le texte de votre t&eacute;moignage s'il vous pla&icirc;t",
 
-	"TemoignageEnvoye" => "Votre t&eacute;moignage a &eacute;t&eacute; envoy&eacute;!<br /> Un mod&eacute;rateur de ParentSolo.ch va v&eacute;rifier celui-ci afin de le publier ou non, dans les deux cas vous serez averti(e) par email.",
+	"TemoignageEnvoye" => "Votre t&eacute;moignage a &eacute;t&eacute; envoy&eacute;!<br /> Un mod&eacute;rateur de solocircl.com va v&eacute;rifier celui-ci afin de le publier ou non, dans les deux cas vous serez averti(e) par email.",
 	
 	
 	

@@ -51,14 +51,14 @@
 						
 						if(ok) {
 						
-							document.location = "<? echo SITE_URL_ADMIN; ?>"; 
+							document.location = "<?php echo SITE_URL_ADMIN; ?>"; 
 						}
 						
 					}
 				
 				</script>
 				
-				<form name="listForm" action="<? echo SITE_URL_ADMIN; ?>/index.php" method="post">
+				<form name="listForm" action="<?php echo SITE_URL_ADMIN; ?>/index.php" method="post">
 				<section class="panel">
                   <header class="panel-heading">
                      <h2>Mailing automatis&eacute;</h2>
@@ -66,70 +66,66 @@
 				<div class="row">
                   <div class="col-lg-12">				
 					<div class="toolbar">
-						<a href="<? echo SITE_URL_ADMIN; ?>/index.php?app=mailing_auto&action=edit" title="R&eacute;diger un nouveau mailing" class=" btn btn-success">Nouveau</a>
+						<a href="<?php echo SITE_URL_ADMIN; ?>/index.php?app=mailing_auto&action=edit" title="R&eacute;diger un nouveau mailing" class=" btn btn-success">Nouveau</a>
 						<a href="javascript:cancelsubmit('Fermer')" title="Fermer" class="btn btn-danger">Fermer</a>
 					</div>
 					</div>
 				</div>				
-				<? if(count($messages)) { ?>
+				<?php if (is_array($messages)) { ?>
 					
 						<div class="messages">
-							<? JL::messages($messages); ?>
+							<?php JL::messages($messages); ?>
 						</div>
 						<br />
-				<? } ?>
+				<?php } ?>
 				<div class="tableAdmin">
 					<table cellpadding="0" cellspacing="0" class="table table-bordered table-striped table-condensed cf lister">
 					
 						
 						
-						<? if(count($rows)) { ?>
+						<?php if (is_array($rows)) { ?>
 						<tr>
 							<th width="20px"></th>
 							<th align="left">Nom</th>
 							<th style="width: 150px;">Mise &agrave; jour</th>
 							<th style="width: 80px;text-align:center;">Envoyer</th>
 						</tr>
-						<?
-						foreach($rows as $row) {
+						<?php 						foreach($rows as $row) {
 						
 							// htmlentities
 							JL::makeSafe($row);
 							
 							?>
 							<tr class="list">
-								<td align="center"><input type="checkbox" name="id[]" value="<? echo $row->id; ?>" id="mailing_<? echo $row->id; ?>"></td>
+								<td align="center"><input type="checkbox" name="id[]" value="<?php echo $row->id; ?>" id="mailing_<?php echo $row->id; ?>"></td>
 								<td>
-									<a href="<? echo SITE_URL_ADMIN; ?>/index.php?app=mailing_auto&action=edit&id=<? echo $row->id; ?>" title="Modifier le mailing"><? echo $row->nom; ?></a>
+									<a href="<?php echo SITE_URL_ADMIN; ?>/index.php?app=mailing_auto&action=edit&id=<?php echo $row->id; ?>" title="Modifier le mailing"><?php echo $row->nom; ?></a>
 								</td>
-								<td><? echo date('d/m/Y à H:i:s', strtotime($row->datetime_update)); ?></td>
+								<td><?php echo date('d/m/Y à H:i:s', strtotime($row->datetime_update)); ?></td>
 								<td align="center">
-									<a href="<? echo JL::url('index.php?app=mailing_auto&action=envoyer&id='.$row->id); ?>" title="Envoyer ce mailing"><img src="<? echo SITE_URL_ADMIN; ?>/images/mailing.png" alt="" />
+									<a href="<?php echo JL::url('index.php?app=mailing_auto&action=envoyer&id='.$row->id); ?>" title="Envoyer ce mailing"><img src="<?php echo SITE_URL_ADMIN; ?>/images/mailing.png" alt="" />
 								</td>
 							</tr>
-							<?
-						}
+							<?php 						}
 						?>
 					
 						<tr>
-							<td colspan="<? echo $tdParTr; ?>">
+							<td colspan="<?php echo $tdParTr; ?>">
 								<b>Pages</b>:
-								<? if($debut > 1) { ?> <a href="<? echo JL::url(SITE_URL_ADMIN.'/index.php?app=mailing_auto&search_at_page=1'); ?>" title="Afficher la page 1">D&eacute;but</a> ...<? }?>
-								<?
-									for($i=$debut; $i<=$fin; $i++) {
+								<?php if($debut > 1) { ?> <a href="<?php echo JL::url(SITE_URL_ADMIN.'/index.php?app=mailing_auto&search_at_page=1'); ?>" title="Afficher la page 1">D&eacute;but</a> ...<?php }?>
+								<?php 									for($i=$debut; $i<=$fin; $i++) {
 									?>
-										 <a href="<? echo JL::url(SITE_URL_ADMIN.'/index.php?app=mailing_auto&search_at_page='.$i); ?>" title="Afficher la page <? echo $i; ?>" <? if($i == $search['page']) { ?>class="displayActive"<? } ?>><? echo $i; ?></a>
-									<?
-									}
+										 <a href="<?php echo JL::url(SITE_URL_ADMIN.'/index.php?app=mailing_auto&search_at_page='.$i); ?>" title="Afficher la page <?php echo $i; ?>" <?php if($i == $search['page']) { ?>class="displayActive"<?php } ?>><?php echo $i; ?></a>
+									<?php 									}
 								?>
-								<? if($fin < $search['page_total']) { ?> ... <a href="<? echo JL::url(SITE_URL_ADMIN.'/index.php?app=mailing_auto&search_at_page='.$search['page_total']); ?>" title="Afficher la page <? echo $search['page_total']; ?>">Fin</a><? }?> <i>(<? echo $search['result_total']; ?> r&eacute;sultats)</i>
+								<?php if($fin < $search['page_total']) { ?> ... <a href="<?php echo JL::url(SITE_URL_ADMIN.'/index.php?app=mailing_auto&search_at_page='.$search['page_total']); ?>" title="Afficher la page <?php echo $search['page_total']; ?>">Fin</a><?php }?> <i>(<?php echo $search['result_total']; ?> r&eacute;sultats)</i>
 							</td>
 						</tr>
-					<? } else { ?>
+					<?php } else { ?>
 						<tr>
-							<th colspan="<? echo $tdParTr; ?>">Aucun mailing n'a &eacute;t&eacute; r&eacute;dig&eacute;.</th>
+							<th colspan="<?php echo $tdParTr; ?>">Aucun mailing n'a &eacute;t&eacute; r&eacute;dig&eacute;.</th>
 						</tr>
-					<? } ?>
+					<?php } ?>
 					</table>
 					</div>
 					<input type="hidden" name="search_at_page" value="1" />
@@ -137,8 +133,7 @@
 					<input type="hidden" name="action" value="" />
 				</section>
 				</form>
-			<?
-		}
+			<?php 		}
 		
 		
 		public static function mailingEdit(&$row, &$list, &$messages) {
@@ -160,7 +155,7 @@
 						
 						if(ok) {
 						
-							document.location = "<? echo SITE_URL_ADMIN; ?>/index.php?app=mailing_auto"; 
+							document.location = "<?php echo SITE_URL_ADMIN; ?>/index.php?app=mailing_auto"; 
 						}
 						
 					}
@@ -168,26 +163,26 @@
 			</script>
 		
                  <header class="panel-heading">
-                   <h2>Mailing automatis&eacute;: <? echo $row->id ? 'Editer' : 'Nouveau'; ?></h2>
+                   <h2>Mailing automatis&eacute;: <?php echo $row->id ? 'Editer' : 'Nouveau'; ?></h2>
                 </header>
 				<div class="row">
                   <div class="col-lg-12">				
 					<div class="toolbar">
-				<? if($row->id){?><a href="<? echo SITE_URL_ADMIN; ?>/index.php?app=mailing_auto&action=apercu&id=<? echo $row->id; ?>" target="_blank" title="Apercu" class="btn btn-success">Aper&ccedil;u</a><? } ?>
+				<?php if($row->id){?><a href="<?php echo SITE_URL_ADMIN; ?>/index.php?app=mailing_auto&action=apercu&id=<?php echo $row->id; ?>" target="_blank" title="Apercu" class="btn btn-success">Aper&ccedil;u</a><?php } ?>
 					<a href="javascript:document.editForm.submit();" title="Sauver" class="btn btn-success">Sauver</a>
 					<a href="javascript:cancelsubmit('Fermer')" title="Fermer" class="btn btn-danger">Fermer</a>
 				</div>
 				</div>				
 			</div>
 			<br />
-		<? 
-			if(count($messages)) { 
+		<?php 
+			if (is_array($messages)) { 
 		?>
 				<div class="messages">
-					<? JL::messages($messages); ?>
+					<?php JL::messages($messages); ?>
 				</div>
 				<br />
-		<? 
+		<?php 
 			} 
 			
 			$dir = $row->upload_dir;
@@ -224,10 +219,10 @@
 			
 			include(SITE_PATH.'/fckeditor/fckeditor.php');
 			?>
-			<script type="text/javascript" src="<? echo SITE_URL; ?>/fckeditor/fckeditor.js"></script>
+			<script type="text/javascript" src="<?php echo SITE_URL; ?>/fckeditor/fckeditor.js"></script>
 			
-			<form name="editForm" action="<? echo SITE_URL_ADMIN; ?>/index.php" method="post">
-				<input type="hidden" name="id" value="<? echo $row->id; ?>" />
+			<form name="editForm" action="<?php echo SITE_URL_ADMIN; ?>/index.php" method="post">
+				<input type="hidden" name="id" value="<?php echo $row->id; ?>" />
 				<input type="hidden" name="app" value="mailing_auto" />
 				<input type="hidden" name="action" value="save" />
 				<input type="hidden" name="upload_dir" id="upload_dir" value="<?php echo $row->upload_dir; ?>" />
@@ -241,22 +236,22 @@
 							<td class="key">
 								<label for="nom">Nom</label>
 							</td>
-							<td><input type="text" name="nom" id="nom" value="<? echo $row->nom; ?>" style="width:500px;" /></td>
+							<td><input type="text" name="nom" id="nom" value="<?php echo $row->nom; ?>" style="width:500px;" /></td>
 						</tr>
 						<tr>
 							<td class="key">
 								<label for="description">Description</label>
 							</td>
 							<td>
-								<textarea name="description" style="width:500px;height:75px;border:0;"><? echo $row->description; ?></textarea>
+								<textarea name="description" style="width:500px;height:75px;border:0;"><?php echo $row->description; ?></textarea>
 							</td>
 						</tr>
-						<? if(isset($row->datetime_update)) { ?>
+						<?php if(isset($row->datetime_update)) { ?>
 						<tr>
 							<td class="key">Mise &agrave; jour</td>
-							<td><? echo date('d/m/Y à H:i:s', strtotime($row->datetime_update)); ?></td>
+							<td><?php echo date('d/m/Y à H:i:s', strtotime($row->datetime_update)); ?></td>
 						</tr>
-						<? } ?>
+						<?php } ?>
 					</table>
 				</div>
 				<br />
@@ -268,14 +263,14 @@
 							<td class="key">
 								<label for="template">Template</label>
 							</td>
-							<td><? echo $list['template']; ?></td>
+							<td><?php echo $list['template']; ?></td>
 						</tr>
 						<tr>
 							<td class="key">
 								<label for="sujet">Sujet</label>
 							</td>
 							<td>
-								<input type="text" name="sujet" maxlength="255" style="width:500px;" value="<? echo $row->sujet; ?>" /><br />
+								<input type="text" name="sujet" maxlength="255" style="width:500px;" value="<?php echo $row->sujet; ?>" /><br />
 								<i>Evitez au maximum les accents dans le sujet du mail</i>
 							</td>
 						</tr>
@@ -291,7 +286,7 @@
 								<label for="pub_leaderboard">Leaderboard</label>
 							</td>
 							<td>
-								<textarea name="pub_leaderboard" style="width:500px;height:75px;border:0;"><? echo $row->pub_leaderboard; ?></textarea>
+								<textarea name="pub_leaderboard" style="width:500px;height:75px;border:0;"><?php echo $row->pub_leaderboard; ?></textarea>
 							</td>
 						</tr>
 						<tr>
@@ -299,7 +294,7 @@
 								<label for="active_pub_leaderboard">Activé</label>
 							</td>
 							<td>
-								<? JL::radioYesNo('active_pub_leaderboard', $row->active_pub_leaderboard); ?>
+								<?php JL::radioYesNo('active_pub_leaderboard', $row->active_pub_leaderboard); ?>
 							</td>
 						</tr>
 						<tr>
@@ -307,7 +302,7 @@
 								<label for="pub_medium_rectangle">Medium Rectangle</label>
 							</td>
 							<td>
-								<textarea name="pub_medium_rectangle" style="width:500px;height:75px;border:0;"><? echo $row->pub_medium_rectangle; ?></textarea>
+								<textarea name="pub_medium_rectangle" style="width:500px;height:75px;border:0;"><?php echo $row->pub_medium_rectangle; ?></textarea>
 							</td>
 						</tr>
 						<tr>
@@ -315,7 +310,7 @@
 								<label for="active_pub_medium_rectangle">Activé</label>
 							</td>
 							<td>
-								<? JL::radioYesNo('active_pub_medium_rectangle', $row->active_pub_medium_rectangle); ?>
+								<?php JL::radioYesNo('active_pub_medium_rectangle', $row->active_pub_medium_rectangle); ?>
 							</td>
 						</tr>
 					</table>
@@ -330,7 +325,7 @@
 								<label for="active_news_publi">Activé</label>
 							</td>
 							<td>
-								<? JL::radioYesNo('active_news_publi', $row->active_news_publi); ?>
+								<?php JL::radioYesNo('active_news_publi', $row->active_news_publi); ?>
 							</td>
 						</tr>
 						<tr>
@@ -338,7 +333,7 @@
 								<label for="titre_news_publi">Titre</label>
 							</td>
 							<td>
-								<input type="text" name="titre_news_publi" maxlength="255" style="width:500px;" value="<? echo $row->titre_news_publi; ?>" />
+								<input type="text" name="titre_news_publi" maxlength="255" style="width:500px;" value="<?php echo $row->titre_news_publi; ?>" />
 							</td>
 						</tr>
 						<tr>
@@ -358,65 +353,57 @@
 							?>
 							</td>
 						</tr>
-					<?
-						if(count($photos_news_publi)) {
+					<?php 						if (is_array($photos_news_publi)) {
 							?>
 							<tr>
 								<td class="key">
 									<label for="lien_news_publi">Lien de la photo</label>
 								</td>
 								<td>
-									<input type="text" name="lien_news_publi" maxlength="255" style="width:500px;" value="<? echo $row->lien_news_publi; ?>" />
+									<input type="text" name="lien_news_publi" maxlength="255" style="width:500px;" value="<?php echo $row->lien_news_publi; ?>" />
 								</td>
 							</tr>
-					<?
-						}
+					<?php 						}
 					?>
 						<tr>
 							<td class="key">Photo envoyée</td>
 							<td>
 								<ul id="filesOK">
-								<?
-									if(count($photos_news_publi)) {
+								<?php 									if (is_array($photos_news_publi)) {
 										$i = 0;
 										foreach($photos_news_publi as $photo_news_publi) {
 										?>
 											<li class="fileOK">
-												<img src="<? echo $row->upload_dir.'/'.$photo_news_publi; ?>?<? echo JL::microtime_float()*10000; ?>"/>
-												<a href="javascript:deletePhoto('<? echo $photo_news_publi; ?>', 'news_publi-OK')" id="news_publi-OK" >X Supprimer</a>
+												<img src="<?php echo $row->upload_dir.'/'.$photo_news_publi; ?>?<?php echo JL::microtime_float()*10000; ?>"/>
+												<a href="javascript:deletePhoto('<?php echo $photo_news_publi; ?>', 'news_publi-OK')" id="news_publi-OK" >X Supprimer</a>
 											</li>
-										<?
-											$i++;
+										<?php 											$i++;
 										}
 									}
 								?>
 								</ul>
 							</td>
 						</tr>
-					<?
-						if(count($photosTemp_news_publi)) {
+					<?php 						if (is_array($photosTemp_news_publi)) {
 						?>
 							<tr>
 								<td class="key">Photo en attente</td>
 								<td>
 									<ul id="filesTemp">
-									<?
-										$i = 0;
+									<?php 										$i = 0;
 										foreach($photosTemp_news_publi as $photoTemp_news_publi) {
 										?>
 											<li class="fileTemp">
-												<img src="<? echo $row->upload_dir.'/'.$photoTemp_news_publi; ?>"/>
-												<a href="javascript:deletePhoto('<? echo $photoTemp_news_publi; ?>', 'news_publi-Temp')" id="news_publi-Temp" >X Supprimer</a>
+												<img src="<?php echo $row->upload_dir.'/'.$photoTemp_news_publi; ?>"/>
+												<a href="javascript:deletePhoto('<?php echo $photoTemp_news_publi; ?>', 'news_publi-Temp')" id="news_publi-Temp" >X Supprimer</a>
 											</li>
-										<?
-											$i++;
+										<?php 											$i++;
 										}
 										?>
 									</ul>
 								</td>
 							</tr>
-					<?
-						}
+					<?php 						}
 					?>
 						<tr>
 							<td class="keyLast">Fichier</td>
@@ -443,7 +430,7 @@
 								<label for="active_actu_ps">Activé</label>
 							</td>
 							<td>
-								<? JL::radioYesNo('active_actu_ps', $row->active_actu_ps); ?>
+								<?php JL::radioYesNo('active_actu_ps', $row->active_actu_ps); ?>
 							</td>
 						</tr>
 						<tr>
@@ -451,7 +438,7 @@
 								<label for="titre_actu_ps">Titre</label>
 							</td>
 							<td>
-								<input type="text" name="titre_actu_ps" maxlength="255" style="width:500px;" value="<? echo $row->titre_actu_ps; ?>" />
+								<input type="text" name="titre_actu_ps" maxlength="255" style="width:500px;" value="<?php echo $row->titre_actu_ps; ?>" />
 							</td>
 						</tr>
 						<tr>
@@ -471,65 +458,57 @@
 							?>
 							</td>
 						</tr>
-					<?
-						if(count($photos_actu_ps)) {
+					<?php 						if (is_array($photos_actu_ps)) {
 							?>
 							<tr>
 								<td class="key">
 									<label for="lien_actu_ps">Lien de la photo</label>
 								</td>
 								<td>
-									<input type="text" name="lien_actu_ps" maxlength="255" style="width:500px;" value="<? echo $row->lien_actu_ps; ?>" />
+									<input type="text" name="lien_actu_ps" maxlength="255" style="width:500px;" value="<?php echo $row->lien_actu_ps; ?>" />
 								</td>
 							</tr>
-					<?
-						}
+					<?php 						}
 					?>
 						<tr>
 							<td class="key">Photo envoyée</td>
 							<td>
 								<ul id="filesOK">
-								<?
-									if(count($photos_actu_ps)) {
+								<?php 									if (is_array($photos_actu_ps)) {
 										$i = 0;
 										foreach($photos_actu_ps as $photo_actu_ps) {
 										?>
 											<li class="fileOK">
-												<img src="<? echo $row->upload_dir.'/'.$photo_actu_ps; ?>?<? echo JL::microtime_float()*10000; ?>"/>
-												<a href="javascript:deletePhoto('<? echo $photo_actu_ps; ?>', 'actu_ps-OK')" id="actu_ps-OK" >X Supprimer</a>
+												<img src="<?php echo $row->upload_dir.'/'.$photo_actu_ps; ?>?<?php echo JL::microtime_float()*10000; ?>"/>
+												<a href="javascript:deletePhoto('<?php echo $photo_actu_ps; ?>', 'actu_ps-OK')" id="actu_ps-OK" >X Supprimer</a>
 											</li>
-										<?
-											$i++;
+										<?php 											$i++;
 										}
 									}
 								?>
 								</ul>
 							</td>
 						</tr>
-					<?
-						if(count($photosTemp_actu_ps)) {
+					<?php 						if (is_array($photosTemp_actu_ps)) {
 						?>
 							<tr>
 								<td class="key">Photo en attente</td>
 								<td>
 									<ul id="filesTemp">
-									<?
-										$i = 0;
+									<?php 										$i = 0;
 										foreach($photosTemp_actu_ps as $photoTemp_actu_ps) {
 										?>
 											<li class="fileTemp">
-												<img src="<? echo $row->upload_dir.'/'.$photoTemp_actu_ps; ?>"/>
-												<a href="javascript:deletePhoto('<? echo $photoTemp_actu_ps; ?>', 'actu_ps-Temp')" id="actu_ps-Temp" >X Supprimer</a>
+												<img src="<?php echo $row->upload_dir.'/'.$photoTemp_actu_ps; ?>"/>
+												<a href="javascript:deletePhoto('<?php echo $photoTemp_actu_ps; ?>', 'actu_ps-Temp')" id="actu_ps-Temp" >X Supprimer</a>
 											</li>
-										<?
-											$i++;
+										<?php 											$i++;
 										}
 										?>
 									</ul>
 								</td>
 							</tr>
-					<?
-						}
+					<?php 						}
 					?>
 						<tr>
 							<td class="keyLast">Fichier</td>
@@ -555,7 +534,7 @@
 								<label for="active_agendas">Activés</label>
 							</td>
 							<td>
-								<? JL::radioYesNo('active_agendas', $row->active_agendas); ?>
+								<?php JL::radioYesNo('active_agendas', $row->active_agendas); ?>
 							</td>
 						</tr>
 					</table>
@@ -568,7 +547,7 @@
 								<label for="agenda1_titre">Titre</label>
 							</td>
 							<td>
-								<input type="text" name="agenda1_titre" maxlength="255" style="width:500px;" value="<? echo $row->agenda1_titre; ?>" />
+								<input type="text" name="agenda1_titre" maxlength="255" style="width:500px;" value="<?php echo $row->agenda1_titre; ?>" />
 							</td>
 						</tr>
 						<tr>
@@ -576,7 +555,7 @@
 								<label for="agenda1_date">Date</label>
 							</td>
 							<td>
-								<input type="text" name="agenda1_date" maxlength="255" style="width:500px;" value="<? echo $row->agenda1_date; ?>" /> <i>jj/mm/aaaa ou jj/mm/aaaa-jj/mm/aaaa</i>
+								<input type="text" name="agenda1_date" maxlength="255" style="width:500px;" value="<?php echo $row->agenda1_date; ?>" /> <i>jj/mm/aaaa ou jj/mm/aaaa-jj/mm/aaaa</i>
 							</td>
 						</tr>
 						<tr>
@@ -584,7 +563,7 @@
 								<label for="agenda1_lieu">Lieu</label>
 							</td>
 							<td>
-								<input type="text" name="agenda1_lieu" maxlength="255" style="width:500px;" value="<? echo $row->agenda1_lieu; ?>" />
+								<input type="text" name="agenda1_lieu" maxlength="255" style="width:500px;" value="<?php echo $row->agenda1_lieu; ?>" />
 							</td>
 						</tr>
 						<tr>
@@ -592,7 +571,7 @@
 								<label for="agenda1_image">Chemin image Babybook</label>
 							</td>
 							<td>
-								<input type="text" name="agenda1_image" maxlength="255" style="width:500px;" value="<? echo $row->agenda1_image; ?>" />
+								<input type="text" name="agenda1_image" maxlength="255" style="width:500px;" value="<?php echo $row->agenda1_image; ?>" />
 							</td>
 						</tr>
 						<tr>
@@ -600,7 +579,7 @@
 								<label for="agenda1_intro">Intro</label>
 							</td>
 							<td>
-								<textarea name="agenda1_intro" style="width:500px;height:75px;border:0;"><? echo $row->agenda1_intro; ?></textarea>
+								<textarea name="agenda1_intro" style="width:500px;height:75px;border:0;"><?php echo $row->agenda1_intro; ?></textarea>
 							</td>
 						</tr>
 						<tr>
@@ -608,7 +587,7 @@
 								<label for="agenda1_lien">Lien</label>
 							</td>
 							<td>
-								<input type="text" name="agenda1_lien" maxlength="255" style="width:500px;" value="<? echo $row->agenda1_lien; ?>" />
+								<input type="text" name="agenda1_lien" maxlength="255" style="width:500px;" value="<?php echo $row->agenda1_lien; ?>" />
 							</td>
 						</tr>
 					</table>
@@ -621,7 +600,7 @@
 								<label for="agenda2_titre">Titre</label>
 							</td>
 							<td>
-								<input type="text" name="agenda2_titre" maxlength="255" style="width:500px;" value="<? echo $row->agenda2_titre; ?>" />
+								<input type="text" name="agenda2_titre" maxlength="255" style="width:500px;" value="<?php echo $row->agenda2_titre; ?>" />
 							</td>
 						</tr>
 						<tr>
@@ -629,7 +608,7 @@
 								<label for="agenda2_date">Date</label>
 							</td>
 							<td>
-								<input type="text" name="agenda2_date" maxlength="255" style="width:500px;" value="<? echo $row->agenda2_date; ?>" /> <i>jj/mm/aaaa ou jj/mm/aaaa-jj/mm/aaaa</i>
+								<input type="text" name="agenda2_date" maxlength="255" style="width:500px;" value="<?php echo $row->agenda2_date; ?>" /> <i>jj/mm/aaaa ou jj/mm/aaaa-jj/mm/aaaa</i>
 							</td>
 						</tr>
 						<tr>
@@ -637,7 +616,7 @@
 								<label for="agenda2_lieu">Lieu</label>
 							</td>
 							<td>
-								<input type="text" name="agenda2_lieu" maxlength="255" style="width:500px;" value="<? echo $row->agenda2_lieu; ?>" />
+								<input type="text" name="agenda2_lieu" maxlength="255" style="width:500px;" value="<?php echo $row->agenda2_lieu; ?>" />
 							</td>
 						</tr>
 						<tr>
@@ -645,7 +624,7 @@
 								<label for="agenda2_image">Chemin image Babybook</label>
 							</td>
 							<td>
-								<input type="text" name="agenda2_image" maxlength="255" style="width:500px;" value="<? echo $row->agenda2_image; ?>" />
+								<input type="text" name="agenda2_image" maxlength="255" style="width:500px;" value="<?php echo $row->agenda2_image; ?>" />
 							</td>
 						</tr>
 						<tr>
@@ -653,7 +632,7 @@
 								<label for="agenda2_intro">Intro</label>
 							</td>
 							<td>
-								<textarea name="agenda2_intro" style="width:500px;height:75px;border:0;"><? echo $row->agenda2_intro; ?></textarea>
+								<textarea name="agenda2_intro" style="width:500px;height:75px;border:0;"><?php echo $row->agenda2_intro; ?></textarea>
 							</td>
 						</tr>
 						<tr>
@@ -661,7 +640,7 @@
 								<label for="agenda2_lien">Lien</label>
 							</td>
 							<td>
-								<input type="text" name="agenda2_lien" maxlength="255" style="width:500px;" value="<? echo $row->agenda2_lien; ?>" />
+								<input type="text" name="agenda2_lien" maxlength="255" style="width:500px;" value="<?php echo $row->agenda2_lien; ?>" />
 							</td>
 						</tr>
 					</table>
@@ -678,7 +657,7 @@
 								<table class="table table-bordered table-striped table-condensed cf" cellpadding="0px" cellspacing="5px">
 									<tr><td><b>{titre}</b></td><td>Titre de l'email.</td></tr>
 									<tr><td><b>{username}</b></td><td>Pseudo du destinataire.</td></tr>
-									<tr><td><b>{site_url}</b></td><td><? echo SITE_URL; ?></td></tr>
+									<tr><td><b>{site_url}</b></td><td><?php echo SITE_URL; ?></td></tr>
 								</table>
 							</td>
 						</tr>
@@ -689,8 +668,7 @@
 				photoUpload('upload_news_publi','status_news_publi','files_news_publi', '', 'news_publi',1);
 				photoUpload('upload_actu_ps','status_actu_ps','files_actu_ps', '', 'actu_ps',1);
 			</script>
-			<?
-		}
+			<?php 		}
 		
 		
 		public static function mailingSend(&$row, &$list) {
@@ -698,14 +676,14 @@
 			
 			?>
 
-			<form name="adminForm" action="<? echo SITE_URL_ADMIN; ?>/index.php" method="post">
-				<input type="hidden" name="id" id="id" value="<? echo $row->id; ?>" />
+			<form name="adminForm" action="<?php echo SITE_URL_ADMIN; ?>/index.php" method="post">
+				<input type="hidden" name="id" id="id" value="<?php echo $row->id; ?>" />
 				<input type="hidden" name="app" value="mailing_auto" />
-				<input type="hidden" name="site_url" id="site_url" value="<? echo SITE_URL_ADMIN; ?>" />
+				<input type="hidden" name="site_url" id="site_url" value="<?php echo SITE_URL_ADMIN; ?>" />
 				<input type="hidden" name="envoiEnCours" id="envoiEnCours" value="0" />
 				<input type="hidden" name="destinatairesNb" id="destinatairesNb" value="0" />
-				<input type="hidden" name="hash" id="hash" value="<? echo md5(date('yYy').$user->id.date('Yy')); ?>" />
-				<input type="hidden" name="user_id" id="user_id" value="<? echo $user->id; ?>" />
+				<input type="hidden" name="hash" id="hash" value="<?php echo md5(date('yYy').$user->id.date('Yy')); ?>" />
+				<input type="hidden" name="user_id" id="user_id" value="<?php echo $user->id; ?>" />
 				
 				<section class="panel">
                   <header class="panel-heading">
@@ -716,13 +694,13 @@
                   <div class="col-lg-12">				
 					<div class="toolbar">
 						<a href="javascript:document.editForm.submit();" title="Sauver" class="save">Sauver</a>
-						<a href="<? echo SITE_URL_ADMIN; ?>/index.php?app=mailing_auto" title="Fermer" class="cancel">Fermer</a>
+						<a href="<?php echo SITE_URL_ADMIN; ?>/index.php?app=mailing_auto" title="Fermer" class="cancel">Fermer</a>
 					</div>
 					</div>					
 				</div>
 				<br />
 				<div class="tableAdmin">
-					<h3><img src="<? echo SITE_URL_ADMIN; ?>/images/loading.gif" id="loading" alt="" align="right" style="visibility:hidden;" />Recherche de destinataires</h3>
+					<h3><img src="<?php echo SITE_URL_ADMIN; ?>/images/loading.gif" id="loading" alt="" align="right" style="visibility:hidden;" />Recherche de destinataires</h3>
 					<br />
 					<table class="table table-bordered table-striped table-condensed cf editer" cellpadding="0" cellspacing="0" border="0">
 						<tr>
@@ -735,26 +713,26 @@
 						</tr>
 						<tr>
 							<td class="key">Groupe</td>
-							<td><? echo $list['group_id']; ?></td>
+							<td><?php echo $list['group_id']; ?></td>
 						</tr>
 						
 					</table>
 					<br />
 					<br />
-					<h3><img src="<? echo SITE_URL_ADMIN; ?>/images/loading.gif" id="loading2" alt="" align="right" style="visibility:hidden;" />Envoi du mail</h3>
+					<h3><img src="<?php echo SITE_URL_ADMIN; ?>/images/loading.gif" id="loading2" alt="" align="right" style="visibility:hidden;" />Envoi du mail</h3>
 					<br />
 					<table class="table table-bordered table-striped table-condensed cf editer" cellpadding="0" cellspacing="0" border="0">
 						<tr>
 							<td class="key">Nom:</td>
-							<td><? echo $row->nom; ?></td>
+							<td><?php echo $row->nom; ?></td>
 						</tr>
 						<tr>
 							<td class="key">Titre:</td>
-							<td><? echo $row->titre; ?></td>
+							<td><?php echo $row->titre; ?></td>
 						</tr>
 						<tr>
 							<td class="key">Template:</td>
-							<td><? echo $row->template; ?></td>
+							<td><?php echo $row->template; ?></td>
 						</tr>
 						<tr>
 							<td class="key">Destinataires:</td>
@@ -771,12 +749,11 @@
 				</section>
 			</form>
 			<script language="javascript" type="text/javascript">
-				window.addEvent('domready',function() {
+				window.addEventListener('domready',function() {
 					rechercheDestinataires();
 				});
 			</script>
-			<?
-		}
+			<?php 		}
 		
 		public static function mailingApercu($mailingTexte){
 			echo $mailingTexte;

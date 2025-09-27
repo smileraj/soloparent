@@ -4,45 +4,45 @@ $lang_event = array(
 
 	//------------------Page appel_a_temoins.html.php ---------
 
-	"MessagesParentsolo" => "Messages Parentsolo.ch",
+	"MessagesParentsolo" => "Messages solocircl.com",
 	
 	
-	"LancerUnAppel" => "Appel pour l'événement",
+	"LancerUnAppel" => "Appel pour l'ï¿½vï¿½nement",
 	"Informations" => "Informations",
-	"ListeDesAppels" => "Liste des 'événements ",
+	"ListeDesAppels" => "Liste des 'ï¿½vï¿½nements ",
 	
-	"AppelATemoins" => "Appels à témoins",
+	"AppelATemoins" => "Appels ï¿½ tï¿½moins",
 	
-	"CodeDeVerification" => "Code de vérification",
+	"CodeDeVerification" => "Code de vï¿½rification",
 	
-	"VeuillezRecopierCodeVerification" => "Veuillez recopier ci-dessous, ce code de vérification:",
+	"VeuillezRecopierCodeVerification" => "Veuillez recopier ci-dessous, ce code de vï¿½rification:",
 	
 	
-		"WarningCodeVerifIncorrect" => "Le code de vérification entré est incorrect",
+		"WarningCodeVerifIncorrect" => "Le code de vï¿½rification entrï¿½ est incorrect",
 
 	
-	"LireAppelATemoins" => "Créer Un Événement",
-	"LireLAnnonce" => "VOTRE ÉVÉNEMENT",
+	"LireAppelATemoins" => "Crï¿½er Un ï¿½vï¿½nement",
+	"LireLAnnonce" => "VOTRE ï¿½Vï¿½NEMENT",
 	
-	"PagePrecedente" => "Page précédente",
+	"PagePrecedente" => "Page prï¿½cï¿½dente",
 	"Pages" => "Pages",
 	"Page" => "Page",
-	"Debut" => "Début",
-	"AppelsATemoins" => "appel à des événements",
-	"AppelATemoins" => "Appel à témoins",
+	"Debut" => "Dï¿½but",
+	"AppelsATemoins" => "appel ï¿½ des ï¿½vï¿½nements",
+	"AppelATemoins" => "Appel ï¿½ tï¿½moins",
 	"Fin" => "Fin",
 	"PageSuivante" => "Page suivante",
 	
-	"AucuneAppelATemoins" => "Aucun appel pour des événements a été créé pour l'instant",
+	"AucuneAppelATemoins" => "Aucun appel pour des ï¿½vï¿½nements a ï¿½tï¿½ crï¿½ï¿½ pour l'instant",
 	
-	"RetourALAccueil" => "Retour à l'accueil",
+	"RetourALAccueil" => "Retour ï¿½ l'accueil",
 	
 	
 	
 
 	"VotreAnnonce" => "Votre annonce",
 	
-	"TypeDeMedia" => "Type de Média",
+	"TypeDeMedia" => "Type de Mï¿½dia",
 	"Titre" => "Titre",
 	"Annonce" => "Annonce",
 	
@@ -52,17 +52,17 @@ $lang_event = array(
 	"Logo" => "Logo",
 	"GifPngJpg" => "(GIF, PNG et JPG uniquement)",
 	
-	"VosCoordonnees" => "Vos coordonnées",
+	"VosCoordonnees" => "Vos coordonnï¿½es",
 	
 	"Nom" => "Titre ",
 	"desc" => "Description",
-	"sdate" => "Date de début",
+	"sdate" => "Date de dï¿½but",
 	"edate" => "Date de fin",
 	"Email" => "Email",
 	"save"=>"sauvegarder",
-	"update"=>"Mettre à jour",
+	"update"=>"Mettre ï¿½ jour",
 	"fromdate"=>"De ",
-	"todate"=>" à ",
+	"todate"=>" ï¿½ ",
 	"infocontent"=>"En attente de contenu",
 	"create"=> "creer",
 	"logo"=>"logo",
@@ -73,7 +73,7 @@ $lang_event = array(
 	
 	
 	
-	"InformationComplementaires" => "Informations complémentaires",
+	"InformationComplementaires" => "Informations complï¿½mentaires",
 	"DateDeLappel" => "Date de l'appel",
 	"DateLimiteInscription" => "Date limite d'inscription",
 	"DateDiffusion" => "Date de publication",
@@ -85,18 +85,18 @@ $lang_event = array(
 
 	//------------------Page appel_a_temoins.php ---------
 
-	"VotreAppelATemoinsEnvoye" => "Votre appel à témoins a été envoyé! Un modérateur de ParentSolo.ch va traiter celui-ci, et vous recevrez une confirmation par email de la publication ou non de votre appel",
-	"VeillezTypeMedia" => "Veuillez indiquer le type de média concerné s'il vous plaît",
-	"VeillezTitreAppel" => "Veuillez indiquer le titre de votre appel à témoins s'il vous plaît",
-	"VeillezAnnonce" => "Veuillez indiquer l'annonce de votre appel à témoins s'il vous plaît",
-	"VeillezNom" => "Veuillez indiquer votre nom s'il vous plaît",
-	"VeillezPrenom" => "Veuillez indiquer votre prénom s'il vous plaît",
-	"VeillezNumero" => "Veuillez indiquer votre numéro de téléphone s'il vous plaît",
-	"VeillezAdresse" => "Veuillez indiquer une adresse email valide s'il vous plaît",
-	"VeillezConfirmerAdresse" => "Veuillez confirmer votre adresse email s'il vous plaît",
-	"VeillezEmail" => "L'email indiqué et sa confirmation ne correspondent pas",
-	"VeillezImage" => "Veuillez envoyer une image en JPG, GIF ou PNG, d'une résolution maximale de 1024px * 1024px",
-	"CodeSecuriteIncorrect" => "Le code de sécurité entré est incorrect",
+	"VotreAppelATemoinsEnvoye" => "Votre appel ï¿½ tï¿½moins a ï¿½tï¿½ envoyï¿½! Un modï¿½solocircl.comentSolo.ch va traiter celui-ci, et vous recevrez une confirmation par email de la publication ou non de votre appel",
+	"VeillezTypeMedia" => "Veuillez indiquer le type de mï¿½dia concernï¿½ s'il vous plaï¿½t",
+	"VeillezTitreAppel" => "Veuillez indiquer le titre de votre appel ï¿½ tï¿½moins s'il vous plaï¿½t",
+	"VeillezAnnonce" => "Veuillez indiquer l'annonce de votre appel ï¿½ tï¿½moins s'il vous plaï¿½t",
+	"VeillezNom" => "Veuillez indiquer votre nom s'il vous plaï¿½t",
+	"VeillezPrenom" => "Veuillez indiquer votre prï¿½nom s'il vous plaï¿½t",
+	"VeillezNumero" => "Veuillez indiquer votre numï¿½ro de tï¿½lï¿½phone s'il vous plaï¿½t",
+	"VeillezAdresse" => "Veuillez indiquer une adresse email valide s'il vous plaï¿½t",
+	"VeillezConfirmerAdresse" => "Veuillez confirmer votre adresse email s'il vous plaï¿½t",
+	"VeillezEmail" => "L'email indiquï¿½ et sa confirmation ne correspondent pas",
+	"VeillezImage" => "Veuillez envoyer une image en JPG, GIF ou PNG, d'une rï¿½solution maximale de 1024px * 1024px",
+	"CodeSecuriteIncorrect" => "Le code de sï¿½curitï¿½ entrï¿½ est incorrect",
 
 
 );

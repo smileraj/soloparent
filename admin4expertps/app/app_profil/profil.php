@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 	
 	require_once('profil.html.php');
@@ -63,11 +63,11 @@
 	}
 	
 	
-	// éditer profil
+	// ï¿½diter profil
 	function profilEditer() {
 		global $db, $messages;
 		
-		// récup les données par défaut
+		// rï¿½cup les donnï¿½es par dï¿½faut
 		$data 		= getData();
 	
 		// nouvel utilisateur
@@ -77,7 +77,7 @@
 		
 		} else {
 			
-			// récup les infos du profil
+			// rï¿½cup les infos du profil
 			$query = "SELECT u.id, u.username, u.email, up.langue_appel, up.helvetica, up.genre, up.nom, up.prenom, up.telephone, up.adresse, up.code_postal, up.nom_origine, up.prenom_origine, up.telephone_origine, up.adresse_origine, up.code_postal_origine, us.gold_limit_date, 0 AS abonnement_crediter, us.appel_date, us.appel_date2, us.commentaire, u.confirmed, u.creation_date, ua.annonce_valide, us.points_total"
 			." FROM user AS u"
 			." INNER JOIN user_profil AS up ON up.user_id = u.id"
@@ -94,13 +94,13 @@
 			$userObj->points_retirer	= 0;
 			
 			
-			// variables par défaut
+			// variables par dï¿½faut
 			foreach($data as $k => $v) {
 				$userObj->{$k} = $v ? $v : $userObj->{$k};
 			}
 			
 			
-			// récup le dernier abonnement payé par carte
+			// rï¿½cup le dernier abonnement payï¿½ par carte
 			$query = "SELECT nom_paypal, prenom_paypal, IF(date_dernier_renouvellement = '0000-00-00 00:00:00', date_souscription, date_dernier_renouvellement) as datetime, valide"
 			." FROM abonnement_paypal"
 			." WHERE user_id = '".$userObj->id."' AND valide > 0"
@@ -117,7 +117,7 @@
 			}
 			
 			
-			// récup les 4 actions d'abonnement, id en dur !
+			// rï¿½cup les 4 actions d'abonnement, id en dur !
 			$query = "SELECT id, nom_fr as nom, points"
 			." FROM points"
 			." WHERE id IN (1,2,3,19)"
@@ -127,7 +127,7 @@
 			$points = $db->loadObjectList($query);
 			
 			
-			// affichage du formulaire d'édition
+			// affichage du formulaire d'ï¿½dition
 			profil_HTML::profilEditer($userObj, $messages, $points);
 		
 		}
@@ -147,13 +147,13 @@
 		
 		// params
 		
-		// si on passe une recherche en param, alors on force la page 1 (pour éviter de charger la page 36, s'il n'y a que 2 pages à voir)
+		// si on passe une recherche en param, alors on force la page 1 (pour ï¿½viter de charger la page 36, s'il n'y a que 2 pages ï¿½ voir)
 		$search['page']			= JL::getVar('search_page', JL::getSessionInt('search_page', 1));
 		
-		// mot cherché
+		// mot cherchï¿½
 		$search['word']			= trim(JL::getVar('search_word', JL::getSession('search_word', ''), true));
 		
-		// conserve en session ces paramètres
+		// conserve en session ces paramï¿½tres
 		JL::setSession('search_page', 		$search['page']);
 		JL::setSession('search_word', 		$search['word']);
 		
@@ -169,13 +169,13 @@
 		}
 		
 		
-		// génère le where
-		if(count($where)) {
+		// gï¿½nï¿½re le where
+		if (is_array($where)) {
 			$_where				= " WHERE ".implode(' AND ', $where);
 		}
 		
 		
-		// compte le nombre de résultats
+		// compte le nombre de rï¿½sultats
 		echo $query = "SELECT COUNT(*)"
 		." FROM user AS u"
 		." INNER JOIN user_profil AS up ON up.user_id = u.id"
@@ -185,7 +185,7 @@
 		$search['page_total'] 	= ceil($search['result_total']/$resultatParPage);
 		
 		
-		// recherche des données
+		// recherche des donnï¿½es
 		$query = "SELECT u.id, u.username, u.email, up.genre, IFNULL(pc.nom_fr, '') AS canton, IFNULL(pv.nom, '') AS ville, up.genre, up.nb_enfants, CURRENT_DATE, (YEAR(CURRENT_DATE)-YEAR(up.naissance_date)) - (RIGHT(CURRENT_DATE,5)<RIGHT(up.naissance_date,5)) AS age"
 		." FROM user AS u"
 		." INNER JOIN user_profil AS up ON up.user_id = u.id"
@@ -198,19 +198,19 @@
 		$results	= $db->loadObjectList($query);
 		
 		
-		// récup le nombre d'inscrits (table à part pour éviter les COUNT(*) sur la table user à chaque chargement de pag
+		// rï¿½cup le nombre d'inscrits (table ï¿½ part pour ï¿½viter les COUNT(*) sur la table user ï¿½ chaque chargement de pag
 		
 		profil_HTML::profilLister($results, $search);
 		
 	}
 	
 	
-	// liste les photos à valider
+	// liste les photos ï¿½ valider
 	function photoLister() {
 		global $db, $messages;
 		
 		
-		// récup 10 utilisateurs pour qui il faut valider des photos
+		// rï¿½cup 10 utilisateurs pour qui il faut valider des photos
 		$query = "SELECT u.username, us.user_id"
 		." FROM user_stats AS us"
 		." INNER JOIN user AS u ON u.id = us.user_id"
@@ -219,18 +219,18 @@
 		." LIMIT 0, 10";
 		$users = $db->loadObjectList($query);
 		
-		// parcourt la lsite des utilisateurs avec photo à valider
+		// parcourt la lsite des utilisateurs avec photo ï¿½ valider
 		$usersTotal	= count($users);
 		for($i=0; $i<$usersTotal; $i++) {
 			$users[$i]->photos = array();
 			
-			// parcourt le répertoire de photos de l'utilisateur
+			// parcourt le rï¿½pertoire de photos de l'utilisateur
 			$dir = '../images/profil/'.$users[$i]->user_id;
 			if(is_dir($dir)) {
 				$dir_id 	= opendir($dir);
 				while($file = trim(readdir($dir_id))) {
 					
-					// récup les photos à valider
+					// rï¿½cup les photos ï¿½ valider
 					if(preg_match('#^pending.*109#', $file)) {
 						$photo = preg_replace('#^.*-(.*-[0-9]+)\.jpg#', '$1', $file);
 						$users[$i]->photos[] = $photo;
@@ -256,8 +256,8 @@
 		// variables
 		$msg		= '';
 		
-		// si des photos ont été cochées
-		if(count($photos)) {
+		// si des photos ont ï¿½tï¿½ cochï¿½es
+		if (is_array($photos)) {
 			
 			foreach($photos as $photo) {
 				
@@ -276,7 +276,7 @@
 						@unlink('../images/profil/'.$user_id.'/pending-parent-solo-109-'.$file.'.jpg');
 						@unlink('../images/profil/'.$user_id.'/pending-parent-solo-220-'.$file.'.jpg');
 						
-						// retire la photo de la liste des dernières photos ajoutées
+						// retire la photo de la liste des derniï¿½res photos ajoutï¿½es
 						$query = "DELETE FROM photo_last WHERE user_id = '".$user_id."' AND photo_name = '".$file."'";
 						$db->query($query);
 						
@@ -291,16 +291,16 @@
 						@rename('../images/profil/'.$user_id.'/pending-parent-solo-109-'.$file.'.jpg', '../images/profil/'.$user_id.'/parent-solo-109-'.$file.'.jpg');
 						@rename('../images/profil/'.$user_id.'/pending-parent-solo-220-'.$file.'.jpg', '../images/profil/'.$user_id.'/parent-solo-220-'.$file.'.jpg');
 						
-						// sauvegarde dans la table des dernières photos validées
+						// sauvegarde dans la table des derniï¿½res photos validï¿½es
 						$query = "INSERT INTO photo_last SET user_id = '".$user_id."', photo_name = '".$file."'";
 						$db->query($query);
 						
-						// crédite l'action 6 photos validées
+						// crï¿½dite l'action 6 photos validï¿½es
 						JL::addPoints(6, $user_id);
 						
 					}
 					
-					// mise à jour de la table user_stats
+					// mise ï¿½ jour de la table user_stats
 					$query = "UPDATE user_stats SET photo_a_valider = photo_a_valider - 1 WHERE photo_a_valider > 0 AND user_id = '".$user_id."'";
 					$db->query($query);
 				
@@ -328,11 +328,11 @@
 		
 	}
 	
-	// liste les photos à valider
+	// liste les photos ï¿½ valider
 	function texteLister() {
 		global $db, $messages;
 		
-		// récup 10 utilisateurs pour qui il faut valider des textes
+		// rï¿½cup 10 utilisateurs pour qui il faut valider des textes
 		$query = "SELECT u.username, ua.user_id, ua.annonce"
 		." FROM user_annonce AS ua"
 		." INNER JOIN user AS u ON u.id = ua.user_id"
@@ -357,14 +357,14 @@
 		// variables
 		$msg		= '';
 		
-		// si des photos ont été cochées
-		if(count($textes)) {
+		// si des photos ont ï¿½tï¿½ cochï¿½es
+		if (is_array($textes)) {
 			
 			foreach($textes as $texte) {
 				
 				// suppression
 				if($task == 'refuser') {
-					// mise à jour de la table user_annonce
+					// mise ï¿½ jour de la table user_annonce
 					$query = "UPDATE user_annonce SET published = '0' WHERE user_id = '".$texte."'";
 					$db->query($query);
 				}
@@ -372,10 +372,10 @@
 				// validation
 				if($task == 'valider') {
 				
-					// récup le texte de l'annonce
+					// rï¿½cup le texte de l'annonce
 					$annonce	= JL::getVar('annonce'.$texte, '', true);
 					
-					// mise à jour de la table user_annonce
+					// mise ï¿½ jour de la table user_annonce
 					$query = "UPDATE user_annonce SET annonce = '".$annonce."', annonce_valide = '".$annonce."', published = '1' WHERE user_id = '".$texte."'";
 					$db->query($query);
 					
@@ -403,7 +403,7 @@
 		
 	}
 	
-	// données de l'utilisateur
+	// donnï¿½es de l'utilisateur
 	function &getData() {
 		global $userObj;
 		
@@ -436,16 +436,16 @@
 	}
 	
 	
-	// mise à jour des messages
+	// mise ï¿½ jour des messages
 	function profilUpdateMessages($ids) {
 		global $db;
 		
 		$in_id	= implode(',', $ids);
 		
-		// parcourt tous les utilisateurs à désactiver
+		// parcourt tous les utilisateurs ï¿½ dï¿½sactiver
 		foreach($ids as $id) {
 		
-			// récup tous les profils à qui l'utilisateur a envoyé des messages, et ceux-ci étant non lu
+			// rï¿½cup tous les profils ï¿½ qui l'utilisateur a envoyï¿½ des messages, et ceux-ci ï¿½tant non lu
 			$query = "SELECT m.user_id_to AS user_id, IF(m.fleur_id>0,1,0) AS fleur, COUNT(*) AS total"
 			." FROM message AS m"
 			." WHERE m.user_id_from = '".(int)$id."' AND m.non_lu = 1"
@@ -463,7 +463,7 @@
 						$field = 'message';
 					}
 					
-					// décrémente le total de nouveaux messages/fleurs
+					// dï¿½crï¿½mente le total de nouveaux messages/fleurs
 					$query = "UPDATE user_stats SET ".$field."_new = ".$field."_new - ".$nonLu->total." WHERE user_id = '".$nonLu->user_id."'";
 					$db->query($query);
 				

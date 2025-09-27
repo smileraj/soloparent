@@ -4,7 +4,7 @@ $lang_appcontact = array(
 	
 	//*View
 	
-	"MessagesParentsolo" => "Messages Parentsolo.ch",
+	"MessagesParentsolo" => "Messages solocircl.com",
 	
 	//**Formulaire de contact
 	
@@ -13,33 +13,33 @@ $lang_appcontact = array(
 	"Sujet" => "Sujet:",
 	"Message" => "Message:",
 	
-	"CodeDeVerification" => "Code de vérification",
+	"CodeDeVerification" => "Code de vï¿½rification",
 	
-	"VeuillezRecopierCodeVerification" => "Veuillez recopier ci-dessous, ce code de vérification:",
+	"VeuillezRecopierCodeVerification" => "Veuillez recopier ci-dessous, ce code de vï¿½rification:",
 	
 	"Envoyer" => "Envoyer",
 	
 	//*Model
 	//**Formulaire de contact
-	"- SelectionnezLeTypeDeDemande -" => "- Sélectionnez le type de demande -",
+	"- SelectionnezLeTypeDeDemande -" => "- Sï¿½lectionnez le type de demande -",
 	"ChangementAdresseEmail" => "Changement d'adresse email",
 	"ChangementPseudo" => "Changement de pseudo",
 	"InformationsAbonnements" => "Informations sur les abonnements",
-	"InformationsGenerales" => "Informations générales",
-	"JeSouhaiteMeDesinscrire" => "Je souhaite me désinscrire",
-	"ProblemeTechnique" => "Problème technique",
+	"InformationsGenerales" => "Informations gï¿½nï¿½rales",
+	"JeSouhaiteMeDesinscrire" => "Je souhaite me dï¿½sinscrire",
+	"ProblemeTechnique" => "Problï¿½me technique",
 	"Autre..." => "Autre...",
 	
 	//**Messages erreur
-	"WarningEmailInvalide" => "Veuillez indiquer une adresse email valide, s'il vous plaît",
-	"WarningTypeDeDemande" => "Veuillez indiquer le type de votre demande, s'il vous plaît",
-	"WarningMessage" => "Veuillez indiquer votre message, s'il vous plaît",
-	"WarningCodeVerifIncorrect" => "Le code de vérification entré est incorrect",
+	"WarningEmailInvalide" => "Veuillez indiquer une adresse email valide, s'il vous plaï¿½t",
+	"WarningTypeDeDemande" => "Veuillez indiquer le type de votre demande, s'il vous plaï¿½t",
+	"WarningMessage" => "Veuillez indiquer votre message, s'il vous plaï¿½t",
+	"WarningCodeVerifIncorrect" => "Le code de vï¿½rification entrï¿½ est incorrect",
 	
 	//*Controller
 	//**Confirmation d'envoi
 	
-	"MessageEnvoye" => "Votre message a bien été envoyé",
+	"MessageEnvoye" => "Votre message a bien ï¿½tï¿½ envoyï¿½",
 );
 
 ?>

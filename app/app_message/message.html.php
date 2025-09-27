@@ -11,18 +11,16 @@
 			include("lang/app_message.".$_GET['lang'].".php");
 
 			// s'il y a des messages &agrave; afficher
-			if(count($messages)) {
+			if (is_array($messages)) {
 			?>
 				<h2><?php echo $lang_message["MessagesParentsolo"];?></h2>
 				<div class="messages">
-					<?
-					// affiche les messages
+					<?php 					// affiche les messages
 					JL::messages($messages);
 				?>
 				</div>
 				<br />
-			<?
-			}
+			<?php 			}
 
 		}
 		
@@ -62,15 +60,13 @@
 			?>
 				
 				<div class="parentsolo_txt_center">
-         <h2 class="parentsolo_title barre "><? echo $h1; ?></h2>
+         <h2 class="parentsolo_title barre "><?php echo $h1; ?></h2>
          <div class="wedd-seperator"><img src="images/bg_img/saprator.png" alt=""></div>
       </div>
-			<?
-					// affiche les messages
+			<?php 					// affiche les messages
 					JL::messages($messages);
 				?>
-			<?
-
+			<?php 
 		}
 
 		// affiche la liste de $messages du dossier $dossier_id
@@ -99,8 +95,7 @@
 				<input type="hidden" name="action" value="" />
 <div class="row parentsolo_mt_20 text-center">
 			
-					<?
-						// liste les messages
+					<?php 						// liste les messages
 						if(is_array($userMessages) && count($userMessages)) {
 							
 							foreach($userMessages as $message) {
@@ -126,41 +121,40 @@
 								
 								
 							?>
-								<div class="col-md-12 parentsolo_pb_10 parentsolo_pt_10 odd_even_cls <? if($message->non_lu) { ?>non_lu<? }?>">
+								<div class="col-md-12 parentsolo_pb_10 parentsolo_pt_10 odd_even_cls <?php if($message->non_lu) { ?>non_lu<?php }?>">
 				<div class="col-md-3 parentsolo_plr_0">
 					<div class="col-md-3 parentsolo_plr_0">
-					<? 
+					<?php 
 									if($message->fleur_id) {
 							?>
-											<img src="<? echo SITE_URL; ?>/parentsolo/images/btn_rose.png" alt="Fleur" align="center" />
-							<? 
+											<img src="<?php echo SITE_URL; ?>/parentsolo/images/btn_rose.png" alt="Fleur" align="center" />
+							<?php 
 									}else{ 
 							?>
-										<img src="<? echo SITE_URL; ?>/parentsolo/images/btn_message.png" alt="Fleur" align="center" />
-							<?
-									}
+										<img src="<?php echo SITE_URL; ?>/parentsolo/images/btn_message.png" alt="Fleur" align="center" />
+							<?php 									}
 							?>
 					</div>
 					<div class="col-md-9 parentsolo_plr_0">
-					<a href="<? echo JL::url(SITE_URL.'/index.php?app=message&action=read&id='.$message->id).'&'.$langue; ?>" title="<?php echo $lang_message["LireCeMessage"];?>"><img src="<? echo $photo; ?>" alt="<? echo $message->username; ?>" class="parentsolo_border_radius"/></a>
+					<a href="<?php echo JL::url(SITE_URL.'/index.php?app=message&action=read&id='.$message->id).'&'.$langue; ?>" title="<?php echo $lang_message["LireCeMessage"];?>"><img src="<?php echo $photo; ?>" alt="<?php echo $message->username; ?>" class="parentsolo_border_radius"/></a>
 					</div>
 				</div>
 				<div class="col-md-6 parentsolo_plr_0">
 					<div class="col-md-6 parentsolo_inbox_usr">
-					<a class="parentsolo_text_header_stl" href="<? echo JL::url(SITE_URL.'/index.php?app=message&action=read&id='.$message->id).'&'.$langue; ?>" title="<?php echo $lang_message["LireCeMessage"];?>"><? echo $message->username; ?></a>
+					<a class="parentsolo_text_header_stl" href="<?php echo JL::url(SITE_URL.'/index.php?app=message&action=read&id='.$message->id).'&'.$langue; ?>" title="<?php echo $lang_message["LireCeMessage"];?>"><?php echo $message->username; ?></a>
 					<br />
 									<span class="detail parentsolo_details">
-										<? echo $message->age.' '.$lang_message["Ans"]; ?> - <? echo $message->nb_enfants; ?> <? echo $message->nb_enfants > 1 ? $lang_message["enfants"] : $lang_message["enfant"]; ?> - <? echo $message->canton_abrev; ?>
+										<?php echo $message->age.' '.$lang_message["Ans"]; ?> - <?php echo $message->nb_enfants; ?> <?php echo $message->nb_enfants > 1 ? $lang_message["enfants"] : $lang_message["enfant"]; ?> - <?php echo $message->canton_abrev; ?>
 									</span>
 					</div>
 					<div class="col-md-6 parentsolo_plr_0">
-					<a class="parentsolo_text_header_stl" href="<? echo JL::url(SITE_URL.'/index.php?app=message&action=read&id='.$message->id).'&'.$langue; ?>" title="<?php echo $lang_message["LireCeMessage"];?>"><? echo $message->titre; ?></a>
+					<a class="parentsolo_text_header_stl" href="<?php echo JL::url(SITE_URL.'/index.php?app=message&action=read&id='.$message->id).'&'.$langue; ?>" title="<?php echo $lang_message["LireCeMessage"];?>"><?php echo $message->titre; ?></a>
 					
 					</div>
 				</div>
 				<div class="col-md-3 text-right parentsolo_plr_0">
-					<span class="parentsolo_details"><strong><? echo date('d.M.Y', strtotime($message->date_envoi)); ?> <? echo date('H:i', strtotime($message->date_envoi)); ?></strong></span>
-					<span class="parentsolo_details"> &nbsp;<? 
+					<span class="parentsolo_details"><strong><?php echo date('d.M.Y', strtotime($message->date_envoi)); ?> <?php echo date('H:i', strtotime($message->date_envoi)); ?></strong></span>
+					<span class="parentsolo_details"> &nbsp;<?php 
 										if($message->m_read == 0){
 											echo '<img src="'.SITE_URL.'/parentsolo/images/msg-valid.png"/>';
 										}elseif($message->m_read == 1){
@@ -174,70 +168,63 @@
 
 				
 							
-							<?
-							}
+							<?php 							}
 							?>
 							
-						<?
-							if($action=="sent"){
+						<?php 							if($action=="sent"){
 						?>
 								<div class="row ">
 									<div class="col-md-4 col-md-offset-4 parentsolo_form_style parentsolo_mt_20 parentsolo_mb_20 parentsolo_pt_10 parentsolo_pb_10">
-										<div class="col-md-6 text-left"><img src="<? echo SITE_URL; ?>/parentsolo/images/msg-valid.png"/> <? echo $lang_message["Lu"]; ?>
+										<div class="col-md-6 text-left"><img src="<?php echo SITE_URL; ?>/parentsolo/images/msg-valid.png"/> <?php echo $lang_message["Lu"]; ?>
 										</div>
-										<div class="col-md-6 text-left"><img src="<? echo SITE_URL; ?>/parentsolo/images/msg-error.png"/> <? echo $lang_message["NonLu"]; ?>
+										<div class="col-md-6 text-left"><img src="<?php echo SITE_URL; ?>/parentsolo/images/msg-error.png"/> <?php echo $lang_message["NonLu"]; ?>
 										</div>
 									</div>
 								</div>
 								
-						<?
-							}
+						<?php 							}
 						?>
 							<tr>
 								<td colspan="6">
 								
-									<? // emails supprim&eacute;s
+									<?php // emails supprim&eacute;s
 									if($action == 'trash') {
 									?>
-									<center><a href="javascript:if(confirm('<?php echo $lang_message["ConfirmationViderCorbeille"];?>')){document.location.href='<? echo SITE_URL;?>/index.php?app=message&action=emptytrash&<? echo $langue; ?>'}" class="bouton annuler"><?php echo $lang_message["ViderLaCorbeille"];?></a></center>
-									<? } ?>
+									<center><a href="javascript:if(confirm('<?php echo $lang_message["ConfirmationViderCorbeille"];?>')){document.location.href='<?php echo SITE_URL;?>/index.php?app=message&action=emptytrash&<?php echo $langue; ?>'}" class="bouton annuler"><?php echo $lang_message["ViderLaCorbeille"];?></a></center>
+									<?php } ?>
 									<div class="toolbarsteps">
 									
 											<div class="col-md-3 ">
-												<? // page pr&eacute;c&eacute;dente
+												<?php // page pr&eacute;c&eacute;dente
 												if($search['page'] > 1) { ?>
-													<a href="<? echo JL::url(SITE_URL.'/index.php?app=message&action='.$action.'&page='.($search['page']-1)).'&'.$langue; ?>" class="bouton envoyer" title="<?php echo $lang_message["PagePrecedente"];?>">&laquo; <?php echo $lang_message["PagePrecedente"];?></a>
-												<? } ?>
+													<a href="<?php echo JL::url(SITE_URL.'/index.php?app=message&action='.$action.'&page='.($search['page']-1)).'&'.$langue; ?>" class="bouton envoyer" title="<?php echo $lang_message["PagePrecedente"];?>">&laquo; <?php echo $lang_message["PagePrecedente"];?></a>
+												<?php } ?>
 											</div>
 											<div class="col-md-6 text-center">
 												<b><?php echo $search['page'] == 1 ? $lang_message["Page"] : $lang_message["Pages"];?></b>:
-												<? if($debut > 1) { ?> <a href="<? echo JL::url(SITE_URL.'/index.php?app=message&action='.$action.'&page=1').'&'.$langue; ?>" title="<?php echo $lang_message["Debut"];?>"><?php echo $lang_message["Debut"];?></a> ...<? }?>
-												<?
-													for($i=$debut; $i<=$fin; $i++) {
+												<?php if($debut > 1) { ?> <a href="<?php echo JL::url(SITE_URL.'/index.php?app=message&action='.$action.'&page=1').'&'.$langue; ?>" title="<?php echo $lang_message["Debut"];?>"><?php echo $lang_message["Debut"];?></a> ...<?php }?>
+												<?php 													for($i=$debut; $i<=$fin; $i++) {
 													?>
-														 <a href="<? echo JL::url(SITE_URL.'/index.php?app=message&action='.$action.'&page='.$i).'&'.$langue; ?>" title="<?php echo $lang_message["Page"];?> <? echo $i; ?>" <? if($i == $search['page']) { ?>class="active"<? } ?>><? echo $i; ?></a>
-													<?
-													}
+														 <a href="<?php echo JL::url(SITE_URL.'/index.php?app=message&action='.$action.'&page='.$i).'&'.$langue; ?>" title="<?php echo $lang_message["Page"];?> <?php echo $i; ?>" <?php if($i == $search['page']) { ?>class="active"<?php } ?>><?php echo $i; ?></a>
+													<?php 													}
 												?>
-												<? if($fin < $search['page_total']) { ?> ... <a href="<? echo JL::url(SITE_URL.'/index.php?app=message&action='.$action.'&page='.$search['page_total']).'&'.$langue; ?>" title="<?php echo $lang_message["Fin"];?>"><?php echo $lang_message["Fin"];?></a><? }?> <i>(<? echo $search['result_total'] > 1 ?  $search['result_total'].' '.$lang_message["messages"] : $search['result_total'].' '.$lang_message["message"]; ?>)</i>
+												<?php if($fin < $search['page_total']) { ?> ... <a href="<?php echo JL::url(SITE_URL.'/index.php?app=message&action='.$action.'&page='.$search['page_total']).'&'.$langue; ?>" title="<?php echo $lang_message["Fin"];?>"><?php echo $lang_message["Fin"];?></a><?php }?> <i>(<?php echo $search['result_total'] > 1 ?  $search['result_total'].' '.$lang_message["messages"] : $search['result_total'].' '.$lang_message["message"]; ?>)</i>
 											</div>
 											<div class="col-md-3 ">
-												<? // page suivante
+												<?php // page suivante
 												if($search['page'] < $search['page_total']) { ?>
-													<a href="<? echo JL::url(SITE_URL.'/index.php?app=message&action='.$action.'&page='.($search['page']+1)).'&'.$langue; ?>" class="bouton envoyer" title="<?php echo $lang_message["PageSuivante"];?>"><?php echo $lang_message["PageSuivante"];?> &raquo;</a>
-												<? } ?>
+													<a href="<?php echo JL::url(SITE_URL.'/index.php?app=message&action='.$action.'&page='.($search['page']+1)).'&'.$langue; ?>" class="bouton envoyer" title="<?php echo $lang_message["PageSuivante"];?>"><?php echo $lang_message["PageSuivante"];?> &raquo;</a>
+												<?php } ?>
 											</div>
 									
 									</div>
 								</td>
 							</tr>
-						<?
-						} else {
+						<?php 						} else {
 						?>
 							<tr>
 								<td align="middle">
-								<?
-									switch($action) {
+								<?php 									switch($action) {
 
 										case 'inbox':
 											$dossier_vide = $lang_message["BoiteReceptionVide"];
@@ -269,14 +256,12 @@
 							<tr>
 								<td>&nbsp;</td>
 							</tr>
-						<?
-						}
+						<?php 						}
 					?>
 				</div>
 
 			</form>
-		<?
-		}
+		<?php 		}
 
 
 		public static function messageRead($message) {
@@ -314,83 +299,81 @@
 			// affichage des messages
 			HTML_message::messages($messages);
 		?>
-		<h3 class="loginprofile_title_h3 parentsolo_mt_20 parentsolo_pb_15"><? echo $message->titre; ?></h3>
+		<h3 class="loginprofile_title_h3 parentsolo_mt_20 parentsolo_pb_15"><?php echo $message->titre; ?></h3>
 							
 			<form action="index.php<?php '?lang='.$_GET['lang'];?>" name="message" method="post">
 
 				<div class="row">
 					<div class="col-md-12">
 						<div class="col-md-2 parentsolo_plr_0">
-							<? if($profilLink){ ?>
-									<a href="<? echo $profilLink; ?>" title="<? echo$lang_message["VoirCeProfil"];?>" class="photo"><img class="img-circle " src="<? echo $photo; ?>" alt="<? echo $message->username; ?>" /></a>
-							<? }else{ ?>
-									<img src="<? echo $photo; ?>" alt="<? echo $message->username; ?>" class="img-circle " />
-							<? } ?>
+							<?php if($profilLink){ ?>
+									<a href="<?php echo $profilLink; ?>" title="<?php echo$lang_message["VoirCeProfil"];?>" class="photo"><img class="img-circle " src="<?php echo $photo; ?>" alt="<?php echo $message->username; ?>" /></a>
+							<?php }else{ ?>
+									<img src="<?php echo $photo; ?>" alt="<?php echo $message->username; ?>" class="img-circle " />
+							<?php } ?>
 						</div>
 						<div class="col-md-10 parentsolo_plr_0">
 <div class="col-md-12 parentsolo_plr_0 parentsolo_pb_15 text-right">
-								<? // si droit de manipuler ce message
+								<?php // si droit de manipuler ce message
 							if($message->owner == 1) { ?>
-								<a href="<? echo JL::url(SITE_URL.'/index.php?app=message&action=reply&id='.$message->id).'&'.$langue; ?>" class="bouton envoyer a_link_icon" title="<?php echo $lang_message["Repondre"];?>"><i class="fa fa-reply"></i></a>
+								<a href="<?php echo JL::url(SITE_URL.'/index.php?app=message&action=reply&id='.$message->id).'&'.$langue; ?>" class="bouton envoyer a_link_icon" title="<?php echo $lang_message["Repondre"];?>"><i class="fa fa-reply"></i></a>
 								
-								<? // message archiv&eacute;
+								<?php // message archiv&eacute;
 								if($message->dossier_id == 2) { ?>
 
-									<a href="<? echo JL::url(SITE_URL.'/index.php?app=message&action=restore&id[]='.$message->id).'&'.$langue; ?>" class="bouton annuler a_link_icon" title="<?php echo $lang_message["Restaurer"];?>"><i class="fa fa-retweet"></i></a>
+									<a href="<?php echo JL::url(SITE_URL.'/index.php?app=message&action=restore&id[]='.$message->id).'&'.$langue; ?>" class="bouton annuler a_link_icon" title="<?php echo $lang_message["Restaurer"];?>"><i class="fa fa-retweet"></i></a>
 
-								<? } else { ?>
+								<?php } else { ?>
 
-									<a href="<? echo JL::url(SITE_URL.'/index.php?app=message&action=backup&id[]='.$message->id).'&'.$langue; ?>" class="bouton annuler a_link_icon" title="<?php echo $lang_message["Archiver"];?>"><i class="fa fa-archive"></i></a>
+									<a href="<?php echo JL::url(SITE_URL.'/index.php?app=message&action=backup&id[]='.$message->id).'&'.$langue; ?>" class="bouton annuler a_link_icon" title="<?php echo $lang_message["Archiver"];?>"><i class="fa fa-archive"></i></a>
 
-								<? } ?>
+								<?php } ?>
 								
 								
-								<? // message supprim&eacute;
+								<?php // message supprim&eacute;
 								if($message->dossier_id == 1) { ?>
 
-									<a href="<? echo JL::url(SITE_URL.'/index.php?app=message&action=restore&id[]='.$message->id).'&'.$langue; ?>" class="bouton envoyer a_link_icon" title="<?php echo $lang_message["Restaurer"];?>"><i class="fa fa-retweet"></i></a>
+									<a href="<?php echo JL::url(SITE_URL.'/index.php?app=message&action=restore&id[]='.$message->id).'&'.$langue; ?>" class="bouton envoyer a_link_icon" title="<?php echo $lang_message["Restaurer"];?>"><i class="fa fa-retweet"></i></a>
 
-								<? } else { ?>
-									<a href="<? echo JL::url(SITE_URL.'/index.php?app=message&action=delete&id[]='.$message->id).'&'.$langue; ?>" class="bouton envoyer a_link_icon" title="<?php echo $lang_message["Supprimer"];?>"><i class="fa fa-trash-o"></i></a>
+								<?php } else { ?>
+									<a href="<?php echo JL::url(SITE_URL.'/index.php?app=message&action=delete&id[]='.$message->id).'&'.$langue; ?>" class="bouton envoyer a_link_icon" title="<?php echo $lang_message["Supprimer"];?>"><i class="fa fa-trash-o"></i></a>
 
-								<? } ?>
+								<?php } ?>
 
-							<? } ?>
+							<?php } ?>
 							</div>
 							<div class="col-md-12 parentsolo_plr_0">
 								<div class="col-md-9 parentsolo_plr_0">
-								<i><?php echo $message->owner ? $lang_message["De"] : $lang_message["Pour"];?> <b><? if($profilLink){ ?><a href="<? echo $profilLink; ?>" title="<?php  echo $lang_message["VoirCeProfil"]; ?>"><? echo $message->username; ?></a><? }else{ echo $message->username; } ?></b><br />
-								<span class="parentsolo_details"><?php echo $lang_message["Le"];?> <? echo date('d/m/Y', strtotime($message->date_envoi)); ?> <?php echo $lang_message["A"];?> <? echo date('H:i:s', strtotime($message->date_envoi)); ?></i>
+								<i><?php echo $message->owner ? $lang_message["De"] : $lang_message["Pour"];?> <b><?php if($profilLink){ ?><a href="<?php echo $profilLink; ?>" title="<?php  echo $lang_message["VoirCeProfil"]; ?>"><?php echo $message->username; ?></a><?php }else{ echo $message->username; } ?></b><br />
+								<span class="parentsolo_details"><?php echo $lang_message["Le"];?> <?php echo date('d/m/Y', strtotime($message->date_envoi)); ?> <?php echo $lang_message["A"];?> <?php echo date('H:i:s', strtotime($message->date_envoi)); ?></i>
 							</span>
 								</div>
 						
 						<div class="col-md-3 parentsolo_plr_0 text-right">
 						
-						<span class="parentsolo_details"><strong><? echo date('d-M', strtotime($message->date_envoi)); ?></strong></span>
+						<span class="parentsolo_details"><strong><?php echo date('d-M', strtotime($message->date_envoi)); ?></strong></span>
 						</div>
 							</div>
 						
 					</div>
 						</div>
 					
-						<?
-						// si c'est une rose
+						<?php 						// si c'est une rose
 						if($message->fleur_id) {
 						?><div class="col-md-12 parentsolo_mt_20 parentsolo_pt_15 border-top-inbox">
 						<div class="col-md-7 parentsolo_plr_0">
-							<b><? echo $message->fleur_nom; ?></b><br />
-							<? echo $message->fleur_signification; ?>
+							<b><?php echo $message->fleur_nom; ?></b><br />
+							<?php echo $message->fleur_signification; ?>
 						</div>
 						<div class="col-md-5 parentsolo_plr_0 text-right">
-							<img src="images/fleur/<? echo $message->fleur_id; ?>.png" alt="<? echo $message->fleur_nom; ?>" />
+							<img src="images/fleur/<?php echo $message->fleur_id; ?>.png" alt="<?php echo $message->fleur_nom; ?>" />
 						</div>
 						</div>
-						<?
-						} 
+						<?php 						} 
 						?>
 					
 					<div class="col-md-12 parentsolo_mt_20 parentsolo_pt_15 border-top-inbox">
-						<? echo nl2br($message->texte); ?>
+						<?php echo nl2br($message->texte); ?>
 					</div>
 				</div>
 				
@@ -399,10 +382,10 @@
 
 				<input type="hidden" name="app" value="message" />
 				<input type="hidden" name="action" value="reply" />
-				<input type="hidden" name="id" value="<? echo $message->id; ?>" />
+				<input type="hidden" name="id" value="<?php echo $message->id; ?>" />
 			</form>
 					
-	<? 
+	<?php 
 
 		}
 		
@@ -449,46 +432,40 @@
 				<div class="row">
 					<div class="col-md-10 col-md-offset-1 parentsolo_form_style">
 					
-					<div class="parentsolo_txt_center"><h3 class="parentsolo_title_h3 parentsolo_txt_center  parentsolo_pt_15"><? echo $envoi_type; ?></h3>
+					<div class="parentsolo_txt_center"><h3 class="parentsolo_title_h3 parentsolo_txt_center  parentsolo_pt_15"><?php echo $envoi_type; ?></h3>
 						<div class="wedd-seperator"><img src="images/bg_img/saprator.png" alt=""></div></div>
-						<? if($flower) { ?> 
-						<?
-						// parcourt le tableau de roses
+						<?php if($flower) { ?> 
+						<?php 						// parcourt le tableau de roses
 						if(is_array($fleurs)) {
 						?>
 							<div class="row" >
-						<?
-							$i = 0;
+						<?php 							$i = 0;
 							foreach($fleurs as $fleur) {
 								// hmtlentities
 								JL::makeSafe($fleur,'signification');
 								if($i==5){
 								?>
 									<!--<div class="row1 bottompadding parentsolo_mt_20">-->
-								<?
-									}
+								<?php 									}
 								?>
 										
 						<div class="col-md-4 col-lg-4 col-sm-4 col-xs-6">
 						<div class="col-md-12">
-							<label for="fleur_id_<? echo $fleur->id; ?>" id="label_fleur_id_<? echo $fleur->id; ?>" title="<? echo $fleur->signification; ?>"><img src="images/fleur/<? echo $fleur->id; ?>.png" style="width:100px;" alt="<? echo $fleur->nom; ?>" onClick="fleur('<? echo $fleur->id; ?>', '<? echo addslashes($fleur->nom); ?>', '<? echo $couleurs[$i]; ?>');"></label>
+							<label for="fleur_id_<?php echo $fleur->id; ?>" id="label_fleur_id_<?php echo $fleur->id; ?>" title="<?php echo $fleur->signification; ?>"><img src="images/fleur/<?php echo $fleur->id; ?>.png" style="width:100px;" alt="<?php echo $fleur->nom; ?>" onClick="fleur('<?php echo $fleur->id; ?>', '<?php echo addslashes($fleur->nom); ?>', '<?php echo $couleurs[$i]; ?>');"></label>
 						</div>
 						<div class="col-md-12" style="display:flex;">
-							<input type="radio" name="fleur_id" id="fleur_id_<? echo $fleur->id; ?>" value="<? echo $fleur->id; ?>" onClick="fleur('<? echo $fleur->id; ?>', '<? echo addslashes($fleur->nom); ?>', '<? echo $couleurs[$i]; ?>');" style="width:20px;" /><label for="fleur_id_<? echo $fleur->id; ?>" onClick="fleur('<? echo $fleur->id; ?>', '<? echo addslashes($fleur->nom); ?>', '<? echo $couleurs[$i]; ?>');"><? echo $fleur->nom; ?></label>
+							<input type="radio" name="fleur_id" id="fleur_id_<?php echo $fleur->id; ?>" value="<?php echo $fleur->id; ?>" onClick="fleur('<?php echo $fleur->id; ?>', '<?php echo addslashes($fleur->nom); ?>', '<?php echo $couleurs[$i]; ?>');" style="width:20px;" /><label for="fleur_id_<?php echo $fleur->id; ?>" onClick="fleur('<?php echo $fleur->id; ?>', '<?php echo addslashes($fleur->nom); ?>', '<?php echo $couleurs[$i]; ?>');"><?php echo $fleur->nom; ?></label>
 										</div></div>
 										
-								<?
-										$i++;
+								<?php 										$i++;
 								if($i==5 || $i==9){
 								?>
 									<!--</div >-->
-								<?
-								}
+								<?php 								}
 							}
 						?>
 							</div>
-						<?
-						}
+						<?php 						}
 
 					?>
 						<br>
@@ -509,20 +486,20 @@
 						<div id="signification" style="    padding: 5px;  border: solid 1px #d8dee0;  background: #fff;">
 							<b><?php echo $lang_message["CliquezSurUneRose"];?></b></div>
 						</div></div>
-						<? } ?>
+						<?php } ?>
 						<div class="row bottompadding parentsolo_mt_20">
 						<div class="col-md-4">
 							<label for="user_to"><?php echo $lang_message["Destinataire"];?>:</label>
 						</div>
 						<div class="col-md-8">
-							<b><? echo $message->user_to; ?></b>
+							<b><?php echo $message->user_to; ?></b>
 						</div></div>
 						<div class="row bottompadding">
 							<div class="col-md-4">
 							<label for="titre"><?php echo $lang_message["Titre"];?>:</label>
 						</div>
 						<div class="col-md-8">
-							<input type="text" id="titre" name="titre" maxlength="255" value="<? echo $message->titre; ?>" >
+							<input type="text" id="titre" name="titre" maxlength="255" value="<?php echo $message->titre; ?>" >
 						</div>
 						</div>
 						<div class="row bottompadding">
@@ -531,7 +508,7 @@
 						</div>
 						
 							<div class="col-md-8">
-							<textarea name="texte" id="texte" style="width:100%; height: 155px;"><? echo $message->texte; ?></textarea>
+							<textarea name="texte" id="texte" style="width:100%; height: 155px;"><?php echo $message->texte; ?></textarea>
 						</div>
 						</div>
 						<div class="row bottompadding parentsolo_mt_20">
@@ -545,8 +522,8 @@
 							<a href="javascript:document.message.submit();" class="bouton envoyer parentsolo_btn"><?php echo $lang_message["Envoyer"];?></a>
 						</div>
 						<input type="hidden" name="app" value="message" />
-			<input type="hidden" name="action" value="<? echo $flower ? 'sendflower' : 'send'; ?>" />
-			<input type="hidden" name="user_to" value="<? echo $message->user_to; ?>" />
+			<input type="hidden" name="action" value="<?php echo $flower ? 'sendflower' : 'send'; ?>" />
+			<input type="hidden" name="user_to" value="<?php echo $message->user_to; ?>" />
 						</div>
 					</div>
 				</div>
@@ -554,8 +531,7 @@
 			
 			
 		</form>
-		<?
-		}
+		<?php 		}
 
 	}
 ?>

@@ -49,7 +49,7 @@
 		$_data			=& get_contacts_data();
 
 		// conserve les données envoyées en session
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row->{$key} = JL::getVar($key, $value);
 			}
@@ -87,7 +87,7 @@
 		$_data			=& get_contacts_data();
 
 		// conserve les données envoyées en session
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row->{$key} = JL::getVar($key, $value);
 			}
@@ -168,7 +168,7 @@
 		$_data			=& send_invites_data();
 
 		// conserve les données envoyées en session
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row->{$key} = JL::getVar($key, $value);
 			}
@@ -206,7 +206,7 @@
 		$_data			=& send_invites_data();
 
 		// conserve les données envoyées en session
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row->{$key} = JL::getVar($key, $value);
 			}
@@ -264,7 +264,7 @@
 								$contacts[$val]=$_POST['name_'.$temp[1]];
 						}
 					
-						if(count($selected_contacts)==0) 
+						if (is_array($selected_contacts)==0) 
 							$messages[] = '<span class="error">'.$lang_appexample["WarningAucunContactSelect"].'</span>';
 				}
 			}

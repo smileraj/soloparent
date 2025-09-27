@@ -2,7 +2,7 @@
 
 $lang_appmdp = array(
 	
-	"MessagesParentSolo" => "Messages ParentSolo.ch",	
+	"MessagesParentSolo" => "Messages solocircl.com",	
 	
 	
 	"ChangerMonMotPasse" => "Changer mon mot de passe",
@@ -29,8 +29,8 @@ $lang_appmdp = array(
 	
 	"MdpModifieSucces" => "Mot de passe modifi&eacute; avec succ&egrave;s",
 	"MdpModifie" => "Votre mot de passe a bien &eacute;t&eacute; modifi&eacute;",
-	"ConnexionOk" => "Vous pouvez d&egrave;s &agrave; pr&eacute;sent vous connecter &agrave; votre compte Parentsolo.ch avec vos <b>nouveaux identifiants</b> (cf. email de confirmation)",
-	"ABientotSurParentsolo" => "A bient&ocirc;t sur Parentsolo.ch",
+	"ConnexionOk" => "Vous pouvez d&egrave;s &agrave; pr&eacute;sent vous connecter &agrave; votre compte solocircl.com avec vos <b>nouveaux identifiants</b> (cf. email de confirmation)",
+	"ABientotSurParentsolo" => "A bient&ocirc;t sur solocircl.com",
 	
 	
 	"MdpNonModifie" => "Mot de passe non modifi&eacute;",

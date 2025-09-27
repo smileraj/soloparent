@@ -17,7 +17,7 @@
 	</div>
 
 	<div class="colr"> 
-		<? JL::loadMod('menu_right');?>
+		<?php JL::loadMod('menu_right');?>
 	</div>
 	<div style="clear:both"> </div>
 </div>

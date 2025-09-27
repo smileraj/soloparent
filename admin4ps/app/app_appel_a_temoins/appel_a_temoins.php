@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 	
 	require_once('appel_a_temoins.html.php');
@@ -32,11 +32,11 @@
 	function appel_a_temoinsSave() {
 		global $db, $messages;
 		
-		// récup les données
+		// rï¿½cup les donnï¿½es
 		$row 		=& getData();
 		
 
-		// vérifications des champs
+		// vï¿½rifications des champs
 		if($row->media_id == 0) {
 			$messages[]	= '<span class="error">Veuillez indiquer le type de m&eacute;dia concern&eacute; s\'il vous pla&icirc;t.</span>';
 		}
@@ -74,7 +74,7 @@
 		// s'il n'y a pas d'erreur
 		if(!count($messages)) {
 		
-			// récup le active actuel
+			// rï¿½cup le active actuel
 			$query = "SELECT active FROM appel_a_temoins WHERE id = '".(int)$row->id."' LIMIT 0,1";
 			$active = $db->loadResult($query);
 			
@@ -83,46 +83,46 @@
 			
 				if($row->active == 1) {
 				
-					// envoi du mail "votre appel à témoins a été publié"
-					$message = "Bonjour,\n\nVotre appel à témoins a été publié !\n\nCelui-ci est disponible à l'adresse suivante:\n".SITE_URL."/".JL::url('index.php?app=appel_a_temoins&action=read&id='.$row->id)."\n\n";
+					// envoi du mail "votre appel ï¿½ tï¿½moins a ï¿½tï¿½ publiï¿½"
+					$message = "Bonjour,\n\nVotre appel ï¿½ tï¿½moins a ï¿½tï¿½ publiï¿½ !\n\nCelui-ci est disponible ï¿½ l'adresse suivante:\n".SITE_URL."/".JL::url('index.php?app=appel_a_temoins&action=read&id='.$row->id)."\n\n";
 					
-					// si un motif a été indiqué
+					// si un motif a ï¿½tï¿½ indiquï¿½
 					if($row->motif) {
 					
 						$message .= $row->motif."\n\n";
 						
 					}
 					
-					$message .= "Cordialement,\nL'équipe ParentSolo.ch";
+					$message .= "Cordialement,\nL'ï¿½quipsolocircl.comch";
 					
 					// version texte et html
 					$message = str_replace("\n", "\n<br />", $message);
 					
-					JL::mail($row->email, '[ ParentSolo.ch ] Votre appel à témoins', $message);
-					JL::mail('l.guyot@babybook.ch', '[ ParentSolo.ch ] Votre appel à témoins', $message);
+					JL::mail($row->email, '[ solocircl.com ] Votre appel ï¿½ tï¿½moins', $message);
+					JL::mail('l.guyot@babybook.ch', '[ solocircl.com ] Votre appel ï¿½ tï¿½moins', $message);
 					
 					// mesage de confirmation
 					$messages[]	= '<span class="valid">Email de validation envoy&eacute; !</span>';
 				
 				} elseif($row->active == 0) {
 				
-					// envoi du mail "votre appel à témoins a été publié"
+					// envoi du mail "votre appel ï¿½ tï¿½moins a ï¿½tï¿½ publiï¿½"
 					$message = "Bonjour,\n\nVotre appel &agrave; t&eacute;moins a &eacute;t&eacute; refus&eacute; !\n\n";
 					
-					// si un motif a été indiqué
+					// si un motif a ï¿½tï¿½ indiquï¿½
 					if($row->motif) {
 					
 						$message .= $row->motif."\n\n";
 						
 					}
 					
-					$message .= "Cordialement,\nL'équipe ParentSolo.ch";
+					$message .= "Cordialement,\nL'ï¿½quipsolocircl.comch";
 					
 					// version texte et html
 					$message = str_replace("\n", "\n<br />", $message);
 					
-					JL::mail($row->email, '[ ParentSolo.ch ] Votre appel à témoins', $message);
-					JL::mail('l.guyot@babybook.ch', '[ ParentSolo.ch ] Votre appel à témoins', $message);
+					JL::mail($row->email, '[ solocircl.com ] Votre appel ï¿½ tï¿½moins', $message);
+					JL::mail('l.guyot@babybook.ch', '[ solocircl.com ] Votre appel ï¿½ tï¿½moins', $message);
 					
 					// mesage de confirmation
 					$messages[]	= '<span class="valid">Email de refus envoy&eacute; !</span>';
@@ -132,7 +132,7 @@
 			}
 			
 			
-			// mise à jour dans la DB
+			// mise ï¿½ jour dans la DB
 			$query = "UPDATE appel_a_temoins SET"
 			." nom = '".$db->escape($row->nom)."',"
 			." prenom = '".$db->escape($row->prenom)."',"
@@ -166,17 +166,17 @@
 	}
 	
 	
-	// éditer appel_a_temoins
+	// ï¿½diter appel_a_temoins
 	function appel_a_temoinsEditer() {
 		global $db, $messages;
 		
 		// variables
 		$lists		= array();
 		
-		// récup les données par défaut
+		// rï¿½cup les donnï¿½es par dï¿½faut
 		$data 		=& getData();
 	
-		// récup les infos du appel_a_temoins
+		// rï¿½cup les infos du appel_a_temoins
 		$query = "SELECT at.*"
 		." FROM appel_a_temoins AS at"
 		." WHERE at.id = '".$data->id."'"
@@ -188,7 +188,7 @@
 		// appel invalide
 		if(!$row->id) JL::redirect(SITE_URL_ADMIN.'/index.php?app=appel_a_temoins');
 		
-		// variables par défaut
+		// variables par dï¿½faut
 		foreach($data as $k => $v) {
 			$row->{$k} = $v ? $v : $row->{$k};
 		}
@@ -222,22 +222,22 @@
 		$resultatParPage	= RESULTS_NB_LISTE_ADMIN;
 		$search				= array();
 		$lists				= array();
-		$where				= array();
+		$where				= null;
 		$_where				= '';
 		
 		// params
 		
-		// si on passe une recherche en param, alors on force la page 1 (pour éviter de charger la page 36, s'il n'y a que 2 pages à voir)
+		// si on passe une recherche en param, alors on force la page 1 (pour ï¿½viter de charger la page 36, s'il n'y a que 2 pages ï¿½ voir)
 		$search['page']			= JL::getVar('search_at_page', JL::getSessionInt('search_at_page', 1));
 		
-		// mot cherché
+		// mot cherchï¿½
 		$search['word']			= trim(JL::getVar('search_at_word', JL::getSession('search_at_word', ''), true));
 		$search['order']		= JL::getVar('search_at_order', JL::getSession('search_at_order', 'at.date_add'), 'at.date_add');
 		$search['ascdesc']		= JL::getVar('search_at_ascdesc', JL::getSession('search_at_ascdesc', 'desc'), 'desc');
 		$search['active']		= JL::getVar('search_at_active', JL::getSession('search_at_active', -1), -1);
 		$search['media_id']		= JL::getVar('search_at_media_id', JL::getSession('search_at_media_id', 0), 0);
 		
-		// conserve en session ces paramètres
+		// conserve en session ces paramï¿½tres
 		JL::setSession('search_at_page', 		$search['page']);
 		JL::setSession('search_at_word', 		$search['word']);
 		JL::setSession('search_at_order', 		$search['order']);
@@ -246,25 +246,25 @@
 		JL::setSession('search_at_media_id', 	$search['media_id']);
 		
 		
-		// critère de tri
+		// critï¿½re de tri
 		$order				= array();
 		$order[]			= JL::makeOption('at.date_add', 	'Date ajout');
 		$order[]			= JL::makeOption('at.titre', 		'Titre');
 		$order[]			= JL::makeOption('at.nom', 			'Nom');
 		$lists['order']		= JL::makeSelectList($order, 'search_at_order', 'class="searchInput"', 'value', 'text', $search['order']);
 
-		// ordre croissant/décroissant
+		// ordre croissant/dï¿½croissant
 		$ascdesc			= array();
 		$ascdesc[]			= JL::makeOption('asc', 			'Croissant');
-		$ascdesc[]			= JL::makeOption('desc', 			'Décroissant');
+		$ascdesc[]			= JL::makeOption('desc', 			'Dï¿½croissant');
 		$lists['ascdesc']	= JL::makeSelectList($ascdesc, 'search_at_ascdesc', 'class="searchInput"', 'value', 'text', $search['ascdesc']);
 		
 		// statut
 		$active				= array();
 		$active[]			= JL::makeOption('-1', 				'Tous');
 		$active[]			= JL::makeOption('2', 				'A valider');
-		$active[]			= JL::makeOption('1', 				'Confirmés');
-		$active[]			= JL::makeOption('0', 				'Refusés');
+		$active[]			= JL::makeOption('1', 				'Confirmï¿½s');
+		$active[]			= JL::makeOption('0', 				'Refusï¿½s');
 		$lists['active']	= JL::makeSelectList($active, 'search_at_active', 'class="searchInput"', 'value', 'text', $search['active']);
 		
 		
@@ -297,13 +297,13 @@
 			$where[]		= "at.media_id = '".addslashes($search['media_id'])."'";
 		}
 		
-		// génère le where
-		if(count($where)) {
+		// gï¿½nï¿½re le where
+		if (is_array($where)) {
 			$_where			= " WHERE ".implode(' AND ', $where);
 		}
 		
 		
-		// compte le nombre de résultats
+		// compte le nombre de rï¿½sultats
 		$query = "SELECT COUNT(*)"
 		." FROM appel_a_temoins AS at"
 		." INNER JOIN appel_media AS am ON am.id = at.media_id"
@@ -313,7 +313,7 @@
 		$search['page_total'] 	= ceil($search['result_total']/$resultatParPage);
 		
 		
-		// recherche des données
+		// recherche des donnï¿½es
 		$query = "SELECT at.id, at.titre, at.nom, at.prenom, at.email, at.active, am.nom_fr AS media, at.date_add"
 		." FROM appel_a_temoins AS at"
 		." INNER JOIN appel_media AS am ON am.id = at.media_id"
@@ -329,7 +329,7 @@
 	}
 	
 	
-	// données de l'utilisateur
+	// donnï¿½es de l'utilisateur
 	function &getData() {
 	
 		$data = new StdClass();

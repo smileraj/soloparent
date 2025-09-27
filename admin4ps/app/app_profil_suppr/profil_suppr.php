@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 	
 	require_once('profil_suppr.html.php');
@@ -27,11 +27,11 @@
 	}
 	
 	
-	// éditer profil
+	// ï¿½diter profil
 	function profilEditer() {
 		global $db, $messages;
 		
-		// récup les données par défaut
+		// rï¿½cup les donnï¿½es par dï¿½faut
 		$data 		= getData();
 	
 		// nouvel utilisateur
@@ -41,7 +41,7 @@
 		
 		} else {
 			
-			// récup les infos du profil
+			// rï¿½cup les infos du profil
 			$query = "SELECT u.id, u.username, u.email, up.langue_appel, up.helvetica, up.genre, up.nom, up.prenom, up.telephone, up.adresse, up.code_postal, up.nom_origine, up.prenom_origine, up.telephone_origine, up.adresse_origine, up.code_postal_origine, us.gold_limit_date, 0 AS abonnement_crediter, us.appel_date, us.appel_date2, us.commentaire, u.confirmed, u.creation_date, ua.annonce_valide, us.points_total"
 			." FROM user_suppr AS u"
 			." INNER JOIN user_profil AS up ON up.user_id = u.id"
@@ -58,13 +58,13 @@
 			$userObj->points_retirer	= 0;
 			
 			
-			// variables par défaut
+			// variables par dï¿½faut
 			foreach($data as $k => $v) {
 				$userObj->{$k} = $v ? $v : $userObj->{$k};
 			}
 			
 			
-			// récup le dernier abonnement payé par carte
+			// rï¿½cup le dernier abonnement payï¿½ par carte
 			$query = "SELECT nom_paypal, prenom_paypal, IF(date_dernier_renouvellement = '0000-00-00 00:00:00', date_souscription, date_dernier_renouvellement) as datetime, valide"
 			." FROM abonnement_paypal"
 			." WHERE user_id = '".$userObj->id."' AND valide > 0"
@@ -81,7 +81,7 @@
 			}
 			
 			
-			// récup les 4 actions d'abonnement, id en dur !
+			// rï¿½cup les 4 actions d'abonnement, id en dur !
 			$query = "SELECT id, nom_fr as nom, points"
 			." FROM points"
 			." WHERE id IN (1,2,3,19)"
@@ -91,7 +91,7 @@
 			$points = $db->loadObjectList($query);
 			
 			
-			// affichage du formulaire d'édition
+			// affichage du formulaire d'ï¿½dition
 			profil_suppr_HTML::profilEditer($userObj, $messages, $points);
 		
 		}
@@ -114,10 +114,10 @@
 		
 		// params
 		
-		// si on passe une recherche en param, alors on force la page 1 (pour éviter de charger la page 36, s'il n'y a que 2 pages à voir)
+		// si on passe une recherche en param, alors on force la page 1 (pour ï¿½viter de charger la page 36, s'il n'y a que 2 pages ï¿½ voir)
 		$search['page']			= JL::getVar('search_page', JL::getSessionInt('search_page', 1));
 		
-		// mot cherché
+		// mot cherchï¿½
 		$search['word']			= trim(JL::getVar('search_word', JL::getSession('search_word', ''), true));
 		$search['order']		= JL::getVar('search_order', JL::getSession('search_order', 'u.creation_date'));
 		$search['ascdesc']		= JL::getVar('search_ascdesc', JL::getSession('search_ascdesc', 'desc'));
@@ -126,7 +126,7 @@
 		$search['abonnement']	= JL::getVar('search_abonnement', JL::getSession('search_abonnement', ''));
 		$search['helvetica']	= (int)JL::getVar('search_helvetica', JL::getSession('search_helvetica', 2));
 		
-		// conserve en session ces paramètres
+		// conserve en session ces paramï¿½tres
 		JL::setSession('search_page', 		$search['page']);
 		JL::setSession('search_word', 		$search['word']);
 		JL::setSession('search_order', 		$search['order']);
@@ -137,28 +137,28 @@
 		JL::setSession('search_helvetica', 	$search['helvetica']);
 		
 		
-		// critère de tri
+		// critï¿½re de tri
 		$order					= array();
 		$order[]				= JL::makeOption('u.creation_date', 	'Date inscription');
-		$order[]				= JL::makeOption('u.last_online', 		'Dernière connexion');
+		$order[]				= JL::makeOption('u.last_online', 		'Derniï¿½re connexion');
 		$order[]				= JL::makeOption('us.gold_limit_date', 	'Fin abonnement');
 		$order[]				= JL::makeOption('u.ip_pays', 			'Pays');
 		$order[]				= JL::makeOption('us.points_total', 	'Points Total');
 		$order[]				= JL::makeOption('u.username', 			'Pseudo');
 		$lists['order']			= JL::makeSelectList($order, 'search_order', 'class="searchInput"', 'value', 'text', $search['order']);
 
-		// ordre croissant/décroissant
+		// ordre croissant/dï¿½croissant
 		$ascdesc				= array();
 		$ascdesc[]				= JL::makeOption('asc', 			'Croissant');
-		$ascdesc[]				= JL::makeOption('desc', 			'Décroissant');
+		$ascdesc[]				= JL::makeOption('desc', 			'Dï¿½croissant');
 		$lists['ascdesc']		= JL::makeSelectList($ascdesc, 'search_ascdesc', 'class="searchInput"', 'value', 'text', $search['ascdesc']);
 		
 		// statut
 		$confirmed				= array();
 		$confirmed[]			= JL::makeOption('-1', 				'Tous');
 		$confirmed[]			= JL::makeOption('2', 				'A valider');
-		$confirmed[]			= JL::makeOption('1', 				'Confirmés');
-		$confirmed[]			= JL::makeOption('0', 				'Refusés');
+		$confirmed[]			= JL::makeOption('1', 				'Confirmï¿½s');
+		$confirmed[]			= JL::makeOption('0', 				'Refusï¿½s');
 		$lists['confirmed']		= JL::makeSelectList($confirmed, 'search_confirmed', 'class="searchInput"', 'value', 'text', $search['confirmed']);
 		
 		// genre
@@ -173,7 +173,7 @@
 		$abonnement[]			= JL::makeOption('', 				'Tous');
 		$abonnement[]			= JL::makeOption('1',				'Aucun');
 		$abonnement[]			= JL::makeOption('2', 				'En cours');
-		$abonnement[]			= JL::makeOption('3', 				'Terminé');
+		$abonnement[]			= JL::makeOption('3', 				'Terminï¿½');
 		$lists['abonnement']	= JL::makeSelectList($abonnement, 'search_abonnement', 'class="searchInput"', 'value', 'text', $search['abonnement']);
 		
 		// profil helvetica
@@ -195,7 +195,7 @@
 			
 				$where[]		= "us.gold_limit_date >= NOW()";
 			
-			} elseif($search['abonnement'] == '3') { // abo terminé
+			} elseif($search['abonnement'] == '3') { // abo terminï¿½
 			
 				$where[]		= "us.gold_limit_date < NOW()";
 				$where[]		= "us.gold_limit_date != '0000-00-00'";
@@ -226,13 +226,13 @@
 			$where[]			= "up.helvetica = 0";
 		}
 		
-		// génère le where
-		if(count($where)) {
+		// gï¿½nï¿½re le where
+		if (is_array($where)) {
 			$_where				= " WHERE ".implode(' AND ', $where);
 		}
 		
 		
-		// compte le nombre de résultats
+		// compte le nombre de rï¿½sultats
 		$query = "SELECT COUNT(*)"
 		." FROM user_suppr AS u"
 		." INNER JOIN user_profil AS up ON up.user_id = u.id"
@@ -243,7 +243,7 @@
 		$search['page_total'] 	= ceil($search['result_total']/$resultatParPage);
 		
 		
-		// recherche des données
+		// recherche des donnï¿½es
 		$query = "SELECT u.id, u.username, u.confirmed, u.published, u.ip, u.ip_pays, up.helvetica, up.genre, us.gold_limit_date, up.nom_origine, up.prenom_origine, up.telephone_origine, us.appel_date, us.appel_date2, us.points_total"
 		." FROM user_suppr AS u"
 		." INNER JOIN user_profil AS up ON up.user_id = u.id"
@@ -255,12 +255,12 @@
 		$results	= $db->loadObjectList($query);
 		
 		
-		// récup le nombre d'inscrits (table à part pour éviter les COUNT(*) sur la table user à chaque chargement de page
+		// rï¿½cup le nombre d'inscrits (table ï¿½ part pour ï¿½viter les COUNT(*) sur la table user ï¿½ chaque chargement de page
 		$query = "SELECT papa, maman"
 		." FROM inscrits"
 		." LIMIT 0,1"
 		;
-		$inscrits = $db->loadResultArray($query);
+		$inscrits = $db->loadObjectList($query);
 		
 		$total 	= $inscrits['maman'] + $inscrits['papa'];
 		
@@ -271,7 +271,7 @@
 		
 	}
 	
-	// données de l'utilisateur
+	// donnï¿½es de l'utilisateur
 	function &getData() {
 		global $userObj;
 		

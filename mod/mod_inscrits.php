@@ -11,7 +11,7 @@
 	." FROM inscrits"
 	." LIMIT 0,1"
 	;
-	$inscrits = $db->loadResultArray($query);
+	$inscrits = $db->loadObjectList($query);
 
 	$total 	= $inscrits['maman'] + $inscrits['papa'];
 
@@ -21,7 +21,7 @@
 ?>
 <div class="inscrits">
 	<table cellpadding="0" cellspacing="0" width="155px">
-		<tr><td><?php echo $lang_mod["MamansInscrite"];?>:</td><td class="right"><? echo $mamans; ?>%</td></tr>
-		<tr><td><?php echo $lang_mod["PapasInscrits"];?>:</td><td class="right"><? echo $papas; ?>%</td></tr>
+		<tr><td><?php echo $lang_mod["MamansInscrite"];?>:</td><td class="right"><?php echo $mamans; ?>%</td></tr>
+		<tr><td><?php echo $lang_mod["PapasInscrits"];?>:</td><td class="right"><?php echo $papas; ?>%</td></tr>
 	</table>
 </div>

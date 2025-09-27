@@ -33,7 +33,7 @@
 <!--<form action='https://e-payment.postfinance.ch/ncol/test/AFU_agree.asp' method=POST  id=form4 name=form4>-->
 <form onsubmit="submitForm()"  method="POST"  id="form4" name="form4">
 <textarea name=FILE >
-<? 
+<?php 
 $file_number='File'.rand(10,10000);
 $i=0;
 foreach($userProfil_val as $userProfil) { 
@@ -68,7 +68,7 @@ $i++;
 			?>
 </textarea>
 
-<input type="text" name="FILE_REFERENCE" value='<? echo $file_number;?>'>
+<input type="text" name="FILE_REFERENCE" value='<?php echo $file_number;?>'>
 <input type="text" name="PSPID" value='parentsoloTEST'>
 <input type="text" name="USERID" value='parentsoloEsales'> 
 <input type="text" name="PSWD" value='zxn=b31zl@'> 
@@ -201,8 +201,7 @@ return formObj;
 			//function form4(){try{clearInterval(timerPaypal);}catch(e){}document.form4.submit();}
 				//var timerPaypal=setInterval("form4();", 5000);
 			</script>
-<?
-if($txn_type == 'Success'){
+<?php if($txn_type == 'Success'){
 					// récup les détails du paiement
 					$query = "SELECT *"
 					." FROM abonnemnet_postfinance"

@@ -11,7 +11,7 @@
 			include("lang/app_contact.".$_GET['lang'].".php");
 
 			// s'il y a des messages &agrave; afficher
-			if(count($messages)) {
+			if (is_array($messages)) {
 			?>
 				<h2 class="messages parentsolo_title_h3"><?php   echo $lang_appcontact["MessagesParentsolo"];?></h2>
 				<div class="messages">
@@ -43,7 +43,7 @@
 		<?php  
 		$messages = $messages ?? [];
 			// messages d'erreurs
-			if(count($messages)){
+			if (is_array($messages)){
 				// affichage des messages
 				contact_HTML::messages($messages);
 			}

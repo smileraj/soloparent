@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 
 	global $action, $user, $langue, $langString;
@@ -25,7 +25,7 @@
 
 		case 'flower':
 
-			// abonné uniquement
+			// abonnï¿½ uniquement
 			JL::loadMod('abonnement_check');
 
 			messageWrite(true);
@@ -33,7 +33,7 @@
 
 		case 'write':
 
-			// abonné uniquement
+			// abonnï¿½ uniquement
 			JL::loadMod('abonnement_check');
 
 			messageWrite(false);
@@ -77,7 +77,7 @@
 
 		case 'reply':
 
-			// abonné uniquement
+			// abonnï¿½ uniquement
 			JL::loadMod('abonnement_check');
 
 			$id	= JL::getVar('id', 0, true);
@@ -117,7 +117,7 @@
 
 		case 'send':
 
-			// abonné uniquement
+			// abonnï¿½ uniquement
 			JL::loadMod('abonnement_check');
 
 			$messages = messageSend();
@@ -130,7 +130,7 @@
 
 		case 'sendflower':
 
-			// abonné uniquement
+			// abonnï¿½ uniquement
 			JL::loadMod('abonnement_check');
 
 			$messages = messageSend(true);
@@ -169,25 +169,25 @@
 		$_where		= '';
 
 
-		// détermine si c'est un message envoyé ou reçu
+		// dï¿½termine si c'est un message envoyï¿½ ou reï¿½u
 		$query = "SELECT m.user_id_to, m.user_id_from, m.non_lu, m.fleur_id"
 		." FROM message AS m"
 		." WHERE m.id = '".$id."'"
 		." LIMIT 0,1";
 		$message = $db->loadObject($query);
 
-		// message reçu
+		// message reï¿½u
 		if($message->user_id_to == $user->id) {
 
 			$innerJoinOn	= 'm.user_id_from';
 
-		} elseif($message->user_id_from == $user->id) { // message envoyé
+		} elseif($message->user_id_from == $user->id) { // message envoyï¿½
 
 			$innerJoinOn	= 'm.user_id_to';
 
 		} else {
 
-			// sinon c'est que le message n'appartient pas à l'utilisateur log
+			// sinon c'est que le message n'appartient pas ï¿½ l'utilisateur log
 			JL::redirect(SITE_URL.'/index.php?app=message&action=inbox'.'&'.$langue);
 
 		}
@@ -196,16 +196,16 @@
 		$where[]	= "m.id = '".$id."'";
 		$where[]	= "u.confirmed > 0";
 		//$where[]	= "u.published = 1";
-		// pourquoi published 0 autorisé ? car on permet l'affichage de messages de profils désactivés, mais confirmés.
-		// par contre, on n'affiche pas les messages de profils non confirmés ! qu'ils soient publiés ou non
+		// pourquoi published 0 autorisï¿½ ? car on permet l'affichage de messages de profils dï¿½sactivï¿½s, mais confirmï¿½s.
+		// par contre, on n'affiche pas les messages de profils non confirmï¿½s ! qu'ils soient publiï¿½s ou non
 
-		if(count($where)) {
+		if (is_array($where)) {
 			$_where = " WHERE ".implode(" AND ", $where);
 		}
 
 
-		// récup le message de l'utilisateur log
-		$query = "SELECT m.id, IF(m.user_id_to = ".$user->id.", 1, 0) AS owner, m.titre, m.texte, m.date_envoi, ".$innerJoinOn." AS user_id, m.fleur_id, f.nom_".$_GET['lang']." AS fleur_nom, f.signification_".$_GET['lang']." AS fleur_signification, m.dossier_id, IFNULL(u.username, 'ParentSolo.ch') AS username, IFNULL(up.photo_defaut, 0) AS photo_defaut, IFNULL(up.genre, '') AS genre"
+		// rï¿½cup le message de l'utilisateur log
+		$query = "SELECT m.id, IF(m.user_id_to = ".$user->id.", 1, 0) AS owner, m.titre, m.texte, m.date_envoi, ".$innerJoinOn." AS user_id, m.fleur_id, f.nom_".$_GET['lang']." AS fleur_nom, f.signification_".$_GET['lang']." AS fleur_signification, m.dossier_id, IFNULL(u.username, 'solocircl.com') AS username, IFNULL(up.photo_defaut, 0) AS photo_defaut, IFNULL(up.genre, '') AS genre"
 		." FROM message AS m"
 		." INNER JOIN user AS u ON u.id = ".$innerJoinOn
 		." LEFT JOIN user_profil AS up ON up.user_id = u.id"
@@ -238,11 +238,11 @@
 		// si le message est non lu
 		if($message->non_lu && $message->user_id_to == $user->id) {
 
-			// met à jour le non_lu du message
+			// met ï¿½ jour le non_lu du message
 			$query = "UPDATE message SET non_lu = 0 WHERE id = '".$id."'";
 			$db->query($query);
 
-			// mise à jour de user_stats du destinataire
+			// mise ï¿½ jour de user_stats du destinataire
 			if($message->fleur_id) {
 				$query = "UPDATE user_stats SET fleur_new = fleur_new-1 WHERE user_id = '".$user->id."'";
 			} else {
@@ -283,19 +283,19 @@
 		$where[]			= "m.user_id_from NOT IN (SELECT user_id_to FROM user_flbl WHERE user_id_from = ".$user->id." AND list_type=0)";
 		
 		//$where[]	= "u.published = 1";
-		// pourquoi published 0 autorisé ? car on permet l'affichage de messages de profils désactivés, mais confirmés.
-		// par contre, on n'affiche pas les messages de profils non confirmés ! qu'ils soient publiés ou non
+		// pourquoi published 0 autorisï¿½ ? car on permet l'affichage de messages de profils dï¿½sactivï¿½s, mais confirmï¿½s.
+		// par contre, on n'affiche pas les messages de profils non confirmï¿½s ! qu'ils soient publiï¿½s ou non
 
 		if($flowers) {
 			$where[]		= "m.fleur_id > 0";
 		}
 
-		if(count($where)) {
+		if (is_array($where)) {
 			$_where = " WHERE ".implode(" AND ", $where);
 		}
 
 
-		// récup le total
+		// rï¿½cup le total
 		$query = "SELECT COUNT(*)"
 		." FROM message AS m"
 		." INNER JOIN user AS u ON u.id = m.user_id_from"
@@ -305,8 +305,8 @@
 		$search['page_total'] 	= ceil($search['result_total']/$resultatParPage);
 
 
-		// récup les messages de l'utilisateur log
-		$query = "SELECT m.id, m.titre, m.non_lu, m.date_envoi, m.user_id_from AS user_id, m.fleur_id, IF(u.id = 1, 'ParentSolo.ch', u.username) AS username, up.photo_defaut, up.genre, up.nb_enfants, ((YEAR(CURRENT_DATE)-YEAR(up.naissance_date)) - (RIGHT(CURRENT_DATE,5)<RIGHT(up.naissance_date,5))) AS age, IFNULL(pc.nom_".$_GET['lang'].", '') AS canton, pc.abreviation AS canton_abrev, 2 as m_read"
+		// rï¿½cup les messages de l'utilisateur log
+		$query = "SELECT m.id, m.titre, m.non_lu, m.date_envoi, m.user_id_from AS user_id, m.fleur_id, IF(u.id = 1, 'solocircl.com', u.username) AS username, up.photo_defaut, up.genre, up.nb_enfants, ((YEAR(CURRENT_DATE)-YEAR(up.naissance_date)) - (RIGHT(CURRENT_DATE,5)<RIGHT(up.naissance_date,5))) AS age, IFNULL(pc.nom_".$_GET['lang'].", '') AS canton, pc.abreviation AS canton_abrev, 2 as m_read"
 		." FROM message AS m"
 		." INNER JOIN user AS u ON u.id = m.user_id_from"
 		." LEFT JOIN user_profil AS up ON up.user_id = u.id"
@@ -376,7 +376,7 @@
 		}
 
 
-		// récup le total
+		// rï¿½cup le total
 		$query = "SELECT COUNT(*)"
 		." FROM message AS m"
 		." INNER JOIN user AS u ON u.id = m.user_id_to"
@@ -388,7 +388,7 @@
 		$search['page_total'] 	= ceil($search['result_total']/$resultatParPage);
 
 
-		// récup les messages envoyés par l'utilisateur log
+		// rï¿½cup les messages envoyï¿½s par l'utilisateur log
 		$query = "SELECT m.id, m.titre, 0 AS non_lu, m.date_envoi, m.user_id_to AS user_id, m.fleur_id, u.username, up.photo_defaut, up.genre, ((YEAR(CURRENT_DATE)-YEAR(up.naissance_date)) - (RIGHT(CURRENT_DATE,5)<RIGHT(up.naissance_date,5))) AS age, IFNULL(pc.nom_".$_GET['lang'].", '') AS canton, m.non_lu as m_read, pc.abreviation AS canton_abrev, up.nb_enfants"
 		." FROM message AS m"
 		." INNER JOIN user AS u ON u.id = m.user_id_to"
@@ -416,8 +416,8 @@
 		$_data		= message_data();
 		$fleurs		= array();
 
-		// récup les données temporaires en session
-		if(count($_data)) {
+		// rï¿½cup les donnï¿½es temporaires en session
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				if(JL::getVar('user_to', '') == JL::getSession('user_to', '')) {
 					$row->{$key}	= JL::getSession($key, $value);
@@ -427,13 +427,13 @@
 			}
 		}
 
-		// seul param passé en $_GET
+		// seul param passï¿½ en $_GET
 		$row->user_to = JL::getVar('user_to', '');
 
 		// si on envoie une fleur
 		if($flower) {
 
-			// récup la liste des fleurs
+			// rï¿½cup la liste des fleurs
 			$query = "SELECT id, nom_".$_GET['lang']." as nom, signification_".$_GET['lang']." as signification"
 			." FROM fleur"
 			." WHERE published = 1"
@@ -456,7 +456,7 @@
 
 		$fleurs		= array();
 
-		// détermine si le message est bien destiné à l'utilisateur log
+		// dï¿½termine si le message est bien destinï¿½ ï¿½ l'utilisateur log
 		$query = "SELECT m.user_id_to, u.username, m.titre, m.texte"
 		." FROM message AS m"
 		." INNER JOIN user AS u ON u.id = m.user_id_from"
@@ -464,10 +464,10 @@
 		." LIMIT 0,1";
 		$message = $db->loadObject($query);
 
-		// message n'appartenant pas à l'utilisateur
+		// message n'appartenant pas ï¿½ l'utilisateur
 		if($message->user_id_to != $user->id) {
 
-			// sinon c'est que le message n'appartient pas à l'utilisateur log
+			// sinon c'est que le message n'appartient pas ï¿½ l'utilisateur log
 			JL::redirect(SITE_URL.'/index.php?app=message&action=inbox'.'&'.$langue);
 
 		}
@@ -475,13 +475,13 @@
 		// variables
 		$_data		= message_data();
 
-		// affecte les paramètres par défaut
+		// affecte les paramï¿½tres par dï¿½faut
 		JL::setSession('user_to', $message->username);
 		JL::setSession('titre', 'Re: '.$message->titre);
 		JL::setSession('texte', "\n\n\n\n\n---------------------------------------------\n".$lang_message['EnReponseA'].": ".$message->titre."\n---------------------------------------------\n\n".$message->texte);
 
-		// récup les données temporaires en session
-		if(count($_data)) {
+		// rï¿½cup les donnï¿½es temporaires en session
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row->{$key}	= JL::getSession($key, $value);
 			}
@@ -504,19 +504,19 @@
 		// variables
 		$_data		= message_data();
 
-		// vérification du formulaire avant envoi
+		// vï¿½rification du formulaire avant envoi
 		$user_to	= trim(JL::getVar('user_to', '', true));
 		$titre		= trim(JL::getVar('titre', '', true));
 		$texte		= trim(JL::getVar('texte', '', true));
 		$fleur_id	= trim(JL::getVar('fleur_id', 0, true));
 
 
-		// récup le status de l'utilisateur (confirmé, attente, non confirmé)
+		// rï¿½cup le status de l'utilisateur (confirmï¿½, attente, non confirmï¿½)
 		$query = "SELECT confirmed FROM user WHERE id = '".(int)$user->id."' LIMIT 0,1";
 		$user->confirmed = $db->loadResult($query);
 
 
-		// si l'utilisateur est en attente de confirmation téléphonique
+		// si l'utilisateur est en attente de confirmation tï¿½lï¿½phonique
 		if($user->confirmed == 2) {
 
 			$messages[]	= '<span class="error">'.$lang_message["ProfilNonValide"].'<br /><br />'.$lang_message["QualiteServiceOptimale"].'<br /><br />'.$lang_message["ParentsoloVousRemercie"].'</span>';
@@ -524,21 +524,21 @@
 		}
 
 
-		// fleur non sélectionnée
+		// fleur non sï¿½lectionnï¿½e
 		if($flower && !$fleur_id) {
 
 			$messages[]	= '<span class="error">'.$lang_message["SelectionnezFleur"].'.</span>';
 
 		}
 
-		// pas de destinataire renseigné
+		// pas de destinataire renseignï¿½
 		if(!$user_to) {
 
 			$messages[]	= '<span class="error">'.$lang_message["IndiquezDestinataire"].'.</span>';
 
 		} else {
 
-			// vérifie si le destinataire existe dans la DB
+			// vï¿½rifie si le destinataire existe dans la DB
 			$query = "SELECT u.id, up.genre, IFNULL(uf.user_id_to,0) AS user_to_bl, IFNULL(uf2.user_id_to,0) AS user_from_bl"
 			." FROM user AS u"
 			." INNER JOIN user_profil AS up ON up.user_id = u.id"
@@ -549,7 +549,7 @@
 			;
 			$user_to	= $db->loadObject($query);
 
-			// récup le genre de l'utilisateur log
+			// rï¿½cup le genre de l'utilisateur log
 			$query = "SELECT genre FROM user_profil WHERE user_id = '".$user->id."' LIMIT 0,1";
 			$genre = $db->loadResult($query);
 
@@ -591,10 +591,10 @@
 
 
 		// s'il y a erreur(s)
-		if(count($messages)) {
+		if (is_array($messages)) {
 
-			// conserve les données envoyées en session
-			if(count($_data)) {
+			// conserve les donnï¿½es envoyï¿½es en session
+			if (is_array($_data)) {
 				foreach($_data as $key => $value) {
 					JL::setSession($key, JL::getVar($key, $value));
 				}
@@ -613,46 +613,46 @@
 			$db->query($query);
 			$message_id = $db->insert_id();
 
-			// efface les données de session
-			if(count($_data)) {
+			// efface les donnï¿½es de session
+			if (is_array($_data)) {
 				foreach($_data as $key => $value) {
 					JL::setSession($key, '');
 				}
 			}
 
-			// mise à jour de user_stats du destinataire
+			// mise ï¿½ jour de user_stats du destinataire
 			if($fleur_id) {
 
-				// mise à jour des stats
+				// mise ï¿½ jour des stats
 				$query = "UPDATE user_stats SET fleur_new = fleur_new+1, fleur_total = fleur_total+1 WHERE user_id = '".$user_to->id."'";
 
 				// notification mail
 				JL::notificationBasique('fleur', $user_to->id);
 
-				// enregistre le dernier événement chez le profil cible
+				// enregistre le dernier ï¿½vï¿½nement chez le profil cible
 				JL::addLastEvent($user_to->id, $user->id, 3, $message_id);
 
-				// crédite l'action réception de fleur
+				// crï¿½dite l'action rï¿½ception de fleur
 				JL::addPoints(9, $user_to->id, $user_to->id.'#'.$user->id.'#'.date('d-m-Y'));
 
 			} else {
 
-				// mise à jour des stats
+				// mise ï¿½ jour des stats
 				$query = "UPDATE user_stats SET message_new = message_new+1, message_total = message_total+1 WHERE user_id = '".$user_to->id."'";
 
 				// notification mail
 				JL::notificationBasique('message', $user_to->id);
 
-				// enregistre le dernier événement chez le profil cible
+				// enregistre le dernier ï¿½vï¿½nement chez le profil cible
 				JL::addLastEvent($user_to->id, $user->id, 2, $message_id);
 
-				// crédite l'action réception de mail
+				// crï¿½dite l'action rï¿½ception de mail
 				JL::addPoints(8, $user_to->id, $user_to->id.'#'.$user->id.'#'.date('d-m-Y'));
 
 			}
 			$db->query($query);
 
-			// mise à jour de user_stats de l'expéditeur
+			// mise ï¿½ jour de user_stats de l'expï¿½diteur
 			if($fleur_id) {
 				$query = "UPDATE user_stats SET fleur_sent = fleur_sent+1 WHERE user_id = '".$user->id."'";
 			} else {
@@ -675,15 +675,15 @@
 		$dossier_id_ok		= array(0,1,2); // dossiers id valides
 		$msg 				= 1;			// affichage (1) ou non (0) du message de confirmation
 
-		// si le param passé est bien un tableau
+		// si le param passï¿½ est bien un tableau
 		if(is_array($ids)) {
 
 			foreach($ids as $id) {
 
-				// sécurité
+				// sï¿½curitï¿½
 				$id = addslashes($id);
 
-				// détermine si le message est bien destiné à l'utilisateur log
+				// dï¿½termine si le message est bien destinï¿½ ï¿½ l'utilisateur log
 				$query = "SELECT m.user_id_to, m.dossier_id, u.username, m.titre, m.texte, m.non_lu, m.fleur_id"
 				." FROM message AS m"
 				." INNER JOIN user AS u ON u.id = m.user_id_from"
@@ -693,44 +693,44 @@
 
 				$dossier_id_origine	= $message->dossier_id;
 
-				// message n'appartenant pas à l'utilisateur
+				// message n'appartenant pas ï¿½ l'utilisateur
 				if($message->user_id_to != $user->id || !in_array($dossier_id, $dossier_id_ok)) {
 
-					// sinon c'est que le message n'appartient pas à l'utilisateur log
+					// sinon c'est que le message n'appartient pas ï¿½ l'utilisateur log
 					JL::redirect(SITE_URL.'/index.php?app=message&action=inbox'.'&'.$langue);
 
 				} else {
 
-					// met à jour le dossier_id
+					// met ï¿½ jour le dossier_id
 					$query = "UPDATE message SET dossier_id = '".$dossier_id."' WHERE id = '".$id."'";
 					$db->query($query);
 
-					// nouveau message, non lu, destiné à l'utilisateur log
+					// nouveau message, non lu, destinï¿½ ï¿½ l'utilisateur log
 					if($message->non_lu == 1 && $message->user_id_to == $user->id) {
 
-						// opérateur
+						// opï¿½rateur
 						$op	= '';
 
 						// suppression
 						if($dossier_id == 1 && $message->dossier_id == 0) {
 
-							// décrémente le compteur de nouveaux messages
+							// dï¿½crï¿½mente le compteur de nouveaux messages
 							$op = '-';
 
 						} elseif($dossier_id == 0 && $message->dossier_id == 1) { // restauration
 
-							// incrémente le compteur de nouveaux messages
+							// incrï¿½mente le compteur de nouveaux messages
 							$op = '+';
 
 						}
 
-						// s'il y a une opération à faire
+						// s'il y a une opï¿½ration ï¿½ faire
 						if($op != '') {
 
-							// détermine le champ à utiliser
+							// dï¿½termine le champ ï¿½ utiliser
 							$field	= $message->fleur_id > 0 ? 'fleur_new' : 'message_new';
 
-							// met à jour les stats de messages non lus
+							// met ï¿½ jour les stats de messages non lus
 							$query = "UPDATE user_stats SET ".$field." = ".$field." ".$op." 1 WHERE user_id = '".$user->id."'";
 							$db->query($query);
 
@@ -744,7 +744,7 @@
 
 		} else {
 
-			// on affichera un message d'erreur après la redirection
+			// on affichera un message d'erreur aprï¿½s la redirection
 			$msg = 0;
 
 		}

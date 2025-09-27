@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 	
 	class evolution_age_membre_HTML {	
@@ -17,7 +17,7 @@
 						
 						
 						 if(action == 'Fermer') {
-							if(!confirm('Êtes-vous sûr de vouloir Fermer?')) {
+							if(!confirm('ï¿½tes-vous sï¿½r de vouloir Fermer?')) {
 								ok = false;
 								
 							}
@@ -25,7 +25,7 @@
 						
 						if(ok) {
 						
-							document.location = "<? echo SITE_URL_ADMIN; ?>"; 
+							document.location = "<?php echo SITE_URL_ADMIN; ?>"; 
 						}
 						
 					}
@@ -45,10 +45,9 @@
 			<div class="tableAdmin">
 			<table class="table table-bordered table-striped table-condensed cf" style="text-align: center;" cellpadding="0" cellspacing="0">
 					<tr>
-						<th>Année</th><th>Moyenne age</th><th>Hommes</th><th>Femmes</th>
+						<th>Annï¿½e</th><th>Moyenne age</th><th>Hommes</th><th>Femmes</th>
 					</tr>
-		<?
-			for($i=2009;$i<2016;$i++){
+		<?php 			for($i=2009;$i<2016;$i++){
 				
 				$date_total =array();
 				$date_total_h =array();
@@ -77,13 +76,12 @@
 				
 				?>
 					<tr class="list">
-						<td><b><? echo $i; ?></b></td>
-						<td><? echo round(array_sum($date_total)/count($date_total),0); ?></td>
-						<td><? echo round(array_sum($date_total_h)/count($date_total_h),0); ?></td>
-						<td><? echo round(array_sum($date_total_f)/count($date_total_f),0); ?></td>
+						<td><b><?php echo $i; ?></b></td>
+						<td><?php echo round(array_sum(array_map('floatval', $date_total))/count($date_total),0); ?></td>
+						<td><?php echo round(array_sum(array_map('floatval', $date_total_h))/count($date_total_h),0); ?></td>
+						<td><?php echo round(array_sum(array_map('floatval', $date_total_f))/count($date_total_f),0); ?></td>
 					</tr>
-			<?
-			}
+			<?php 			}
 		?>
 			
 			</table>
@@ -92,8 +90,7 @@
 			</div>
 			</section>
 			
-		<?
-		}
+		<?php 		}
 		
 		
 	}

@@ -31,8 +31,7 @@
 			<hr/>
 		  </body>
 		</html>
-		<?
-		exit;
+		<?php 		exit;
 		
 	}
 	

@@ -18,7 +18,7 @@
 				<div class="contentl">
 					<div class="colc">
 						
-						<h1><? echo $contenu->titre;?></h1>
+						<h1><?php echo $contenu->titre;?></h1>
 						<!-- AddThis Button BEGIN -->
 <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
 <div  style="padding:5px; text-align:right; float:right; height:50px;">
@@ -31,7 +31,7 @@
 <!-- AddThis Button END -->
 <br />
 						<p>
-							<? echo  $contenu->texte; ?>
+							<?php echo  $contenu->texte; ?>
 						</p>
 					</div>
 				</div>
@@ -42,15 +42,13 @@
 				
 				<!-- Partie Droite -->
 				<div class="colr"> 
-				<?
-					JL::loadApp('menu_offline');
+				<?php 					JL::loadApp('menu_offline');
 				?>
 				</div>
 				<div style="clear:both"> </div>
 			</div>
     
-		<?
-		
+		<?php 		
 		}
 		
 	}

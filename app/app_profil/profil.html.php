@@ -17,7 +17,7 @@ public static function messages(&$messages) {
 			global $langue;
 			include("lang/app_profil.".$_GET['lang'].".php");
 			// s'il y a des messages &agrave; afficher
-			if(count($messages)) {
+			if (is_array($messages)) {
 			?>
 				<script src="../../Scripts/swfobject_modified.js" type="text/javascript"></script>
 
@@ -161,7 +161,7 @@ jQuery.noConflict();
 (function($) {	
 $(document).ready(function() 
  {
- var getvalue="<?php   echo $zipcode_id->area_code?>";
+ var getvalue="<?php   echo $zipcode_id->area_code??''; ?>";
  var tele="<?php   echo $row['telephone']?>";
  if(tele==''){
  	      $('#telephone').val('+41');
@@ -332,7 +332,7 @@ $('#code_postal').change(function() {
 				<br /><hr /> <br />
 				
 				<div class="formwidth bottompadding">
-				<div class="col-md-12"><h4><?php   echo $lang_appprofil["MesDonnees"];?></h4></div>
+				<div class="col-md-12"><h4>My data</h4></div>
 				</div>
 				
 				<div class="formwidth bottompadding">
@@ -484,8 +484,13 @@ $('#code_postal').change(function() {
 				<div class="col-md-12">
 				<div class="conditions">
 										<div id="divConditions">
-											<?php  echo $conditions; ?>
-										</div>
+    <?php
+    foreach ($conditions as $key => $value) {
+        echo htmlspecialchars($key) . ': ' . htmlspecialchars($value) . '<br>';
+    }
+    ?>
+</div>
+
 										
 									
 											<center>
@@ -520,66 +525,70 @@ $('#code_postal').change(function() {
 </div>
 				<script language="javascript" type="text/javascript">
 					var scrollMax = 0;
-					window.addEvent('domready',function(){
+					window.addEventListener('domready',function(){
 
 						scrollMax = getScrollMax('divConditions');
 
-						<?php  if($row['conditions'] > 0) { ?>
-							$('conditionsAccept').disabled = false;
-							$('conditionsRefuse').disabled = false;
-							$('conditionsAccept').className = 'accept';
-							$('conditionsRefuse').className = 'refuse';
+						<?php  if(isset($row['conditions']) && $row['conditions'] > 0) { ?>
+							$('#conditionsAccept').disabled = false;
+							$('#conditionsRefuse').disabled = false;
+							$('#conditionsAccept').className = 'accept';
+							$('#conditionsRefuse').className = 'refuse';
 							btnconditions(1);
-							$('divConditions').scrollTop = scrollMax;
+							$('#divConditions').scrollTop = scrollMax;
 						<?php  } else { ?>
-							$('conditionsAccept').disabled = true;
-							$('conditionsRefuse').disabled = true;
-							$('conditionsAccept').className = '';
-							$('conditionsRefuse').className = '';
+							$('#conditionsAccept').disabled = true;
+							$('#conditionsRefuse').disabled = true;
+							$('#conditionsAccept').className = '';
+							$('#conditionsRefuse').className = '';
 							<?php  if($row['conditions'] == 0) { ?>
 								btnconditions(0);
 							<?php  } ?>
 						<?php  } ?>
 					});
 					
-					<?php  if(!$user->id) {?>
-					$('divConditions').addEvent('scroll',function(){
+					<?php  if(!$user->id) { ?>
+					$('#divConditions').on('scroll', function() {
 						if(this.scrollTop == scrollMax) {
-							$('conditionsAccept').disabled 	= false;
-							$('conditionsRefuse').disabled 	= false;
-							$('conditionsAccept').className = 'accept';
-							$('conditionsRefuse').className = 'refuse';
+							$('#conditionsAccept').disabled 	= false;
+							$('#conditionsRefuse').disabled 	= false;
+							$('#conditionsAccept').className = 'accept';
+							$('#conditionsRefuse').className = 'refuse';
 						} else {
-							$('conditionsAccept').disabled 	= true;
-							$('conditionsRefuse').disabled 	= true;
-							$('conditionsAccept').className = '';
-							$('conditionsRefuse').className = '';
+							$('#conditionsAccept').disabled 	= true;
+							$('#conditionsRefuse').disabled 	= true;
+							$('#conditionsAccept').className = '';
+							$('#conditionsRefuse').className = '';
 						}
 					});
 					<?php  } ?>
 					function loadVilles(prefix) {
-						if(prefix==null){
-							prefix='';
-						} 
-						
-						new Request({
-							url: $('site_url').value+'/app/app_home/ajax.php',
-							method: 'get',
-							headers: {'If-Modified-Since': 'Sat, 1 Jan 2000 00:00:00 GMT'},
-							data: {
-								"canton_id": $(prefix+'canton_id').value, 
-								"ville_id": $(prefix+'ville_id').value, 
-								"lang": $(prefix+'lang').value, 
-								"prefix": prefix
-							},
-							onSuccess: function(ajax_return) {
-								$("villes").set('html', ajax_return);
-							},
-							onFailure: function(){
-							}
-						}).send();
-					}
-					loadVilles();
+    prefix = prefix || '';
+
+    var canton_id = $('#' + prefix + 'canton_id').val() || '';
+    var ville_id  = $('#' + prefix + 'ville_id').val() || '';
+    var lang      = $('#' + prefix + 'lang').val() || '';
+
+    $.ajax({
+        url: '/app/app_home/ajax.php',
+        method: 'GET',
+        headers: {'If-Modified-Since': 'Sat, 1 Jan 2000 00:00:00 GMT'},
+        data: {
+            canton_id: canton_id,
+            ville_id: ville_id,
+            lang: lang,
+            prefix: prefix
+        },
+        success: function(response){
+            $("#villes").html(response);
+        },
+        error: function(){
+            console.log('Failed to load villes');
+        }
+    });
+}
+
+loadVilles();
 				</script>
 			<?php 
 		}
@@ -1103,7 +1112,7 @@ function countimg()
 							<?php 
 
 								// affiche les miniatures de photos VALIDEES
-								if(count($photos_temp)) {
+								if (is_array($photos_temp)) {
 									foreach($photos_temp as $photo_temp) {
 										$photo_i_temp = preg_replace('#^.*([0-9]{1}).*$#', '$1', $photo_temp);
 										?>
@@ -1138,7 +1147,7 @@ function countimg()
 				<?php  
 					if($user->id){
 						// s'il y a des photos
-						if(count($photos_temp)) {
+						if (is_array($photos_temp)) {
 						?>
 						<div class="row">
 							<div class="col-md-12">
@@ -1164,7 +1173,7 @@ function countimg()
 								<?php 
 
 								// affiche les miniatures de photos VALIDEES
-									if(count($photos_attente)) {
+									if (is_array($photos_attente)) {
 										foreach($photos_attente as $photo_attente) {
 											$photo_i_attente = preg_replace('#^.*([0-9]{1}).*$#', '$1', $photo_attente);
 											?>
@@ -1197,7 +1206,7 @@ function countimg()
 								<?php 
 
 									// affiche les miniatures de photos VALIDEES
-									if(count($photos_validee)) {
+									if (is_array($photos_validee)) {
 										foreach($photos_validee as $photo_validee) {
 											$photo_i_validee = preg_replace('#^.*([0-9]{1}).*$#', '$1', $photo_validee);
 											?>
@@ -1216,7 +1225,7 @@ function countimg()
 						</div>
 						<?php 
 						// s'il y a des photos
-						if(count($photos_attente)) {
+						if (is_array($photos_attente)) {
 						?>
 						<div class="row">
 							<div class="col-md-12 parentsolo_mt_10">
@@ -1243,7 +1252,7 @@ function countimg()
 								<?php 
 
 									// affiche les miniatures de photos VALIDEES
-									if(count($photos_validee)) {
+									if (is_array($photos_validee)) {
 										foreach($photos_validee as $photo_validee) {
 											$photo_i_validee = preg_replace('#^.*([0-9]{1}).*$#', '$1', $photo_validee);
 											?>
@@ -1938,7 +1947,7 @@ function countimg()
 							</div>
 							<?php 
 										// s'il y a des photos
-										if(count($photo_attente[$i])) {
+										if (is_array($photo_attente[$i])) {
 										?>
 										
 										<div class="formwidth bottompadding">
@@ -2204,8 +2213,8 @@ if($_GET["lang"]=="de"){
 					<?php   echo $lang_appprofil["ConnexionOK"];?><br />
 					<br />
 					
-					<b><?php   echo $lang_appprofil["Pseudo"];?>:</b> <?php  echo htmlentities(JL::getSession('username', '')); ?><br />
-					<b><?php   echo $lang_appprofil["Pass"];?>:</b> <?php  echo htmlentities(JL::getSession('password', '')); ?><br />
+					<b><?php   echo $lang_appprofil["Pseudo"];?>:</b> <?php  echo makeSafe(JL::getSession('username', '')); ?><br />
+					<b><?php   echo $lang_appprofil["Pass"];?>:</b> <?php  echo makeSafe(JL::getSession('password', '')); ?><br />
 					<br />
 					<br />
 					<?php   echo $lang_appprofil["NousVousSouhaitons"];?>.<br />
@@ -2731,7 +2740,7 @@ if($_GET["lang"]=="de"){
 									
 									<?php 
 										// montrer photos des enfants
-										if(count($profilEnfants)) {
+										if (is_array($profilEnfants)) {
 											$i		= 1;
 											$iMin 	= 1;
 											$iMax	= count($profilEnfants);
@@ -2836,7 +2845,7 @@ if($_GET["lang"]=="de"){
 									<div class="col-md-12 pinfo profil_shadow">
 																		<?php 
 										// s'il y a des groupes
-										if(count($profilGroupes) > 0) {
+										if (is_array($profilGroupes) > 0) {
 											
 												$i = 1;
 
@@ -3330,7 +3339,7 @@ if($_GET["lang"]=="de"){
 							<div class="bridegroom-friend fade_in_hide element_fade_in">
 									<div id="owl-demo" class="owl-carousel col-sm-10 col-xs-12 col-md-10">
                                    <?php 
-								if(count($profilsMatching)) {
+								if (is_array($profilsMatching)) {
 									$i=1;
 									?>
 									<tr>
@@ -3433,7 +3442,7 @@ if($_GET["lang"]=="de"){
 						
 							
 						</div>
-								 <?php  if(count($profilsInscrits)==8){ ?>
+								 <?php  if (is_array($profilsInscrits)==8){ ?>
 								
 <div  class="parentsolo_mb_20 parentsolo_mt_20" align="right">
 											<div class="lien_plus">
@@ -3474,7 +3483,7 @@ if($_GET["lang"]=="de"){
 							<div class="bridegroom-friend fade_in_hide element_fade_in">
 								 <div id="owl_woman_family" class="owl-carousel owl-theme">
 		                <?php 
-								if(count($profilsInscrits)) {
+								if (is_array($profilsInscrits)) {
 									$i=1;
 									?>
 									<tr>
@@ -3571,7 +3580,7 @@ if($_GET["lang"]=="de"){
     		</div>
 		
 
-    </div><?php  if(count($profilsInscrits)==8){ ?>
+    </div><?php  if (is_array($profilsInscrits)==8){ ?>
 
 									
 										<div  class="parentsolo_mb_20 parentsolo_mt_20" align="right">
@@ -3596,7 +3605,7 @@ if($_GET["lang"]=="de"){
 						<div class="parentsolo_txt_center parentsolo_mt_20 text-center" >
 							<div id="owl_online_family" class="owl-carousel owl-theme">
 							<?php 
-								if(count($profilsOnline)) {
+								if (is_array($profilsOnline)) {
 									$i=1;
 									?>
 										
@@ -3672,7 +3681,7 @@ if($_GET["lang"]=="de"){
 							<?php 		
 								}
 							?>
-						<?php  if(count($profilsOnline)==8){ ?>
+						<?php  if (is_array($profilsOnline)==8){ ?>
 								<tr>
 										<td colspan="2" align="right">
 											<div class="lien_plus"><a href="<?php  echo JL::url('index.php?app=search&action=search_online'.'&'.$langue); ?>" title="<?php  echo $genreRecherche == 'h' ? $lang_appprofil["VoirPlusDePapaEnLigne"] : $lang_appprofil["VoirPlusDeMamanEnLigne"]; ?>"><?php  echo $genreRecherche == 'h' ? $lang_appprofil["VoirPlusDePapaEnLigne"] : $lang_appprofil["VoirPlusDeMamanEnLigne"]; ?></a></div> <a href="<?php  echo JL::url('index.php?app=search&action=search_online'.'&'.$langue); ?>" title="<?php  echo $genreRecherche == 'h' ? $lang_appprofil["VoirPlusDePapaEnLigne"] : $lang_appprofil["VoirPlusDeMamanEnLigne"]; ?>"><img src="<?php  echo SITE_URL; ?>/<?php  echo SITE_TEMPLATE; ?>/images/preview-plus.png"  class="plus"/></a>
@@ -3770,7 +3779,7 @@ JL::loadMod('events');
 									<div class="titre"><?php  echo $temoignage->titre; ?></div>
 									<?php  echo $temoignage->texte; ?><br />
 									<span class="username"><?php  echo $temoignage->username; ?></span><br />
-									<a href="<?php  echo JL::url('index.php?app=temoignage&lang='.$_GET['lang']); ?>" title="<?php  echo $lang_apptemoignage["LireLeTemoignage"];&nbsp;*/?>" class="lire">Tous les t&eacute;moignages</a>
+									<a href="<?php  echo JL::url('index.php?app=temoignage&lang='.$_GET['lang']); ?>" title="<?php  echo $lang_apptemoignage["LireLeTemoignage"];&nbsp;*/ ?>" class="lire">Tous les t&eacute;moignages</a>
 								</td>
 							</tr>
 						</table>
@@ -3802,7 +3811,7 @@ JL::loadMod('events');
 				$tab[]	= $obj->{$field.'3'};
 			}
 
-			if(count($tab)) {
+			if (is_array($tab)) {
 				return implode('<br /> ', $tab);
 			} else {
 				return $defaut;

@@ -1,28 +1,26 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 
 	class HTML_groupe {
 
-		// affichage des messages système
+		// affichage des messages systï¿½me
 		function messages(&$messages) {
 			global $langue;
 			include("lang/app_groupe.".$_GET['lang'].".php");
 
-			// s'il y a des messages à afficher
-			if(count($messages)) {
+			// s'il y a des messages ï¿½ afficher
+			if (is_array($messages)) {
 			?>
 				<h2 class="messages"><?php echo $lang_groupe["MessagesParentsolo"];?></h2>
 				<div class="messages">
-				<?
-					// affiche les messages
+				<?php 					// affiche les messages
 					JL::messages($messages);
 				?>
 				</div>
 				<br />
-			<?
-			}
+			<?php 			}
 
 		}
 
@@ -58,9 +56,8 @@
 			}
 		?>
 		<hr>
-			<h3 class="loginprofile_title_h3 parentsolo_mt_20 parentsolo_txt_center  parentsolo_pb_15"><? echo $h1;?></h3>
-		<?
-		}
+			<h3 class="loginprofile_title_h3 parentsolo_mt_20 parentsolo_txt_center  parentsolo_pb_15"><?php echo $h1;?></h3>
+		<?php 		}
 
 
 		// page temporaire d'annonce des groupes
@@ -74,10 +71,9 @@
 			</div>
 			
 			<div class="texte_explicatif">
-				<? echo $data->texte; ?>
+				<?php echo $data->texte; ?>
 			</div>
-		<?
-		}
+		<?php 		}
 
 
 		// affiche la liste d'utilisateurs
@@ -100,7 +96,7 @@
 		<div class="row parentsolo_mb_20 ">
 				<form action="index.php<?php echo '?'.$langue; ?>" name="groupeList" method="post">
 				<div class="col-md-12  parentsolo_form_style">
-					<h3 class="parentsolo_title_h3 parentsolo_txt_center "><? echo $lang_groupe["Recherche"]; ?></h3>
+					<h3 class="parentsolo_title_h3 parentsolo_txt_center "><?php echo $lang_groupe["Recherche"]; ?></h3>
 					
 					<div class="row bottompadding parentsolo_mt_20">
 					<div class="col-md-6">
@@ -108,7 +104,7 @@
 							<label for="search_groupe" class="line_height_35"><?php echo $lang_groupe["Recherche"];?></label>
 						</div>
 						<div class="col-md-8">
-							<input type="text" class="input_groupe parentsolo_mt_0" required name="search_groupe" value="<? echo htmlentities($search['groupe']); ?>" />
+							<input type="text" class="input_groupe parentsolo_mt_0" required name="search_groupe" value="<?php echo makeSafe($search['groupe']); ?>" />
 						</div>
 					</div>
 					<div class="col-md-6">
@@ -116,7 +112,7 @@
 							<label for="search_groupe" class="line_height_35"><?php echo $lang_groupe["OrdonnerPar"];?></label>
 						</div>
 						<div class="col-md-8">
-							<? echo $search['order_by']; ?>
+							<?php echo $search['order_by']; ?>
 						</div>
 					</div>
 					</div>
@@ -127,8 +123,8 @@
 							<a href="javascript:document.groupeList.submit();" title="<?php echo $lang_groupe["Rechercher"];?>" class="bouton annuler  parentsolo_btn"><?php echo $lang_groupe["Rechercher"];?></a>
 						</div>
 						<input type="hidden" name="app" value="groupe" />
-					<input type="hidden" name="action" value="<? echo $action; ?>" />
-					<input type="hidden" name="groupe_type" value="<? echo $groupe_type; ?>" />
+					<input type="hidden" name="action" value="<?php echo $action; ?>" />
+					<input type="hidden" name="groupe_type" value="<?php echo $groupe_type; ?>" />
 					</div>
 					</div>
 					
@@ -138,15 +134,15 @@
 		<!--	<form action="index.php<?php// echo '?'.$langue; ?>" name="groupeList" method="post">
 				
 				
-				<h3 class="form"><?// echo $lang_groupe["Recherche"]; ?></h3>
+				<h3 class="form"><?php // echo $lang_groupe["Recherche"]; ?></h3>
 				<table class="table_form" cellpadding="0" cellspacing="0">
 					<tr>
 						<td class="key"><label for="search_groupe"><?php// echo $lang_groupe["Recherche"];?>:</label></td>
-						<td><input type="text" class="input_groupe" name="search_groupe" value="<?// echo htmlentities($search['groupe']); ?>" /></td>
+						<td><input type="text" class="input_groupe" name="search_groupe" value="<?php // echo makeSafe($search['groupe']); ?>" /></td>
 					</tr>
 					<tr>
 						<td class="key"><label><?php// echo $lang_groupe["OrdonnerPar"];?>:</label></td>
-						<td><?// echo $search['order_by']; ?></td>
+						<td><?php // echo $search['order_by']; ?></td>
 					</tr>
 					<tr>
 						<td colspan="2">
@@ -160,21 +156,19 @@
 						</td>
 					</tr>
 					<input type="hidden" name="app" value="groupe" />
-					<input type="hidden" name="action" value="<?// echo $action; ?>" />
-					<input type="hidden" name="groupe_type" value="<?// echo $groupe_type; ?>" />
+					<input type="hidden" name="action" value="<?php // echo $action; ?>" />
+					<input type="hidden" name="groupe_type" value="<?php // echo $groupe_type; ?>" />
 				</table>
 			</form>
 			<br />-->
-		<?
-
+		<?php 
 			// menu groupes
 			HTML_groupe::groupe_titre($groupe_type);
 		?>
 		
 		<div class="row">
 				<div class="col-md-12">
-					<?
-							$i = 1;
+					<?php 							$i = 1;
 							
 							// liste les profils
 							if(is_array($rows) && count($rows)) {
@@ -198,7 +192,7 @@
 									// htmlentities
 									JL::makeSafe($row, 'titre,texte');
 
-									// si une photo a été envoyée
+									// si une photo a ï¿½tï¿½ envoyï¿½e
 									$filePath = 'images/groupe/'.$row->id.'.jpg';
 									if(is_file(SITE_PATH.'/'.$filePath)) {
 										$image	= $filePath;
@@ -239,7 +233,7 @@
 									}
 
 
-									// détermine le lien à utiliser
+									// dï¿½termine le lien ï¿½ utiliser
 									if($groupe_type == 'created') { // lien pour modifier
 										$lien 	= JL::url('index.php?app=groupe&action=edit&id='.$row->id.'&'.$langue);
 										$title	= $lang_groupe["ModifierCeGroupe"];
@@ -253,23 +247,21 @@
 								
 								<div class="col-md-6 parentsolo_pt_15 parentsolo_pb_15">
 									<div class="member_box">
-						<h4 class="letter_spacing_0 parentsolo_pt_10 parentsolo_pb_10 parentsolo_txt_center parentsolo_font-size parentsolo_txt_overflow_title"><a href="<? echo $lien; ?>" title="<? echo $title; ?>" class="username1"><? echo $row->titre; ?></a></h4>
+						<h4 class="letter_spacing_0 parentsolo_pt_10 parentsolo_pb_10 parentsolo_txt_center parentsolo_font-size parentsolo_txt_overflow_title"><a href="<?php echo $lien; ?>" title="<?php echo $title; ?>" class="username1"><?php echo $row->titre; ?></a></h4>
 						<div class="col-md-4">
 							<div class="hovereffect parentsolo_border_radius ">
-						<a href="<? echo $lien; ?>" title="<? echo $title; ?>"><img src="<? echo SITE_URL.'/'.$image; ?>" alt="<? echo $row->titre; ?>" class="superpose " id="img_1"/></a>
-													 <?
-														if(time()-strtotime($row->date_add) < 3600*24*3) { 
+						<a href="<?php echo $lien; ?>" title="<?php echo $title; ?>"><img src="<?php echo SITE_URL.'/'.$image; ?>" alt="<?php echo $row->titre; ?>" class="superpose " id="img_1"/></a>
+													 <?php 														if(time()-strtotime($row->date_add) < 3600*24*3) { 
 													?>
-															<a href="<? echo $lien; ?>" title="<? echo $title; ?>"><img src="<? echo SITE_URL.'/images/groupe/groupe-calque-'.$_GET['lang'].'.png'; ?>" alt="<? echo $row->titre; ?>" class="superpose" id="img_2" /></a>
-													<? 
+															<a href="<?php echo $lien; ?>" title="<?php echo $title; ?>"><img src="<?php echo SITE_URL.'/images/groupe/groupe-calque-'.$_GET['lang'].'.png'; ?>" alt="<?php echo $row->titre; ?>" class="superpose" id="img_2" /></a>
+													<?php 
 														} 
 													?>
 													</div>
 						</div>
 						<div class="col-md-8 parentsolo_pt_10 parentsolo_pb_10">
 						<div class="supplement members_cls line_height_25">
-										<?
-											if($row->id != 1) {
+										<?php 											if($row->id != 1) {
 												
 												// pas de membre
 												if($row->total_membres == 0) {
@@ -285,33 +277,29 @@
 											
 										?>
 											<br />
-										<?
-											HTML_groupe::groupePopularite($row->popularite);
+										<?php 											HTML_groupe::groupePopularite($row->popularite);
 										?>
 										</div>
 						</div>
 						<div class="col-md-12">
-						<?
-											if($groupe_type == 'created' && $row->user_id == $user->id) {
+						<?php 											if($groupe_type == 'created' && $row->user_id == $user->id) {
 										?>
 												<div class="infos">
 													<div class="connect ">
-														<span style="font-weight:bold;color:<? echo $color; ?>;">(<? echo $statut; ?>)</span>
+														<span style="font-weight:bold;color:<?php echo $color; ?>;">(<?php echo $statut; ?>)</span>
 													</div>
 												</div>
-										<?
-											}
+										<?php 											}
 										?>
 										<div class="description text-box">
-											<? echo $row->texte; ?>
+											<?php echo $row->texte; ?>
 										</div>
 						</div>
 								</div>
 					</div>
 								
 									
-					<?
-							
+					<?php 							
 								if($i%2 == 0){ }
 								
 								$i++;
@@ -333,8 +321,7 @@
 								<?php echo $lang_groupe["AucunGroupe"];?>!
 							</td>
 						</tr>
-				<?
-					}
+				<?php 					}
 				?>
 					
 				</div>
@@ -342,45 +329,42 @@
 	<div class="col-md-12 parentsolo_plr_0">
 					<div class="col-md-12 parentsolo_pagination parentsolo_plr_0" cellpadding="0" cellspacing="0">
 						<div class="col-md-3 text-left">
-								<? // page précédente
+								<?php // page prï¿½cï¿½dente
 								if($search['page'] > 1) { ?>
-									<a href="<? echo JL::url(SITE_URL.'/index.php?app=groupe&action='.$action.'&groupe_type='.$groupe_type.'&page='.($search['page']-1)).'&'.$langue; ?>" class="bouton envoyer" title="<?php echo $lang_groupe["PagePrecedente"];?>">&laquo; <?php echo $lang_groupe["PagePrecedente"];?></a>
-								<? } ?>
+									<a href="<?php echo JL::url(SITE_URL.'/index.php?app=groupe&action='.$action.'&groupe_type='.$groupe_type.'&page='.($search['page']-1)).'&'.$langue; ?>" class="bouton envoyer" title="<?php echo $lang_groupe["PagePrecedente"];?>">&laquo; <?php echo $lang_groupe["PagePrecedente"];?></a>
+								<?php } ?>
 							</div>
 							<div class="col-md-6 text-center page_nav">
 								<b><?php echo $search['page_total'] == 1 ? $lang_groupe["Page"] : $lang_groupe["Pages"];?></b>:
-								<? if($debut > 1) { ?> <a href="<? echo JL::url(SITE_URL.'/index.php?app=groupe&action='.$action.'&groupe_type='.$groupe_type.'&page=1').'&'.$langue; ?>" title="<?php echo $lang_groupe["Debut"];?>"><?php echo $lang_groupe["Debut"];?></a> ...<? }?>
-								<?
-									for($i=$debut; $i<=$fin; $i++) {
+								<?php if($debut > 1) { ?> <a href="<?php echo JL::url(SITE_URL.'/index.php?app=groupe&action='.$action.'&groupe_type='.$groupe_type.'&page=1').'&'.$langue; ?>" title="<?php echo $lang_groupe["Debut"];?>"><?php echo $lang_groupe["Debut"];?></a> ...<?php }?>
+								<?php 									for($i=$debut; $i<=$fin; $i++) {
 									?>
-										 <a href="<? echo JL::url(SITE_URL.'/index.php?app=groupe&action='.$action.'&groupe_type='.$groupe_type.'&page='.$i).'&'.$langue; ?>" title="<?php echo $lang_groupe["Page"];?> <? echo $i; ?>" <? if($i == $search['page']) { ?>class="active"<? } ?>><? echo $i; ?></a>
-									<?
-									}
+										 <a href="<?php echo JL::url(SITE_URL.'/index.php?app=groupe&action='.$action.'&groupe_type='.$groupe_type.'&page='.$i).'&'.$langue; ?>" title="<?php echo $lang_groupe["Page"];?> <?php echo $i; ?>" <?php if($i == $search['page']) { ?>class="active"<?php } ?>><?php echo $i; ?></a>
+									<?php 									}
 								?>
-								<? if($fin < $search['page_total']) { ?> ... <a href="<? echo JL::url(SITE_URL.'/index.php?app=groupe&action='.$action.'&groupe_type='.$groupe_type.'&page='.$search['page_total']).'&'.$langue; ?>" title="<?php echo $lang_groupe["Fin"];?>"><?php echo $lang_groupe["Fin"];?></a><br>
-								<? }?> <i>(<? echo $search['result_total'] ==1 ? $search['result_total'].' '.$lang_groupe["groupe"] : $search['result_total'].' '.$lang_groupe["groupes"];?>)</i>
+								<?php if($fin < $search['page_total']) { ?> ... <a href="<?php echo JL::url(SITE_URL.'/index.php?app=groupe&action='.$action.'&groupe_type='.$groupe_type.'&page='.$search['page_total']).'&'.$langue; ?>" title="<?php echo $lang_groupe["Fin"];?>"><?php echo $lang_groupe["Fin"];?></a><br>
+								<?php }?> <i>(<?php echo $search['result_total'] ==1 ? $search['result_total'].' '.$lang_groupe["groupe"] : $search['result_total'].' '.$lang_groupe["groupes"];?>)</i>
 							</div>
 							<div class="col-md-3 text-right">
-								<? // page suivante
+								<?php // page suivante
 								if($search['page'] < $search['page_total']) { ?>
-									<a href="<? echo JL::url(SITE_URL.'/index.php?app=groupe&action='.$action.'&groupe_type='.$groupe_type.'&page='.($search['page']+1)).'&'.$langue; ?>" class="bouton envoyer" title="<?php echo $lang_groupe["PageSuivante"];?>"><?php echo $lang_groupe["PageSuivante"];?> &raquo;</a>
-								<? } ?>
+									<a href="<?php echo JL::url(SITE_URL.'/index.php?app=groupe&action='.$action.'&groupe_type='.$groupe_type.'&page='.($search['page']+1)).'&'.$langue; ?>" class="bouton envoyer" title="<?php echo $lang_groupe["PageSuivante"];?>"><?php echo $lang_groupe["PageSuivante"];?> &raquo;</a>
+								<?php } ?>
 							</div>
 					</div>
 				</div>
-		<?
-		}
+		<?php 		}
 
 
-		// affichage de la barre de popularité
+		// affichage de la barre de popularitï¿½
 		function groupePopularite($popularite) {
 			global $langue;
 			include("lang/app_groupe.".$_GET['lang'].".php");
 
-			// correctif arrondi popularité
+			// correctif arrondi popularitï¿½
 			if($popularite > 100) $popularite = 100;
 
-			// détermine le rang de popularité
+			// dï¿½termine le rang de popularitï¿½
 			if($popularite == 0) {
 				$populariteRang = 0;
 			} elseif($popularite < 25) {
@@ -395,20 +379,19 @@
 				$populariteRang = 5;
 			}
 
-			// détermine le sous-rang
+			// dï¿½termine le sous-rang
 			$populariteSousRang	= $popularite % 25 == 0 ? 0 : ($popularite % 25) / 10;
 
 			?>
 				<div class="popularite">
 					<span class="popularite"><?php echo $lang_groupe["Popularite"];?> :</span>
-					<img src="<? echo SITE_URL; ?>/<? echo SITE_TEMPLATE; ?>/images/popularite_groupe<? echo $populariteRang; ?>.png" alt="<?php echo $lang_groupe["Popularite"];?>"/>
-					<div class="populariteBarreBg"><div class="rang<? echo $populariteRang; ?>" style="width:<? echo ceil(32*$populariteSousRang); ?>px;">&nbsp;</div></div>
+					<img src="<?php echo SITE_URL; ?>/<?php echo SITE_TEMPLATE; ?>/images/popularite_groupe<?php echo $populariteRang; ?>.png" alt="<?php echo $lang_groupe["Popularite"];?>"/>
+					<div class="populariteBarreBg"><div class="rang<?php echo $populariteRang; ?>" style="width:<?php echo ceil(32*$populariteSousRang); ?>px;">&nbsp;</div></div>
 				</div>
-			<?
-		}
+			<?php 		}
 
 
-		// affichage de la fiche détaillée d'un groupe
+		// affichage de la fiche dï¿½taillï¿½e d'un groupe
 		function groupeFiche(&$row, &$membres, &$search) {
 			include("lang/app_groupe.".$_GET['lang'].".php");
 			global $langue, $action, $user;
@@ -425,7 +408,7 @@
 			$debut			= array();
 			$fin			= array();
 
-			// si une photo a été envoyée
+			// si une photo a ï¿½tï¿½ envoyï¿½e
 			$filePath = 'images/groupe/'.$row->id.'.jpg';
 			if(is_file(SITE_PATH.'/'.$filePath)) {
 				$image	= $filePath;
@@ -440,7 +423,7 @@
 			
 			?>
 			
-			<div class="parentsolo_txt_center"><h2 class="barre parentsolo_title "><? echo $row->titre; ?></h2>
+			<div class="parentsolo_txt_center"><h2 class="barre parentsolo_title "><?php echo $row->titre; ?></h2>
 			<div class="wedd-seperator parentsolo_pb_10"><img src="images/bg_img/saprator.png" alt=""></div>
 			</div>
 			
@@ -451,79 +434,69 @@
 			<div class="circular-item" title="">
 									<small class="icon">members</small>
 									<div style="width:60px;display:inline;&quot;">
-										<canvas width="60" height="60"></canvas><?// pas le groupe par défaut
+										<canvas width="60" height="60"></canvas><?php // pas le groupe par dï¿½faut
 						if($row->id != 1) {
 						?>
 							<span class="stats_membres_note">
-							<?
-								// pas de membre
+							<?php 								// pas de membre
 								$total_membres = $search['result_total_h']+$search['result_total_f'];
 								if($total_membres == 0) {
 								?>
 									<?php echo '0'?>
-								<?
-								} else {
+								<?php 								} else {
 								?>
-									<? echo $total_membres < 2 ? '<b>'.$total_membres.'</b> '.$lang_groupe["MembreARejointCeGroupe"] : '<b>'.$total_membres.'</b> ' ?>
-								<?
-								}
+									<?php echo $total_membres < 2 ? '<b>'.$total_membres.'</b> '.$lang_groupe["MembreARejointCeGroupe"] : '<b>'.$total_membres.'</b> ' ?>
+								<?php 								}
 							?>
 							</span>
-						<?
-						}
+						<?php 						}
 						?></div>
 								</div></div>
 							
-							<img src="<? echo SITE_URL.'/'.$image; ?>" alt="<? echo $row->titre; ?>" class="superpose parentsolo_group_img" id="img_1"/>
-							 <?
-								if(time()-strtotime($row->date_add) < 3600*24*3) { 
+							<img src="<?php echo SITE_URL.'/'.$image; ?>" alt="<?php echo $row->titre; ?>" class="superpose parentsolo_group_img" id="img_1"/>
+							 <?php 								if(time()-strtotime($row->date_add) < 3600*24*3) { 
 							?>
-									<img src="<? echo SITE_URL.'/images/groupe/groupe-calque-'.$_GET['lang'].'.png'; ?>" alt="<? echo $row->titre; ?>" class="superpose" id="img_2" />
-							<? 
+									<img src="<?php echo SITE_URL.'/images/groupe/groupe-calque-'.$_GET['lang'].'.png'; ?>" alt="<?php echo $row->titre; ?>" class="superpose" id="img_2" />
+							<?php 
 								} 
 							?>
 						</div>
 						<div class="col-md-9 members_cls parentsolo_pt_10 parentsolo_pb_15 line_height_25">
 							<h6 class="text-right  parentsolo_pb_10">
-								<? // si  membre du groupe
+								<?php // si  membre du groupe
 							if($row->membre) { ?>
-								<a href="javascript:if(confirm('<?php echo $lang_groupe["ConfirmationQuitterGroupe"];?> ?')) {document.location='<? echo JL::url(SITE_URL.'/index.php?app=groupe&action=quit&id='.$row->id).'&'.$langue; ?>';}" title="<?php echo $lang_groupe["Quitter"];?>" class="bouton annuler"><?php echo $lang_groupe["Quitter"];?> <i class="fa fa-user-times"></i></a>
-							<? } else { ?>
-								<a href="javascript:if(confirm('<?php echo $lang_groupe["ConfirmationRejoindreGroupe"];?> ?')) {document.location='<? echo JL::url(SITE_URL.'/index.php?app=groupe&action=join&id='.$row->id).'&'.$langue; ?>';}" title="<?php echo $lang_groupe["Rejoindre"];?>" class="bouton envoyer"><?php echo $lang_groupe["Rejoindre"];?> <i class="fa fa-user-plus"></i></a>
-							<?
-							}
+								<a href="javascript:if(confirm('<?php echo $lang_groupe["ConfirmationQuitterGroupe"];?> ?')) {document.location='<?php echo JL::url(SITE_URL.'/index.php?app=groupe&action=quit&id='.$row->id).'&'.$langue; ?>';}" title="<?php echo $lang_groupe["Quitter"];?>" class="bouton annuler"><?php echo $lang_groupe["Quitter"];?> <i class="fa fa-user-times"></i></a>
+							<?php } else { ?>
+								<a href="javascript:if(confirm('<?php echo $lang_groupe["ConfirmationRejoindreGroupe"];?> ?')) {document.location='<?php echo JL::url(SITE_URL.'/index.php?app=groupe&action=join&id='.$row->id).'&'.$langue; ?>';}" title="<?php echo $lang_groupe["Rejoindre"];?>" class="bouton envoyer"><?php echo $lang_groupe["Rejoindre"];?> <i class="fa fa-user-plus"></i></a>
+							<?php 							}
 
 						?>
 							</h6>
-							<h5><span class="popularite"><?php echo $lang_groupe["Fondateur"];?> : </span> <? if($user->genre != $row->genre_fondateur && $row->user_id !=1){?><a href="<? echo JL::url('index.php?app=profil&action=view&id='.$row->user_id.'&lang='.$_GET['lang']); ?>"  title="<? echo $row->fondateur; ?>"><? echo $row->fondateur; ?></a><? }else{ ?><? echo $row->fondateur; ?><? } ?>
+							<h5><span class="popularite"><?php echo $lang_groupe["Fondateur"];?> : </span> <?php if($user->genre != $row->genre_fondateur && $row->user_id !=1){?><a href="<?php echo JL::url('index.php?app=profil&action=view&id='.$row->user_id.'&lang='.$_GET['lang']); ?>"  title="<?php echo $row->fondateur; ?>"><?php echo $row->fondateur; ?></a><?php }else{ ?><?php echo $row->fondateur; ?><?php } ?>
 							
 							</h5>
 							
-						<?// pas le groupe par défaut
+						<?php // pas le groupe par dï¿½faut
 						if($row->id != 1) {
 						?>
 							<span class="stats_membres">
-							<?
-								// pas de membre
+							<?php 								// pas de membre
 								$total_membres = $search['result_total_h']+$search['result_total_f'];
 								if($total_membres == 0) {
 								?>
 									<?php echo $lang_groupe["AucunMembre"];?>.
-								<?
-								} else {
+								<?php 								} else {
 								?>
-									<? echo $total_membres < 2 ? '<b>'.$total_membres.'</b> '.$lang_groupe["MembreARejointCeGroupe"] : '<b>'.$total_membres.'</b> '.$lang_groupe["MembresOntRejointCeGroupe"]; ?>.
-								<?
-								}
+									<?php echo $total_membres < 2 ? '<b>'.$total_membres.'</b> '.$lang_groupe["MembreARejointCeGroupe"] : '<b>'.$total_membres.'</b> '.$lang_groupe["MembresOntRejointCeGroupe"]; ?>.
+								<?php 								}
 							?>
 							</span>
-						<?
-						}
-						?><? HTML_groupe::groupePopularite($row->popularite); ?>
+						<?php 						}
+						?><?php HTML_groupe::groupePopularite($row->popularite); ?>
 						
 						</div>
 						<div class="col-md-12 text-box">
-						<? echo nl2br($row->texte); ?>
+						<?php echo nl2br($row->texte); ?>
 						</div>
 					</div>
 				</div>
@@ -565,13 +538,12 @@
 					?>
 					<br />
 					<hr>
-					<h3 class="loginprofile_title_h3 parentsolo_mt_20 parentsolo_txt_center  parentsolo_pb_15"><? echo $h2; ?></h3>
+					<h3 class="loginprofile_title_h3 parentsolo_mt_20 parentsolo_txt_center  parentsolo_pb_15"><?php echo $h2; ?></h3>
 						<div class="row">
 					<div class="col-md-12 group">
 						
 					
-				<?
-									$nb_results		= count($results);
+				<?php 									$nb_results		= count($results);
 							
 									$i = 1;
 								
@@ -583,7 +555,7 @@
 											$result = $results[$j];
 											
 											
-											// à placer toujours après les 2 limitations
+											// ï¿½ placer toujours aprï¿½s les 2 limitations
 											JL::makeSafe($result);
 											
 											if($result->last_online_time < ONLINE_TIME_LIMIT+AFK_TIME_LIMIT && $result->online) { // 30 minutes (60*30)
@@ -599,7 +571,7 @@
 											}
 											
 											
-											// récup la photo de l'utilisateur
+											// rï¿½cup la photo de l'utilisateur
 											$photo_galerie = JL::userGetPhoto($result->id, 'profil', '', $result->photo_defaut);
 
 											if(!$photo_galerie) {
@@ -612,27 +584,26 @@
 											?>
 											<div class="col-md-3 parentsolo_txt_center">
 												<div class="hovereffect ">
-														<a href="<? echo JL::url('index.php?app=profil&action=view&id='.$result->id.'&lang='.$_GET['lang']); ?>"  title="<? echo $lang_groupe["VoirCeProfil"]; ?>"><img src="<? echo $photo_galerie; ?>" alt="<? echo $result->username; ?>" class="profil"/></a>
+														<a href="<?php echo JL::url('index.php?app=profil&action=view&id='.$result->id.'&lang='.$_GET['lang']); ?>"  title="<?php echo $lang_groupe["VoirCeProfil"]; ?>"><img src="<?php echo $photo_galerie; ?>" alt="<?php echo $result->username; ?>" class="profil"/></a>
 												 <div class="overlay">
-           <h2><a href="<? echo JL::url('index.php?app=profil&action=view&id='.$result->id.'&lang='.$_GET['lang']); ?>"  title="<? echo $lang_groupe["VoirCeProfil"]; ?>" class="username"><? echo $result->username; ?></a>
+           <h2><a href="<?php echo JL::url('index.php?app=profil&action=view&id='.$result->id.'&lang='.$_GET['lang']); ?>"  title="<?php echo $lang_groupe["VoirCeProfil"]; ?>" class="username"><?php echo $result->username; ?></a>
 													</h2>
-          <span><br /><? echo $result->age; ?> <?php echo $lang_groupe["Ans"];?><br />
-														<? echo $result->nb_enfants; ?> <? echo $result->nb_enfants > 1 ? $lang_groupe["Enfants"] : $lang_groupe["Enfant"]; ?><br />
-														<? echo $result->canton_abrev; ?><br /></span>
+          <span><br /><?php echo $result->age; ?> <?php echo $lang_groupe["Ans"];?><br />
+														<?php echo $result->nb_enfants; ?> <?php echo $result->nb_enfants > 1 ? $lang_groupe["Enfants"] : $lang_groupe["Enfant"]; ?><br />
+														<?php echo $result->canton_abrev; ?><br /></span>
 														
         </div>
 												</div>
 												<div class="clear"></div>
 												<h3 class="">
-													<a href="<? echo JL::url('index.php?app=profil&action=view&id='.$result->id.'&lang='.$_GET['lang']); ?>" title="<? echo $lang_groupe["VoirCeProfil"]; ?>" class="username"><? echo $result->username; ?></a>
+													<a href="<?php echo JL::url('index.php?app=profil&action=view&id='.$result->id.'&lang='.$_GET['lang']); ?>" title="<?php echo $lang_groupe["VoirCeProfil"]; ?>" class="username"><?php echo $result->username; ?></a>
 													
 												   </h3>
-												<p class="<? echo $last_online_class; ?>"><? echo $last_online_label; ?></p>
+												<p class="<?php echo $last_online_class; ?>"><?php echo $last_online_label; ?></p>
 											</div>
 											
 												
-								<?
-											
+								<?php 											
 											if($i%4 == 0){echo "</tr>"; }
 									
 											$i++;
@@ -651,37 +622,35 @@
 								?>
 								</div>
 					</div>
-				<? 
+				<?php 
 					if($search['page_total_'.$genre] > 1) { 
 				?>
 				
 				<div class="col-md-12 parentsolo_plr_0">
 					<div class="col-md-12 parentsolo_pagination parentsolo_plr_0" cellpadding="0" cellspacing="0">
 						<div class="col-md-3 text-left">
-							<? // page précédente
+							<?php // page prï¿½cï¿½dente
 												if($search['page_'.$genre] > 1) { 
 												?>
-													<a href="<? echo JL::url(SITE_URL.'/index.php?app=groupe&action='.$action.'&id='.$row->id.'&page_'.$genre.'='.($search['page_'.$genre]-1).'&'.$langue); ?>" class="bouton envoyer" title="<?php echo $lang_groupe["PagePrecedente"];?>">&laquo; <?php echo $lang_groupe["PagePrecedente"];?></a>
-												<? } ?>
+													<a href="<?php echo JL::url(SITE_URL.'/index.php?app=groupe&action='.$action.'&id='.$row->id.'&page_'.$genre.'='.($search['page_'.$genre]-1).'&'.$langue); ?>" class="bouton envoyer" title="<?php echo $lang_groupe["PagePrecedente"];?>">&laquo; <?php echo $lang_groupe["PagePrecedente"];?></a>
+												<?php } ?>
 							</div>
 							<div class="col-md-6 text-center page_nav">
 								<?php echo $lang_groupe["Pages"];?></b> :
-												<? if($debut[$genre] > 1) { ?> <a href="<? echo JL::url(SITE_URL.'/index.php?app=groupe&action='.$action.'&id='.$row->id.'&page_'.$genre.'=1&'.$langue); ?>" title="<?php echo $lang_groupe["Debut"];?>"><?php echo $lang_groupe["Debut"];?></a> ...<? }?>
-												<?
-													for($i=$debut[$genre]; $i<=$fin[$genre]; $i++) {
+												<?php if($debut[$genre] > 1) { ?> <a href="<?php echo JL::url(SITE_URL.'/index.php?app=groupe&action='.$action.'&id='.$row->id.'&page_'.$genre.'=1&'.$langue); ?>" title="<?php echo $lang_groupe["Debut"];?>"><?php echo $lang_groupe["Debut"];?></a> ...<?php }?>
+												<?php 													for($i=$debut[$genre]; $i<=$fin[$genre]; $i++) {
 													?>
-														 <a href="<? echo JL::url(SITE_URL.'/index.php?app=groupe&action='.$action.'&id='.$row->id.'&page_'.$genre.'='.$i.'&'.$langue); ?>" title="<?php echo $lang_groupe["Page"];?>" <? if($i == $search['page_'.$genre]) { ?>class="active"<? } ?>><? echo $i; ?></a>
-													<?
-													}
+														 <a href="<?php echo JL::url(SITE_URL.'/index.php?app=groupe&action='.$action.'&id='.$row->id.'&page_'.$genre.'='.$i.'&'.$langue); ?>" title="<?php echo $lang_groupe["Page"];?>" <?php if($i == $search['page_'.$genre]) { ?>class="active"<?php } ?>><?php echo $i; ?></a>
+													<?php 													}
 												?>
-												<? if($fin[$genre] < $search['page_total_'.$genre]) { ?> ... <a href="<? echo JL::url(SITE_URL.'/index.php?app=groupe&action='.$action.'&id='.$row->id.'&page_'.$genre.'='.$search['page_total'.$genre].'&'.$langue); ?>" title="<?php echo $lang_groupe["Fin"];?>"><?php echo $lang_groupe["Fin"];?></a><? }?><br />
-												<i>(<? echo $search['result_total_'.$genre]; ?> <? echo ($search['result_total_'.$genre] > 1) ? ''.$lang_groupe["membres"].'' : ''.$lang_groupe["membre"].''; ?>)</i>
+												<?php if($fin[$genre] < $search['page_total_'.$genre]) { ?> ... <a href="<?php echo JL::url(SITE_URL.'/index.php?app=groupe&action='.$action.'&id='.$row->id.'&page_'.$genre.'='.$search['page_total'.$genre].'&'.$langue); ?>" title="<?php echo $lang_groupe["Fin"];?>"><?php echo $lang_groupe["Fin"];?></a><?php }?><br />
+												<i>(<?php echo $search['result_total_'.$genre]; ?> <?php echo ($search['result_total_'.$genre] > 1) ? ''.$lang_groupe["membres"].'' : ''.$lang_groupe["membre"].''; ?>)</i>
 											</div>
 							<div class="col-md-3 text-right">
-								<? // page suivante
+								<?php // page suivante
 												if($search['page_'.$genre] < $search['page_total_'.$genre]) { ?>
-													<a href="<? echo JL::url(SITE_URL.'/index.php?app=groupe&action='.$action.'&id='.$row->id.'&page_'.$genre.'='.($search['page_'.$genre]+1).'&'.$langue); ?>" class="bouton envoyer" title="<?php echo $lang_groupe["PageSuivante"];?>"><?php echo $lang_groupe["PageSuivante"];?> &raquo;</a>
-												<? } ?>
+													<a href="<?php echo JL::url(SITE_URL.'/index.php?app=groupe&action='.$action.'&id='.$row->id.'&page_'.$genre.'='.($search['page_'.$genre]+1).'&'.$langue); ?>" class="bouton envoyer" title="<?php echo $lang_groupe["PageSuivante"];?>"><?php echo $lang_groupe["PageSuivante"];?> &raquo;</a>
+												<?php } ?>
 							</div>
 					</div>
 				</div>
@@ -691,8 +660,7 @@
 				
 				
 						
-				<?
-					}
+				<?php 					}
 
 				}
 
@@ -706,7 +674,7 @@
 		
 		
 		
-		// ajout/édition
+		// ajout/ï¿½dition
 		function groupeEdit(&$row, &$messages,&$groupe) {
 			global $langue;
 			include("lang/app_groupe.".$_GET['lang'].".php");
@@ -714,7 +682,7 @@
 			// htmlentities
 			JL::makeSafe($row);
 
-			// si l'article a déjà été enregistré
+			// si l'article a dï¿½jï¿½ ï¿½tï¿½ enregistrï¿½
 			if($row->id) {
 				switch($row->active) {
 
@@ -745,10 +713,10 @@
 			HTML_groupe::messages($messages);
 
 		?>
-			<? // si le groupe a déjà été enregistré
+			<?php // si le groupe a dï¿½jï¿½ ï¿½tï¿½ enregistrï¿½
 				if($row->id) {
 
-				// si une photo a été envoyée
+				// si une photo a ï¿½tï¿½ envoyï¿½e
 				$filePath1 = 'images/groupe/'.$row->id.'.jpg';
 				if(is_file($filePath1)) {
 					$image	= $filePath1;
@@ -763,30 +731,29 @@
 				<h2 class="barre"><?php echo $lang_groupe["ContenuVuParAutreMembre"];?></h2>
 				<div class="texte_explicatif">
 					
-					<? 
+					<?php 
 						if($row->titre != ""){
 					?>
 					<table class="table_form" cellpadding="0" cellspacing="0">
 						<tr>
 							<td class="photo" valign="top">
-									<img src="<? echo SITE_URL.'/'.$image; ?>?<? echo time(); ?>" />
+									<img src="<?php echo SITE_URL.'/'.$image; ?>?<?php echo time(); ?>" />
 							</td>
 							<td>
-								<b><? echo $row->titre; ?></b><br />
+								<b><?php echo $row->titre; ?></b><br />
 								<br />
-								<? echo $row->texte; ?><br />
+								<?php echo $row->texte; ?><br />
 								<br />
-								<b><?php echo $lang_groupe["DateDeCreation"];?>:</b><? echo date('d.m.Y', strtotime($row->date_add)); ?> <? echo date('H:i', strtotime($row->date_add)); ?>
-								<? if($row->motif != '') { ?>
+								<b><?php echo $lang_groupe["DateDeCreation"];?>:</b><?php echo date('d.m.Y', strtotime($row->date_add)); ?> <?php echo date('H:i', strtotime($row->date_add)); ?>
+								<?php if($row->motif != '') { ?>
 									<br />
 									<br />
-									<b><?php echo $lang_groupe["Message"];?>:</b><? echo nl2br($row->motif); ?>
-								<? }?>
+									<b><?php echo $lang_groupe["Message"];?>:</b><?php echo nl2br($row->motif); ?>
+								<?php }?>
 							</td>
 						</tr>
 					</table>
-					<?
-						}elseif($row->active==2){
+					<?php 						}elseif($row->active==2){
 							
 							echo $lang_groupe["GroupeNonVisibleEnCoursDeValidation"]; 
 							
@@ -798,27 +765,24 @@
 					
 				</div>
 				<br />
-				<?
-				} // row->id
+				<?php 				} // row->id
 				?>
 					<div class="row">
 				<div class="col-md-10 col-md-offset-1 parentsolo_form_style">
 				<form action="index.php<?php echo '?'.$langue; ?>" name="groupe" method="post">
 					
 					
-				<h3 class="parentsolo_title_h3 parentsolo_txt_center"><? echo $row->id ? ''.$lang_groupe["ModifierMonGroupe"].'' : ''.$lang_groupe["CreerMonGroupe"].''; ?></h3>
-				<?
-						if($row->id) {
+				<h3 class="parentsolo_title_h3 parentsolo_txt_center"><?php echo $row->id ? ''.$lang_groupe["ModifierMonGroupe"].'' : ''.$lang_groupe["CreerMonGroupe"].''; ?></h3>
+				<?php 						if($row->id) {
 					?><div class="row bottompadding">
 							
 							<div class="col-md-12 parentsolo_mt_20">
 								<?php echo $lang_groupe["Statut"];?> :
-								<span style="font-weight:bold;color:<? echo $color; ?>;"><? echo $statut; ?>
+								<span style="font-weight:bold;color:<?php echo $color; ?>;"><?php echo $statut; ?>
 							</div>
 				</div>
 						
-					<?
-						}
+					<?php 						}
 					?>
 				
 				
@@ -826,33 +790,29 @@
 							
 							<div class="col-md-12 parentsolo_mt_20"><?php echo $lang_groupe["Titre"];?> :
 							<br>
-								<input type="text" required id="titre" name="titre" maxlength="70" value="<? echo $row->titre_a_valider; ?>">
+								<input type="text" required id="titre" name="titre" maxlength="70" value="<?php echo $row->titre_a_valider; ?>">
 							</div>
 				</div>
 				<div class="row bottompadding">
 							
 							<div class="col-md-12"><?php echo $lang_groupe["Texte"];?>:
-								<textarea required style="width:100%; height: 155px;" id="texte" rows="10" name="texte"><? echo $row->texte_a_valider; ?></textarea>
+								<textarea required style="width:100%; height: 155px;" id="texte" rows="10" name="texte"><?php echo $row->texte_a_valider; ?></textarea>
 							</div></div>
 							
 				<div class="row bottompadding">
 							<div class="col-md-4"><b><?php echo $lang_groupe["EnvoyerPhoto"];?> : </b>
 							</div>
 							<div class="col-md-8">
-								<?
-										if($_GET['lang']=='fr'){
+								<?php 										if($_GET['lang']=='fr'){
 									?>
 											<div class="swfu_btn"><span id="spanButtonPlaceholder"></span></div>
-									<?
-										}elseif($_GET['lang']=='en'){
+									<?php 										}elseif($_GET['lang']=='en'){
 									?>
 										<div class="swfu_btn_en"><span id="spanButtonPlaceholder"></span></div>
-									<?
-										}elseif($_GET['lang']=='de'){
+									<?php 										}elseif($_GET['lang']=='de'){
 									?>
 										<div class="swfu_btn_de"><span id="spanButtonPlaceholder"></span></div>
-									<?
-									}
+									<?php 									}
 									?>
 									</div>
 				</div>
@@ -863,8 +823,7 @@
 							
 							<div class="col-md-6 parentsolo_txt_center">
 								<div id="thumbnailsGroupe">
-								<?
-									// si la photo existe
+								<?php 									// si la photo existe
 									$filePath2 = 'images/groupe/pending/'.$row->id.'.jpg';
 									if(is_file($filePath2)) {
 										$image = $filePath2;
@@ -876,20 +835,18 @@
 
 									if($image != '') {
 									?>
-									<div class="miniature" id="<? echo $image; ?>">
-										<img src="<? echo SITE_URL.'/'.$image; ?>?<? echo time(); ?>" />
-										<a href="javascript:deleteImage('<? echo $image; ?>','','thumbnailsGroupe');" class="btnDelete"><?php echo $lang_groupe["Supprimer"];?></a>
+									<div class="miniature" id="<?php echo $image; ?>">
+										<img src="<?php echo SITE_URL.'/'.$image; ?>?<?php echo time(); ?>" />
+										<a href="javascript:deleteImage('<?php echo $image; ?>','','thumbnailsGroupe');" class="btnDelete"><?php echo $lang_groupe["Supprimer"];?></a>
 									</div>
-									<?
-									}
+									<?php 									}
 								?>
 								</div>
 							</div>
 							</div>
 				<div class="row bottompadding">
 							<div class="col-md-12 col-md-12 parentsolo_txt_center">
-								<?
-								// attente validation
+								<?php 								// attente validation
 								if(is_file('images/groupe/pending/'.$row->id.'.jpg')) {
 								?>
 									<div class="messages">
@@ -897,8 +854,7 @@
 											<span class="warning"><?php echo $lang_groupe["PhotoEnAttenteValidation"];?>.</span>
 										</div>
 									</div>
-								<?
-								}
+								<?php 								}
 							?>
 							</div>
 							</div>
@@ -943,7 +899,7 @@
 				</div>
 							<div class="row bottompadding">
 							<div class="col-md-12 col-md-12 parentsolo_txt_center parentsolo_mt_40">
-								<a href="javascript:if(confirm('<?php echo $lang_groupe["ConfirmationAnnulation"];?> ?')){document.location='<? echo JL::url('index.php?app=groupe&action=list&groupe_type=created').'&'.$langue; ?>';}" class="bouton annuler parentsolo_btn"><?php echo $lang_groupe["Annuler"];?></a>
+								<a href="javascript:if(confirm('<?php echo $lang_groupe["ConfirmationAnnulation"];?> ?')){document.location='<?php echo JL::url('index.php?app=groupe&action=list&groupe_type=created').'&'.$langue; ?>';}" class="bouton annuler parentsolo_btn"><?php echo $lang_groupe["Annuler"];?></a>
 									<!--<a href="javascript:document.groupe.submit();" class="bouton envoyer parentsolo_btn"><?php echo $lang_groupe["Envoyer"];?></a>-->
 														<input type="submit" value="<?php echo $lang_groupe["Envoyer"];?>" class="bouton envoyer parentsolo_btn">
 
@@ -952,12 +908,12 @@
 							</div>
 				
 				
-				<input type="hidden" name="phototemp" id="phototemp" value="<? echo $row->phototemp; ?>" />
+				<input type="hidden" name="phototemp" id="phototemp" value="<?php echo $row->phototemp; ?>" />
 					<input type="hidden" name="app" value="groupe" />
 					<input type="hidden" name="action" value="save" />
-					<input type="hidden" name="id" id="upload_dir" value="<? echo $row->id; ?>" />
-					<input type="hidden" name="site_url" id="site_url" value="<? echo SITE_URL; ?>" />
-					<input type="hidden" name="hash" id="hash" value="<? echo md5(date('y').$row->id.date('Y')); ?>" />
+					<input type="hidden" name="id" id="upload_dir" value="<?php echo $row->id; ?>" />
+					<input type="hidden" name="site_url" id="site_url" value="<?php echo SITE_URL; ?>" />
+					<input type="hidden" name="hash" id="hash" value="<?php echo md5(date('y').$row->id.date('Y')); ?>" />
 					<input type="hidden" name="captchaAbo" value="<?php echo $groupe->captchaAbo; ?>" />
 
 			</form>
@@ -966,26 +922,22 @@
 				
 					
 				
-				<?
-				if($_GET['lang']=='fr'){
+				<?php 				if($_GET['lang']=='fr'){
 			?>
 				<script type="text/javascript">
 					uploaderInitGroupe_fr();
 				</script>
-			<?
-				}elseif($_GET['lang']=='en'){
+			<?php 				}elseif($_GET['lang']=='en'){
 			?>
 				<script type="text/javascript">
 					uploaderInitGroupe_en();
 				</script>
-			<?
-				}elseif($_GET['lang']=='de'){
+			<?php 				}elseif($_GET['lang']=='de'){
 			?>
 				<script type="text/javascript">
 					uploaderInitGroupe_de();
 				</script>
-			<?
-			}
+			<?php 			}
 		
 		}
 

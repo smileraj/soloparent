@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 
 	class HTML_points {
@@ -8,15 +8,14 @@
 		
 
 
-		/*// affiche la liste des témoignages
+		/*// affiche la liste des tï¿½moignages
 		function pointsTemoignages(&$rows) {
 			global $langue;
 			include("lang/app_points.".$_GET['lang'].".php");
 
 			?>
 			<div class="app_body">
-			<?
-
+			<?php 
 				//affichage du menu
 				HTML_points::pointsMenu();
 
@@ -26,8 +25,7 @@
 					<?php echo $lang_points["DecouvrezLesChoix"];?> !
 				</p>
 
-				<?
-				if(is_array($rows) && count($rows)) {
+				<?php 				if(is_array($rows) && count($rows)) {
 					foreach($rows as $row) {
 
 						// limitation de la description
@@ -36,10 +34,10 @@
 							$row->temoignage = substr($row->temoignage, 0, $temoignageLimite).'...';
 						}
 
-						// récup la photo de l'utilisateur
+						// rï¿½cup la photo de l'utilisateur
 						$photo 				= JL::userGetPhoto($row->user_id, '109', 'profil', $row->photo_defaut);
 
-						// photo par défaut
+						// photo par dï¿½faut
 						if(!$photo) {
 							$photo 			= SITE_URL.'/parentsolo/images/parent-solo-109-'.$row->genre.'.jpg';
 						}
@@ -49,40 +47,36 @@
 
 						?>
 						<div class="pointsTemoignage">
-							<a href="<? echo JL::url('index.php?app=points&action=temoignage&id='.$row->id.'&'.$langue); ?>" title="<?php echo $lang_points["LireTemComplet"];?> <? echo $row->username; ?>" class="titre"><?php echo $lang_points["TemDe"];?> <? echo $row->username; ?></a>
-							<p><? echo $row->temoignage; ?></p>
-							<a href="<? echo JL::url('index.php?app=profil&action=view&id='.$row->user_id.'&'.$langue); ?>" title="<?php echo $lang_points["VoirProfParSuisse"];?> <? echo $row->username; ?>" class="aPhoto"><img src="<? echo $photo; ?>" alt="<? echo $row->username; ?>" /><span><? echo $row->username; ?></span></a>
-							<a href="<? echo JL::url('index.php?app=points&action=temoignage&id='.$row->id.'&'.$langue); ?>" title="<?php echo $lang_points["LireTemComplet"];?> <? echo $row->username; ?>" class="btnNoirRose"><?php echo $lang_points["LireSuite"];?></a>
+							<a href="<?php echo JL::url('index.php?app=points&action=temoignage&id='.$row->id.'&'.$langue); ?>" title="<?php echo $lang_points["LireTemComplet"];?> <?php echo $row->username; ?>" class="titre"><?php echo $lang_points["TemDe"];?> <?php echo $row->username; ?></a>
+							<p><?php echo $row->temoignage; ?></p>
+							<a href="<?php echo JL::url('index.php?app=profil&action=view&id='.$row->user_id.'&'.$langue); ?>" title="<?php echo $lang_points["VoirProfParSuisse"];?> <?php echo $row->username; ?>" class="aPhoto"><img src="<?php echo $photo; ?>" alt="<?php echo $row->username; ?>" /><span><?php echo $row->username; ?></span></a>
+							<a href="<?php echo JL::url('index.php?app=points&action=temoignage&id='.$row->id.'&'.$langue); ?>" title="<?php echo $lang_points["LireTemComplet"];?> <?php echo $row->username; ?>" class="btnNoirRose"><?php echo $lang_points["LireSuite"];?></a>
 						</div>
-					<?
-					}
+					<?php 					}
 
 				} else {
 				?>
 					<?php echo $lang_points["AucunTemoignage"];?>.
-				<?
-				}
+				<?php 				}
 			?>
-			</div><? // fin app_body ?>
-			<?
-
+			</div><?php // fin app_body ?>
+			<?php 
 			// colonne de gauche
 			JL::loadMod('profil_panel');
 
 		?>
 		<div class="clear"> </div>
-		<?
-		}
+		<?php 		}
 
 
-		// affiche un témoignage
+		// affiche un tï¿½moignage
 		function pointsTemoignage(&$row) {
 			global $langue;
 
-			// récup la photo de l'utilisateur
+			// rï¿½cup la photo de l'utilisateur
 			$photo 				= JL::userGetPhoto($row->user_id, '109', 'profil', $row->photo_defaut);
 
-			// photo par défaut
+			// photo par dï¿½faut
 			if(!$photo) {
 				$photo 			= SITE_URL.'/parentsolo/images/parent-solo-109-'.$row->genre.'.jpg';
 			}
@@ -92,8 +86,7 @@
 
 			?>
 			<div class="app_body">
-				<?
-
+				<?php 
 					//affichage du menu
 					HTML_points::pointsMenu();
 
@@ -101,29 +94,27 @@
 
 				<div class="contenu">
 					<h1><?php echo $lang_points["TemoignageConcours"];?></h1>
-					<img src="<? echo $photo; ?>" alt="<? echo $row->username; ?>" class="ptsTemoignage" /><? echo nl2br($row->temoignage); ?><br />
+					<img src="<?php echo $photo; ?>" alt="<?php echo $row->username; ?>" class="ptsTemoignage" /><?php echo nl2br($row->temoignage); ?><br />
 					<br />
-					<?php echo $lang_points["TemoignageRedige"];?> <a href="<? echo JL::url('index.php?app=profil&action=view&id='.$row->user_id.'&'.$langue); ?>" title="<?php echo $lang_points["VoirProfParSuisse"];?> <? echo $row->username; ?>"><? echo $row->username; ?></a> <?php echo $lang_points["Le"]?> <? echo date('d/m/Y', strtotime($row->temoignage_date)); ?>.
+					<?php echo $lang_points["TemoignageRedige"];?> <a href="<?php echo JL::url('index.php?app=profil&action=view&id='.$row->user_id.'&'.$langue); ?>" title="<?php echo $lang_points["VoirProfParSuisse"];?> <?php echo $row->username; ?>"><?php echo $row->username; ?></a> <?php echo $lang_points["Le"]?> <?php echo date('d/m/Y', strtotime($row->temoignage_date)); ?>.
 
-					<a href="<? echo JL::url('index.php?app=points&action=temoignages'.'&'.$langue); ?>" class="bouton return_home" title="<?php echo $lang_points["RetListeTem"];?>"><?php echo $lang_points["RetourALaListe"];?></a>
+					<a href="<?php echo JL::url('index.php?app=points&action=temoignages'.'&'.$langue); ?>" class="bouton return_home" title="<?php echo $lang_points["RetListeTem"];?>"><?php echo $lang_points["RetourALaListe"];?></a>
 
 					<div class="clear">&nbsp;</div>
 				</div>
 
-			</div><? // fin app_body ?>
-			<?
-
+			</div><?php // fin app_body ?>
+			<?php 
 			// colonne de gauche
 			JL::loadMod('profil_panel');
 
 		?>
 		<div class="clear"> </div>
-		<?
-
+		<?php 
 		}
 */
 
-		// barème
+		// barï¿½me
 		function pointsBareme(&$data, &$rows) {
 			include("lang/app_points.".$_GET['lang'].".php");
 			global $langue;
@@ -133,7 +124,7 @@
 			</div>
 			<!--<h2 class="barre"><?php //echo $data->titre;?></h2>-->
 			<div class="texte_explicatif">
-				<? echo $data->texte;?><br />
+				<?php echo $data->texte;?><br />
 			</div>
 			<br />
 			<h3 class="result"><?php echo $lang_points["Bareme"];?></h3>
@@ -142,24 +133,22 @@
 					<th><?php echo $lang_points["ActionAEffectuer"];?></th>
 					<th align="middle"><?php echo $lang_points["Points"];?></th>
 				</tr>
-				<?
-					// s'il y a des données à afficher
+				<?php 					// s'il y a des donnï¿½es ï¿½ afficher
 					if(is_array($rows) && count($rows) > 0) {
 
 						$i = 1;
 
-						// pour chaque action du barème
+						// pour chaque action du barï¿½me
 						foreach($rows as $row) {
 
 							// html entities
 							JL::makeSafe($row);
 							?>
 								<tr>
-									<td <? if($i==count($rows)){ echo 'class="point_fin"'; }?>><? echo $row->nom; ?></td>
-									<td align="middle" <? if($i==count($rows)){ echo 'class="point_fin"'; }?>>+ <? echo $row->points; ?></td>
+									<td <?php if($i==count($rows)){ echo 'class="point_fin"'; }?>><?php echo $row->nom; ?></td>
+									<td align="middle" <?php if($i==count($rows)){ echo 'class="point_fin"'; }?>>+ <?php echo $row->points; ?></td>
 								</tr>
-							<?
-
+							<?php 
 							$i++;
 
 						}
@@ -167,16 +156,14 @@
 					} else {
 					?>
 						<tr><td colspan="2"><?php echo $lang_points["LeBaremeNAPasEncore"];?> !</td></tr>
-					<?
-					}
+					<?php 					}
 				?>
 			</table>
 				
-		<?
-		}
+		<?php 		}
 
 
-		// affiche la liste des appels à témoins
+		// affiche la liste des appels ï¿½ tï¿½moins
 		function pointsMesPoints(&$data, &$rows, &$search) {
 			global $langue;
 			include("lang/app_points.".$_GET['lang'].".php");
@@ -193,7 +180,7 @@
 			</div>
 		<!--<h2 class="barre"></h2>-->
 		<div class="texte_explicatif">
-			<? echo $data->texte;?><br />
+			<?php echo $data->texte;?><br />
 		</div>
 		<br />
 		<h3 class="result"><?php echo $lang_points["MesSolofleurs"];?></h3>
@@ -203,9 +190,8 @@
 				<th><?php echo $lang_points["Date"];?></th>
 				<th align="middle"><?php echo $lang_points["Points"];?></th>
 			</tr>
-			<?
-
-			// liste les points gagnés
+			<?php 
+			// liste les points gagnï¿½s
 			if(is_array($rows) && count($rows)) {
 				
 				$i=1;
@@ -217,12 +203,11 @@
 
 					?>
 						<tr>
-							<td <? if($i==count($rows)){ echo 'class="point_fin"'; }?>><? echo $row->nom; ?></td>
-							<td class="date <? if($i==count($rows)){ echo 'point_fin'; }?>" ><? echo date('d.m.Y  H:i:s', strtotime($row->datetime)); ?></td>
-							<td align="middle" <? if($i==count($rows)){ echo 'class="point_fin"'; }?>><? echo $row->id == 20 ? '<span class="red">- '.$row->data : '<span class="green">+ '.$row->points; ?></span></td>
+							<td <?php if($i==count($rows)){ echo 'class="point_fin"'; }?>><?php echo $row->nom; ?></td>
+							<td class="date <?php if($i==count($rows)){ echo 'point_fin'; }?>" ><?php echo date('d.m.Y  H:i:s', strtotime($row->datetime)); ?></td>
+							<td align="middle" <?php if($i==count($rows)){ echo 'class="point_fin"'; }?>><?php echo $row->id == 20 ? '<span class="red">- '.$row->data : '<span class="green">+ '.$row->points; ?></span></td>
 						</tr>
-					<?
-					$i++;
+					<?php 					$i++;
 				}
 			?>
 				</table>
@@ -232,47 +217,42 @@
 							<table class="toolbarsteps" cellpadding="0" cellspacing="0">
 								<tr>
 									<td >
-										<? // page précédente
+										<?php // page prï¿½cï¿½dente
 										if($search['page'] > 1) { ?>
-											<a href="<? echo JL::url(SITE_URL.'/index.php?app=points&action=mespoints&page='.($search['page']-1).'&'.$langue); ?>" class="bouton envoyer" title="<?php echo $lang_points["PagePrecedente"];?>">&laquo; <?php echo $lang_points["PagePrecedente"];?></a>
-										<? } ?>
+											<a href="<?php echo JL::url(SITE_URL.'/index.php?app=points&action=mespoints&page='.($search['page']-1).'&'.$langue); ?>" class="bouton envoyer" title="<?php echo $lang_points["PagePrecedente"];?>">&laquo; <?php echo $lang_points["PagePrecedente"];?></a>
+										<?php } ?>
 									</td>
 									<td class="center">
 										<span class="orange"><?php echo $lang_points["Pages"];?></span>:
-										<? if($debut > 1) { ?> <a href="<? echo JL::url(SITE_URL.'/index.php?app=points&action=mespoints&page=1'.'&'.$langue); ?>" title="<?php echo $lang_points["Debut"];?>"><?php echo $lang_points["Debut"];?></a> ...<? }?>
-										<?
-											for($i=$debut; $i<=$fin; $i++) {
+										<?php if($debut > 1) { ?> <a href="<?php echo JL::url(SITE_URL.'/index.php?app=points&action=mespoints&page=1'.'&'.$langue); ?>" title="<?php echo $lang_points["Debut"];?>"><?php echo $lang_points["Debut"];?></a> ...<?php }?>
+										<?php 											for($i=$debut; $i<=$fin; $i++) {
 											?>
-												 <a href="<? echo JL::url(SITE_URL.'/index.php?app=points&action=mespoints&page='.$i.'&'.$langue); ?>" title="<?php echo $lang_points["Page"];?> <? echo $i; ?>" <? if($i == $search['page']) { ?>class="active"<? } ?>><? echo $i; ?></a>
-											<?
-											}
+												 <a href="<?php echo JL::url(SITE_URL.'/index.php?app=points&action=mespoints&page='.$i.'&'.$langue); ?>" title="<?php echo $lang_points["Page"];?> <?php echo $i; ?>" <?php if($i == $search['page']) { ?>class="active"<?php } ?>><?php echo $i; ?></a>
+											<?php 											}
 										?>
-										<? if($fin < $search['page_total']) { ?> ... <a href="<? echo JL::url(SITE_URL.'/index.php?app=points&action=mespoints&page='.$search['page_total'].'&'.$langue); ?>" title="<?php echo $lang_points["Fin"];?> <? echo $search['page_total']; ?>"><?php echo $lang_points["Fin"];?></a><? }?> <i>(<? echo $search['result_total']; ?> <? echo $search['result_total'] > 1 ? ''.$lang_points["Actions"].'' : ''.$lang_points["Action"].''; ?>)</i>
+										<?php if($fin < $search['page_total']) { ?> ... <a href="<?php echo JL::url(SITE_URL.'/index.php?app=points&action=mespoints&page='.$search['page_total'].'&'.$langue); ?>" title="<?php echo $lang_points["Fin"];?> <?php echo $search['page_total']; ?>"><?php echo $lang_points["Fin"];?></a><?php }?> <i>(<?php echo $search['result_total']; ?> <?php echo $search['result_total'] > 1 ? ''.$lang_points["Actions"].'' : ''.$lang_points["Action"].''; ?>)</i>
 									</td>
 									<td class="right">
-										<? // page suivante
+										<?php // page suivante
 										if($search['page'] < $search['page_total']) { ?>
-											<a href="<? echo JL::url(SITE_URL.'/index.php?app=points&action=mespoints&page='.($search['page']+1).'&'.$langue); ?>" class="bouton envoyer" title="<?php echo $lang_points["PageSuivante"];?>"><?php echo $lang_points["PageSuivante"];?> &raquo;</a>
-										<? } ?>
+											<a href="<?php echo JL::url(SITE_URL.'/index.php?app=points&action=mespoints&page='.($search['page']+1).'&'.$langue); ?>" class="bouton envoyer" title="<?php echo $lang_points["PageSuivante"];?>"><?php echo $lang_points["PageSuivante"];?> &raquo;</a>
+										<?php } ?>
 									</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 				</table>
-				<?
-				} else {
+				<?php 				} else {
 				?>
 
-						<tr><td colspan="3" align="middle"><?php echo $lang_points["AucunPoints"];?> !<? /*Vous n'avez gagn&eacute; aucun points pour l'instant !*/ ?></td></tr>
+						<tr><td colspan="3" align="middle"><?php echo $lang_points["AucunPoints"];?> !<?php /*Vous n'avez gagn&eacute; aucun points pour l'instant !*/ ?></td></tr>
 					</table>
 
-				<?
-				}
+				<?php 				}
 				?>
 			
-		<?
-		}
+		<?php 		}
 
 
 		// page d'info
@@ -289,11 +269,10 @@
 			</div>
 		<!--	<h2 class="barre"></h2>-->
 			<div class="texte_explicatif">
-				<? echo $row->texte;?>
+				<?php echo $row->texte;?>
 			</div>
 			
-		<?
-		}
+		<?php 		}
 
 
 		// affichage du classement
@@ -307,7 +286,7 @@
 			</div>
 			<!--<h2 class="barre"></h2>-->
 			<div class="texte_explicatif">
-				<? echo $data->texte;?>
+				<?php echo $data->texte;?>
 			</div>
 			<br />
 			<h3 class="result"><?php echo $lang_points["Classement"];?></h3>
@@ -317,32 +296,30 @@
 					<th><?php echo $lang_points["Membre"];?></th>
 					<th class="tdsmall" title="<?php echo $lang_points["ClassProgress"];?>" style="cursor:help;"><?php echo $lang_points["Progression"];?></th>
 				</tr>
-				<?
-					// s'il y a des données à afficher
+				<?php 					// s'il y a des donnï¿½es ï¿½ afficher
 					if(is_array($rows) && count($rows) > 0) {
 
 						$i 		= 1;
-						// pour chaque action du barème
+						// pour chaque action du barï¿½me
 						foreach($rows as $row) {
 
 							// html entities
 							JL::makeSafe($row);
 							?>
 								<tr >
-									<td class="tdsmall <? if($i==count($rows)){ echo 'point_fin'; }?>"><? echo $i; ?></td>
-									<td <? if($i==count($rows)){ echo 'class="point_fin"'; }?>><? if($i <= 1) { ?><img src="<? echo SITE_URL.'/parentsolo/images/pos'.$i.'.gif'; ?>" alt="Position<? echo $i; ?>" class="star" /> <? } ?><a href="<? echo JL::url('index.php?app=profil&action=view&id='.$row->id.'&'.$langue); ?>" title="<?php echo $lang_points["VoirCeProfil"];?>"><? echo $row->username; ?></a></td>
-									<td class="tdsmall <? if($i==count($rows)){ echo 'point_fin'; }?>">
-									<? if($row->last_rank == 0 || $row->new_rank < $row->last_rank) { ?>
-										<img src="<? echo SITE_URL; ?>/images/up.gif" alt="<?php echo $lang_points["Gaindeplaces"];?>" />
-									<? } elseif($row->new_rank > $row->last_rank) { ?>
-										<img src="<? echo SITE_URL; ?>/images/down.gif" alt="<?php echo $lang_points["Pertedeplaces"];?>" />
-									<? } else { ?>
+									<td class="tdsmall <?php if($i==count($rows)){ echo 'point_fin'; }?>"><?php echo $i; ?></td>
+									<td <?php if($i==count($rows)){ echo 'class="point_fin"'; }?>><?php if($i <= 1) { ?><img src="<?php echo SITE_URL.'/parentsolo/images/pos'.$i.'.gif'; ?>" alt="Position<?php echo $i; ?>" class="star" /> <?php } ?><a href="<?php echo JL::url('index.php?app=profil&action=view&id='.$row->id.'&'.$langue); ?>" title="<?php echo $lang_points["VoirCeProfil"];?>"><?php echo $row->username; ?></a></td>
+									<td class="tdsmall <?php if($i==count($rows)){ echo 'point_fin'; }?>">
+									<?php if($row->last_rank == 0 || $row->new_rank < $row->last_rank) { ?>
+										<img src="<?php echo SITE_URL; ?>/images/up.gif" alt="<?php echo $lang_points["Gaindeplaces"];?>" />
+									<?php } elseif($row->new_rank > $row->last_rank) { ?>
+										<img src="<?php echo SITE_URL; ?>/images/down.gif" alt="<?php echo $lang_points["Pertedeplaces"];?>" />
+									<?php } else { ?>
 										-
-									<? } ?>
+									<?php } ?>
 									</td>
 								</tr>
-							<?
-
+							<?php 
 							$i++;
 
 						}
@@ -350,12 +327,10 @@
 					} else {
 					?>
 						<tr><td colspan="3"><?php echo $lang_points["AucunClassement"];?> !</td></tr>
-					<?
-					}
+					<?php 					}
 				?>
 			</table>
-		<?
-		}
+		<?php 		}
 
 
 		// affichage du classement
@@ -369,11 +344,10 @@
 			</div>
 			<!--<h2 class="barre"></h2>-->
 			<div class="texte_explicatif">
-				<? echo $data->texte;?>
+				<?php echo $data->texte;?>
 			</div>
-			<?
-
-			// s'il y a des archives à afficher
+			<?php 
+			// s'il y a des archives ï¿½ afficher
 			if(is_array($rows) && count($rows)) {
 
 				// variables locales
@@ -385,21 +359,19 @@
 						if($annee_mois != '') {
 						?>
 							</table>
-						<?
-						}
+						<?php 						}
 
 						$dateAnneeMois = explode('-', $row->annee_mois);
 
 					?>
 					<br />
-					<h3 class="result"><?php echo $lang_points["Classement"];?> <? echo date('m/Y', mktime(0,0,0, $dateAnneeMois[1], 1, $dateAnneeMois[0])); ?></h3>
+					<h3 class="result"><?php echo $lang_points["Classement"];?> <?php echo date('m/Y', mktime(0,0,0, $dateAnneeMois[1], 1, $dateAnneeMois[0])); ?></h3>
 					<table class="table table-bordered table-striped table-hover" cellpadding="0" cellspacing="0" width="100%">
 						<tr>
 							<th class="tdsmall" align="middle"><?php echo $lang_points["Position"];?></th>
 							<th><?php echo $lang_points["Membre"];?></th>
 						</tr>
-						<?
-
+						<?php 
 							$class 			= 0;
 							$i 				= 1;
 							$annee_mois 	= $row->annee_mois;
@@ -411,19 +383,17 @@
 
 					?>
 						<tr >
-							<td class="tdsmall <? if($i==10){ echo 'point_fin'; }?>" align="middle"><? echo $i; ?></td>
-							<td <? if($i==10){ echo 'class="point_fin"'; }?>><? if($i <= 1) { ?><img src="<? echo SITE_URL.'/parentsolo/images/pos'.$i.'.gif'; ?>" alt="Position<? echo $i; ?>" class="star" /> <? } ?><a href="<? echo JL::url('index.php?app=profil&action=view&id='.$row->id.'&'.$langue); ?>" title="<?php echo $lang_points["VoirCeProfil"];?>"><? echo $row->username; ?></a></td>
+							<td class="tdsmall <?php if($i==10){ echo 'point_fin'; }?>" align="middle"><?php echo $i; ?></td>
+							<td <?php if($i==10){ echo 'class="point_fin"'; }?>><?php if($i <= 1) { ?><img src="<?php echo SITE_URL.'/parentsolo/images/pos'.$i.'.gif'; ?>" alt="Position<?php echo $i; ?>" class="star" /> <?php } ?><a href="<?php echo JL::url('index.php?app=profil&action=view&id='.$row->id.'&'.$langue); ?>" title="<?php echo $lang_points["VoirCeProfil"];?>"><?php echo $row->username; ?></a></td>
 						</tr>
-					<?
-
+					<?php 
 					$class = 1 - $class;
 					$i++;
 
 				} // fin foreach rows
 				?>
 				</table>
-			<?
-			} else {
+			<?php 			} else {
 			?>
 
 				<br />
@@ -435,8 +405,7 @@
 					</tr>
 				</table>	
 
-			<?
-			}
+			<?php 			}
 		}
 
 	}

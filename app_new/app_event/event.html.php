@@ -59,7 +59,7 @@ $nb_listdetails		= count($listdetails);
 				
 				
 			</div>
-	<? }?>
+	<?php }?>
 	
 	
 	
@@ -89,20 +89,20 @@ if(strlen($listdetail->event_desc) > LISTE_INTRO_CHAR) {
                 <div class="box">
 				<div class="outer">
                         <div class="round">
-                        <a href="<? echo JL::url('index.php?app=event&action=read&id='.$listdetail->id.'&lang='.$_GET['lang']);  ?>" title="<?php echo $lang_appel_a_temoins["LireAppelATemoins"];?>" >
-                                <img width="100" height="100" src="<? echo $photo; ?>" alt="<? echo $appel_temoins->username; ?>" class="attachment-70x70 size-70x70 wp-post-image" alt="26" srcset="<? echo $photo; ?>" sizes="(max-width: 70px) 100vw, 70px">
+                        <a href="<?php echo JL::url('index.php?app=event&action=read&id='.$listdetail->id.'&lang='.$_GET['lang']);  ?>" title="<?php echo $lang_appel_a_temoins["LireAppelATemoins"];?>" >
+                                <img width="100" height="100" src="<?php echo $photo; ?>" alt="<?php echo $appel_temoins->username; ?>" class="attachment-70x70 size-70x70 wp-post-image" alt="26" srcset="<?php echo $photo; ?>" sizes="(max-width: 70px) 100vw, 70px">
                             </a>
 							</div></div>
                 </div>
             </div>
             <div class="col-md-9 col-sm-8 col-sx-8">
                 <div class="parentsolo_pt_15 parentsolo_pl_15 parentsolo_pb_15">
-                    <h2 class="name parentsolo_pt_10"><? echo $listdetail->event_name; ?></h2>
+                    <h2 class="name parentsolo_pt_10"><?php echo $listdetail->event_name; ?></h2>
                     <div class="text-box parentsolo_pt_10 parentsolo_pb_10">
-                       <? echo $listdetail->event_desc; ?>
+                       <?php echo $listdetail->event_desc; ?>
 						</div>
-                    <a class="username" href="<? echo JL::url('index.php?app=event&action=read&id='.$listdetail->id.'&lang='.$_GET['lang']); ?>" title="<?php echo $lang_event["LireAppelATemoins"];?>">
-						<h6 class="parentsolo_text-right parentsolo_txt_clr parentsolo_txt_overflow"><? echo $listdetail->username; ?></h6>
+                    <a class="username" href="<?php echo JL::url('index.php?app=event&action=read&id='.$listdetail->id.'&lang='.$_GET['lang']); ?>" title="<?php echo $lang_event["LireAppelATemoins"];?>">
+						<h6 class="parentsolo_text-right parentsolo_txt_clr parentsolo_txt_overflow"><?php echo $listdetail->username; ?></h6>
 					</a>
                 </div>
             </div>
@@ -119,20 +119,20 @@ else{
                 <div class="box">
 				<div class="outer">
                         <div class="round">
-                       <a href="<? echo JL::url('index.php?app=event&action=read&id='.$listdetail->id.'&lang='.$_GET['lang']);  ?>" title="<?php echo $lang_appel_a_temoins["LireAppelATemoins"];?>" >
-                                <img width="100" height="100" src="<? echo $photo; ?>" alt="<? echo $appel_temoins->username; ?>" class="attachment-70x70 size-70x70 wp-post-image" alt="26" srcset="<? echo $photo; ?>" sizes="(max-width: 70px) 100vw, 70px">
+                       <a href="<?php echo JL::url('index.php?app=event&action=read&id='.$listdetail->id.'&lang='.$_GET['lang']);  ?>" title="<?php echo $lang_appel_a_temoins["LireAppelATemoins"];?>" >
+                                <img width="100" height="100" src="<?php echo $photo; ?>" alt="<?php echo $appel_temoins->username; ?>" class="attachment-70x70 size-70x70 wp-post-image" alt="26" srcset="<?php echo $photo; ?>" sizes="(max-width: 70px) 100vw, 70px">
                             </a> 
 </div></div>							
                 </div>
             </div>
             <div class="col-md-9 col-sm-8 col-sx-8">
                 <div class="parentsolo_pt_15 parentsolo_pl_15 parentsolo_pb_15">
-                    <h2 class="name parentsolo_pt_10"><? echo $listdetail->event_name; ?></h2>
+                    <h2 class="name parentsolo_pt_10"><?php echo $listdetail->event_name; ?></h2>
                     <div class="text-box parentsolo_pt_10 parentsolo_pb_10">
-                       <? echo $listdetail->event_desc; ?>
+                       <?php echo $listdetail->event_desc; ?>
 						</div>
-                    <a class="username" href="<? echo JL::url('index.php?app=event&action=read&id='.$listdetail->id.'&lang='.$_GET['lang']); ?>" title="<?php echo $lang_event["LireAppelATemoins"];?>">
-						<h6 class="parentsolo_text-right parentsolo_txt_clr parentsolo_txt_overflow"><? echo $listdetail->username; ?></h6>
+                    <a class="username" href="<?php echo JL::url('index.php?app=event&action=read&id='.$listdetail->id.'&lang='.$_GET['lang']); ?>" title="<?php echo $lang_event["LireAppelATemoins"];?>">
+						<h6 class="parentsolo_text-right parentsolo_txt_clr parentsolo_txt_overflow"><?php echo $listdetail->username; ?></h6>
 					</a>
                 </div>
             </div>
@@ -145,30 +145,28 @@ else{
 				<div class="col-md-12 parentsolo_plr_0 pagenum">
 					<div class="col-md-12 parentsolo_pagination parentsolo_plr_0" >
 						<div class="col-md-3 text-left">								
-									<? // page précédente
+									<?php // page précédente
 
 									if($search['page'] > 1) { ?>
-										<a href="<? echo JL::url(SITE_URL.'/index.php?app=event&page='.($search['page']-1).'&'.'&lang='.$_GET["lang"]); ?>" class="bouton envoyer" title="<?php echo $lang_event["PagePrecedente"];?>">&laquo; <?php echo $lang_event["PagePrecedente"];?></a>
-									<? } ?>
+										<a href="<?php echo JL::url(SITE_URL.'/index.php?app=event&page='.($search['page']-1).'&'.'&lang='.$_GET["lang"]); ?>" class="bouton envoyer" title="<?php echo $lang_event["PagePrecedente"];?>">&laquo; <?php echo $lang_event["PagePrecedente"];?></a>
+									<?php } ?>
 								</div>
 							<div class="col-md-6 text-center page_nav">
 									<span class="orange"><?php echo $search['page_total'] == 1 ? $lang_event["Page"] : $lang_event["Pages"];?></span>:
-									<? if($debut > 1) { ?> <a href="<? echo JL::url(SITE_URL.'/index.php?app=event&page=1'.'&'.'&lang='.$_GET["lang"]); ?>" title="<?php 'Page'?>"><?php echo $lang_event["Debut"];?></a> ...<? }?>
-									<?
-										for($i=$debut; $i<=$fin; $i++) {
+									<?php if($debut > 1) { ?> <a href="<?php echo JL::url(SITE_URL.'/index.php?app=event&page=1'.'&'.'&lang='.$_GET["lang"]); ?>" title="<?php 'Page'?>"><?php echo $lang_event["Debut"];?></a> ...<?php }?>
+									<?php 										for($i=$debut; $i<=$fin; $i++) {
 										
 										?>
-											 <a href="<? echo JL::url(SITE_URL.'/index.php?app=event&page='.$i.'&'.'&lang='.$_GET["lang"]); ?>" title="<?php echo $lang_event["Page"];?> <? echo $i; ?>" <? if($i == $search['page']) { ?>class="active"<? } ?>><? echo $i; ?></a>
-										<?
-										}
+											 <a href="<?php echo JL::url(SITE_URL.'/index.php?app=event&page='.$i.'&'.'&lang='.$_GET["lang"]); ?>" title="<?php echo $lang_event["Page"];?> <?php echo $i; ?>" <?php if($i == $search['page']) { ?>class="active"<?php } ?>><?php echo $i; ?></a>
+										<?php 										}
 									?>
-									<? if($fin < $search['page_total']) { ?> ... <a href="<? echo JL::url(SITE_URL.'/index.php?app=event&page='.$search['page_total'].'&'.'&lang='.$_GET["lang"]); ?>" title="<?php echo $lang_event["Fin"];?> <? echo $search['page_total']; ?>"><?php echo $lang_event["Fin"];?></a><? }?> <i>(<? echo $search['result_total']; ?> <? echo $search['result_total'] > 1 ? ''.$lang_event["AppelsATemoins"].'' : ''.$lang_event["AppelATemoins"].''; ?>)</i>
+									<?php if($fin < $search['page_total']) { ?> ... <a href="<?php echo JL::url(SITE_URL.'/index.php?app=event&page='.$search['page_total'].'&'.'&lang='.$_GET["lang"]); ?>" title="<?php echo $lang_event["Fin"];?> <?php echo $search['page_total']; ?>"><?php echo $lang_event["Fin"];?></a><?php }?> <i>(<?php echo $search['result_total']; ?> <?php echo $search['result_total'] > 1 ? ''.$lang_event["AppelsATemoins"].'' : ''.$lang_event["AppelATemoins"].''; ?>)</i>
 									</div>
 								    <div class="col-md-3 text-right">
-									<? // page suivante
+									<?php // page suivante
 									if($search['page'] < $search['page_total']) { ?>
-										<a href="<? echo JL::url(SITE_URL.'/index.php?app=event&page='.($search['page']+1).'&'.'&lang='.$_GET["lang"]); ?>" class="bouton envoyer" title="<?php echo $lang_event["PageSuivante"];?>"><?php echo $lang_event["PageSuivante"];?> &raquo;</a>
-									<? } ?>
+										<a href="<?php echo JL::url(SITE_URL.'/index.php?app=event&page='.($search['page']+1).'&'.'&lang='.$_GET["lang"]); ?>" class="bouton envoyer" title="<?php echo $lang_event["PageSuivante"];?>"><?php echo $lang_event["PageSuivante"];?> &raquo;</a>
+									<?php } ?>
 								</div>
 							</div>
 						</div>
@@ -183,14 +181,12 @@ else{
 									</div>
 								</div>
 								
-<?
-}
+<?php }
 ?>
  <div class="col-lg-12" style="text-align:right">
 				  <input type="button" class="bouton envoyer parentsolo_btn" name="create" id="create" value="<?php echo $lang_event["create"]; ?>">
 				  </div>
-<?
-}
+<?php }
 function readlist(&$readlist){
 global $user;
 global $langue;
@@ -209,12 +205,10 @@ foreach($readlist as $contenu) {
 									<div class="row publication">
 					<div class="col-md-4"><img  id="event_img" name="event_img" style="border: 1px solid rgb(72, 71, 71);box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.24);" src="images/events/<?php echo $contenu->filename ?>"></div>
 
-									<?
-									if($user->id==$contenu->uservalue){
+									<?php 									if($user->id==$contenu->uservalue){
 									?>
 									<div class="col-md-8"><div style="text-align:right;"><div style="cursor:pointer" class="bouton envoyer a_link_icon edit fa fa-pencil-square-o" id="edit_<?php echo $contenu->id ?>"></div>&nbsp;&nbsp;&nbsp;&nbsp;<div style="color:red;cursor:pointer; font-" class="bouton envoyer a_link_icon delete fa fa-trash-o" id="delete_<?php echo $contenu->id ?>"></div></div></div>
-									<?
-									}
+									<?php 									}
 									?>
 									<div class="col-md-8"><b><?php echo $lang_event["fromdate"]; ?>:</b>&nbsp;&nbsp;<?php echo date('d-m-Y',strtotime($contenu->start_date))?>&nbsp;&nbsp;<b><?php echo $lang_event["todate"]; ?></b> &nbsp;&nbsp;<?php echo date('d-m-Y',strtotime($contenu->end_date))?></div><br />
 										
@@ -234,14 +228,12 @@ foreach($readlist as $contenu) {
 				
 				<!-- Partie Droite -->
 				<!--<div class="colr"> 
-				<?
-				//	JL::loadMod('menu_right');
+				<?php 				//	JL::loadMod('menu_right');
 				?>
 				</div>-->
 				<div style="clear:both"> </div>
 			</div>
-<?
-}
+<?php }
 }
 function search(&$listdetails,&$search){
 include("lang/app_event.".$_GET['lang'].".php");
@@ -284,20 +276,20 @@ if(strlen($listdetail->event_desc) > LISTE_INTRO_CHAR) {
                 <div class="box">
 				<div class="outer">
                         <div class="round">
-                        <a href="<? echo JL::url('index.php?app=event&action=read&id='.$listdetail->id.'&lang='.$_GET['lang']);  ?>" title="<?php echo $lang_appel_a_temoins["LireAppelATemoins"];?>" >
-                                <img width="100" height="100" src="<? echo $photo; ?>" alt="<? echo $appel_temoins->username; ?>" class="attachment-70x70 size-70x70 wp-post-image" alt="26" srcset="<? echo $photo; ?>" sizes="(max-width: 70px) 100vw, 70px">
+                        <a href="<?php echo JL::url('index.php?app=event&action=read&id='.$listdetail->id.'&lang='.$_GET['lang']);  ?>" title="<?php echo $lang_appel_a_temoins["LireAppelATemoins"];?>" >
+                                <img width="100" height="100" src="<?php echo $photo; ?>" alt="<?php echo $appel_temoins->username; ?>" class="attachment-70x70 size-70x70 wp-post-image" alt="26" srcset="<?php echo $photo; ?>" sizes="(max-width: 70px) 100vw, 70px">
                             </a>
 							</div></div>
                 </div>
             </div>
             <div class="col-md-9 col-sm-8 col-sx-8">
                 <div class="parentsolo_pt_15 parentsolo_pl_15 parentsolo_pb_15">
-                    <h2 class="name parentsolo_pt_10"><? echo $listdetail->event_name; ?></h2>
+                    <h2 class="name parentsolo_pt_10"><?php echo $listdetail->event_name; ?></h2>
                     <div class="text-box parentsolo_pt_10 parentsolo_pb_10">
-                       <? echo $listdetail->event_desc; ?>
+                       <?php echo $listdetail->event_desc; ?>
 						</div>
-                    <a class="username" href="<? echo JL::url('index.php?app=event&action=read&id='.$listdetail->id.'&lang='.$_GET['lang']); ?>" title="<?php echo $lang_event["LireAppelATemoins"];?>">
-						<h6 class="parentsolo_text-right parentsolo_txt_clr parentsolo_txt_overflow"><? echo $listdetail->username; ?></h6>
+                    <a class="username" href="<?php echo JL::url('index.php?app=event&action=read&id='.$listdetail->id.'&lang='.$_GET['lang']); ?>" title="<?php echo $lang_event["LireAppelATemoins"];?>">
+						<h6 class="parentsolo_text-right parentsolo_txt_clr parentsolo_txt_overflow"><?php echo $listdetail->username; ?></h6>
 					</a>
                 </div>
             </div>
@@ -314,20 +306,20 @@ else{
                 <div class="box">
 				<div class="outer">
                         <div class="round">
-                       <a href="<? echo JL::url('index.php?app=event&action=read&id='.$listdetail->id.'&lang='.$_GET['lang']);  ?>" title="<?php echo $lang_appel_a_temoins["LireAppelATemoins"];?>" >
-                                <img width="100" height="100" src="<? echo $photo; ?>" alt="<? echo $appel_temoins->username; ?>" class="attachment-70x70 size-70x70 wp-post-image" alt="26" srcset="<? echo $photo; ?>" sizes="(max-width: 70px) 100vw, 70px">
+                       <a href="<?php echo JL::url('index.php?app=event&action=read&id='.$listdetail->id.'&lang='.$_GET['lang']);  ?>" title="<?php echo $lang_appel_a_temoins["LireAppelATemoins"];?>" >
+                                <img width="100" height="100" src="<?php echo $photo; ?>" alt="<?php echo $appel_temoins->username; ?>" class="attachment-70x70 size-70x70 wp-post-image" alt="26" srcset="<?php echo $photo; ?>" sizes="(max-width: 70px) 100vw, 70px">
                             </a> 
 </div></div>							
                 </div>
             </div>
             <div class="col-md-9 col-sm-8 col-sx-8">
                 <div class="parentsolo_pt_15 parentsolo_pl_15 parentsolo_pb_15">
-                    <h2 class="name parentsolo_pt_10"><? echo $listdetail->event_name; ?></h2>
+                    <h2 class="name parentsolo_pt_10"><?php echo $listdetail->event_name; ?></h2>
                     <div class="text-box parentsolo_pt_10 parentsolo_pb_10">
-                       <? echo $listdetail->event_desc; ?>
+                       <?php echo $listdetail->event_desc; ?>
 						</div>
-                    <a class="username" href="<? echo JL::url('index.php?app=event&action=read&id='.$listdetail->id.'&lang='.$_GET['lang']); ?>" title="<?php echo $lang_event["LireAppelATemoins"];?>">
-						<h6 class="parentsolo_text-right parentsolo_txt_clr parentsolo_txt_overflow"><? echo $listdetail->username; ?></h6>
+                    <a class="username" href="<?php echo JL::url('index.php?app=event&action=read&id='.$listdetail->id.'&lang='.$_GET['lang']); ?>" title="<?php echo $lang_event["LireAppelATemoins"];?>">
+						<h6 class="parentsolo_text-right parentsolo_txt_clr parentsolo_txt_overflow"><?php echo $listdetail->username; ?></h6>
 					</a>
                 </div>
             </div>
@@ -340,30 +332,28 @@ else{
 <div class="col-md-12 parentsolo_plr_0 pagenum">
 					<div class="col-md-12 parentsolo_pagination parentsolo_plr_0" >
 						<div class="col-md-3 text-left">								
-									<? // page précédente
+									<?php // page précédente
 
 									if($search['page'] > 1) { ?>
-										<a href="<? echo JL::url(SITE_URL.'/index.php?app=event&action=search&value='.$listdetail->event_name.'&page='.($search['page']-1).'&'.'&lang='.$_GET["lang"]); ?>" class="bouton envoyer" title="<?php echo $lang_event["PagePrecedente"];?>">&laquo; <?php echo $lang_event["PagePrecedente"];?></a>
-									<? } ?>
+										<a href="<?php echo JL::url(SITE_URL.'/index.php?app=event&action=search&value='.$listdetail->event_name.'&page='.($search['page']-1).'&'.'&lang='.$_GET["lang"]); ?>" class="bouton envoyer" title="<?php echo $lang_event["PagePrecedente"];?>">&laquo; <?php echo $lang_event["PagePrecedente"];?></a>
+									<?php } ?>
 								</div>
 							<div class="col-md-6 text-center page_nav">
 									<span class="orange"><?php echo $search['page_total'] == 1 ? $lang_event["Page"] : $lang_event["Pages"];?></span>:
-									<? if($debut > 1) { ?> <a href="<? echo JL::url(SITE_URL.'/index.php?app=event&action=search&value='.$listdetail->event_name.'&page=1'.'&'.'&lang='.$_GET["lang"]); ?>" title="<?php 'Page'?>"><?php echo $lang_event["Debut"];?></a> ...<? }?>
-									<?
-										for($i=$debut; $i<=$fin; $i++) {
+									<?php if($debut > 1) { ?> <a href="<?php echo JL::url(SITE_URL.'/index.php?app=event&action=search&value='.$listdetail->event_name.'&page=1'.'&'.'&lang='.$_GET["lang"]); ?>" title="<?php 'Page'?>"><?php echo $lang_event["Debut"];?></a> ...<?php }?>
+									<?php 										for($i=$debut; $i<=$fin; $i++) {
 										
 										?>
-											 <a href="<? echo JL::url(SITE_URL.'/index.php?app=event&action=search&value='.$listdetail->event_name.'&page='.$i.'&'.'&lang='.$_GET["lang"]); ?>" title="<?php echo $lang_event["Page"];?> <? echo $i; ?>" <? if($i == $search['page']) { ?>class="active"<? } ?>><? echo $i; ?></a>
-										<?
-										}
+											 <a href="<?php echo JL::url(SITE_URL.'/index.php?app=event&action=search&value='.$listdetail->event_name.'&page='.$i.'&'.'&lang='.$_GET["lang"]); ?>" title="<?php echo $lang_event["Page"];?> <?php echo $i; ?>" <?php if($i == $search['page']) { ?>class="active"<?php } ?>><?php echo $i; ?></a>
+										<?php 										}
 									?>
-									<? if($fin < $search['page_total']) { ?> ... <a href="<? echo JL::url(SITE_URL.'/index.php?app=event&action=search&value='.$listdetail->event_name.'&page='.$search['page_total'].'&'.'&lang='.$_GET["lang"]); ?>" title="<?php echo $lang_event["Fin"];?> <? echo $search['page_total']; ?>"><?php echo $lang_event["Fin"];?></a><? }?> <i>(<? echo $search['result_total']; ?> <? echo $search['result_total'] > 1 ? ''.$lang_event["AppelsATemoins"].'' : ''.$lang_event["AppelATemoins"].''; ?>)</i>
+									<?php if($fin < $search['page_total']) { ?> ... <a href="<?php echo JL::url(SITE_URL.'/index.php?app=event&action=search&value='.$listdetail->event_name.'&page='.$search['page_total'].'&'.'&lang='.$_GET["lang"]); ?>" title="<?php echo $lang_event["Fin"];?> <?php echo $search['page_total']; ?>"><?php echo $lang_event["Fin"];?></a><?php }?> <i>(<?php echo $search['result_total']; ?> <?php echo $search['result_total'] > 1 ? ''.$lang_event["AppelsATemoins"].'' : ''.$lang_event["AppelATemoins"].''; ?>)</i>
 									</div>
 								    <div class="col-md-3 text-right">
-									<? // page suivante
+									<?php // page suivante
 									if($search['page'] < $search['page_total']) { ?>
-										<a href="<? echo JL::url(SITE_URL.'/index.php?app=event&action=search&value='.$listdetail->event_name.'&page='.($search['page']+1).'&'.'&lang='.$_GET["lang"]); ?>" class="bouton envoyer" title="<?php echo $lang_event["PageSuivante"];?>"><?php echo $lang_event["PageSuivante"];?> &raquo;</a>
-									<? } ?>
+										<a href="<?php echo JL::url(SITE_URL.'/index.php?app=event&action=search&value='.$listdetail->event_name.'&page='.($search['page']+1).'&'.'&lang='.$_GET["lang"]); ?>" class="bouton envoyer" title="<?php echo $lang_event["PageSuivante"];?>"><?php echo $lang_event["PageSuivante"];?> &raquo;</a>
+									<?php } ?>
 								</div>
 							</div>
 						</div>
@@ -378,14 +368,12 @@ else{
 									</div>
 								</div>
 								
-<?
-}
+<?php }
 ?>
  <div class="col-lg-12" style="text-align:right">
 				  <input type="button" class="bouton envoyer parentsolo_btn" name="create" id="create" value="<?php echo $lang_event["create"]; ?>">
 				  </div>						
-<?
-}
+<?php }
 }
 ?>
  <div id="new_event" hidden>
@@ -687,8 +675,7 @@ $('.mainhead').hide();
 $('#event_img').hide();
 $('#search_list').hide();
 $('#searchclick').hide();
-<?
-}
+<?php }
 ?>
 });
 //information

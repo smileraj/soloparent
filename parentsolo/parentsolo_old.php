@@ -14,12 +14,11 @@
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr" >
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" >
 
 
 	<head>
-		<?
-			// module de gestion automatis&eacute;e des meta tags
+		<?php 			// module de gestion automatis&eacute;e des meta tags
 			JL::loadMod('meta');
 		?>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,18 +28,18 @@
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Dancing+Script|Quicksand|Satisfy" rel="stylesheet">
-		<link href="<? echo $template.'/'.SITE_TEMPLATE.'.css?'.$version; ?>" rel="stylesheet" type="text/css" />
-		<link href="<? echo $template.'/'; ?>new_style/css/main.css" rel="stylesheet" type="text/css" />
-		<link href="<? echo $template.'/'; ?>plugins.css" rel="stylesheet">
+		<link href="<?php echo $template.'/'.SITE_TEMPLATE.'.css?'.$version; ?>" rel="stylesheet" type="text/css" />
+		<link href="<?php echo $template.'/'; ?>new_style/css/main.css" rel="stylesheet" type="text/css" />
+		<link href="<?php echo $template.'/'; ?>plugins.css" rel="stylesheet">
 		<!--photo validation-->
-<link rel="stylesheet" type="text/css" href="<? echo $template.'/'; ?>photovalidation/robocrop/css/style.css">
-<link rel="stylesheet" type="text/css" href="<? echo $template.'/'; ?>photovalidation/demo.css">
+<link rel="stylesheet" type="text/css" href="<?php echo $template.'/'; ?>photovalidation/robocrop/css/style.css">
+<link rel="stylesheet" type="text/css" href="<?php echo $template.'/'; ?>photovalidation/demo.css">
 
-<script src="<? echo $template.'/'; ?>photovalidation/js/jquery-1.7.2.js"></script>
-<script src="<? echo $template.'/'; ?>photovalidation/js/facedetection/ccv.js"></script> 
-		<script src="<? echo $template.'/'; ?>photovalidation/js/facedetection/face.js"></script>
-		<script src="<? echo $template.'/'; ?>photovalidation/js/jquery.facedetection.js"></script>
-		<script src="<? echo $template.'/'; ?>photovalidation/canvas-toBlob.js"></script> 
+<script src="<?php echo $template.'/'; ?>photovalidation/js/jquery-1.7.2.js"></script>
+<script src="<?php echo $template.'/'; ?>photovalidation/js/facedetection/ccv.js"></script> 
+		<script src="<?php echo $template.'/'; ?>photovalidation/js/facedetection/face.js"></script>
+		<script src="<?php echo $template.'/'; ?>photovalidation/js/jquery.facedetection.js"></script>
+		<script src="<?php echo $template.'/'; ?>photovalidation/canvas-toBlob.js"></script> 
 <style>
 .Dboot-preloader {
             /* padding-top: 20%; */
@@ -114,7 +113,7 @@ $('.circle').on('load',function(){
 					//alert(coords);
 					if(coords=='')
 					{
-					alert('We weren’t able to detect your face. Please use a photo where your face is the main focus. When in doubt, use a photo that you would use for your passport.');
+					alert('We werenï¿½t able to detect your face. Please use a photo where your face is the main focus. When in doubt, use a photo that you would use for your passport.');
 					$('#imag_val').attr('src','');
 					$('#newregimage').hide();
 					}
@@ -194,7 +193,7 @@ var img_height = $('#imag_val').height();
 					//alert(coords);
 					if(coords=='')
 					{
-					alert('We weren’t able to detect your face. Please use a photo where your face is the main focus. When in doubt, use a photo that you would use for your passport.');
+					alert('We werenï¿½t able to detect your face. Please use a photo where your face is the main focus. When in doubt, use a photo that you would use for your passport.');
 					$('#imag_val1').attr('src','');
 					$('#newregimage1').hide();
 					}
@@ -275,7 +274,7 @@ var img_height = $('#imag_val1').height();
 					//alert(coords);
 					if(coords=='')
 					{
-					alert('We weren’t able to detect your face. Please use a photo where your face is the main focus. When in doubt, use a photo that you would use for your passport.');
+					alert('We werenï¿½t able to detect your face. Please use a photo where your face is the main focus. When in doubt, use a photo that you would use for your passport.');
 					$('#imag_val2').attr('src','');
 					$('#newregimage2').hide();
 					}
@@ -356,7 +355,7 @@ var img_height = $('#imag_val2').height();
 					//alert(coords);
 					if(coords=='')
 					{
-					alert('We weren’t able to detect your face. Please use a photo where your face is the main focus. When in doubt, use a photo that you would use for your passport.');
+					alert('We werenï¿½t able to detect your face. Please use a photo where your face is the main focus. When in doubt, use a photo that you would use for your passport.');
 					$('#imag_val3').attr('src','');
 					$('#newregimage3').hide();
 					}
@@ -437,7 +436,7 @@ var img_height = $('#imag_val3').height();
 					//alert(coords);
 					if(coords=='')
 					{
-					alert('We weren’t able to detect your face. Please use a photo where your face is the main focus. When in doubt, use a photo that you would use for your passport.');
+					alert('We werenï¿½t able to detect your face. Please use a photo where your face is the main focus. When in doubt, use a photo that you would use for your passport.');
 					$('#imag_val4').attr('src','');
 					$('#newregimage4').hide();
 					}
@@ -518,7 +517,7 @@ var img_height = $('#imag_val4').height();
 					//alert(coords);
 					if(coords=='')
 					{
-					alert('We weren’t able to detect your face. Please use a photo where your face is the main focus. When in doubt, use a photo that you would use for your passport.');
+					alert('We werenï¿½t able to detect your face. Please use a photo where your face is the main focus. When in doubt, use a photo that you would use for your passport.');
 					$('#imag_val5').attr('src','');
 					$('#newregimage5').hide();
 					}
@@ -599,7 +598,7 @@ var img_height = $('#imag_val5').height();
 					//alert(coords);
 					if(coords=='')
 					{
-					alert('We weren’t able to detect your face. Please use a photo where your face is the main focus. When in doubt, use a photo that you would use for your passport.');
+					alert('We werenï¿½t able to detect your face. Please use a photo where your face is the main focus. When in doubt, use a photo that you would use for your passport.');
 					$('#imag_val6').attr('src','');
 					$('#newregimage6').hide();
 					}
@@ -626,7 +625,7 @@ var img_height = $('#imag_val6').height();
 						
 					}
 				})
-					<? } else {?>
+					<?php } else {?>
 					$('#newregimage6').html(''); 
 				var imgval= document.getElementById('imag_val6').src;			
 var img_width = $('#imag_val6').width();
@@ -668,8 +667,8 @@ var img_height = $('#imag_val6').height();
 		})(jQuery);
 	</script>
 
-<script type="text/javascript" src="<? echo $template.'/'; ?>photovalidation/scripts/jquery.min.js"></script>
-<script type="text/javascript" src="<? echo $template.'/'; ?>photovalidation/scripts/jquery.form.js"></script>
+<script type="text/javascript" src="<?php echo $template.'/'; ?>photovalidation/scripts/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo $template.'/'; ?>photovalidation/scripts/jquery.form.js"></script>
 <?php if($user->id){ ?>
 
 <?php }
@@ -678,8 +677,7 @@ else{?>
 <?php }?><!--end photo validation-->
 		
 		
-		<?
-			if($user->id){
+		<?php 			if($user->id){
 				?>
 				<script>
 					jQuery.noConflict();
@@ -746,37 +744,34 @@ else{?>
 	})
 	})(jQuery);
 				</script>
-<link href="<? echo $template.'/'; ?>css/carousel/owl.carousel.css" rel="stylesheet">
-<link href="<? echo $template.'/'; ?>css/carousel/owl.theme.css" rel="stylesheet">
+<link href="<?php echo $template.'/'; ?>css/carousel/owl.carousel.css" rel="stylesheet">
+<link href="<?php echo $template.'/'; ?>css/carousel/owl.theme.css" rel="stylesheet">
 <!-- Animation CSS -->
-<link href="<? echo $template.'/'; ?>css/carousel/wedding-font-styles.css" rel="stylesheet">
-		<?
-			}
+<link href="<?php echo $template.'/'; ?>css/carousel/wedding-font-styles.css" rel="stylesheet">
+		<?php 			}
 				?>
-		<!--<link href="<? // echo $template.'/'.SITE_TEMPLATE.'_old(30-1-17).css?'.$version; ?>" rel="stylesheet" type="text/css" />-->
+		<!--<link href="<?php // echo $template.'/'.SITE_TEMPLATE.'_old(30-1-17).css?'.$version; ?>" rel="stylesheet" type="text/css" />-->
 		<?php
 			/*if($_GET['lang']!="fr"){
 				?>
-					<link href="<? echo $template.'/'.SITE_TEMPLATE.'.'.$_GET['lang'].'.css'; ?>" rel="stylesheet" type="text/css" />
+					<link href="<?php echo $template.'/'.SITE_TEMPLATE.'.'.$_GET['lang'].'.css'; ?>" rel="stylesheet" type="text/css" />
 				<?php
 			}*/
 		?>
-		<link href="<? echo $template; ?>/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+		<link href="<?php echo $template; ?>/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 		
-		<script type="text/javascript" src="<? echo SITE_URL; ?>/js/swfobject/swfobject.js"></script>
-		<script type="text/javascript" src="<? echo SITE_URL; ?>/js/lightbox/lightbox.js"></script>
-		<?
-			if($app == 'home') {
+		<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/swfobject/swfobject.js"></script>
+		<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/lightbox/lightbox.js"></script>
+		<?php 			if($app == 'home') {
 			
 		?>
-				<script type="text/javascript" src="<? echo SITE_URL; ?>/js/app_home.js?<? echo $version; ?>"></script>
-				<script type="text/javascript" src="<? echo SITE_URL; ?>/js/swfobject/swfobject.js"></script>
-		<?
-			
+				<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/app_home.js?<?php echo $version; ?>"></script>
+				<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/swfobject/swfobject.js"></script>
+		<?php 			
 			} elseif($app == 'profil') {
 			?>
 
-				<? if(in_array($action, array('step2', 'step2submit', 'step5', 'step5submit'))) {
+				<?php if(in_array($action, array('step2', 'step2submit', 'step5', 'step5submit'))) {
 					/*if ($_GET["lang"]!="fr") {
 						//echo $_GET["lang"];
 						$jsUpExt = "-".$_GET["lang"];
@@ -784,44 +779,38 @@ else{?>
 						$jsUpExt = "";
 					}*/
 					?>
-					<script type="text/javascript" src="<? echo SITE_URL; ?>/js/swfupload<?php /*echo $jsUpExt;*/ ?>/swfupload.js"></script>
-					<script type="text/javascript" src="<? echo SITE_URL; ?>/js/swfupload<?php /*echo $jsUpExt;*/ ?>/js/handlers.js?<? echo $version; ?>"></script>
-					<link rel="stylesheet" type="text/css" href="<? echo SITE_URL; ?>/js/swfupload<?php /*echo $jsUpExt;*/ ?>/default.css">
-				<? }?>
+					<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/swfupload<?php /*echo $jsUpExt;*/ ?>/swfupload.js"></script>
+					<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/swfupload<?php /*echo $jsUpExt;*/ ?>/js/handlers.js?<?php echo $version; ?>"></script>
+					<link rel="stylesheet" type="text/css" href="<?php echo SITE_URL; ?>/js/swfupload<?php /*echo $jsUpExt;*/ ?>/default.css">
+				<?php }?>
 
-				<script type="text/javascript" src="<? echo SITE_URL; ?>/js/app_profil.js?<? echo $version; ?>"></script>
+				<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/app_profil.js?<?php echo $version; ?>"></script>
 
-				<? if($action == 'step6') { ?>
-					<script type="text/javascript" src="<? echo SITE_URL; ?>/js/app_search.js"></script>
-				<? } ?>
+				<?php if($action == 'step6') { ?>
+					<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/app_search.js"></script>
+				<?php } ?>
 
-			<?
-			} elseif($app == 'search') {
+			<?php 			} elseif($app == 'search') {
 			?>
-				<script type="text/javascript" src="<? echo SITE_URL; ?>/js/app_search.js"></script>
-			<?
-			} elseif($app == 'message') {
+				<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/app_search.js"></script>
+			<?php 			} elseif($app == 'message') {
 			?>
-				<script type="text/javascript" src="<? echo SITE_URL; ?>/js/app_message.js?<? echo $version; ?>"></script>
+				<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/app_message.js?<?php echo $version; ?>"></script>
 
-			<?
-			} elseif($app == 'redac') {
+			<?php 			} elseif($app == 'redac') {
 			?>
 				
-			<?
-			} elseif($app == 'groupe' && in_array($action, array('edit', 'save'))) {
+			<?php 			} elseif($app == 'groupe' && in_array($action, array('edit', 'save'))) {
 			?>
-				<script type="text/javascript" src="<? echo SITE_URL; ?>/js/app_groupe.js"></script>
-				<script type="text/javascript" src="<? echo SITE_URL; ?>/js/swfupload/swfupload.js"></script>
-				<script type="text/javascript" src="<? echo SITE_URL; ?>/js/swfupload/js/handlers.js?<? echo $version; ?>"></script>
-				<link rel="stylesheet" type="text/css" href="<? echo SITE_URL; ?>/js/swfupload/default.css">
-			<?
-			}
+				<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/app_groupe.js"></script>
+				<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/swfupload/swfupload.js"></script>
+				<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/swfupload/js/handlers.js?<?php echo $version; ?>"></script>
+				<link rel="stylesheet" type="text/css" href="<?php echo SITE_URL; ?>/js/swfupload/default.css">
+			<?php 			}
 			if($app == 'inviter'){
 			?>
-				<script type="text/javascript" src="<? echo SITE_URL; ?>/js/app_inviter.js"></script>
-			<?
-			}
+				<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/app_inviter.js"></script>
+			<?php 			}
 			//Head pub Goldbach
 			/*if($_GET['lang']!="de"){
 				?>
@@ -868,10 +857,10 @@ googletag.cmd.push(function() {
 for (var key in setgbtargetingobj) {
 googletag.pubads().setTargeting(key, setgbtargetingobj[key].toString());
 }
-googletag.defineSlot('8373/CH/Helvetica-Media/CH_Parentsolo.ch_EX/ROS-excl-Homepage/FR_ROS-excl-Home_allAdformats', setgbldbSizes, 'leaderboard').addService(googletag.pubads());
-googletag.defineSlot('8373/CH/Helvetica-Media/CH_Parentsolo.ch_EX/ROS-excl-Homepage/FR_ROS-excl-Home_allAdformats', setgbskySizes, 'skyscraper').addService(googletag.pubads());
-googletag.defineSlot('8373/CH/Helvetica-Media/CH_Parentsolo.ch_EX/ROS-excl-Homepage/FR_ROS-excl-Home_allAdformats', setgbrecSizes, 'content').addService(googletag.pubads());
-googletag.defineOutOfPageSlot('8373/CH/Helvetica-Media/CH_Parentsolo.ch_EX/ROS-excl-Homepage/FR_ROS-excl-Home_allAdformats', 'outofpage').addService(googletag.pubads());
+googletag.defineSlot('8373/CH/Helvetica-Media/CH_solocircl.com_EX/ROS-excl-Homepage/FR_ROS-excl-Home_allAdformats', setgbldbSizes, 'leaderboard').addService(googletag.pubads());
+googletag.defineSlot('8373/CH/Helvetica-Media/CH_solocircl.com_EX/ROS-excl-Homepage/FR_ROS-excl-Home_allAdformats', setgbskySizes, 'skyscraper').addService(googletag.pubads());
+googletag.defineSlot('8373/CH/Helvetica-Media/CH_solocircl.com_EX/ROS-excl-Homepage/FR_ROS-excl-Home_allAdformats', setgbrecSizes, 'content').addService(googletag.pubads());
+googletag.defineOutOfPageSlot('8373/CH/Helvetica-Media/CH_solocircl.com_EX/ROS-excl-Homepage/FR_ROS-excl-Home_allAdformats', 'outofpage').addService(googletag.pubads());
 googletag.pubads().collapseEmptyDivs();
 googletag.enableServices();
 });
@@ -880,10 +869,10 @@ else{
 for (var key in setgbtargetingobj) {
 googletag.pubads().setTargeting(key, setgbtargetingobj[key].toString());
 }
-googletag.defineSlot('8373/CH/Helvetica-Media/CH_Parentsolo.ch_EX/ROS-excl-Homepage/FR_ROS-excl-Home_allAdformats', setgbldbSizes, 'leaderboard').addService(googletag.pubads());
-googletag.defineSlot('8373/CH/Helvetica-Media/CH_Parentsolo.ch_EX/ROS-excl-Homepage/FR_ROS-excl-Home_allAdformats', setgbskySizes, 'skyscraper').addService(googletag.pubads());
-googletag.defineSlot('8373/CH/Helvetica-Media/CH_Parentsolo.ch_EX/ROS-excl-Homepage/FR_ROS-excl-Home_allAdformats', setgbrecSizes, 'content').addService(googletag.pubads());
-googletag.defineOutOfPageSlot('8373/CH/Helvetica-Media/CH_Parentsolo.ch_EX/ROS-excl-Homepage/FR_ROS-excl-Home_allAdformats', 'outofpage').addService(googletag.pubads());
+googletag.defineSlot('8373/CH/Helvetica-Media/CH_solocircl.com_EX/ROS-excl-Homepage/FR_ROS-excl-Home_allAdformats', setgbldbSizes, 'leaderboard').addService(googletag.pubads());
+googletag.defineSlot('8373/CH/Helvetica-Media/CH_solocircl.com_EX/ROS-excl-Homepage/FR_ROS-excl-Home_allAdformats', setgbskySizes, 'skyscraper').addService(googletag.pubads());
+googletag.defineSlot('8373/CH/Helvetica-Media/CH_solocircl.com_EX/ROS-excl-Homepage/FR_ROS-excl-Home_allAdformats', setgbrecSizes, 'content').addService(googletag.pubads());
+googletag.defineOutOfPageSlot('8373/CH/Helvetica-Media/CH_solocircl.com_EX/ROS-excl-Homepage/FR_ROS-excl-Home_allAdformats', 'outofpage').addService(googletag.pubads());
 googletag.pubads().enableSyncRendering();
 googletag.enableServices();
 }
@@ -1270,56 +1259,50 @@ timerPaypal=setInterval("doHide()", 5000);
 
 	<body>
 	<div class="Dboot-preloader text-center">
-    <img src="<? echo SITE_URL;?>/chat2/templates/img/loader.gif" width="400"/>
+    <img src="<?php echo SITE_URL;?>/chat2/templates/img/loader.gif" width="400"/>
 </div>
 <!-- Modal -->
   
-    <?/*
+    <?php /*
 		<script type="text/javascript">
-			var WlWebsiteId="parentsolo.ch";
+			var WlWebsiteId="solocircl.com";
 			var WlContentGroup="Default";
 			var WlAC= true;
 			document.write('<scr'+'ipt language="JavaScript" src="http://rc.ch.adlink.net/Tag/adlink/JS/Ch/'+WlWebsiteId+'/Gt.js"></scr'+'ipt>');
-		</script>       */?>
+		</script>       */ ?>
 		
 		<div class="page" id="res_Menu_id" >
         
-        <?
-			//   JL::loadApp('mainlink');
+        <?php 			//   JL::loadApp('mainlink');
 		?>
         <div class="content">
             <div class="content_inner">
-			<? 
+			<?php 
 				JL::loadApp('head');
 			?>
 				<div class="content1" <?php if($user->id){ echo "style='background: #b90003;'"; } ?>>
 					<div class="<?php if($user->id){ } else { echo 'shell'; }?> text-left">
-				<?
-							if($user->id){
+				<?php 							if($user->id){
 ?>								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 hidden-xs  hidden-sm">
 						
-						<?
-								JL::loadMod('menu');
+						<?php 								JL::loadMod('menu');
 							
 						?>
 					</div>
 					<div class="hidden-md  hidden-lg">
 						
-						<?
-								JL::loadMod('menu');
+						<?php 								JL::loadMod('menu');
 							
 						?>
 					</div>
 					<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 parentsolo_shadow">
 						<div class="col-lg-9   parentsolo_pt_15">
-						<?
-							
+						<?php 							
 						
 							JL::loadMod('menu_offline');	
 						?>
 							
-						<?
-							// charge l'application demand&eacute;e
+						<?php 							// charge l'application demand&eacute;e
 							JL::loadBody();
 						
 						?>
@@ -1329,26 +1312,23 @@ timerPaypal=setInterval("doHide()", 5000);
 						?>
 					<div class="col-lg-12 parentsolo_shadow">
 						<div class="col-lg-9   parentsolo_pt_15">
-						<?
-							
+						<?php 							
 						
 							JL::loadMod('menu_offline');	
 						?>
 							
-						<?
-							// charge l'application demand&eacute;e
+						<?php 							// charge l'application demand&eacute;e
 							JL::loadBody();
 						
 						?>
 						</div>
-					<?
-					}
+					<?php 					}
 					?>
 
 			
 
 					<div class="col-lg-3"> 
-						<? JL::loadMod('menu_right'); ?>
+						<?php JL::loadMod('menu_right'); ?>
 					</div>
 					</div> 
 </div>
@@ -1356,16 +1336,16 @@ timerPaypal=setInterval("doHide()", 5000);
 				</div><script> if(sound_test<='1'){
 				alert('test');
 				</script>
-				<div class="chatbox_alert_stl" id="alert_box_chat" style="display:none; background:rgba(0, 0, 0, 0) !important;    top: 160px;" onClick="windowOpen('ParentSoloChat','<? echo JL::url('index.php?app=chat&'.$langue); ?>','800px','600px');">
+				<div class="chatbox_alert_stl" id="alert_box_chat" style="display:none; background:rgba(0, 0, 0, 0) !important;    top: 160px;" onClick="windowOpen('ParentSoloChat','<?php echo JL::url('index.php?app=chat&'.$langue); ?>','800px','600px');">
 				
 				<i class="fa fa-heart" style="font-size: 150px;    color: #f00;"></i><span style="position: absolute;  left: 70px;  margin-top: 45px;  z-index: 24;  font-size: 22px;">test
 				</span>	</div><script> 
 				}</script>
-				<div id="chatbox_val" style="display:none;"><div class="chatbox_alert_stl" onClick="windowOpen('ParentSoloChat','<? echo JL::url('index.php?app=chat&'.$langue); ?>','800px','600px');"><span class="result"></span> 
+				<div id="chatbox_val" style="display:none;"><div class="chatbox_alert_stl" onClick="windowOpen('ParentSoloChat','<?php echo JL::url('index.php?app=chat&'.$langue); ?>','800px','600px');"><span class="result"></span> 
 							<i class="fa fa-comments"></i></div></div>
 							
-						<div class="chatAlert" id="chatAlert1"  onClick="windowOpen('ParentSoloChat','<? echo JL::url('index.php?app=chat&'.$langue); ?>','800px','600px');"></div></div>
-			<?			
+						<div class="chatAlert" id="chatAlert1"  onClick="windowOpen('ParentSoloChat','<?php echo JL::url('index.php?app=chat&'.$langue); ?>','800px','600px');"></div></div>
+			<?php
 						JL::loadMod('footer'); 
 						
 						if($user->id) {
@@ -1379,18 +1359,18 @@ timerPaypal=setInterval("doHide()", 5000);
    
    
   					
-<script src="<? echo $template.'/'; ?>new_style/js/jquery.js"></script>
-<script src="<? echo $template.'/'; ?>photovalidation/bootstrap/dist/js/bootstrap.min.js"></script>		
-    <script type="text/javascript" src="<? echo $template.'/'; ?>new_style/js/plugins/flipclock/flipclock.js"></script>
-    <script type="text/javascript" src="<? echo $template.'/'; ?>new_style/js/plugins/smoothscroll/smoothscroll.js"></script>
+<script src="<?php echo $template.'/'; ?>new_style/js/jquery.js"></script>
+<script src="<?php echo $template.'/'; ?>photovalidation/bootstrap/dist/js/bootstrap.min.js"></script>		
+    <script type="text/javascript" src="<?php echo $template.'/'; ?>new_style/js/plugins/flipclock/flipclock.js"></script>
+    <script type="text/javascript" src="<?php echo $template.'/'; ?>new_style/js/plugins/smoothscroll/smoothscroll.js"></script>
    <!-- --photo validation---->
-<script src="<? echo $template.'/'; ?>photovalidation/robocrop/robocrop.demo.js"></script>
-<script src="<? echo $template.'/'; ?>photovalidation/demo.js"></script>    
- <script type="text/javascript" src="<? echo $template.'/'; ?>new_style/js/plugins/revolution/js/jquery.themepunch.tools.min.js"></script>
-    <script type="text/javascript" src="<? echo $template.'/'; ?>new_style/js/plugins/revolution/js/jquery.themepunch.revolution.min.js"></script>
-    <script type="text/javascript" src="<? echo $template.'/'; ?>new_style/js/plugins/fancybox/jquery.fancybox.js"></script>
-    <script src="<? echo $template.'/'; ?>new_style/js/plugins/owl/owl.carousel.min.js" type="text/javascript"></script>
-   <script type="text/javascript" src="<? echo $template.'/'; ?>new_style/js/custom.js"></script>
+<script src="<?php echo $template.'/'; ?>photovalidation/robocrop/robocrop.demo.js"></script>
+<script src="<?php echo $template.'/'; ?>photovalidation/demo.js"></script>    
+ <script type="text/javascript" src="<?php echo $template.'/'; ?>new_style/js/plugins/revolution/js/jquery.themepunch.tools.min.js"></script>
+    <script type="text/javascript" src="<?php echo $template.'/'; ?>new_style/js/plugins/revolution/js/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript" src="<?php echo $template.'/'; ?>new_style/js/plugins/fancybox/jquery.fancybox.js"></script>
+    <script src="<?php echo $template.'/'; ?>new_style/js/plugins/owl/owl.carousel.min.js" type="text/javascript"></script>
+   <script type="text/javascript" src="<?php echo $template.'/'; ?>new_style/js/custom.js"></script>
 <script>
     jQuery.noConflict();
 (function($) {	
@@ -1522,7 +1502,7 @@ $(".sidebar-icon").click(function() {
                 toggle = !toggle;
             });*/
 </script>
-						<script src="<? echo $template.'/'; ?>js/carousel/owl.carousel.js"></script>
+						<script src="<?php echo $template.'/'; ?>js/carousel/owl.carousel.js"></script>
     <!-- Theme JS -->
     <script>
 	// Friend Section Carousel
@@ -1543,16 +1523,14 @@ jQuery.noConflict();
 	   
 
 <!--end photo validation-->
-<script type="text/javascript" src="<? echo SITE_URL; ?>/js/mootools.js?<? echo $version; ?>"></script>
-						<?
-					
+<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/mootools.js?<?php echo $version; ?>"></script>
+						<?php 					
 					}
 					
 						// charge le module de message d'alerte de derneirs &eacute;v&eacute;nements(popin)
 						JL::loadMod('popin_last_event');
 						JL::loadMod('popin_chat_alert');
-?><?
-					if($app=='profil'&& $action=='finalisation'){
+?><?php 					if($app=='profil'&& $action=='finalisation'){
 						if($_GET["lang"]=="fr" || $_GET["lang"]==""){
 						?>
 							<!-- Google Code for Inscription FR Conversion Page -->
@@ -1562,7 +1540,7 @@ jQuery.noConflict();
 							var google_conversion_language = "fr";
 							var google_conversion_format = "3";
 							var google_conversion_color = "ffffff";
-							var google_conversion_label = "uh5ECKOB-AgQlayvzAM";
+							var google_conversion_label = "";
 							var google_remarketing_only = false;
 							/* ]]> */
 							</script>
@@ -1570,11 +1548,10 @@ jQuery.noConflict();
 							</script>
 							<noscript>
 							<div style="display:inline;">
-							<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/965465621/?label=uh5ECKOB-AgQlayvzAM&amp;guid=ON&amp;script=0"/>
+							<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/965465621/?label=&amp;guid=ON&amp;script=0"/>
 							</div>
 							</noscript>
-						<?
-						}
+						<?php 						}
 						if($_GET["lang"]=="en"){
 						?>
 							<!-- Google Code for Inscription EN Conversion Page -->
@@ -1584,7 +1561,7 @@ jQuery.noConflict();
 							var google_conversion_language = "en";
 							var google_conversion_format = "3";
 							var google_conversion_color = "ffffff";
-							var google_conversion_label = "uh5ECKOB-AgQlayvzAM";
+							var google_conversion_label = "";
 							var google_remarketing_only = false;
 							/* ]]> */
 							</script>
@@ -1592,11 +1569,10 @@ jQuery.noConflict();
 							</script>
 							<noscript>
 							<div style="display:inline;">
-							<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/965465621/?label=uh5ECKOB-AgQlayvzAM&amp;guid=ON&amp;script=0"/>
+							<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/965465621/?label=&amp;guid=ON&amp;script=0"/>
 							</div>
 							</noscript>
-						<?
-						}
+						<?php 						}
 						if($_GET["lang"]=="de"){
 						?>
 							<!-- Google Code for Inscription DE Conversion Page -->
@@ -1606,7 +1582,7 @@ jQuery.noConflict();
 							var google_conversion_language = "de";
 							var google_conversion_format = "3";
 							var google_conversion_color = "ffffff";
-							var google_conversion_label = "uh5ECKOB-AgQlayvzAM";
+							var google_conversion_label = "";
 							var google_remarketing_only = false;
 							/* ]]> */
 							</script>
@@ -1614,11 +1590,10 @@ jQuery.noConflict();
 							</script>
 							<noscript>
 							<div style="display:inline;">
-							<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/965465621/?label=uh5ECKOB-AgQlayvzAM&amp;guid=ON&amp;script=0"/>
+							<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/965465621/?label=&amp;guid=ON&amp;script=0"/>
 							</div>
 							</noscript>
-						<?
-						}
+						<?php 						}
 					} 
 				?>
 						<script type="text/javascript">
@@ -1633,23 +1608,23 @@ jQuery.noConflict();
 				</div>
 		<?php if(!$user->id) {
 							?>
-			<!--<script src="<? echo $template.'/'; ?>js/core.min.js"></script>
-			<script src="<? echo $template.'/'; ?>js/script.js"></script>-->
+			<!--<script src="<?php echo $template.'/'; ?>js/core.min.js"></script>
+			<script src="<?php echo $template.'/'; ?>js/script.js"></script>-->
 			<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-			<script src="<? echo $template.'/'; ?>photovalidation/bootstrap/dist/js/bootstrap.min.js"></script>-->
-					<script src="<? echo $template.'/'; ?>new_style/js/jquery.js"></script>
-					<script src="<? echo $template.'/'; ?>photovalidation/bootstrap/dist/js/bootstrap.min.js"></script>
-					<script type="text/javascript" src="<? echo $template.'/'; ?>new_style/js/plugins/flipclock/flipclock.js"></script>
-					<script type="text/javascript" src="<? echo $template.'/'; ?>new_style/js/plugins/smoothscroll/smoothscroll.js"></script>
+			<script src="<?php echo $template.'/'; ?>photovalidation/bootstrap/dist/js/bootstrap.min.js"></script>-->
+					<script src="<?php echo $template.'/'; ?>new_style/js/jquery.js"></script>
+					<script src="<?php echo $template.'/'; ?>photovalidation/bootstrap/dist/js/bootstrap.min.js"></script>
+					<script type="text/javascript" src="<?php echo $template.'/'; ?>new_style/js/plugins/flipclock/flipclock.js"></script>
+					<script type="text/javascript" src="<?php echo $template.'/'; ?>new_style/js/plugins/smoothscroll/smoothscroll.js"></script>
     <!--photo validation-->
-					<script src="<? echo $template.'/'; ?>photovalidation/robocrop/robocrop.demo.js"></script>
-					<script src="<? echo $template.'/'; ?>photovalidation/demo.js"></script>
+					<script src="<?php echo $template.'/'; ?>photovalidation/robocrop/robocrop.demo.js"></script>
+					<script src="<?php echo $template.'/'; ?>photovalidation/demo.js"></script>
     <!-- REVOLUTION JS FILES -->
-    <script type="text/javascript" src="<? echo $template.'/'; ?>new_style/js/plugins/revolution/js/jquery.themepunch.tools.min.js"></script>
-    <script type="text/javascript" src="<? echo $template.'/'; ?>new_style/js/plugins/revolution/js/jquery.themepunch.revolution.min.js"></script>
-    <script type="text/javascript" src="<? echo $template.'/'; ?>new_style/js/plugins/fancybox/jquery.fancybox.js"></script>
-    <script src="<? echo $template.'/'; ?>new_style/js/plugins/owl/owl.carousel.min.js" type="text/javascript"></script>
-   <script type="text/javascript" src="<? echo $template.'/'; ?>new_style/js/custom.js"></script>
+    <script type="text/javascript" src="<?php echo $template.'/'; ?>new_style/js/plugins/revolution/js/jquery.themepunch.tools.min.js"></script>
+    <script type="text/javascript" src="<?php echo $template.'/'; ?>new_style/js/plugins/revolution/js/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript" src="<?php echo $template.'/'; ?>new_style/js/plugins/fancybox/jquery.fancybox.js"></script>
+    <script src="<?php echo $template.'/'; ?>new_style/js/plugins/owl/owl.carousel.min.js" type="text/javascript"></script>
+   <script type="text/javascript" src="<?php echo $template.'/'; ?>new_style/js/custom.js"></script>
    <script>
     jQuery.noConflict();
 (function($) {	
@@ -1687,6 +1662,6 @@ $(".sidebar-icon").click(function() {
 
 
 			
-<script type="text/javascript" src="<? echo SITE_URL; ?>/js/mootools.js?<? echo $version; ?>"></script>
+<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/mootools.js?<?php echo $version; ?>"></script>
 <?php } ?>
 	</body>

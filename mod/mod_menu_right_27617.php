@@ -30,55 +30,46 @@
 		}
 		?>
 		<div class="nouveau">
-			<h3><? echo $lang_mod["Nouveau"]; ?></h3>
+			<h3><?php echo $lang_mod["Nouveau"]; ?></h3>
 			<table cellpadding="0" cellspacing="0" width="100%">
 				<tr>
 					<td align="right">
-						<?
-							if($userStats->message_new <= 0){
+						<?php 							if($userStats->message_new <= 0){
 								echo $userStats->message_new.' '.$lang_mod["NouveauMessage"]; 
 							}else{
 						?>
-								<a href="<? echo JL::url('index.php?app=message&action=inbox'.'&'.$langue); ?>" title="<?php echo $lang_mod["BoiteReception"];?>"><span style="font-weight:bold"><? echo $userStats->message_new; ?></span> <? echo $userStats->message_new > 1 ? ''.$lang_mod["NouveauxMessages"].'' : ''.$lang_mod["NouveauMessage"].''; ?></a>
-						<?
-							}
+								<a href="<?php echo JL::url('index.php?app=message&action=inbox'.'&'.$langue); ?>" title="<?php echo $lang_mod["BoiteReception"];?>"><span style="font-weight:bold"><?php echo $userStats->message_new; ?></span> <?php echo $userStats->message_new > 1 ? ''.$lang_mod["NouveauxMessages"].'' : ''.$lang_mod["NouveauMessage"].''; ?></a>
+						<?php 							}
 						?>
 						<br />
-						<?
-							if($userStats->fleur_new <= 0){
+						<?php 							if($userStats->fleur_new <= 0){
 								echo $userStats->fleur_new.' '.$lang_mod["NouvelleRose"]; 
 							}else{
 						?>
-								<a href="<? echo JL::url('index.php?app=message&action=flowers'.'&'.$langue); ?>" title="<?php echo $lang_mod["BoiteReceptionRoses"];?>"><span style="font-weight:bold"><? echo $userStats->fleur_new; ?></span> <? echo $userStats->fleur_new > 1 ? ''.$lang_mod["NouvellesRoses"].'' : ''.$lang_mod["NouvelleRose"].''; ?></a>
-						<?
-							}
+								<a href="<?php echo JL::url('index.php?app=message&action=flowers'.'&'.$langue); ?>" title="<?php echo $lang_mod["BoiteReceptionRoses"];?>"><span style="font-weight:bold"><?php echo $userStats->fleur_new; ?></span> <?php echo $userStats->fleur_new > 1 ? ''.$lang_mod["NouvellesRoses"].'' : ''.$lang_mod["NouvelleRose"].''; ?></a>
+						<?php 							}
 						?>
 					<br />
-						<?
-							if($userStats->visite_total <= 0){
+						<?php 							if($userStats->visite_total <= 0){
 								echo $userStats->visite_total.' '.$lang_mod["Visite"]; 
 							}else{
 						?>
-								<a href="<? echo JL::url('index.php?app=search&action=visits'.'&'.$langue); ?>" title="<? echo $lang_mod["VisiteursProfil"]; ?>"><span style="font-weight:bold"><? echo $userStats->visite_total; ?></span> <? echo $userStats->visite_total > 1 ? ''.$lang_mod["Visites"].'' : ''.$lang_mod["Visite"].''; ?></a>
-						<?
-							}
+								<a href="<?php echo JL::url('index.php?app=search&action=visits'.'&'.$langue); ?>" title="<?php echo $lang_mod["VisiteursProfil"]; ?>"><span style="font-weight:bold"><?php echo $userStats->visite_total; ?></span> <?php echo $userStats->visite_total > 1 ? ''.$lang_mod["Visites"].'' : ''.$lang_mod["Visite"].''; ?></a>
+						<?php 							}
 						?>
 					<br />
-						<?
-							if($userStats->points_total <= 0){
+						<?php 							if($userStats->points_total <= 0){
 								echo $userStats->points_total.' '.SoloFleur; 
 							}else{
 						?>
-								<a href="<? echo JL::url('index.php?app=points&action=mespoints'.'&'.$langue); ?>" title="<?php echo $lang_mod["DetailPoints"];?>"><span style="font-weight:bold"><? echo $userStats->points_total; ?></span> SoloFleur<? echo $userStats->points_total > 0 ? 's' : ''; ?></a>
-						<?
-							}
+								<a href="<?php echo JL::url('index.php?app=points&action=mespoints'.'&'.$langue); ?>" title="<?php echo $lang_mod["DetailPoints"];?>"><span style="font-weight:bold"><?php echo $userStats->points_total; ?></span> SoloFleur<?php echo $userStats->points_total > 0 ? 's' : ''; ?></a>
+						<?php 							}
 						?>
 					</td>
 				</tr>
 			</table>
 		</div>
-			<?
-	}
+			<?php 	}
 	
 	 /*
 ?>
@@ -91,8 +82,7 @@ if(setgbasync){googletag.cmd.push(function() { googletag.display('skyscraper'); 
 </div>
 		
 	</div>
-<?
-*/
+<?php */
 	if(!$user->id){
 		
 		// r&eacute;cup les stats du compte
@@ -105,42 +95,39 @@ if(setgbasync){googletag.cmd.push(function() { googletag.display('skyscraper'); 
 		
 ?>
 		<div class="inscription_gratuite" style="margin:0 0 5px 0;">
-			<a href="<? echo $box->url; ?>"><img src="<? echo $template; ?>/images/box/<? echo $box->id; ?>-<? echo $_GET['lang'];?>.gif" alt="<? echo $box->titre; ?>"/></a>
-			<h3><a href="<? echo $box->url; ?>"><? echo $box->titre; ?></a></h3>
-			<div><? echo $box->texte; ?></div>
+			<a href="<?php echo $box->url; ?>"><img src="<?php echo $template; ?>/images/box/<?php echo $box->id; ?>-<?php echo $_GET['lang'];?>.gif" alt="<?php echo $box->titre; ?>"/></a>
+			<h3><a href="<?php echo $box->url; ?>"><?php echo $box->titre; ?></a></h3>
+			<div><?php echo $box->texte; ?></div>
 		</div>
-<?
-	}
+<?php 	}
     else{  
 ?>
 	<div class="partenaire_r">
-        <?/*
+        <?php /*
 		<div class="small"><?php echo $lang_mod["Partenaire"];?></div>
 		<div id="partenaire_r" >
 			<script type="text/javascript">
-				swfobject.embedSWF("<? echo $template.'/images/pub_babybook_300x250.swf'; ?>", "partenaire_r", "300", "250", "8", "", { "width": "300", "height": "250" }, {"wmode":"transparent"}, {"id" : "partenaire_r"});
+				swfobject.embedSWF("<?php echo $template.'/images/pub_babybook_300x250.swf'; ?>", "partenaire_r", "300", "250", "8", "", { "width": "300", "height": "250" }, {"wmode":"transparent"}, {"id" : "partenaire_r"});
 			</script>
-		</div>     */?>
+		</div>     */ ?>
         
         <div id="partenaire_r" >
             <div class="small"><?php echo $lang_mod["Partenaire"];?></div>
-             <?
-             if($_GET['lang']=="fr" || $_GET['lang']=="en"){
+             <?php              if($_GET['lang']=="fr" || $_GET['lang']=="en"){
              ?>
-                <img style="width: 300px" src="<? echo $template.'/images/Parentsolo.jpeg'; ?>" alt="">
-             <?    
+                <img style="width: 300px" src="<?php echo $template.'/images/Parentsolo.jpeg'; ?>" alt="">
+             <?php    
              }
              else{
              ?>
-                <img style="width: 300px" src="<? echo $template.'/images/Parentsolo-DE.jpeg'; ?>" alt="">
-             <?    
+                <img style="width: 300px" src="<?php echo $template.'/images/Parentsolo-DE.jpeg'; ?>" alt="">
+             <?php    
              }
              ?>
              <div class="small"><?php echo $lang_mod["Publicite"];?></div>
         </div>
 	</div>
-<?
-	}
+<?php 	}
     
 ?>
 	
@@ -148,8 +135,7 @@ if(setgbasync){googletag.cmd.push(function() { googletag.display('skyscraper'); 
 		<div class="small"><?php echo $lang_mod["Publicite"];?></div>
 	    <div id='content'>
 
-            <?
-             if($_GET['lang']=="fr"){
+            <?php              if($_GET['lang']=="fr"){
             ?>
         
             <div id="div-ad-gds-464-2">
@@ -162,12 +148,10 @@ if(setgbasync){googletag.cmd.push(function() { googletag.display('skyscraper'); 
 
             </div>
 
-           <?
-           }
+           <?php            }
            ?> 
             
-            <?
-             if($_GET['lang']=="de"){
+            <?php              if($_GET['lang']=="de"){
             ?>
         
                 <!-- 160x600, 300x600 -->
@@ -178,12 +162,10 @@ if(setgbasync){googletag.cmd.push(function() { googletag.display('skyscraper'); 
                 </div>
 
                
-           <?
-           }
+           <?php            }
            ?>  
            
-            <?
-             if($_GET['lang']=="en"){
+            <?php              if($_GET['lang']=="en"){
             ?>
         
                  <!-- 160x600, 300x600 -->
@@ -194,8 +176,7 @@ if(setgbasync){googletag.cmd.push(function() { googletag.display('skyscraper'); 
                 </div>
 
             
-           <?
-           }
+           <?php            }
            ?>  
             
             

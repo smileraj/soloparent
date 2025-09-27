@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 
 	require_once('redac.html.php');
@@ -24,7 +24,7 @@
 	}
 
 
-	// affiche un contenu passé en param $id
+	// affiche un contenu passï¿½ en param $id
 	function contenuAfficher() {
 		global $langue;
 		global $langString;
@@ -38,12 +38,12 @@
 		$where[]	= "c.id = ".$id;		// contenu
 		$where[]	= "c.published = 1";	// contenu published
 
-		// génération de la clause where
-		if(count($where)) {
+		// gï¿½nï¿½ration de la clause where
+		if (is_array($where)) {
 			$_where		= " WHERE ".implode(' AND ', $where);
 		}
 
-		// récup le contenu
+		// rï¿½cup le contenu
 		$query = "SELECT c.id, c.titre, c.texte, c.date_add, c.type_id"
 		." FROM contenu".$langString." AS c"
 		.$_where
@@ -72,13 +72,13 @@
 
 		} else {
 
-			// communiqué de presse
+			// communiquï¿½ de presse
 			if($contenu->id == 27) {
 
 				// variables
 				$facteurMytho = 1.1; // coef multiplicateur du nombre de membres
 
-				// récup le nombre d'inscrits, peu importe leur statut 'active'
+				// rï¿½cup le nombre d'inscrits, peu importe leur statut 'active'
 				$query = "SELECT COUNT(*) FROM user WHERE gid = 0";
 				$membres = $db->loadResult($query);
 

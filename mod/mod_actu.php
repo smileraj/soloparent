@@ -24,15 +24,13 @@
             
              <div class="parentsolo_pt_15 parentsolo_pl_15 parentsolo_pb_15">
                    <ul class="ul_stl parentsolo_pt_15 ">
-					<?
-						foreach($actualites as $actualite) {
+					<?php 						foreach($actualites as $actualite) {
 						JL::makeSafe($actualite);
 						?>
 							<li>
-								<i class="fa fa-check-square-o"></i> <a href="<? echo JL::url('index.php?app=contenu&action=actu&id='.$actualite->id).'&lang='.$_GET['lang']; ?>" title="<? echo $actualite->titre; ?>"><? echo $actualite->titre; ?></a>
+								<i class="fa fa-check-square-o"></i> <a href="<?php echo JL::url('index.php?app=contenu&action=actu&id='.$actualite->id).'&lang='.$_GET['lang']; ?>" title="<?php echo $actualite->titre; ?>"><?php echo $actualite->titre; ?></a>
 							</li>
-						<?
-						}
+						<?php 						}
 					?>
 					</ul>
                    
@@ -45,15 +43,13 @@
 			<tr>
 				<td>
 					<ul>
-					<?
-					/*	foreach($actualites as $actualite) {
+					<?php 					/*	foreach($actualites as $actualite) {
 						JL::makeSafe($actualite);
 						?>
 							<li>
-								<a href="<? echo JL::url('index.php?app=contenu&action=actu&id='.$actualite->id).'&lang='.$_GET['lang']; ?>" title="<? echo $actualite->titre; ?>"><? echo $actualite->titre; ?></a>
+								<a href="<?php echo JL::url('index.php?app=contenu&action=actu&id='.$actualite->id).'&lang='.$_GET['lang']; ?>" title="<?php echo $actualite->titre; ?>"><?php echo $actualite->titre; ?></a>
 							</li>
-						<?
-						}*/
+						<?php 						}*/
 					?>
 					</ul>
 				</td>

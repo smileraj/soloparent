@@ -215,7 +215,7 @@
 		$ids = JL::getVar('id', array());
 		
 		// s'il y a des id passés
-		if(count($ids)) {
+		if (is_array($ids)) {
 			$in_id	= implode(',', $ids);
 			
 			// mise à jour du champ id
@@ -279,7 +279,7 @@
 		// variables
 		$resultatParPage	= RESULTS_NB_LISTE_ADMIN;
 		$search				= array();
-		$where				= array();
+		$where				= null;
 		$_where				= '';
 		
 		// params
@@ -296,7 +296,7 @@
 		}
 		
 		// génère le where
-		if(count($where)) {
+		if (is_array($where)) {
 			$_where		= " WHERE ".implode(' AND ', $where);
 		}
 		
@@ -333,7 +333,7 @@
 		$ids_profil	= array();
 		
 		// s'il y a des id passés
-		if(count($ids)) {
+		if (is_array($ids)) {
 		
 			// mise à jour des stats nouveaux messages
 			userUpdateMessages($ids);

@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 
 	class sondage_HTML {
@@ -14,16 +14,14 @@
 					<div class="contenu">
 					<object data='http://mingle2.respondi.com/uc/co_parentsolo/' type='text/html' width="735" height="730"/>
 					</div>
-				</div> <? // fin app_body ?>
-			<?
-
+				</div> <?php // fin app_body ?>
+			<?php 
 				// colonne de gauche
 				JL::loadMod('profil_panel');
 
 			?>
 			<div class="clear"> </div>
-			<?
-		}
+			<?php 		}
 
 	}
 ?>

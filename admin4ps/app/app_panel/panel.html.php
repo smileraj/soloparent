@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 
 	class HTML_panel {
@@ -28,10 +28,9 @@ background-size:cover;
 		</style>
 		 <div class="login-wrapper login_page">
             <div id="login" class="login loginpage col-lg-offset-4 col-lg-4 col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6 col-xs-offset-2 col-xs-8">
-				<form action="<? echo SITE_URL_ADMIN; ?>/index.php" name="login" method="post">
+				<form action="<?php echo SITE_URL_ADMIN; ?>/index.php" name="login" method="post">
 				<h1>Authentification</h1>
-				<?
-						// demande d'authentification ?
+				<?php 						// demande d'authentification ?
 						$auth	= JL::getVar('auth', '');
 				?>
 				 <p>
@@ -46,7 +45,7 @@ background-size:cover;
                    
                      <a href="javascript:document.login.submit();" class="bouton envoyer"> <p class="submit btnvalider">Valider </p></a>
                    
-					<? // demande de login échouée
+					<?php // demande de login ï¿½chouï¿½e
 						if($auth == 'login') {
 						?>
 						<p class="errorlogin">
@@ -54,8 +53,7 @@ background-size:cover;
 								Login ou mot de passe incorrect(s) !
 							
 						</p>
-						<?
-							}
+						<?php 							}
 						?>
 						
 					<input type="hidden" name="auth" value="login" />	
@@ -66,30 +64,28 @@ background-size:cover;
 			</div>
 		</div>
 		
-		<?
-		}
+		<?php 		}
 		
 		// page d'accueil admin
 		public static function homePage(&$maintenance) {
 		?>
 		<section class="panel">
                   <header class="panel-heading">
-                    <h2>Panneau d'administration ParentSolo.ch</h2>
+                    <h2>Panneau d'administration solocircl.com</h2>
                   </header>
 			
 			<div class="tableAdmin">
 				<h3>Op&eacute;rations de maintenance</h3>
 				<br />
 				<table class="table table-bordered table-striped table-condensed cf">
-					<tr><td class="key_long">Suppression des messages du chat de plus de 15j</td><td width="80px;" align="center"><span style="<? echo $maintenance->chat_message > 0 ? 'color:#00CC00;font-weight:bold;' : ''; ?>"><? echo $maintenance->chat_message; ?></span></td></tr>
-					<tr><td class="key_long">Suppression des conversations du chat de plus de 15j</td><td align="center"><span style="<? echo $maintenance->chat_conversation > 0 ? 'color:#00CC00;font-weight:bold;' : ''; ?>"><? echo $maintenance->chat_conversation; ?></span></td></tr>
-					<tr><td class="key_long">Suppression des messages des corbeilles vid&eacute;es de plus de 7j</td><td align="center"><span style="<? echo $maintenance->message > 0 ? 'color:#00CC00;font-weight:bold;' : ''; ?>"><? echo $maintenance->message; ?></span></td></tr>
-					<tr><td class="key_long">Suppression des r&eacute;servations de pseudo de plus de 3j</td><td align="center"><span style="<? echo $maintenance->message > 0 ? 'color:#00CC00;font-weight:bold;' : ''; ?>"><? echo $maintenance->user_inscription; ?></span></td></tr>
+					<tr><td class="key_long">Suppression des messages du chat de plus de 15j</td><td width="80px;" align="center"><span style="<?php echo $maintenance->chat_message > 0 ? 'color:#00CC00;font-weight:bold;' : ''; ?>"><?php echo $maintenance->chat_message; ?></span></td></tr>
+					<tr><td class="key_long">Suppression des conversations du chat de plus de 15j</td><td align="center"><span style="<?php echo $maintenance->chat_conversation > 0 ? 'color:#00CC00;font-weight:bold;' : ''; ?>"><?php echo $maintenance->chat_conversation; ?></span></td></tr>
+					<tr><td class="key_long">Suppression des messages des corbeilles vid&eacute;es de plus de 7j</td><td align="center"><span style="<?php echo $maintenance->message > 0 ? 'color:#00CC00;font-weight:bold;' : ''; ?>"><?php echo $maintenance->message; ?></span></td></tr>
+					<tr><td class="key_long">Suppression des r&eacute;servations de pseudo de plus de 3j</td><td align="center"><span style="<?php echo $maintenance->message > 0 ? 'color:#00CC00;font-weight:bold;' : ''; ?>"><?php echo $maintenance->user_inscription; ?></span></td></tr>
 				</table>
 			</div>
 		</section>
-		<?
-		
+		<?php 		
 		}
 		
 	}

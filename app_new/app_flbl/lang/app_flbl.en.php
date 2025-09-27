@@ -9,7 +9,7 @@ $lang_flbl = array(
 
 	//------------------Page flbl.html.php ---------
 
-	"MessagesParentsolo" => "Parentsolo.ch posts",
+	"MessagesParentsolo" => "solocircl.com posts",
 	
 	"ModifierLeCommentaire" => "Edit Comment",
 	

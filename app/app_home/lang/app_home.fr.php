@@ -18,7 +18,7 @@ $lang_apphome = array(
 	"matching_header" => "<b class='title_top'> Matching </b><br> Notre équipe selectionne des profils qui vous correspondent !  Les profils les + compatibles avec vos attentes, prenant en compte votre situation familiale et affective.    ",
 	"events_header" => "<b class='title_top'> Ev&eacute;nements </b><br> Partagez et d&eacute;couvrez les principaux &eacute;v&eacute;nements dans votre r&eacute;gion, id&eacute;ale &agrave; partager entre parents solo ou en famille! ",
 	"acces" =>  "<b class='title_top'> Accessible sur tous les supports Mobiles & Tablettes  </b><br> De nouvelles rencontres &agrave; port&eacute;e de main !  Parentsolo vous accompagne partout . Communiquez avec qui vous voulez, o&ugrave; vous voulez et quand vous voulez.",
-	"concept" =>  "<b class='title_top'> CONCEPT UNIQUE EN EUROPE </b><br> Exclusivement destin&eacute; aux parents r&eacute;sidant en  Suisse, Parentsolo.ch se distingue des sites d&eacute;j&agrave; existants par sa sp&eacute;cialisation, les parents c&eacute;libataires, et par sa volont&eacute; d'offrir un service de qualit&eacute; etc.. ",
+	"concept" =>  "<b class='title_top'> CONCEPT UNIQUE EN EUROPE </b><br> Exclusivement destin&eacute; aux parents r&eacute;sidant en  Suisse, solocircl.com se distingue des sites d&eacute;j&agrave; existants par sa sp&eacute;cialisation, les parents c&eacute;libataires, et par sa volont&eacute; d'offrir un service de qualit&eacute; etc.. ",
 	
 	
 	//**Inscription
@@ -48,8 +48,8 @@ $lang_apphome = array(
 	
 	
 	"EcoutezLaRadioEnLive" => "Ecoutez la radio en live!",
-	"EcoutezLFMAvecParentSolo" => "Ecoutez LFM avec Parentsolo.ch",
-	"EcoutezOneFMAvecParentSolo" => "Ecoutez One FM avec Parentsolo.ch",
+	"EcoutezLFMAvecParentSolo" => "Ecoutez LFM avec solocircl.com",
+	"EcoutezOneFMAvecParentSolo" => "Ecoutez One FM avec solocircl.com",
 	
 	"SuivezNous" => "Suivez-nous!",
 	

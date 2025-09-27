@@ -12,7 +12,7 @@
 <div class="chatProfileToImg"><img src="<?php echo $userTo->photoURL;?>" alt="profil" /></div>
 <div class="chatProfileToTxt">
 <p class="nickname"><?php echo $userTo->username;?></p>
-<p class="age"><? echo JL::calcul_age($userTo->naissance_date); ?></p>
+<p class="age"><?php echo JL::calcul_age($userTo->naissance_date); ?></p>
 <p class="children"><?php echo $userTo->enfants." ".(($userTo->enfants>1)?$langChat["enfants"]:$langChat["enfant"]);?></p>
 <p class="canton"><?php echo $userTo->canton;?></p>
 <p class="ville"><?php echo $userTo->ville;?></p>

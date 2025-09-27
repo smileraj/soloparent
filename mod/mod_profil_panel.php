@@ -73,7 +73,7 @@
 	$userTime	 = strtotime($user->gold_limit_date);
 
 
-	// r&eacute;cup les dernières actu
+	// r&eacute;cup les derniï¿½res actu
 	$query = "SELECT id, titre, date_add"
 	." FROM contenu"
 	." WHERE type_id = 1 AND published = 1"
@@ -86,56 +86,53 @@
 	<div class="profil_left">
 
 		<div class="user_menu">
-			<a href="<? echo JL::url('index.php?app=profil&action=view&id='.$user->id.'&'.$langue); ?>" title="<?php echo $lang_mod["VoirMonProfil"];?>"><img src="<? echo $photo; ?>" alt="<? echo $user->username; ?>" class="photo" /></a>
-			<a href="<? echo JL::url('index.php?app=profil&action=view&id='.$user->id.'&'.$langue); ?>" class="username" title="<?php echo $lang_mod["VoirMonProfil"];?> <? echo $userProfilMini->username; ?>"><? echo $userProfilMini->username; ?></a>
+			<a href="<?php echo JL::url('index.php?app=profil&action=view&id='.$user->id.'&'.$langue); ?>" title="<?php echo $lang_mod["VoirMonProfil"];?>"><img src="<?php echo $photo; ?>" alt="<?php echo $user->username; ?>" class="photo" /></a>
+			<a href="<?php echo JL::url('index.php?app=profil&action=view&id='.$user->id.'&'.$langue); ?>" class="username" title="<?php echo $lang_mod["VoirMonProfil"];?> <?php echo $userProfilMini->username; ?>"><?php echo $userProfilMini->username; ?></a>
 
 			<ul>
-				<li><a href="<? echo JL::url('index.php?app=message&action=inbox'.'&'.$langue); ?>" title="<?php echo $lang_mod["BoiteReception"];?>"><?php echo $lang_mod["VousAvez"];?> <span class="<? echo $userStats->message_new > 0 ? 'grey' : 'white'; ?>"><? echo $userStats->message_new; ?></span> <? echo $userStats->message_new > 1 ? ''.$lang_mod["Nouveaux_messages"].'' : ''.$lang_mod["Nouveau_message"].''; ?>.</a></li>
-				<li><a href="<? echo JL::url('index.php?app=message&action=flowers'.'&'.$langue); ?>" title="<?php echo $lang_mod["EnvFleurQui"];?>"><?php echo $lang_mod["VousAvez"];?> <span class="<? echo $userStats->fleur_new > 0 ? 'grey' : 'white'; ?>"><? echo $userStats->fleur_new; ?></span> <? echo $userStats->fleur_new > 1 ? ''.$lang_mod["Nouvelles_roses"].'' : ''.$lang_mod["Nouvelle_rose"].''; ?>.</a></li>
-				<li><a href="<? echo JL::url('index.php?app=search&action=visits'.'&'.$langue); ?>" title="<? echo $userStats->visite_total; ?> <? echo $userStats->message_new > 1 ? $lang_mod["Visites_total"] : $lang_mod["Visite_total"]; ?>"><?php echo $lang_mod["VousAvezRecu"];?> <span class="<? echo $userStats->visite_total > 0 ? 'grey' : 'white'; ?>"><? echo $userStats->visite_total; ?></span> <? echo $userStats->visite_total > 1 ? ''.$lang_mod["Visites"].'' : ''.$lang_mod["Visite"].''; ?>.</a></li>
-				<li><a href="<? echo JL::url('index.php?app=points&action=mespoints'.'&'.$langue); ?>" title="<?php echo $lang_mod["Detail_points"];?>"><?php echo $lang_mod["VousAvez"];?> <span class="<? echo $userStats->points_total > 0 ? 'grey' : 'white'; ?>"><? echo $userStats->points_total; ?></span> SoloFleur<? echo $userStats->points_total > 0 ? 's' : ''; ?>.</a></li>
+				<li><a href="<?php echo JL::url('index.php?app=message&action=inbox'.'&'.$langue); ?>" title="<?php echo $lang_mod["BoiteReception"];?>"><?php echo $lang_mod["VousAvez"];?> <span class="<?php echo $userStats->message_new > 0 ? 'grey' : 'white'; ?>"><?php echo $userStats->message_new; ?></span> <?php echo $userStats->message_new > 1 ? ''.$lang_mod["Nouveaux_messages"].'' : ''.$lang_mod["Nouveau_message"].''; ?>.</a></li>
+				<li><a href="<?php echo JL::url('index.php?app=message&action=flowers'.'&'.$langue); ?>" title="<?php echo $lang_mod["EnvFleurQui"];?>"><?php echo $lang_mod["VousAvez"];?> <span class="<?php echo $userStats->fleur_new > 0 ? 'grey' : 'white'; ?>"><?php echo $userStats->fleur_new; ?></span> <?php echo $userStats->fleur_new > 1 ? ''.$lang_mod["Nouvelles_roses"].'' : ''.$lang_mod["Nouvelle_rose"].''; ?>.</a></li>
+				<li><a href="<?php echo JL::url('index.php?app=search&action=visits'.'&'.$langue); ?>" title="<?php echo $userStats->visite_total; ?> <?php echo $userStats->message_new > 1 ? $lang_mod["Visites_total"] : $lang_mod["Visite_total"]; ?>"><?php echo $lang_mod["VousAvezRecu"];?> <span class="<?php echo $userStats->visite_total > 0 ? 'grey' : 'white'; ?>"><?php echo $userStats->visite_total; ?></span> <?php echo $userStats->visite_total > 1 ? ''.$lang_mod["Visites"].'' : ''.$lang_mod["Visite"].''; ?>.</a></li>
+				<li><a href="<?php echo JL::url('index.php?app=points&action=mespoints'.'&'.$langue); ?>" title="<?php echo $lang_mod["Detail_points"];?>"><?php echo $lang_mod["VousAvez"];?> <span class="<?php echo $userStats->points_total > 0 ? 'grey' : 'white'; ?>"><?php echo $userStats->points_total; ?></span> SoloFleur<?php echo $userStats->points_total > 0 ? 's' : ''; ?>.</a></li>
 
-				<li><b><?php echo $lang_mod["Statut"];?>:</b> <span class="statut<? echo $user->confirmed; ?>" title="<? echo $title; ?>"><? echo $user->confirmed == 2 ? $lang_mod["Attente_validation"] :  $lang_mod["Confirme"]; ?></span></li>
+				<li><b><?php echo $lang_mod["Statut"];?>:</b> <span class="statut<?php echo $user->confirmed; ?>" title="<?php echo $title; ?>"><?php echo $user->confirmed == 2 ? $lang_mod["Attente_validation"] :  $lang_mod["Confirme"]; ?></span></li>
 				<li>
-				<?
-					// abonn&eacute;
+				<?php 					// abonn&eacute;
 					if($user->gold_limit_date != '0000-00-00' && $userTime >= time()) {
 					?>
-						<b><?php echo $lang_mod["FinDAbonnement"];?>:</b> <span class="black"><? echo date('d/m/y', $userTime); ?></span>
-					<?
-					} else {
+						<b><?php echo $lang_mod["FinDAbonnement"];?>:</b> <span class="black"><?php echo date('d/m/y', $userTime); ?></span>
+					<?php 					} else {
 					?>
-						<a href="<? echo JL::url('index.php?app=abonnement&action=tarifs'.'&'.$langue); ?>" title="<?php echo $lang_mod["AboPourToute"];?>" class="abo"><?php echo $lang_mod["AbonnezVous"];?> !</a>
-					<?
-					}
+						<a href="<?php echo JL::url('index.php?app=abonnement&action=tarifs'.'&'.$langue); ?>" title="<?php echo $lang_mod["AboPourToute"];?>" class="abo"><?php echo $lang_mod["AbonnezVous"];?> !</a>
+					<?php 					}
 				?>
 				</li>
 			</ul>
 
-			<a href="<? echo JL::url('index.php?app=inviter&action=info'.'&'.$langue); ?>" title="<?php echo $lang_mod["VosAmisTitle"];?>" class="btnProfilPanel btnParrainage"><?php echo $lang_mod["ParrainezVosAmis"];?></a>
-			<a href="<? echo JL::url('index.php?app=points&action=mespoints'.'&'.$langue); ?>" title="<?php echo $lang_mod["VousAvez"];?> <? echo $userStats->points_total; ?> <?php echo $lang_mod["Points"];?>." class="btnProfilPanel btnSolofleur"><? echo $userStats->points_total; ?><br />SoloFleur<? echo $userStats->points_total > 0 ? 's' : ''; ?></a>
-			<a href="<? echo JL::url('index.php?auth=logout'.'&'.$langue); ?>" title="<?php echo $lang_mod["LogoutTitle"];?>" class="logout"><?php echo $lang_mod["Deconnexion"];?></a>
+			<a href="<?php echo JL::url('index.php?app=inviter&action=info'.'&'.$langue); ?>" title="<?php echo $lang_mod["VosAmisTitle"];?>" class="btnProfilPanel btnParrainage"><?php echo $lang_mod["ParrainezVosAmis"];?></a>
+			<a href="<?php echo JL::url('index.php?app=points&action=mespoints'.'&'.$langue); ?>" title="<?php echo $lang_mod["VousAvez"];?> <?php echo $userStats->points_total; ?> <?php echo $lang_mod["Points"];?>." class="btnProfilPanel btnSolofleur"><?php echo $userStats->points_total; ?><br />SoloFleur<?php echo $userStats->points_total > 0 ? 's' : ''; ?></a>
+			<a href="<?php echo JL::url('index.php?auth=logout'.'&'.$langue); ?>" title="<?php echo $lang_mod["LogoutTitle"];?>" class="logout"><?php echo $lang_mod["Deconnexion"];?></a>
 
 		</div>
 
 		<div class="user_menu user_groupes">
-			<a href="<? echo JL::url('index.php?app=groupe&action=list&groupe_type=all'.'&'.$langue); ?>" title="<?php echo $lang_mod["GroupesPersos"];?>"><img src="<? echo SITE_URL.'/images/groupes-parentsolo.jpg'; ?>" alt="<?php echo $lang_mod["GroupesPersos"];?>" class="photo" /></a>
-			<a href="<? echo JL::url('index.php?app=groupe&action=list&groupe_type=created'.'&'.$langue); ?>" class="username" title="<?php echo $lang_mod["ListeGroupesRej"];?>"><?php echo $lang_mod["MesGroupes"];?></a>
-			<a href="<? echo JL::url('index.php?app=groupe&action=info'.'&'.$langue); ?>" title="<?php echo $lang_mod["IfosCompTitle"];?>" class="<? echo $userProfilMini->genre == 'f' ? 'informations' : 'logout'; // gg la logique d'ergo np ?>" target="_blank"><?php echo $lang_mod["Informations"];?></a>
+			<a href="<?php echo JL::url('index.php?app=groupe&action=list&groupe_type=all'.'&'.$langue); ?>" title="<?php echo $lang_mod["GroupesPersos"];?>"><img src="<?php echo SITE_URL.'/images/groupes-parentsolo.jpg'; ?>" alt="<?php echo $lang_mod["GroupesPersos"];?>" class="photo" /></a>
+			<a href="<?php echo JL::url('index.php?app=groupe&action=list&groupe_type=created'.'&'.$langue); ?>" class="username" title="<?php echo $lang_mod["ListeGroupesRej"];?>"><?php echo $lang_mod["MesGroupes"];?></a>
+			<a href="<?php echo JL::url('index.php?app=groupe&action=info'.'&'.$langue); ?>" title="<?php echo $lang_mod["IfosCompTitle"];?>" class="<?php echo $userProfilMini->genre == 'f' ? 'informations' : 'logout'; // gg la logique d'ergo np ?>" target="_blank"><?php echo $lang_mod["Informations"];?></a>
 
-			<? // si user log est une femme
+			<?php // si user log est une femme
 			if($userProfilMini->genre == 'f') { ?>
 				<a href="http://www.babybook.ch/blog/forum" title="<?php echo $lang_mod["ForumMamansTitle"];?>" class="btnForumEM"><?php echo $lang_mod["ForumMamans"];?></a>
-			<? } ?>
+			<?php } ?>
 
 			<ul>
-				<li><a href="<? echo JL::url('index.php?app=groupe&action=list&groupe_type=joined'.'&'.$langue); ?>" title="<?php echo $lang_mod["VousEtesMembre"];?>"><?php echo $lang_mod["VousEtesMembre"];?> <span class="<? echo $userStats->groupe_joined > 0 ? 'grey' : 'white'; ?>"><? echo $userStats->groupe_joined; ?></span> <? echo $userStats->groupe_joined > 1 ? $lang_mod["groupes"] : $lang_mod["groupe"]; ?>.</a></li>
+				<li><a href="<?php echo JL::url('index.php?app=groupe&action=list&groupe_type=joined'.'&'.$langue); ?>" title="<?php echo $lang_mod["VousEtesMembre"];?>"><?php echo $lang_mod["VousEtesMembre"];?> <span class="<?php echo $userStats->groupe_joined > 0 ? 'grey' : 'white'; ?>"><?php echo $userStats->groupe_joined; ?></span> <?php echo $userStats->groupe_joined > 1 ? $lang_mod["groupes"] : $lang_mod["groupe"]; ?>.</a></li>
 			</ul>
 
-			<? if(is_array($groupes) && count($groupes) > 0) { ?>
+			<?php if(is_array($groupes) && count($groupes) > 0) { ?>
 			<table class="groupes" cellpadding="0" cellspacing="0">
 				<tr><th colspan="2"><?php echo $lang_mod["DerniersGroupes"];?></th></tr>
-				<? foreach($groupes as $groupe) {
+				<?php foreach($groupes as $groupe) {
 
 					// htmlentities
 					JL::makeSafe($groupe);
@@ -149,15 +146,15 @@
 					}
 				?>
 				<tr>
-					<td class="photo"><a href="<? echo JL::url('index.php?app=groupe&action=details&id='.$groupe->id.'&'.$langue); ?>" title="<? echo $groupe->titre; ?>" target="_blank"><img src="<? echo SITE_URL.'/'.$image; ?>" alt="<? echo $groupe->titre; ?>" /></a></td>
-					<td><a href="<? echo JL::url('index.php?app=groupe&action=details&id='.$groupe->id.'&'.$langue); ?>" title="<? echo $groupe->titre; ?>" target="_blank"><? echo $groupe->titre; ?></a></td>
+					<td class="photo"><a href="<?php echo JL::url('index.php?app=groupe&action=details&id='.$groupe->id.'&'.$langue); ?>" title="<?php echo $groupe->titre; ?>" target="_blank"><img src="<?php echo SITE_URL.'/'.$image; ?>" alt="<?php echo $groupe->titre; ?>" /></a></td>
+					<td><a href="<?php echo JL::url('index.php?app=groupe&action=details&id='.$groupe->id.'&'.$langue); ?>" title="<?php echo $groupe->titre; ?>" target="_blank"><?php echo $groupe->titre; ?></a></td>
 				</tr>
-				<? } ?>
+				<?php } ?>
 			</table>
-			<? } ?>
+			<?php } ?>
 		</div>
 
-		<? // s'il y a des actus
+		<?php // s'il y a des actus
 		if(is_array($actus) && count($actus) > 0) {
 		?>
 		<div class="panel-actu">
@@ -168,31 +165,28 @@
 					JL::makeSafe($actu);
 					?>
 					<li>
-						<a href="<? echo JL::url('index.php?app=redac&action=item&id='.$actu->id.'&'.$langue); ?>" title="<? echo $row->titre; ?>">&raquo; <? echo $actu->titre; ?></a><br />
-						<span><?php echo $lang_mod["ActualiteDu"];?> <? echo date('d/m/Y', strtotime($actu->date_add)); ?></span>
+						<a href="<?php echo JL::url('index.php?app=redac&action=item&id='.$actu->id.'&'.$langue); ?>" title="<?php echo $row->titre; ?>">&raquo; <?php echo $actu->titre; ?></a><br />
+						<span><?php echo $lang_mod["ActualiteDu"];?> <?php echo date('d/m/Y', strtotime($actu->date_add)); ?></span>
 					</li>
-				<?
-			} ?>
+				<?php 			} ?>
 			</ul>
 		</div>
-		<?
-		}
+		<?php 		}
 		?>
 
-		<? // pas de photo, on affiche le popin
+		<?php // pas de photo, on affiche le popin
 		if($noPhotoPopIn && $action == 'panel') { ?>
-		<div class="noPhotoPopIn" id="noPhotoPopIn" onClick="document.location='<? echo JL::url('index.php?app=profil&action=step2'.'&'.$langue); ?>';"><?php echo $lang_mod["EnvoyezUnePhoto"];?> !</div>
+		<div class="noPhotoPopIn" id="noPhotoPopIn" onClick="document.location='<?php echo JL::url('index.php?app=profil&action=step2'.'&'.$langue); ?>';"><?php echo $lang_mod["EnvoyezUnePhoto"];?> !</div>
 		<script language="javascript" type="text/javascript">
 			var timerAlert2;
-			$('noPhotoPopIn').fade('hide');
+			$('noPhotoPopIn').fadeOut('hide');
 			noPhotoPopIn(0);
 		</script>
-		<? }?>
+		<?php }?>
 
 	</div>
 
-	<?
-	} else {
+	<?php 	} else {
 		// base de donn&eacute;es en fonction de la langue
 		$base = "panel_g_".$_GET['lang'];
 		
@@ -206,12 +200,11 @@
 		$num = JL::getSessionInt('redaction_bloc_gauche',0) % count($redac);
 		
 		?>
-		<div class="redac redac<? echo $redac[$num]->id; ?>" style="background: url(parentsolo/images/redac/redac<? echo $redac[$num]->id.'_'.$_GET['lang']; ?>.jpg)  no-repeat;background-position: 10px 10px;">
+		<div class="redac redac<?php echo $redac[$num]->id; ?>" style="background: url(parentsolo/images/redac/redac<?php echo $redac[$num]->id.'_'.$_GET['lang']; ?>.jpg)  no-repeat;background-position: 10px 10px;">
 			<span class="titre"><?php echo $redac[$num]->titre; ?></span>
 			<?php echo $redac[$num]->texte; ?>
 		</div>
-		<?
-		
+		<?php 		
 		JL::setSession('redaction_bloc_gauche',($num+1));
 
 	}

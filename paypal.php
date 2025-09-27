@@ -1,5 +1,4 @@
-<?
-	// PHP 4.1
+<?php 	// PHP 4.1
 
 	// config
 	require_once('config.php');
@@ -12,7 +11,7 @@
 	$db	= new DB();
 
 	// config
-	$notify_email	= 'paypal@parentsolo.ch';
+	$notify_email	= 'paypal@solocircl.com';
 	$dev_email		= 'm.jombart@babybook.ch';
 	$server			= 'ssl://www.paypal.com';
 

@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 	
 	require_once('actu.html.php');
@@ -37,7 +37,7 @@
 		
 		$resultatParPage	= RESULTS_NB_LISTE_ADMIN;
 		$search				= array();
-		$where				= array();
+		$where				= null;
 		$_where				= '';
 		
 		
@@ -53,12 +53,12 @@
 			$where[]		= "titre LIKE '%".$search['word']."%'";
 		}
 		
-		// génère le where
-		if(count($where)) {
+		// gï¿½nï¿½re le where
+		if (is_array($where)) {
 			$_where			= " WHERE ".implode(' AND ', $where);
 		}
 		
-		// compte le nombre de résultats
+		// compte le nombre de rï¿½sultats
 		$query = "SELECT COUNT(*)"
 		." FROM actualite"
 		.$_where
@@ -81,7 +81,7 @@
 	}
 	
 
-	// affiche un contenu passé en param $id
+	// affiche un contenu passï¿½ en param $id
 	function editer() {
 		global $db, $messages, $action;
 		
@@ -100,7 +100,7 @@
 			
 		} else {
 			
-			// récup le contenu
+			// rï¿½cup le contenu
 			$query = "SELECT *"
 			." FROM actualite"
 			." WHERE id = '".$id."'"
@@ -111,7 +111,7 @@
 			
 		}
 		
-		// récup le créateur
+		// rï¿½cup le crï¿½ateur
 		$query = 'SELECT username'
 		.' FROM  user'
 		.' WHERE id = '.$contenu->user_id_add
@@ -119,7 +119,7 @@
 		;
 		$contenu->user_name_add = $db->loadResult($query);
 		
-		// récup l'utilisateur qui a effectué la dernière modif
+		// rï¿½cup l'utilisateur qui a effectuï¿½ la derniï¿½re modif
 		$query = 'SELECT username'
 		.' FROM user'
 		.' WHERE id = '.$contenu->user_id_update
@@ -137,11 +137,11 @@
 		// messages d'erreur
 		$error		= false;
 		
-		// récup les données
+		// rï¿½cup les donnï¿½es
 		$data 		= getData(true);
 		
 	
-		// vérifs
+		// vï¿½rifs
 		if(!$data->titre) {
 			$messages[]	= '<span class="error">Veuillez indiquer un titre svp.</span>';
 			$error		= true;

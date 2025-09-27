@@ -11,6 +11,6 @@ $lang_appfooter = array(
 	"Presse" => "Presse",
 	"Publicite" => "Publicit&eacute;",
 	"Tarifs" => "Tarifs",
-	"Copyright" => "Copyright © ".date('Y')." - Parentsolo.ch");
+	"Copyright" => "Copyright © ".date('Y')." - solocircl.com");
 
 ?>

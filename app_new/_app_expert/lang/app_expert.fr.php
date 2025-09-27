@@ -4,11 +4,11 @@ $lang_appexpert = array(
 	
 	//*View
 	
-	"MessagesParentsolo" => "Messages Parentsolo.ch",
+	"MessagesParentsolo" => "Messages solocircl.com",
 	
 	"NosExperts" => "Nos experts",
 	"PoserUneQuestion" => "Poser une question",
-	"ToutesLesQuestionsTraitees" => "Toutes les questions traitées",
+	"ToutesLesQuestionsTraitees" => "Toutes les questions traitï¿½es",
 	
 	//**Liste des experts
 	
@@ -18,15 +18,15 @@ $lang_appexpert = array(
 	
 	//**Affichage expert + formulaire
 	
-	"Specialite" => "Spécialité: ",
-	"DerniereQuestionTraitee" => "Dernière question traitée",
-	"ToutesLesQuestionsTraiteesPar" => "Toutes les questions traitées par ".$expert->titre,
-	"AucuneQuestionTraitee" => "Aucune question n'a été traitée pour le moment",
+	"Specialite" => "Spï¿½cialitï¿½: ",
+	"DerniereQuestionTraitee" => "Derniï¿½re question traitï¿½e",
+	"ToutesLesQuestionsTraiteesPar" => "Toutes les questions traitï¿½es par ".$expert->titre,
+	"AucuneQuestionTraitee" => "Aucune question n'a ï¿½tï¿½ traitï¿½e pour le moment",
 	
-	"PagePrecedente" => "Page précédente",
+	"PagePrecedente" => "Page prï¿½cï¿½dente",
 	"Pages" => "Pages",
 	"Page" => "Page",
-	"Debut" => "Début",
+	"Debut" => "Dï¿½but",
 	"Fin" => "Fin",
 	"question" => "question",
 	"questions" => "questions",
@@ -36,7 +36,7 @@ $lang_appexpert = array(
 	"Email" => "Email:",
 	"Sujet" => "Sujet:",
 	"VotreQuestion" => "Votre question:",
-	"JAcceptePublication" => "J'accepte que ma question et sa réponse puissent-être publié sur le site Parentsolo.ch de manière anonyme.",
+	"JAcceptePublication" => "J'accepte que ma question et sa rï¿½ponse puissent-ï¿½tre publiï¿½ sur lesolocircl.comolo.ch de maniï¿½re anonyme.",
 	
 	"Envoyer" => "Envoyer",
 	
@@ -46,13 +46,13 @@ $lang_appexpert = array(
 	//*Model
 	
 	//**Messages erreur
-	"WarningEmailInvalide" => "Veuillez indiquer une adresse email valide, s'il vous plaît",
-	"WarningQuestion" => "Veuillez indiquer votre question, s'il vous plaît",
-	"WarningPublication" => "Veuillez acceptez la publication de votre question et sa réponse de manière anonyme, s'il vous plaît",
+	"WarningEmailInvalide" => "Veuillez indiquer une adresse email valide, s'il vous plaï¿½t",
+	"WarningQuestion" => "Veuillez indiquer votre question, s'il vous plaï¿½t",
+	"WarningPublication" => "Veuillez acceptez la publication de votre question et sa rï¿½ponse de maniï¿½re anonyme, s'il vous plaï¿½t",
 	
 	//**Confirmation d'envoi
 	
-	"QuestionEnvoyee" => "Votre question a bien été envoyée",
+	"QuestionEnvoyee" => "Votre question a bien ï¿½tï¿½ envoyï¿½e",
 );
 
 ?>

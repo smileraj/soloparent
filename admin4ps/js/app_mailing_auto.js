@@ -18,15 +18,15 @@ function rechercheDestinataires() {
 				},
 				onSuccess: function(ajax_return) {
 					if(ajax_return != '') {
-						$('destinataires').innerHTML = ajax_return;
-						$('destinatairesNb').value = ajax_return;
+						$('#destinataires').innerHTML = ajax_return;
+						$('#destinatairesNb').value = ajax_return;
 						mailingProgressBar(0);
 						$('loading').style.visibility = "hidden";
 					}
 				},
 				onFailure: function(){
 					$('loading').style.visibility = "hidden";
-					if(confirm('Une erreur s\'est produite lors de la recherche de destinataires... Voulez-vous essayer à nouveau ?')) {
+					if(confirm('Une erreur s\'est produite lors de la recherche de destinataires... Voulez-vous essayer ï¿½ nouveau ?')) {
 						rechercheDestinataires();
 					}
 				}
@@ -39,12 +39,12 @@ function rechercheDestinataires() {
 function mailingEnvoi(serie) {
 	if(serie == null) {
 		serie = 0;
-		if($('destinatairesNb').value == 0) {
-			alert('Votre recherche n\'a retourné aucun destinataire ! Envoi impossible.');
+		if($('#destinatairesNb').value == 0) {
+			alert('Votre recherche n\'a retournï¿½ aucun destinataire ! Envoi impossible.');
 			return 0;
 		}
-		if(confirm('Attention, vous êtes sur le point d\'envoyer '+$('destinatairesNb').value+' email(s) ! Confirmez-vous ?')) {
-			$('destinataires').innerHTML = '<ul><li>Envoi du mailing aux <b>'+$('destinatairesNb').value+'</b> destinataires.</li><li style="color:red;">Ne changez pas de page.</li><li style="color:red;">Ne fermez pas votre navigateur.</li></ul>';
+		if(confirm('Attention, vous ï¿½tes sur le point d\'envoyer $('#d'destinatairesNb').value+' email(s) ! Confirmez-vous ?')) {
+			$('#destinataires').innerHTML = '<ul><li>Envoi du mailing aux <b>'+$('#destinatairesNb').value+'</b> destinataires.</li><li style="color:red;">Ne changez pas de page.</li><li style="color:red;">Ne fermez pas votre navigateur.</li></ul>';
 		} else {
 			return 0;
 		}
@@ -79,7 +79,7 @@ function mailingEnvoi(serie) {
 				}
 			},
 			onFailure: function() {
-				$('destinataires').innerHTML = 'Un erreur est survenue lors de l\'envoi de la série de mails numéro '+serie+' !, le mailing a été interrompu.';
+				$('#destinataires').innerHTML = 'Un erreur est survenue lors de l\'envoi de la sï¿½rie de mails numï¿½ro '+serie+' !, le mailing a ï¿½tï¿½ interrompu.';
 				$('loading2').style.visibility = "hidden";
 			}
 		}

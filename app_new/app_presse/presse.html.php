@@ -12,7 +12,7 @@
 		
 			if($contenu){
 		?>
-			<div class="parentsolo_txt_center"><h2 class="barre parentsolo_title parentsolo_mt_40"><? echo $contenu->titre;?></h2>
+			<div class="parentsolo_txt_center"><h2 class="barre parentsolo_title parentsolo_mt_40"><?php echo $contenu->titre;?></h2>
 			<div class="wedd-seperator parentsolo_pb_10"><img src="images/bg_img/saprator.png" alt=""></div>
 			</div>
 				<div class="texte_explicatif">
@@ -27,10 +27,9 @@
 					<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=parentsolo"></script>
 					<!-- AddThis Button END -->
 					
-					<? echo  $contenu->texte; ?>
+					<?php echo  $contenu->texte; ?>
 				</div>
-		<?
-			}else{
+		<?php 			}else{
 				JL::loadMod('error404');
 			}	
 		}

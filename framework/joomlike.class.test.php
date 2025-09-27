@@ -1,1 +1,713 @@
-<?php		class JL {				// TODO: url rewriting		function url($url) {			return $url;		}				// retourne true si le membre est abonné, sinon false		function checkAbonnement() {			global $user;			return ($user->gold_limit_date == '0000-00-00' || ($user->gold_limit_date != '0000-00-00' && strtotime($user->gold_limit_date) < time())) ? false : true;		}				// crypte les adresses mail et url		function messageEncode($texte, $replacement) {				    // convert support@pogoda.in		    $texte = ereg_replace('[-a-z0-9!#$%&\'*+/=?^_`{|}~.]+ *(@|\(at\)|\( at \)| \( at \) ) *([.]?[a-zA-Z0-9_/-])*', $replacement, $texte);		    // convert http://www.pogoda.in/new_york/eng/		    $texte = ereg_replace('[a-zA-Z]+://(([.]?[a-zA-Z0-9_/-])*)', $replacement, $texte);		    // convert www.pogoda.in/new_york/eng/		    $texte = ereg_replace('(www([-]*[.]?[a-zA-Z0-9_/-?&%])*)', $replacement, $texte);		   		    return $texte;					}				// ajoute des htmlentities à chaque champ d'un objet, en excluant les champs présents dans la chaine $exclure		function makeSafe(&$obj, $exclure = '') {			$exclusion	= array();			if($exclure) {				$exclusion	= explode(',', $exclure);			}			if(is_object($obj)) {				foreach($obj as $k => $v) {										if(!in_array($k, $exclusion)) {						$obj->{$k} = htmlentities($v);					}				}			} elseif(is_array($obj)) {				foreach($obj as $k => $v) {					if(!in_array($k, $exclusion)) {						$obj[$k] = htmlentities($v);					}				}			}		}						// vérifie si l'application à charger existe, et que le visiteur n'essaye pas divers hacks dans l'url avec la variable $app		function checkApp($app_load, $admin = '') {						// variables			$app_ok	= true;						// on conserve uniquement les caractères alphanumériques et _			$app_load_check	= preg_replace('#[^a-z0-9_]#', '', $app_load);						// détermine si c'est une appli admin ou visiteur			if(!$admin) { // app coté front				$path	= SITE_PATH;			} else { // app coté back				$path	= SITE_PATH_ADMIN;			}						// si le nom de l'application n'est pas correct			if($app_load_check != $app_load) {				$app_ok	= false;			} elseif(!is_file($path.'/app/app_'.$app_load.'/'.$app_load.'.php')) { // si le chemin de l'application qui semble correcte n'existe pas				$app_ok	= false;			}						// retourne vrai si on peut charger l'application			return $app_ok;					}						// charge le corps de la page, en précisant en param si c'est une appli $admin (charge par défaut le $app)		function loadBody($admin = '') {			global $app;			JL::loadApp($app, $admin);		}						// charge l'application passée en param		function loadApp($app_load, $admin = '') {						// détermine si c'est une appli admin ou visiteur			if(!$admin) { // app coté front				$path	= SITE_PATH;			} else { // app coté back				$path	= SITE_PATH_ADMIN;			}						// si l'application est valide			if(JL::checkApp($app_load, $admin)) {				include($path.'/app/app_'.$app_load.'/'.$app_load.'.php'); // charge l'application			} else {				echo 'Application introuvable.'; // application chargée à la main, depuis une autre application, sinon une erreur 404 aurait été levée			}					}						// charge le module passé en param		function loadMod($mod, $admin = '') {						// détermine si c'est une appli admin ou visiteur			if(!$admin) { // app coté front				$path	= SITE_PATH;			} else { // app coté back				$path	= SITE_PATH_ADMIN;			}						if(is_file($path.'/mod/mod_'.$mod.'.php')) {				include($path.'/mod/mod_'.$mod.'.php');			} else {				echo 'Module ['.$mod.'] introuvable.';			}		}						// récup une variable en request		function getVar($key, $defaut, $addslashes = false) {			if($addslashes) {				return isset($_REQUEST[$key]) ? addslashes($_REQUEST[$key]) : addslashes($defaut);			} else {				return isset($_REQUEST[$key]) ? $_REQUEST[$key] : $defaut;			}		}				function cleanVar($value) {			return trim(str_replace('’', '\'', $value));		}				// ajoute une variable en request		function setVar($key, $value) {			$_REQUEST[$key]	= $value;		}						// récup une variable en session		function getSession($key, $defaut, $addslashes = false) {			if($addslashes) {				return isset($_SESSION[$key]) ? (!is_array($_SESSION[$key]) ? addslashes($_SESSION[$key]) : $_SESSION[$key]) : (!is_array($defaut) ? addslashes($defaut) : $defaut);			} else {				return isset($_SESSION[$key]) ? $_SESSION[$key] : $defaut;			}		}						// récup une variable en session, en retournant un int		function getSessionInt($key, $defaut) {			return isset($_SESSION[$key]) ? intval($_SESSION[$key]) : intval($defaut);		}						// ajoute une variable en session		function setSession($key, $value) {			$_SESSION[$key]	= $value;		}						// retourne le timestamp en microsecondes		function microtime_float() {			list($usec, $sec) = explode(" ", microtime());			return ((float)$usec + (float)$sec);		}						// détruit complètement la session de l'utilisateur		function sessionDestroy() {						// détruit toutes les variables de session			$_SESSION = array();						// détruit le cookie de session.			if (isset($_COOKIE[session_name()])) {			    setcookie(session_name(), '', time()-42000, '/');			}						// détruit la session.			session_destroy();					}								// envoie un mail en html		function mail($destinataire, $titre, $texte, $utf8 = true) {						// headers			$headers = 'Mime-Version: 1.0'."\r\n";			$headers = 'From: "'.SITE_MAIL_FROM.'" <'.SITE_MAIL.'>'."\r\n";			$headers .= 'Content-type: text/html; charset='.($utf8 ? 'utf-8' : 'iso-8859-1')."\r\n";			//$headers .= "\r\n";						// envoi du mail			if($utf8) {				mail($destinataire, utf8_encode($titre), utf8_encode($texte), $headers);			} else {				mail($destinataire, $titre, $texte, $headers);			}		}						// crée le dossier d'upload temporaire, et enregistre le nom du dossier en session		function makeUploadDir() {			global $user;						$dir_temp = 'images/profil';						if($user->id) {				$upload_dir = $user->id;			} else { 				$upload_dir = JL::getSession('upload_dir', 0);				if(!$upload_dir) {					do {						$upload_dir = JL::microtime_float()*10000;					} while(is_dir($dir_temp.'/'.$upload_dir));				}			}			JL::setSession('upload_dir', $upload_dir);						$dest_dossier	= $dir_temp.'/'.$upload_dir;			if(!is_dir($dest_dossier)) {				mkdir($dest_dossier,0777);				chmod($dest_dossier,0777);			}					}				// affichage des messages système		function messages(&$messages) {						// s'il y a des messages à afficher			if(count($messages)) {				// pour chaque message				foreach($messages as $message) {					echo $message;				}			}					}				function redirect($url) {			if (headers_sent()) {				echo "<script>document.location.href='".JL::url($url)."';</script>\n";			} else {				@ob_end_clean();				header( 'HTTP/1.1 301 Moved Permanently' );				header( "Location: ".JL::url($url));			}			exit();		}						// retourne l'url de la photo numéro $photo_i, de type $photo_type, de l'utilisateur $user_id		function userGetPhoto($user_id, $photo_format, $photo_type, $photo_i) {						// variables			$dir = 'images/profil/'.$user_id;						// ajout d'un séparateur si besoin est			if($photo_type) {				$photo_type = '-'.$photo_type;			}						// photo existe			if(is_file(SITE_PATH.'/'.$dir.'/parent-solo-'.$photo_format.$photo_type.'-'.$photo_i.'.jpg')) {								return SITE_URL.'/'.$dir.'/parent-solo-'.$photo_format.$photo_type.'-'.$photo_i.'.jpg';							} else { // photo n'existe pas								// test sur les 6 photos				for($i=1;$i<=6;$i++) {					if(is_file(SITE_PATH.'/'.$dir.'/parent-solo-'.$photo_format.$photo_type.'-'.$i.'.jpg')) {												// retourne la première photo trouvée						return SITE_URL.'/'.$dir.'/parent-solo-'.$photo_format.$photo_type.'-'.$i.'.jpg';											}				}								return false;							}					}						function notificationBasique($type = 'visite', $profil_id) {			global $db, $user;						// variables			$titre	= array(				'visite' 	=> $user->username." a consulté votre profil",				'message' 	=> $user->username." vous a envoyé un message",				'fleur' 	=> $user->username." vous a envoyé une fleur"			);						$intro	= array(				'visite' 	=> "Vous avez re&ccedil;u une nouvelle visite !",				'message' 	=> "Vous avez re&ccedil;u un nouveau message !",				'fleur' 	=> "Vous avez re&ccedil;u une nouvelle fleur !"			);						$texte	= array(				'visite' 	=> "Vous pouvez vous aussi \n<br /><a href='".JL::url(SITE_URL.'/index.php?app=profil&action=view&id='.$user->id)."'>consulter son profil</a>...<br /><br /> Et pourquoi pas lui <br /><a href='".JL::url(SITE_URL.'/index.php?app=message&action=write&user_to='.$user->username)."'>envoyer un message</a> ?",				'message' 	=> "Vous pouvez vous aussi \n<br />lui <a href='".JL::url(SITE_URL.'/index.php?app=message&action=write&user_to='.$user->username)."'>envoyer un message</a>...<br /><br /> Et pourquoi pas <br /><a href='".JL::url(SITE_URL.'/index.php?app=profil&action=view&id='.$user->id)."'>consulter son profil</a> ?",				'fleur' 	=> "Vous pouvez vous aussi \n<br />lui <a href='".JL::url(SITE_URL.'/index.php?app=message&action=flower&user_to='.$user->username)."'>envoyer une fleur</a>...<br /><br /> Et pourquoi pas <br /><a href='".JL::url(SITE_URL.'/index.php?app=profil&action=view&id='.$user->id)."'>consulter son profil</a> ?"			);						$icone	= array(				'visite' 	=> 'icone-visite.jpg',				'message' 	=> 'icone-message.jpg',				'fleur' 	=> 'icone-fleur.jpg'			);						// récup les infos du profil			$query = "SELECT u.id, u.username, u.email, up.genre, up.photo_defaut, un.new_".$type			." FROM user AS u"			." INNER JOIN user_profil AS up ON up.user_id = u.id"			." INNER JOIN user_notification AS un ON un.user_id = u.id"			." WHERE u.id = '".$profil_id."'"			." LIMIT 0,1"			;			$profil = $db->loadObject($query);						if((int)$profil->{'new_'.$type}) {								// récup les infos de l'utilisateur log				$query = "SELECT up.photo_defaut, IFNULL(pc.nom, '') AS canton, up.nb_enfants, up.genre, CURRENT_DATE, (YEAR(CURRENT_DATE)-YEAR(up.naissance_date)) - (RIGHT(CURRENT_DATE,5)<RIGHT(up.naissance_date,5)) AS age"				." FROM user AS u"				." INNER JOIN user_profil AS up ON up.user_id = u.id"				." LEFT JOIN profil_canton AS pc ON pc.id = up.canton_id"				." WHERE up.user_id = '".$user->id."'"				." LIMIT 0,1"				;				$userLog = $db->loadObject($query);								// récup la photo par défaut du profil				$photoDefautProfil 	= JL::userGetPhoto($profil->id, 'preview', 'profil', $profil->photo_defaut);				if(!$photoDefautProfil) {					$photoDefautProfil = SITE_URL.'/parentsolo/images/parent-solo-preview-'.$profil->genre.'.jpg';				}							// récup la photo par défaut de l'utilisateur log				$photoDefautUser 	= JL::userGetPhoto($user->id, 'mini', 'profil', $userLog->photo_defaut);				if(!$photoDefautUser) {					$photoDefautUser = SITE_URL.'/parentsolo/images/profil-parentsolo-'.$userLog->genre.'.jpg';				}								// récup les stats du compte				$query = "SELECT visite_total, fleur_new, message_new, CURRENT_DATE, IF(gold_limit_date > CURRENT_DATE, 1, 0) AS gold, gold_limit_date"				." FROM user_stats"				." WHERE user_id = '".$profil->id."'"				." LIMIT 0,1"				;				$userStats = $db->loadObject($query);												$imgUrl	= SITE_URL."/images/mail";				$sujet 	= "ParentSolo.ch - ".$titre[$type];				$headers ='From: "'.SITE_MAIL_FROM.'" <'.SITE_MAIL.'>'."\n";				$headers .='Reply-To: '.SITE_MAIL."\n";				$headers .='Content-Type: text/html; charset="iso-8859-1"'."\n";				$headers .='Content-Transfer-Encoding: 8bit';				$message ="<html><head><title>".htmlentities($sujet)."</title></head>\n"				."<body style='background-color:rgb(0,0,0);'>\n"				."<div style='padding: 20px;background-color:\n rgb(0, 0, 0);color:rgb(255, 255, 255);'>\n"				."<table style='font-family:Verdana;'>\n"								."<tr><td style='width:217px;height:171px;'><a href='".SITE_URL."'>\n<img src='".$imgUrl."/logo.jpg' border='0' /></a></td>\n"				."<td style='width:92px;height:97px;padding:74px 0px 0px 108px;vertical-align:top;\n background-image:url(".$imgUrl."/photo.jpg);'\n background='".$imgUrl."/photo.jpg'>\n"				."<img src='".$photoDefautProfil."' border='0' /></td>\n"				."<td style='width:293px;height:111px;color:rgb(255,255,255);\n background-color:rgb(0,0,0);padding:60px 0px 0px 10px;font-size:12px;'>\n<b>".$profil->username."</b><br />\n"				."Vous avez re&ccedil;u <span style='color:rgb(205,1,114);font-weight:bold;'>\n".$userStats->visite_total."</span> visite".($userStats->visite_total > 1 ? 's' : '').".<br />\n"				."Vous avez <span style='color:rgb(205,1,114);font-weight:bold;'>\n".$userStats->message_new."</span> nouveau".($userStats->message_new > 1 ? 'x' : '')." message".($userStats->message_new > 1 ? 's' : '').".<br />\n"				."Vous avez <span style='color:rgb(205,1,114);font-weight:bold;'>\n".$userStats->fleur_new."</span> nouvelle".($userStats->fleur_new > 1 ? 's' : '')." fleur".($userStats->fleur_new > 1 ? 's' : '').".<br />\n"				."<span style='background-color:rgb(255,153,204);display:block;width:210px;\n text-align:left;font-size:12px;margin:2px 0px 0px 0px;\n padding:2px 5px 2px 5px;color:rgb(0,0,0);'>".($userStats->gold ? "<b>Fin d'abonnement:</b>\n&nbsp;<span style='color:rgb(205,1,114);font-weight:bold;'>\n".date('d/m/y', strtotime($userStats->gold_limit_date))."</span>" : "<b>Membre:</b> <a href='".JL::url(SITE_URL.'/index.php?app=abonnement&action=tarifs')."'\n style='color:rgb(205,1,114);font-weight:bold;'>Abonnez-vous !</a>")."</span></td></tr>\n"								."<tr><td colspan='3' style='width:720px;height:429px;\n background-image:url(".$imgUrl."/bg.jpg);\n vertical-align:top;'\n background='".$imgUrl."/bg.jpg'>\n"								."<span style='display:block;padding:20px 0px 0px 20px;height:20px;\n color:rgb(255,153,51);font-size:18px;font-weight:bold;'>\n".$intro[$type]."</span>\n"								."<div style='padding:60px 0px 0px 20px;'>\n"				."<table style='font-family:Verdana;'><tr><td style='width:105px;height:164px;padding:0px;\n background-image:url(".$imgUrl."/profil.gif);\n vertical-align:top;background-repeat:no-repeat;'\n background='".$imgUrl."/profil.gif' valign='top'>\n<div style='height:20px;line-height:20px;\n font-size:12px;color:rgb(255,255,255);padding:2px 0px 0px 5px;'>".$user->username."</div>\n<div style='height:100px;padding: 0px 0px 0px 2px'>\n<img src='".$photoDefautUser."' border='0' />\n<div style='padding:1px 4px 0px 4px;color:rgb(0,0,0);font-size:11px;line-height: 12px;'>\n	".$userLog->age." ans<br />".$userLog->nb_enfants." enfant".($userLog->nb_enfants > 1 ? 's' : '')."<br />\n".htmlentities($userLog->canton)."</div></td>\n"								."<td style='font-size:14px;font-weight:bold;\n background-image:url(".$imgUrl."/box.jpg);\n color:rgb(205,1,114);\n text-align:center;vertical-align:middle;width:339px;\n height:164px;padding:0px 20px 0px 20px;'\n background='".$imgUrl."/box.jpg'>\n"				.$titre[$type]." !\n<br /><br />".$texte[$type]."</td>\n"								."<td style='width:120px;height:164px;vertical-align:top;padding:0px;' valign='top'><a href='".JL::url(SITE_URL.'/index.php?app=message&action=flower&user_to='.$user->username)."'\n style='display:block;width:119px;height:32px;margin:0px;padding:0px;'><img\n src='".$imgUrl."/rose2.jpg' border='0' /></a><img\n src='".$imgUrl."/".$icone[$type]."' style='display:block;margin:0px;padding:0px;width:119px;height:100px;' /><a\n href='".JL::url(SITE_URL.'/index.php?app=message&action=write&user_to='.$user->username)."'\n style='display:block;width:119px;height:29px;margin:0px;padding:0px;'><img\n src='".$imgUrl."/message2.jpg' border='0' /></a></td></tr></table></div>\n"								."<span style='font-family:Verdana;display:block;padding:80px 0px 0px 20px;width:570px;\n color:rgb(55,55,55);\n font-size:11px;font-style:italic;'>\nSi vous ne souhaitez\n plus recevoir cet email, connectez-vous &agrave; votre compte sur Parentsolo.ch,\n puis allez dans &quot;Mes notifications&quot;, et d&eacute;cochez la case\n qui correspond &agrave; cet email.</span>\n"								."</td></tr>\n"								."</table></div></body></html>"				;				mail($profil->email, $sujet, $message, $headers);							}					}						// conserve le dernier événement effectué sur un profil		function addLastEvent($user_id = 0, $last_event_user_id = 0, $last_event_type = 0, $last_event_data = 0) {			global $db;						$query = "UPDATE user_stats SET"			." last_event_user_id = '".(int)$last_event_user_id."',"			." last_event_type = '".(int)$last_event_type."',"			." last_event_data = '".(int)$last_event_data."'"			." WHERE user_id = '".(int)$user_id."'"			;			$db->query($query);					}						// ajoute des points à un utilisateur log		function addPoints($points_id, $user_id, $data = '') {			global $db;						// vérifie si le classement du mois précédent a été établi			JL::rankingPoints();						// récup les infos de l'action			$query = "SELECT id, points, nb_max_par_data"			." FROM points"			." WHERE id = '".$db->escape($points_id)."'"			." LIMIT 0,1"			;			$point = $db->loadObject($query);						// si le nombre d'attributions de point est limité			if($point->nb_max_par_data > 0) {							// check combien de fois l'utilisateur a été crédit pour cette action				$query = "SELECT COUNT(*)"				." FROM points_user"				." WHERE points_id = '".$db->escape($points_id)."' AND user_id = '".$db->escape($user_id)."' AND data LIKE '".$db->escape($data)."'"				;				$nb = (int)$db->loadResult($query);							// si le nombre de crédits limite a déjà été attribué				if($nb >= $point->nb_max_par_data) {					return false;				}						}						// insert le crédit dans la DB			$query = "INSERT INTO points_user SET"			." points_id = '".$db->escape($points_id)."',"			." user_id = '".$db->escape($user_id)."',"			." data = '".$db->escape($data)."',"			." datetime = NOW()"			;			$db->query($query);									// récup le nombre de points total de l'utilisateur			$query = "SELECT points_total FROM user_stats WHERE user_id = '".$db->escape($user_id)."'";			$points_total = $db->loadResult($query);						// mise à jour des stats de l'utilisateur			if($points_id == 20) { // retrait de points							$points_total_new = $points_total - (int)$data;						} else { // ajout de points							$points_total_new = $points_total + $point->points;						}						// mise à jour du total de points			$query = "UPDATE user_stats SET points_total = '".$db->escape($points_total_new)."' WHERE user_id = '".$db->escape($user_id)."'";			$db->query($query);							}						// détermine s'il faut établir le classement du mois précédent. Ainsi, si le site est down le 1er du mois, le classement sera établi le 2. On est sûr de ne pas perdre un mois !		function rankingPoints() {			global $db;						$annee_mois = date('Y-m', mktime(0, 0, 0, date("m")-1, date("d"), date("Y")));						// récup un gagnant du mois précédent			$query = "SELECT id"			." FROM points_gagnants"			." WHERE annee_mois LIKE '".$db->escape($annee_mois)."'"			." LIMIT 0,1"			;			$gagnant = $db->loadResult($query);						// si le classement n'a pas été établi			if(!$gagnant) {											// variables locales				$where 		= array();				$_where		= '';												// exclue les profils helvetica media, les inactifs et suspendus				$where[]	= 'up.helvetica = 0';				$where[]	= 'u.confirmed = 1';				$where[]	= 'u.published = 1';								if(count($where)) {					$_where = " WHERE ".implode(" AND ", $where);				}												// récup les 10 premiers du classement actuel				$query = "SELECT u.id, u.username, us.points_total AS total"				." FROM user_stats AS us"				." INNER JOIN user AS u ON u.id = us.user_id"				." INNER JOIN user_profil AS up ON up.user_id = u.id"				.$_where				." ORDER BY us.points_total DESC, u.creation_date ASC"				." LIMIT 0,10"				;				$rows = $db->loadObjectList($query);								if(is_array($rows)) {									// 1ère place					if(isset($rows[0])) JL::winnerPoints($annee_mois, 1, $rows[0]);										// 2ème place					if(isset($rows[1])) JL::winnerPoints($annee_mois, 2, $rows[1]);										// 3ème place					if(isset($rows[2])) JL::winnerPoints($annee_mois, 3, $rows[2]);										// enregistre les 10 premiers du classement					foreach($rows as $row) {											$query = "INSERT INTO points_classements SET"						." user_id = '".$db->escape($row->id)."',"						." points = '".$db->escape($row->total)."',"						." annee_mois = '".$db->escape($annee_mois)."'"						;						$db->query($query);										}								}							}					}						// enregistre un gagnant		function winnerPoints($annee_mois, $position, &$row) {			global $db;						// récup les infos déjà connues			$query = "SELECT nom, prenom, adresse, code_postal"			." FROM user_profil"			." WHERE user_id = '".$db->escape($row->id)."'"			." LIMIT 0,1"			;			$winner = $db->loadResult($query);						// sauvegarde le gagnant (dumoins les infos connues ou présumées)			$query = "INSERT INTO points_gagnants SET"			." annee_mois = '".$db->escape($annee_mois)."',"			." user_id = '".$db->escape($row->id)."',"			." nom = '".$db->escape($winner->nom)."',"			." prenom = '".$db->escape($winner->prenom)."',"			." adresse = '".$db->escape($winner->adresse)."',"			." code_postal = '".$db->escape($winner->code_postal)."',"			." position = '".$db->escape($position)."'"			;			$db->query($query);						// position à utiliser dans le MP			$positionTxt 	= '';			$valeurTxt		= '';			switch($position) {							case 1:					$positionTxt 	= '1ère';					$valeurTxt		= '279.90';					$gammeTxt		= 'dans la gamme « Sensations »';				break;								case 2:					$positionTxt 	= '2ème';					$valeurTxt		= '149.90';					$gammeTxt		= 'dans la gamme « Coffret Tables & Saveurs ou Maison d\'Hôtes de Caractère »';				break;								case 3:					$positionTxt 	= '3ème';					$valeurTxt		= '79.90';					$gammeTxt		= 'dans la gamme « Aventure »';				break;						}						// récup le MP de victoire			$query = "SELECT titre, texte"			." FROM notification"			." WHERE id = 4"			." LIMIT 0,1"			;			$mp = $db->loadObject($query);						// envoi du MP d'annonce de victoire			$query = "INSERT INTO message SET"			." user_id_from = '1',"			." user_id_to = '".$db->escape($row->id)."',"			." titre = '".$mp->titre."',"			." texte = '".$db->escape(sprintf($mp->texte, $row->username, $positionTxt, date('m/Y', mktime(0, 0, 0, date("m")-1, date("d"), date("Y"))), $gammeTxt, $valeurTxt))."',"			." date_envoi = NOW()"			;			$db->query($query);						// remise à 0 des points du gagnant			$query = "UPDATE user_stats SET points_total = 0 WHERE user_id = '".$db->escape($row->id)."'";			$db->query($query);					}				// remplace les mots clés du genre {texte}, {site_url}, {username}, etc...		function getMailHtml($templatePath, $titre = '', $texte = '', $username = '', $var = null) {						// récup le code html du template			$html		= str_replace('{texte}', 	$texte, 	file_get_contents($templatePath));						// remplace les mots clés			$html		= str_replace('{titre}', 	$titre, 	$html);			$html		= str_replace('{username}', $username, 	$html);			$html		= str_replace('{site_url}', SITE_URL, 	$html);						if(is_array($var)) {				$count = count($var);				for($i=0; $i<$count; $i++) $html = str_replace('{var'.($i+1).'}', $var[$i], $html);			}						return $html;				}						/* ******************************************************************************************************************************* */											// FONCTIONS ISSUES DE JOOMLA		/* ******************************************************************************************************************************* */						function makeOption($value, $text='', $value_name='value', $text_name='text') {			$obj = new stdClass;			$obj->$value_name = $value;			$obj->$text_name = trim( $text ) ? $text : $value;			return $obj;		}				/**		* Generates an HTML select list		* @param array An array of objects		* @param string The value of the HTML name attribute		* @param string Additional HTML attributes for the <select> tag		* @param string The name of the object variable for the option value		* @param string The name of the object variable for the option text		* @param mixed The key that is selected		* @returns string HTML for the select list		*/		function makeSelectList( &$arr, $tag_name, $tag_attribs, $key, $text, $selected=NULL ) {			// check if array			if ( is_array( $arr ) ) {				reset( $arr );			}			$html 	= "\n<select name=\"$tag_name\" $tag_attribs>";			$count 	= count( $arr );			for ($i=0, $n=$count; $i < $n; $i++ ) {				$k = $arr[$i]->$key;				$t = $arr[$i]->$text;				$id = ( isset($arr[$i]->id) ? @$arr[$i]->id : null);				$extra = '';				$extra .= $id ? " id=\"" . $arr[$i]->id . "\"" : '';				if (is_array( $selected )) {					foreach ($selected as $obj) {						$k2 = $obj->$key;						if ($k == $k2) {							$extra .= " selected=\"selected\"";							break;						}					}				} else {					$extra .= ($k == $selected ? " selected=\"selected\"" : '');				}				$html .= "\n\t<option value=\"".$k."\"$extra>" . htmlentities($t) . "</option>";			}			$html .= "\n</select>\n";			return $html;		}			}	?>
+<?phpsolocircl.comsolocircl.com
+	
+	class JL {
+		
+		// TODO: url rewriting
+		function url($url) {
+			return $url;
+		}
+		
+		// retourne true si le membre est abonnï¿½, sinon false
+		function checkAbonnement() {
+			global $user;
+			return ($user->gold_limit_date == '0000-00-00' || ($user->gold_limit_date != '0000-00-00' && strtotime($user->gold_limit_date) < time())) ? false : true;
+		}
+		
+		// crypte les adresses mail et url
+		function messageEncode($texte, $replacement) {
+		
+		    // convert support@pogoda.in
+		    $texte = ereg_replace('[-a-z0-9!#$%&\'*+/=?^_`{|}~.]+ *(@|\(at\)|\( at \)| \( at \) ) *([.]?[a-zA-Z0-9_/-])*', $replacement, $texte);
+		    // convert http://www.pogoda.in/new_york/eng/
+		    $texte = ereg_replace('[a-zA-Z]+://(([.]?[a-zA-Z0-9_/-])*)', $replacement, $texte);
+		    // convert www.pogoda.in/new_york/eng/
+		    $texte = ereg_replace('(www([-]*[.]?[a-zA-Z0-9_/-?&%])*)', $replacement, $texte);
+		   
+		    return $texte;
+			
+		}
+		
+		// ajoute des htmlentities ï¿½ chaque champ d'un objet, en excluant les champs prï¿½sents dans la chaine $exclure
+		function makeSafe(&$obj, $exclure = '') {
+			$exclusion	= array();
+			if($exclure) {
+				$exclusion	= explode(',', $exclure);
+			}
+			if(is_object($obj)) {
+				foreach($obj as $k => $v) {
+					
+					if(!in_array($k, $exclusion)) {
+						$obj->{$k} = makeSafe($v);
+					}
+				}
+			} elseif(is_array($obj)) {
+				foreach($obj as $k => $v) {
+					if(!in_array($k, $exclusion)) {
+						$obj[$k] = makeSafe($v);
+					}
+				}
+			}
+		}
+		
+		
+		// vï¿½rifie si l'application ï¿½ charger existe, et que le visiteur n'essaye pas divers hacks dans l'url avec la variable $app
+		function checkApp($app_load, $admin = '') {
+			
+			// variables
+			$app_ok	= true;
+			
+			// on conserve uniquement les caractï¿½res alphanumï¿½riques et _
+			$app_load_check	= preg_replace('#[^a-z0-9_]#', '', $app_load);
+			
+			// dï¿½termine si c'est une appli admin ou visiteur
+			if(!$admin) { // app cotï¿½ front
+				$path	= SITE_PATH;
+			} else { // app cotï¿½ back
+				$path	= SITE_PATH_ADMIN;
+			}
+			
+			// si le nom de l'application n'est pas correct
+			if($app_load_check != $app_load) {
+				$app_ok	= false;
+			} elseif(!is_file($path.'/app/app_'.$app_load.'/'.$app_load.'.php')) { // si le chemin de l'application qui semble correcte n'existe pas
+				$app_ok	= false;
+			}
+			
+			// retourne vrai si on peut charger l'application
+			return $app_ok;
+			
+		}
+		
+		
+		// charge le corps de la page, en prï¿½cisant en param si c'est une appli $admin (charge par dï¿½faut le $app)
+		function loadBody($admin = '') {
+			global $app;
+			JL::loadApp($app, $admin);
+		}
+		
+		
+		// charge l'application passï¿½e en param
+		function loadApp($app_load, $admin = '') {
+			
+			// dï¿½termine si c'est une appli admin ou visiteur
+			if(!$admin) { // app cotï¿½ front
+				$path	= SITE_PATH;
+			} else { // app cotï¿½ back
+				$path	= SITE_PATH_ADMIN;
+			}
+			
+			// si l'application est valide
+			if(JL::checkApp($app_load, $admin)) {
+				include($path.'/app/app_'.$app_load.'/'.$app_load.'.php'); // charge l'application
+			} else {
+				echo 'Application introuvable.'; // application chargï¿½e ï¿½ la main, depuis une autre application, sinon une erreur 404 aurait ï¿½tï¿½ levï¿½e
+			}
+			
+		}
+		
+		
+		// charge le module passï¿½ en param
+		function loadMod($mod, $admin = '') {
+			
+			// dï¿½termine si c'est une appli admin ou visiteur
+			if(!$admin) { // app cotï¿½ front
+				$path	= SITE_PATH;
+			} else { // app cotï¿½ back
+				$path	= SITE_PATH_ADMIN;
+			}
+			
+			if(is_file($path.'/mod/mod_'.$mod.'.php')) {
+				include($path.'/mod/mod_'.$mod.'.php');
+			} else {
+				echo 'Module ['.$mod.'] introuvable.';
+			}
+		}
+		
+		
+		// rï¿½cup une variable en request
+		function getVar($key, $defaut, $addslashes = false) {
+			if($addslashes) {
+				return isset($_REQUEST[$key]) ? addslashes($_REQUEST[$key]) : addslashes($defaut);
+			} else {
+				return isset($_REQUEST[$key]) ? $_REQUEST[$key] : $defaut;
+			}
+		}
+		
+		function cleanVar($value) {
+			return trim(str_replace('ï¿½', '\'', $value));
+		}
+		
+		// ajoute une variable en request
+		function setVar($key, $value) {
+			$_REQUEST[$key]	= $value;
+		}
+		
+		
+		// rï¿½cup une variable en session
+		function getSession($key, $defaut, $addslashes = false) {
+			if($addslashes) {
+				return isset($_SESSION[$key]) ? (!is_array($_SESSION[$key]) ? addslashes($_SESSION[$key]) : $_SESSION[$key]) : (!is_array($defaut) ? addslashes($defaut) : $defaut);
+			} else {
+				return isset($_SESSION[$key]) ? $_SESSION[$key] : $defaut;
+			}
+		}
+		
+		
+		// rï¿½cup une variable en session, en retournant un int
+		function getSessionInt($key, $defaut) {
+			return isset($_SESSION[$key]) ? intval($_SESSION[$key]) : intval($defaut);
+		}
+		
+		
+		// ajoute une variable en session
+		function setSession($key, $value) {
+			$_SESSION[$key]	= $value;
+		}
+		
+		
+		// retourne le timestamp en microsecondes
+		function microtime_float() {
+			list($usec, $sec) = explode(" ", microtime());
+			return ((float)$usec + (float)$sec);
+		}
+		
+		
+		// dï¿½truit complï¿½tement la session de l'utilisateur
+		function sessionDestroy() {
+			
+			// dï¿½truit toutes les variables de session
+			$_SESSION = array();
+			
+			// dï¿½truit le cookie de session.
+			if (isset($_COOKIE[session_name()])) {
+			    setcookie(session_name(), '', time()-42000, '/');
+			}
+			
+			// dï¿½truit la session.
+			session_destroy();
+			
+		}
+		
+				
+		// envoie un mail en html
+		function mail($destinataire, $titre, $texte, $utf8 = true) {
+			
+			// headers
+			$headers = 'Mime-Version: 1.0'."\r\n";
+			$headers = 'From: "'.SITE_MAIL_FROM.'" <'.SITE_MAIL.'>'."\r\n";
+			$headers .= 'Content-type: text/html; charset='.($utf8 ? 'utf-8' : 'iso-8859-1')."\r\n";
+			//$headers .= "\r\n";
+			
+			// envoi du mail
+			if($utf8) {
+				mail($destinataire, utf8_encode($titre), utf8_encode($texte), $headers);
+			} else {
+				mail($destinataire, $titre, $texte, $headers);
+			}
+		}
+		
+		
+		// crï¿½e le dossier d'upload temporaire, et enregistre le nom du dossier en session
+		function makeUploadDir() {
+			global $user;
+			
+			$dir_temp = 'images/profil';
+			
+			if($user->id) {
+				$upload_dir = $user->id;
+			} else { 
+				$upload_dir = JL::getSession('upload_dir', 0);
+				if(!$upload_dir) {
+					do {
+						$upload_dir = JL::microtime_float()*10000;
+					} while(is_dir($dir_temp.'/'.$upload_dir));
+				}
+			}
+			JL::setSession('upload_dir', $upload_dir);
+			
+			$dest_dossier	= $dir_temp.'/'.$upload_dir;
+			if(!is_dir($dest_dossier)) {
+				mkdir($dest_dossier,0777);
+				chmod($dest_dossier,0777);
+			}
+			
+		}
+		
+		// affichage des messages systï¿½me
+		function messages(&$messages) {
+			
+			// s'il y a des messages ï¿½ afficher
+			if (is_array($messages)) {
+				// pour chaque message
+				foreach($messages as $message) {
+					echo $message;
+				}
+			}
+			
+		}
+		
+		function redirect($url) {
+			if (headers_sent()) {
+				echo "<script>document.location.href='".JL::url($url)."';</script>\n";
+			} else {
+				@ob_end_clean();
+				header( 'HTTP/1.1 301 Moved Permanently' );
+				header( "Location: ".JL::url($url));
+			}
+			exit();
+		}
+		
+		
+		// retourne l'url de la photo numï¿½ro $photo_i, de type $photo_type, de l'utilisateur $user_id
+		function userGetPhoto($user_id, $photo_format, $photo_type, $photo_i) {
+			
+			// variables
+			$dir = 'images/profil/'.$user_id;
+			
+			// ajout d'un sï¿½parateur si besoin est
+			if($photo_type) {
+				$photo_type = '-'.$photo_type;
+			}
+			
+			// photo existe
+			if(is_file(SITE_PATH.'/'.$dir.'/parent-solo-'.$photo_format.$photo_type.'-'.$photo_i.'.jpg')) {
+				
+				return SITE_URL.'/'.$dir.'/parent-solo-'.$photo_format.$photo_type.'-'.$photo_i.'.jpg';
+				
+			} else { // photo n'existe pas
+				
+				// test sur les 6 photos
+				for($i=1;$i<=6;$i++) {
+					if(is_file(SITE_PATH.'/'.$dir.'/parent-solo-'.$photo_format.$photo_type.'-'.$i.'.jpg')) {
+						
+						// retourne la premiï¿½re photo trouvï¿½e
+						return SITE_URL.'/'.$dir.'/parent-solo-'.$photo_format.$photo_type.'-'.$i.'.jpg';
+						
+					}
+				}
+				
+				return false;
+				
+			}
+			
+		}
+		
+		
+		function notificationBasique($type = 'visite', $profil_id) {
+			global $db, $user;
+			
+			// variables
+			$titre	= array(
+				'visite' 	=> $user->username." a consultï¿½ votre profil",
+				'message' 	=> $user->username." vous a envoyï¿½ un message",
+				'fleur' 	=> $user->username." vous a envoyï¿½ une fleur"
+			);
+			
+			$intro	= array(
+				'visite' 	=> "Vous avez re&ccedil;u une nouvelle visite !",
+				'message' 	=> "Vous avez re&ccedil;u un nouveau message !",
+				'fleur' 	=> "Vous avez re&ccedil;u une nouvelle fleur !"
+			);
+			
+			$texte	= array(
+				'visite' 	=> "Vous pouvez vous aussi \n<br /><a href='".JL::url(SITE_URL.'/index.php?app=profil&action=view&id='.$user->id)."'>consulter son profil</a>...<br /><br /> Et pourquoi pas lui <br /><a href='".JL::url(SITE_URL.'/index.php?app=message&action=write&user_to='.$user->username)."'>envoyer un message</a> ?",
+				'message' 	=> "Vous pouvez vous aussi \n<br />lui <a href='".JL::url(SITE_URL.'/index.php?app=message&action=write&user_to='.$user->username)."'>envoyer un message</a>...<br /><br /> Et pourquoi pas <br /><a href='".JL::url(SITE_URL.'/index.php?app=profil&action=view&id='.$user->id)."'>consulter son profil</a> ?",
+				'fleur' 	=> "Vous pouvez vous aussi \n<br />lui <a href='".JL::url(SITE_URL.'/index.php?app=message&action=flower&user_to='.$user->username)."'>envoyer une fleur</a>...<br /><br /> Et pourquoi pas <br /><a href='".JL::url(SITE_URL.'/index.php?app=profil&action=view&id='.$user->id)."'>consulter son profil</a> ?"
+			);
+			
+			$icone	= array(
+				'visite' 	=> 'icone-visite.jpg',
+				'message' 	=> 'icone-message.jpg',
+				'fleur' 	=> 'icone-fleur.jpg'
+			);
+			
+			// rï¿½cup les infos du profil
+			$query = "SELECT u.id, u.username, u.email, up.genre, up.photo_defaut, un.new_".$type
+			." FROM user AS u"
+			." INNER JOIN user_profil AS up ON up.user_id = u.id"
+			." INNER JOIN user_notification AS un ON un.user_id = u.id"
+			." WHERE u.id = '".$profil_id."'"
+			." LIMIT 0,1"
+			;
+			$profil = $db->loadObject($query);
+			
+			if((int)$profil->{'new_'.$type}) {
+				
+				// rï¿½cup les infos de l'utilisateur log
+				$query = "SELECT up.photo_defaut, IFNULL(pc.nom, '') AS canton, up.nb_enfants, up.genre, CURRENT_DATE, (YEAR(CURRENT_DATE)-YEAR(up.naissance_date)) - (RIGHT(CURRENT_DATE,5)<RIGHT(up.naissance_date,5)) AS age"
+				." FROM user AS u"
+				." INNER JOIN user_profil AS up ON up.user_id = u.id"
+				." LEFT JOIN profil_canton AS pc ON pc.id = up.canton_id"
+				." WHERE up.user_id = '".$user->id."'"
+				." LIMIT 0,1"
+				;
+				$userLog = $db->loadObject($query);
+				
+				// rï¿½cup la photo par dï¿½faut du profil
+				$photoDefautProfil 	= JL::userGetPhoto($profil->id, 'preview', 'profil', $profil->photo_defaut);
+				if(!$photoDefautProfil) {
+					$photoDefautProfil = SITE_URL.'/parentsolo/images/parent-solo-preview-'.$profil->genre.'.jpg';
+				}
+			
+				// rï¿½cup la photo par dï¿½faut de l'utilisateur log
+				$photoDefautUser 	= JL::userGetPhoto($user->id, 'mini', 'profil', $userLog->photo_defaut);
+				if(!$photoDefautUser) {
+					$photoDefautUser = SITE_URL.'/parentsolo/images/profil-parentsolo-'.$userLog->genre.'.jpg';
+				}
+				
+				// rï¿½cup les stats du compte
+				$query = "SELECT visite_total, fleur_new, message_new, CURRENT_DATE, IF(gold_limit_date > CURRENT_DATE, 1, 0) AS gold, gold_limit_date"
+				." FROM user_stats"
+				." WHERE user_id = '".$profil->id."'"
+				." LIMIT 0,1"
+				;
+				$userStats = $db->loadObject($query);
+				
+				
+				$imgUrl	= SITE_URL."/images/mail";
+				$sujet 	= "ParentSolo.ch - ".$titre[$type];
+				$headers ='From: "'.SITE_MAIL_FROM.'" <'.SITE_MAIL.'>'."\n";
+				$headers .='Reply-To: '.SITE_MAIL."\n";
+				$headers .='Content-Type: text/html; charset="iso-8859-1"'."\n";
+				$headers .='Content-Transfer-Encoding: 8bit';
+				$message ="<html><head><title>".makeSafe($sujet)."</title></head>\n"
+				."<body style='background-color:rgb(0,0,0);'>\n"
+				."<div style='padding: 20px;background-color:\n rgb(0, 0, 0);color:rgb(255, 255, 255);'>\n"
+				."<table style='font-family:Verdana;'>\n"
+				
+				."<tr><td style='width:217px;height:171px;'><a href='".SITE_URL."'>\n<img src='".$imgUrl."/logo.jpg' border='0' /></a></td>\n"
+				."<td style='width:92px;height:97px;padding:74px 0px 0px 108px;vertical-align:top;\n background-image:url(".$imgUrl."/photo.jpg);'\n background='".$imgUrl."/photo.jpg'>\n"
+				."<img src='".$photoDefautProfil."' border='0' /></td>\n"
+				."<td style='width:293px;height:111px;color:rgb(255,255,255);\n background-color:rgb(0,0,0);padding:60px 0px 0px 10px;font-size:12px;'>\n<b>".$profil->username."</b><br />\n"
+				."Vous avez re&ccedil;u <span style='color:rgb(205,1,114);font-weight:bold;'>\n".$userStats->visite_total."</span> visite".($userStats->visite_total > 1 ? 's' : '').".<br />\n"
+				."Vous avez <span style='color:rgb(205,1,114);font-weight:bold;'>\n".$userStats->message_new."</span> nouveau".($userStats->message_new > 1 ? 'x' : '')." message".($userStats->message_new > 1 ? 's' : '').".<br />\n"
+				."Vous avez <span style='color:rgb(205,1,114);font-weight:bold;'>\n".$userStats->fleur_new."</span> nouvelle".($userStats->fleur_new > 1 ? 's' : '')." fleur".($userStats->fleur_new > 1 ? 's' : '').".<br />\n"
+				."<span style='background-color:rgb(255,153,204);display:block;width:210px;\n text-align:left;font-size:12px;margin:2px 0px 0px 0px;\n padding:2px 5px 2px 5px;color:rgb(0,0,0);'>".($userStats->gold ? "<b>Fin d'abonnement:</b>\n&nbsp;<span style='color:rgb(205,1,114);font-weight:bold;'>\n".date('d/m/y', strtotime($userStats->gold_limit_date))."</span>" : "<b>Membre:</b> <a href='".JL::url(SITE_URL.'/index.php?app=abonnement&action=tarifs')."'\n style='color:rgb(205,1,114);font-weight:bold;'>Abonnez-vous !</a>")."</span></td></tr>\n"
+				
+				."<tr><td colspan='3' style='width:720px;height:429px;\n background-image:url(".$imgUrl."/bg.jpg);\n vertical-align:top;'\n background='".$imgUrl."/bg.jpg'>\n"
+				
+				."<span style='display:block;padding:20px 0px 0px 20px;height:20px;\n color:rgb(255,153,51);font-size:18px;font-weight:bold;'>\n".$intro[$type]."</span>\n"
+				
+				."<div style='padding:60px 0px 0px 20px;'>\n"
+				."<table style='font-family:Verdana;'><tr><td style='width:105px;height:164px;padding:0px;\n background-image:url(".$imgUrl."/profil.gif);\n vertical-align:top;background-repeat:no-repeat;'\n background='".$imgUrl."/profil.gif' valign='top'>\n<div style='height:20px;line-height:20px;\n font-size:12px;color:rgb(255,255,255);padding:2px 0px 0px 5px;'>".$user->username."</div>\n<div style='height:100px;padding: 0px 0px 0px 2px'>\n<img src='".$photoDefautUser."' border='0' />\n<div style='padding:1px 4px 0px 4px;color:rgb(0,0,0);font-size:11px;line-height: 12px;'>\n	".$userLog->age." ans<br />".$userLog->nb_enfants." enfant".($userLog->nb_enfants > 1 ? 's' : '')."<br />\n".makeSafe($userLog->canton)."</div></td>\n"
+				
+				."<td style='font-size:14px;font-weight:bold;\n background-image:url(".$imgUrl."/box.jpg);\n color:rgb(205,1,114);\n text-align:center;vertical-align:middle;width:339px;\n height:164px;padding:0px 20px 0px 20px;'\n background='".$imgUrl."/box.jpg'>\n"
+				.$titre[$type]." !\n<br /><br />".$texte[$type]."</td>\n"
+				
+				."<td style='width:120px;height:164px;vertical-align:top;padding:0px;' valign='top'><a href='".JL::url(SITE_URL.'/index.php?app=message&action=flower&user_to='.$user->username)."'\n style='display:block;width:119px;height:32px;margin:0px;padding:0px;'><img\n src='".$imgUrl."/rose2.jpg' border='0' /></a><img\n src='".$imgUrl."/".$icone[$type]."' style='display:block;margin:0px;padding:0px;width:119px;height:100px;' /><a\n href='".JL::url(SITE_URL.'/index.php?app=message&action=write&user_to='.$user->username)."'\n style='display:block;width:119px;height:29px;margin:0px;padding:0px;'><img\n src='".$imgUrl."/message2.jpg' border='0' /></a></td></tr></table></div>\n"
+				
+				."<span style='font-family:Verdana;display:block;padding:80px 0px 0px 20px;width:570px;\n color:rgb(55,55,55);\n font-size:11px;font-style:italic;'>\nSi vous ne souhaitez\n plus recevoir cet email, connectez-vous &agrave; votre compte sur Parentsolo.ch,\n puis allez dans &quot;Mes notifications&quot;, et d&eacute;cochez la case\n qui correspond &agrave; cet email.</span>\n"
+				
+				."</td></tr>\n"
+				
+				."</table></div></body></html>"
+				;
+				mail($profil->email, $sujet, $message, $headers);
+				
+			}
+			
+		}
+		
+		
+		// conserve le dernier ï¿½vï¿½nement effectuï¿½ sur un profil
+		function addLastEvent($user_id = 0, $last_event_user_id = 0, $last_event_type = 0, $last_event_data = 0) {
+			global $db;
+			
+			$query = "UPDATE user_stats SET"
+			." last_event_user_id = '".(int)$last_event_user_id."',"
+			." last_event_type = '".(int)$last_event_type."',"
+			." last_event_data = '".(int)$last_event_data."'"
+			." WHERE user_id = '".(int)$user_id."'"
+			;
+			$db->query($query);
+			
+		}
+		
+		
+		// ajoute des points ï¿½ un utilisateur log
+		function addPoints($points_id, $user_id, $data = '') {
+			global $db;
+			
+			// vï¿½rifie si le classement du mois prï¿½cï¿½dent a ï¿½tï¿½ ï¿½tabli
+			JL::rankingPoints();
+			
+			// rï¿½cup les infos de l'action
+			$query = "SELECT id, points, nb_max_par_data"
+			." FROM points"
+			." WHERE id = '".$db->escape($points_id)."'"
+			." LIMIT 0,1"
+			;
+			$point = $db->loadObject($query);
+			
+			// si le nombre d'attributions de point est limitï¿½
+			if($point->nb_max_par_data > 0) {
+			
+				// check combien de fois l'utilisateur a ï¿½tï¿½ crï¿½dit pour cette action
+				$query = "SELECT COUNT(*)"
+				." FROM points_user"
+				." WHERE points_id = '".$db->escape($points_id)."' AND user_id = '".$db->escape($user_id)."' AND data LIKE '".$db->escape($data)."'"
+				;
+				$nb = (int)$db->loadResult($query);
+			
+				// si le nombre de crï¿½dits limite a dï¿½jï¿½ ï¿½tï¿½ attribuï¿½
+				if($nb >= $point->nb_max_par_data) {
+					return false;
+				}
+			
+			}
+			
+			// insert le crï¿½dit dans la DB
+			$query = "INSERT INTO points_user SET"
+			." points_id = '".$db->escape($points_id)."',"
+			." user_id = '".$db->escape($user_id)."',"
+			." data = '".$db->escape($data)."',"
+			." datetime = NOW()"
+			;
+			$db->query($query);
+			
+			
+			// rï¿½cup le nombre de points total de l'utilisateur
+			$query = "SELECT points_total FROM user_stats WHERE user_id = '".$db->escape($user_id)."'";
+			$points_total = $db->loadResult($query);
+			
+			// mise ï¿½ jour des stats de l'utilisateur
+			if($points_id == 20) { // retrait de points
+			
+				$points_total_new = $points_total - (int)$data;
+			
+			} else { // ajout de points
+			
+				$points_total_new = $points_total + $point->points;
+			
+			}
+			
+			// mise ï¿½ jour du total de points
+			$query = "UPDATE user_stats SET points_total = '".$db->escape($points_total_new)."' WHERE user_id = '".$db->escape($user_id)."'";
+			$db->query($query);
+			
+		
+		}
+		
+		
+		// dï¿½termine s'il faut ï¿½tablir le classement du mois prï¿½cï¿½dent. Ainsi, si le site est down le 1er du mois, le classement sera ï¿½tabli le 2. On est sï¿½r de ne pas perdre un mois !
+		function rankingPoints() {
+			global $db;
+			
+			$annee_mois = date('Y-m', mktime(0, 0, 0, date("m")-1, date("d"), date("Y")));
+			
+			// rï¿½cup un gagnant du mois prï¿½cï¿½dent
+			$query = "SELECT id"
+			." FROM points_gagnants"
+			." WHERE annee_mois LIKE '".$db->escape($annee_mois)."'"
+			." LIMIT 0,1"
+			;
+			$gagnant = $db->loadResult($query);
+			
+			// si le classement n'a pas ï¿½tï¿½ ï¿½tabli
+			if(!$gagnant) {			
+				
+				// variables locales
+				$where 		= array();
+				$_where		= '';
+				
+				
+				// exclue les profils helvetica media, les inactifs et suspendus
+				$where[]	= 'up.helvetica = 0';
+				$where[]	= 'u.confirmed = 1';
+				$where[]	= 'u.published = 1';
+				
+				if (is_array($where)) {
+					$_where = " WHERE ".implode(" AND ", $where);
+				}
+				
+				
+				// rï¿½cup les 10 premiers du classement actuel
+				$query = "SELECT u.id, u.username, us.points_total AS total"
+				." FROM user_stats AS us"
+				." INNER JOIN user AS u ON u.id = us.user_id"
+				." INNER JOIN user_profil AS up ON up.user_id = u.id"
+				.$_where
+				." ORDER BY us.points_total DESC, u.creation_date ASC"
+				." LIMIT 0,10"
+				;
+				$rows = $db->loadObjectList($query);
+				
+				if(is_array($rows)) {
+				
+					// 1ï¿½re place
+					if(isset($rows[0])) JL::winnerPoints($annee_mois, 1, $rows[0]);
+					
+					// 2ï¿½me place
+					if(isset($rows[1])) JL::winnerPoints($annee_mois, 2, $rows[1]);
+					
+					// 3ï¿½me place
+					if(isset($rows[2])) JL::winnerPoints($annee_mois, 3, $rows[2]);
+					
+					// enregistre les 10 premiers du classement
+					foreach($rows as $row) {
+					
+						$query = "INSERT INTO points_classements SET"
+						." user_id = '".$db->escape($row->id)."',"
+						." points = '".$db->escape($row->total)."',"
+						." annee_mois = '".$db->escape($annee_mois)."'"
+						;
+						$db->query($query);
+					
+					}
+				
+				}
+				
+			}
+			
+		}
+		
+		
+		// enregistre un gagnant
+		function winnerPoints($annee_mois, $position, &$row) {
+			global $db;
+			
+			// rï¿½cup les infos dï¿½jï¿½ connues
+			$query = "SELECT nom, prenom, adresse, code_postal"
+			." FROM user_profil"
+			." WHERE user_id = '".$db->escape($row->id)."'"
+			." LIMIT 0,1"
+			;
+			$winner = $db->loadResult($query);
+			
+			// sauvegarde le gagnant (dumoins les infos connues ou prï¿½sumï¿½es)
+			$query = "INSERT INTO points_gagnants SET"
+			." annee_mois = '".$db->escape($annee_mois)."',"
+			." user_id = '".$db->escape($row->id)."',"
+			." nom = '".$db->escape($winner->nom)."',"
+			." prenom = '".$db->escape($winner->prenom)."',"
+			." adresse = '".$db->escape($winner->adresse)."',"
+			." code_postal = '".$db->escape($winner->code_postal)."',"
+			." position = '".$db->escape($position)."'"
+			;
+			$db->query($query);
+			
+			// position ï¿½ utiliser dans le MP
+			$positionTxt 	= '';
+			$valeurTxt		= '';
+			switch($position) {
+			
+				case 1:
+					$positionTxt 	= '1ï¿½re';
+					$valeurTxt		= '279.90';
+					$gammeTxt		= 'dans la gamme ï¿½ Sensations ï¿½';
+				break;
+				
+				case 2:
+					$positionTxt 	= '2ï¿½me';
+					$valeurTxt		= '149.90';
+					$gammeTxt		= 'dans la gamme ï¿½ Coffret Tables & Saveurs ou Maison d\'Hï¿½tes de Caractï¿½re ï¿½';
+				break;
+				
+				case 3:
+					$positionTxt 	= '3ï¿½me';
+					$valeurTxt		= '79.90';
+					$gammeTxt		= 'dans la gamme ï¿½ Aventure ï¿½';
+				break;
+			
+			}
+			
+			// rï¿½cup le MP de victoire
+			$query = "SELECT titre, texte"
+			." FROM notification"
+			." WHERE id = 4"
+			." LIMIT 0,1"
+			;
+			$mp = $db->loadObject($query);
+			
+			// envoi du MP d'annonce de victoire
+			$query = "INSERT INTO message SET"
+			." user_id_from = '1',"
+			." user_id_to = '".$db->escape($row->id)."',"
+			." titre = '".$mp->titre."',"
+			." texte = '".$db->escape(sprintf($mp->texte, $row->username, $positionTxt, date('m/Y', mktime(0, 0, 0, date("m")-1, date("d"), date("Y"))), $gammeTxt, $valeurTxt))."',"
+			." date_envoi = NOW()"
+			;
+			$db->query($query);
+			
+			// remise ï¿½ 0 des points du gagnant
+			$query = "UPDATE user_stats SET points_total = 0 WHERE user_id = '".$db->escape($row->id)."'";
+			$db->query($query);
+			
+		}
+		
+		// remplace les mots clï¿½s du genre {texte}, {site_url}, {username}, etc...
+		function getMailHtml($templatePath, $titre = '', $texte = '', $username = '', $var = null) {
+			
+			// rï¿½cup le code html du template
+			$html		= str_replace('{texte}', 	$texte, 	file_get_contents($templatePath));
+			
+			// remplace les mots clï¿½s
+			$html		= str_replace('{titre}', 	$titre, 	$html);
+			$html		= str_replace('{username}', $username, 	$html);
+			$html		= str_replace('{site_url}', SITE_URL, 	$html);
+			
+			if(is_array($var)) {
+				$count = count($var);
+				for($i=0; $i<$count; $i++) $html = str_replace('{var'.($i+1).'}', $var[$i], $html);
+			}
+			
+			return $html;
+		
+		}
+		
+		
+		/* ******************************************************************************************************************************* */
+											// FONCTIONS ISSUES DE JOOMLA
+		/* ******************************************************************************************************************************* */
+		
+		
+		function makeOption($value, $text='', $value_name='value', $text_name='text') {
+			$obj = new stdClass;
+			$obj->$value_name = $value;
+			$obj->$text_name = trim( $text ) ? $text : $value;
+			return $obj;
+		}
+		
+		/**
+		* Generates an HTML select list
+		* @param array An array of objects
+		* @param string The value of the HTML name attribute
+		* @param string Additional HTML attributes for the <select> tag
+		* @param string The name of the object variable for the option value
+		* @param string The name of the object variable for the option text
+		* @param mixed The key that is selected
+		* @returns string HTML for the select list
+		*/
+		function makeSelectList( &$arr, $tag_name, $tag_attribs, $key, $text, $selected=NULL ) {
+			// check if array
+			if ( is_array( $arr ) ) {
+				reset( $arr );
+			}
+			$html 	= "\n<select name=\"$tag_name\" $tag_attribs>";
+			$count 	= count( $arr );
+			for ($i=0, $n=$count; $i < $n; $i++ ) {
+				$k = $arr[$i]->$key;
+				$t = $arr[$i]->$text;
+				$id = ( isset($arr[$i]->id) ? @$arr[$i]->id : null);
+				$extra = '';
+				$extra .= $id ? " id=\"" . $arr[$i]->id . "\"" : '';
+				if (is_array( $selected )) {
+					foreach ($selected as $obj) {
+						$k2 = $obj->$key;
+						if ($k == $k2) {
+							$extra .= " selected=\"selected\"";
+							break;
+						}
+					}
+				} else {
+					$extra .= ($k == $selected ? " selected=\"selected\"" : '');
+				}
+				$html .= "\n\t<option value=\"".$k."\"$extra>" . makeSafe($t) . "</option>";
+			}
+			$html .= "\n</select>\n";
+			return $html;
+		}
+		
+	}
+	
+?>

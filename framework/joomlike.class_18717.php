@@ -1,1 +1,866 @@
-<?phpini_set('MAX_EXECUTION_TIME', -1);	class JL {		// TODO: url rewriting		function url($url) {			return $url;		}		// retourne true si le membre est abonné, sinon false		function checkAbonnement() {			global $user, $langue;			return ($user->gold_limit_date == '0000-00-00' || ($user->gold_limit_date != '0000-00-00' && strtotime($user->gold_limit_date) < time())) ? false : true;		}		// crypte les adresses mail et url		function messageEncode($texte, $replacement) {		    // convert support@pogoda.in		    $texte = ereg_replace('[-a-z0-9!#$%&\'*+/=?^_`{|}~.]+ *(@|\(at\)|\( at \)| \( at \) ) *([.]?[a-zA-Z0-9_/-])*', $replacement, $texte);		    // convert http://www.pogoda.in/new_york/eng/		    $texte = ereg_replace('[a-zA-Z]+://(([.]?[a-zA-Z0-9_/-])*)', $replacement, $texte);		    // convert www.pogoda.in/new_york/eng/		    $texte = ereg_replace('(www([-]*[.]?[a-zA-Z0-9_/-?&%])*)', $replacement, $texte);		    return $texte;		}		// ajoute des htmlentities à chaque champ d'un objet, en excluant les champs présents dans la chaine $exclure		function makeSafe(&$obj, $exclure = '') {			$exclusion	= array();			if($exclure) {				$exclusion	= explode(',', $exclure);			}			if(is_object($obj)) {				foreach($obj as $k => $v) {					if(!in_array($k, $exclusion)) {						$obj->{$k} = htmlentities($v);					}				}			} elseif(is_array($obj)) {				foreach($obj as $k => $v) {					if(!in_array($k, $exclusion)) {						$obj[$k] = htmlentities($v);					}				}			}		}						// vérifie si l'application à charger existe, et que le visiteur n'essaye pas divers hacks dans l'url avec la variable $app		function checkApp($app_load, $admin = '') {			// variables			$app_ok	= true;			// on conserve uniquement les caractères alphanumériques et _			$app_load_check	= preg_replace('#[^a-z0-9_]#', '', $app_load);			// détermine si c'est une appli admin ou visiteur			if(!$admin) { // app coté front				$path	= SITE_PATH;			} else { // app coté back				$path	= SITE_PATH_ADMIN;			}			// si le nom de l'application n'est pas correct			if($app_load_check != $app_load) {				$app_ok	= false;			} elseif(!is_file($path.'/app/app_'.$app_load.'/'.$app_load.'.php')) { // si le chemin de l'application qui semble correcte n'existe pas				$app_ok	= false;			}			// retourne vrai si on peut charger l'application			return $app_ok;		}				// vérifie si l'application à charger existe, et que le visiteur n'essaye pas divers hacks dans l'url avec la variable $app		function checkAppExpert($app_load) {			// variables			$app_ok	= true;			// on conserve uniquement les caractères alphanumériques et _			$app_load_check	= preg_replace('#[^a-z0-9_]#', '', $app_load);			// détermine si c'est une appli admin ou visiteur						$path	= SITE_PATH_ADMIN_EXPERT;						// si le nom de l'application n'est pas correct			if($app_load_check != $app_load) {				$app_ok	= false;			} elseif(!is_file($path.'/app/app_'.$app_load.'/'.$app_load.'.php')) { // si le chemin de l'application qui semble correcte n'existe pas				$app_ok	= false;			}			// retourne vrai si on peut charger l'application			return $app_ok;		}						// charge le corps de la page, en précisant en param si c'est une appli $admin (charge par défaut le $app)		function loadBody($admin = '') {			global $app;			JL::loadApp($app, $admin);		}				// charge le corps de la page, en précisant en param si c'est une appli $admin (charge par défaut le $app)		function loadBodyExpert() {			global $app;			JL::loadAppExpert($app);		}						// charge l'application passée en param		function loadApp($app_load, $admin = '') {			// détermine si c'est une appli admin ou visiteur			if(!$admin) { // app coté front				$path	= SITE_PATH;			} else { // app coté back				$path	= SITE_PATH_ADMIN;			}			// si l'application est valide			if(JL::checkApp($app_load, $admin)) {				include($path.'/app/app_'.$app_load.'/'.$app_load.'.php'); // charge l'application			} else {				echo 'Application introuvable.'; // application chargée à la main, depuis une autre application, sinon une erreur 404 aurait été levée			}		}				// charge l'application passée en param		function loadAppExpert($app_load) {			// détermine si c'est une appli admin ou visiteur			$path	= SITE_PATH_ADMIN_EXPERT;						// si l'application est valide			if(JL::checkAppExpert($app_load)) {				include($path.'/app/app_'.$app_load.'/'.$app_load.'.php'); // charge l'application			} else {				echo 'Application introuvable.'; // application chargée à la main, depuis une autre application, sinon une erreur 404 aurait été levée			}		}						// charge le module passé en param		function loadMod($mod, $admin = '') {			//die($langue);			global $langue;			// détermine si c'est une appli admin ou visiteur			if(!$admin) { // app coté front				$path	= SITE_PATH;			} else { // app coté back				$path	= SITE_PATH_ADMIN;			}			if(is_file($path.'/mod/mod_'.$mod.'.php')) {				include($path.'/mod/mod_'.$mod.'.php');			} else {				echo 'Module ['.$mod.'] introuvable.';			}		}				// charge le module passé en param		function loadModExpert($mod) {			//die($langue);			global $langue;			// détermine si c'est une appli admin ou visiteur			$path	= SITE_PATH_ADMIN_EXPERT;						if(is_file($path.'/mod/mod_'.$mod.'.php')) {				include($path.'/mod/mod_'.$mod.'.php');			} else {				echo 'Module ['.$mod.'] introuvable.';			}		}						// génère la clause where à partir d'un tableau $where passé en param		function setWhere(&$where) {			if(count($where)) {				return " WHERE ".implode(' AND ', $where);			} else {				return '';			}		}		// récup une variable en request		function getVar($key, $defaut, $addslashes = false) {			if($addslashes) {				return isset($_REQUEST[$key]) ? addslashes($_REQUEST[$key]) : addslashes($defaut);			} else {				return isset($_REQUEST[$key]) ? $_REQUEST[$key] : $defaut;			}		}		function cleanVar($value) {			return trim(str_replace('’', '\'', $value));		}		// ajoute une variable en request		function setVar($key, $value) {			$_REQUEST[$key]	= $value;		}		// récup une variable en session		function getSession($key, $defaut, $addslashes = false) {			if($addslashes) {				return isset($_SESSION[$key]) ? (!is_array($_SESSION[$key]) ? addslashes($_SESSION[$key]) : $_SESSION[$key]) : (!is_array($defaut) ? addslashes($defaut) : $defaut);			} else {				return isset($_SESSION[$key]) ? $_SESSION[$key] : $defaut;			}		}		// récup une variable en session, en retournant un int		function getSessionInt($key, $defaut) {			return isset($_SESSION[$key]) ? intval($_SESSION[$key]) : intval($defaut);		}		// ajoute une variable en session		function setSession($key, $value) {			$_SESSION[$key]	= $value;		}		// retourne le timestamp en microsecondes		function microtime_float() {			list($usec, $sec) = explode(" ", microtime());			return ((float)$usec + (float)$sec);		}		// détruit complètement la session de l'utilisateur		function sessionDestroy() {			global $db;			$user_id = $_SESSION['user_id'];			// détruit toutes les variables de session			$_SESSION = array();			// détruit le cookie de session.			if (isset($_COOKIE[session_name()])) {			    setcookie(session_name(), '', time()-42000, '/');			}			// détruit la session.			session_destroy();						$query = "UPDATE user SET online = '0' WHERE id = '".$user_id."'";			$db->query($query);		}		// envoie un mail en html		function mail($destinataire, $titre, $texte, $utf8 = true) {			// headers			$headers = 'Mime-Version: 1.0'."\r\n";			$headers = 'From: "'.SITE_MAIL_FROM.'" <'.SITE_MAIL.'>'."\r\n";			$headers .= 'Content-type: text/html; charset='.($utf8 ? 'utf-8' : 'iso-8859-1')."\r\n";			//$headers .= "\r\n";			// envoi du mail			if($utf8) {				mail($destinataire, utf8_encode($titre), utf8_encode($texte), $headers);			} else {				mail($destinataire, $titre, $texte, $headers);			}		}		// envoie un mail Newsletter en html		function mailNewsletter($destinataire, $titre, $texte, $utf8 = true) {			// headers			$headers = 'Mime-Version: 1.0'."\r\n";			$headers = 'From: "Newsletter Parentsolo.ch" <newsletter@parentsolo.ch>'."\r\n";			$headers .= 'Content-type: text/html; charset=utf-8'."\r\n";			// envoi du mail						mail($destinataire, $titre, $texte, $headers);					}		// crée le dossier d'upload temporaire, et enregistre le nom du dossier en session		function makeUploadDir() {			global $user;			$dir_temp = 'images/profil';			if($user->id) {				$upload_dir = $user->id;			} else {				$upload_dir = JL::getSession('upload_dir', 0);				if(!$upload_dir) {					do {						$upload_dir = JL::microtime_float()*10000;					} while(is_dir($dir_temp.'/'.$upload_dir));				}			}			JL::setSession('upload_dir', $upload_dir);			$dest_dossier	= $dir_temp.'/'.$upload_dir;			if(!is_dir($dest_dossier)) {				mkdir($dest_dossier,0777);				chmod($dest_dossier,0777);			}		}				// crée le dossier d'upload temporaire et retourne son chemin		function getUploadDir($base, $upload_dir = '') {						if(!$upload_dir) {				do {					$upload_dir = JL::microtime_float()*10000;				} while(is_dir($base.'/'.$upload_dir));			}						$dest_dossier	= $base.'/'.$upload_dir;			if(!is_dir($dest_dossier)) {				mkdir($dest_dossier, 0777);				chmod($dest_dossier, 0777);			}						return $dest_dossier;					}						// affichage des messages système		function messages(&$messages) {			// s'il y a des messages à afficher			if(count($messages)) {								$type=0;								foreach($messages as $message){					if(preg_match('/error/', $message)){						$type = 1;					}elseif(preg_match('/warning/', $message)){						$type =2;					}				}								if($type == 1){					echo "<div class='error'>";				}elseif($type == 2){					echo "<div class='warning'>";				}else{					echo "<div class='valid'>";				}								// pour chaque message				foreach($messages as $message) {					echo $message;				}								echo "</div>";			}		}		function redirect($url) {			if (headers_sent()) {				echo "<script>document.location.href='".JL::url($url)."';</script>\n";			} else {				@ob_end_clean();				header( 'HTTP/1.1 301 Moved Permanently' );				header( "Location: ".JL::url($url));			}			exit();		}		// retourne l'url de la photo numéro $photo_i, de type $photo_type, de l'utilisateur $user_id		function userGetPhoto($user_id, $photo_format, $photo_type, $photo_i) {			// variables			$dir = 'images/profil/'.$user_id;			// ajout d'un séparateur si besoin est			if($photo_type) {				$photo_type = '-'.$photo_type;			}			// photo existe			if(is_file(SITE_PATH.'/'.$dir.'/parent-solo-'.$photo_format.$photo_type.'-'.$photo_i.'.jpg')) {				return SITE_URL.'/'.$dir.'/parent-solo-'.$photo_format.$photo_type.'-'.$photo_i.'.jpg';			} else { // photo n'existe pas				// test sur les 6 photos				for($i=1;$i<=6;$i++) {					if(is_file(SITE_PATH.'/'.$dir.'/parent-solo-'.$photo_format.$photo_type.'-'.$i.'.jpg')) {						// retourne la première photo trouvée						return SITE_URL.'/'.$dir.'/parent-solo-'.$photo_format.$photo_type.'-'.$i.'.jpg';					}				}				return false;			}		}		function notificationBasique($type = 'visite', $profil_id) {			global $langue;			include("lang/app_framework.".$_GET['lang'].".php");			global $db, $user;			// variables						// récup les infos du profil			$query = "SELECT u.id, u.username, u.email, up.genre, up.photo_defaut, un.new_".$type			." FROM user AS u"			." INNER JOIN user_profil AS up ON up.user_id = u.id"			." INNER JOIN user_notification AS un ON un.user_id = u.id"			." WHERE u.id = '".$profil_id."'"			." LIMIT 0,1"			;			$profil = $db->loadObject($query);			if((int)$profil->{'new_'.$type}) {				// récup les infos de l'utilisateur log				$query = "SELECT up.photo_defaut, IFNULL(pc.nom_".$_GET['lang'].", '') AS canton, up.nb_enfants, up.genre, CURRENT_DATE, (YEAR(CURRENT_DATE)-YEAR(up.naissance_date)) - (RIGHT(CURRENT_DATE,5)<RIGHT(up.naissance_date,5)) AS age"				." FROM user AS u"				." INNER JOIN user_profil AS up ON up.user_id = u.id"				." LEFT JOIN profil_canton AS pc ON pc.id = up.canton_id"				." WHERE up.user_id = '".$user->id."'"				." LIMIT 0,1"				;				$userLog = $db->loadObject($query);				// récup la photo par défaut du profil				$photoDefautProfil 	= JL::userGetPhoto($profil->id, 'profil', '', $profil->photo_defaut);				if(!$photoDefautProfil) {					$photoDefautProfil = SITE_URL.'/parentsolo/images/parent-solo-profil-'.$profil->genre.'-'.$_GET['lang'].'.jpg';				}				// récup la photo par défaut de l'utilisateur log				$photoDefautUser 	= JL::userGetPhoto($user->id, 'profil', '', $userLog->photo_defaut);				if(!$photoDefautUser) {					$photoDefautUser = SITE_URL.'/parentsolo/images/parent-solo-profil-'.$userLog->genre.'-'.$_GET['lang'].'.jpg';				}				// récup les stats du compte				$query = "SELECT visite_total, fleur_new, message_new, CURRENT_DATE, IF(gold_limit_date > CURRENT_DATE, 1, 0) AS gold, gold_limit_date"				." FROM user_stats"				." WHERE user_id = '".$profil->id."'"				." LIMIT 0,1"				;				$userStats = $db->loadObject($query);								$info_dest = "<b>".$userStats->message_new."</b> ".($userStats->message_new > 1 ? $lang_framework["NouveauxMessages"] : $lang_framework["NouveauMessage"])."<br />"				."<b>".$userStats->fleur_new."</b> ".($userStats->fleur_new > 1 ? $lang_framework["NouvellesRoses"] :$lang_framework["NouvelleRose"])."<br />"				."<b>".$userStats->visite_total."</b> ".($userStats->visite_total > 1 ? $lang_framework["Visites"] :$lang_framework["Visite"])."<br />"				.($userStats->gold ? "<b>".$lang_framework['FinAbonnement'].":</b> ".date('d/m/y', strtotime($userStats->gold_limit_date))."" : "<a href='".JL::url(SITE_URL.'/index.php?app=abonnement&action=tarifs'.'&'.$_GET['lang'])."'> <b>".$lang_framework['AbonnezVous']."!</b></a>");								$info_exp =  "<b>".$userLog->age."</b> ".$lang_framework['Ans']."<br />"				."<b>".$userLog->nb_enfants."</b> ".($userLog->nb_enfants > 1 ? $lang_framework["Enfants"] : $lang_framework["Enfant"])."<br />"				."<b>".htmlentities($userLog->canton)."</b>";												if($type=='message'){					if($_GET['lang'] == 'fr'){						$mailing_id = 33;					}elseif($_GET['lang'] == 'en'){						$mailing_id = 43;					}elseif($_GET['lang'] == 'de'){						$mailing_id = 36;					}				}elseif($type=='visite'){					if($_GET['lang'] == 'fr'){						$mailing_id = 35;					}elseif($_GET['lang'] == 'en'){						$mailing_id = 45;					}elseif($_GET['lang'] == 'de'){						$mailing_id = 38;					}				}elseif($type=='fleur'){					if($_GET['lang'] == 'fr'){						$mailing_id = 34;					}elseif($_GET['lang'] == 'en'){						$mailing_id = 44;					}elseif($_GET['lang'] == 'de'){						$mailing_id = 37;					}				}												// charge le texte du mail				$query = "SELECT titre, texte, template"				." FROM mailing"				." WHERE id = '".$db->escape($mailing_id)."'"				." LIMIT 0,1"				;				$mailing = $db->loadObject($query);				$mailing->titre		= str_replace('{var1}', $user->username, 	$mailing->titre);				// envoi du mail de confirmation				// intégration du texte et du template, ainsi que traitement des mots clés				$mailingTexte 	= JL::getMailHtml(SITE_PATH_ADMIN.'/app/app_mailing/template/'.$mailing->template, $mailing->titre, $mailing->texte,$profil->username, array($user->username,$info_dest,$photoDefautUser,$info_exp));								@JL::mail($profil->email, $mailing->titre, $mailingTexte);			}		}		// conserve le dernier événement effectué sur un profil		function addLastEvent($user_id = 0, $last_event_user_id = 0, $last_event_type = 0, $last_event_data = 0) {			global $db;			$query = "UPDATE user_stats SET"			." last_event_user_id = '".(int)$last_event_user_id."',"			." last_event_type = '".(int)$last_event_type."',"			." last_event_data = '".(int)$last_event_data."'"			." WHERE user_id = '".(int)$user_id."'"			;			$db->query($query);		}		// ajoute des points à un utilisateur log		function addPoints($points_id, $user_id, $data = '') {			global $db;			// vérifie si le classement du mois précédent a été établi			JL::rankingPoints();			// récup les infos de l'action			$query = "SELECT id, points, nb_max_par_data"			." FROM points"			." WHERE id = '".$db->escape($points_id)."'"			." LIMIT 0,1"			;			$point = $db->loadObject($query);			// si le nombre d'attributions de point est limité			if($point->nb_max_par_data > 0) {				// check combien de fois l'utilisateur a été crédit pour cette action				$query = "SELECT COUNT(*)"				." FROM points_user"				." WHERE points_id = '".$db->escape($points_id)."' AND user_id = '".$db->escape($user_id)."' AND data LIKE '".$db->escape($data)."'"				;				$nb = (int)$db->loadResult($query);				// si le nombre de crédits limite a déjà été attribué				if($nb >= $point->nb_max_par_data) {					return false;				}			}			// insert le crédit dans la DB			$query = "INSERT INTO points_user SET"			." points_id = '".$db->escape($points_id)."',"			." user_id = '".$db->escape($user_id)."',"			." data = '".$db->escape($data)."',"			." datetime = NOW()"			;			$db->query($query);			// récup le nombre de points total de l'utilisateur			$query = "SELECT points_total FROM user_stats WHERE user_id = '".$db->escape($user_id)."'";			$points_total = $db->loadResult($query);			// mise à jour des stats de l'utilisateur			if($points_id == 20) { // retrait de points				$points_total_new = $points_total - (int)$data;			} else { // ajout de points				$points_total_new = $points_total + $point->points;			}			// mise à jour du total de points			$query = "UPDATE user_stats SET points_total = '".$db->escape($points_total_new)."' WHERE user_id = '".$db->escape($user_id)."'";			$db->query($query);		}		// détermine s'il faut établir le classement du mois précédent. Ainsi, si le site est down le 1er du mois, le classement sera établi le 2. On est sûr de ne pas perdre un mois !		function rankingPoints() {			global $db;			$annee_mois = date('Y-m', mktime(0, 0, 0, date("m")-1, date("d"), date("Y")));			// récup un gagnant du mois précédent			$query = "SELECT id"			." FROM points_gagnants"			." WHERE annee_mois LIKE '".$db->escape($annee_mois)."'"			." LIMIT 0,1"			;			$gagnant = $db->loadResult($query);			// si le classement n'a pas été établi			if(!$gagnant) {				// variables locales				$where 		= array();				$_where		= '';				// exclue les profils helvetica media, les inactifs et suspendus				$where[]	= 'up.helvetica = 0';				$where[]	= 'u.confirmed = 1';				$where[]	= 'u.published = 1';				if(count($where)) {					$_where = " WHERE ".implode(" AND ", $where);				}				// récup les 10 premiers du classement actuel				$query = "SELECT u.id, u.username, us.points_total AS total"				." FROM user_stats AS us"				." INNER JOIN user AS u ON u.id = us.user_id"				." INNER JOIN user_profil AS up ON up.user_id = u.id"				.$_where				." ORDER BY us.points_total DESC, u.creation_date ASC"				." LIMIT 0,10"				;				$rows = $db->loadObjectList($query);				if(is_array($rows)) {					// 1ère place					if(isset($rows[0])) JL::winnerPoints($annee_mois, 1, $rows[0]);					/*// 2ème place					if(isset($rows[1])) JL::winnerPoints($annee_mois, 2, $rows[1]);					// 3ème place					if(isset($rows[2])) JL::winnerPoints($annee_mois, 3, $rows[2]);*/					// enregistre les 10 premiers du classement					foreach($rows as $row) {						$query = "INSERT INTO points_classements SET"						." user_id = '".$db->escape($row->id)."',"						." points = '".$db->escape($row->total)."',"						." annee_mois = '".$db->escape($annee_mois)."'"						;						$db->query($query);					}				}			}		}		// enregistre un gagnant		function winnerPoints($annee_mois, $position, &$row) {			global $langue;			include("lang/app_framework.".$_GET['lang'].".php");			global $db;			// récup les infos déjà connues			$query = "SELECT nom, prenom, adresse, code_postal"			." FROM user_profil"			." WHERE user_id = '".$db->escape($row->id)."'"			." LIMIT 0,1"			;			$winner = $db->loadResult($query);			// sauvegarde le gagnant (dumoins les infos connues ou présumées)			$query = "INSERT INTO points_gagnants SET"			." annee_mois = '".$db->escape($annee_mois)."',"			." user_id = '".$db->escape($row->id)."',"			." nom = '".$db->escape($winner->nom)."',"			." prenom = '".$db->escape($winner->prenom)."',"			." adresse = '".$db->escape($winner->adresse)."',"			." code_postal = '".$db->escape($winner->code_postal)."',"			." position = '".$db->escape($position)."'"			;			$db->query($query);			// position à utiliser dans le MP			$positionTxt 	= '';			$valeurTxt		= '';			switch($position) {				case 1:					$positionTxt 	= ''.$lang_framework["Ere1"].'';					/*$valeurTxt		= '279.90';					$gammeTxt		= ''.$lang_framework["DansLaGammeSensation"].'';*/				break;				/*case 2:					$positionTxt 	= ''.$lang_framework["Eme2"].'';					$valeurTxt		= '149.90';					$gammeTxt		= ''.$lang_framework["DansLaGammeCoffret"].'';				break;				case 3:					$positionTxt 	= ''.$lang_framework["Eme3"].'';					$valeurTxt		= '79.90';					$gammeTxt		= ''.$lang_framework["DansLaGammeAventure"].'';				break;*/			}			// récup le MP de victoire			$query = "SELECT titre, texte"			." FROM notification"			." WHERE id = 4"			." LIMIT 0,1"			;			$mp = $db->loadObject($query);			// envoi du MP d'annonce de victoire			$query = "INSERT INTO message SET"			." user_id_from = '1',"			." user_id_to = '".$db->escape($row->id)."',"			." titre = '".$mp->titre."',"			." texte = '".$db->escape(sprintf($mp->texte, $row->username, $positionTxt, date('m/Y', mktime(0, 0, 0, date("m")-1, date("d"), date("Y")))/*, $gammeTxt, $valeurTxt*/))."',"			." date_envoi = NOW()"			;			$db->query($query);			// remise à 0 des points du gagnant			$query = "UPDATE user_stats SET points_total = 0 WHERE user_id = '".$db->escape($row->id)."'";			$db->query($query);		}		// remplace les mots clés du genre {texte}, {site_url}, {username}, etc...		function getMailHtml($templatePath, $titre = '', $texte = '', $username = '', $var = null) {			// récup le code html du template			$html		= str_replace('{texte}', 	$texte, 	file_get_contents($templatePath));			// remplace les mots clés			$html		= str_replace('{titre}', 	$titre, 	$html);			$html		= str_replace('{username}', $username, 	$html);			$html		= str_replace('{site_url}', SITE_URL, 	$html);			if(is_array($var)) {				$count = count($var);				for($i=0; $i<$count; $i++) $html = str_replace('{var'.($i+1).'}', $var[$i], $html);			}			return $html;		}		/* ******************************************************************************************************************************* */											// FONCTIONS ISSUES DE JOOMLA		/* ******************************************************************************************************************************* */		function makeOption($value, $text='', $value_name='value', $text_name='text') {			$obj = new stdClass;			$obj->$value_name = $value;			$obj->$text_name = trim( $text ) ? $text : $value;			return $obj;		}		/**		* Generates an HTML select list		* @param array An array of objects		* @param string The value of the HTML name attribute		* @param string Additional HTML attributes for the <select> tag		* @param string The name of the object variable for the option value		* @param string The name of the object variable for the option text		* @param mixed The key that is selected		* @returns string HTML for the select list		*/		function makeSelectList( &$arr, $tag_name, $tag_attribs, $key, $text, $selected=NULL ) {			// check if array			if ( is_array( $arr ) ) {				reset( $arr );			}			$html 	= "\n<select name=\"$tag_name\" $tag_attribs>";			$count 	= count( $arr );			for ($i=0, $n=$count; $i < $n; $i++ ) {				$k = $arr[$i]->$key;				$t = $arr[$i]->$text;				$id = ( isset($arr[$i]->id) ? @$arr[$i]->id : null);				$extra = '';				$extra .= $id ? " id=\"" . $arr[$i]->id . "\"" : '';				if (is_array( $selected )) {					foreach ($selected as $obj) {						$k2 = $obj->$key;						if ($k == $k2) {							$extra .= " selected=\"selected\"";							break;						}					}				} else {					$extra .= ($k == $selected ? " selected=\"selected\"" : '');				}				$html .= "\n\t<option value=\"".$k."\"$extra>" . htmlentities($t) . "</option>";			}			$html .= "\n</select>\n";			return $html;		}						function makeCheckboxList( &$arr, $tag_name, $tag_attribs, $key, $text, $check1, $check2, $check3, $lang) {			// check if array			if ( is_array( $arr ) ) {				reset( $arr );			}			$html 	= "<table width='100%' style='font-weight:normal;text-align:left;'>";			$count 	= count( $arr );			for ($i=0, $n=$count; $i < $n; $i++ ) {				if($i%4==0){					$html.="<tr>";				}									$k = $arr[$i]->$key;				$t = $arr[$i]->$text;				if($k == $check1 || $k == $check2 || $k == $check3) {					$extra = " checked";				}else{					$extra = "";				}				$html .= "<td width='25%' valign='top'><input type='checkbox' style='width:16px' name='".$tag_name."' value='".$k."'".$extra." onclick='chkcontrol_".$lang."(".$i.",\"".$tag_name."\")'>" .htmlentities($t)."</td>";				if($i%4==3 || $i==$n-1){					$html.="</tr>";				}			}			$html .= "</table>";			return $html;		}			function makeCheckboxSearchList( &$arr, $tag_name, $tag_attribs, $key, $text, $check) {			// check if array			if ( is_array( $arr ) ) {				reset( $arr );			}						$html 	= "<table width='100%' style='font-weight:normal;text-align:left;'>";			$count 	= count( $arr );			for ($i=0, $n=$count; $i < $n; $i++ ) {				if($i%3==0){					$html.="<tr>";				}									$k = $arr[$i]->$key;				$t = $arr[$i]->$text;												if(in_array($k, $check)) {					$extra = " checked";				}else{					$extra = "";				}				$html .= "<td width='33%' valign='top'><input type='checkbox' style='width:16px' name='".$tag_name."' value='".$k."'".$extra." >" .htmlentities($t)."</td>";				if($i%3==2 || $i==$n-1){					$html.="</tr>";				}			}			$html .= "</table>";			return $html;		}						function radioYesNo($name, $selectedValue, $yesLabel = 'Oui', $noLabel = 'Non', $yesValue = 1, $noValue = 0) {		?>			<input type="radio" name="<? echo $name; ?>" id="<? echo $name.'_'.$yesValue; ?>" value="<? echo $yesValue; ?>" <? if($selectedValue == $yesValue) { ?>checked<? } ?>> <label for="<? echo $name.'_'.$yesValue; ?>"><? echo $yesLabel; ?></label>&nbsp;			<input type="radio" name="<? echo $name; ?>" id="<? echo $name.'_'.$noValue; ?>" value="<? echo $noValue; ?>" <? if($selectedValue == $noValue) { ?>checked<? } ?>> <label for="<? echo $name.'_'.$noValue; ?>"><? echo $noLabel; ?></label>		<?		}		function gender($name, $selectedValue, $yesLabel = 'Oui', $noLabel = 'Non', $yesValue = 1, $noValue = 0){		?>		    			    				<input id="<? echo $name.'_'.$yesValue; ?>" name="<? echo $name; ?>"  type="radio" value="<? echo $yesValue; ?>" <? if($selectedValue == $yesValue) { ?>checked<? } ?>> <label for="<? echo $name.'_'.$yesValue; ?>"><? echo $yesLabel; ?></label>&nbsp;    				<input id="<? echo $name.'_'.$yesValue; ?>" name="<? echo $name; ?>" type="radio" value="<? echo $yesValue; ?>"<? if($selectedValue == $noValue) { ?>checked<? } ?>> <label for="<? echo $name.'_'.$noValue; ?>"><? echo $noLabel; ?></label>;			<?		}						function calcul_age(&$date_naissance){			global $langue;			include("lang/app_framework.".$_GET['lang'].".php");						if($date_naissance == '0000-00-00')				return '';						$date_naiss	= explode('/', date('d/m/Y',strtotime($date_naissance)));															$jour_naiss = $date_naiss[0];			$mois_naiss = $date_naiss[1];			$annee_naiss = $date_naiss[2];						$today_jour = date('d');			$today_mois = date('m');			$today_annee = date('Y');						$age_annee = $today_annee - $annee_naiss;//différence entre les années						//si nombre année supérieur ou égal à 2 ans			if($age_annee >= 3){								//on vérifie si l'anniversaire du participant n'est pas encore passé				//on vérifie si le mois du jour est avant ou le même (si avant on retire un an)				if($today_mois <= $mois_naiss){										//si c'est le même mois on vérifie si le jour est avant (si oui, on retire un an)					if($today_mois == $mois_naiss){						if($today_jour < $jour_naiss)							$age_annee--;					}else						$age_annee--;				}								$age = $age_annee.' '.$lang_framework["Ans"];							}elseif($age_annee < 3 && $age_annee >= 0){								$age_mois = $today_mois - $mois_naiss;//différence entre les mois								//on ajoute les années en mois si + d'un an				if($age_annee >= 2)					$age_mois += 24;				elseif($age_annee >= 1)					$age_mois += 12;								//on vérifie si le jour est avant (si oui, on retire un mois)				if($today_jour < $jour_naiss)					$age_mois--;									if($age_mois > 1)					$age = $age_mois.' '.$lang_framework["Mois"];				else					$age = $age_mois.' '.$lang_framework["Mois1"];			}else{				$age = 'error';			}						 return $age;		}				function calcul_age_adulte_admin(&$date_naissance, &$i){						if($date_naissance == '0000-00-00')				return '';						$date_naiss	= explode('/', date('d/m/Y',strtotime($date_naissance)));															$jour_naiss = $date_naiss[0];			$mois_naiss = $date_naiss[1];			$annee_naiss = $date_naiss[2];						$today_jour = 31;			$today_mois = 12;			$today_annee = $i;						$age_annee = $today_annee - $annee_naiss;//différence entre les années						//si nombre année supérieur ou égal à 2 ans			if($age_annee >= 3){								//on vérifie si l'anniversaire du participant n'est pas encore passé				//on vérifie si le mois du jour est avant ou le même (si avant on retire un an)				if($today_mois <= $mois_naiss){										//si c'est le même mois on vérifie si le jour est avant (si oui, on retire un an)					if($today_mois == $mois_naiss){						if($today_jour < $jour_naiss)							$age_annee--;					}else						$age_annee--;				}								$age = $age_annee;							}else{				$age = '';			}						 return $age;		}	}?>
+<?php<?php <?php <?php <?php <?php <?php <?php <?php <?php <?php <?php <?php <?php <?php <?php <?php <?php <?php <?php <?php <?php <?php <?php <?php <?php <?php <?php <?php 
+ini_set('MAX_EXECUTION_TIME', -1);
+	class JL {
+		// TODO: url rewriting
+		function url($url) {
+			return $url;
+		}
+		// retourne true si le membre est abonnï¿½, sinon false
+		function checkAbonnement() {
+			global $user, $langue;
+			return ($user->gold_limit_date == '0000-00-00' || ($user->gold_limit_date != '0000-00-00' && strtotime($user->gold_limit_date) < time())) ? false : true;
+		}
+		// crypte les adresses mail et url
+		function messageEncode($texte, $replacement) {
+		    // convert support@pogoda.in
+		    $texte = ereg_replace('[-a-z0-9!#$%&\'*+/=?^_`{|}~.]+ *(@|\(at\)|\( at \)| \( at \) ) *([.]?[a-zA-Z0-9_/-])*', $replacement, $texte);
+		    // convert http://www.pogoda.in/new_york/eng/
+		    $texte = ereg_replace('[a-zA-Z]+://(([.]?[a-zA-Z0-9_/-])*)', $replacement, $texte);
+		    // convert www.pogoda.in/new_york/eng/
+		    $texte = ereg_replace('(www([-]*[.]?[a-zA-Z0-9_/-?&%])*)', $replacement, $texte);
+		    return $texte;
+		}
+		// ajoute des htmlentities ï¿½ chaque champ d'un objet, en excluant les champs prï¿½sents dans la chaine $exclure
+		function makeSafe(&$obj, $exclure = '') {
+			$exclusion	= array();
+			if($exclure) {
+				$exclusion	= explode(',', $exclure);
+			}
+			if(is_object($obj)) {
+				foreach($obj as $k => $v) {
+					if(!in_array($k, $exclusion)) {
+						$obj->{$k} = makeSafe($v);
+					}
+				}
+			} elseif(is_array($obj)) {
+				foreach($obj as $k => $v) {
+					if(!in_array($k, $exclusion)) {
+						$obj[$k] = makeSafe($v);
+					}
+				}
+			}
+		}
+		
+		
+		// vï¿½rifie si l'application ï¿½ charger existe, et que le visiteur n'essaye pas divers hacks dans l'url avec la variable $app
+		function checkApp($app_load, $admin = '') {
+			// variables
+			$app_ok	= true;
+			// on conserve uniquement les caractï¿½res alphanumï¿½riques et _
+			$app_load_check	= preg_replace('#[^a-z0-9_]#', '', $app_load);
+			// dï¿½termine si c'est une appli admin ou visiteur
+			if(!$admin) { // app cotï¿½ front
+				$path	= SITE_PATH;
+			} else { // app cotï¿½ back
+				$path	= SITE_PATH_ADMIN;
+			}
+			// si le nom de l'application n'est pas correct
+			if($app_load_check != $app_load) {
+				$app_ok	= false;
+			} elseif(!is_file($path.'/app/app_'.$app_load.'/'.$app_load.'.php')) { // si le chemin de l'application qui semble correcte n'existe pas
+				$app_ok	= false;
+			}
+			// retourne vrai si on peut charger l'application
+			return $app_ok;
+		}
+		
+		// vï¿½rifie si l'application ï¿½ charger existe, et que le visiteur n'essaye pas divers hacks dans l'url avec la variable $app
+		function checkAppExpert($app_load) {
+			// variables
+			$app_ok	= true;
+			// on conserve uniquement les caractï¿½res alphanumï¿½riques et _
+			$app_load_check	= preg_replace('#[^a-z0-9_]#', '', $app_load);
+			// dï¿½termine si c'est une appli admin ou visiteur
+			
+			$path	= SITE_PATH_ADMIN_EXPERT;
+			
+			// si le nom de l'application n'est pas correct
+			if($app_load_check != $app_load) {
+				$app_ok	= false;
+			} elseif(!is_file($path.'/app/app_'.$app_load.'/'.$app_load.'.php')) { // si le chemin de l'application qui semble correcte n'existe pas
+				$app_ok	= false;
+			}
+			// retourne vrai si on peut charger l'application
+			return $app_ok;
+		}
+		
+		
+		// charge le corps de la page, en prï¿½cisant en param si c'est une appli $admin (charge par dï¿½faut le $app)
+		function loadBody($admin = '') {
+			global $app;
+			JL::loadApp($app, $admin);
+		}
+		
+		// charge le corps de la page, en prï¿½cisant en param si c'est une appli $admin (charge par dï¿½faut le $app)
+		function loadBodyExpert() {
+			global $app;
+			JL::loadAppExpert($app);
+		}
+		
+		
+		// charge l'application passï¿½e en param
+		function loadApp($app_load, $admin = '') {
+			// dï¿½termine si c'est une appli admin ou visiteur
+			if(!$admin) { // app cotï¿½ front
+				$path	= SITE_PATH;
+			} else { // app cotï¿½ back
+				$path	= SITE_PATH_ADMIN;
+			}
+			// si l'application est valide
+			if(JL::checkApp($app_load, $admin)) {
+				include($path.'/app/app_'.$app_load.'/'.$app_load.'.php'); // charge l'application
+			} else {
+				echo 'Application introuvable.'; // application chargï¿½e ï¿½ la main, depuis une autre application, sinon une erreur 404 aurait ï¿½tï¿½ levï¿½e
+			}
+		}
+		
+		// charge l'application passï¿½e en param
+		function loadAppExpert($app_load) {
+			// dï¿½termine si c'est une appli admin ou visiteur
+			$path	= SITE_PATH_ADMIN_EXPERT;
+			
+			// si l'application est valide
+			if(JL::checkAppExpert($app_load)) {
+				include($path.'/app/app_'.$app_load.'/'.$app_load.'.php'); // charge l'application
+			} else {
+				echo 'Application introuvable.'; // application chargï¿½e ï¿½ la main, depuis une autre application, sinon une erreur 404 aurait ï¿½tï¿½ levï¿½e
+			}
+		}
+		
+		
+		// charge le module passï¿½ en param
+		function loadMod($mod, $admin = '') {
+			//die($langue);
+			global $langue;
+			// dï¿½termine si c'est une appli admin ou visiteur
+			if(!$admin) { // app cotï¿½ front
+				$path	= SITE_PATH;
+			} else { // app cotï¿½ back
+				$path	= SITE_PATH_ADMIN;
+			}
+			if(is_file($path.'/mod/mod_'.$mod.'.php')) {
+				include($path.'/mod/mod_'.$mod.'.php');
+			} else {
+				echo 'Module ['.$mod.'] introuvable.';
+			}
+		}
+		
+		// charge le module passï¿½ en param
+		function loadModExpert($mod) {
+			//die($langue);
+			global $langue;
+			// dï¿½termine si c'est une appli admin ou visiteur
+			$path	= SITE_PATH_ADMIN_EXPERT;
+			
+			if(is_file($path.'/mod/mod_'.$mod.'.php')) {
+				include($path.'/mod/mod_'.$mod.'.php');
+			} else {
+				echo 'Module ['.$mod.'] introuvable.';
+			}
+		}
+		
+		
+		// gï¿½nï¿½re la clause where ï¿½ partir d'un tableau $where passï¿½ en param
+		function setWhere(&$where) {
+			if (is_array($where)) {
+				return " WHERE ".implode(' AND ', $where);
+			} else {
+				return '';
+			}
+		}
+		// rï¿½cup une variable en request
+		function getVar($key, $defaut, $addslashes = false) {
+			if($addslashes) {
+				return isset($_REQUEST[$key]) ? addslashes($_REQUEST[$key]) : addslashes($defaut);
+			} else {
+				return isset($_REQUEST[$key]) ? $_REQUEST[$key] : $defaut;
+			}
+		}
+		function cleanVar($value) {
+			return trim(str_replace('ï¿½', '\'', $value));
+		}
+		// ajoute une variable en request
+		function setVar($key, $value) {
+			$_REQUEST[$key]	= $value;
+		}
+		// rï¿½cup une variable en session
+		function getSession($key, $defaut, $addslashes = false) {
+			if($addslashes) {
+				return isset($_SESSION[$key]) ? (!is_array($_SESSION[$key]) ? addslashes($_SESSION[$key]) : $_SESSION[$key]) : (!is_array($defaut) ? addslashes($defaut) : $defaut);
+			} else {
+				return isset($_SESSION[$key]) ? $_SESSION[$key] : $defaut;
+			}
+		}
+		// rï¿½cup une variable en session, en retournant un int
+		function getSessionInt($key, $defaut) {
+			return isset($_SESSION[$key]) ? intval($_SESSION[$key]) : intval($defaut);
+		}
+		// ajoute une variable en session
+		function setSession($key, $value) {
+			$_SESSION[$key]	= $value;
+		}
+		// retourne le timestamp en microsecondes
+		function microtime_float() {
+			list($usec, $sec) = explode(" ", microtime());
+			return ((float)$usec + (float)$sec);
+		}
+		// dï¿½truit complï¿½tement la session de l'utilisateur
+		function sessionDestroy() {
+			global $db;
+			$user_id = $_SESSION['user_id'];
+			// dï¿½truit toutes les variables de session
+			$_SESSION = array();
+			// dï¿½truit le cookie de session.
+			if (isset($_COOKIE[session_name()])) {
+			    setcookie(session_name(), '', time()-42000, '/');
+			}
+			// dï¿½truit la session.
+			session_destroy();
+			
+			$query = "UPDATE user SET online = '0' WHERE id = '".$user_id."'";
+			$db->query($query);
+		}
+		// envoie un mail en html
+		function mail($destinataire, $titre, $texte, $utf8 = true) {
+			// headers
+			$headers = 'Mime-Version: 1.0'."\r\n";
+			$headers = 'From: "'.SITE_MAIL_FROM.'" <'.SITE_MAIL.'>'."\r\n";
+			$headers .= 'Content-type: text/html; charset='.($utf8 ? 'utf-8' : 'iso-8859-1')."\r\n";
+			//$headers .= "\r\n";
+			// envoi du mail
+			if($utf8) {
+				mail($destinataire, utf8_encode($titre), utf8_encode($texte), $headers);
+			} else {
+				mail($destinataire, $titre, $texte, $headers);
+			}
+		}
+		// envoie un mail Newsletter en html
+		function mailNewsletter($destinataire, $titre, $texte, $utf8 = true) {
+			// headers
+			$headers = 'Mime-Version: 1.0'."\r\n";
+			$headers = 'From: "Newsletter solocircl.com" <newsletter@solocircl.com>'."\r\n";
+			$headers .= 'Content-type: text/html; charset=utf-8'."\r\n";
+			// envoi du mail
+			
+			mail($destinataire, $titre, $texte, $headers);
+			
+		}
+		// crï¿½e le dossier d'upload temporaire, et enregistre le nom du dossier en session
+		function makeUploadDir() {
+			global $user;
+			$dir_temp = 'images/profil';
+			if($user->id) {
+				$upload_dir = $user->id;
+			} else {
+				$upload_dir = JL::getSession('upload_dir', 0);
+				if(!$upload_dir) {
+					do {
+						$upload_dir = JL::microtime_float()*10000;
+					} while(is_dir($dir_temp.'/'.$upload_dir));
+				}
+			}
+			JL::setSession('upload_dir', $upload_dir);
+			$dest_dossier	= $dir_temp.'/'.$upload_dir;
+			if(!is_dir($dest_dossier)) {
+				mkdir($dest_dossier,0777);
+				chmod($dest_dossier,0777);
+			}
+		}
+		
+		// crï¿½e le dossier d'upload temporaire et retourne son chemin
+		function getUploadDir($base, $upload_dir = '') {
+			
+			if(!$upload_dir) {
+				do {
+					$upload_dir = JL::microtime_float()*10000;
+				} while(is_dir($base.'/'.$upload_dir));
+			}
+			
+			$dest_dossier	= $base.'/'.$upload_dir;
+			if(!is_dir($dest_dossier)) {
+				mkdir($dest_dossier, 0777);
+				chmod($dest_dossier, 0777);
+			}
+			
+			return $dest_dossier;
+			
+		}
+		
+		
+		// affichage des messages systï¿½me
+		function messages(&$messages) {
+			// s'il y a des messages ï¿½ afficher
+			if (is_array($messages)) {
+				
+				$type=0;
+				
+				foreach($messages as $message){
+					if(preg_match('/error/', $message)){
+						$type = 1;
+					}elseif(preg_match('/warning/', $message)){
+						$type =2;
+					}
+				}
+				
+				if($type == 1){
+					echo "<div class='error'>";
+				}elseif($type == 2){
+					echo "<div class='warning'>";
+				}else{
+					echo "<div class='valid'>";
+				}
+				
+				// pour chaque message
+				foreach($messages as $message) {
+					echo $message;
+				}
+				
+				echo "</div>";
+			}
+		}
+		function redirect($url) {
+			if (headers_sent()) {
+				echo "<script>document.location.href='".JL::url($url)."';</script>\n";
+			} else {
+				@ob_end_clean();
+				header( 'HTTP/1.1 301 Moved Permanently' );
+				header( "Location: ".JL::url($url));
+			}
+			exit();
+		}
+		// retourne l'url de la photo numï¿½ro $photo_i, de type $photo_type, de l'utilisateur $user_id
+		function userGetPhoto($user_id, $photo_format, $photo_type, $photo_i) {
+			// variables
+			$dir = 'images/profil/'.$user_id;
+			// ajout d'un sï¿½parateur si besoin est
+			if($photo_type) {
+				$photo_type = '-'.$photo_type;
+			}
+			// photo existe
+			if(is_file(SITE_PATH.'/'.$dir.'/parent-solo-'.$photo_format.$photo_type.'-'.$photo_i.'.jpg')) {
+				return SITE_URL.'/'.$dir.'/parent-solo-'.$photo_format.$photo_type.'-'.$photo_i.'.jpg';
+			} else { // photo n'existe pas
+				// test sur les 6 photos
+				for($i=1;$i<=6;$i++) {
+					if(is_file(SITE_PATH.'/'.$dir.'/parent-solo-'.$photo_format.$photo_type.'-'.$i.'.jpg')) {
+						// retourne la premiï¿½re photo trouvï¿½e
+						return SITE_URL.'/'.$dir.'/parent-solo-'.$photo_format.$photo_type.'-'.$i.'.jpg';
+					}
+				}
+				return false;
+			}
+		}
+		function notificationBasique($type = 'visite', $profil_id) {
+			global $langue;
+			include("lang/app_framework.".$_GET['lang'].".php");
+			global $db, $user;
+			// variables
+			
+			// rï¿½cup les infos du profil
+			$query = "SELECT u.id, u.username, u.email, up.genre, up.photo_defaut, un.new_".$type
+			." FROM user AS u"
+			." INNER JOIN user_profil AS up ON up.user_id = u.id"
+			." INNER JOIN user_notification AS un ON un.user_id = u.id"
+			." WHERE u.id = '".$profil_id."'"
+			." LIMIT 0,1"
+			;
+			$profil = $db->loadObject($query);
+			if((int)$profil->{'new_'.$type}) {
+				// rï¿½cup les infos de l'utilisateur log
+				$query = "SELECT up.photo_defaut, IFNULL(pc.nom_".$_GET['lang'].", '') AS canton, up.nb_enfants, up.genre, CURRENT_DATE, (YEAR(CURRENT_DATE)-YEAR(up.naissance_date)) - (RIGHT(CURRENT_DATE,5)<RIGHT(up.naissance_date,5)) AS age"
+				." FROM user AS u"
+				." INNER JOIN user_profil AS up ON up.user_id = u.id"
+				." LEFT JOIN profil_canton AS pc ON pc.id = up.canton_id"
+				." WHERE up.user_id = '".$user->id."'"
+				." LIMIT 0,1"
+				;
+				$userLog = $db->loadObject($query);
+				// rï¿½cup la photo par dï¿½faut du profil
+				$photoDefautProfil 	= JL::userGetPhoto($profil->id, 'profil', '', $profil->photo_defaut);
+				if(!$photoDefautProfil) {
+					$photoDefautProfil = SITE_URL.'/parentsolo/images/parent-solo-profil-'.$profil->genre.'-'.$_GET['lang'].'.jpg';
+				}
+				// rï¿½cup la photo par dï¿½faut de l'utilisateur log
+				$photoDefautUser 	= JL::userGetPhoto($user->id, 'profil', '', $userLog->photo_defaut);
+				if(!$photoDefautUser) {
+					$photoDefautUser = SITE_URL.'/parentsolo/images/parent-solo-profil-'.$userLog->genre.'-'.$_GET['lang'].'.jpg';
+				}
+				// rï¿½cup les stats du compte
+				$query = "SELECT visite_total, fleur_new, message_new, CURRENT_DATE, IF(gold_limit_date > CURRENT_DATE, 1, 0) AS gold, gold_limit_date"
+				." FROM user_stats"
+				." WHERE user_id = '".$profil->id."'"
+				." LIMIT 0,1"
+				;
+				$userStats = $db->loadObject($query);
+				
+				$info_dest = "<b>".$userStats->message_new."</b> ".($userStats->message_new > 1 ? $lang_framework["NouveauxMessages"] : $lang_framework["NouveauMessage"])."<br />"
+				."<b>".$userStats->fleur_new."</b> ".($userStats->fleur_new > 1 ? $lang_framework["NouvellesRoses"] :$lang_framework["NouvelleRose"])."<br />"
+				."<b>".$userStats->visite_total."</b> ".($userStats->visite_total > 1 ? $lang_framework["Visites"] :$lang_framework["Visite"])."<br />"
+				.($userStats->gold ? "<b>".$lang_framework['FinAbonnement'].":</b> ".date('d/m/y', strtotime($userStats->gold_limit_date))."" : "<a href='".JL::url(SITE_URL.'/index.php?app=abonnement&action=tarifs'.'&'.$_GET['lang'])."'> <b>".$lang_framework['AbonnezVous']."!</b></a>");
+				
+				$info_exp =  "<b>".$userLog->age."</b> ".$lang_framework['Ans']."<br />"
+				."<b>".$userLog->nb_enfants."</b> ".($userLog->nb_enfants > 1 ? $lang_framework["Enfants"] : $lang_framework["Enfant"])."<br />"
+				."<b>".makeSafe($userLog->canton)."</b>";
+				
+				
+				if($type=='message'){
+					if($_GET['lang'] == 'fr'){
+						$mailing_id = 33;
+					}elseif($_GET['lang'] == 'en'){
+						$mailing_id = 43;
+					}elseif($_GET['lang'] == 'de'){
+						$mailing_id = 36;
+					}
+				}elseif($type=='visite'){
+					if($_GET['lang'] == 'fr'){
+						$mailing_id = 35;
+					}elseif($_GET['lang'] == 'en'){
+						$mailing_id = 45;
+					}elseif($_GET['lang'] == 'de'){
+						$mailing_id = 38;
+					}
+				}elseif($type=='fleur'){
+					if($_GET['lang'] == 'fr'){
+						$mailing_id = 34;
+					}elseif($_GET['lang'] == 'en'){
+						$mailing_id = 44;
+					}elseif($_GET['lang'] == 'de'){
+						$mailing_id = 37;
+					}
+				}	
+				
+			
+				// charge le texte du mail
+				$query = "SELECT titre, texte, template"
+				." FROM mailing"
+				." WHERE id = '".$db->escape($mailing_id)."'"
+				." LIMIT 0,1"
+				;
+				$mailing = $db->loadObject($query);
+
+				$mailing->titre		= str_replace('{var1}', $user->username, 	$mailing->titre);
+
+				// envoi du mail de confirmation
+				// intï¿½gration du texte et du template, ainsi que traitement des mots clï¿½s
+				$mailingTexte 	= JL::getMailHtml(SITE_PATH_ADMIN.'/app/app_mailing/template/'.$mailing->template, $mailing->titre, $mailing->texte,$profil->username, array($user->username,$info_dest,$photoDefautUser,$info_exp));
+				
+				@JL::mail($profil->email, $mailing->titre, $mailingTexte);
+			}
+		}
+		// conserve le dernier ï¿½vï¿½nement effectuï¿½ sur un profil
+		function addLastEvent($user_id = 0, $last_event_user_id = 0, $last_event_type = 0, $last_event_data = 0) {
+			global $db;
+			$query = "UPDATE user_stats SET"
+			." last_event_user_id = '".(int)$last_event_user_id."',"
+			." last_event_type = '".(int)$last_event_type."',"
+			." last_event_data = '".(int)$last_event_data."'"
+			." WHERE user_id = '".(int)$user_id."'"
+			;
+			$db->query($query);
+		}
+		// ajoute des points ï¿½ un utilisateur log
+		function addPoints($points_id, $user_id, $data = '') {
+			global $db;
+			// vï¿½rifie si le classement du mois prï¿½cï¿½dent a ï¿½tï¿½ ï¿½tabli
+			JL::rankingPoints();
+			// rï¿½cup les infos de l'action
+			$query = "SELECT id, points, nb_max_par_data"
+			." FROM points"
+			." WHERE id = '".$db->escape($points_id)."'"
+			." LIMIT 0,1"
+			;
+			$point = $db->loadObject($query);
+			// si le nombre d'attributions de point est limitï¿½
+			if($point->nb_max_par_data > 0) {
+				// check combien de fois l'utilisateur a ï¿½tï¿½ crï¿½dit pour cette action
+				$query = "SELECT COUNT(*)"
+				." FROM points_user"
+				." WHERE points_id = '".$db->escape($points_id)."' AND user_id = '".$db->escape($user_id)."' AND data LIKE '".$db->escape($data)."'"
+				;
+				$nb = (int)$db->loadResult($query);
+				// si le nombre de crï¿½dits limite a dï¿½jï¿½ ï¿½tï¿½ attribuï¿½
+				if($nb >= $point->nb_max_par_data) {
+					return false;
+				}
+			}
+			// insert le crï¿½dit dans la DB
+			$query = "INSERT INTO points_user SET"
+			." points_id = '".$db->escape($points_id)."',"
+			." user_id = '".$db->escape($user_id)."',"
+			." data = '".$db->escape($data)."',"
+			." datetime = NOW()"
+			;
+			$db->query($query);
+			// rï¿½cup le nombre de points total de l'utilisateur
+			$query = "SELECT points_total FROM user_stats WHERE user_id = '".$db->escape($user_id)."'";
+			$points_total = $db->loadResult($query);
+			// mise ï¿½ jour des stats de l'utilisateur
+			if($points_id == 20) { // retrait de points
+				$points_total_new = $points_total - (int)$data;
+			} else { // ajout de points
+				$points_total_new = $points_total + $point->points;
+			}
+			// mise ï¿½ jour du total de points
+			$query = "UPDATE user_stats SET points_total = '".$db->escape($points_total_new)."' WHERE user_id = '".$db->escape($user_id)."'";
+			$db->query($query);
+		}
+		// dï¿½termine s'il faut ï¿½tablir le classement du mois prï¿½cï¿½dent. Ainsi, si le site est down le 1er du mois, le classement sera ï¿½tabli le 2. On est sï¿½r de ne pas perdre un mois !
+		function rankingPoints() {
+			global $db;
+			$annee_mois = date('Y-m', mktime(0, 0, 0, date("m")-1, date("d"), date("Y")));
+			// rï¿½cup un gagnant du mois prï¿½cï¿½dent
+			$query = "SELECT id"
+			." FROM points_gagnants"
+			." WHERE annee_mois LIKE '".$db->escape($annee_mois)."'"
+			." LIMIT 0,1"
+			;
+			$gagnant = $db->loadResult($query);
+			// si le classement n'a pas ï¿½tï¿½ ï¿½tabli
+			if(!$gagnant) {
+				// variables locales
+				$where 		= array();
+				$_where		= '';
+				// exclue les profils helvetica media, les inactifs et suspendus
+				$where[]	= 'up.helvetica = 0';
+				$where[]	= 'u.confirmed = 1';
+				$where[]	= 'u.published = 1';
+				if (is_array($where)) {
+					$_where = " WHERE ".implode(" AND ", $where);
+				}
+				// rï¿½cup les 10 premiers du classement actuel
+				$query = "SELECT u.id, u.username, us.points_total AS total"
+				." FROM user_stats AS us"
+				." INNER JOIN user AS u ON u.id = us.user_id"
+				." INNER JOIN user_profil AS up ON up.user_id = u.id"
+				.$_where
+				." ORDER BY us.points_total DESC, u.creation_date ASC"
+				." LIMIT 0,10"
+				;
+				$rows = $db->loadObjectList($query);
+				if(is_array($rows)) {
+					// 1ï¿½re place
+					if(isset($rows[0])) JL::winnerPoints($annee_mois, 1, $rows[0]);
+					/*// 2ï¿½me place
+					if(isset($rows[1])) JL::winnerPoints($annee_mois, 2, $rows[1]);
+					// 3ï¿½me place
+					if(isset($rows[2])) JL::winnerPoints($annee_mois, 3, $rows[2]);*/
+					// enregistre les 10 premiers du classement
+					foreach($rows as $row) {
+						$query = "INSERT INTO points_classements SET"
+						." user_id = '".$db->escape($row->id)."',"
+						." points = '".$db->escape($row->total)."',"
+						." annee_mois = '".$db->escape($annee_mois)."'"
+						;
+						$db->query($query);
+					}
+				}
+			}
+		}
+		// enregistre un gagnant
+		function winnerPoints($annee_mois, $position, &$row) {
+			global $langue;
+			include("lang/app_framework.".$_GET['lang'].".php");
+			global $db;
+			// rï¿½cup les infos dï¿½jï¿½ connues
+			$query = "SELECT nom, prenom, adresse, code_postal"
+			." FROM user_profil"
+			." WHERE user_id = '".$db->escape($row->id)."'"
+			." LIMIT 0,1"
+			;
+			$winner = $db->loadResult($query);
+			// sauvegarde le gagnant (dumoins les infos connues ou prï¿½sumï¿½es)
+			$query = "INSERT INTO points_gagnants SET"
+			." annee_mois = '".$db->escape($annee_mois)."',"
+			." user_id = '".$db->escape($row->id)."',"
+			." nom = '".$db->escape($winner->nom)."',"
+			." prenom = '".$db->escape($winner->prenom)."',"
+			." adresse = '".$db->escape($winner->adresse)."',"
+			." code_postal = '".$db->escape($winner->code_postal)."',"
+			." position = '".$db->escape($position)."'"
+			;
+			$db->query($query);
+			// position ï¿½ utiliser dans le MP
+			$positionTxt 	= '';
+			$valeurTxt		= '';
+			switch($position) {
+				case 1:
+					$positionTxt 	= ''.$lang_framework["Ere1"].'';
+					/*$valeurTxt		= '279.90';
+					$gammeTxt		= ''.$lang_framework["DansLaGammeSensation"].'';*/
+				break;
+				/*case 2:
+					$positionTxt 	= ''.$lang_framework["Eme2"].'';
+					$valeurTxt		= '149.90';
+					$gammeTxt		= ''.$lang_framework["DansLaGammeCoffret"].'';
+				break;
+				case 3:
+					$positionTxt 	= ''.$lang_framework["Eme3"].'';
+					$valeurTxt		= '79.90';
+					$gammeTxt		= ''.$lang_framework["DansLaGammeAventure"].'';
+				break;*/
+			}
+			// rï¿½cup le MP de victoire
+			$query = "SELECT titre, texte"
+			." FROM notification"
+			." WHERE id = 4"
+			." LIMIT 0,1"
+			;
+			$mp = $db->loadObject($query);
+			// envoi du MP d'annonce de victoire
+			$query = "INSERT INTO message SET"
+			." user_id_from = '1',"
+			." user_id_to = '".$db->escape($row->id)."',"
+			." titre = '".$mp->titre."',"
+			." texte = '".$db->escape(sprintf($mp->texte, $row->username, $positionTxt, date('m/Y', mktime(0, 0, 0, date("m")-1, date("d"), date("Y")))/*, $gammeTxt, $valeurTxt*/))."',"
+			." date_envoi = NOW()"
+			;
+			$db->query($query);
+			// remise ï¿½ 0 des points du gagnant
+			$query = "UPDATE user_stats SET points_total = 0 WHERE user_id = '".$db->escape($row->id)."'";
+			$db->query($query);
+		}
+		// remplace les mots clï¿½s du genre {texte}, {site_url}, {username}, etc...
+		function getMailHtml($templatePath, $titre = '', $texte = '', $username = '', $var = null) {
+			// rï¿½cup le code html du template
+			$html		= str_replace('{texte}', 	$texte, 	file_get_contents($templatePath));
+			// remplace les mots clï¿½s
+			$html		= str_replace('{titre}', 	$titre, 	$html);
+			$html		= str_replace('{username}', $username, 	$html);
+			$html		= str_replace('{site_url}', SITE_URL, 	$html);
+			if(is_array($var)) {
+				$count = count($var);
+				for($i=0; $i<$count; $i++) $html = str_replace('{var'.($i+1).'}', $var[$i], $html);
+			}
+			return $html;
+		}
+		/* ******************************************************************************************************************************* */
+											// FONCTIONS ISSUES DE JOOMLA
+		/* ******************************************************************************************************************************* */
+		function makeOption($value, $text='', $value_name='value', $text_name='text') {
+			$obj = new stdClass;
+			$obj->$value_name = $value;
+			$obj->$text_name = trim( $text ) ? $text : $value;
+			return $obj;
+		}
+		/**
+		* Generates an HTML select list
+		* @param array An array of objects
+		* @param string The value of the HTML name attribute
+		* @param string Additional HTML attributes for the <select> tag
+		* @param string The name of the object variable for the option value
+		* @param string The name of the object variable for the option text
+		* @param mixed The key that is selected
+		* @returns string HTML for the select list
+		*/
+		function makeSelectList( &$arr, $tag_name, $tag_attribs, $key, $text, $selected=NULL ) {
+			// check if array
+			if ( is_array( $arr ) ) {
+				reset( $arr );
+			}
+			$html 	= "\n<select name=\"$tag_name\" $tag_attribs>";
+			$count 	= count( $arr );
+			for ($i=0, $n=$count; $i < $n; $i++ ) {
+				$k = $arr[$i]->$key;
+				$t = $arr[$i]->$text;
+				$id = ( isset($arr[$i]->id) ? @$arr[$i]->id : null);
+				$extra = '';
+				$extra .= $id ? " id=\"" . $arr[$i]->id . "\"" : '';
+				if (is_array( $selected )) {
+					foreach ($selected as $obj) {
+						$k2 = $obj->$key;
+						if ($k == $k2) {
+							$extra .= " selected=\"selected\"";
+							break;
+						}
+					}
+				} else {
+					$extra .= ($k == $selected ? " selected=\"selected\"" : '');
+				}
+				$html .= "\n\t<option value=\"".$k."\"$extra>" . makeSafe($t) . "</option>";
+			}
+			$html .= "\n</select>\n";
+			return $html;
+		}
+		
+		
+		function makeCheckboxList( &$arr, $tag_name, $tag_attribs, $key, $text, $check1, $check2, $check3, $lang) {
+			// check if array
+			if ( is_array( $arr ) ) {
+				reset( $arr );
+			}
+			$html 	= "<table width='100%' style='font-weight:normal;text-align:left;'>";
+			$count 	= count( $arr );
+			for ($i=0, $n=$count; $i < $n; $i++ ) {
+				if($i%4==0){
+					$html.="<tr>";
+				}					
+				$k = $arr[$i]->$key;
+				$t = $arr[$i]->$text;
+				if($k == $check1 || $k == $check2 || $k == $check3) {
+					$extra = " checked";
+				}else{
+					$extra = "";
+				}
+				$html .= "<td width='25%' valign='top'><input type='checkbox' style='width:16px' name='".$tag_name."' value='".$k."'".$extra." onclick='chkcontrol_".$lang."(".$i.",\"".$tag_name."\")'>" .makeSafe($t)."</td>";
+				if($i%4==3 || $i==$n-1){
+					$html.="</tr>";
+				}
+			}
+			$html .= "</table>";
+			return $html;
+		}
+	
+		function makeCheckboxSearchList( &$arr, $tag_name, $tag_attribs, $key, $text, $check) {
+			// check if array
+			if ( is_array( $arr ) ) {
+				reset( $arr );
+			}
+			
+			$html 	= "<table width='100%' style='font-weight:normal;text-align:left;'>";
+			$count 	= count( $arr );
+			for ($i=0, $n=$count; $i < $n; $i++ ) {
+				if($i%3==0){
+					$html.="<tr>";
+				}					
+				$k = $arr[$i]->$key;
+				$t = $arr[$i]->$text;
+				
+				
+				if(in_array($k, $check)) {
+					$extra = " checked";
+				}else{
+					$extra = "";
+				}
+				$html .= "<td width='33%' valign='top'><input type='checkbox' style='width:16px' name='".$tag_name."' value='".$k."'".$extra." >" .makeSafe($t)."</td>";
+				if($i%3==2 || $i==$n-1){
+					$html.="</tr>";
+				}
+			}
+			$html .= "</table>";
+			return $html;
+		}
+		
+		
+		function radioYesNo($name, $selectedValue, $yesLabel = 'Oui', $noLabel = 'Non', $yesValue = 1, $noValue = 0) {
+		?>
+			<input type="radio" name="<?php echo $name; ?>" id="<?php echo $name.'_'.$yesValue; ?>" value="<?php echo $yesValue; ?>" <?php if($selectedValue == $yesValue) { ?>checked<?php } ?>> <label for="<?php echo $name.'_'.$yesValue; ?>"><?php echo $yesLabel; ?></label>&nbsp;
+			<input type="radio" name="<?php echo $name; ?>" id="<?php echo $name.'_'.$noValue; ?>" value="<?php echo $noValue; ?>" <?php if($selectedValue == $noValue) { ?>checked<?php } ?>> <label for="<?php echo $name.'_'.$noValue; ?>"><?php echo $noLabel; ?></label>
+		<?
+		}
+		function gender($name, $selectedValue, $yesLabel = 'Oui', $noLabel = 'Non', $yesValue = 1, $noValue = 0){
+		?>
+		
+    			
+    				<input id="<?php echo $name.'_'.$yesValue; ?>" name="<?php echo $name; ?>"  type="radio" value="<?php echo $yesValue; ?>" <?php if($selectedValue == $yesValue) { ?>checked<?php } ?>> <label for="<?php echo $name.'_'.$yesValue; ?>"><?php echo $yesLabel; ?></label>&nbsp;
+
+    				<input id="<?php echo $name.'_'.$yesValue; ?>" name="<?php echo $name; ?>" type="radio" value="<?php echo $yesValue; ?>"<?php if($selectedValue == $noValue) { ?>checked<?php } ?>> <label for="<?php echo $name.'_'.$noValue; ?>"><?php echo $noLabel; ?></label>;
+
+			<?
+		}
+		
+		
+		function calcul_age(&$date_naissance){
+			global $langue;
+			include("lang/app_framework.".$_GET['lang'].".php");
+			
+			if($date_naissance == '0000-00-00')
+				return '';
+			
+			$date_naiss	= explode('/', date('d/m/Y',strtotime($date_naissance)));
+			
+									
+			$jour_naiss = $date_naiss[0];
+			$mois_naiss = $date_naiss[1];
+			$annee_naiss = $date_naiss[2];
+			
+			$today_jour = date('d');
+			$today_mois = date('m');
+			$today_annee = date('Y');
+			
+			$age_annee = $today_annee - $annee_naiss;//diffï¿½rence entre les annï¿½es
+			
+			//si nombre annï¿½e supï¿½rieur ou ï¿½gal ï¿½ 2 ans
+			if($age_annee >= 3){
+				
+				//on vï¿½rifie si l'anniversaire du participant n'est pas encore passï¿½
+				//on vï¿½rifie si le mois du jour est avant ou le mï¿½me (si avant on retire un an)
+				if($today_mois <= $mois_naiss){
+					
+					//si c'est le mï¿½me mois on vï¿½rifie si le jour est avant (si oui, on retire un an)
+					if($today_mois == $mois_naiss){
+						if($today_jour < $jour_naiss)
+							$age_annee--;
+					}else
+						$age_annee--;
+				}
+				
+				$age = $age_annee.' '.$lang_framework["Ans"];
+				
+			}elseif($age_annee < 3 && $age_annee >= 0){
+				
+				$age_mois = $today_mois - $mois_naiss;//diffï¿½rence entre les mois
+				
+				//on ajoute les annï¿½es en mois si + d'un an
+				if($age_annee >= 2)
+					$age_mois += 24;
+				elseif($age_annee >= 1)
+					$age_mois += 12;
+				
+				//on vï¿½rifie si le jour est avant (si oui, on retire un mois)
+				if($today_jour < $jour_naiss)
+					$age_mois--;
+					
+				if($age_mois > 1)
+					$age = $age_mois.' '.$lang_framework["Mois"];
+				else
+					$age = $age_mois.' '.$lang_framework["Mois1"];
+			}else{
+				$age = 'error';
+			}
+			
+			 return $age;
+		}
+		
+		function calcul_age_adulte_admin(&$date_naissance, &$i){
+			
+			if($date_naissance == '0000-00-00')
+				return '';
+			
+			$date_naiss	= explode('/', date('d/m/Y',strtotime($date_naissance)));
+			
+									
+			$jour_naiss = $date_naiss[0];
+			$mois_naiss = $date_naiss[1];
+			$annee_naiss = $date_naiss[2];
+			
+			$today_jour = 31;
+			$today_mois = 12;
+			$today_annee = $i;
+			
+			$age_annee = $today_annee - $annee_naiss;//diffï¿½rence entre les annï¿½es
+			
+			//si nombre annï¿½e supï¿½rieur ou ï¿½gal ï¿½ 2 ans
+			if($age_annee >= 3){
+				
+				//on vï¿½rifie si l'anniversaire du participant n'est pas encore passï¿½
+				//on vï¿½rifie si le mois du jour est avant ou le mï¿½me (si avant on retire un an)
+				if($today_mois <= $mois_naiss){
+					
+					//si c'est le mï¿½me mois on vï¿½rifie si le jour est avant (si oui, on retire un an)
+					if($today_mois == $mois_naiss){
+						if($today_jour < $jour_naiss)
+							$age_annee--;
+					}else
+						$age_annee--;
+				}
+				
+				$age = $age_annee;
+				
+			}else{
+				$age = '';
+			}
+			
+			 return $age;
+		}
+	}
+?>

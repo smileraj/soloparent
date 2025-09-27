@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 	
 	require_once('groupe.html.php');
@@ -32,10 +32,10 @@
 	function groupeSave() {
 		global $db, $messages;
 		
-		// récup les données
+		// rï¿½cup les donnï¿½es
 		$row 		=& getData();
 		
-		// vérifications des champs
+		// vï¿½rifications des champs
 		if(!$row->titre) {
 			$messages[]	= '<span class="error">Veuillez indiquer le titre du groupe s\'il vous pla&icirc;t.</span>';
 		}
@@ -48,17 +48,17 @@
 		// s'il n'y a pas d'erreur
 		if(!count($messages)) {
 			
-			// mise à jour dans la DB
+			// mise ï¿½ jour dans la DB
 			$query = "UPDATE groupe SET";
 			
-			if($row->active == 1 || $row->active == 3) { // validé ou verouillé
+			if($row->active == 1 || $row->active == 3) { // validï¿½ ou verouillï¿½
 				
 				$query .= " titre = '".$db->escape($row->titre)."',";
 				$query .= " texte = '".$db->escape($row->texte)."',";
 				$query .= " titre_a_valider = '',";
 				$query .= " texte_a_valider = '',";
 				
-			} else { // refusé ou en attente
+			} else { // refusï¿½ ou en attente
 				
 				$query .= " titre_a_valider = '".$db->escape($row->titre)."',";
 				$query .= " texte_a_valider = '".$db->escape($row->texte)."',";
@@ -72,10 +72,10 @@
 			$db->query($query);
 			
 			
-			// si le groupe est validé
+			// si le groupe est validï¿½
 			if($row->active == 1) {
 			
-				// récup l'user_id du fondateur du groupe
+				// rï¿½cup l'user_id du fondateur du groupe
 				$query = "SELECT user_id"
 				." FROM groupe"
 				." WHERE id = '".$db->escape($row->id)."'"
@@ -83,15 +83,15 @@
 				;
 				$user_id = $db->loadResult($query);
 				
-				// crédite les points
+				// crï¿½dite les points
 				JL::addPoints(13, $user_id, $row->id);
 			
 			}
 			
-			// photo envoyée
+			// photo envoyï¿½e
 			if(is_file(SITE_PATH.'/images/groupe/pending/'.$row->id.'.jpg')) {
 				
-				// validée
+				// validï¿½e
 				if($row->photo_valider == 1) {
 					copy(SITE_PATH.'/images/groupe/pending/'.$row->id.'.jpg', SITE_PATH.'/images/groupe/'.$row->id.'.jpg');
 					chmod(SITE_PATH.'/images/groupe/'.$row->id.'.jpg', 0777);
@@ -100,7 +100,7 @@
 					chmod(SITE_PATH.'/images/groupe/'.$row->id.'-mini.jpg', 0777);
 				}
 				
-				// refusée (ou validée, donc on supprime les pending une fois qu'ils ont été copiés)
+				// refusï¿½e (ou validï¿½e, donc on supprime les pending une fois qu'ils ont ï¿½tï¿½ copiï¿½s)
 				if($row->photo_valider == 0 || $row->photo_valider == 1) {
 					unlink(SITE_PATH.'/images/groupe/pending/'.$row->id.'.jpg');
 					unlink(SITE_PATH.'/images/groupe/pending/'.$row->id.'-mini.jpg');
@@ -127,14 +127,14 @@
 	}
 	
 	
-	// éditer groupe
+	// ï¿½diter groupe
 	function groupeEditer() {
 		global $db, $messages;
 		
-		// récup les données par défaut
+		// rï¿½cup les donnï¿½es par dï¿½faut
 		$data 		=& getData();
 	
-		// récup les infos du groupe
+		// rï¿½cup les infos du groupe
 		$query = "SELECT g.id, g.titre AS titre_origine, IF(g.titre_a_valider != '', g.titre_a_valider, g.titre) AS titre, g.texte AS texte_origine, IF(g.texte_a_valider != '', g.texte_a_valider, g.texte) AS texte, g.active, g.date_add, g.motif, g.user_id, u.username"
 		." FROM groupe AS g"
 		." INNER JOIN user AS u ON u.id = g.user_id"
@@ -146,11 +146,11 @@
 		// groupe invalide
 		if(!$row->id) JL::redirect(SITE_URL_ADMIN.'/index.php?app=groupe');
 		
-		// valeurs par défaut utiles juste pour la boucle d'en dessous. Les valeurs sélectionnées par défaut sont forcées en html
+		// valeurs par dï¿½faut utiles juste pour la boucle d'en dessous. Les valeurs sï¿½lectionnï¿½es par dï¿½faut sont forcï¿½es en html
 		$row->photo_delete	= 1;
 		$row->photo_valider	= 1;
 		
-		// variables par défaut
+		// variables par dï¿½faut
 		foreach($data as $k => $v) {
 			$row->{$k} = $v ? $v : $row->{$k};
 		}
@@ -169,21 +169,21 @@
 		$resultatParPage	= RESULTS_NB_LISTE_ADMIN;
 		$search				= array();
 		$lists				= array();
-		$where				= array();
+		$where				= null;
 		$_where				= '';
 		
 		// params
 		
-		// si on passe une recherche en param, alors on force la page 1 (pour éviter de charger la page 36, s'il n'y a que 2 pages à voir)
+		// si on passe une recherche en param, alors on force la page 1 (pour ï¿½viter de charger la page 36, s'il n'y a que 2 pages ï¿½ voir)
 		$search['page']			= JL::getVar('search_g_page', JL::getSessionInt('search_g_page', 1));
 		
-		// mot cherché
+		// mot cherchï¿½
 		$search['word']			= trim(JL::getVar('search_g_word', JL::getSession('search_g_word', ''), true));
 		$search['order']		= JL::getVar('search_g_order', JL::getSession('search_g_order', 'g.date_add'), 'g.date_add');
 		$search['ascdesc']		= JL::getVar('search_g_ascdesc', JL::getSession('search_g_ascdesc', 'desc'), 'desc');
 		$search['active']		= JL::getVar('search_g_active', JL::getSession('search_g_active', -1), -1);
 		
-		// conserve en session ces paramètres
+		// conserve en session ces paramï¿½tres
 		JL::setSession('search_g_page', 		$search['page']);
 		JL::setSession('search_g_word', 		$search['word']);
 		JL::setSession('search_g_order', 		$search['order']);
@@ -191,25 +191,25 @@
 		JL::setSession('search_g_active', 		$search['active']);
 		
 		
-		// critère de tri
+		// critï¿½re de tri
 		$order				= array();
 		$order[]			= JL::makeOption('g.date_add', 		'Date ajout');
 		$order[]			= JL::makeOption('titre', 			'Titre');
 		$lists['order']		= JL::makeSelectList($order, 'search_g_order', 'class="searchInput"', 'value', 'text', $search['order']);
 
-		// ordre croissant/décroissant
+		// ordre croissant/dï¿½croissant
 		$ascdesc			= array();
 		$ascdesc[]			= JL::makeOption('asc', 			'Croissant');
-		$ascdesc[]			= JL::makeOption('desc', 			'Décroissant');
+		$ascdesc[]			= JL::makeOption('desc', 			'Dï¿½croissant');
 		$lists['ascdesc']	= JL::makeSelectList($ascdesc, 'search_g_ascdesc', 'class="searchInput"', 'value', 'text', $search['ascdesc']);
 		
 		// statut
 		$active				= array();
 		$active[]			= JL::makeOption('-1', 				'Tous');
 		$active[]			= JL::makeOption('2', 				'A valider');
-		$active[]			= JL::makeOption('1', 				'Confirmés');
-		$active[]			= JL::makeOption('0', 				'Refusés');
-		$active[]			= JL::makeOption('3', 				'Verrouillés');
+		$active[]			= JL::makeOption('1', 				'Confirmï¿½s');
+		$active[]			= JL::makeOption('0', 				'Refusï¿½s');
+		$active[]			= JL::makeOption('3', 				'Verrouillï¿½s');
 		$lists['active']	= JL::makeSelectList($active, 'search_g_active', 'class="searchInput"', 'value', 'text', $search['active']);
 		
 		
@@ -223,13 +223,13 @@
 			$where[]		= "g.active = '".$db->escape($search['active'])."'";
 		}
 		
-		// génère le where
-		if(count($where)) {
+		// gï¿½nï¿½re le where
+		if (is_array($where)) {
 			$_where			= " WHERE ".implode(' AND ', $where);
 		}
 		
 		
-		// compte le nombre de résultats
+		// compte le nombre de rï¿½sultats
 		$query = "SELECT COUNT(*)"
 		." FROM groupe AS g"
 		." INNER JOIN user AS u ON u.id = g.user_id"
@@ -239,7 +239,7 @@
 		$search['page_total'] 	= ceil($search['result_total']/$resultatParPage);
 		
 		
-		// recherche des données
+		// recherche des donnï¿½es
 		$query = "SELECT g.id, IF(g.titre_a_valider != '', g.titre_a_valider, g.titre) AS titre, g.active, u.username, g.date_add"
 		." FROM groupe AS g"
 		." INNER JOIN user AS u ON u.id = g.user_id"
@@ -255,7 +255,7 @@
 	}
 	
 	
-	// données de l'utilisateur
+	// donnï¿½es de l'utilisateur
 	function &getData() {
 		
 		$data = new StdClass();

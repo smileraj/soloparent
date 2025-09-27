@@ -118,18 +118,17 @@
 		$online_2 = (@$utilisateur->online) ? $langChat["online"] : $langChat["offline"];
 	?>
 		<div class='chatProfileFromImg'>
-			<img src='<? echo $utilisateur->photoURL; ?>' alt='profil' />
+			<img src='<?php echo $utilisateur->photoURL; ?>' alt='profil' />
 		</div>
 		<div class='chatProfileFromTxt'>
-			<p class='nickname<? echo $utilisateur->genre; ?>'><? echo $utilisateur->username; ?></p>
-			<p class='age'><? echo JL::calcul_age($utilisateur->naissance_date); ?></p>
-			<p class='children'><? echo $utilisateur->nb_enfants." ".$enfant; ?></p>
-			<p class='ville'><? echo $utilisateur->ville ? $utilisateur->ville:"&nbsp;"; ?></p>
-			<p class='canton'><? echo $utilisateur->canton; ?></p>
-			<p class='online_<? echo $utilisateur->online; ?>'><? echo $online_2; ?></p>
+			<p class='nickname<?php echo $utilisateur->genre; ?>'><?php echo $utilisateur->username; ?></p>
+			<p class='age'><?php echo JL::calcul_age($utilisateur->naissance_date); ?></p>
+			<p class='children'><?php echo $utilisateur->nb_enfants." ".$enfant; ?></p>
+			<p class='ville'><?php echo $utilisateur->ville ? $utilisateur->ville:"&nbsp;"; ?></p>
+			<p class='canton'><?php echo $utilisateur->canton; ?></p>
+			<p class='online_<?php echo $utilisateur->online; ?>'><?php echo $online_2; ?></p>
 		</div>
-	<?
-	}
+	<?php 	}
 
 
 	//Liste les conversation, active de l'utilisateur 
@@ -208,30 +207,29 @@ if (intval($corresp->last_online_time) > (ONLINE_TIME_LIMIT + AFK_TIME_LIMIT)) {
 						//echo $corresp->photoURL;
 					
 					//Change le peusdo de couleur dans la liste des converstion, si il y a un nouveau message dans la conversation
-					?><!--<span class="conv<? echo $message; ?>">
+					?><!--<span class="conv<?php echo $message; ?>">
 						<div class="alert-box notice"><span>notice: </span>Write your notice message here.</div>
 					</span>-->
 				<li class="person" >
-                        <div class="conv<? echo $message; ?>"  id='<? echo $corresp->id ; ?>'>
-						<div class="chatboxhead" onclick='affichCorrespondant(<? echo $corresp->id; ?>);'>
+                        <div class="conv<?php echo $message; ?>"  id='<?php echo $corresp->id ; ?>'>
+						<div class="chatboxhead" onclick='affichCorrespondant(<?php echo $corresp->id; ?>);'>
                             <span class="userimage">
-                               <img class="direct-chat-img" src="<? echo $corresp->photo; ?>" alt="chat image" />
+                               <img class="direct-chat-img" src="<?php echo $corresp->photo; ?>" alt="chat image" />
                             </span>
-                            <span><span class="bname name"><? echo $corresp->username; ?></span>
-							<span onclick='fermerConversation(<? echo $corresp->id; ?>);' class='close time'><i class="fa fa-times" aria-hidden="true"></i></span>
-							 <span class="preview project Offline online_<? echo $corresp->online; ?>"><? echo $online_2; ?></span>
-							<!---<span class="bname name1 time1 Offline online_<? echo $corresp->online; ?>"></span></span>
-                            <span class="time Offline online_<? echo $corresp->online; ?>"><i class="fa fa-circle" aria-hidden="true"></i></span>-->
+                            <span><span class="bname name"><?php echo $corresp->username; ?></span>
+							<span onclick='fermerConversation(<?php echo $corresp->id; ?>);' class='close time'><i class="fa fa-times" aria-hidden="true"></i></span>
+							 <span class="preview project Offline online_<?php echo $corresp->online; ?>"><?php echo $online_2; ?></span>
+							<!---<span class="bname name1 time1 Offline online_<?php echo $corresp->online; ?>"></span></span>
+                            <span class="time Offline online_<?php echo $corresp->online; ?>"><i class="fa fa-circle" aria-hidden="true"></i></span>-->
                             
                             
                         </div></div>
                     </li>
 					
-					<!--	<div id='<? echo $corresp->id ; ?>' class='conv<? echo $message; ?>' >
-						<div onclick='fermerConversation(<? echo $corresp->id; ?>);' class='close'>x</div> <p onclick='affichCorrespondant(<? echo $corresp->id; ?>);'><? echo $corresp->username; ?></p>
+					<!--	<div id='<?php echo $corresp->id ; ?>' class='conv<?php echo $message; ?>' >
+						<div onclick='fermerConversation(<?php echo $corresp->id; ?>);' class='close'>x</div> <p onclick='affichCorrespondant(<?php echo $corresp->id; ?>);'><?php echo $corresp->username; ?></p>
 					</div>-->
-					<?
-				}
+					<?php 				}
 			}
 		}
 	}
@@ -304,29 +302,29 @@ if (intval($corresp->last_online_time) > (ONLINE_TIME_LIMIT + AFK_TIME_LIMIT)) {
 		
 		 <div class="top chatboxhead">
 			<div class="col-md-6 col-sm-6 col-xs-6  parentsolo_plr_0"> <div class="col-md-3  col-sm-3 col-xs-3  parentsolo_plr_0 parentsolo_mt_20">  <span style="">
-                     <a class="userimage chatProfileToImg " onClick="return targetopener(this,true)"   href="<? echo SITE_URL; ?>/index.php?app=profil&action=view&id=<? echo $correspondant->id.$langue; ?>'">
-					<img src='<? echo $correspondant->photoURL; ?>' alt='profil' /></a>
+                     <a class="userimage chatProfileToImg " onClick="return targetopener(this,true)"   href="<?php echo SITE_URL; ?>/index.php?app=profil&action=view&id=<?php echo $correspondant->id.$langue; ?>'">
+					<img src='<?php echo $correspondant->photoURL; ?>' alt='profil' /></a>
                    </div> <div class="col-md-9  col-sm-9 col-xs-9 parentsolo_plr_0" style=" line-height: 16px;   margin-top: 8px;"
-> <span  class="name nickname<? echo $correspondant->genre; ?>"><? echo $correspondant->username; ?></span><br>
-					<span class='online_<? echo $correspondant->online; ?>'><? echo $online_2; ?></span>
+> <span  class="name nickname<?php echo $correspondant->genre; ?>"><?php echo $correspondant->username; ?></span><br>
+					<span class='online_<?php echo $correspondant->online; ?>'><?php echo $online_2; ?></span>
                 </span></div></div>
                <div class="col-md-6  col-sm-6 col-xs-6"><div class='chatProfileToTxt  text-right'>
 					<span style="line-height: 23px;" class="parentsolo_pt_15">
-                    <span class="project"><? echo JL::calcul_age($correspondant->naissance_date); ?></span><br>
-					<span class="project"><? echo $correspondant->nb_enfants." ".$enfant; ?></span>
+                    <span class="project"><?php echo JL::calcul_age($correspondant->naissance_date); ?></span><br>
+					<span class="project"><?php echo $correspondant->nb_enfants." ".$enfant; ?></span>
                 </span></div></div> 
               
             </div>
-			<!--<div class='chatProfileToImg' onclick="self.opener.location.href='<? echo SITE_URL; ?>/index.php?app=profil&action=view&id=<? echo $correspondant->id.$langue; ?>'">
-				<img src='<? echo $correspondant->photoURL; ?>' alt='profil' />
+			<!--<div class='chatProfileToImg' onclick="self.opener.location.href='<?php echo SITE_URL; ?>/index.php?app=profil&action=view&id=<?php echo $correspondant->id.$langue; ?>'">
+				<img src='<?php echo $correspondant->photoURL; ?>' alt='profil' />
 			</div>
 			<div class='chatProfileToTxt'>
-				<p class='nickname<? echo $correspondant->genre; ?>'><? echo $correspondant->username; ?></p>
-				<p class='age'><? echo JL::calcul_age($correspondant->naissance_date); ?></p>
-				<p class='children'><? echo $correspondant->nb_enfants." ".$enfant; ?></p>
-				<p class='ville'><? echo $correspondant->ville ? utf8_encode($correspondant->ville):"&nbsp;"; ?></p>
-				<p class='canton'><? echo utf8_encode($correspondant->canton); ?></p>
-				<p class='online_<? echo $correspondant->online; ?>'><? echo $online_2; ?></p>
+				<p class='nickname<?php echo $correspondant->genre; ?>'><?php echo $correspondant->username; ?></p>
+				<p class='age'><?php echo JL::calcul_age($correspondant->naissance_date); ?></p>
+				<p class='children'><?php echo $correspondant->nb_enfants." ".$enfant; ?></p>
+				<p class='ville'><?php echo $correspondant->ville ? utf8_encode($correspondant->ville):"&nbsp;"; ?></p>
+				<p class='canton'><?php echo utf8_encode($correspondant->canton); ?></p>
+				<p class='online_<?php echo $correspondant->online; ?>'><?php echo $online_2; ?></p>
 			</div>-->
 		<?	
 		}
@@ -359,9 +357,8 @@ if (intval($corresp->last_online_time) > (ONLINE_TIME_LIMIT + AFK_TIME_LIMIT)) {
 		if(!$abonne){
 		?>
 		<br>
-			<a  onClick="return targetopener(this,true)"   href="<? echo SITE_URL; ?>/index.php?app=abonnement&action=tarifs<? echo $langue; ?>" > [ <? echo  $langChat["Abonnement"]; ?> ] </a>
-		<?
-							
+			<a  onClick="return targetopener(this,true)"   href="<?php echo SITE_URL; ?>/index.php?app=abonnement&action=tarifs<?php echo $langue; ?>" > [ <?php echo  $langChat["Abonnement"]; ?> ] </a>
+		<?php 							
 			$query = "UPDATE chat_message"
 			." SET new_user_to = 0"
 			." WHERE user_id_to='".$user->id."' AND user_id_from='".$id_corresp."'"
@@ -379,12 +376,11 @@ if (intval($corresp->last_online_time) > (ONLINE_TIME_LIMIT + AFK_TIME_LIMIT)) {
 		}elseif($membre == 2){
 			?>
 			<div class='message_to'>
-				<span style='color:grey;'><? echo $langChat["Parentsolo"]; ?></span>				
-				<div class="bubble chat_box"><? echo $langChat["ProfilNonValide"].'<br />'.$langChat["QualiteServiceOptimale"]; ?></div>
-				<span class='heure'><? echo date('d/m/Y')." ".$langChat["AHeure"]." ".date('H:i:s'); ?></span>
+				<span style='color:grey;'><?php echo $langChat["Parentsolo"]; ?></span>				
+				<div class="bubble chat_box"><?php echo $langChat["ProfilNonValide"].'<br />'.$langChat["QualiteServiceOptimale"]; ?></div>
+				<span class='heure'><?php echo date('d/m/Y')." ".$langChat["AHeure"]." ".date('H:i:s'); ?></span>
 			</div>
-			<?
-		
+			<?php 		
 							
 			$query = "UPDATE chat_message"
 			." SET new_user_to = 0"
@@ -414,24 +410,22 @@ if (intval($corresp->last_online_time) > (ONLINE_TIME_LIMIT + AFK_TIME_LIMIT)) {
 					if($blacklist->user_id_from == $user->id){
 					?>
 						<div class='message_to'>
-							<span style='color:grey;'><? echo $langChat["Parentsolo"]; ?></span>							
-							<div class="bubble chat_box"><? echo $langChat["CorrespBlacklist"]; ?></div>
-							<span class='heure'><? echo date('d/m/Y')." ".$langChat["AHeure"]." ".date('H:i:s'); ?></span>
+							<span style='color:grey;'><?php echo $langChat["Parentsolo"]; ?></span>							
+							<div class="bubble chat_box"><?php echo $langChat["CorrespBlacklist"]; ?></div>
+							<span class='heure'><?php echo date('d/m/Y')." ".$langChat["AHeure"]." ".date('H:i:s'); ?></span>
 						</div>
-					<?
-					}
+					<?php 					}
 					
 					//l'utilisateur est dans la blacklist du correspondant
 					elseif($blacklist->user_id_to == $user->id){
 					?>
 						<div class='message_to'>
-							<span style='color:grey;'><? echo $langChat["Parentsolo"]; ?></span>
-							<div class="bubble chat_box"><? echo $langChat["UserBlacklist"]; ?></div>
-							<span class='heure'><? echo date('d/m/Y')." ".$langChat["AHeure"]." ".date('H:i:s'); ?></span>
+							<span style='color:grey;'><?php echo $langChat["Parentsolo"]; ?></span>
+							<div class="bubble chat_box"><?php echo $langChat["UserBlacklist"]; ?></div>
+							<span class='heure'><?php echo date('d/m/Y')." ".$langChat["AHeure"]." ".date('H:i:s'); ?></span>
 							
 						</div>
-					<?
-					}
+					<?php 					}
 				}
 				
 				$query = "UPDATE chat_message"
@@ -472,13 +466,13 @@ if (intval($corresp->last_online_time) > (ONLINE_TIME_LIMIT + AFK_TIME_LIMIT)) {
 					///$message->texte = utf8_encode($message->texte);
 					$message->texte = $message->texte;
 				?>
-					<div class='message_<? echo $dest; ?>'>
-						<span class='nickname<? echo $message->genre; ?>'><? echo $message->username; ?></span>
+					<div class='message_<?php echo $dest; ?>'>
+						<span class='nickname<?php echo $message->genre; ?>'><?php echo $message->username; ?></span>
 						<div class="clear"></div>
 						
-						<div class="bubble chat_box"><? echo nl2br(setSmileys($message->texte)); ?></div>
+						<div class="bubble chat_box"><?php echo nl2br(setSmileys($message->texte)); ?></div>
 						<div class="clear"></div>
-						<span class='heure'>(<? echo date('d/m/Y', strtotime($message->date_envoi))." ".$langChat["AHeure"]." ".date('H:i:s', strtotime($message->date_envoi)); ?>)</span>
+						<span class='heure'>(<?php echo date('d/m/Y', strtotime($message->date_envoi))." ".$langChat["AHeure"]." ".date('H:i:s', strtotime($message->date_envoi)); ?>)</span>
 						
 					</div>
 				<?	
@@ -498,24 +492,22 @@ if (intval($corresp->last_online_time) > (ONLINE_TIME_LIMIT + AFK_TIME_LIMIT)) {
 				if(!$abonne) {
 				?>
 					<div class='message_to'>
-						<span style='color:grey;'><? echo $langChat["Parentsolo"]; ?></span>
-						<div class="bubble chat_box"><? echo $langChat["MembreNonAbonne"]; ?></div>
-						<span class='heure'><? echo date('d/m/Y')." ".$langChat["AHeure"]." ".date('H:i:s'); ?></span>
+						<span style='color:grey;'><?php echo $langChat["Parentsolo"]; ?></span>
+						<div class="bubble chat_box"><?php echo $langChat["MembreNonAbonne"]; ?></div>
+						<span class='heure'><?php echo date('d/m/Y')." ".$langChat["AHeure"]." ".date('H:i:s'); ?></span>
 						
 					</div>
-				<?
-				}
+				<?php 				}
 				
 				if($membre == 2) {
 				?>
 					<div class='message_to'>
-						<span style='color:grey;'><? echo $langChat["Parentsolo"]; ?></span>
-						<div class="bubble chat_box"><? echo $langChat["MembreNonConfirme"]; ?></div>
-						<span class='heure'><? echo date('d/m/Y')." ".$langChat["AHeure"]." ".date('H:i:s'); ?></span>
+						<span style='color:grey;'><?php echo $langChat["Parentsolo"]; ?></span>
+						<div class="bubble chat_box"><?php echo $langChat["MembreNonConfirme"]; ?></div>
+						<span class='heure'><?php echo date('d/m/Y')." ".$langChat["AHeure"]." ".date('H:i:s'); ?></span>
 						
 					</div>
-				<?
-				}
+				<?php 				}
 				
 				
 				$query = "UPDATE chat_message"
@@ -648,10 +640,9 @@ print_r($matches);
 		$query = "SELECT id, titre_".$_GET['lang']." as titre,  texte_".$_GET['lang']." as texte FROM contenu WHERE id=13";
 		$aide = $db->loadObject($query);
 		?>
-	<h1><? echo $aide->titre; ?></h1>	<br />
-		<? echo $aide->texte; ?>
-		<?
-	}
+	<h1><?php echo $aide->titre; ?></h1>	<br />
+		<?php echo $aide->texte; ?>
+		<?php 	}
 
 	
 	function setSmileys($texte) {

@@ -31,7 +31,7 @@ function cancelsubmit(action) {
 						
 						if(ok) {
 						
-							document.location = "<? echo SITE_URL_ADMIN; ?>"; 
+							document.location = "<?php echo SITE_URL_ADMIN; ?>"; 
 						}
 						
 					}
@@ -86,7 +86,6 @@ $('#send').attr('disabled','disabled');
 		<input type="button" class="send btn btn-success" name="send" id="send" value="Send">
 		</div>
 		</section>
-<?
-}
+<?php }
 }
 ?>

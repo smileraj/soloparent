@@ -2899,7 +2899,7 @@ Element.Events.domready = {
             })();
             break;
         default:
-            window.addEvent("load", B);
+            window.addEventListener("load", B);
             document.addEvent("DOMContentLoaded", B);
     }
 })();
@@ -5404,9 +5404,9 @@ function chatGetNewConversations(site_url, user_id_from, key) {
 
             if (messagesNb != '' && messagesNb != '0') {
                 if (messagesNb == '1') {
-                    $('chatAlert').set('html', '<div class="chat_box_alt">Vous avez <span class="pink">1</span> nouveau<br /> message sur le chat !</div>');
+                    $('#chatAlert1').set('html', '<div class="chat_box_alt">Vous avez <span class="pink">1</span> nouveau<br /> message sur le chat !</div>');
                 } else {
-                    $('chatAlert').set('html', '<div class="chat_box_alt">Vous avez <span class="pink">' + messagesNb + '</span> nouveaux<br /> messages sur le chat !</div>');
+                    $('#chatAlert1').set('html', '<div class="chat_box_alt">Vous avez <span class="pink">' + messagesNb + '</span> nouveaux<br /> messages sur le chat !</div>');
                 }
 
                 if (sonJoue == 0) {
@@ -5431,7 +5431,9 @@ function chatGetNewConversations(site_url, user_id_from, key) {
                     clearInterval(timerAlert);
                 } catch (e) {}
                 timerAlert = 0;
-                $('chatAlert').fade('hide');
+                if ($('#chatAlert1').length) {
+        $('#chatAlert').fadeOut('slow'); // hides it slowly
+    }
             }
 
         },
@@ -5440,11 +5442,11 @@ function chatGetNewConversations(site_url, user_id_from, key) {
 }
 
 function chatAlert() {
-    $('chatAlert').fade('toggle');
+    $('#chatAlert1').fadeOut('toggle');
 }
 
 function noPhotoPopIn(i) {
-    $('noPhotoPopIn').fade('toggle');
+    $('noPhotoPopIn').fadeOut('toggle');
 
     if (timerAlert2) {
         try {
@@ -5541,9 +5543,9 @@ function getScrollXY() {
 
 }
 
-function popinFade(element) {
+function popinfadeOut(element) {
     if (popinTimer) {
         clearInterval(popinTimer);
-        $(element).fade(0);
+        $(element).fadeOut(0);
     }
 }

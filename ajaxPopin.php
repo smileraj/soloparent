@@ -6,7 +6,7 @@
 	// framework joomlike
 	require_once(SITE_PATH.'/framework/joomlike.class.php');
 	
-	// framework base de données
+	// framework base de donnï¿½es
 	require_once(SITE_PATH.'/framework/mysql.class.php');
 	$db	= new DB();
 	
@@ -17,10 +17,10 @@
 	$message		= '';
 	
 	
-	// si la clé est renseignée
+	// si la clï¿½ est renseignï¿½e
 	if($key) {
 	
-		// récup l'utilisateur TO
+		// rï¿½cup l'utilisateur TO
 		$query = "SELECT u.id"
 		." FROM user AS u"
 		." WHERE MD5(CONCAT(u.id, u.creation_date)) = '".addslashes($key)."'"
@@ -28,10 +28,10 @@
 		;
 		$userTo = $db->loadObject($query);
 		
-		// si la clé est correcte
+		// si la clï¿½ est correcte
 		if($userTo) {
 		
-			// check s'il y a un événement
+			// check s'il y a un ï¿½vï¿½nement
 			$query = "SELECT us.last_event_user_id AS id, us.last_event_type, us.last_event_data, u.username, up.photo_defaut, up.genre"
 			." FROM user_stats AS us"
 			." INNER JOIN user AS u ON u.id = us.last_event_user_id"
@@ -42,22 +42,22 @@
 		
 			if($userFrom) {
 				
-				// reset le dernier événement
+				// reset le dernier ï¿½vï¿½nement
 				JL::addLastEvent($userTo->id, $userFrom->id);
 			
-				// récup la photo de l'utilisateur
+				// rï¿½cup la photo de l'utilisateur
 				$photo = JL::userGetPhoto($userFrom->id, '89', 'profil', $userFrom->photo_defaut);
 				
-				// photo par défaut
+				// photo par dï¿½faut
 				if(!$photo) {
 					$photo = SITE_URL.'/parentsolo/images/parent-solo-89-'.$userFrom->genre.'.jpg';
 				}
 				
 				
-				// en fonction du type d'événement
+				// en fonction du type d'ï¿½vï¿½nement
 				switch($userFrom->last_event_type) {
 				
-					// ami connecté
+					// ami connectï¿½
 					case 5:
 						$message = 'vient de se connecter&nbsp;!';
 					break;
@@ -89,13 +89,12 @@
 					
 				}
 				
-				// s'il y a un mssage à afficher
+				// s'il y a un mssage ï¿½ afficher
 				if($message) {
 				?>
-					<a class="photo" style="background: url(<? echo $photo; ?>) top repeat-x; background-position: -3px -3px;" href="<? echo JL::url('index.php?app=profil&action=view&id='.$userFrom->id); ?>"></a>
-					<p style="background: url(<? echo SITE_URL; ?>/parentsolo/images/event-<? echo $userFrom->last_event_type; ?>.jpg) bottom no-repeat;"><a href="<? echo JL::url('index.php?app=profil&action=view&id='.$userFrom->id); ?>" title="Consulter le profil de <? echo $userFrom->username; ?>"><? echo $userFrom->username; ?></a> <? echo $message; ?></p>
-				<?
-				}
+					<a class="photo" style="background: url(<?php echo $photo; ?>) top repeat-x; background-position: -3px -3px;" href="<?php echo JL::url('index.php?app=profil&action=view&id='.$userFrom->id); ?>"></a>
+					<p style="background: url(<?php echo SITE_URL; ?>/parentsolo/images/event-<?php echo $userFrom->last_event_type; ?>.jpg) bottom no-repeat;"><a href="<?php echo JL::url('index.php?app=profil&action=view&id='.$userFrom->id); ?>" title="Consulter le profil de <?php echo $userFrom->username; ?>"><?php echo $userFrom->username; ?></a> <?php echo $message; ?></p>
+				<?php 				}
 				
 			}
 			
@@ -103,7 +102,7 @@
 	
 	}
 	
-	// déconnexion DB
+	// dï¿½connexion DB
 	$db->disconnect();
 	
 ?>

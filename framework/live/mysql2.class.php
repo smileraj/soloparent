@@ -69,7 +69,7 @@
 			}
 		}
 
-		function loadResultArray($query = '') {
+		function loadObjectList($query = '') {
 			if($query) {
 				$this->setQuery($query);
 			}
@@ -115,7 +115,7 @@
 		}
 
 		function escape($string) {
-			return mysql_real_escape_string($string, $this->connexion_id);
+			return $db->escape($string, $this->connexion_id);
 		}
 
 	}

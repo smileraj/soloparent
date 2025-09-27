@@ -30,11 +30,11 @@ if (!$db->getConnexion()) {
 }
 
 // Language handling: force lang parameter in URL
-if (isset($_GET['lang']) && in_array($_GET['lang'], ['fr','en','de'])) {
+if (isset($_GET['lang']) && in_array($_GET['lang'], ['en'])) {
     $langue = "lang=".$_GET['lang'];
 } else {
     header('Status: 301 Moved Permanently', false, 301);
-    $string = !empty($_SERVER['QUERY_STRING']) ? "?".$_SERVER['QUERY_STRING']."&lang=fr" : "?lang=fr";
+    $string = !empty($_SERVER['QUERY_STRING']) ? "?".$_SERVER['QUERY_STRING']."&lang=en" : "?lang=en";
     header("Location: ".$_SERVER["PHP_SELF"].$string);
     die();
 }

@@ -162,7 +162,7 @@ return true;
 			$messages = step5submit();
 
 			// messages pr�sents (un message seul = message de validation, donc user log)
-			if(count($messages)) {
+			if (is_array($messages)) {
 
 				// r�-affiche l'�tape
 				step5($messages);
@@ -189,7 +189,7 @@ return true;
 			$messages = step4submit();
 
 			// messages pr�sents (un message seul = message de validation, donc user log)
-			if(count($messages)) {
+			if (is_array($messages)) {
 
 				// r�-affiche l'�tape
 				step4($messages);
@@ -216,7 +216,7 @@ return true;
 			$messages = step3submit();
 
 			// messages pr�sents (un message seul = message de validation, donc user log)
-			if(count($messages)) {
+			if (is_array($messages)) {
 
 				// r�-affiche l'�tape
 				step3($messages);
@@ -243,7 +243,7 @@ return true;
 			$messages = step2submit();
 
 			// messages pr�sents (un message seul = message de validation, donc user log)
-			if(count($messages)) {
+			if (is_array($messages)) {
 
 				// r�-affiche l'�tape
 				step2($messages);
@@ -269,7 +269,7 @@ return true;
 			$messages = step1submit();
 
 			// messages pr�sents (un message seul = message de validation, donc user log)
-			if(count($messages)) {
+			if (is_array($messages)) {
 
 				// r�-affiche l'�tape
 				step1($messages);
@@ -381,7 +381,7 @@ return true;
 
 		// conserve les donn�es envoy�es en session, si on vient de l'inscription rapide uniquement !
 		if((int)JL::getVar('inscriptionrapide', 0) > 0 || (int)JL::getVar('parrain_id', 0) > 0) {
-			if(count($_data)) {
+			if (is_array($_data)) {
 				foreach($_data as $key => $value) {
 					JL::setSession($key, JL::getVar($key, $value));
 				}
@@ -397,7 +397,7 @@ return true;
 			." WHERE user_id = '".$user->id."'"
 			." LIMIT 0,1"
 			;
-			$tmp = $db->loadResultArray($query);
+			$tmp = $db->loadObjectList($query);
 
 			// extrait les valeurs de la date de naissance
 			$naissance_date	= explode('-', $tmp['naissance_date']);
@@ -440,7 +440,7 @@ return true;
 
 
 		// r�cup les donn�es temporaires en session
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row[$key]	= JL::getSession($key, $value);
 			}
@@ -584,7 +584,7 @@ return true;
 		$_data	= step1_data();
 		if(!$user->id){
 		// conserve les donn�es envoy�es en session
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				JL::setSession($key, JL::getVar($key, $value));
 			}
@@ -781,7 +781,7 @@ return true;
 		}
 		}
 		else{
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				JL::setSession($key, JL::getVar($key, $value));
 			}
@@ -1034,7 +1034,7 @@ if($telelength==6 || $telephoneval=='+41-' || $telephoneval==''||$telephoneval==
 
 
 		// r�cup les champs correspondant en session, sinon valeur par d�faut
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row[$key]	= JL::getSession($key, $value);
 			}
@@ -1071,7 +1071,7 @@ if($telelength==6 || $telephoneval=='+41-' || $telephoneval==''||$telephoneval==
 		// donn�es � r�cup de l'�tape pr�c�dente + valeur par d�faut
 		$_data	= step2_data();
 
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				JL::setSession($key, JL::getVar($key, $value));
 			}
@@ -1145,7 +1145,7 @@ if($telelength==6 || $telephoneval=='+41-' || $telephoneval==''||$telephoneval==
 
 
 		// r�cup les champs correspondant en session, sinon valeur par d�faut
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row[$key]	= JL::getSession($key, $value);
 			}
@@ -1182,7 +1182,7 @@ if($telelength==6 || $telephoneval=='+41-' || $telephoneval==''||$telephoneval==
 		// donn�es � r�cup de l'�tape pr�c�dente + valeur par d�faut
 		$_data	= step3_data();
 
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				JL::setSession($key, JL::getVar($key, $value));
 			}
@@ -1306,7 +1306,7 @@ if($telelength==6 || $telephoneval=='+41-' || $telephoneval==''||$telephoneval==
 			." WHERE user_id = '".$user->id."'"
 			." LIMIT 0,1"
 			;
-			$tmp = $db->loadResultArray($query);
+			$tmp = $db->loadObjectList($query);
 
 			// mise en session des valeurs
 			foreach($tmp as $key => $value) {
@@ -1315,7 +1315,7 @@ if($telelength==6 || $telephoneval=='+41-' || $telephoneval==''||$telephoneval==
 		}
 
 		// r�cup les champs correspondant en session, sinon valeur par d�faut
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				//exceptions checkboxs
 				if($key=='langue' || $key=='cuisine' || $key=='sortie' || $key=='loisir' || $key=='sport' || $key=='musique' || $key=='film' || $key=='lecture' || $key=='animaux'){
@@ -1686,7 +1686,7 @@ $dbanimaux=$db->loadObjectList($query);
 		// donn�es � r�cup de l'�tape pr�c�dente + valeur par d�faut
 		$_data	= step4_data();
 		
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {				
 				//exceptions checkboxs
 				if($key=='langue' || $key=='cuisine' || $key=='sortie' || $key=='loisir' || $key=='sport' || $key=='musique' || $key=='film' || $key=='lecture' || $key=='animaux'){
@@ -1823,7 +1823,7 @@ $dbanimaux=$db->loadObjectList($query);
 			$tmps = $db->loadObjectList($query);
 
 			// mise en session des valeurs
-			if(count($tmps)) {
+			if (is_array($tmps)) {
 				foreach($tmps as $tmp) {
 
 					// extrait les valeurs de la date de naissance
@@ -1851,7 +1851,7 @@ $dbanimaux=$db->loadObjectList($query);
 
 
 		// r�cup les champs correspondant en session, sinon valeur par d�faut
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row[$key]	= JL::getSession($key, $value);
 			}
@@ -1972,7 +1972,7 @@ $dbanimaux=$db->loadObjectList($query);
 		// donn�es � r�cup de l'�tape pr�c�dente + valeur par d�faut
 		$_data	= step5_data();
 
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				JL::setSession($key, JL::getVar($key, $value));
 			}
@@ -2371,16 +2371,16 @@ $confrm_subject="Confirmation of the registration";
 		<tr><td style='text-align:justify;padding:40px;'>
 		<p><h1 style='font-family: Impact,Times,Arial,Verdana,Helvetica,sans-serif; font-size: 24px; color: rgb(220, 155, 156); font-weight: normal;'>Confirmation of the registration</h1>
 <br />Hello <strong>".JL::getSession('username', '', true)."</strong>,<br /><br /><br />
-Welcome on Parentsolo.ch!<br /><br /><br />
+Welcome on solocircl.com!<br /><br /><br />
 Here are your connecting values again:<br /><br />
 User name: <strong>".JL::getSession('username', '', true)."</strong><br />
 Password: <strong>".JL::getSession('password', '', true)."</strong><br />
 URL: <strong><a href='".$confrm_url."' >".$confrm_url."</a></strong><br /><br /><br />
 You can connect to your profile up to now.<br /><br /><br />
-See you soon on Parentsolo.ch!<br /><br /></p></td></tr>
+See you soon on solocircl.com!<br /><br /></p></td></tr>
 	<tr><td style='background-color:#c32a2c;color:#fff;font-size:11px; padding:0px 10px;'><p>
-					Cette lettre d'information vous a &eacute;t&eacute; envoy&eacute;e par <a href='".$site_url."' style='color:#fff;font-size:11px;font-weight:bold'>Parentsolo.ch</a>.<br />
-					Si vous ne souhaitez plus recevoir cet email, connectez-vous &agrave; votre compte sur Parentsolo.ch, puis allez dans 'Mes notifications', et d&eacute;cochez la case qui correspond &agrave; cet email.
+					Cette lettre d'information vous a &eacute;t&eacute; envoy&eacute;e par <a href='".$site_url."' style='color:#fff;font-size:11px;font-weight:bold'>solocircl.com</a>.<br />
+					Si vous ne souhaitez plus recevoir cet email, connectez-vous &agrave; votre compte sur solocircl.com, puis allez dans 'Mes notifications', et d&eacute;cochez la case qui correspond &agrave; cet email.
 	</p></td></tr></table>";
 	} else if($_GET['lang']=='de'){
 	$confrm_subject="Anmeldungsbest&auml;tigung";
@@ -2400,8 +2400,8 @@ URL: <strong><a href='".$confrm_url."' >".$confrm_url."</a></strong><br /><br />
 Sie k&ouml;nnen sich ab jetzt in Ihrem Profil einloggen.<br /><br /><br />
 Bis bald auf SinglEltern.ch!<br /><br /></p></td></tr>
 	<tr><td style='background-color:#c32a2c;color:#fff;font-size:11px; padding:0px 10px;'><p>
-					Cette lettre d'information vous a &eacute;t&eacute; envoy&eacute;e par <a href='".$site_url."' style='color:#fff;font-size:11px;font-weight:bold'>Parentsolo.ch</a>.<br />
-					Si vous ne souhaitez plus recevoir cet email, connectez-vous &agrave; votre compte sur Parentsolo.ch, puis allez dans 'Mes notifications', et d&eacute;cochez la case qui correspond &agrave; cet email.
+					Cette lettre d'information vous a &eacute;t&eacute; envoy&eacute;e par <a href='".$site_url."' style='color:#fff;font-size:11px;font-weight:bold'>solocircl.com</a>.<br />
+					Si vous ne souhaitez plus recevoir cet email, connectez-vous &agrave; votre compte sur solocircl.com, puis allez dans 'Mes notifications', et d&eacute;cochez la case qui correspond &agrave; cet email.
 	</p></td></tr></table>";
 	}
 	else{
@@ -2414,16 +2414,16 @@ Bis bald auf SinglEltern.ch!<br /><br /></p></td></tr>
 		<tr><td style='text-align:justify;padding:40px;'>
 		<p><h1 style='font-family: Impact,Times,Arial,Verdana,Helvetica,sans-serif; font-size: 24px; color: rgb(220, 155, 156); font-weight: normal;'>Confirmation d'inscription</h1>
 <br />Bonjour <strong>".JL::getSession('username', '', true)."</strong>,<br /><br /><br />
-Bienvenue sur Parentsolo.ch!<br /><br /><br />
+Bienvenue sur solocircl.com!<br /><br /><br />
 Voici le rappel de vos identifiants:<br /><br />
 pseudo: <strong>".JL::getSession('username', '', true)."</strong><br />
 mot de passe: <strong>".JL::getSession('password', '', true)."</strong><br />
 URL: <strong><a href='".$confrm_url."' >".$confrm_url."</a></strong><br /><br /><br />
 Vous pouvez d&egrave;s &agrave; pr&eacute;sent vous connecter &agrave; votre profil.<br /><br /><br />
-A bient&ocirc;t sur Parentsolo.ch!<br /><br /></p></td></tr>
+A bient&ocirc;t sur solocircl.com!<br /><br /></p></td></tr>
 	<tr><td style='background-color:#c32a2c;color:#fff;font-size:11px; padding:0px 10px;'><p>
-Cette lettre d'information vous a &eacute;t&eacute; envoy&eacute;e par <a href='".$site_url."' style='color:#fff;font-size:11px;font-weight:bold'>Parentsolo.ch</a>.<br />
-					Si vous ne souhaitez plus recevoir cet email, connectez-vous &agrave; votre compte sur Parentsolo.ch, puis allez dans 'Mes notifications', et d&eacute;cochez la case qui correspond &agrave; cet email.
+Cette lettre d'information vous a &eacute;t&eacute; envoy&eacute;e par <a href='".$site_url."' style='color:#fff;font-size:11px;font-weight:bold'>solocircl.com</a>.<br />
+					Si vous ne souhaitez plus recevoir cet email, connectez-vous &agrave; votre compte sur solocircl.com, puis allez dans 'Mes notifications', et d&eacute;cochez la case qui correspond &agrave; cet email.
 	</p></td></tr></table>";
 	}
 			JL::mail($user_email, $confrm_subject, $message_con);
@@ -2467,7 +2467,7 @@ Cette lettre d'information vous a &eacute;t&eacute; envoy&eacute;e par <a href='
 		." WHERE user_id = '".$user->id."'"
 		." LIMIT 0,1"
 		;
-		$row = $db->loadResultArray($query);
+		$row = $db->loadObjectList($query);
 
 
 		// r�cup le genre de l'user log
@@ -2504,7 +2504,7 @@ Cette lettre d'information vous a &eacute;t&eacute; envoy&eacute;e par <a href='
 		$_data			=& notification_data();
 
 		// conserve les donn�es envoy�es en session
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row[$key] = JL::getVar($key, $value) ? 1 : 0;
 			}

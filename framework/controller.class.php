@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 class JLController
 {
@@ -6,7 +7,7 @@ class JLController
 
     public function __construct(string $appNameNew)
     {
-        $this->setAppName($appNameNew);
+        $this->appName = $appNameNew;
     }
 
     public function setAppName(string $appNameNew): void
@@ -30,44 +31,53 @@ class JLController
         bool $admin = false,
         string $appLoad = ''
     ): void {
-        // Path based on admin or frontend
         $path = $admin ? SITE_PATH_ADMIN : SITE_PATH;
 
-        // If no custom app given, use this controller’s app
-        if (empty($appLoad)) {
-            $appLoad = $this->appName;
-        }
+        // fallback to this controller’s app
+        $appLoad = $appLoad ?: $this->appName;
 
-        $file = $path . '/app/app_' . $appLoad . '/' . $elementType . ucwords($elementName) . '.php';
+        $file = sprintf(
+            '%s/app/app_%s/%s%s.php',
+            rtrim($path, '/'),
+            $appLoad,
+            $elementType,
+            ucfirst($elementName)
+        );
 
-        if (!file_exists($file)) {
-            throw new RuntimeException("Element file not found: " . $file);
+        if (!is_file($file)) {
+            throw new RuntimeException("Element file not found: {$file}");
         }
 
         include_once $file;
 
-        // If no custom name, fallback to element type/name
-        if (empty($elementCustomName)) {
-            $elementCustomName = $elementName ?: $elementType;
-        }
+        // fallback alias name
+        $elementCustomName = $elementCustomName ?: ($elementName ?: $elementType);
 
         // Example: MyAppViewHome, MyAppModelUser
-        $elementClassName = $appLoad . ucwords($elementType) . ucwords($elementName);
+        $elementClassName = $appLoad . ucfirst($elementType) . ucfirst($elementName);
 
         if (!class_exists($elementClassName)) {
-            throw new RuntimeException("Class $elementClassName not found in $file");
+            throw new RuntimeException("Class {$elementClassName} not found in {$file}");
         }
 
         $this->{$elementCustomName} = new $elementClassName();
     }
 
-    public function addView(string $viewName = '', string $viewCustomName = '', bool $admin = false, string $appLoad = ''): void
-    {
+    public function addView(
+        string $viewName = '',
+        string $viewCustomName = '',
+        bool $admin = false,
+        string $appLoad = ''
+    ): void {
         $this->addElement('view', $viewName, $viewCustomName, $admin, $appLoad);
     }
 
-    public function addModel(string $modelName = '', string $modelCustomName = '', bool $admin = false, string $appLoad = ''): void
-    {
+    public function addModel(
+        string $modelName = '',
+        string $modelCustomName = '',
+        bool $admin = false,
+        string $appLoad = ''
+    ): void {
         $this->addElement('model', $modelName, $modelCustomName, $admin, $appLoad);
     }
 }

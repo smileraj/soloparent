@@ -13,8 +13,7 @@ include('lang/app_confrm.'.$_GET["lang"].'.php');
 			global $langue, $action, $user;
 			?>
 			
-			<?
-			if($Value_up=='Updated'){
+			<?php 			if($Value_up=='Updated'){
 			?>
 			<div class="parentsolo_txt_center">
 			<div class="wedd-seperator parentsolo_pb_10"><img src="images/bg_img/saprator.png" alt=""></div>
@@ -24,8 +23,8 @@ include('lang/app_confrm.'.$_GET["lang"].'.php');
 					<div class="col-md-12">
 						<div class="col-md-10 col-md-offset-1 parentsolo_form_style parentsolo_txt_center">
 				
-				<h3 class="parentsolo_title_h3 parentsolo_txt_center" style="font-size: 22px !important; text-transform: inherit !important;"><? echo $lang_confrm["success_msg"]; ?></h3>
-<br><br><a href="#" data-toggle="modal" data-target="#myModal" class="bouton envoyer parentsolo_btn"><? echo $lang_confrm["click_here"]; ?></a>
+				<h3 class="parentsolo_title_h3 parentsolo_txt_center" style="font-size: 22px !important; text-transform: inherit !important;"><?php echo $lang_confrm["success_msg"]; ?></h3>
+<br><br><a href="#" data-toggle="modal" data-target="#myModal" class="bouton envoyer parentsolo_btn"><?php echo $lang_confrm["click_here"]; ?></a>
 				<div class="row bottompadding">
 							
 							<div class="col-md-12">
@@ -43,8 +42,7 @@ include('lang/app_confrm.'.$_GET["lang"].'.php');
 			<div class="wedd-seperator parentsolo_pb_10"><img src="images/bg_img/saprator.png" alt=""></div>
 			</div>
 					
-			<?
-			
+			<?php 			
 			}
 			else if($Value_up=='Already'){
 			?>
@@ -56,8 +54,8 @@ include('lang/app_confrm.'.$_GET["lang"].'.php');
 					<div class="col-md-12">
 						<div class="col-md-10 col-md-offset-1 parentsolo_form_style  parentsolo_txt_center">
 				
-				<h3 class="parentsolo_title_h3 parentsolo_txt_center" style="    font-size: 22px !important;"><? echo $lang_confrm["alrdy_register"]; ?></h3>
-				<br><br><a href="#" data-toggle="modal" data-target="#myModal" class="bouton envoyer parentsolo_btn"><? echo $lang_confrm["click_here"]; ?></a>
+				<h3 class="parentsolo_title_h3 parentsolo_txt_center" style="    font-size: 22px !important;"><?php echo $lang_confrm["alrdy_register"]; ?></h3>
+				<br><br><a href="#" data-toggle="modal" data-target="#myModal" class="bouton envoyer parentsolo_btn"><?php echo $lang_confrm["click_here"]; ?></a>
 
 				<div class="row bottompadding">
 							
@@ -76,8 +74,7 @@ include('lang/app_confrm.'.$_GET["lang"].'.php');
 			<div class="wedd-seperator parentsolo_pb_10"><img src="images/bg_img/saprator.png" alt=""></div>
 			</div>
 					
-			<?
-			}
+			<?php 			}
 			else{
 				header("Location:index.php?lang=".$_GET['lang']."");
 			}

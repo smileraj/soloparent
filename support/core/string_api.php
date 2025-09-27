@@ -848,7 +848,7 @@ function string_get_field_name( $p_string ) {
  * @return string
  */
 function string_html_entities( $p_string ) {
-	return htmlentities( $p_string, ENT_COMPAT, 'utf-8' );
+	return makeSafe( $p_string, ENT_COMPAT, 'utf-8' );
 }
 
 /**

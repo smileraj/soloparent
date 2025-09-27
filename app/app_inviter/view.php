@@ -27,14 +27,13 @@
 				<p>
 				<?php echo $lang_inviter["IlVousFautTout"];?> <b><?php echo $lang_inviter["ConnecterAVotre"];?></b> ! <i>(<?php echo $lang_inviter["ToutEnHautSite"];?>)</i><br />
 				<br />
-				<?php echo $lang_inviter["SiVousNEtesPas"];?> <b><a href="<? echo JL::url('index.php?app=membre&action=inscription'.'&'.$langue); ?>" title="<?php echo $lang_inviter["CreerCompteBaby"];?>"><?php echo $lang_inviter["CreerUneCompte"];?></a></b>, <?php echo $lang_inviter["EtSerezImmediatement"];?>.<br />
+				<?php echo $lang_inviter["SiVousNEtesPas"];?> <b><a href="<?php echo JL::url('index.php?app=membre&action=inscription'.'&'.$langue); ?>" title="<?php echo $lang_inviter["CreerCompteBaby"];?>"><?php echo $lang_inviter["CreerUneCompte"];?></a></b>, <?php echo $lang_inviter["EtSerezImmediatement"];?>.<br />
 				<br />
 				<?php echo $lang_inviter["UneFoisInscrit"];?>.
 				</p>
 
-				<a href="<? echo SITE_URL.'?'.$langue; ?>" title="<? echo SITE_DESCRIPTION; ?>" class="retour"><?php echo $lang_inviter["RetourALaPage"];?></a>
-			<?
-			}else{
+				<a href="<?php echo SITE_URL.'?'.$langue; ?>" title="<?php echo SITE_DESCRIPTION; ?>" class="retour"><?php echo $lang_inviter["RetourALaPage"];?></a>
+			<?php 			}else{
 
 				// toolbar
 				JLToolbar::open();
@@ -53,8 +52,7 @@
 							<th width="15%"><?php echo $lang_inviter["Active"];?></th>
 							<th width="15%" class="date"><?php echo $lang_inviter["Envoyer"];?></th>
 						</tr>
-						<?
-						if(is_array($rows) && count($rows)) {
+						<?php 						if(is_array($rows) && count($rows)) {
 
 								// pour chaque cat&eacute;gorie
 								foreach($rows as $row) {
@@ -62,25 +60,22 @@
 									JL::dateUsToFr($row->date);
 								?>
 								<tr class="list">
-									<td><a href="<? echo JL::url('index.php?app=fairepart&action=edit&id='.$row->id.'&'.$langue); ?>" title="<?php echo $lang_inviter["Modifierlefairepart"];?>"><? echo $row->prenom; ?></a></td>
-									<td class="date"><? echo $row->date; ?></td>
-									<td class="active"><a href="<? echo JL::url('index.php?app=fairepart&action=active&id='.$row->id.'&'.$langue); ?>" title="<? echo $row->active ? $lang_inviter["Desactiver"] : $lang_inviter["Activer"]; ?>"><img src="admin/images/<? echo $row->active; ?>.gif" alt="<? echo $row->active ? $lang_inviter["Active"] : $lang_inviter["Desactive"]; ?>" /></a></td>
-									<td class="date"><a href="<? echo JL::url('index.php?app=fairepart&action=envoyer&id='.$row->id.'&'.$langue); ?>" title="<?php echo $lang_inviter["Envoyercefairepart"];?>"><img src="<? echo SITE_URL_ADMIN; ?>/images/mailing.png" alt="" /></a></td>
+									<td><a href="<?php echo JL::url('index.php?app=fairepart&action=edit&id='.$row->id.'&'.$langue); ?>" title="<?php echo $lang_inviter["Modifierlefairepart"];?>"><?php echo $row->prenom; ?></a></td>
+									<td class="date"><?php echo $row->date; ?></td>
+									<td class="active"><a href="<?php echo JL::url('index.php?app=fairepart&action=active&id='.$row->id.'&'.$langue); ?>" title="<?php echo $row->active ? $lang_inviter["Desactiver"] : $lang_inviter["Activer"]; ?>"><img src="admin/images/<?php echo $row->active; ?>.gif" alt="<?php echo $row->active ? $lang_inviter["Active"] : $lang_inviter["Desactive"]; ?>" /></a></td>
+									<td class="date"><a href="<?php echo JL::url('index.php?app=fairepart&action=envoyer&id='.$row->id.'&'.$langue); ?>" title="<?php echo $lang_inviter["Envoyercefairepart"];?>"><img src="<?php echo SITE_URL_ADMIN; ?>/images/mailing.png" alt="" /></a></td>
 								</tr>
-								<?
-								}
+								<?php 								}
 
 							} else {
 							?>
 							<tr class="list">
 								<td colspan="4"><?php echo $lang_inviter["AuncunFairePart"];?>.</td>
 							</tr>
-							<?
-							}
+							<?php 							}
 						?>
 				</table></center>
-				<?
-			}
+				<?php 			}
 		}
 
 
@@ -110,7 +105,7 @@
 			//fckEditor
 				require_once(SITE_PATH.'/fckeditor/fckeditor.php');
 			?>
-				<script type="text/javascript" src="<? echo SITE_URL; ?>/fckeditor/fckeditor.js"></script>
+				<script type="text/javascript" src="<?php echo SITE_URL; ?>/fckeditor/fckeditor.js"></script>
 
 			<?php
 			// affichage des messages
@@ -123,8 +118,8 @@
 
 			?>
 
-			<center><form name="adminForm" action="<? echo SITE_URL; ?>/index.php?<?php echo $langue;?>" method="post">
-				<input type="hidden" name="id" value="<? echo $row->id; ?>" />
+			<center><form name="adminForm" action="<?php echo SITE_URL; ?>/index.php?<?php echo $langue;?>" method="post">
+				<input type="hidden" name="id" value="<?php echo $row->id; ?>" />
 				<input type="hidden" name="app" value="fairepart" />
 				<input type="hidden" name="action" value="save" />
 				<input type="hidden" name="upload_dir" id="upload_dir" value="<?php echo $row->upload_dir; ?>" />
@@ -136,16 +131,16 @@
 					</tr>
 					<tr>
 						<td width="25%" class="key"><label for="template"><?php echo $lang_inviter["Template"];?>:</label></td>
-						<td width="75%"><? echo $list['template']; ?></td>
+						<td width="75%"><?php echo $list['template']; ?></td>
 					</tr>
 
 					<tr>
 						<td class="key"><label for="date"><?php echo $lang_inviter["DateJJMMAAAA"];?>:</label></td>
-						<td><input type="date" name="date" id="date" value="<? echo $row->date; ?>" class="input255" /></td>
+						<td><input type="date" name="date" id="date" value="<?php echo $row->date; ?>" class="input255" /></td>
 					</tr>
 					<tr class="key">
 						<td class="key"><label for="prenom"><?php echo $lang_inviter["Prenom"];?>:</label></td>
-						<td><input type="text" name="prenom" id="prenom" value="<? echo $row->prenom; ?>" class="input255" /></td>
+						<td><input type="text" name="prenom" id="prenom" value="<?php echo $row->prenom; ?>" class="input255" /></td>
 					</tr>
 					<tr>
 						<td class="key">
@@ -168,22 +163,20 @@
 					</tr>
 					<tr>
 						<td class="key"><?php echo $lang_inviter["Active"];?>:</td>
-						<td><? JL::radioYesNo('active', $row->active); ?></td>
+						<td><?php JL::radioYesNo('active', $row->active); ?></td>
 					</tr>
 					<tr>
 						<td class="key" rowspan="2" width="25%"><?php echo $lang_inviter["Photo"];?>:</td>
 						<td colspan="2">
 							<div class="miniatures" id="miniaturesfairepart">
-							<?
-								// image existe
+							<?php 								// image existe
 								if(is_file($row->upload_dir.'/fairepart.jpg')) {
 								?>
-									<div id="<? echo $row->upload_dir.'/fairepart-micro.jpg'; ?>" class="miniature">
-									<img src="<? echo $row->upload_dir.'/fairepart-micro.jpg'; ?>"/>
-									<a class="btnDelete" href="javascript:deleteImage('<? echo $row->upload_dir.'/fairepart-micro.jpg'; ?>', 'miniaturesfairepart');"><?php echo $lang_inviter["Supprimer"];?></a>
+									<div id="<?php echo $row->upload_dir.'/fairepart-micro.jpg'; ?>" class="miniature">
+									<img src="<?php echo $row->upload_dir.'/fairepart-micro.jpg'; ?>"/>
+									<a class="btnDelete" href="javascript:deleteImage('<?php echo $row->upload_dir.'/fairepart-micro.jpg'; ?>', 'miniaturesfairepart');"><?php echo $lang_inviter["Supprimer"];?></a>
 									</div>
-								<?
-								}
+								<?php 								}
 							?>
 							</div>
 						</td>
@@ -194,22 +187,19 @@
 							<div id="divFileProgressContainer"></div>
 						</td>
 					</tr>
-					<?
-					if($row->id && $destinataire) {
+					<?php 					if($row->id && $destinataire) {
 					?>
 					<tr>
 						<td class="key"><?php echo $lang_inviter["EmailsDestinqtaires"];?> :</td>
 						<td style="padding-top:10px;"> <?php echo $lang_inviter["CeFairePartAEte"];?> :<br><br>
-							<?
-							foreach($destinataire as $dest){
+							<?php 							foreach($destinataire as $dest){
 								echo $dest->mail."<br>";
 							}
 							?>
 							<br>
 						</td>
 					</tr>
-					<?
-					}
+					<?php 					}
 					?>
 				</table>
 			</form></center>
@@ -217,8 +207,8 @@
 				var photoUpload;
 				function photoUploadInit() {
 					photoUpload = new SWFUpload({
-						upload_url: "<? echo SITE_URL; ?>/js/swfupload/upload-fairepart.php",
-						post_params: {"site_url": "<? echo SITE_URL; ?>", "upload_dir": $('upload_dir').value},
+						upload_url: "<?php echo SITE_URL; ?>/js/swfupload/upload-fairepart.php",
+						post_params: {"site_url": "<?php echo SITE_URL; ?>", "upload_dir": $('upload_dir').value},
 						file_size_limit : "2 MB",
 						file_types : "*.jpg",
 						file_types_description : "JPG",
@@ -239,7 +229,7 @@
 						button_text_left_padding: 18,
 						button_window_mode: SWFUpload.WINDOW_MODE.TRANSPARENT,
 						button_cursor: SWFUpload.CURSOR.HAND,
-						flash_url : "<? echo SITE_URL; ?>/js/swfupload/swfupload.swf",
+						flash_url : "<?php echo SITE_URL; ?>/js/swfupload/swfupload.swf",
 						custom_settings : {
 							upload_target : "divFileProgressContainer"
 						},
@@ -248,8 +238,7 @@
 				};
 				photoUploadInit();
 			</script>
-			<?
-		}
+			<?php 		}
 
 		function preview(&$html) {
 			global $langue;
@@ -264,17 +253,15 @@
 
 			?>
 			<center>
-			<a href="<? echo SITE_URL.'?'.$langue; ?>"><img src="<? echo SITE_URL; ?>/app/app_fairepart/template/images/_defaut/header.jpg" ></a>
+			<a href="<?php echo SITE_URL.'?'.$langue; ?>"><img src="<?php echo SITE_URL; ?>/app/app_fairepart/template/images/_defaut/header.jpg" ></a>
 			<div style="background:#fff; border:solid 1px #d00072; width:450px; padding:30px 0; font-family:Verdana; font-size:16px; color:#000; font-weight:bold; text-align:center;">
-			<?
-			echo "Le faire-part n'est pas ou plus disponible.<br><br>";
+			<?php 			echo "Le faire-part n'est pas ou plus disponible.<br><br>";
 			?>
-			<a href="<? echo SITE_URL.'?'.$langue; ?>" style="font-size:12px; text-decoration:none; color:#000;"><?php echo $lang_inviter["RetourALaPageDAccueil"];?> <span style="text-decoration:underline; color:#d00072;">Babybook.ch</span></a>
+			<a href="<?php echo SITE_URL.'?'.$langue; ?>" style="font-size:12px; text-decoration:none; color:#000;"><?php echo $lang_inviter["RetourALaPageDAccueil"];?> <span style="text-decoration:underline; color:#d00072;">Babybook.ch</span></a>
 			</div>
-			<img src="<? echo SITE_URL; ?>/app/app_fairepart/template/images/_defaut/footer.jpg" >
+			<img src="<?php echo SITE_URL; ?>/app/app_fairepart/template/images/_defaut/footer.jpg" >
 			</center>
-			<?
-		}
+			<?php 		}
 
 		function envoyer(&$row) {
 			global $langue;
@@ -303,23 +290,22 @@
 			<table>
 			<tr>
 				<td><center>
-				<a href="<? echo JL::url('index.php?app=inviter&action=envoyer&id='.$row->id.'&type=hotmail').'&'.$langue; ?>"><img src="<? echo SITE_URL; ?>/images/logo/hotmail.jpg"></a>
-				<a href="<? echo JL::url('index.php?app=inviter&action=envoyer&id='.$row->id.'&type=gmail').'&'.$langue; ?>"><img src="<? echo SITE_URL; ?>/images/logo/gmail.jpg" style="padding:0 10px;"></a>
-				<a href="<? echo JL::url('index.php?app=inviter&action=envoyer&id='.$row->id.'&type=yahoo').'&'.$langue; ?>"><img src="<? echo SITE_URL; ?>/images/logo/yahoo.jpg"></a>
+				<a href="<?php echo JL::url('index.php?app=inviter&action=envoyer&id='.$row->id.'&type=hotmail').'&'.$langue; ?>"><img src="<?php echo SITE_URL; ?>/images/logo/hotmail.jpg"></a>
+				<a href="<?php echo JL::url('index.php?app=inviter&action=envoyer&id='.$row->id.'&type=gmail').'&'.$langue; ?>"><img src="<?php echo SITE_URL; ?>/images/logo/gmail.jpg" style="padding:0 10px;"></a>
+				<a href="<?php echo JL::url('index.php?app=inviter&action=envoyer&id='.$row->id.'&type=yahoo').'&'.$langue; ?>"><img src="<?php echo SITE_URL; ?>/images/logo/yahoo.jpg"></a>
 				</center></td>
 			</tr>
 			</table>
 
 
-			<?
-
+			<?php 
 			if(JL::cleanVar(JL::getVar('type', '')) == 'gmail'){
 			?>
 				<div id="gmail" name="gmail" class="gmail" >
-				<form name="form1" method="post" action="<? echo SITE_URL; ?>/index.php?<?php echo$langue;?>">
+				<form name="form1" method="post" action="<?php echo SITE_URL; ?>/index.php?<?php echo$langue;?>">
 				  <table border="0" cellspacing="0" cellpadding="0">
 					<tr>
-						<td><img src="<? echo SITE_URL; ?>/images/logo/gmail-logo.jpg"></td>
+						<td><img src="<?php echo SITE_URL; ?>/images/logo/gmail-logo.jpg"></td>
 						<td class="rose"><center><b><?php echo $lang_inviter["RechercherVosContacts"];?></b></center></td>
 					</tr>
 					<tr>
@@ -337,22 +323,21 @@
 					  <td colspan="2" class="rose"><center>
 					  <input type="hidden" name="app" value="fairepart">
 					  <input type="hidden" name="type" value="gmail" id="type">
-					  <input type="hidden" name="site_url" value="<? echo SITE_URL; ?>">
-					  <img src="<? echo SITE_URL; ?>/template/images/login-ok.jpg" onclick="javascript:rechercheContact();" style="cursor:pointer; " height="20" ></center></td>
+					  <input type="hidden" name="site_url" value="<?php echo SITE_URL; ?>">
+					  <img src="<?php echo SITE_URL; ?>/template/images/login-ok.jpg" onclick="javascript:rechercheContact();" style="cursor:pointer; " height="20" ></center></td>
 					</tr>
 				  </table>
 				</form>
 				</div>
 
-			<?
-			}
+			<?php 			}
 			if(JL::cleanVar(JL::getVar('type', '')) == 'hotmail'){
 			?>
 				<div id="hotmail" name="hotmail" class="hotmail" >
-				<form name="form2" method="post" action="<? echo SITE_URL; ?>/index.php?<?php echo$langue?>">
+				<form name="form2" method="post" action="<?php echo SITE_URL; ?>/index.php?<?php echo$langue?>">
 				  <table border="0" cellspacing="0" cellpadding="0">
 					<tr>
-						<td><img src="<? echo SITE_URL; ?>/images/logo/hotmail-logo.jpg"></td>
+						<td><img src="<?php echo SITE_URL; ?>/images/logo/hotmail-logo.jpg"></td>
 						<td class="rose"><center><b><?php echo $lang_inviter["RechercherContactsHotmail"];?></b></center></td>
 					</tr>
 					<tr>
@@ -370,15 +355,14 @@
 					  <td colspan="2" class="rose"><center>
 					  <input type="hidden" name="app" value="fairepart">
 					  <input type="hidden" name="type" value="hotmail" id="type">
-					  <input type="hidden" name="site_url" value="<? echo SITE_URL; ?>">
-					  <img src="<? echo SITE_URL; ?>/template/images/login-ok.jpg" onclick="javascript:rechercheContact();" style="cursor:pointer; " height="20"></center></td>
+					  <input type="hidden" name="site_url" value="<?php echo SITE_URL; ?>">
+					  <img src="<?php echo SITE_URL; ?>/template/images/login-ok.jpg" onclick="javascript:rechercheContact();" style="cursor:pointer; " height="20"></center></td>
 					</tr>
 				  </table>
 				</form>
 				</div>
 
-			<?
-			}
+			<?php 			}
 
 			if(JL::cleanVar(JL::getVar('type', '')) == 'yahoo'){
 			?>
@@ -386,7 +370,7 @@
 			<form name="form3" method="post" action="">
 			  <table border="0" cellspacing="0" cellpadding="0">
 				<tr>
-					<td><img src="<? echo SITE_URL; ?>/images/logo/yahoo-logo.jpg"></td>
+					<td><img src="<?php echo SITE_URL; ?>/images/logo/yahoo-logo.jpg"></td>
 					<td class="rose"><center><b><?php echo $lang_inviter["RechercherContactsYahoo"];?></b></center></td>
 				</tr>
 				<tr>
@@ -404,29 +388,27 @@
 					  <td colspan="2" class="rose"><center>
 					  <input type="hidden" name="app" value="fairepart">
 					  <input type="hidden" name="type" value="yahoo" id="type">
-					  <input type="hidden" name="site_url" value="<? echo SITE_URL; ?>">
-					  <img src="<? echo SITE_URL; ?>/template/images/login-ok.jpg" onclick="javascript:rechercheContact();" style="cursor:pointer; " height="20"></center></td>
+					  <input type="hidden" name="site_url" value="<?php echo SITE_URL; ?>">
+					  <img src="<?php echo SITE_URL; ?>/template/images/login-ok.jpg" onclick="javascript:rechercheContact();" style="cursor:pointer; " height="20"></center></td>
 					</tr>
 			  </table>
 			</form>
 
 			</div>
-			<?
-			}
+			<?php 			}
 			?>
-			<img src="<? echo SITE_URL_ADMIN; ?>/images/loading.gif" id="loading" alt="Chargement..." class="loading" />
+			<img src="<?php echo SITE_URL_ADMIN; ?>/images/loading.gif" id="loading" alt="Chargement..." class="loading" />
 			<div class="contact" id="contact" style="display:none;">
 				<div style="width:473px;"><?php echo $lang_inviter["SupprimerLesContacts"];?>.</div><br><br>
 				<form name="listeContact" method="post" action="" id="listeContact">
 					<input type="hidden" name="app" value="fairepart">
-					<input type="hidden" name="site_url" value="<? echo SITE_URL; ?>">
+					<input type="hidden" name="site_url" value="<?php echo SITE_URL; ?>">
 					<input type="hidden" name="action" value="import">
-					<input type="image" src="<? echo SITE_URL; ?>/template/images/abonnement/envoyer.jpg" name="envoyer" height="20" id="envoyer">
+					<input type="image" src="<?php echo SITE_URL; ?>/template/images/abonnement/envoyer.jpg" name="envoyer" height="20" id="envoyer">
 				</form>
 
 			</div>
-			<?
-			// panel bas
+			<?php 			// panel bas
 			JLPanel::close();
 
 		}
@@ -453,16 +435,14 @@
 				<div class="fairepartMilieu">
 				<?php echo $lang_inviter["LeFairePartAEte"];?> :<br><br>
 
-			<?
-				for($i=0; $i<$tailleTab; $i++){
+			<?php 				for($i=0; $i<$tailleTab; $i++){
 					echo $row->tabContact[$i]."<br>";
 				}
 			?>
 				</div>
 				<div class="fairepartBas"></div>
 				</div>
-			<?
-			// panel bas
+			<?php 			// panel bas
 			JLPanel::close();
 
 

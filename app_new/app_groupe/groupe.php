@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 
 	require_once('groupe.html.php');
@@ -27,7 +27,7 @@
 	// gestion des messages d'erreurs
 	$messages		= array();
 
-	// types de groupes: tous, que ceux rejoinds par l'utilisateur, que ceux créés par l'utilisateur
+	// types de groupes: tous, que ceux rejoinds par l'utilisateur, que ceux crï¿½ï¿½s par l'utilisateur
 	$groupe_type	= JL::getVar('groupe_type', JL::getSession('groupe_type', 'all'));
 
 
@@ -89,7 +89,7 @@
 				JL::redirect(SITE_URL.'/index.php?app=profil&action=inscription'.'&'.$langue);
 			}
 
-			// abonné uniquement
+			// abonnï¿½ uniquement
 			//JL::loadMod('abonnement_check');
 
 			groupeEdit($messages);
@@ -108,7 +108,7 @@
 				JL::redirect(SITE_URL.'/index.php?app=profil&action=inscription'.'&'.$langue);
 			}
 
-			// abonné uniquement
+			// abonnï¿½ uniquement
 			//JL::loadMod('abonnement_check');
 
 			$messages =& groupeSave();
@@ -143,17 +143,17 @@
 			global $langue;
 		global $db, $user;
 
-		// vérifie que le groupe existe
+		// vï¿½rifie que le groupe existe
 		$query = "SELECT id FROM groupe WHERE id = '".$db->escape($groupe_id)."' AND (active > 0 OR user_id = '".(int)$user->id."') LIMIT 0,1";
 		$id = $db->loadResult($query);
 
 		if($id > 0) {
 
-			// check si l'utilisateur est déjà inscrit
+			// check si l'utilisateur est dï¿½jï¿½ inscrit
 			$query = "SELECT user_id FROM groupe_user WHERE groupe_id = '".$db->escape($groupe_id)."' AND user_id = '".(int)$user->id."' LIMIT 0,1";
 			$dejaInscrit = $db->loadResult($query);
 
-			// si l'utilisateur n'est pas déjà inscrit (s'il l'est, on n'enregistre rien, mais pas besoin de générer un message d'erreur)
+			// si l'utilisateur n'est pas dï¿½jï¿½ inscrit (s'il l'est, on n'enregistre rien, mais pas besoin de gï¿½nï¿½rer un message d'erreur)
 			if(!$dejaInscrit) {
 
 				// enregistre l'inscription
@@ -164,7 +164,7 @@
 				;
 				$db->query($query);
 
-				// mise à jour des stats du groupe
+				// mise ï¿½ jour des stats du groupe
 				$query = "UPDATE groupe SET stats_membres = stats_membres + 1 WHERE id = '".(int)$id."'";
 				$db->query($query);
 
@@ -186,7 +186,7 @@
 		global $langue;
 		global $db, $user;
 
-		// vérifie que le groupe existe
+		// vï¿½rifie que le groupe existe
 		$query = "SELECT id FROM groupe WHERE id = '".$db->escape($groupe_id)."' LIMIT 0,1";
 		$id = $db->loadResult($query);
 
@@ -196,7 +196,7 @@
 			$query = "DELETE FROM groupe_user WHERE groupe_id = '".(int)$id."' AND user_id = '".(int)$user->id."'";
 			$db->query($query);
 
-			// mise à jour des stats du groupe
+			// mise ï¿½ jour des stats du groupe
 			$query = "UPDATE groupe SET stats_membres = stats_membres - 1 WHERE stats_membres > 0 AND id = '".(int)$id."'";
 			$db->query($query);
 
@@ -218,7 +218,7 @@
 				
 		$query = "SELECT id, titre_".$_GET['lang']." as titre, texte_".$_GET['lang']." as texte FROM contenu WHERE id = 103";
 		$data = $db -> loadObject($query);
-		// todo: créer un article et le charger depuis la fonction
+		// todo: crï¿½er un article et le charger depuis la fonction
 
 		HTML_groupe::information($data);
 
@@ -230,7 +230,7 @@
 		include("lang/app_groupe.".$_GET['lang'].".php");
 		global $db, $user, $messages;
 
-		// formule magique: calcule de la popularité d'un groupe
+		// formule magique: calcule de la popularitï¿½ d'un groupe
 		$populariteFormule	= groupePopulariteFormule();
 
 
@@ -253,7 +253,7 @@
 			$order_by 		= 1;
 		}
 
-		// liste déroulante des order by
+		// liste dï¿½roulante des order by
 		$order_by_option[] = JL::makeOption(1, $lang_groupe["Nouveaute"]);
 		$order_by_option[] = JL::makeOption(2, $lang_groupe["Anciennete"]);
 		$order_by_option[] = JL::makeOption(3, $lang_groupe["OrdreAlphabetique"]);
@@ -288,7 +288,7 @@
 				$where[]		= "g.user_id NOT IN (SELECT user_id_to FROM user_flbl WHERE user_id_from = ".$user->id." AND list_type=0)";
 			break;
 
-			case 'created': // groupes créés par l'utilisateur
+			case 'created': // groupes crï¿½ï¿½s par l'utilisateur
 				$where[]		= "g.user_id = '".(int)$user->id."'";
 				$fieldTitre		= "IF(g.titre_a_valider != '', g.titre_a_valider, g.titre) AS titre";
 				$fieldTexte		= "IF(g.texte_a_valider != '', g.texte_a_valider, g.texte) AS texte";
@@ -304,21 +304,21 @@
 
 		}
 
-		if(count($where)) {
+		if (is_array($where)) {
 			$_where = " WHERE ".implode(" AND ", $where);
 		}
 
 		switch($order_by) {
 
-			case 1: // Nouveauté
+			case 1: // Nouveautï¿½
 				$_orderBy = "g.date_add DESC";
 			break;
 
-			case 2: // Ancienneté
+			case 2: // Anciennetï¿½
 				$_orderBy = "g.date_add ASC";
 			break;
 
-			case 3: // Ordre alphabétique
+			case 3: // Ordre alphabï¿½tique
 				$_orderBy = "g.titre ASC";
 			break;
 
@@ -326,13 +326,13 @@
 				$_orderBy = "g.stats_membres DESC";
 			break;
 
-			case 5: // Popularité
+			case 5: // Popularitï¿½
 				$_orderBy	= '`popularite` DESC';
 			break;
 
 		}
 
-		// récup le score de popularité max (on n'utilise pas le $_where car on calcule le score général, pour tous les groupes valides, et non pour la recherche uniquement)
+		// rï¿½cup le score de popularitï¿½ max (on n'utilise pas le $_where car on calcule le score gï¿½nï¿½ral, pour tous les groupes valides, et non pour la recherche uniquement)
 		$query = "SELECT MAX(CEIL(".$populariteFormule.")) AS valeur"
 		." FROM groupe AS g"
 		." WHERE g.active > 0 AND g.titre != ''"
@@ -340,7 +340,7 @@
 		$populariteMax	= $db->loadResult($query);
 		
 
-		// récup le total
+		// rï¿½cup le total
 		$query = "SELECT COUNT(*)"
 		." FROM groupe AS g"
 		." LEFT JOIN groupe_user AS gu ON gu.groupe_id = g.id AND gu.user_id = '".(int)$user->id."'"
@@ -351,7 +351,7 @@
 		$search['results_start']	= ($search['page'] - 1) * $resultatParPage;
 
 
-		// récup la liste des groupes
+		// rï¿½cup la liste des groupes
 		$query = "SELECT g.id, ".$fieldTitre.", ".$fieldTexte.", g.active, g.date_add, g.stats_membres, g.stats_soutiens, g.user_id, IFNULL(gu.user_id, 0) AS membre, CEIL(CEIL(".$populariteFormule.")*100.0/".strval($populariteMax).") AS popularite"
 		." FROM groupe AS g"
 		." LEFT JOIN groupe_user AS gu ON gu.groupe_id = g.id AND gu.user_id = '".(int)$user->id."'"
@@ -362,17 +362,17 @@
 		$rows = $db->loadObjectList($query);
 
 
-		// crédit de points pour les seuils de popularité atteints pour la première fois
+		// crï¿½dit de points pour les seuils de popularitï¿½ atteints pour la premiï¿½re fois
 		if(is_array($rows)) {
 			foreach($rows as $row) {
 
-				if($row->popularite < 50) { // 2 icônes
+				if($row->popularite < 50) { // 2 icï¿½nes
 					JL::addPoints(14, $row->user_id, $row->id);
-				} elseif($row->popularite < 75) { // 3 icônes
+				} elseif($row->popularite < 75) { // 3 icï¿½nes
 					JL::addPoints(15, $row->user_id, $row->id);
-				} elseif($row->popularite < 100) { // 4 icônes
+				} elseif($row->popularite < 100) { // 4 icï¿½nes
 					JL::addPoints(16, $row->user_id, $row->id);
-				} elseif($row->popularite == 100) { // 5 icônes
+				} elseif($row->popularite == 100) { // 5 icï¿½nes
 					JL::addPoints(17, $row->user_id, $row->id);
 				}
 				
@@ -397,11 +397,11 @@
 
 			$messages[]	= '<span class="valid">'.$lang_groupe["RejoindreGroupeReussi"].' !</span>';
 
-		} elseif($msg == 'quit') { // groupe quitté
+		} elseif($msg == 'quit') { // groupe quittï¿½
 
 			$messages[]	= '<span class="valid">'.$lang_groupe["QuitterGroupeReussi"].' !</span>';
 
-		} elseif($msg == 'ok') { // groupe enregistré
+		} elseif($msg == 'ok') { // groupe enregistrï¿½
 
 			$messages[]	= '<span class="valid">'.$lang_groupe["GroupeEnregistre"].'!<br />'.$lang_groupe["GroupesSoumisAValidation"].'.<br />'.$lang_groupe["AffichageGroupeDansListe"].' !</span>';
 
@@ -409,7 +409,7 @@
 
 			$messages[]	= '<span class="error">'.$lang_groupe["NonFondateurGroupe"].' !</span>';
 
-		} elseif($msg == 'locked') { // groupe verouillé
+		} elseif($msg == 'locked') { // groupe verouillï¿½
 
 			$messages[]	= '<span class="error">'.$lang_groupe["GroupeVerouille"].'.</span>';
 
@@ -445,7 +445,7 @@
 		$_where			= '';
 		$where 			= array();
 
-		// récup les données du formulaire
+		// rï¿½cup les donnï¿½es du formulaire
 		$row	= new stdClass();
 		$_data 	=& groupe_data();
 
@@ -458,15 +458,15 @@
 		$where[]	= "g.id = '".(int)$row->id."'";
 		$where[]	= "g.user_id = '".(int)$user->id."'";
 
-		if(count($where)) {
+		if (is_array($where)) {
 			$_where = " WHERE ".implode(" AND ", $where);
 		}
 
 
-		// si l'id est renseigné (edit)
+		// si l'id est renseignï¿½ (edit)
 		if($row->id) {
 
-			// récup le groupe
+			// rï¿½cup le groupe
 			$query = "SELECT g.id, g.titre, IF(g.titre_a_valider != '', g.titre_a_valider, g.titre) AS titre_a_valider, g.texte, IF(g.texte_a_valider != '', g.texte_a_valider, g.texte) AS texte_a_valider, g.active, g.date_add, g.motif"
 			." FROM groupe AS g"
 			.$_where
@@ -479,7 +479,7 @@
 				// redirection sur page d'erreur d'ajout
 				JL::redirect(SITE_URL.'/index.php?app=groupe&action=list&msg=noedit'.'&'.$langue);
 
-			} elseif($rowTemp->active == 3) { // groupe non verouillé
+			} elseif($rowTemp->active == 3) { // groupe non verouillï¿½
 
 				// redirection sur page d'erreur d'ajout
 				JL::redirect(SITE_URL.'/index.php?app=groupe&action=list&msg=locked'.'&'.$langue);
@@ -521,7 +521,7 @@
 	}
 
 
-	// ajoute un utilisateur à la fl/bl de l'utilisateur log
+	// ajoute un utilisateur ï¿½ la fl/bl de l'utilisateur log
 	function &groupeSave() {
 			global $langue;
 			include("lang/app_groupe.".$_GET['lang'].".php");
@@ -532,7 +532,7 @@
 		// gestion des messages d'erreurs
 		$messages		= array();
 
-		// récup les données du formulaire
+		// rï¿½cup les donnï¿½es du formulaire
 		$_data 	=& groupe_data();
 		$row	= new stdClass();
 		foreach($_data as $k => $v) {
@@ -541,7 +541,7 @@
  $groupe->captchaAbo			= JL::getVar('captchaAbo', '');
 	 $groupe->verif					= trim(JL::getVar('verif', ''));
 
-		// check que le groupe appartient bien à l'utilisateur log
+		// check que le groupe appartient bien ï¿½ l'utilisateur log
 		if($row->id) {
 			$query 	= "SELECT id, active FROM groupe WHERE id = '".$db->escape($row->id)."' AND user_id = '".(int)$user->id."' LIMIT 0,1";
 			$groupe	= $db->loadObject($query);
@@ -550,7 +550,7 @@
 
 				$messages[]	= '<span class="error">'.$lang_groupe["NonFondateurGroupe"].' !</span>';
 
-			} elseif($groupe->active == 3) { // groupe verrouillé
+			} elseif($groupe->active == 3) { // groupe verrouillï¿½
 
 				$messages[]	= '<span class="error">'.$lang_groupe["GroupeVerouille"].'.</span>';
 
@@ -566,7 +566,7 @@
 
 		} elseif(!$row->id) {
 
-			// vérifie si un groupe du même titre existe déjà
+			// vï¿½rifie si un groupe du mï¿½me titre existe dï¿½jï¿½
 			$query = "SELECT id FROM groupe WHERE titre LIKE '".$row->titre."' LIMIT 0,1";
 			$existe	= $db->loadResult($query);
 
@@ -588,7 +588,7 @@
 		if(!count($messages)) {
 
 
-			// mise à jour
+			// mise ï¿½ jour
 			if($row->id) {
 
 				$query 	= "UPDATE groupe SET";
@@ -603,7 +603,7 @@
 
 			}
 
-			// reset le statut du groupe, en le définissant comme "à valider"
+			// reset le statut du groupe, en le dï¿½finissant comme "ï¿½ valider"
 			$query .= " active = 2,"
 			." titre_a_valider = '".$db->escape($row->titre)."',"
 			." texte_a_valider = '".$db->escape($row->texte)."',"
@@ -611,15 +611,15 @@
 			.$_where
 			;
 
-			// exécute la requête
+			// exï¿½cute la requï¿½te
 			$db->query($query);
 
 			if(!$row->id) {
 
-				// récup l'id généré
+				// rï¿½cup l'id gï¿½nï¿½rï¿½
 				$row->id	= $db->insert_id();
 
-				// le créateur du groupe rejoind automatiquement son propre groupe
+				// le crï¿½ateur du groupe rejoind automatiquement son propre groupe
 				$query = "INSERT INTO groupe_user SET"
 				." groupe_id = '".$row->id."',"
 				." user_id = '".(int)$user->id."'"
@@ -645,7 +645,7 @@
 	}
 
 
-	// fiche détaillées d'un groupe
+	// fiche dï¿½taillï¿½es d'un groupe
 	function groupeFiche($id) {
 			global $langue;
 		global $db, $user;
@@ -656,10 +656,10 @@
 		$search				= array();
 
 
-		// formule de popularité
+		// formule de popularitï¿½
 		$populariteFormule 	= groupePopulariteFormule();
 
-		// récup le score de popularité max (on n'utilise pas le $_where car on calcule le score général, pour tous les groupes valides, et non pour la recherche uniquement)
+		// rï¿½cup le score de popularitï¿½ max (on n'utilise pas le $_where car on calcule le score gï¿½nï¿½ral, pour tous les groupes valides, et non pour la recherche uniquement)
 		$query = "SELECT MAX(CEIL(".$populariteFormule.")) AS valeur"
 		." FROM groupe AS g"
 		." WHERE g.active > 0 AND g.titre != ''"
@@ -667,7 +667,7 @@
 		$populariteMax	= $db->loadResult($query);
 
 
-		// récup le groupe
+		// rï¿½cup le groupe
 		$query = "SELECT g.id, g.titre, g.texte, g.stats_membres, g.date_add, g.user_id, u.username AS fondateur, up.genre AS genre_fondateur, IFNULL(gu.user_id, 0) AS membre, CEIL(CEIL(".$populariteFormule.")*100.0/".strval($populariteMax).") AS popularite"
 		." FROM groupe AS g"
 		." INNER JOIN user AS u ON u.id = g.user_id"
@@ -690,7 +690,7 @@
 		// page 1 uniquement
 		if(JL::getVar('page_h', 1) == 1 && JL::getVar('page_f', 1) == 1) {
 
-			// mise à jour des stats de visites du groupe
+			// mise ï¿½ jour des stats de visites du groupe
 			$query = "UPDATE groupe SET stats_visites = stats_visites + 1 WHERE id = '".$db->escape($id)."' AND active > 0";
 			$db->query($query);
 
@@ -703,7 +703,7 @@
 			// params
 			$search['page_'.$genre]	= JL::getVar('page_'.$genre, 1);
 
-			// définit le WHERE
+			// dï¿½finit le WHERE
 			$_where = " WHERE gu.groupe_id = '".$db->escape($row->id)."'"
 			." AND up.genre = '".$db->escape($genre)."'"
 			." AND u.confirmed > 0"
@@ -713,7 +713,7 @@
 			;
 
 
-			// compte le nombre de résultats
+			// compte le nombre de rï¿½sultats
 			$query = "SELECT COUNT(*)"
 			." FROM user AS u"
 			." INNER JOIN groupe_user AS gu ON gu.user_id = u.id"
@@ -724,7 +724,7 @@
 			$search['page_total_'.$genre] 		= ceil($search['result_total_'.$genre] / $resultatParPage);
 
 
-			// recherche des données
+			// recherche des donnï¿½es
 			$query = "SELECT u.id, u.username, up.photo_defaut, up.nb_enfants, up.genre, CURRENT_DATE, (YEAR(CURRENT_DATE)-YEAR(up.naissance_date)) - (RIGHT(CURRENT_DATE,5)<RIGHT(up.naissance_date,5)) AS age, IFNULL(pc.nom_".$_GET['lang'].", '') AS canton, pc.abreviation AS canton_abrev, (UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(u.last_online)) AS last_online_time, u.online"
 			." FROM user AS u"
 			." INNER JOIN groupe_user AS gu ON gu.user_id = u.id"
@@ -745,7 +745,7 @@
 	}
 
 
-	// formule magique: calcule de la popularité d'un groupe
+	// formule magique: calcule de la popularitï¿½ d'un groupe
 	function groupePopulariteFormule() {
 		return "((g.stats_membres + g.stats_soutiens) * (g.stats_membres + g.stats_soutiens) + g.stats_visites) / ((UNIX_TIMESTAMP()-UNIX_TIMESTAMP(g.date_add))/86400 + 1)";
 	}

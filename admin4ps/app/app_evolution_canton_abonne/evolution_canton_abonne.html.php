@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 	
 	class evolution_canton_abonne_HTML {	
@@ -17,7 +17,7 @@
 						
 						
 						 if(action == 'Fermer') {
-							if(!confirm('Êtes-vous sûr de vouloir Fermer?')) {
+							if(!confirm('ï¿½tes-vous sï¿½r de vouloir Fermer?')) {
 								ok = false;
 								
 							}
@@ -25,7 +25,7 @@
 						
 						if(ok) {
 						
-							document.location = "<? echo SITE_URL_ADMIN; ?>"; 
+							document.location = "<?php echo SITE_URL_ADMIN; ?>"; 
 						}
 						
 					}
@@ -46,18 +46,16 @@
 			<div class="tableAdmin">
 			<table class="table table-bordered table-striped table-condensed cf" cellpadding="0" cellspacing="0">
 					<tr>
-						<th>Cantons</th><? for($i=2009;$i<=date('Y');$i++){ echo '<th>'.$i.'</th>';} ?>
+						<th>Cantons</th><?php for($i=2009;$i<=date('Y');$i++){ echo '<th>'.$i.'</th>';} ?>
 						
 					</tr>
-		<?
-		
+		<?php 		
 				
 			foreach($cantons as $c){
 				?>
 				<tr class="list">
-					<td><? echo $c->nom_fr.' ('.$c->abreviation.')'; ?></td>
-					<?
-					
+					<td><?php echo $c->nom_fr.' ('.$c->abreviation.')'; ?></td>
+					<?php 					
 					for($i=2009;$i<=date('Y');$i++){
 						
 						$abonnes=0;
@@ -67,20 +65,17 @@
 								$abonnes += $d->total;
 						
 						?>
-						<td><? echo $abonnes; ?></td>
-						<?
-					}
+						<td><?php echo $abonnes; ?></td>
+						<?php 					}
 				?>
 				</tr>
-			<?
-			}
+			<?php 			}
 		?>
 			
 			</table>
 		</div>
 			</section>
-		<?
-		}
+		<?php 		}
 		
 		
 	}

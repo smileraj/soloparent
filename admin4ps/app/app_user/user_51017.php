@@ -227,7 +227,7 @@
 		$ids = JL::getVar('id', array());
 		
 		// s'il y a des id passés
-		if(count($ids)) {
+		if (is_array($ids)) {
 			$in_id	= implode(',', $ids);
 			
 			// mise à jour du champ id
@@ -268,7 +268,7 @@
 					$userProfil = $db->loadObject($queryUser);
 				
 					if($abonnement_paypal && $userProfil){
-						mail('abonnement@parentsolo.ch', 'Désactivation d\'un membre', "Désactivation d'un membre abonné\n\n Username : ".$userProfil->username."\n Id User (Marie) : ".$userProfil->id."\n\n Intitulé Abo : ".$abonnement_paypal->intitule_abo."\n Montant : ".$abonnement_paypal->montant."\n Nom Paypal : ".$abonnement_paypal->nom_paypal."\n Prénom Paypal : ".$abonnement_paypal->prenom_paypal."\n Référence Paypal : ".$abonnement_paypal->reference_paypal."\n Validité de l'Abonnement (0->non validé, 1->en cours, 2->annulé) : ".$abonnement_paypal->valide."\n Id Abonnement Paypal (Marie) : ".$abonnement_paypal->id."\n");
+						mail('abonnement@solocircl.com', 'Désactivation d\'un membre', "Désactivation d'un membre abonné\n\n Username : ".$userProfil->username."\n Id User (Marie) : ".$userProfil->id."\n\n Intitulé Abo : ".$abonnement_paypal->intitule_abo."\n Montant : ".$abonnement_paypal->montant."\n Nom Paypal : ".$abonnement_paypal->nom_paypal."\n Prénom Paypal : ".$abonnement_paypal->prenom_paypal."\n Référence Paypal : ".$abonnement_paypal->reference_paypal."\n Validité de l'Abonnement (0->non validé, 1->en cours, 2->annulé) : ".$abonnement_paypal->valide."\n Id Abonnement Paypal (Marie) : ".$abonnement_paypal->id."\n");
 					}
 				
 				}
@@ -292,7 +292,7 @@
 		// variables
 		$resultatParPage	= RESULTS_NB_LISTE_ADMIN;
 		$search				= array();
-		$where				= array();
+		$where				= null;
 		$_where				= '';
 		
 		// params
@@ -309,7 +309,7 @@
 		}
 		
 		// génère le where
-		if(count($where)) {
+		if (is_array($where)) {
 			$_where		= " WHERE ".implode(' AND ', $where);
 		}
 		
@@ -346,7 +346,7 @@
 		$ids_profil	= array();
 		
 		// s'il y a des id passés
-		if(count($ids)) {
+		if (is_array($ids)) {
 		
 			// mise à jour des stats nouveaux messages
 			userUpdateMessages($ids);
@@ -444,7 +444,7 @@
 					$userProfil = $db->loadObject($queryUser);
 				
 					if($abonnement_paypal && $userProfil){
-						mail('abonnement@parentsolo.ch', 'Suppression d\'un membre', "Suppression d'un membre abonné\n\n Username : ".$userProfil->username."\n Id User (Marie) : ".$userProfil->id."\n\n Intitulé Abo : ".$abonnement_paypal->intitule_abo."\n Montant : ".$abonnement_paypal->montant."\n Nom Paypal : ".$abonnement_paypal->nom_paypal."\n Prénom Paypal : ".$abonnement_paypal->prenom_paypal."\n Référence Paypal : ".$abonnement_paypal->reference_paypal."\n Validité de l'Abonnement (0->non validé, 1->en cours, 2->annulé) : ".$abonnement_paypal->valide."\n  Id Abonnement Paypal (Marie) : ".$abonnement_paypal->id."\n");
+						mail('abonnement@solocircl.com', 'Suppression d\'un membre', "Suppression d'un membre abonné\n\n Username : ".$userProfil->username."\n Id User (Marie) : ".$userProfil->id."\n\n Intitulé Abo : ".$abonnement_paypal->intitule_abo."\n Montant : ".$abonnement_paypal->montant."\n Nom Paypal : ".$abonnement_paypal->nom_paypal."\n Prénom Paypal : ".$abonnement_paypal->prenom_paypal."\n Référence Paypal : ".$abonnement_paypal->reference_paypal."\n Validité de l'Abonnement (0->non validé, 1->en cours, 2->annulé) : ".$abonnement_paypal->valide."\n  Id Abonnement Paypal (Marie) : ".$abonnement_paypal->id."\n");
 					}
 				
 				}

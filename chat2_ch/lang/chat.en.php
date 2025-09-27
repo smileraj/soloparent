@@ -26,7 +26,7 @@ $langChat= array(
 	
 	"ProfilNonValide" => "Your profile has not yet been validated by a moderator. You'll receive a phone call within 1 to 2 business days to confirm your profile. These waiting days will of course be added to your subscription",
 	"QualiteServiceOptimale" => "This action is taken in order to guarantee an optimal quality of service. Any malicious person wishing to bypass the phone confirmation is therefore unable to contact other members as their profile will not have been validated",
-	"ParentsoloVousRemercie" => "Parentsolo.ch thanks you for your understanding",
+	"ParentsoloVousRemercie" => "solocircl.com thanks you for your understanding",
 	
 	"MembreNonConfirme" => "This member profile has not yet been confirmed",
 	

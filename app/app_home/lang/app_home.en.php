@@ -18,7 +18,7 @@ $lang_apphome = array(
 	"matching_header" => "<b class='title_top'>Matching</b><br> our team selects for you the 20 dad or mum solo that match you, the most compatible with your expectations and your situation! ",
 	"events_header" => "<b class='title_top'>Events</b><br> Share and discover the main events in your area, ideal to share between solo parents or family! ",
 	"acces" => "<b class='title_top'>Accessible on all Mobiles & Tablets</b><br> New encounters at your fingertips! Parentsolo accompanies you everywhere. Communicate with who you want, where you want and whenever you want.",
-	"concept" =>  "<b class='title_top'> UNIQUE CONCEPT IN EUROPE </b><br> Exclusively for parents living in Switzerland, ParentSolo.ch differs from the other websites by his specialization, the single parents, and by his will to offer a service of quality.  ",
+	"concept" =>  "<b class='title_top'> UNIQUE CONCEPT IN EUROPE </b><br> Exclusively for parents living in Switzerland, solocircl.com differs from the other websites by his specialization, the single parents, and by his will to offer a service of quality.  ",
 	
 	"InscriptionGratuite" => "FREE REGISTRATION",
 	"Join_lan" => "Join it's",
@@ -49,8 +49,8 @@ $lang_apphome = array(
 	
 	
 	"EcoutezLaRadioEnLive" => "Listen to live radio!",
-	"EcoutezLFMAvecParentSolo" => "Listen to LFM with Parentsolo.ch",
-	"EcoutezOneFMAvecParentSolo" => "Listen to One FM with Parentsolo.ch",
+	"EcoutezLFMAvecParentSolo" => "Listen to LFM with solocircl.com",
+	"EcoutezOneFMAvecParentSolo" => "Listen to One FM with solocircl.com",
 	
 	"SuivezNous" => "Follow us!",
 	

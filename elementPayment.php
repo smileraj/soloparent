@@ -774,7 +774,7 @@ else{
 			<?php
 		
 			
-		}  ?><?php */?>
+		}  ?><?php */ ?>
     <!--https://certtransaction.elementexpress.com/index.php?page=elementPaymentprocess-->
     <form action="" method="post" id="billing-form">
      <h4 class="primary">Enter your Billing Information</h4> 
@@ -1011,7 +1011,7 @@ else{
 
 	
 </div>
-</form><?php */?>
+</form><?php */ ?>
 <hr style="margin: 0.35em auto;"></hr>
 <div class="list-group ">
 		<img src="images/Acceptscreditcard.jpg">

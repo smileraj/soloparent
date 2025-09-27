@@ -15,8 +15,7 @@
 		?>
 			
 			<!-- Partie Droite -->
-		<?
-			$i=0;
+		<?php 			$i=0;
 			foreach($profils as $profil){
 				JL::makeSafe($profil);
 				if(is_file('images/profil/'.$profil->id.'/parent-solo-109-profil-'.$profil->photo_defaut.'.jpg')){
@@ -29,19 +28,17 @@
 			<div id="defile">
 				<div class="btn" id="defilePrev"></div>
 				<div class="images">
-					<div id="defileGalerie" rel="<? echo $i;?>">
-					<?
-						foreach($profils as $profil){
+					<div id="defileGalerie" rel="<?php echo $i;?>">
+					<?php 						foreach($profils as $profil){
 							JL::makeSafe($profil);
 							if(is_file('images/profil/'.$profil->id.'/parent-solo-109-profil-'.$profil->photo_defaut.'.jpg')){
 							?>
 								<div class="image">
-									<a title="<? echo $profil->username; ?>" href="<? echo JL::url('index.php?app=profil&action=view&id='.$profil->id.'&lang='.$_GET['lang']);?>"></a>
+									<a title="<?php echo $profil->username; ?>" href="<?php echo JL::url('index.php?app=profil&action=view&id='.$profil->id.'&lang='.$_GET['lang']);?>"></a>
 									<div class="cache"></div>
-									<img src="<? echo SITE_URL; ?>/images/profil/<? echo $profil->id;?>/parent-solo-109-profil-<? echo $profil->photo_defaut; ?>.jpg" alt="<? echo $profil->username; ?>" onclick="" />
+									<img src="<?php echo SITE_URL; ?>/images/profil/<?php echo $profil->id;?>/parent-solo-109-profil-<?php echo $profil->photo_defaut; ?>.jpg" alt="<?php echo $profil->username; ?>" onclick="" />
 								</div>
-							<?
-							}
+							<?php 							}
 						}
 					?>
 					</div>
@@ -54,24 +51,24 @@
 						<h1><?php echo $lang_apphome["SiteDeRencontrePour..."];?></h1>
 						<br />
 						
-						<div class="pastille_conseil_amis"><a href="<? echo JL::url('index.php?app=conseil').'&lang='.$_GET['lang'];?>"><img src="<? echo SITE_URL; ?>/parentsolo/images/app_home/pastille_conseil_amis-<? echo $_GET['lang']; ?>.png"  /></a></div>
+						<div class="pastille_conseil_amis"><a href="<?php echo JL::url('index.php?app=conseil').'&lang='.$_GET['lang'];?>"><img src="<?php echo SITE_URL; ?>/parentsolo/images/app_home/pastille_conseil_amis-<?php echo $_GET['lang']; ?>.png"  /></a></div>
 						<!--Création du profil-->
 						<div class="inscription">
 								
 							<h2><?php echo $lang_apphome["InscriptionGratuite"];?></h2>
 							<br />
-							<form action="<? echo JL::url('index.php?app=inscription').'&lang='.$_GET['lang'];?>" name="inscriptionMini" method="post">
-								<input type="hidden" name="site_url" id="site_url" value="<? echo SITE_URL; ?>" />
+							<form action="<?php echo JL::url('index.php?app=inscription').'&lang='.$_GET['lang'];?>" name="inscriptionMini" method="post">
+								<input type="hidden" name="site_url" id="site_url" value="<?php echo SITE_URL; ?>" />
 								<input type="hidden" name="lang" id="lang" value="<?php echo $_GET["lang"];?>" />
 								<table cellpadding="0" cellspacing="0">
-									<tr><td><label for="genre"><?php echo $lang_apphome["JeSuis"];?></label></td><td><? echo $list['genre']; ?></td></tr>
-									<tr><td><label for="date_naissance"><?php echo $lang_apphome["NeeLe"];?></label></td><td><? echo $list['naissance_jour'].$list['naissance_mois'].$list['naissance_annee']; ?></td></tr>
-									<tr><td><label for="enfant"><?php echo $lang_apphome["Jai"];?></label></td><td><? echo $list['nb_enfants']; ?> <label for="enfant"><?php echo $lang_apphome["Enfant(s)"];?></label></td></tr>
-									<tr><td><label for="canton"><?php echo $lang_apphome["JhabiteDansLeCantonDe"];?></label></td><td><? echo $list['canton_id']; ?></td></tr>
-									<tr><td><label for="ville"><?php echo $lang_apphome["A(Ville)"];?></label></td><td id="villes"><? echo $list['ville_id']; ?></td></tr>
+									<tr><td><label for="genre"><?php echo $lang_apphome["JeSuis"];?></label></td><td><?php echo $list['genre']; ?></td></tr>
+									<tr><td><label for="date_naissance"><?php echo $lang_apphome["NeeLe"];?></label></td><td><?php echo $list['naissance_jour'].$list['naissance_mois'].$list['naissance_annee']; ?></td></tr>
+									<tr><td><label for="enfant"><?php echo $lang_apphome["Jai"];?></label></td><td><?php echo $list['nb_enfants']; ?> <label for="enfant"><?php echo $lang_apphome["Enfant(s)"];?></label></td></tr>
+									<tr><td><label for="canton"><?php echo $lang_apphome["JhabiteDansLeCantonDe"];?></label></td><td><?php echo $list['canton_id']; ?></td></tr>
+									<tr><td><label for="ville"><?php echo $lang_apphome["A(Ville)"];?></label></td><td id="villes"><?php echo $list['ville_id']; ?></td></tr>
 								</table>
 									
-								<input type="hidden" name="site_url" id="site_url" value="<? echo SITE_URL; ?>" />
+								<input type="hidden" name="site_url" id="site_url" value="<?php echo SITE_URL; ?>" />
 								<input type="hidden" name="lang_id" id="lang_id" value="<?php echo $_GET["lang"];?>" />
 									
 								<input type="submit" class="envoyer" value="<?php echo $lang_apphome["JeMinscris"];?>" />
@@ -107,38 +104,38 @@
 						<div class="blocs_parentsolo">
 							<div class="bloc_parentsolo">
 								<span class="bloc_parentsolo_text" >
-									<h3><a href="<? echo JL::url('index.php?app=contenu&id=2').'&lang='.$_GET['lang']; ?>" title="<?php echo $colonne_1->titre;?>" ><? echo $colonne_1->titre; ?></a></h3>
-									<p><? echo $colonne_1->texte; ?></p>
+									<h3><a href="<?php echo JL::url('index.php?app=contenu&id=2').'&lang='.$_GET['lang']; ?>" title="<?php echo $colonne_1->titre;?>" ><?php echo $colonne_1->titre; ?></a></h3>
+									<p><?php echo $colonne_1->texte; ?></p>
 								</span>
-								<a href="<? echo JL::url('index.php?app=contenu&id=2').'&lang='.$_GET['lang']; ?>" title="<?php echo $colonne_1->titre;?>" ><img  width="180px" src="<? echo SITE_URL; ?>/parentsolo/images/app_home/concept-<? echo $_GET['lang']; ?>.jpg" title="<?php echo $colonne_1->titre;?>"/></a>
+								<a href="<?php echo JL::url('index.php?app=contenu&id=2').'&lang='.$_GET['lang']; ?>" title="<?php echo $colonne_1->titre;?>" ><img  width="180px" src="<?php echo SITE_URL; ?>/parentsolo/images/app_home/concept-<?php echo $_GET['lang']; ?>.jpg" title="<?php echo $colonne_1->titre;?>"/></a>
 							</div>
 							<br />
 							<div class="bloc_parentsolo">
 								<span class="bloc_parentsolo_text" >
-									<h3><a href="<? echo JL::url('index.php?app=temoignage').'&lang='.$_GET['lang']; ?>" title="<?php echo $colonne_2->titre;?>" ><? echo $colonne_2->titre; ?></a></h3>
-									<p><? echo $colonne_2->texte; ?></p>
+									<h3><a href="<?php echo JL::url('index.php?app=temoignage').'&lang='.$_GET['lang']; ?>" title="<?php echo $colonne_2->titre;?>" ><?php echo $colonne_2->titre; ?></a></h3>
+									<p><?php echo $colonne_2->texte; ?></p>
 								</span>
-								<a href="<? echo JL::url('index.php?app=temoignage').'&lang='.$_GET['lang']; ?>" title="<?php echo $colonne_2->titre;?>" ><img width="180px" src="<? echo SITE_URL; ?>/parentsolo/images/app_home/temoignages-<? echo $_GET['lang']; ?>.jpg" title="<?php echo $colonne_2->titre;?>" /></a>
+								<a href="<?php echo JL::url('index.php?app=temoignage').'&lang='.$_GET['lang']; ?>" title="<?php echo $colonne_2->titre;?>" ><img width="180px" src="<?php echo SITE_URL; ?>/parentsolo/images/app_home/temoignages-<?php echo $_GET['lang']; ?>.jpg" title="<?php echo $colonne_2->titre;?>" /></a>
 							</div>
 							<br />
 							<div class="bloc_parentsolo">
 								<span class="bloc_parentsolo_text" >
-									<h3><a href="<? echo JL::url('index.php?app=presse').'&lang='.$_GET['lang']; ?>" title="Presse">PARENTSOLO.CH VU PAR LES M&Eacute;DIAS</a></h3>
+									<h3><a href="<?php echo JL::url('index.php?app=presse').'&lang='.$_GET['lang']; ?>" title="Presse">solocircl.com VU PAR LES M&Eacute;DIAS</a></h3>
 									<p>
 										Concept in&eacute;dit et novateur, le 1er site de rencontres r&eacute;serv&eacute;s aux parents c&eacute;libataires r&eacute;sidant en Suisse a  fait l'effet d'un v&eacute;ritable "BUZZ" m&eacute;diatique d&egrave;s sa cr&eacute;ation.<br/>
 										<br />
-										D'ailleurs les m&eacute;dia continuent d'&ecirc;tre attentif &agrave; <a href="<? echo JL::url('index.php?app=presse').'&lang='.$_GET['lang']; ?>" title="Presse">son &eacute;volution...</a>
+										D'ailleurs les m&eacute;dia continuent d'&ecirc;tre attentif &agrave; <a href="<?php echo JL::url('index.php?app=presse').'&lang='.$_GET['lang']; ?>" title="Presse">son &eacute;volution...</a>
 									</p>
 								</span>
-								<a href="<? echo JL::url('index.php?app=presse').'&lang='.$_GET['lang']; ?>" title="Presse"><img width="180px" src="<? echo SITE_URL; ?>/parentsolo/images/app_home/presse-<? echo $_GET['lang']; ?>.jpg" title="<?php echo $colonne_3->titre;?>" /></a>
+								<a href="<?php echo JL::url('index.php?app=presse').'&lang='.$_GET['lang']; ?>" title="Presse"><img width="180px" src="<?php echo SITE_URL; ?>/parentsolo/images/app_home/presse-<?php echo $_GET['lang']; ?>.jpg" title="<?php echo $colonne_3->titre;?>" /></a>
 							</div>
 							<br />
 							<div class="bloc_parentsolo">
 								<span class="bloc_parentsolo_text" >
-									<h3><a href="<? echo JL::url('index.php?app=appel_a_temoins').'&lang='.$_GET['lang']; ?>" title="<?php echo $colonne_3->titre;?>" ><? echo $colonne_3->titre; ?></a></h3>
-									<p><? echo $colonne_3->texte; ?></p>
+									<h3><a href="<?php echo JL::url('index.php?app=appel_a_temoins').'&lang='.$_GET['lang']; ?>" title="<?php echo $colonne_3->titre;?>" ><?php echo $colonne_3->titre; ?></a></h3>
+									<p><?php echo $colonne_3->texte; ?></p>
 								</span>
-								<a href="<? echo JL::url('index.php?app=appel_a_temoins').'&lang='.$_GET['lang']; ?>" title="<?php echo $colonne_3->titre;?>" ><img width="180px" src="<? echo SITE_URL; ?>/parentsolo/images/app_home/appel_temoins-<? echo $_GET['lang']; ?>.jpg" title="<?php echo $colonne_3->titre;?>" /></a>
+								<a href="<?php echo JL::url('index.php?app=appel_a_temoins').'&lang='.$_GET['lang']; ?>" title="<?php echo $colonne_3->titre;?>" ><img width="180px" src="<?php echo SITE_URL; ?>/parentsolo/images/app_home/appel_temoins-<?php echo $_GET['lang']; ?>.jpg" title="<?php echo $colonne_3->titre;?>" /></a>
 							</div>
 						</div>
 						
@@ -147,32 +144,28 @@
 							<br />
 							<span class="partenaire_l_text" >
 								<h3>
-								<? 
+								<?php 
 									if($partenaire_l->id == 5){
 								?>
 										<a href="http://www.onefm.ch/home/index.php" target="_blank" title="<?php echo $partenaire_l->titre;?>" >
-								<?
-									}elseif($partenaire_l->id == 6){
+								<?php 									}elseif($partenaire_l->id == 6){
 								?>
 										<a href="http://www.lfm.ch/portail/index.php" target="_blank" title="<?php echo $partenaire_l->titre;?>" >
-								<?
-									}
+								<?php 									}
 								?>
-									<? echo $partenaire_l->titre; ?>
+									<?php echo $partenaire_l->titre; ?>
 									</a>
 								</h3>
-								<p><? echo $partenaire_l->texte; ?></p>
+								<p><?php echo $partenaire_l->texte; ?></p>
 							</span>
-						<? 
+						<?php 
 							if($partenaire_l->id == 5){
 						?>
-								<a href="http://www.onefm.ch/home/index.php" target="_blank" title="<?php echo $partenaire_l->titre;?>" ><img width="180px" src="<? echo SITE_URL; ?>/parentsolo/images/app_home/onefm-<? echo $_GET['lang']; ?>.jpg" title="<?php echo $partenaire_l->titre;?>" /></a>
-						<?
-							}elseif($partenaire_l->id == 6){
+								<a href="http://www.onefm.ch/home/index.php" target="_blank" title="<?php echo $partenaire_l->titre;?>" ><img width="180px" src="<?php echo SITE_URL; ?>/parentsolo/images/app_home/onefm-<?php echo $_GET['lang']; ?>.jpg" title="<?php echo $partenaire_l->titre;?>" /></a>
+						<?php 							}elseif($partenaire_l->id == 6){
 						?>
-								<a href="http://www.lfm.ch/portail/index.php" target="_blank" title="<?php echo $partenaire_l->titre;?>" ><img width="180px" src="<? echo SITE_URL; ?>/parentsolo/images/app_home/lfm-<? echo $_GET['lang']; ?>.jpg" title="<?php echo $partenaire_l->titre;?>" /></a>
-						<?
-							}
+								<a href="http://www.lfm.ch/portail/index.php" target="_blank" title="<?php echo $partenaire_l->titre;?>" ><img width="180px" src="<?php echo SITE_URL; ?>/parentsolo/images/app_home/lfm-<?php echo $_GET['lang']; ?>.jpg" title="<?php echo $partenaire_l->titre;?>" /></a>
+						<?php 							}
 						?>
 						</div>
 						
@@ -187,28 +180,27 @@
 				<div class="colr"> 
 					<!--Connexion au profil-->
 					<div class="connexion">
-						<?
-							$style = !$user->id && $auth == 'login' ? 'style="background: red;"' : '';
+						<?php 							$style = !$user->id && $auth == 'login' ? 'style="background: red;"' : '';
 						?>
 						<h3><?php echo $lang_apphome["DejaMembre"];?></h3>
 						<br />
-						<form action="<? echo JL::url('index.php?app=home').'&lang='.$_GET['lang'];?>" method="post">
+						<form action="<?php echo JL::url('index.php?app=home').'&lang='.$_GET['lang'];?>" method="post">
 							<table cellpadding="0" cellspacing="0">
 								<tr>
 									<td><label for="pseudo"><?php echo $lang_apphome["Pseudo"];?> </label></td>
-									<td><input type="text" name="pseudo" id="pseudo" <? echo $style; ?> value=""></td>
+									<td><input type="text" name="pseudo" id="pseudo" <?php echo $style; ?> value=""></td>
 								</tr>
 								<tr>
 									<td><label for="mdp"><?php echo $lang_apphome["MotDePasse"];?> </label></td>
-									<td><input type="text" name="mdp" id="mdp" <? echo $style; ?> value=""></td>
+									<td><input type="text" name="mdp" id="mdp" <?php echo $style; ?> value=""></td>
 								</tr>
 							</table>
 							
 							<br />
 							
-							<input type="submit" class="envoyer" value="<?php echo $lang_apphome["Connexion"];?>" /><a href="<? echo JL::url('index.php?app=mdp_oublie').'&lang='.$_GET['lang'];?>"><?php echo $lang_apphome["MotDePasseOublie"];?></a><br />
+							<input type="submit" class="envoyer" value="<?php echo $lang_apphome["Connexion"];?>" /><a href="<?php echo JL::url('index.php?app=mdp_oublie').'&lang='.$_GET['lang'];?>"><?php echo $lang_apphome["MotDePasseOublie"];?></a><br />
 							
-							<input type="hidden" name="site_url" id="site_url" value="<? echo SITE_URL; ?>" />
+							<input type="hidden" name="site_url" id="site_url" value="<?php echo SITE_URL; ?>" />
 							<input type="hidden" name="lang" id="lang" value="<?php echo $_GET["lang"];?>" />
 							
 						</form>
@@ -216,8 +208,7 @@
 				
 					<div id="banner_gold">
 						<div class="small"><?php echo $lang_apphome["Publicite"];?></div>
-					<?
-						/*if($_GET['lang']=="fr"){
+					<?php 						/*if($_GET['lang']=="fr"){
 					?>
 						
 							<!-- Start of Ad'LINK ADJ Tag for AdFRONT - Javascript Format - PARENTSOLO.EX.CH-FR-HOME-SKY-R SIZE : 160x600 -->
@@ -232,8 +223,7 @@
 								</a>
 							</noscript>
 							<!-- End of Ad'LINK ADJ Tag for AdFRONT - Javascript Format - PARENTSOLO.EX.CH-FR-HOME-SKY-R SIZE : 160x600  -->
-					<?
-						}elseif($_GET['lang']=="en"){
+					<?php 						}elseif($_GET['lang']=="en"){
 					?>
 							<!-- Start of Ad'LINK ADJ Tag for AdFRONT - Javascript Format - PARENTSOLO.EX.CH-FR-HOME-SKY-R SIZE : 160x600 -->
 							<script type="text/javascript">
@@ -247,8 +237,7 @@
 								</a>
 							</noscript>
 							<!-- End of Ad'LINK ADJ Tag for AdFRONT - Javascript Format - PARENTSOLO.EX.CH-FR-HOME-SKY-R SIZE : 160x600  -->
-					<?
-						}else{
+					<?php 						}else{
 					?>
 							<!-- Start of Ad'LINK ADJ Tag for AdFRONT - Javascript Format - PARENTSOLO.EX.CH-DE-HOME-SKY-R SIZE : 160x600 -->
 							<script type="text/javascript">
@@ -262,44 +251,38 @@
 								</a>
 							</noscript>
 							<!-- End of Ad'LINK ADJ Tag for AdFRONT - Javascript Format - PARENTSOLO.EX.CH-DE-HOME-SKY-R SIZE : 160x600  -->
-					<?
-						}  */
+					<?php 						}  */
 					?>
 					</div>
 					<!--actualités-->
 					<div class="actu_offline">
 						<h3><?php echo $lang_apphome["Actualites"];?></h3>
 						<br />
-					<?
-						if(count($actualites)) {
+					<?php 						if (is_array($actualites)) {
 							$i = 1;
 							?>
 							<ul>
-							<?
-							foreach($actualites as $actualite) {
+							<?php 							foreach($actualites as $actualite) {
 								JL::makeSafe($actualite);
 								?>
-									<li><a href="<? echo JL::url('index.php?app=contenu&action=actu&id='.$actualite->id).'&lang='.$_GET['lang']; ?>" title="<? echo $actualite->titre; ?>"><? echo $actualite->titre; ?></a>
-								<?
-								$i++;
+									<li><a href="<?php echo JL::url('index.php?app=contenu&action=actu&id='.$actualite->id).'&lang='.$_GET['lang']; ?>" title="<?php echo $actualite->titre; ?>"><?php echo $actualite->titre; ?></a>
+								<?php 								$i++;
 							}
 							?>
 							</ul>
-					<?
-						}
+					<?php 						}
 					?>
 					</div>
 					<div class="partenaire_r">
 						<div class="small"><?php echo $lang_apphome["Partenaire"];?></div>
-						<a href="http://www.babybook.ch"><img src="<? echo SITE_URL; ?>/parentsolo/images/partenaire_babybook.jpg" alt="Babybook"/></a>
-						<h3><a href="http://www.babybook.ch"><? echo $partenaire_r->titre; ?></a></h3>
-						<p><? echo $partenaire_r->texte; ?></p>
+						<a href="http://www.babybook.ch"><img src="<?php echo SITE_URL; ?>/parentsolo/images/partenaire_babybook.jpg" alt="Babybook"/></a>
+						<h3><a href="http://www.babybook.ch"><?php echo $partenaire_r->titre; ?></a></h3>
+						<p><?php echo $partenaire_r->texte; ?></p>
 					</div>
 					
 					<div id="banner_medium_rectangle">
 						<div class="small"><?php echo $lang_apphome["Publicite"];?></div>
-					<?
-						/*if($_GET['lang']=="fr"){
+					<?php 						/*if($_GET['lang']=="fr"){
 					?>
 						
 							<!-- Start of Ad'LINK ADJ Tag for AdFRONT - Javascript Format - PARENTSOLO.EX.CH-FR-HOME-REC-C SIZE : 300x250 -->
@@ -314,8 +297,7 @@
 								</a>
 							</noscript>
 							<!-- End of Ad'LINK ADJ Tag for AdFRONT - Javascript Format - PARENTSOLO.EX.CH-FR-HOME-REC-C SIZE : 300x250  -->
-					<?
-						}elseif($_GET['lang']=="en"){
+					<?php 						}elseif($_GET['lang']=="en"){
 					?>
 							<!-- Start of Ad'LINK ADJ Tag for AdFRONT - Javascript Format - PARENTSOLO.EX.CH-FR-HOME-REC-C SIZE : 300x250 -->
 							<script type="text/javascript">
@@ -329,8 +311,7 @@
 								</a>
 							</noscript>
 							<!-- End of Ad'LINK ADJ Tag for AdFRONT - Javascript Format - PARENTSOLO.EX.CH-FR-HOME-REC-C SIZE : 300x250  -->
-					<?
-						}else{
+					<?php 						}else{
 					?>
 							<!-- Start of Ad'LINK ADJ Tag for AdFRONT - Javascript Format - PARENTSOLO.EX.CH-DE-HOME-REC-C SIZE : 300x250 -->
 							<script type="text/javascript">
@@ -344,16 +325,14 @@
 								</a>
 							</noscript>
 							<!-- End of Ad'LINK ADJ Tag for AdFRONT - Javascript Format - PARENTSOLO.EX.CH-DE-HOME-REC-C SIZE : 300x250  -->
-					<?
-						}  */
+					<?php 						}  */
 					?>
 					</div>
 				</div>
 				<div style="clear:both"> </div>
 			</div>
     
-		<?
-		
+		<?php 		
 		}
 		
 	}

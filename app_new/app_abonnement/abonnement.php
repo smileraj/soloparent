@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 
 	require_once('abonnement.html.php');
@@ -111,7 +111,7 @@ else {
 		// variables
 		$time = time();
 
-		// tarifs de l'abonnement désiré
+		// tarifs de l'abonnement dï¿½sirï¿½
 		$query = "SELECT * FROM abonnement_description WHERE id = '".(int)$abonnement_id."' AND active = 1 LIMIT 0,1";
 		$row = $db->loadObject($query);
 
@@ -135,7 +135,7 @@ else {
 			." date_souscription = '',"
 			." date_dernier_renouvellement = '',"
 			." date_annulation = '',"
-			." valide = 0," //0 = non validé, 1 = en cours, 2 = annulé
+			." valide = 0," //0 = non validï¿½, 1 = en cours, 2 = annulï¿½
 			." intitule_abo = '".$row->nom."',"
 			." montant = '".$row->montant."',"
 			." duree_paypal = '".$row->duree_paypal."',"
@@ -146,7 +146,7 @@ else {
 			$row->paypal_id = $db->insert_id();
 
 
-			// génération de la valeur de retour 'custom'
+			// gï¿½nï¿½ration de la valeur de retour 'custom'
 			$row->custom 	= base64_encode(MD5($user->username.$user->gid.date('Y-m-d H:i:s', $time)).":".$row->paypal_id);
 
 
@@ -165,12 +165,12 @@ else {
 		global $langue;
 		global $db;
 
-		// récup les valeurs qui étaient passées dans custom
+		// rï¿½cup les valeurs qui ï¿½taient passï¿½es dans custom
 		$arguments 		= explode(":", base64_decode($custom));
-		$md5			= $arguments[0]; 		// md5 de vérfication
+		$md5			= $arguments[0]; 		// md5 de vï¿½rfication
 		$paypal_id		= isset($arguments[1]) ? (int)$arguments[1] : 0; 	// SQL: paypal.id
 
-		// récup la durée d'abo
+		// rï¿½cup la durï¿½e d'abo
 		$query = "SELECT duree_paypal, unite_duree_paypal"
 		." FROM abonnement_paypal"
 		." WHERE id = '".$paypal_id."'"
@@ -188,11 +188,11 @@ else {
 		global $langue, $langString;
 		global $db;
 
-		// tarifs de l'abonnement désiré
+		// tarifs de l'abonnement dï¿½sirï¿½
 		$query = "SELECT duree_non_paypal, montant FROM abonnement_description WHERE id = '".(int)$abonnement_id."' AND active = 1 LIMIT 0,1";
 		$row = $db->loadObject($query);
 
-		// abonnement ou méthodes inconnu(e)(s)
+		// abonnement ou mï¿½thodes inconnu(e)(s)
 		if(!$row || !in_array($methode_id, array(2,3))) {
 			JL::redirect('index.php?app=abonnement&action=tarifs&'.$langue);
 		}
@@ -226,7 +226,7 @@ else {
 		// variables
 		$time = time();
 
-		// tarifs de l'abonnement désiré
+		// tarifs de l'abonnement dï¿½sirï¿½
 		$query = "SELECT * FROM abonnement_description WHERE id = '".(int)$abonnement_id."' AND active = 1 LIMIT 0,1";
 		$row1 = $db->loadObject($query);
 
@@ -248,7 +248,7 @@ else {
 			." date_souscription = '',"
 			." date_dernier_renouvellement = '',"
 			." date_annulation = '',"
-			." valide = 0," //0 = non validé, 1 = en cours, 2 = annulé
+			." valide = 0," //0 = non validï¿½, 1 = en cours, 2 = annulï¿½
 			." intitule_abo = '".$row1->nom."',"
 			." montant = '".$row1->montant."',"
 			." duree_paypal = '".$row1->duree_paypal."',"
@@ -267,7 +267,7 @@ else {
 		." LIMIT 0,1";
 		$row = $db->loadObject($query_val);
 
-			// génération de la valeur de retour 'custom'
+			// gï¿½nï¿½ration de la valeur de retour 'custom'
 			$row->custom 	= base64_encode(MD5($user->username.$user->gid.date('Y-m-d H:i:s', $time)).":".$row->paypal_id);
 
 
@@ -401,7 +401,7 @@ $query = "INSERT INTO postfinance SET"
 	$server			= 'ssl://www.paypal.com';
 			
 				if($txn_type == 'Success'){
-					// récup les détails du paiement
+					// rï¿½cup les dï¿½tails du paiement
 					$query = "SELECT *"
 					." FROM abonnemnet_postfinance"
 					." WHERE id = '$abonnement_paypal_id->apid'"
@@ -409,7 +409,7 @@ $query = "INSERT INTO postfinance SET"
 					;
 					$abonnement_paypal	= $db->loadObject($query);
 					
-					// récup les détails de l'utilisateur
+					// rï¿½cup les dï¿½tails de l'utilisateur
 					$queryUser = "SELECT u.id, u.username, u.email, u.gid, IF(us.gold_limit_date < NOW(), '0000-00-00', us.gold_limit_date) AS date_reference, us.gold_limit_date"
 					." FROM user AS u"
 					." INNER JOIN user_stats AS us ON us.user_id = u.id"
@@ -500,14 +500,14 @@ $query = "INSERT INTO postfinance SET"
 							
 							$date_payment = $annee_payment_date.'-'.$mois_payment_date.'-'.$jour_payment_date.' '.$horaire_payment_date;
 						}
-						// met à jour le status de la demande de transaction
+						// met ï¿½ jour le status de la demande de transaction
 						$query = "UPDATE abonnemnet_postfinance SET"
 						." date_dernier_renouvellement = '".$date_payment."',"
 						." nb_paiement = ".($abonnement_paypal->nb_paiement + 1).""
 						." WHERE id = '".(int)$abonnement_paypal_id->apid."'";
 						$db->query($query);
 						
-						// met à jour la date limite d'abonnement
+						// met ï¿½ jour la date limite d'abonnement
 						$query = "UPDATE user_stats SET gold_limit_date = '".$gold_limit_date."' WHERE user_id = '".$userProfil->id."'";
 						$db->query($query);
 						
@@ -541,7 +541,7 @@ $query = "INSERT INTO postfinance SET"
 						JL::mail($notify_email, '['.$_SERVER['REMOTE_ADDR'].'] VERIFIED', "Paiement d'un abonnement<br /><br />Username: ".$userProfil->username."<br />Abonnement: ".$abonnement_paypal->intitule_abo."<br />Paiement: CHF ".$currency."<br />Date limite d'abonnement chang&eacute;e de ".$userProfil->gold_limit_date." &agrave; ".$gold_limit_date."<br /><br />".$points."<br /><br />".$nonpoints,false);
 						$notify_email1 = $userProfil->email;
 						if($_GET['lang']=='en'){
-$confrm_subject="Parentsolo.ch Payment Details";
+$confrm_subject="solocircl.com Payment Details";
 			 $message_con="<table cellpadding='0' cellspacing='0' style='width:590px;margin:auto;text-align:left;font-family:Arial, Verdana, Helvetica, sans-serif;font-size:12px;color:#000; background-color:#FFF;border:2px solid #ccc;'>
 		<tr><td align='center' style='width:590px; background-color:#fff; height:120px'><img src='http://www.parentsolo.swiss/images/mail/header-en.jpg'/></td></tr>
 		<tr><td style='text-align:justify;padding:10px 30px 10px 30px;'>
@@ -557,7 +557,7 @@ $confrm_subject="Parentsolo.ch Payment Details";
 		</p></td></tr>
 		</table>";
 	} else if($_GET['lang']=='de'){
-	$confrm_subject="Parentsolo.ch Betalingsdetails";
+	$confrm_subject="solocircl.com Betalingsdetails";
 			 $message_con="	<table cellpadding='0' cellspacing='0' style='width:590px;margin:auto;text-align:left;font-family:Arial, Verdana, Helvetica, sans-serif;font-size:12px;color:#000; background-color:#FFF;border:2px solid #ccc;'>
 		<tr><td align='center' style='width:590px; background-color:#fff; height:120px'><img src='http://www.parentsolo.swiss/images/mail/header-en.jpg'/></td></tr>
 		<tr><td style='text-align:justify;padding:10px 30px 10px 30px;'>
@@ -575,7 +575,7 @@ $confrm_subject="Parentsolo.ch Payment Details";
 	
 	}
 	else{
-	$confrm_subject="Parentsolo.ch Détails de paiement";
+	$confrm_subject="solocircl.com Dï¿½tails de paiement";
 			 $message_con="	<table cellpadding='0' cellspacing='0' style='width:590px;margin:auto;text-align:left;font-family:Arial, Verdana, Helvetica, sans-serif;font-size:12px;color:#000; background-color:#FFF;border:2px solid #ccc;'>
 		<tr><td align='center' style='width:590px; background-color:#fff; height:120px'><img src='http://www.parentsolo.swiss/images/mail/header-en.jpg'/></td></tr>
 		<tr><td style='text-align:justify;padding:10px 30px 10px 30px;'>
@@ -584,10 +584,10 @@ $confrm_subject="Parentsolo.ch Payment Details";
 		<strong >Username </strong>: ".$userProfil->username."<br /><br />
 		<strong >Montant </strong>: ".$amount."<br /><br />
 		<strong >Pay Id </strong>: ".$PAYID."<br /><br />
-		<strong >Référence de commande </strong>: ".$customerid."<br/><br />
+		<strong >Rï¿½fï¿½rence de commande </strong>: ".$customerid."<br/><br />
 		<strong >Abonnement </strong>: ".$abonnement_paypal->intitule_abo."<br /><br />
 		<strong >Paiement </strong>: CHF ".$currency."<br />Date limite d'abonnement chang&eacute;e de ".$userProfil->gold_limit_date." &agrave; ".$gold_limit_date."<br /><br />".$points."<br /><br />
-		<b>Pour des raisons techniques, la résiliation de l’abonnement ne pourra être faite pendant les 24h après l’achat de l’abonnement et les 48h avant la date d’échéance de l’abonnement en cours, sauf si vous bénéficiez d'une offre d'essai.   </b>  
+		<b>Pour des raisons techniques, la rï¿½siliation de lï¿½abonnement ne pourra ï¿½tre faite pendant les 24h aprï¿½s lï¿½achat de lï¿½abonnement et les 48h avant la date dï¿½ï¿½chï¿½ance de lï¿½abonnement en cours, sauf si vous bï¿½nï¿½ficiez d'une offre d'essai.   </b>  
 		</p></td></tr>
 		</table>";
 	}
@@ -597,7 +597,7 @@ $confrm_subject="Parentsolo.ch Payment Details";
 					//}
 				}elseif($txn_type == 'canceled'){
 					
-					// récup les détails du paiement
+					// rï¿½cup les dï¿½tails du paiement
 					$query = "SELECT user_id, date_enregistrement, intitule_abo, montant, nb_paiement"
 					." FROM abonnemnet_postfinance"
 					." WHERE id = '$abonnement_paypal_id->apid'"
@@ -605,7 +605,7 @@ $confrm_subject="Parentsolo.ch Payment Details";
 					;
 					$abonnement_paypal	= $db->loadObject($query);
 					
-					// récup les détails de l'utilisateur
+					// rï¿½cup les dï¿½tails de l'utilisateur
 					$queryUser = "SELECT u.id, u.username, u.gid, IF(us.gold_limit_date < NOW(), '0000-00-00', us.gold_limit_date) AS date_reference"
 					." FROM user AS u"
 					." INNER JOIN user_stats AS us ON us.user_id = u.id"

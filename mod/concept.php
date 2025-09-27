@@ -16,7 +16,7 @@ echo $query;
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr" >
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" >
 <head>
 
 	<style type="text/css">
@@ -57,8 +57,7 @@ echo $query;
 
 	<div style="background-color:#000; padding:0 10px;">
 		<br>
-		<?
-			echo $concept;
+		<?php 			echo $concept;
 		?>
 		<br><br>
 		<form>

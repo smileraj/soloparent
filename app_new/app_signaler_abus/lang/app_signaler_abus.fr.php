@@ -5,26 +5,26 @@ $lang_signaler_abus = array(
 	//------------------Page search.html.php ---------
 
 
-	"MessagesParentsolo" => "Messages Parentsolo.ch",
+	"MessagesParentsolo" => "Messages solocircl.com",
 	
 	"Sujet" => "Sujet",
 	"Message" => "Message",
 
-	"CodeSecurite" => "Code de sécurité",
+	"CodeSecurite" => "Code de sï¿½curitï¿½",
 	"CombienDeFleurs" => "Combien y a-t-il de fleurs ci-dessous",
 	
 	"Envoyer" => "Envoyer",
 
-    "MessageEnvoye" => "Message envoyé",
+    "MessageEnvoye" => "Message envoyï¿½",
 
 	"SignalerUnAbus" => "Signaler un abus",
 	
-	"MembreNonIndique" => "Le membre que vous désirez signaler n'existe pas ou plus, veuillez recommencer la manipulation s'il vous plaît",
+	"MembreNonIndique" => "Le membre que vous dï¿½sirez signaler n'existe pas ou plus, veuillez recommencer la manipulation s'il vous plaï¿½t",
 	"MembreIndiqueSexeIndentique" => "Vous ne pouvez pas signaler ce membre",
-	"EnvoiImpossiblePseudo" => "Vous ne pouvez vous signaler vous même",
-	"IndiquezMessage" => "Veuillez indiquer un message expliquant le motif de ce signalement d'abus, s'il vous plaît",
+	"EnvoiImpossiblePseudo" => "Vous ne pouvez vous signaler vous mï¿½me",
+	"IndiquezMessage" => "Veuillez indiquer un message expliquant le motif de ce signalement d'abus, s'il vous plaï¿½t",
 	
-	"CodeSecuriteIncorrect" => "Le code de sécurité entré est incorrect",
+	"CodeSecuriteIncorrect" => "Le code de sï¿½curitï¿½ entrï¿½ est incorrect",
     
 );
 ?>

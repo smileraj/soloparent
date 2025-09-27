@@ -13,19 +13,19 @@ $lang_appexpert = array(
 	
 	//**Affichage expert + formulaire
 	
-	"Specialite" => "Spécialité: ",
-	"DerniereQuestionTraitee" => "Dernière question traitée",
-	"ToutesLesQuestionsTraitees" => "Toutes les questions traitées par ".$expert->titre,
-	"AucuneQuestionTraitee" => "Aucune question n'a été traitée pour le moment",
+	"Specialite" => "Spï¿½cialitï¿½: ",
+	"DerniereQuestionTraitee" => "Derniï¿½re question traitï¿½e",
+	"ToutesLesQuestionsTraitees" => "Toutes les questions traitï¿½es par ".$expert->titre,
+	"AucuneQuestionTraitee" => "Aucune question n'a ï¿½tï¿½ traitï¿½e pour le moment",
 	"PosezVotreQuestion" => "Posez votre question",
 	"Email" => "Email:",
 	"Sujet" => "Sujet:",
 	"VotreQuestion" => "Votre question:",
-	"JAcceptePublication" => "J'accepte que ma question et sa réponse puissent-être publié sur le site Parentsolo.ch de manière anonyme.",
+	"JAcceptePublication" => "J'accepte que ma question et sa rï¿½ponse puissent-ï¿½tre publiï¿½ sur lesolocircl.comolo.ch de maniï¿½re anonyme.",
 	
-	"CodeDeVerification" => "Code de vérification",
+	"CodeDeVerification" => "Code de vï¿½rification",
 	
-	"VeuillezRecopierCodeVerification" => "Veuillez recopier ci-dessous, ce code de vérification:",
+	"VeuillezRecopierCodeVerification" => "Veuillez recopier ci-dessous, ce code de vï¿½rification:",
 	
 	"Envoyer" => "Envoyer",
 	
@@ -34,13 +34,13 @@ $lang_appexpert = array(
 	//*Model
 	
 	//**Messages erreur
-	"WarningEmailInvalide" => "Veuillez indiquer une adresse email valide, s'il vous plaît",
-	"WarningQuestion" => "Veuillez indiquer votre question, s'il vous plaît",
-	"WarningCodeVerifIncorrect" => "Le code de vérification entré est incorrect",
+	"WarningEmailInvalide" => "Veuillez indiquer une adresse email valide, s'il vous plaï¿½t",
+	"WarningQuestion" => "Veuillez indiquer votre question, s'il vous plaï¿½t",
+	"WarningCodeVerifIncorrect" => "Le code de vï¿½rification entrï¿½ est incorrect",
 	
 	//**Confirmation d'envoi
 	
-	"QuestionEnvoyee" => "Votre question a bien été envoyée",
+	"QuestionEnvoyee" => "Votre question a bien ï¿½tï¿½ envoyï¿½e",
 );
 
 ?>

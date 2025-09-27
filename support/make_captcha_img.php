@@ -125,7 +125,7 @@
 					}
 					$this->TTF_RANGE = $temp;
 					if($this->debug) echo "\n<br />-Captcha-Debug: Valid TrueType-files: (".count($this->TTF_RANGE).")";
-					//if(count($this->TTF_RANGE) < 1) die('No Truetypefont available for the CaptchaClass.');
+					//if (is_array($this->TTF_RANGE) < 1) die('No Truetypefont available for the CaptchaClass.');
 				}
 				else
 				{
@@ -235,7 +235,7 @@
 					$color	=  $func2($image, $this->r, $this->g, $this->b);
 					$this->random_color(0, 127);
 					$shadow = $func2($image, $this->r + 127, $this->g + 127, $this->b + 127);
-					if(count($this->TTF_RANGE) > 0){
+					if (is_array($this->TTF_RANGE) > 0){
 						@ImageTTFText($image, $size, $angle, $x + (int)($size / 15), $y, $shadow, $this->change_TTF(), $text);
 						@ImageTTFText($image, $size, $angle, $x, $y - (int)($size / 15), $color, $this->TTF_file, $text);
 					} else {
@@ -280,7 +280,7 @@
 
 			function change_TTF()
 			{
-				if(count($this->TTF_RANGE) > 0){
+				if (is_array($this->TTF_RANGE) > 0){
 					if(is_array($this->TTF_RANGE))
 					{
 						srand((float)microtime() * 10000000);

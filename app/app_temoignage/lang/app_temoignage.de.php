@@ -3,7 +3,7 @@
 $lang_apptemoignage = array(
 
 	//View
-	"MessagesParentsolo" => "Parentsolo.ch-Mitteilungen",
+	"MessagesParentsolo" => "solocircl.com-Mitteilungen",
 	
 	
 	//*Listes de tous les t&eacute;moignages

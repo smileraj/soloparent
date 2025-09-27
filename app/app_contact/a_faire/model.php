@@ -96,8 +96,8 @@
 				$texte 		= 'De: '.$this->_data->email."\n\n";
 				$texte		.= 'Message: '.$this->_data->message;
 				
-				//$email = 'info@parentsolo.ch';
-				$email = 'info@parentsolo.ch';
+				//$email = 'info@solocircl.com';
+				$email = 'info@solocircl.com';
 				
 				// envoi du mail
 				mail($email, $titre, $texte, $headers);

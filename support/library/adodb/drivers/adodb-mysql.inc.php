@@ -129,7 +129,7 @@ class ADODB_mysql extends ADOConnection {
 	}
 
 	
-	// if magic quotes disabled, use mysql_real_escape_string()
+	// if magic quotes disabled, use $db->escape()
 	function qstr($s,$magic_quotes=false)
 	{
 		if (is_null($s)) return 'NULL';
@@ -138,7 +138,7 @@ class ADODB_mysql extends ADOConnection {
 		
 			if (ADODB_PHPVER >= 0x4300) {
 				if (is_resource($this->_connectionID))
-					return "'".mysql_real_escape_string($s,$this->_connectionID)."'";
+					return "'".$db->escape($s,$this->_connectionID)."'";
 			}
 			if ($this->replaceQuote[0] == '\\'){
 				$s = adodb_str_replace(array('\\',"\0"),array('\\\\',"\\\0"),$s);

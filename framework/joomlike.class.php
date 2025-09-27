@@ -21,26 +21,33 @@ ini_set('MAX_EXECUTION_TIME', -1);
 		    return $texte;
 		}
 		// ajoute des htmlentities à chaque champ d'un objet, en excluant les champs présents dans la chaine $exclure
-		public static function makeSafe(&$obj, $exclure = '') {
-			$exclusion	= array();
-			if($exclure) {
-				$exclusion	= explode(',', $exclure);
-			}
-			if(is_object($obj)) {
-				foreach($obj as $k => $v) {
-					if(!in_array($k, $exclusion)) {
-						$obj->{$k} = htmlentities($v);
-					}
-				}
-			} elseif(is_array($obj)) {
-				foreach($obj as $k => $v) {
-					if(!in_array($k, $exclusion)) {
-						$obj[$k] = htmlentities($v);
-					}
-				}
-			}
-		}
-		
+	public static function makeSafe(&$obj, $exclure = '') {
+    $exclusion = array();
+    if ($exclure) {
+        $exclusion = explode(',', $exclure);
+    }
+
+    if (is_object($obj)) {
+        foreach ($obj as $k => $v) {
+            if (!in_array($k, $exclusion)) {
+                // Recursive call using self::
+                $obj->{$k} = self::makeSafe($v);
+            }
+        }
+    } elseif (is_array($obj)) {
+        foreach ($obj as $k => $v) {
+            if (!in_array($k, $exclusion)) {
+                $obj[$k] = self::makeSafe($v);
+            }
+        }
+    } else {
+        // Base case: sanitize scalar values
+        $obj = htmlspecialchars(strip_tags((string)$obj), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+    }
+
+    return $obj;
+}
+
 		
 		// vérifie si l'application à charger existe, et que le visiteur n'essaye pas divers hacks dans l'url avec la variable $app
 		public static function checkApp($app_load, $admin = '') {
@@ -145,6 +152,10 @@ ini_set('MAX_EXECUTION_TIME', -1);
 				echo 'Module ['.$mod.'] introuvable.';
 			}
 		}
+		public static function safeHtml($value) {
+    return makeSafe($value ?? '', ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+}
+
 		
 		// charge le module passé en param
 		public static function loadModExpert($mod) {
@@ -163,7 +174,7 @@ ini_set('MAX_EXECUTION_TIME', -1);
 		
 		// génère la clause where à partir d'un tableau $where passé en param
 		public static function setWhere(&$where) {
-			if(count($where)) {
+			if (is_array($where)) {
 				return " WHERE ".implode(' AND ', $where);
 			} else {
 				return '';
@@ -231,16 +242,16 @@ ini_set('MAX_EXECUTION_TIME', -1);
 		$mail -> CharSet = 'UTF-8';
 		// Enable verbose debug output		
         $mail->isSMTP(); // Set mailer to use SMTP
-        $mail->Host = 'mail.infomaniak.com';  // Specify main and backup SMTP servers
-        $mail->SMTPAuth = true; // Enable SMTP authentication
-        $mail->Username = 'No-reply@parentsolo.ch';// SMTP username 
-        $mail->Password = 'Valentina0802'; // SMTP password 
-        $mail->SMTPSecure = 'tls';// Enable TLS encryption, `ssl` also accepted
-        $mail->Port = 587; 
-        $mail->SMTPDebug = 0; // TCP port to connect to
-		$mail->setFrom(SITE_MAIL, SITE_MAIL_FROM); //You Can add your own From mail
-        $mail->addAddress(SITE_MAIL_FROM); // Add a recipient id where you want to send mail 
-		$mail->addAddress($destinataire); // Add a recipient id where you want to send mail 
+        // $mail->Host = 'mail.infomaniak.com';  // Specify main and backup SMTP servers
+        // $mail->SMTPAuth = true; // Enable SMTP authentication
+        // $mail->Username = 'No-reply@solocircl.com';// SMTP username 
+        // $mail->Password = 'Valentina0802'; // SMTP password 
+        // $mail->SMTPSecure = 'tls';// Enable TLS encryption, `ssl` also accepted
+        // $mail->Port = 587; 
+        // $mail->SMTPDebug = 0; // TCP port to connect to
+		// $mail->setFrom(SITE_MAIL, SITE_MAIL_FROM); //You Can add your own From mail
+        // $mail->addAddress(SITE_MAIL_FROM); // Add a recipient id where you want to send mail 
+		// $mail->addAddress($destinataire); // Add a recipient id where you want to send mail 
 		//$mail->addAddress('developer@esales.in'); // Add a recipient id where you want to send mail 
 		//$mail->addReplyTo('developer@esales.in'); //where you want reply from user
         $mail->isHTML(true); 
@@ -261,23 +272,13 @@ echo "<script type='text/javascript'>console.log('$message');</script>";
 			$message = "Error";
 echo "<script type='text/javascript'>console.log('$message');</script>";
 		} 		
-			/* // headers
-			$headers = 'Mime-Version: 1.0'."\r\n";
-			$headers = 'From: "'.SITE_MAIL_FROM.'" <'.SITE_MAIL.'>'."\r\n";
-			$headers .= 'Content-type: text/html; charset='.($utf8 ? 'utf-8' : 'iso-8859-1')."\r\n";
-			//$headers .= "\r\n";
-			// envoi du mail
-			if($utf8) {
-				mail($destinataire, utf8_encode($titre), utf8_encode($texte), $headers);
-			} else {
-				mail($destinataire, $titre, $texte, $headers);
-			} */
+			
 		}
 		// envoie un mail Newsletter en html
 		public static function mailNewsletter($destinataire, $titre, $texte, $utf8 = true) {
 			// headers
 			$headers = 'Mime-Version: 1.0'."\r\n";
-			$headers = 'From: "Newsletter Parentsolo.ch" <newsletter@parentsolo.ch>'."\r\n";
+			$headers = 'From: "Newsletter solocircl.com" <newsletter@solocircl.com>'."\r\n";
 			$headers .= 'Content-type: text/html; charset=utf-8'."\r\n";
 			// envoi du mail
 			
@@ -329,7 +330,7 @@ echo "<script type='text/javascript'>console.log('$message');</script>";
 		// affichage des messages système
 		public static function messages(&$messages) {
 			// s'il y a des messages à afficher
-			if(count($messages)) {
+			if (is_array($messages)) {
 				
 				$type=0;
 				
@@ -439,7 +440,7 @@ echo "<script type='text/javascript'>console.log('$message');</script>";
 				
 				$info_exp =  "<b>".$userLog->age."</b> ".$lang_framework['Ans']."<br />"
 				."<b>".$userLog->nb_enfants."</b> ".($userLog->nb_enfants > 1 ? $lang_framework["Enfants"] : $lang_framework["Enfant"])."<br />"
-				."<b>".htmlentities($userLog->canton)."</b>";
+				."<b>".makeSafe($userLog->canton)."</b>";
 				
 				
 				if($type=='message'){
@@ -563,7 +564,7 @@ echo "<script type='text/javascript'>console.log('$message');</script>";
 				$where[]	= 'up.helvetica = 0';
 				$where[]	= 'u.confirmed = 1';
 				$where[]	= 'u.published = 1';
-				if(count($where)) {
+				if (is_array($where)) {
 					$_where = " WHERE ".implode(" AND ", $where);
 				}
 				// récup les 10 premiers du classement actuel
@@ -601,23 +602,23 @@ echo "<script type='text/javascript'>console.log('$message');</script>";
 			include("lang/app_framework.".$_GET['lang'].".php");
 			global $db;
 			// récup les infos déjà connues
-			$query = "SELECT nom, prenom, adresse, code_postal"
-			." FROM user_profil"
-			." WHERE user_id = '".$db->escape($row->id)."'"
-			." LIMIT 0,1"
-			;
-			$winner = $db->loadResult($query);
-			// sauvegarde le gagnant (dumoins les infos connues ou présumées)
-			$query = "INSERT INTO points_gagnants SET"
-			." annee_mois = '".$db->escape($annee_mois)."',"
-			." user_id = '".$db->escape($row->id)."',"
-			." nom = '".$db->escape($winner->nom)."',"
-			." prenom = '".$db->escape($winner->prenom)."',"
-			." adresse = '".$db->escape($winner->adresse)."',"
-			." code_postal = '".$db->escape($winner->code_postal)."',"
-			." position = '".$db->escape($position)."'"
-			;
-			$db->query($query);
+			$query = "SELECT nom, prenom, adresse, code_postal
+          FROM user_profil
+          WHERE user_id = '".$db->escape($row->id)."'
+          LIMIT 1";
+$winner = $db->loadObject($query); // <-- load row as object
+
+if($winner) {
+    $query = "INSERT INTO points_gagnants SET"
+        ." annee_mois = '".$db->escape($annee_mois)."',"
+        ." user_id = '".$db->escape($row->id)."',"
+        ." nom = '".$db->escape($winner->nom)."',"
+        ." prenom = '".$db->escape($winner->prenom)."',"
+        ." adresse = '".$db->escape($winner->adresse)."',"
+        ." code_postal = '".$db->escape($winner->code_postal)."',"
+        ." position = '".$db->escape($position)."'";
+    $db->query($query);
+}
 			// position à utiliser dans le MP
 			$positionTxt 	= '';
 			$valeurTxt		= '';
@@ -715,7 +716,8 @@ echo "<script type='text/javascript'>console.log('$message');</script>";
 				} else {
 					$extra .= ($k == $selected ? " selected=\"selected\"" : '');
 				}
-				$html .= "\n\t<option value=\"".$k."\"$extra>" . htmlentities($t) . "</option>";
+				$html .= "\n\t<option value=\"".$k."\"$extra>" . self::makeSafe($t) . "</option>";
+
 			}
 			$html .= "\n</select>\n";
 			return $html;
@@ -723,32 +725,37 @@ echo "<script type='text/javascript'>console.log('$message');</script>";
 		
 		
 		public static function makeCheckboxList( &$arr, $tag_name, $tag_attribs, $key, $text, $check1, $check2, $check3, $lang) {
-						// check if array
-			if ( is_array( $arr ) ) {
-				reset( $arr );
-			}
-			$html 	= "<div class='col-md-12' width='100%' style='font-weight:normal;text-align:left;'>";
-			$count 	= count( $arr );
-			for ($i=0, $n=$count; $i < $n; $i++ ) {
-				if($i%3==0){
-					$html.="<div class='row'>";
-				}					
-				$k = $arr[$i]->$key;
-				$t = $arr[$i]->$text;
-				if($k == $check1 || $k == $check2 || $k == $check3) {
-					$extra = " checked";
-				}else{
-					$extra = "";
-				}
-				$html .= "<div class='col-md-4 col-sm-4 col-sm-6' style='padding:0px' valign='top'><input type='checkbox' style='width:16px' name='".$tag_name."' value='".$k."'".$extra." onclick='chkcontrol_".$lang."(".$i.",\"".$tag_name."\")'>" .htmlentities($t)."</div>";
-				if($i%3==2 || $i==$n-1){
-					$html.="</div>";
-				}
-			}
-			$html .= "</div><div class='clear'></div>";
-			return $html;
-		}
-	
+    // check if array
+    if ( is_array( $arr ) ) {
+        reset( $arr );
+    }
+
+    $html = "<div class='col-md-12' width='100%' style='font-weight:normal;text-align:left;'>";
+    $count = count( $arr );
+
+    for ($i = 0, $n = $count; $i < $n; $i++) {
+        if ($i % 3 == 0) {
+            $html .= "<div class='row'>";
+        }
+
+        $k = $arr[$i]->$key;
+        $t = $arr[$i]->$text;
+
+        $extra = ($k == $check1 || $k == $check2 || $k == $check3) ? " checked" : "";
+
+        $html .= "<div class='col-md-4 col-sm-4 col-sm-6' style='padding:0px' valign='top'>
+            <input type='checkbox' style='width:16px' name='".$tag_name."' value='".$k."'".$extra." 
+            onclick='chkcontrol_".$lang."(".$i.",\"".$tag_name."\")'>" . JL::makeSafe($t) . "</div>";
+
+        if ($i % 3 == 2 || $i == $n - 1) {
+            $html .= "</div>";
+        }
+    }
+
+    $html .= "</div><div class='clear'></div>";
+    return $html;
+}
+
 		public static function makeCheckboxSearchList( &$arr, $tag_name, $tag_attribs, $key, $text, $check) {
 			// check if array
 			if ( is_array( $arr ) ) {
@@ -770,7 +777,7 @@ echo "<script type='text/javascript'>console.log('$message');</script>";
 				}else{
 					$extra = "";
 				}
-				$html .= "<div class='col-md-4 col-sm-4 col-sm-6' style='padding:0px' valign='top'><input type='checkbox' style='width:16px' name='".$tag_name."' value='".$k."'".$extra." >" .htmlentities($t)."</div>";
+				$html .= "<div class='col-md-4 col-sm-4 col-sm-6' style='padding:0px' valign='top'><input type='checkbox' style='width:16px' name='".$tag_name."' value='".$k."'".$extra." >" .makeSafe($t)."</div>";
 				if($i%3==2 || $i==$n-1){
 					$html.="</div>";
 				}
@@ -782,20 +789,18 @@ echo "<script type='text/javascript'>console.log('$message');</script>";
 		
 		public static function radioYesNo($name, $selectedValue, $yesLabel = 'Oui', $noLabel = 'Non', $yesValue = 1, $noValue = 0) {
 		?>
-			<input type="radio" name="<? echo $name; ?>" id="<? echo $name.'_'.$yesValue; ?>" value="<? echo $yesValue; ?>" <? if($selectedValue == $yesValue) { ?>checked<? } ?>> <label for="<? echo $name.'_'.$yesValue; ?>"><? echo $yesLabel; ?></label>&nbsp;
-			<input type="radio" name="<? echo $name; ?>" id="<? echo $name.'_'.$noValue; ?>" value="<? echo $noValue; ?>" <? if($selectedValue == $noValue) { ?>checked<? } ?>> <label for="<? echo $name.'_'.$noValue; ?>"><? echo $noLabel; ?></label>
-		<?
-		}
+			<input type="radio" name="<?php echo $name; ?>" id="<?php echo $name.'_'.$yesValue; ?>" value="<?php echo $yesValue; ?>" <?php if($selectedValue == $yesValue) { ?>checked<?php } ?>> <label for="<?php echo $name.'_'.$yesValue; ?>"><?php echo $yesLabel; ?></label>&nbsp;
+			<input type="radio" name="<?php echo $name; ?>" id="<?php echo $name.'_'.$noValue; ?>" value="<?php echo $noValue; ?>" <?php if($selectedValue == $noValue) { ?>checked<?php } ?>> <label for="<?php echo $name.'_'.$noValue; ?>"><?php echo $noLabel; ?></label>
+		<?php 		}
 		public static function gender($name, $selectedValue, $yesLabel = 'Oui', $noLabel = 'Non', $yesValue = 1, $noValue = 0){
 		?>
 		
     			
-    				<input id="<? echo $name.'_'.$yesValue; ?>" name="<? echo $name; ?>"  type="radio" value="<? echo $yesValue; ?>" <? if($selectedValue == $yesValue) { ?>checked<? } ?>> <label for="<? echo $name.'_'.$yesValue; ?>"><? echo $yesLabel; ?></label>&nbsp;
+    				<input id="<?php echo $name.'_'.$yesValue; ?>" name="<?php echo $name; ?>"  type="radio" value="<?php echo $yesValue; ?>" <?php if($selectedValue == $yesValue) { ?>checked<?php } ?>> <label for="<?php echo $name.'_'.$yesValue; ?>"><?php echo $yesLabel; ?></label>&nbsp;
 
-    				<input id="<? echo $name.'_'.$yesValue; ?>" name="<? echo $name; ?>" type="radio" value="<? echo $yesValue; ?>"<? if($selectedValue == $noValue) { ?>checked<? } ?>> <label for="<? echo $name.'_'.$noValue; ?>"><? echo $noLabel; ?></label>;
+    				<input id="<?php echo $name.'_'.$yesValue; ?>" name="<?php echo $name; ?>" type="radio" value="<?php echo $yesValue; ?>"<?php if($selectedValue == $noValue) { ?>checked<?php } ?>> <label for="<?php echo $name.'_'.$noValue; ?>"><?php echo $noLabel; ?></label>;
 
-			<?
-		}
+			<?php 		}
 		
 		
 		public static function calcul_age(&$date_naissance){

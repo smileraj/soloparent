@@ -38,7 +38,7 @@
 		}else
 			$langue = "&lang=fr";
 			
-		JL::redirect('http://www.parentsolo.ch/~dev/index.php?app=profil&action=inscription'.$langue);
+		JL::redirect('http://www.solocircl.com/~dev/index.php?app=profil&action=inscription'.$langue);
 	}
 	
 	
@@ -116,18 +116,17 @@
 		$online_2 = ($utilisateur->online) ? $langChat["online"] : $langChat["offline"];
 	?>
 		<div class='chatProfileFromImg'>
-			<img src='<? echo $utilisateur->photoURL; ?>' alt='profil' />
+			<img src='<?php echo $utilisateur->photoURL; ?>' alt='profil' />
 		</div>
 		<div class='chatProfileFromTxt'>
-			<p class='nickname<? echo $utilisateur->genre; ?>'><? echo $utilisateur->username; ?></p>
-			<p class='age'><? echo $utilisateur->age." ".$langChat["ans"]; ?></p>
-			<p class='children'><? echo $utilisateur->nb_enfants." ".$enfant; ?></p>
+			<p class='nickname<?php echo $utilisateur->genre; ?>'><?php echo $utilisateur->username; ?></p>
+			<p class='age'><?php echo $utilisateur->age." ".$langChat["ans"]; ?></p>
+			<p class='children'><?php echo $utilisateur->nb_enfants." ".$enfant; ?></p>
 			<br />
-			<p class='ville_canton'><? echo $utilisateur->ville." (".$utilisateur->canton.")"; ?></p>
-			<p class='online_<? echo $utilisateur->online; ?>'><? echo $online_2; ?></p>
+			<p class='ville_canton'><?php echo $utilisateur->ville." (".$utilisateur->canton.")"; ?></p>
+			<p class='online_<?php echo $utilisateur->online; ?>'><?php echo $online_2; ?></p>
 		</div>
-	<?
-	}
+	<?php 	}
 
 
 	//Liste les conversation, active de l'utilisateur 
@@ -161,11 +160,10 @@
 					
 					//Change le peusdo de couleur dans la liste des converstion, si il y a un nouveau message dans la conversation
 					?>
-					<div id='<? echo $corresp->id ; ?>' class='conv<? echo $message; ?>' >
-						<div onclick='fermerConversation(<? echo $corresp->id; ?>);' class='close'>x</div> <p onclick='affichCorrespondant(<? echo $corresp->id; ?>);'><? echo $corresp->username; ?></p>
+					<div id='<?php echo $corresp->id ; ?>' class='conv<?php echo $message; ?>' >
+						<div onclick='fermerConversation(<?php echo $corresp->id; ?>);' class='close'>x</div> <p onclick='affichCorrespondant(<?php echo $corresp->id; ?>);'><?php echo $corresp->username; ?></p>
 					</div>
-					<?
-				}
+					<?php 				}
 			}
 		}
 	}
@@ -219,16 +217,16 @@
 		
 		
 	?>
-		<div class='chatProfileToImg' onclick="self.opener.location.href='<? echo SITE_URL; ?>/index.php?app=profil&action=view&id=<? echo $correspondant->id.$langue; ?>'">
-			<img src='<? echo $correspondant->photoURL; ?>' alt='profil' />
+		<div class='chatProfileToImg' onclick="self.opener.location.href='<?php echo SITE_URL; ?>/index.php?app=profil&action=view&id=<?php echo $correspondant->id.$langue; ?>'">
+			<img src='<?php echo $correspondant->photoURL; ?>' alt='profil' />
 		</div>
 		<div class='chatProfileToTxt'>
-			<p class='nickname<? echo $correspondant->genre; ?>'><? echo $correspondant->username; ?></p>
-			<p class='age'><? echo $correspondant->age." ".$langChat["ans"]; ?></p>
-			<p class='children'><? echo $correspondant->nb_enfants." ".$enfant; ?></p>
+			<p class='nickname<?php echo $correspondant->genre; ?>'><?php echo $correspondant->username; ?></p>
+			<p class='age'><?php echo $correspondant->age." ".$langChat["ans"]; ?></p>
+			<p class='children'><?php echo $correspondant->nb_enfants." ".$enfant; ?></p>
 			<br />
-			<p class='ville_canton'><? echo utf8_encode($correspondant->ville)." (".utf8_encode($correspondant->canton).")"; ?></p>
-			<p class='online_<? echo $correspondant->online; ?>'><? echo $online_2; ?></p>
+			<p class='ville_canton'><?php echo utf8_encode($correspondant->ville)." (".utf8_encode($correspondant->canton).")"; ?></p>
+			<p class='online_<?php echo $correspondant->online; ?>'><?php echo $online_2; ?></p>
 		</div>
 	<?	
 	}
@@ -253,9 +251,8 @@
 		
 		if(!$membre){
 		?>
-			<a href="<? echo SITE_URL; ?>/index.php?app=abonnement&action=tarifs<? echo $langue; ?>" target="_blank"> [ <? echo  $langChat["Abonnement"]; ?> ] </a>
-		<?
-		}else{
+			<a href="<?php echo SITE_URL; ?>/index.php?app=abonnement&action=tarifs<?php echo $langue; ?>" target="_blank"> [ <?php echo  $langChat["Abonnement"]; ?> ] </a>
+		<?php 		}else{
 			$query = "SELECT *"
 			." FROM user_flbl"
 			." WHERE ((user_id_to =".$user->id." AND user_id_from = ".$id_corresp.") OR (user_id_to =".$id_corresp." AND user_id_from = ".$user->id.")) AND list_type=0"
@@ -269,23 +266,21 @@
 					if($blacklist->user_id_from == $user->id){
 					?>
 						<div class='message_to'>
-							<span style='color:grey;'><? echo $langChat["Parentsolo"]; ?></span>
-							<span class='heure'><? echo date('d/m/Y')." ".$langChat["AHeure"]." ".date('H:i:s'); ?></span>
-							<p><? echo $langChat["CorrespBlacklist"]; ?></p>
+							<span style='color:grey;'><?php echo $langChat["Parentsolo"]; ?></span>
+							<span class='heure'><?php echo date('d/m/Y')." ".$langChat["AHeure"]." ".date('H:i:s'); ?></span>
+							<p><?php echo $langChat["CorrespBlacklist"]; ?></p>
 						</div>
-					<?
-					}
+					<?php 					}
 					
 					//l'utilisateur est dans la blacklist du correspondant
 					elseif($blacklist->user_id_to == $user->id){
 					?>
 						<div class='message_to'>
-							<span style='color:grey;'><? echo $langChat["Parentsolo"]; ?></span>
-							<span class='heure'><? echo date('d/m/Y')." ".$langChat["AHeure"]." ".date('H:i:s'); ?></span>
-							<p><? echo $langChat["UserBlacklist"]; ?></p>
+							<span style='color:grey;'><?php echo $langChat["Parentsolo"]; ?></span>
+							<span class='heure'><?php echo date('d/m/Y')." ".$langChat["AHeure"]." ".date('H:i:s'); ?></span>
+							<p><?php echo $langChat["UserBlacklist"]; ?></p>
 						</div>
-					<?
-					}
+					<?php 					}
 				}
 				
 			}else{
@@ -311,9 +306,9 @@
 					$dest = ($user->id == $message->user_id_from)?"from":"to";
 					
 				?>
-					<div class='message_<? echo $dest; ?>'>
-						<span class='nickname<? echo $message->genre; ?>'><? echo $message->username; ?></span> <span class='heure'>(<? echo date('d/m/Y', strtotime($message->date_envoi))." ".$langChat["AHeure"]." ".date('H:i:s', strtotime($message->date_envoi)); ?>)</span>
-						<p><? echo nl2br(setSmileys($message->texte)); ?></p>
+					<div class='message_<?php echo $dest; ?>'>
+						<span class='nickname<?php echo $message->genre; ?>'><?php echo $message->username; ?></span> <span class='heure'>(<?php echo date('d/m/Y', strtotime($message->date_envoi))." ".$langChat["AHeure"]." ".date('H:i:s', strtotime($message->date_envoi)); ?>)</span>
+						<p><?php echo nl2br(setSmileys($message->texte)); ?></p>
 					</div>
 				<?	
 				}
@@ -326,12 +321,11 @@
 				if(!$membre) {
 				?>
 					<div class='message_to'>
-						<span style='color:grey;'><? echo $langChat["Parentsolo"]; ?></span>
-						<span class='heure'><? echo date('d/m/Y')." ".$langChat["AHeure"]." ".date('H:i:s'); ?></span>
-						<p><? echo $langChat["MembreNonAbonne"]; ?></p>
+						<span style='color:grey;'><?php echo $langChat["Parentsolo"]; ?></span>
+						<span class='heure'><?php echo date('d/m/Y')." ".$langChat["AHeure"]." ".date('H:i:s'); ?></span>
+						<p><?php echo $langChat["MembreNonAbonne"]; ?></p>
 					</div>
-				<?
-				}
+				<?php 				}
 				
 				
 				$query = "UPDATE chat_message"
@@ -438,9 +432,8 @@
 		$query = "SELECT * FROM contenu".$langString." WHERE id=13";
 		$aide = $db->loadObject($query);
 		?>
-		<h1><? echo $aide->titre; ?></h1><? echo $aide->texte; ?>
-		<?
-	}
+		<h1><?php echo $aide->titre; ?></h1><?php echo $aide->texte; ?>
+		<?php 	}
 
 	
 	function setSmileys($texte) {

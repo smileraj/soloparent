@@ -91,7 +91,7 @@
 
 
 		// r&eacute;cup les donn&eacute;es en session
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$search[$key]	= JL::getSession($key, $value, true);
 			}
@@ -169,7 +169,7 @@
 
 		// variables
 		$search 			= array();
-		$where				= array();
+		$where				= null;
 		$_where				= '';
 
 
@@ -178,7 +178,7 @@
 
 
 		// r&eacute;cup les donn&eacute;es en session
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$search[$key]	= JL::getSession($key, $value, true);
 			}
@@ -383,7 +383,7 @@
 
 		// variables
 		$search 			= array();
-		$where				= array();
+		$where				= null;
 		$_where				= '';
 
 
@@ -392,7 +392,7 @@
 
 
 		// r&eacute;cup les donn&eacute;es en session
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$search[$key]	= JL::getSession($key, $value, true);
 			}
@@ -543,7 +543,7 @@
 		}
 
 		// stock les donn&eacute;es temporaires en session
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				JL::setSession($key, JL::getVar($key, $value));
 			}
@@ -566,7 +566,7 @@
 
 
 		// r&eacute;cup les donn&eacute;es en session
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row[$key]	= JL::getSession($key, $value);
 			}
@@ -619,13 +619,13 @@
 
 
 			// recherche &acirc;ge mini
-			$list_recherche_age_min[] = JL::makeOption('0', '» '.$lang_search["Age"]);
+			$list_recherche_age_min[] = JL::makeOption('0', 'ï¿½ '.$lang_search["Age"]);
 			for($i=18; $i<=(intval(date('Y'))-1930); $i++) {
 				$list_recherche_age_min[] = JL::makeOption($i, $i);
 			}
 			$list['search_recherche_age_min'] = JL::makeSelectList( $list_recherche_age_min, 'search_recherche_age_min', 'class="select50"', 'value', 'text', $row['search_recherche_age_min']);
 
-			$list_recherche_age_max[] = JL::makeOption('0', '» '.$lang_search["Age"]);
+			$list_recherche_age_max[] = JL::makeOption('0', 'ï¿½ '.$lang_search["Age"]);
 			for($i=18; $i<=(intval(date('Y'))-1930); $i++) {
 				$list_recherche_age_max[] = JL::makeOption($i, $i);
 			}
@@ -633,7 +633,7 @@
 
 
 			// canton
-			$list_canton_id[] = JL::makeOption('0', '» '.$lang_search["canton"]);
+			$list_canton_id[] = JL::makeOption('0', 'ï¿½ '.$lang_search["canton"]);
 			$query = "SELECT id AS value, nom AS text"
 			." FROM profil_canton$langString"
 			." WHERE published = 1"
@@ -645,10 +645,10 @@
 			$list['search_ville_id']	= '<input type="hidden" id="search_ville_id" name="search_ville_id" value="'.$row['search_ville_id'].'" />';
 
 			// pseudo
-			$list['search_username']	= htmlentities($row['search_username']);
+			$list['search_username']	= makeSafe($row['search_username']);
 
 			// titre de la recherche
-			$list['search_titre']		= htmlentities($row['search_titre']);
+			$list['search_titre']		= makeSafe($row['search_titre']);
 
 			// en ligne
 			$list['search_online']		= $row['search_online'];
@@ -913,7 +913,7 @@
 	// cr&eacute;ation de la clause WHERE d'un crit&egrave;re facultatif
 	function SQLwhereCritFac(&$where, &$search, $field, $triple = false) {
 			global $langue;
-		if(count($search[$field])) {
+		if (is_array($search[$field])) {
 			if(in_array(0, $search[$field])) {
 				JL::setSession($field, array(0));
 			} else {

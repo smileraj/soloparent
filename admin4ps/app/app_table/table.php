@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 	
 	require_once('table.html.php');
@@ -49,7 +49,7 @@
 		
 		$resultatParPage	= RESULTS_NB_LISTE_ADMIN;
 		$search				= array();
-		$where				= array();
+		$where				= null;
 		$_where				= '';
 		
 		
@@ -65,12 +65,12 @@
 			$where[]		= "(description LIKE '%".$search['word']."%' OR nom_fr LIKE '%".$search['word']."%' OR nom_de LIKE '%".$search['word']."%' OR nom_en LIKE '%".$search['word']."%')";
 		}
 		
-		// génère le where
-		if(count($where)) {
+		// gï¿½nï¿½re le where
+		if (is_array($where)) {
 			$_where			= " WHERE ".implode(' AND ', $where);
 		}
 		
-		// compte le nombre de résultats
+		// compte le nombre de rï¿½sultats
 		$query = "SELECT COUNT(*)"
 		." FROM ".$table
 		.$_where
@@ -91,7 +91,7 @@
 	}
 	
 
-	// affiche un contenu passé en param $id
+	// affiche un contenu passï¿½ en param $id
 	function editer() {
 		global $db, $messages, $action;
 		
@@ -113,7 +113,7 @@
 			
 		} else {
 			
-			// récup le contenu
+			// rï¿½cup le contenu
 			$query = "SELECT *"
 			." FROM ".$table
 			." WHERE id = '".$id."'"
@@ -135,11 +135,11 @@
 		// messages d'erreur
 		$error		= false;
 		
-		// récup les données
+		// rï¿½cup les donnï¿½es
 		$data 		= getData(true);
 		
 	
-		// vérifs
+		// vï¿½rifs
 		if(!$data->description) {
 			$messages[]	= '<span class="error">Veuillez indiquer une description du texte svp.</span>';
 			$error		= true;

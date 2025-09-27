@@ -2,7 +2,14 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+$lang = strtolower($_GET['lang'] ?? 'en');
 
+// Only allow "en", everything else becomes "en"
+if ($lang !== 'en') {
+    $lang = 'en';
+}
+
+$_GET['lang'] = $lang;
 $option = $_REQUEST['option'] ?? null;
 if ($option === 'common') {
 	
@@ -33,97 +40,31 @@ else{
     $perannounce = '',
     $userStats2 = [],
     $useronstatus = '') {
-			include("lang/app_head.".$_GET['lang'].".php");
+			// include("lang/app_head.".$_GET['lang'].".php");
+			include("lang/app_head.en.php");
 			global $db, $template, $user, $langue, $auth, $action, $app;
 			$navArr=array();
 			$navString="";
-			if(count($_GET)>1){
+			if (is_array($_GET)>1){
 				foreach($_GET as $key => $value){
 					if($key!='lang'){
 						$navArr[]="$key=$value";
 					}
 				}
 				$navString= "&".implode("&",$navArr);
-			}            
-			if($_GET['lang']=='fr'){
-                //Fran&ccedil;ais <img style='width: 16px; border: inherit; vertical-align: bottom; margin: inherit;' src='".SITE_URL."/images/icons/fr.png'>- 
-			    $nav_active_string= "Fran&ccedil;ais <img style='width: 16px; border: inherit; ' src='".SITE_URL."/images/icons/fr.png'>";
-				$navString = "  
-                <li><a href='index.php?lang=de".$navString."'>Deutsch <img style='width: 16px; border: inherit; ' src='".SITE_URL."/images/icons/de.png'> </a></li>
-                <li><a href='index.php?lang=en".$navString."'>English <img style='width: 16px; border: inherit; ' src='".SITE_URL."/images/icons/en.png'></a></li> ";
-			}
-            elseif($_GET['lang']=='en'){
-				$nav_active_string= "English <img style='width: 16px; border: inherit; ' src='".SITE_URL."/images/icons/en.png'>";
-			    $navString = "<li><a href='index.php?lang=fr".$navString."'>Fran&ccedil;ais <img style='width: 16px; border: inherit; ' src='".SITE_URL."/images/icons/fr.png'> </a></li>
-                <li><a href='index.php?lang=de".$navString."'>Deutsch <img style='width: 16px; border: inherit; ' src='".SITE_URL."/images/icons/de.png'></a> </li>
-                ";  //- English <img style='width: 16px; border: inherit; vertical-align: bottom; margin: inherit;' src='".SITE_URL."/images/icons/en.png'>
-			}
-            elseif($_GET['lang']=='de'){
-                $nav_active_string= "Deutsch <img style='width: 16px; border: inherit; ' src='".SITE_URL."/images/icons/de.png'>";
-			    //- Deutsch <img style='width: 16px; border: inherit; vertical-align: bottom; margin: inherit;' src='".SITE_URL."/images/icons/de.png'>   
-			    $navString = "<li><a href='index.php?lang=fr".$navString."'>Fran&ccedil;ais  <img style='width: 16px; border: inherit; ' src='".SITE_URL."/images/icons/fr.png'> </a></li>
-                <li><a href='index.php?lang=en".$navString."'>English <img style='width: 16px; border: inherit; ' src='".SITE_URL."/images/icons/en.png'></a></li>";
-			}
-            else{
-			$nav_active_string= "Fran&ccedil;ais</a> <img style='width: 16px; border: inherit; ' src='".SITE_URL."/images/icons/fr.png'>";
-			    $navString = "<li><a href='index.php?lang=fr".$navString."'>Fran&ccedil;ais  <img style='width: 16px; border: inherit; ' src='".SITE_URL."/images/icons/fr.png'></a></li> 
-                <li><a href='index.php?lang=de".$navString."'>Deutsch <img style='width: 16px; border: inherit; ' src='".SITE_URL."/images/icons/de.png'></a></li> 
-                <li><a href='index.php?lang=en".$navString."'>English <img style='width: 16px; border: inherit; ' src='".SITE_URL."/images/icons/en.png'></a></li>";
-			}
+			}     
+			$nav_active_string="";       
+			
 		?>
 		<div id="banner_leader_board" style="display:none;">
 				
 				<div class="small"><?php echo $lang_apphead["Publicite"];?></div>
 				<div id='leaderboard'>
-					<!--<a href="http://www.swiss.com" target="_blank"><img src="http://www.parentsolo.ch/images/swiss.gif"></a> -->
+					<!--<a href="http://www.swiss.com" target="_blank"><img src="http://www.solocircl.com/images/swiss.gif"></a> -->
                     
-                     <?php if($app != 'home') {
-                     if($_GET['lang']=="fr"){
-                     ?>    
-                     <!-- config scripts -->
-                   <script type="text/javascript">
-                    var setgbpartnertag464 = false; if(typeof(setgbtargetingobj) == 'undefined') {var setgbtargetingobj = {};} 
-                    var gbuseSSL = 'https:' == document.location.protocol;
-                    var gbconfigdomain = (gbuseSSL ? 'https:' + "//secure.gbucket.ch/" : 'http:' + "//gbucket.ch/");
-                    var gbadtagdomain = (gbuseSSL ? 'https:' + "//secure.gbucket.ch/" : 'http:' + "//gbucket.ch/"); 
-                    document.write('<scr'+'ipt type="text/javascript" id="gbconfigscript" src="' + gbconfigdomain + 'CH/ch_config_desktop.js"></scr'+'ipt>');
-                    document.write('<scr'+'ipt type="text/javascript" id="gbadtag" src="' + gbadtagdomain + 'CH/BlatMedias/Online/FR_Parentsolo_RoS_incl_Home_allAdFormats.js"></scr'+'ipt>');
-                    </script>
-                    
-                    <!-- 728x90, 994x250 -->
-                   <div id="div-ad-gds-464-1">
-                    <script type="text/javascript">
-                    gbcallslot464("div-ad-gds-464-1", "");
-                    </script>
-                    </div>
-                    <?
-                   }
-                     
-                     if($_GET['lang']=="de"){
-                    ?>
-                       <!-- config scripts -->
-                        <script type="text/javascript">
-                        var setgbpartnertag522 = false; if(typeof(setgbtargetingobj) == 'undefined') {var setgbtargetingobj = {};} 
-                        var gbuseSSL = 'https:' == document.location.protocol;
-                        var gbconfigdomain = (gbuseSSL ? 'https:' + "//secure.gbucket.ch/" : 'http:' + "//gbucket.ch/");
-                        var gbadtagdomain = (gbuseSSL ? 'https:' + "//secure.gbucket.ch/" : 'http:' + "//gbucket.ch/"); 
-                        document.write('<scr'+'ipt type="text/javascript" id="gbconfigscript" src="' + gbconfigdomain + 'CH/ch_config_desktop.js"></scr'+'ipt>');
-                        document.write('<scr'+'ipt type="text/javascript" id="gbadtag" src="' + gbadtagdomain + 'CH/BlatMedias/Online/DE_Parentsolo_RoS_incl_Home_allAdFormats.js"></scr'+'ipt>');
-                        </script>
-
-                        <!-- 728x90, 940x250 -->
-                        <div id="div-ad-gds-522-1">
-                        <script type="text/javascript">
-                        gbcallslot522("div-ad-gds-522-1", "");
-                        </script>
-                        </div>
-                    <?
-                    }
-                     
-                     if($_GET['lang']=="en") {
-                    ?>
+                     <?php if($app != 'home') { ?>
                         <!-- config scripts -->
-                       <script type="text/javascript">
+                       <!-- <script type="text/javascript">
                         var setgbpartnertag526 = false; if(typeof(setgbtargetingobj) == 'undefined') {var setgbtargetingobj = {};} 
                         var gbuseSSL = 'https:' == document.location.protocol;
                         var gbconfigdomain = (gbuseSSL ? 'https:' + "//secure.gbucket.ch/" : 'http:' + "//gbucket.ch/");
@@ -133,14 +74,13 @@ else{
                         </script>
                     
                     
-                       <!-- 728x90, 994x250 -->
+                     
                        <div id="div-ad-gds-526-1">
                         <script type="text/javascript">
                         gbcallslot526("div-ad-gds-526-1", "");
-                        </script>
+                        </script> -->
                         </div>
-                     <?
-                     }
+                     <?php                      
 					 }
                      ?>
 				</div>
@@ -148,14 +88,13 @@ else{
 			</div>
 			
 			<!--<div id="banner_top">
-				<img src="<?php  echo $template;?>/images/pastille_pourcentage_<?php  echo $_GET['lang']; ?>.png" alt="ParentSolo.ch"  />
+				<img src="<?php  echo $template;?>/images/pastille_pourcentage_<?php  echo $_GET['lang']; ?>.png" alt="solocircl.com"  />
 				<?php echo $lang_apphead["Papas"];?>: <span class="homme">43%</span><br />
 				<?php echo $lang_apphead["Mamans"];?>: <span class="femme">57%</span>
 			</div>
 			</div>-->
 			
-			<?
-			
+			<?php 			
 					if(!$user->id){
 						?>
 						
@@ -167,14 +106,14 @@ else{
 	  <div class="col-md-4  col-sm-3 col-xs-9 menu_right_side float_right"> 
 		<ul class="nav navbar-nav navbar-right"> 
 		  <li  class="border_rght col_sm_remove_li"><a href="<?php echo JL::url('index.php?app=profil&action=inscription').'&lang='.$_GET['lang']; ?>" title="<?php echo $lang_apphead["join_link"];?>"><?php echo $lang_apphead["join_link"];?></a></li>
-            <li  class="border_rght"><a href="#"  data-toggle="modal" data-target="#myModal"><?php echo $lang_apphead["Connexion"];?></a></li>
+            <li  class=""><a href="#"  data-toggle="modal" data-target="#myModal"><?php echo $lang_apphead["Connexion"];?></a></li>
            
-			 <li class="dropdown">
+			 <!-- <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $nav_active_string;?> <span class="caret"></span></a>
               <ul class="dropdown-menu">
                  <?php echo $navString;?>
               </ul>
-            </li>
+            </li> -->
           </ul>
 		  </div><div class="col-md-2  col-sm-2 col-xs-2 hidden-xs menu_right_side float_right"> 
 		<img src="parentsolo/images/mini-logo.gif"/>
@@ -193,7 +132,6 @@ else{
           <ul class="nav navbar-nav">
 		  <li class="border_rght"><a href="<?php echo JL::url('index.php').'?lang='.$_GET['lang']; ?>" title="<?php echo $lang_apphead["home_menu"];?>"><?php echo $lang_apphead["home_menu"];?></a></li>
 			<li class="border_rght"><a href="<?php echo JL::url('index.php?app=event').'&lang='.$_GET['lang']; ?>" title="<?php echo $lang_apphead["event_menu"];?>"><?php echo $lang_apphead["event_menu"];?></a></li>
-			<li class="border_rght"><a href="<?php echo JL::url('index.php?app=contenu&id=2').'&lang='.$_GET['lang']; ?>" title="<?php echo $lang_apphead["uce_menu"]; ?>"><?php echo $lang_apphead["uce_menu"]; ?></a></li>
 			<li><a href="<?php echo JL::url('index.php?app=contact').'&lang='.$_GET['lang']; ?>" title="<?php echo $lang_apphead["contact_menu"];?>"><?php echo $lang_apphead["contact_menu"];?></a></li>		
 		</ul>
           
@@ -321,8 +259,9 @@ background: rgba(47, 47, 47, 0.72);
   </div>
 </div>
 					
-				<?
-					}else{
+				<?php 		
+				
+				}else{
 						
 						$photo = JL::userGetPhoto($userProfilMini->id, '109', 'profil', $userProfilMini->photo_defaut);
 						$photo1=1;
@@ -685,18 +624,15 @@ if($photo1==0 && $perannounce->annonce!='' && ($userpercentage->taille_id!=0 || 
 									</li>
                                     <li>
                                      
-                                            <?
-										// abonn&eacute;
+                                            <?php 										// abonn&eacute;
 										if($user->gold_limit_date != '0000-00-00' && strtotime($user->gold_limit_date) >= time()) {
 									?>
 									<small class="uppercase-bold text-strong text-transparent-black  parentsolo_sub"><b><?php echo $lang_apphead["FinDAbonnement"];?>  :</b> <span class="parentsolo_sub"><?php echo date('d/m/y', strtotime($user->gold_limit_date)); ?></span></small>
 											
-									<?
-										} else {
+									<?php 										} else {
 									?>
 											<a href="<?php echo JL::url('index.php?app=abonnement&action=tarifs'.'&'.$langue); ?>" title="<?php echo $lang_apphead["AboPourToute"];?>" class="abo"><i class="fa fa-inbox fa-fw pull-right"></i> <?php echo $lang_apphead["AbonnezVous"];?> !</a>
-									<?
-										}
+									<?php 										}
 									?>
                                      
                                     </li>
@@ -728,17 +664,14 @@ if($photo1==0 && $perannounce->annonce!='' && ($userpercentage->taille_id!=0 || 
 							</div>
 							<div class="row bgbottom">
 								 <div class="col-md-6 nopadding">
-									<?
-										// abonn&eacute;
+									<?php 										// abonn&eacute;
 										if($user->gold_limit_date != '0000-00-00' && strtotime($user->gold_limit_date) >= time()) {
 									?>
 											<b><?php echo $lang_apphead["FinDAbonnement"];?>:</b> <span class="black"><?php echo date('d/m/y', strtotime($user->gold_limit_date)); ?></span>
-									<?
-										} else {
+									<?php 										} else {
 									?>
 											<a href="<?php echo JL::url('index.php?app=abonnement&action=tarifs'.'&'.$langue); ?>" title="<?php echo $lang_apphead["AboPourToute"];?>" class="abo"><?php echo $lang_apphead["AbonnezVous"];?> !</a>
-									<?
-										}
+									<?php 										}
 									?>
 								 </div>
 								 <div class="col-md-6 nopadding">
@@ -759,8 +692,8 @@ if($photo1==0 && $perannounce->annonce!='' && ($userpercentage->taille_id!=0 || 
 							<div class="noPhotoPopIn" id="noPhotoPopIn" onClick="document.location='<?php echo JL::url('index.php?app=profil&action=step2'.'&'.$langue); ?>';"><div ><?php echo $lang_apphead["AugmentezVosChancesPhoto"];?>!</div></div>
 							<script language="javascript" type="text/javascript">
 								var timerAlert2;
-								$('noPhotoPopIn').fade('hide');
-								noPhotoPopIn(0);
+								$('noPhotoPopIn').fadeOut('hide');
+								//noPhotoPopIn(0);
 							</script>
 				<?php 
 						}
@@ -768,31 +701,30 @@ if($photo1==0 && $perannounce->annonce!='' && ($userpercentage->taille_id!=0 || 
 				
 				?>
 			</div>						
-			<?
-							if(!$user->id){
+			<?php 							if(!$user->id){
 								?>	
 			<section class="skew-1-1 top_skew homepage_headerstyle bg-images-baner section-md-50 section-16 header_top_fixed text-center Logo_homepage" style="margin-top:0px;">
 				
 					<div class="shell position-r logo_res_wth mobile_res_logo">
-						<a href="<?php echo SITE_URL; ?>/index.php?lang=<?php echo $_GET['lang']; ?>" title="<?// echo SITE_DESCRIPTION; ?>" class="logo" ><img src="<?php echo $template;?>/images/logo_<?php echo $_GET['lang']; ?>.png" alt="ParentSolo.ch"  /></a>
+						<a href="<?php echo SITE_URL; ?>/index.php?lang=<?php echo $_GET['lang']; ?>" title="<?php // echo SITE_DESCRIPTION; ?>" class="logo" ><img src="<?php echo $template;?>/images/logo_<?php echo $_GET['lang']; ?>.png" alt="solocircl.com"  /></a>
 					</div>
 			
 				
 			</section>	
 			
-							<?}
+							<?php }
 							else{
 								?>
 								<section class="skew-1-1 bg-images-baner section-md-50 section-16 header_top_fixed text-left" style="margin-top:0px;">
 			<div class="position-r logo_res_wth mobile_res_logo" style="text-align:left;" >
-				<a href="<?php echo SITE_URL; ?>/index.php?lang=<?php echo $_GET['lang']; ?>" title="<?// echo SITE_DESCRIPTION; ?>" class="logo" ><img src="<?php echo $template;?>/images/logo_<?php echo $_GET['lang']; ?>.png" alt="ParentSolo.ch"  class="image_logo_login" /></a>
+				<a href="<?php echo SITE_URL; ?>/index.php?lang=<?php echo $_GET['lang']; ?>" title="<?php // echo SITE_DESCRIPTION; ?>" class="logo" ><img src="<?php echo $template;?>/images/logo_<?php echo $_GET['lang']; ?>.png" alt="solocircl.com"  class="image_logo_login" /></a>
 			</div>
 			</section>
 			
 			<header class="page-head" >
 			
 				<!--<div class="shell position-r logo_res_wth mobile_res">
-	<a href="<?php echo SITE_URL; ?>/index.php?lang=<?php echo $_GET['lang']; ?>" title="<?// echo SITE_DESCRIPTION; ?>" class="logo" ><img src="<?php echo $template;?>/images/logo_<?php echo $_GET['lang']; ?>.png" alt="ParentSolo.ch"  /></a>
+	<a href="<?php echo SITE_URL; ?>/index.php?lang=<?php echo $_GET['lang']; ?>" title="<?php // echo SITE_DESCRIPTION; ?>" class="logo" ><img src="<?php echo $template;?>/images/logo_<?php echo $_GET['lang']; ?>.png" alt="solocircl.com"  /></a>
 </div>-->
 <nav class="navbar navbar-default menubar_fixed admin_menu_link" style="    background: #000000; border:0px; border-left: 0px; border-right: 0px;">
       <div class="container-fluid">
@@ -808,7 +740,7 @@ jQuery.noConflict();
 (function($) {	
 $(document).ready(function() 
  {
-  var value1=<?php  echo $useronstatus->on_off_status ?>;
+  var value1 = <?php echo json_encode($useronstatus->on_off_status ?? ''); ?>;
  if(value1==1){
  $('#onlineoff').prop('checked',true);
  } 
@@ -892,15 +824,13 @@ $.ajax({
             </div>
          </header>
 
-								<?
-								
+								<?php 								
 								//JL::loadMod('menu');
 							}
 						?>			
 			</div>
 			
-		<?
-		
+		<?php 		
 		}
 		
 	}

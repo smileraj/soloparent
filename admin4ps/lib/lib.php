@@ -1,5 +1,4 @@
-<?
-
+<?php 
 	// config
 	require_once('../../config.php');
 	require_once(SITE_PATH.'/framework/mysql.class.php');

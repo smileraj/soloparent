@@ -2,7 +2,7 @@
 
 $lang_message = array(
 	
-	"BoiteReception" => "Boîte de réception",
+	"BoiteReception" => "Boï¿½te de rï¿½ception",
 	"Envois" => "Envois",
 	"Archives" => "Archives",	
 	"Corbeille" => "Corbeille",
@@ -10,12 +10,12 @@ $lang_message = array(
 
 	//------------------Page message.html.php ---------
 
-	"MessagesParentsolo" => "Messages Parentsolo.ch",
+	"MessagesParentsolo" => "Messages solocircl.com",
 	
-	"MailsRecus" => "Mails reçus",
-	"RosesRecues" => "Roses reçues",
-	"MailsRosesEnvoyes" => "Mails et roses envoyés",
-	"MailsRosesArchives" => "Mails et roses archivés",
+	"MailsRecus" => "Mails reï¿½us",
+	"RosesRecues" => "Roses reï¿½ues",
+	"MailsRosesEnvoyes" => "Mails et roses envoyï¿½s",
+	"MailsRosesArchives" => "Mails et roses archivï¿½s",
 	"Corbeille" => "Corbeille",
 	
 	
@@ -28,15 +28,15 @@ $lang_message = array(
 	"EnLigne" => "En ligne",
 	"HorsLigne" => "Hors ligne",
 	"Le" => "Le",
-	"A" => "à",
+	"A" => "ï¿½",
 	
-	"ConfirmationViderCorbeille" => "Attention, si vous videz la corbeille tous les messages listés seront définitivement supprimés!",
+	"ConfirmationViderCorbeille" => "Attention, si vous videz la corbeille tous les messages listï¿½s seront dï¿½finitivement supprimï¿½s!",
 	"ViderLaCorbeille" => "Vider la corbeille",
 	
-	"PagePrecedente" => "Page précédente",
+	"PagePrecedente" => "Page prï¿½cï¿½dente",
 	"Page" => "Page",
 	"Pages" => "Pages",
-	"Debut" => "Début",
+	"Debut" => "Dï¿½but",
 	"Fin" => "Fin",
 	"messages" => "messages",
 	"message" => "message",
@@ -45,10 +45,10 @@ $lang_message = array(
 	
 	
 	
-	"BoiteReceptionVide" => "Boîte de réception vide",
-	"BoiteReceptionRosesVide" => "Boîte de réception des roses vide",
-	"BoiteEnvoiVide" => "Boîte d'envoi vide",
-	"AucunMailArchive" => "Aucun mail archivé",
+	"BoiteReceptionVide" => "Boï¿½te de rï¿½ception vide",
+	"BoiteReceptionRosesVide" => "Boï¿½te de rï¿½ception des roses vide",
+	"BoiteEnvoiVide" => "Boï¿½te d'envoi vide",
+	"AucunMailArchive" => "Aucun mail archivï¿½",
 	"CorbeilleVide" => "Corbeille vide",
 	
 	
@@ -66,7 +66,7 @@ $lang_message = array(
 	"Restaurer" => "Restaurer",
 	"Supprimer" => "Supprimer",
 	"Archiver" => "Archiver",
-	"Repondre" => "Répondre",
+	"Repondre" => "Rï¿½pondre",
 	
 	
 	"EnvoyerUneRose" => "Envoyer une rose",
@@ -74,17 +74,17 @@ $lang_message = array(
 	"Envoi" => "Envoi",
 	
 	"Signification" => "Signification",
-	"CliquezSurUneRose" => "Cliquez sur une rose ci-dessus pour joindre celle-ci à votre message",
+	"CliquezSurUneRose" => "Cliquez sur une rose ci-dessus pour joindre celle-ci ï¿½ votre message",
 	
 	
 	"Destinataire" => "Destinataire",
 	"Titre" => "Titre",
 	"Texte" => "Texte",
-	"AttentionAssurezVousDeBien" => "<b>Attention</b>, assurez-vous de bien connaître la personne avec qui vous chattez avant de donner vos coordonnées personnelles ou adresses email/msn",
+	"AttentionAssurezVousDeBien" => "<b>Attention</b>, assurez-vous de bien connaï¿½tre la personne avec qui vous chattez avant de donner vos coordonnï¿½es personnelles ou adresses email/msn",
 	
 	
 	
-	"ConfirmationAnnulation" => "Voulez-vous vraiment annuler la rédaction de ce message?",
+	"ConfirmationAnnulation" => "Voulez-vous vraiment annuler la rï¿½daction de ce message?",
 	"Annuler" => "Annuler",
 	"Envoyer" => "Envoyer",
 	
@@ -97,30 +97,30 @@ $lang_message = array(
 	
 	"AdresseEmail" => "Adresse email",
 	
-	"MailEnvoye" => "Mail envoyé",
-	"MailArchive" => "Mail archivé",
-	"MailRestaure" => "Mail restauré",
-	"MailSupprime" => "Mail supprimé",
-	"CorbeilleVidee" => "Corbeille vidée",	
+	"MailEnvoye" => "Mail envoyï¿½",
+	"MailArchive" => "Mail archivï¿½",
+	"MailRestaure" => "Mail restaurï¿½",
+	"MailSupprime" => "Mail supprimï¿½",
+	"CorbeilleVidee" => "Corbeille vidï¿½e",	
 	
 	
-	"EnReponseA" => "En réponse à",
+	"EnReponseA" => "En rï¿½ponse ï¿½",
 	
-	"ProfilNonValide" => "Votre profil n'a pas encore été validé par un modérateur. Vous allez recevoir un appel téléphonique d'ici 1 à 2 jours ouvrés afin de confirmer votre profil. Ces jours d'attente seront bien entendu ajoutés à votre abonnement",
-	"QualiteServiceOptimale" => "Cette mesure est prise dans le but de vous garantir une qualité de service optimale. Ainsi, toute personne mal intentionnée qui souhaiterait contourner la confirmation téléphonique ne pourra pas contacter les autres membres tant que son profil ne sera pas validé",
-	"ParentsoloVousRemercie" => "Parentsolo.ch vous remercie pour votre compréhension",
+	"ProfilNonValide" => "Votre profil n'a pas encore ï¿½tï¿½ validï¿½ par un modï¿½rateur. Vous allez recevoir un appel tï¿½lï¿½phonique d'ici 1 ï¿½ 2 jours ouvrï¿½s afin de confirmer votre profil. Ces jours d'attente seront bien entendu ajoutï¿½s ï¿½ votre abonnement",
+	"QualiteServiceOptimale" => "Cette mesure est prise dans le but de vous garantir une qualitï¿½ de service optimale. Ainsi, toute personne mal intentionnï¿½e qui souhaiterait contourner la confirmation tï¿½lï¿½phonique ne pourra pas contacter les autres membres tant que son profil ne sera pas validï¿½",
+	"ParentsoloVousRemercie" => "solocircl.com vous remercie pour votre comprï¿½hension",
 	
-	"SelectionnezFleur" => "Veuillez sélectionner une fleur, s'il vous plaît",
-	"IndiquezDestinataire" => "Veuillez indiquer un destinataire, s'il vous plaît",
+	"SelectionnezFleur" => "Veuillez sï¿½lectionner une fleur, s'il vous plaï¿½t",
+	"IndiquezDestinataire" => "Veuillez indiquer un destinataire, s'il vous plaï¿½t",
 	
 	
-	"WarningMailVousMeme" => "Vous ne pouvez pas vous envoyer de message à vous-même",
+	"WarningMailVousMeme" => "Vous ne pouvez pas vous envoyer de message ï¿½ vous-mï¿½me",
 	"PseudoInconnu" => "Pseudo du destinataire inconnu",
-	"WarningUtilisateurDansListeNoire" => "Vous ne pouvez pas envoyer de message à un utilisateur de votre liste noire",
-	"WarningVousDansListeNoireUtilisateur" => "Vous ne pouvez pas envoyer de message à cet utilisateur car vous êtes dans sa liste noire",
+	"WarningUtilisateurDansListeNoire" => "Vous ne pouvez pas envoyer de message ï¿½ un utilisateur de votre liste noire",
+	"WarningVousDansListeNoireUtilisateur" => "Vous ne pouvez pas envoyer de message ï¿½ cet utilisateur car vous ï¿½tes dans sa liste noire",
 	
-	"IndiquezTitre" => "Veuillez indiquer le titre de votre message, s'il vous plaît",
-	"IndiquezTexte" => "Veuillez indiquer le texte de votre message, s'il vous plaît",
+	"IndiquezTitre" => "Veuillez indiquer le titre de votre message, s'il vous plaï¿½t",
+	"IndiquezTexte" => "Veuillez indiquer le texte de votre message, s'il vous plaï¿½t",
 
 );
 ?>

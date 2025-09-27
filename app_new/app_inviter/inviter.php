@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 
 	require_once('inviter.html.php');
@@ -12,10 +12,10 @@
 	$messages	= array();
 
 	/*
-		new: formulaire nouveau témoignage
-		save: submit le formulaire de nouvel témoignages
-		list: lister les appels à témoins
-		read: lire un témoignage complet
+		new: formulaire nouveau tï¿½moignage
+		save: submit le formulaire de nouvel tï¿½moignages
+		list: lister les appels ï¿½ tï¿½moins
+		read: lire un tï¿½moignage complet
 	*/
 	if($user->id){
 		switch($action) {
@@ -57,11 +57,11 @@
 		// variables
 		$row						= new stdClass();
 
-		// initialise les données
+		// initialise les donnï¿½es
 		$_data			=& parrainage_data();
 
-		// conserve les données envoyées en session
-		if(count($_data)) {
+		// conserve les donnï¿½es envoyï¿½es en session
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row->{$key} = JL::getVar($key, $value);
 			}
@@ -98,11 +98,11 @@
 		$emails 		= array();
 		$row			= new stdClass();
 
-		// initialise les données
+		// initialise les donnï¿½es
 		$_data			=& parrainage_data();
 
-		// conserve les données envoyées en session
-		if(count($_data)) {
+		// conserve les donnï¿½es envoyï¿½es en session
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row->{$key} = JL::getVar($key, $value);
 			}
@@ -179,7 +179,7 @@
 			
 			foreach($emails as $email) {
 
-				// check si l'email n'est pas déjà enregistré
+				// check si l'email n'est pas dï¿½jï¿½ enregistrï¿½
 				$query = "SELECT id FROM user_parrainage WHERE emails LIKE '".$email."' LIMIT 0,1";
 				$emailExistant = $db->loadResult($query);
 
@@ -188,7 +188,7 @@
 					// pseudo dans le titre
 					$mailing->titre		= str_replace('{username}', $user->username, 	$mailing->titre);
 
-					// intégration du texte et du template, ainsi que traitement des mots clés
+					// intï¿½gration du texte et du template, ainsi que traitement des mots clï¿½s
 					$mailingTexte 	= JL::getMailHtml(SITE_PATH_ADMIN.'/app/app_mailing/template/'.$mailing->template, $mailing->titre, $mailing->texte, $user->username, array($row->message, JL::url(SITE_URL.'/index.php?app=profil&action=inscription&parrain_id='.$user->id.'&'.$langue)));
 
 					// envoi du mail
@@ -198,15 +198,15 @@
 					$db->query($query);
 					
 					
-					// ajout de l'email dans le talbeau d'emails à insérer dans la DB
+					// ajout de l'email dans le talbeau d'emails ï¿½ insï¿½rer dans la DB
 					$emails_envoyes[]	= $email;
 
 				}
 
 			}
 
-			// s'il y a des emails à enregistrer
-			if(count($emails_envoyes)) {
+			// s'il y a des emails ï¿½ enregistrer
+			if (is_array($emails_envoyes)) {
 
 				// message de confirmation
 				$messages[]	= '<span class="valid">'.$lang_inviter["MessageEnvoye"].' !</span>';
@@ -233,11 +233,11 @@
 		// variables
 		$row						= new stdClass();
 
-		// initialise les données
+		// initialise les donnï¿½es
 		$_data			=& conseiller_data();
 
-		// conserve les données envoyées en session
-		if(count($_data)) {
+		// conserve les donnï¿½es envoyï¿½es en session
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row->{$key} = JL::getVar($key, $value);
 			}
@@ -277,11 +277,11 @@
 		$emails 		= array();
 		$row			= new stdClass();
 
-		// initialise les données
+		// initialise les donnï¿½es
 		$_data			=& conseiller_data();
 
-		// conserve les données envoyées en session
-		if(count($_data)) {
+		// conserve les donnï¿½es envoyï¿½es en session
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row->{$key} = JL::getVar($key, $value);
 			}
@@ -377,20 +377,20 @@
 				// pseudo dans le titre
 				$mailing->titre		= str_replace('{username}', $row->prenom.' '.$row->nom, 	$mailing->titre);
 
-				// intégration du texte et du template, ainsi que traitement des mots clés
+				// intï¿½gration du texte et du template, ainsi que traitement des mots clï¿½s
 				$mailingTexte 	= JL::getMailHtml(SITE_PATH_ADMIN.'/app/app_mailing/template/'.$mailing->template, $mailing->titre, $mailing->texte, $row->prenom.' '.$row->nom, array($row->message));
 
 				// envoi du mail
 				@JL::mail($email_ami, $mailing->titre, $mailingTexte);
 				
 				
-				// ajout de l'email dans le talbeau d'emails à insérer dans la DB
+				// ajout de l'email dans le talbeau d'emails ï¿½ insï¿½rer dans la DB
 				$emails_envoyes[]	= $email_ami;
 
 			}
 
-			// s'il y a des emails à enregistrer
-			if(count($emails_envoyes)) {
+			// s'il y a des emails ï¿½ enregistrer
+			if (is_array($emails_envoyes)) {
 
 				// message de confirmation
 				$messages[]	= '<span class="valid">'.$lang_inviter["MessageEnvoye"].' !</span>';

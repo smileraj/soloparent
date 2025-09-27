@@ -64,7 +64,7 @@
 			<div class="container-fluid shell">
             <div class="col-md-12 res_padding_zero">
             <!--<div class="col-md-6"><div class="shell position-r logo_res_wth mobile_res_logo">
-						<a href="<? echo SITE_URL; ?>/index.php?lang=<? echo $_GET['lang']; ?>" title="<?// echo SITE_DESCRIPTION; ?>" class="logo" ><img src="<? echo $template;?>/images/logo_<? echo $_GET['lang']; ?>.png" alt="ParentSolo.ch"  /></a>
+						<a href="<?php echo SITE_URL; ?>/index.php?lang=<?php echo $_GET['lang']; ?>" title="<?php // echo SITE_DESCRIPTION; ?>" class="logo" ><img src="<?php echo $template;?>/images/logo_<?php echo $_GET['lang']; ?>.png" alt="solocircl.com"  /></a>
 					</div>
 					</div>-->
             <div class="col-md-12 top_res_div_car res_padding_zero" >
@@ -124,7 +124,7 @@
 			
                <div data-speed="0" data-type="html" class="rd-parallax-layer">
                   <div class="shell section-md-top-0 section-md-bottom-100 section-80 text-center text-l margin-top_res_div">
-                   <!-- <a href="<? // echo SITE_URL; ?>/index.php?lang=<? //echo $_GET['lang']; ?>" title="<? //echo SITE_DESCRIPTION; ?>" class="logo" ><img src="<? // echo $template;?>/images/logo_<? // echo $_GET['lang']; ?>.jpg" alt="ParentSolo.ch"  /></a>-->
+                   <!-- <a href="<?php // echo SITE_URL; ?>/index.php?lang=<?php //echo $_GET['lang']; ?>" title="<?php //echo SITE_DESCRIPTION; ?>" class="logo" ><img src="<?php // echo $template;?>/images/logo_<?php // echo $_GET['lang']; ?>.jpg" alt="solocircl.com"  /></a>-->
                      <div class="range offset-lg-top-0 offset-top-0 offset-sm-top-0">
                         <div class="col-md-6 col-lg-4 col-sm-12 col-xs-12  text-center text-md-left">
 			  	
@@ -388,8 +388,7 @@
 						foreach($profils_home as $profil){
 						?><div class="item">
                          <div class="wd_family_member">
-                          <?
-							JL::makeSafe($profil);
+                          <?php 							JL::makeSafe($profil);
 							if(is_file('images/profil/'.$profil->id.'/parent-solo-109-profil-'.$profil->photo_defaut.'.jpg')){
 							?>
 							<!-- <img class="img-responsive" src="images/family_members/03.jpg" alt="" style="width:200px;" />-->
@@ -400,8 +399,7 @@
 								    </a>
                                        
 										<?php
-							}?> </div></div><?
-						}
+							}?> </div></div><?php 						}
 					?>
                                     
 				 </div>
@@ -529,7 +527,7 @@
 <li class="cell-md-6 cell-sm-12 col-xs-12 res_li_cls1" >
 
 					<h2 class="text-white  text-center headerskin parentsolo_title_font" ><?php echo $lang_apphome["Events_lan"];?></h2>
-				<?php/* foreach($events as $contenu){
+				<?php /* foreach($events as $contenu){
 				?>
 				<div class="range offset-top-20 profiles position-r" style="text-align: center;">
 					<div class="cell-md-2  cell-sm-12"><img class="image_bg_sty" src="images/events/<?php echo $contenu->filename; ?>" alt="<?php echo $contenu->username; ?>" />
@@ -543,7 +541,7 @@
 					</div>
 					<?php
 					}
-					*/?>
+					*/ ?>
  <div id="testi" class="owl-carousel owl-theme" style="width:100% !important;">
 <?php foreach($events as $contenu){
 				?>            <div class="item">
@@ -649,10 +647,10 @@
 				<div class="pastille_offre_speciale">
 					<!--<img src="<?php // echo $template;?>/images/home/offre_speciale_papa_<?php echo $_GET['lang'];?>.png" />-->
 				<!-- </div> -->
-                 <?/*
+                 <?php /*
 				<div class="site_annee">
 					<img src="<?php echo $template;?>/images/home/site_annee-<?php echo $_GET['lang'];?>.png" />
-				</div>   */?>				
+				</div>   */ ?>				
 			<!--</div> -->
 			<div class="content1">
 				<div class="contentl">
@@ -740,8 +738,7 @@
 					<div id="banner_gold">
 						<div class="small"><?php echo $lang_apphome["Publicite"];?></div>     
 						
-                        <?
-                        if($_GET['lang']=="fr"){
+                        <?php                         if($_GET['lang']=="fr"){
                         ?>
                     
                         <div id="div-ad-gds-464-2">
@@ -749,8 +746,7 @@
                         document.write('<scr' + 'ipt type="text/javascript">gbcallslot464("div-ad-gds-464-2", "CLICK_URL_UNESC")</scr' + 'ipt>');
                         </script>
                         </div>
-                       <?
-                       }
+                       <?php                        }
 
                         if($_GET['lang']=="de"){
                         ?>
@@ -760,8 +756,7 @@
                             gbcallslot522("div-ad-gds-522-2", "");
                             </script>
                             </div>
-                       <?
-                       }
+                       <?php                        }
 
                        if($_GET['lang']=="en"){
                        ?>-->
@@ -771,13 +766,12 @@
                             gbcallslot526("div-ad-gds-526-2", "");
                             </script>
                             </div>
-                       <?
-                       }
+                       <?php                        }
                        ?>  
                           
 					</div>
                     -->
-                    <?/*
+                    <?php /*
                     <div id="banner_medium_rectangle">
                         <div class="small"><?php echo $lang_apphome["Publicite"];?></div>
                         <div id='content'>

@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 
 	class HTML_panel {
@@ -9,10 +9,9 @@
 	public static function loginPage() {
 		?>
 		<div class="login">
-		<form action="<? echo SITE_URL_ADMIN_EXPERT; ?>/index.php" name="login" method="post">
+		<form action="<?php echo SITE_URL_ADMIN_EXPERT; ?>/index.php" name="login" method="post">
 			<table cellpadding="0" cellspacing="0" width="100%">
-			<?
-				// demande d'authentification ?
+			<?php 				// demande d'authentification ?
 				$auth	= JL::getVar('auth', '');
 				?>
 				<tr>
@@ -31,7 +30,7 @@
 					<td class="key"><label for="pass">Mot de passe</label></td>
 					<td><input type="password" name="pass" id="pass" value="" class="loginText" /></td>
 				</tr>
-				<? // demande de login échouée
+				<?php // demande de login ï¿½chouï¿½e
 				if($auth == 'login') {
 				?>
 				<tr>
@@ -39,8 +38,7 @@
 						Login ou mot de passe incorrect(s) !
 					</td>
 				</tr>
-				<?
-					}
+				<?php 					}
 				?>
 				<tr>
 					<td>&nbsp;</td>
@@ -56,13 +54,12 @@
 		</form>
 		</div>
 		
-		<?
-		}
+		<?php 		}
 		
 		// page d'accueil admin
 	public static function homePage() {
 		?>
-			<h1>Panneau d'administration pour les experts de ParentSolo.ch</h1>
+			<h1>Panneau d'administration pour les experts de solocircl.com</h1>
 			<br />
 			<div class="tableAdmin">
 				<table>
@@ -79,8 +76,7 @@
 						</td>
 				</table>
 			</div>
-		<?
-		
+		<?php 		
 		}
 		
 	}

@@ -5,15 +5,15 @@ $lang_apphead = array(
 	"Finalize" => "Finalisez vos profils",
 		"online_icon"=>"En ligne",
 	"offline_icon"=>"Hors ligne",
-	"Publicite" => "Publicité",
+	"Publicite" => "Publicitï¿½",
 
-	"error_msg" => "Connexion non valide. Veuillez réessayer!",
+	"error_msg" => "Connexion non valide. Veuillez rï¿½essayer!",
 	//**Connexion
-	"DejaMembre" => "Déjà membre?",
+	"DejaMembre" => "Dï¿½jï¿½ membre?",
 	
 	"Pseudo" => "Pseudo: ",
 	"MotDePasse" => "Mot de passe: ",
-	"MotDePasseOublie" => "Mot de passe oublié?",
+	"MotDePasseOublie" => "Mot de passe oubliï¿½?",
 	"Connexion" => "Connexion",
 	
 	
@@ -22,18 +22,18 @@ $lang_apphead = array(
 	
 	"Statut" => "Statut",
 	"EnAttenteDeValidation" => "En attente de validation",
-	"Confirme" => "Confirmé",
+	"Confirme" => "Confirmï¿½",
 	
 	"FinDAbonnement" => "Fin d'abonnement",
-	"AboPourToute" => "Abonnez-vous pour profiter de toutes les fonctionnalités de Parentsolo.ch",
+	"AboPourToute" => "Abonnez-vous pour profiter de toutes les fonctionnalitï¿½s dsolocircl.comch",
 	"AbonnezVous" => "Abonnez-vous",
 	
-	"LogoutTitle" => "Déconnexion de votre profil",
-	"Deconnexion" => "Déconnexion",
+	"LogoutTitle" => "Dï¿½connexion de votre profil",
+	"Deconnexion" => "Dï¿½connexion",
 
 	"AugmentezVosChancesPhoto" => "Augmentez<br />vos chances!<br /><b>Envoyez une photo</b>",
 	"home_menu" => "Accueil",
-	"event_menu" => "Événements",
+	"event_menu" => "ï¿½vï¿½nements",
 	"uce_menu" => "Concept unique en Europe",
 	"contact_menu" => "Contact",
 	"join_link" => "Inscription",

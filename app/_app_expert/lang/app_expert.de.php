@@ -21,7 +21,7 @@ $lang_appexpert = array(
 	"Email" => "Email:",
 	"Sujet" => "Sujet:",
 	"VotreQuestion" => "Votre question:",
-	"JAcceptePublication" => "J'accepte que ma question et sa r&eacute;ponse puissent-&ecirc;tre publi&eacute; sur le site Parentsolo.ch de mani&egrave;re anonyme.",
+	"JAcceptePublication" => "J'accepte que ma question et sa r&eacute;ponse puissent-&ecirc;tre publi&eacute; sur le site solocircl.com de mani&egrave;re anonyme.",
 	
 	"CodeDeVerification" => "Code de v&eacute;rification",
 	

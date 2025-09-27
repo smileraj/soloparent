@@ -641,7 +641,7 @@ sub upload_error
 
 	print "Content-type: text/html\n\n";
 	print<<EOF;
-<HTML>
+<html>
 <HEAD>
 <TITLE>Error Message</TITLE></HEAD>
 <BODY>

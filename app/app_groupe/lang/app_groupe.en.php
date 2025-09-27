@@ -4,7 +4,7 @@ $lang_groupe = array(
 
 	//------------------Page groupe.html.php ---------
 "upload_file" => "Upload",
-	"MessagesParentsolo" => "Parentsolo.ch messages",
+	"MessagesParentsolo" => "solocircl.com messages",
 	
 	"MesGroupes" => "My groups",
 	"General" => "General",
@@ -117,7 +117,7 @@ $lang_groupe = array(
 	
 	
 	
-	"PhotoEnAttenteValidation" => "This photo is awaiting approval from a Parentsolo.ch moderator <br/><br/>As the new photo will be awaiting activation, the old photo will still be used",
+	"PhotoEnAttenteValidation" => "This photo is awaiting approval from a solocircl.com moderator <br/><br/>As the new photo will be awaiting activation, the old photo will still be used",
 	
 	
 	"ConfirmationAnnulation" => "Do you really want to cancel the creation of this group",
@@ -146,12 +146,12 @@ $lang_groupe = array(
 	"QuitterGroupeReussi" => "You've left the group",
 	
 	"GroupeEnregistre" => "Registered group",
-	"GroupesSoumisAValidation" => "Any creation or modification of a group is verified by a Parentsolo.ch moderator before being published or not on the site",
+	"GroupesSoumisAValidation" => "Any creation or modification of a group is verified by a solocircl.com moderator before being published or not on the site",
 	"AffichageGroupeDansListe" => "Your new group or amendments thereto will be visible in the \"All groups\" tab after approval by this moderator",
 	
 	"NonFondateurGroupe" => "You can’t modify this group because you’re not its founder",
 	
-	"GroupeVerouille" => "This group has been locked by a Parentsolo.ch moderator, so you can’t edit it any more",
+	"GroupeVerouille" => "This group has been locked by a solocircl.com moderator, so you can’t edit it any more",
 	
 	"RejoindreGroupeInexistant" => "The group you’re trying to reach doesn’t exist or no longer exists",
 	
@@ -161,8 +161,8 @@ $lang_groupe = array(
 	
 	
 	
-	"VerificationModificationsGroupe" => "All changes made to a group must be verified by a Parentsolo.ch moderator before being published or not on the site",
-	"VerificationCreationGroupe" => "Your group will be verified by a Parentsolo.ch moderator before being published or not on the site",
+	"VerificationModificationsGroupe" => "All changes made to a group must be verified by a solocircl.com moderator before being published or not on the site",
+	"VerificationCreationGroupe" => "Your group will be verified by a solocircl.com moderator before being published or not on the site",
 	
 	
 	"IndiquezTitre" => "Please enter the title of your group",

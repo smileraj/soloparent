@@ -199,13 +199,13 @@
 		// pourquoi published 0 autoris&eacute; ? car on permet l'affichage de messages de profils d&eacute;sactiv&eacute;s, mais confirm&eacute;s.
 		// par contre, on n'affiche pas les messages de profils non confirm&eacute;s ! qu'ils soient publi&eacute;s ou non
 
-		if(count($where)) {
+		if (is_array($where)) {
 			$_where = " WHERE ".implode(" AND ", $where);
 		}
 
 
 		// r&eacute;cup le message de l'utilisateur log
-		$query = "SELECT m.id, IF(m.user_id_to = ".$user->id.", 1, 0) AS owner, m.titre, m.texte, m.date_envoi, ".$innerJoinOn." AS user_id, m.fleur_id, f.nom_".$_GET['lang']." AS fleur_nom, f.signification_".$_GET['lang']." AS fleur_signification, m.dossier_id, IFNULL(u.username, 'ParentSolo.ch') AS username, IFNULL(up.photo_defaut, 0) AS photo_defaut, IFNULL(up.genre, '') AS genre"
+		$query = "SELECT m.id, IF(m.user_id_to = ".$user->id.", 1, 0) AS owner, m.titre, m.texte, m.date_envoi, ".$innerJoinOn." AS user_id, m.fleur_id, f.nom_".$_GET['lang']." AS fleur_nom, f.signification_".$_GET['lang']." AS fleur_signification, m.dossier_id, IFNULL(u.username, 'solocircl.com') AS username, IFNULL(up.photo_defaut, 0) AS photo_defaut, IFNULL(up.genre, '') AS genre"
 		." FROM message AS m"
 		." INNER JOIN user AS u ON u.id = ".$innerJoinOn
 		." LEFT JOIN user_profil AS up ON up.user_id = u.id"
@@ -290,7 +290,7 @@
 			$where[]		= "m.fleur_id > 0";
 		}
 
-		if(count($where)) {
+		if (is_array($where)) {
 			$_where = " WHERE ".implode(" AND ", $where);
 		}
 
@@ -306,7 +306,7 @@
 
 
 		// r&eacute;cup les messages de l'utilisateur log
-		$query = "SELECT m.id, m.titre, m.non_lu, m.date_envoi, m.user_id_from AS user_id, m.fleur_id, IF(u.id = 1, 'ParentSolo.ch', u.username) AS username, up.photo_defaut, up.genre, up.nb_enfants, ((YEAR(CURRENT_DATE)-YEAR(up.naissance_date)) - (RIGHT(CURRENT_DATE,5)<RIGHT(up.naissance_date,5))) AS age, IFNULL(pc.nom_".$_GET['lang'].", '') AS canton, pc.abreviation AS canton_abrev, 2 as m_read"
+		$query = "SELECT m.id, m.titre, m.non_lu, m.date_envoi, m.user_id_from AS user_id, m.fleur_id, IF(u.id = 1, 'solocircl.com', u.username) AS username, up.photo_defaut, up.genre, up.nb_enfants, ((YEAR(CURRENT_DATE)-YEAR(up.naissance_date)) - (RIGHT(CURRENT_DATE,5)<RIGHT(up.naissance_date,5))) AS age, IFNULL(pc.nom_".$_GET['lang'].", '') AS canton, pc.abreviation AS canton_abrev, 2 as m_read"
 		." FROM message AS m"
 		." INNER JOIN user AS u ON u.id = m.user_id_from"
 		." LEFT JOIN user_profil AS up ON up.user_id = u.id"
@@ -417,7 +417,7 @@
 		$fleurs		= array();
 
 		// r&eacute;cup les donn&eacute;es temporaires en session
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				if(JL::getVar('user_to', '') == JL::getSession('user_to', '')) {
 					$row->{$key}	= JL::getSession($key, $value);
@@ -481,7 +481,7 @@
 		JL::setSession('texte', "\n\n\n\n\n---------------------------------------------\n".$lang_message['EnReponseA'].": ".$message->titre."\n---------------------------------------------\n\n".$message->texte);
 
 		// r&eacute;cup les donn&eacute;es temporaires en session
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row->{$key}	= JL::getSession($key, $value);
 			}
@@ -591,10 +591,10 @@
 
 
 		// s'il y a erreur(s)
-		if(count($messages)) {
+		if (is_array($messages)) {
 
 			// conserve les donn&eacute;es envoy&eacute;es en session
-			if(count($_data)) {
+			if (is_array($_data)) {
 				foreach($_data as $key => $value) {
 					JL::setSession($key, JL::getVar($key, $value));
 				}
@@ -614,7 +614,7 @@
 			$message_id = $db->insert_id();
 
 			// efface les donn&eacute;es de session
-			if(count($_data)) {
+			if (is_array($_data)) {
 				foreach($_data as $key => $value) {
 					JL::setSession($key, '');
 				}

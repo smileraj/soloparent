@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 	
 	require_once('expert.html.php');
@@ -37,42 +37,42 @@
 		
 		$resultatParPage	= RESULTS_NB_LISTE_ADMIN;
 		$search				= array();
-		$where				= array();
+		$where				= null;
 		$_where				= '';
 		
 		
 		$search['page']			= JL::getVar('search_g_page', JL::getSessionInt('search_g_page', 1));
 		
-		// mot cherché
+		// mot cherchï¿½
 		$search['word']			= trim(JL::getVar('search_g_word', JL::getSession('search_g_word', ''), true));
 		$search['order']		= JL::getVar('search_g_order', JL::getSession('search_g_order', 'g.date_add'), 'g.date_add');
 		$search['ascdesc']		= JL::getVar('search_g_ascdesc', JL::getSession('search_g_ascdesc', 'desc'), 'desc');
 		$search['active']		= JL::getVar('search_g_active', JL::getSession('search_g_active', -1), -1);
 		
-		// conserve en session ces paramètres
+		// conserve en session ces paramï¿½tres
 		JL::setSession('search_g_page', 		$search['page']);
 		JL::setSession('search_g_word', 		$search['word']);
 		JL::setSession('search_g_order', 		$search['order']);
 		JL::setSession('search_g_ascdesc', 		$search['ascdesc']);
 		JL::setSession('search_g_active', 		$search['active']);
 		
-		// critère de tri
+		// critï¿½re de tri
 		$order				= array();
 		$order[]			= JL::makeOption('titre', 			'Expert');
-		$order[]			= JL::makeOption('specialite', 			'Spécialité');
+		$order[]			= JL::makeOption('specialite', 			'Spï¿½cialitï¿½');
 		$lists['order']		= JL::makeSelectList($order, 'search_g_order', 'class="searchInput"', 'value', 'text', $search['order']);
 
-		// ordre croissant/décroissant
+		// ordre croissant/dï¿½croissant
 		$ascdesc			= array();
 		$ascdesc[]			= JL::makeOption('asc', 			'Croissant');
-		$ascdesc[]			= JL::makeOption('desc', 			'Décroissant');
+		$ascdesc[]			= JL::makeOption('desc', 			'Dï¿½croissant');
 		$lists['ascdesc']	= JL::makeSelectList($ascdesc, 'search_g_ascdesc', 'class="searchInput"', 'value', 'text', $search['ascdesc']);
 		
 		// statut
 		$active				= array();
 		$active[]			= JL::makeOption('-1', 				'Tous');
-		$active[]			= JL::makeOption('1', 				'Activé');
-		$active[]			= JL::makeOption('0', 				'Non activé');
+		$active[]			= JL::makeOption('1', 				'Activï¿½');
+		$active[]			= JL::makeOption('0', 				'Non activï¿½');
 		$lists['active']	= JL::makeSelectList($active, 'search_g_active', 'class="searchInput"', 'value', 'text', $search['active']);
 		
 		
@@ -86,12 +86,12 @@
 			$where[]		= "e.active = '".$db->escape($search['active'])."'";
 		}
 		
-		// génère le where
-		if(count($where)) {
+		// gï¿½nï¿½re le where
+		if (is_array($where)) {
 			$_where			= " WHERE ".implode(' AND ', $where);
 		}
 		
-		// compte le nombre de résultats
+		// compte le nombre de rï¿½sultats
 		$query = "SELECT COUNT(*)"
 		." FROM expert as e"
 		.$_where
@@ -113,7 +113,7 @@
 	}
 	
 
-	// affiche un contenu passé en param $id
+	// affiche un contenu passï¿½ en param $id
 	function editer() {
 		global $db, $messages, $action;
 		
@@ -132,7 +132,7 @@
 			
 		} else {
 			
-			// récup le contenu
+			// rï¿½cup le contenu
 			$query = "SELECT *"
 			." FROM expert"
 			." WHERE id = '".$id."'"
@@ -145,7 +145,7 @@
 		
 		$contenu->upload_dir = JL::getUploadDir('../images/experts', $contenu->id);
 			
-		// supprime les fichiers temporaires de son répertoire de photos
+		// supprime les fichiers temporaires de son rï¿½pertoire de photos
 		$dest_dossier = '../images/experts/'.$contenu->id;
 		if(is_dir($dest_dossier)) {
 			$dir_id 	= opendir($dest_dossier);
@@ -166,11 +166,11 @@
 		// messages d'erreur
 		$error		= false;
 		
-		// récup les données
+		// rï¿½cup les donnï¿½es
 		$data 		= getData(true);
 		
 	
-		// vérifs
+		// vï¿½rifs
 		if(!$data->specialite) {
 			$messages[]	= '<span class="error">Veuillez indiquer une sp&eacute;cialit&eacute; svp.</span>';
 			$error		= true;

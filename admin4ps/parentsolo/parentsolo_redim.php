@@ -1,5 +1,4 @@
-<?
-	// sécurité
+<?php 	// sécurité
 	defined('JL') or die('Error 401');
 	
 	// chemin du template
@@ -13,20 +12,17 @@
  <script type="text/javascript" src="<?php echo SITE_URL_ADMIN; ?>/js/swfupload/recadrer-image.js"></script>
 </head>
 
-<? 
+<?php 
 	if($action=='save'){
 ?>
 	<body>
-<?
-	}else{
+<?php 	}else{
 ?>
 	<body onLoad="fnOnLoad();" onMouseDown="fnOnMouseDown();" onMouseUp="fnOnMouseUp();">
-<?
-	}
+<?php 	}
 ?>
 
-<?
-	JL::loadBody('admin');
+<?php 	JL::loadBody('admin');
 ?>
 
 </body>

@@ -6,7 +6,7 @@ $lang_apphead = array(
 		"online_icon"=>"Online",
 	"offline_icon"=>"Offline",
 	"Publicite" => "Advertising",
-"error_msg" => "Invalid connection. Try Again!",
+	"error_msg" => "Invalid connection. Try Again!",
 	
 	//**Connexion
 	"DejaMembre" => "Already a member?",
@@ -25,7 +25,7 @@ $lang_apphead = array(
 	"Confirme" => "Confirmed",
 	
 	"FinDAbonnement" => "End of subscription",
-	"AboPourToute" => "Subscribe to enjoy all the features of Parentsolo.ch",
+	"AboPourToute" => "Subscribe to enjoy all the features of solocircl.com",
 	"AbonnezVous" => "Subscribe",
 	
 	"LogoutTitle" => "Logout from your profile",

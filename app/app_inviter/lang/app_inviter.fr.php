@@ -4,7 +4,7 @@ $lang_inviter = array(
 
 	//------------------Message ---------
 
-	"MessagesParentsolo" => "Messages Parentsolo.ch",
+	"MessagesParentsolo" => "Messages solocircl.com",
 	
 	//---------------------Page Parrainage
 	
@@ -25,7 +25,7 @@ $lang_inviter = array(
 	"Email5NonValide" => "L'email 5 n'est pas valide, veuillez le resaisir s'il vous pla&icirc;t",
 	
 	"MessageEnvoye" => "Messages envoy&eacute;s",
-	"MessageDejaEnvoyes" => "Vos amis ont d&eacute;j&agrave; &eacute;t&eacute; contact&eacute;s pour un parrainage Parentsolo.ch",
+	"MessageDejaEnvoyes" => "Vos amis ont d&eacute;j&agrave; &eacute;t&eacute; contact&eacute;s pour un parrainage solocircl.com",
 	
 	
 	

@@ -11,18 +11,16 @@
 			include("lang/app_expert.".$_GET['lang'].".php");
 
 			// s'il y a des messages à afficher
-			if(count($messages)) {
+			if (is_array($messages)) {
 			?>
 				<h2 class="messages"><?php echo $lang_appexpert["MessagesParentsolo"];?></h2>
 				<div class="messages">
-				<?
-					// affiche les messages
+				<?php 					// affiche les messages
 					JL::messages($messages);
 				?>
 				</div>
 				<br />
-			<?
-			}
+			<?php 			}
 
 		}
 		
@@ -42,29 +40,26 @@
 				<table class="result expert" cellpadding="0" cellspacing="0" width="100%">
 					<tr>
 						<td align="middle">
-						<?
-							if(count($questions)){
+						<?php 							if (is_array($questions)){
 								foreach($questions as $question) {
 
 								?>
 									<table class="detail_table" cellpadding="0" cellspacing="0" width="100%">
 										<tr>
-											<td class="question" colspan="2"><? echo $question->question;?></td>
+											<td class="question" colspan="2"><?php echo $question->question;?></td>
 										</tr>
 										<tr>
 											<td colspan="2"><br /><hr /><br /></td>
 										</tr>
 										<tr>
-											<td class="reponse" colspan="2"><? echo $question->reponse;?></td>
+											<td class="reponse" colspan="2"><?php echo $question->reponse;?></td>
 										</tr>
 									</table>
-								<?
-								}
+								<?php 								}
 							} else {
 							?>
 								<?php echo $lang_appexpert["AucuneQuestionTraitee"];?>.
-							<?
-							}
+							<?php 							}
 						?>
 					</td>
 				</tr>			
@@ -75,36 +70,33 @@
 						<table class="toolbarsteps" cellpadding="0" cellspacing="0">
 							<tr>
 								<td class="left">
-									<? // page précédente
+									<?php // page précédente
 									if($search['page'] > 1) { ?>
-										<a href="<? echo JL::url(SITE_URL.'/index.php?app=expert&action='.$action.'&id='.$expert->id.'&page='.($search['page']-1)).'&lang='.$_GET["lang"]; ?>" class="bouton envoyer" title="<?php echo $lang_appexpert["PagePrecedente"];?>">&laquo; <?php echo $lang_appexpert["PagePrecedente"];?></a>
-									<? } ?>
+										<a href="<?php echo JL::url(SITE_URL.'/index.php?app=expert&action='.$action.'&id='.$expert->id.'&page='.($search['page']-1)).'&lang='.$_GET["lang"]; ?>" class="bouton envoyer" title="<?php echo $lang_appexpert["PagePrecedente"];?>">&laquo; <?php echo $lang_appexpert["PagePrecedente"];?></a>
+									<?php } ?>
 								</td>
 								<td class="center pagination">
 									<b><?php echo $search['page_total'] == 1 ? $lang_appexpert["Page"] : $lang_appexpert["Pages"];?></b>:
-									<? if($debut > 1) { ?> <a href="<? echo JL::url(SITE_URL.'/index.php?app=expert&action='.$action.'&id='.$expert->id.'&page=1').'&lang='.$_GET["lang"]; ?>" title="<?php echo $lang_appexpert["Debut"];?>"><?php echo $lang_appexpert["Debut"];?></a> ...<? }?>
-									<?
-										for($i=$debut; $i<=$fin; $i++) {
+									<?php if($debut > 1) { ?> <a href="<?php echo JL::url(SITE_URL.'/index.php?app=expert&action='.$action.'&id='.$expert->id.'&page=1').'&lang='.$_GET["lang"]; ?>" title="<?php echo $lang_appexpert["Debut"];?>"><?php echo $lang_appexpert["Debut"];?></a> ...<?php }?>
+									<?php 										for($i=$debut; $i<=$fin; $i++) {
 										?>
-											 <a href="<? echo JL::url(SITE_URL.'/index.php?app=expert&action='.$action.'&id='.$expert->id.'&page='.$i).'&lang='.$_GET["lang"]; ?>" title="<?php echo $lang_appexpert["Page"];?> <? echo $i; ?>" <? if($i == $search['page']) { ?>class="active"<? } ?>><? echo $i; ?></a>
-										<?
-										}
+											 <a href="<?php echo JL::url(SITE_URL.'/index.php?app=expert&action='.$action.'&id='.$expert->id.'&page='.$i).'&lang='.$_GET["lang"]; ?>" title="<?php echo $lang_appexpert["Page"];?> <?php echo $i; ?>" <?php if($i == $search['page']) { ?>class="active"<?php } ?>><?php echo $i; ?></a>
+										<?php 										}
 									?>
-									<? if($fin < $search['page_total']) { ?> ... <a href="<? echo JL::url(SITE_URL.'/index.php?app=expert&action='.$action.'&id='.$expert->id.'&page='.$search['page_total']).'&lang='.$_GET["lang"]; ?>" title="<?php echo $lang_appexpert["Fin"];?>"><?php echo $lang_appexpert["Fin"];?></a><? }?> <i>(<? echo $search['result_total'] ==1 ? $search['result_total']." ".$lang_appexpert["question"] : $search['result_total']." ".$lang_appexpert["questions"];?>)</i>
+									<?php if($fin < $search['page_total']) { ?> ... <a href="<?php echo JL::url(SITE_URL.'/index.php?app=expert&action='.$action.'&id='.$expert->id.'&page='.$search['page_total']).'&lang='.$_GET["lang"]; ?>" title="<?php echo $lang_appexpert["Fin"];?>"><?php echo $lang_appexpert["Fin"];?></a><?php }?> <i>(<?php echo $search['result_total'] ==1 ? $search['result_total']." ".$lang_appexpert["question"] : $search['result_total']." ".$lang_appexpert["questions"];?>)</i>
 								</td>
 								<td class="right">
-									<? // page suivante
+									<?php // page suivante
 									if($search['page'] < $search['page_total']) { ?>
-										<a href="<? echo JL::url(SITE_URL.'/index.php?app=expert&action='.$action.'&id='.$expert->id.'&page='.($search['page']+1)).'&lang='.$_GET["lang"]; ?>" class="bouton envoyer" title="<?php echo $lang_appexpert["PageSuivante"];?>"><?php echo $lang_appexpert["PageSuivante"];?> &raquo;</a>
-									<? } ?>
+										<a href="<?php echo JL::url(SITE_URL.'/index.php?app=expert&action='.$action.'&id='.$expert->id.'&page='.($search['page']+1)).'&lang='.$_GET["lang"]; ?>" class="bouton envoyer" title="<?php echo $lang_appexpert["PageSuivante"];?>"><?php echo $lang_appexpert["PageSuivante"];?> &raquo;</a>
+									<?php } ?>
 								</td>
 							</tr>
 						</table>
 					</td>
 				</tr>			
 			</table>
-		<?
-			}else{
+		<?php 			}else{
 				JL::redirect(SITE_URL.'/index.php?app=expert&lang='.$_GET['lang']);
 			}
 		
@@ -116,15 +108,14 @@
 			global $db, $template, $action, $user;
 			
 		?>
-			<h2 class="barre"><? echo $contenu->titre;?></h2>
+			<h2 class="barre"><?php echo $contenu->titre;?></h2>
 			<div class="texte_explicatif">
-				<? echo  $contenu->texte; ?>
+				<?php echo  $contenu->texte; ?>
 			</div>
 			<br />
 			
-		<?
-			// messages d'erreurs
-			if(count($messages)){
+		<?php 			// messages d'erreurs
+			if (is_array($messages)){
 					// affichage des messages
 					expert_HTML::messages($messages);
 				}
@@ -134,8 +125,7 @@
 				<tr>
 					<td>
 						<table class="previews_liste" cellpadding="0" cellspacing="0" width="100%">
-						<?
-							$i = 1;
+						<?php 							$i = 1;
 							// liste les profils
 							if(is_array($experts) && count($experts)) {
 							
@@ -152,19 +142,18 @@
 								?>
 									<td class="preview_liste">
 										<div class="actions">
-											<a href="<? echo JL::url('index.php?app=expert&action=expert&id='.$row->id.'&lang='.$_GET['lang']); ?>" title="<? echo $row->titre; ?>"><img src="<? echo SITE_URL.'/'.$image; ?>" alt="<? echo $row->titre; ?>" class="profil" /></a>
+											<a href="<?php echo JL::url('index.php?app=expert&action=expert&id='.$row->id.'&lang='.$_GET['lang']); ?>" title="<?php echo $row->titre; ?>"><img src="<?php echo SITE_URL.'/'.$image; ?>" alt="<?php echo $row->titre; ?>" class="profil" /></a>
 										</div>
-										<div class="infos"><? echo $row->specialite; ?></div>
+										<div class="infos"><?php echo $row->specialite; ?></div>
 										<div class="description">
-											<? echo $row->introduction; ?>
+											<?php echo $row->introduction; ?>
 										</div>
 										<div style="clear:both"> </div>
 										<div class="username">
-											<a class="username" href="<? echo JL::url('index.php?app=expert&action=expert&id='.$row->id.'&lang='.$_GET['lang']); ?>" title="<? echo $row->titre; ?>" class="titre"><? echo $row->titre; ?></a>
+											<a class="username" href="<?php echo JL::url('index.php?app=expert&action=expert&id='.$row->id.'&lang='.$_GET['lang']); ?>" title="<?php echo $row->titre; ?>" class="titre"><?php echo $row->titre; ?></a>
 										</div>
 									</td>
-								<?
-								
+								<?php 								
 									if($i%2 == 0){echo "</tr>"; }
 								
 									$i++;
@@ -186,16 +175,14 @@
 										<?php echo $lang_appexpert["AucunExpert"];?>.
 									</td>
 								</tr>
-							<?
-							}
+							<?php 							}
 						?>
 						</table>
 					</td>
 				</tr>
 			</table>
     
-		<?
-		
+		<?php 		
 		}
 		
 		
@@ -212,29 +199,28 @@
 		
 			if($expert){
 		?>
-			<h2 class="barre"><? echo $expert->titre;?></h2>
+			<h2 class="barre"><?php echo $expert->titre;?></h2>
 			<div class="texte_explicatif">
-				<b><? echo $lang_appexpert["Specialite"].$expert->specialite;?></b><br />
+				<b><?php echo $lang_appexpert["Specialite"].$expert->specialite;?></b><br />
 				<br />
-				<img src="<? echo SITE_URL.'/'.$image; ?>" alt="<? echo $expert->specialite.": ".$expert->titre;?>" style="float:left;margin:0 10px 10px 0;" /><? echo  $expert->texte; ?>
+				<img src="<?php echo SITE_URL.'/'.$image; ?>" alt="<?php echo $expert->specialite.": ".$expert->titre;?>" style="float:left;margin:0 10px 10px 0;" /><?php echo  $expert->texte; ?>
 			</div>
 			<br />
 			<h3 class="result"><?php echo $lang_appexpert["DerniereQuestionTraitee"];?></h3>
-		<?
-			if($avis){
+		<?php 			if($avis){
 		?>
 				<table class="result expert" cellpadding="0" cellspacing="0" width="100%">
 					<tr>
 						<td align="middle">
 							<table class="detail_table" cellpadding="0" cellspacing="0" width="100%">
 								<tr>
-									<td class="question" colspan="2"><? echo $avis->question;?></td>
+									<td class="question" colspan="2"><?php echo $avis->question;?></td>
 								</tr>
 								<tr>
 									<td colspan="2"><br /><hr /><br /></td>
 								</tr>
 								<tr>
-									<td class="reponse" colspan="2"><? echo $avis->reponse;?></td>
+									<td class="reponse" colspan="2"><?php echo $avis->reponse;?></td>
 								</tr>
 							</table>
 						</td>
@@ -243,14 +229,14 @@
 				<table class="result expert" cellpadding="0" cellspacing="0" width="100%">
 					<tr>
 						<td align="right">
-							<a href="<? echo JL::url('index.php?app=expert&action=questions&id='.$expert->id.'&'.$langue); ?>"><?php echo $lang_appexpert["ToutesLesQuestionsTraitees"];?></a>
+							<a href="<?php echo JL::url('index.php?app=expert&action=questions&id='.$expert->id.'&'.$langue); ?>"><?php echo $lang_appexpert["ToutesLesQuestionsTraitees"];?></a>
 						</td>
 						<td align="middle" width="30px;">
-							<a href="<? echo JL::url('index.php?app=expert&action=questions&id='.$expert->id.'&'.$langue); ?>" title="<?php echo $lang_appexpert["ToutesLesQuestionsTraitees"];?>"><img src="<? echo SITE_URL; ?>/<? echo SITE_TEMPLATE; ?>/images/preview-plus.png" /></a>
+							<a href="<?php echo JL::url('index.php?app=expert&action=questions&id='.$expert->id.'&'.$langue); ?>" title="<?php echo $lang_appexpert["ToutesLesQuestionsTraitees"];?>"><img src="<?php echo SITE_URL; ?>/<?php echo SITE_TEMPLATE; ?>/images/preview-plus.png" /></a>
 						</td>
 					</tr>
 				</table>
-		<? 
+		<?php 
 			}else{
 		?>	<table class="result expert" cellpadding="0" cellspacing="0" width="100%">
 					<tr>
@@ -259,39 +245,37 @@
 						</td>
 					</tr>
 				</table>
-		<?
-			}
+		<?php 			}
 		?>
 			<br />
 			<hr />
 			<br />
-			<h2 class="barre"><? echo $contenu->titre;?></h2>
+			<h2 class="barre"><?php echo $contenu->titre;?></h2>
 			<div class="texte_explicatif">
-				<? echo  $contenu->texte; ?>						
+				<?php echo  $contenu->texte; ?>						
 			</div>
 			<br />	
-			<?
-				// messages d'erreurs
-				if(count($messages)){
+			<?php 				// messages d'erreurs
+				if (is_array($messages)){
 					// affichage des messages
 					expert_HTML::messages($messages);
 				}
 			?>
-			<form action="<? echo JL::url('index.php?app=expert').'&lang='.$_GET['lang']; ?>" method="post" name="contactForm">
+			<form action="<?php echo JL::url('index.php?app=expert').'&lang='.$_GET['lang']; ?>" method="post" name="contactForm">
 				<h3 class="form"><?php echo $lang_appexpert["PosezVotreQuestion"];?></h3>
 				<table class="table_form" cellpadding="0" cellspacing="0" width="100%">
 						<tr>
 							<td class="key">
 								<label for="email"><?php echo $lang_appexpert["Email"];?></label>
 							</td>
-							<td><b><? echo $user->email; ?></b></td>
+							<td><b><?php echo $user->email; ?></b></td>
 						</tr>
 						<tr>
 							<td class="key">
 								<label for="message"><?php echo $lang_appexpert["VotreQuestion"];?></label>
 							</td>
 							<td>
-								<textarea name="message" id="message" class="inputtext2"><? echo $contact->message; ?></textarea>
+								<textarea name="message" id="message" class="inputtext2"><?php echo $contact->message; ?></textarea>
 							</td>
 						</tr>
 						<tr>
@@ -309,12 +293,11 @@
 					</table>
 					
 				<input type="hidden" name="action" value="envoyer" />
-				<input type="hidden" name="id" value="<? echo $expert->id; ?>" />
-				<input type="hidden" name="lang" value="<? echo $_GET['lang']; ?>" />
+				<input type="hidden" name="id" value="<?php echo $expert->id; ?>" />
+				<input type="hidden" name="lang" value="<?php echo $_GET['lang']; ?>" />
 				
 			</form>
-			<?
-			}else{
+			<?php 			}else{
 				JL::redirect(SITE_URL.'/index.php?app=expert&lang='.$_GET['lang']);
 			}
 		

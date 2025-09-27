@@ -1,5 +1,4 @@
-<?
-	// PHP 4.1
+<?php 	// PHP 4.1
 
 	// config
 	require_once('config.php');
@@ -56,7 +55,7 @@ $query = "INSERT INTO postfinance SET"
 			." shasign = '".$SHASIGN."'";
 			$db->query($query);
 	// config
-	/* $notify_email	= 'paypal@parentsolo.ch';
+	/* $notify_email	= 'paypal@solocircl.com';
 	$dev_email		= 'm.jombart@babybook.ch';
 	$server			= 'ssl://www.paypal.com'; */
 	
@@ -434,8 +433,7 @@ table.ncoltable1 {
 	</tbody></table>
 						</body>
 						</html>
-						<?
-						JL::mail($notify_email, '['.$_SERVER['REMOTE_ADDR'].'] VERIFIED', "Paiement d'un abonnement<br /><br />Username: ".$userProfil->username."<br />Abonnement: ".$abonnement_paypal->intitule_abo."<br />Paiement: CHF ".$mc_gross."<br />Date limite d'abonnement chang&eacute;e de ".$userProfil->gold_limit_date." &agrave; ".$gold_limit_date."<br /><br />".$points."<br /><br />".$nonpoints,false);
+						<?php 						JL::mail($notify_email, '['.$_SERVER['REMOTE_ADDR'].'] VERIFIED', "Paiement d'un abonnement<br /><br />Username: ".$userProfil->username."<br />Abonnement: ".$abonnement_paypal->intitule_abo."<br />Paiement: CHF ".$mc_gross."<br />Date limite d'abonnement chang&eacute;e de ".$userProfil->gold_limit_date." &agrave; ".$gold_limit_date."<br /><br />".$points."<br /><br />".$nonpoints,false);
 						
 					//}
 				}elseif($txn_type == 'canceled'){

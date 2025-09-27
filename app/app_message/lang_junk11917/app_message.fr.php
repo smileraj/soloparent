@@ -10,7 +10,7 @@ $lang_message = array(
 
 	//------------------Page message.html.php ---------
 
-	"MessagesParentsolo" => "Messages Parentsolo.ch",
+	"MessagesParentsolo" => "Messages solocircl.com",
 	
 	"MailsRecus" => "Mails re&ccedil;us",
 	"RosesRecues" => "Roses re&ccedil;ues",
@@ -108,7 +108,7 @@ $lang_message = array(
 	
 	"ProfilNonValide" => "Votre profil n'a pas encore &eacute;t&eacute; valid&eacute; par un mod&eacute;rateur. Vous allez recevoir un appel t&eacute;l&eacute;phonique d'ici 1 &agrave; 2 jours ouvr&eacute;s afin de confirmer votre profil. Ces jours d'attente seront bien entendu ajout&eacute;s &agrave; votre abonnement",
 	"QualiteServiceOptimale" => "Cette mesure est prise dans le but de vous garantir une qualit&eacute; de service optimale. Ainsi, toute personne mal intentionn&eacute;e qui souhaiterait contourner la confirmation t&eacute;l&eacute;phonique ne pourra pas contacter les autres membres tant que son profil ne sera pas valid&eacute;",
-	"ParentsoloVousRemercie" => "Parentsolo.ch vous remercie pour votre compr&eacute;hension",
+	"ParentsoloVousRemercie" => "solocircl.com vous remercie pour votre compr&eacute;hension",
 	
 	"SelectionnezFleur" => "Veuillez s&eacute;lectionner une fleur, s'il vous pla&icirc;t",
 	"IndiquezDestinataire" => "Veuillez indiquer un destinataire, s'il vous pla&icirc;t",

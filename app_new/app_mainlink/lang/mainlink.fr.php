@@ -6,7 +6,7 @@ $lang_mainlink = array(
 	
 	"PageInexistante" => "Page inexistante",
 	
-	"LaPageDemandeeNExistePasOuPlusSurParentsolo" => "La page demandée n'existe pas ou plus sur Parentsolo.ch",
+	"LaPageDemandeeNExistePasOuPlusSurParentsolo" => "La page demandée n'existe pas ou plus sur solocircl.com",
 	
 	//--------------fin error404------------------------
 
@@ -53,7 +53,7 @@ $lang_mainlink = array(
 	"LancerUnAppelATemoins" => "Lancer un appel à témoins",
 	
 	//Particularité du menu presse
-	"ParentsoloDansLaPresse" => "Parentsolo.ch dans la presse",
+	"ParentsoloDansLaPresse" => "solocircl.com dans la presse",
 	"Videos" => "Vidéos",
 	"Articles" => "Articles",
 	"Radios" => "Radios",
@@ -163,7 +163,7 @@ $lang_mainlink = array(
 	//------------------Page meta.php ---------
 
 
-	"SiteDeRencontre" => "Parentsolo.ch,  Famille Monoparentale - Famille Recomposée - Divorcé - Veuf",
+	"SiteDeRencontre" => "solocircl.com,  Famille Monoparentale - Famille Recomposée - Divorcé - Veuf",
 	"LeSiteDeRencontreDes" => "Le site de rencontre réservé aux parents célibataires, séparés, divorcés ou encore veufs, résidants en Suisse",
 	"celibatairesRencontre" => "parent solo, célibataires, celibataires, rencontre, site de rencontre, enfant, papa, maman, suisse, amour, relation, sérieux, sérieuse, concret, inscription gratuite, gratuit, famille monoparentale, famille recomposée, divorcé, veuf",
 
@@ -218,6 +218,6 @@ $lang_mainlink = array(
 	"ConceptUnique" => "Concept unique en Europe",
 	
 	
-	"Copyright" => "Copyright © 2009 - ".date('Y')." - Parentsolo.ch",
+	"Copyright" => "Copyright © 2009 - ".date('Y')." - solocircl.com",
 );
 ?>

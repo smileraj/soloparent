@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 	
 	require_once('box.html.php');
@@ -37,7 +37,7 @@
 		
 		$resultatParPage	= RESULTS_NB_LISTE_ADMIN;
 		$search				= array();
-		$where				= array();
+		$where				= null;
 		$_where				= '';
 		
 		
@@ -74,12 +74,12 @@
 			$where[]		= "b.box_emplacement_id = '".addslashes($search['emplacement_id'])."'";
 		}
 		
-		// génère le where
-		if(count($where)) {
+		// gï¿½nï¿½re le where
+		if (is_array($where)) {
 			$_where			= " WHERE ".implode(' AND ', $where);
 		}
 		
-		// compte le nombre de résultats
+		// compte le nombre de rï¿½sultats
 		$query = "SELECT COUNT(*)"
 		." FROM box as b"
 		." INNER JOIN box_emplacement as be ON be.id = b.box_emplacement_id"
@@ -104,7 +104,7 @@
 	}
 	
 
-	// affiche un contenu passé en param $id
+	// affiche un contenu passï¿½ en param $id
 	function editer() {
 		global $db, $messages, $action;
 		
@@ -123,7 +123,7 @@
 			
 		} else {
 			
-			// récup le contenu
+			// rï¿½cup le contenu
 			$query = "SELECT *"
 			." FROM box"
 			." WHERE id = '".$id."'"
@@ -157,11 +157,11 @@
 		// messages d'erreur
 		$error		= false;
 		
-		// récup les données
+		// rï¿½cup les donnï¿½es
 		$data 		= getData(true);
 		
 	
-		// vérifs
+		// vï¿½rifs
 		if(!$data->description) {
 			$messages[]	= '<span class="error">Veuillez indiquer une description du texte svp.</span>';
 			$error		= true;

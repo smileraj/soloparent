@@ -196,7 +196,7 @@ class nusoap_xmlschema extends nusoap_base  {
         }
 		
         // loop thru attributes, expanding, and registering namespace declarations
-        if(count($attrs) > 0){
+        if (is_array($attrs) > 0){
         	foreach($attrs as $k => $v){
                 // if ns declarations, add to class level array of valid namespaces
 				if(ereg("^xmlns",$k)){
@@ -770,7 +770,7 @@ class nusoap_xmlschema extends nusoap_base  {
 		}
 	    }
 	    $str .= " xmlns=\"".$this->schema['targetNamespace']."\"";
-	    if(count($typeDef['elements']) > 0){
+	    if (is_array($typeDef['elements']) > 0){
 		$str .= ">";
 		foreach($typeDef['elements'] as $element => $eData){
 		    $str .= $this->serializeTypeDef($element);

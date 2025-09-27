@@ -16,7 +16,7 @@ $lang_apphome = array(
 	"unique" => "<b class='title_top'>Security</b><br> Our team based in Switzerland calls every new profile BY TELEPHONE. A guarantee of quality and seriousness: No more meetings on the other side of the world",
 	"nouveau" => "<b class='title_top'>News</b><br> Find events to share with family or lovers to learn how to discover you! ",
 	"acces" => "<b class='title_top'>Accessible on all Mobiles & Tablets</b><br> New encounters at your fingertips! Parentsolo accompanies you everywhere. Communicate with who you want, where you want and whenever you want.",
-	"concept" =>  "<b class='title_top'> UNIQUE CONCEPT IN EUROPE </b><br> Exclusively for parents living in Switzerland, ParentSolo.ch differs from the other websites by his specialization, the single parents, and by his will to offer a service of quality.  ",
+	"concept" =>  "<b class='title_top'> UNIQUE CONCEPT IN EUROPE </b><br> Exclusively for parents living in Switzerland, solocircl.com differs from the other websites by his specialization, the single parents, and by his will to offer a service of quality.  ",
 	
 	"InscriptionGratuite" => "FREE REGISTRATION",
 	"Join_lan" => "Join it's",
@@ -44,8 +44,8 @@ $lang_apphome = array(
 	
 	
 	"EcoutezLaRadioEnLive" => "Listen to live radio!",
-	"EcoutezLFMAvecParentSolo" => "Listen to LFM with Parentsolo.ch",
-	"EcoutezOneFMAvecParentSolo" => "Listen to One FM with Parentsolo.ch",
+	"EcoutezLFMAvecParentSolo" => "Listen to LFM with solocircl.com",
+	"EcoutezOneFMAvecParentSolo" => "Listen to One FM with solocircl.com",
 	
 	"SuivezNous" => "Follow us!",
 	

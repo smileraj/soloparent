@@ -5,7 +5,7 @@ $lang_signaler_abus = array(
 	//------------------Page search.html.php ---------
 
 
-	"MessagesParentsolo" => "Messages Parentsolo.ch",
+	"MessagesParentsolo" => "Messages solocircl.com",
 	
 	"Sujet" => "Sujet",
 	"Message" => "Message",

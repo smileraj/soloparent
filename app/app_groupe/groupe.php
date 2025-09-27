@@ -304,7 +304,7 @@
 
 		}
 
-		if(count($where)) {
+		if (is_array($where)) {
 			$_where = " WHERE ".implode(" AND ", $where);
 		}
 
@@ -458,7 +458,7 @@
 		$where[]	= "g.id = '".(int)$row->id."'";
 		$where[]	= "g.user_id = '".(int)$user->id."'";
 
-		if(count($where)) {
+		if (is_array($where)) {
 			$_where = " WHERE ".implode(" AND ", $where);
 		}
 
