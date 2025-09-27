@@ -14,7 +14,7 @@ $langChat= array(
 	"closeConvConfirm" => "Etes-vous sûr de vouloir fermer cette conversation?",
 	"CorrespBlacklist" => "Vous ne pouvez pas envoyer de message à un utilisateur de votre liste noire.",
 	"UserBlacklist" => "Vous ne pouvez pas envoyer de message à cet utilisateur car il n'existe pas ou plus.",
-	"Abonnement" => "Pour dialoguer et utiliser le chat, vous devez vous abonner ou renouveler votre abonnement Parentsolo.ch. Pour vous abonnez cliquer ICI",
+	"Abonnement" => "Pour dialoguer et utiliser le chat, vous devez vous abonner ou renouveler votre abonnement solocircl.com. Pour vous abonnez cliquer ICI",
 	
 	"AHeure" => "à",
 	
@@ -27,7 +27,7 @@ $langChat= array(
 	
 	"ProfilNonValide" => "Votre profil n'a pas encore été validé par un modérateur. Vous allez recevoir un appel téléphonique d'ici 1 à 2 jours ouvrés afin de confirmer votre profil. Ces jours d'attente seront bien entendu ajoutés à votre abonnement",
 	"QualiteServiceOptimale" => "Cette mesure est prise dans le but de vous garantir une qualité de service optimale. Ainsi, toute personne mal intentionnée qui souhaiterait contourner la confirmation téléphonique ne pourra pas contacter les autres membres tant que son profil ne sera pas validé",
-	"ParentsoloVousRemercie" => "Parentsolo.ch vous remercie pour votre compréhension",
+	"ParentsoloVousRemercie" => "solocircl.com vous remercie pour votre compréhension",
 	
 	"MembreNonConfirme" => "Le profil de ce membre n'a encore été confirmé",
 );

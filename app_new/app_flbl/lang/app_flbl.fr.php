@@ -7,7 +7,7 @@ $lang_flbl = array(
 		
 	//------------------Page flbl.html.php ---------
 
-	"MessagesParentsolo" => "Messages Parentsolo.ch",
+	"MessagesParentsolo" => "Messages solocircl.com",
 	
 	
 	"ModifierLeCommentaire" => "Modifier le commentaire",
@@ -23,10 +23,10 @@ $lang_flbl = array(
 	"EnvoyerUneRose" => "Envoyer une rose",
 	"Chat" => "Chat",
 	"AjouterAuxFavoris" => "Ajouter aux favoris",
-	"AjouterALaListeNoire" => "Ajouter à la liste noire",
+	"AjouterALaListeNoire" => "Ajouter ï¿½ la liste noire",
 	"SignalerUnAbus" => "Signaler un abus",
 	
-	"AjouteLe" => "Ajouté le",
+	"AjouteLe" => "Ajoutï¿½ le",
 	
 	"ConfirmationRetraitFavoris" => "Voulez vraiment retirer ce membre des favoris",
 	"ConfirmationRetraitListeNoire" => "Voulez vraiment retirer ce membre de la liste noire",
@@ -45,10 +45,10 @@ $lang_flbl = array(
 	"Annuler" => "Annuler",
 	"Valider" => "Valider",
 
-	"AjoutFavorisReussi" => "Ajout aux favoris réussi",
-	"AjoutListeNoireReussi" => "Ajout à la liste noire réussi",
-	"RetraitFavorisReussi" => "Retrait des favoris réussi",
-	"RetraitListeNoireReussi" => "Retrait de la liste noire réussi",
+	"AjoutFavorisReussi" => "Ajout aux favoris rï¿½ussi",
+	"AjoutListeNoireReussi" => "Ajout ï¿½ la liste noire rï¿½ussi",
+	"RetraitFavorisReussi" => "Retrait des favoris rï¿½ussi",
+	"RetraitListeNoireReussi" => "Retrait de la liste noire rï¿½ussi",
 	
 	"ProfilIntrouvabe" => "Profil introuvable",
 

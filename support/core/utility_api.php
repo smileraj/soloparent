@@ -209,7 +209,7 @@ function getClassProperties($className, $types='public', $return_object = false,
 	if ( $include_parent ) {
 		if($parentClass = $ref->getParentClass()){
 			$parent_props_arr = getClassProperties($parentClass->getName());//RECURSION
-			if(count($parent_props_arr) > 0)
+			if (is_array($parent_props_arr) > 0)
 				$props_arr = array_merge($parent_props_arr, $props_arr);
 		}
 	}

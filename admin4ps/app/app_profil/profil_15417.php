@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 	
 	require_once('profil.html.php');
@@ -69,7 +69,7 @@
 		// params
 		$photos 	= JL::getVar('photo', array());
 		
-		// récup les données
+		// rï¿½cup les donnï¿½es
 		$data 		= getData();
 		
 		// correction de la date, pour passer le texte de format de date
@@ -78,14 +78,14 @@
 		}
 		
 		
-		// récup le confirmed actuel
+		// rï¿½cup le confirmed actuel
 		$query = "SELECT confirmed FROM user WHERE id = '".(int)$data->id."' LIMIT 0,1";
 		$confirmed = $db->loadResult($query);
 		
 		// on veut confirmer un profil en attente de validation
 		if($confirmed == 2 && $data->confirmed == 1) {
 		
-			// récup le dernier abonnement payé par carte
+			// rï¿½cup le dernier abonnement payï¿½ par carte
 			$query = "SELECT datetime"
 			." FROM paypal"
 			." WHERE user_id = '".$data->id."' AND valide = 1"
@@ -94,16 +94,16 @@
 			;
 			$abonnement_carte = $db->loadResult($query);
 			
-			// si l'utilisateur a déjà payé par carte
+			// si l'utilisateur a dï¿½jï¿½ payï¿½ par carte
 			if($abonnement_carte) {
 			
 				// date actuelle
 				$datetime	= date('Y-m-d H:i:s');
 				
-				// si la date de validation est supérieure à la date d'abonnements
+				// si la date de validation est supï¿½rieure ï¿½ la date d'abonnements
 				if($datetime > $abonnement_carte) {
 				
-					// durée pendant laquelle l'abonné n'a pu envoyer de messages
+					// durï¿½e pendant laquelle l'abonnï¿½ n'a pu envoyer de messages
 					$data->abonnement_crediter += ceil((strtotime($datetime) - strtotime($abonnement_carte))/3600.0/24.0);
 				
 				}
@@ -118,21 +118,21 @@
 		
 			$messages[]	= '<span class="error">La date limite d\'abonnement n\'est pas valide.</span>';
 			
-			// réaffecte la variable de date
+			// rï¿½affecte la variable de date
 			JL::setVar('gold_limit_date', '');
 			
 		} elseif($data->appel_date != '' && !preg_match('/^[0-3][0-9]\/0|1[0-9]\/200|1[0-9]$/', $data->appel_date)) {
 		
 			$messages[]	= '<span class="error">La date d\'appel n\'est pas valide.</span>';
 			
-			// réaffecte la variable de date
+			// rï¿½affecte la variable de date
 			JL::setVar('appel_date', '');
 			
 		} elseif($data->appel_date2 != '' && !preg_match('/^[0-3][0-9]\/0|1[0-9]\/200|1[0-9]$/', $data->appel_date2)) {
 		
 			$messages[]	= '<span class="error">La date d\'appel 2 n\'est pas valide.</span>';
 			
-			// réaffecte la variable de date 2
+			// rï¿½affecte la variable de date 2
 			JL::setVar('appel_date2', '');
 		
 		} else { // date valide
@@ -143,10 +143,10 @@
 			$mois	= $date[1];
 			$annee	= $date[2];
 			
-			// si on veut créditer des jours en +
+			// si on veut crï¿½diter des jours en +
 			if($data->abonnement_crediter) {
 			
-				// si le début d'abonnement est antérieur à la date du jour
+				// si le dï¿½but d'abonnement est antï¿½rieur ï¿½ la date du jour
 				if($annee.'-'.$mois.'-'.$jour < date('Y-m-d')) {
 					$date	= explode('/', date('d/m/Y'));
 					$jour	= $date[0];
@@ -165,10 +165,10 @@
 				
 			}
 			
-			// réaffecte la variable de date de fin d'abonnement
+			// rï¿½affecte la variable de date de fin d'abonnement
 			JL::setVar('gold_limit_date', $data->gold_limit_date);
 			
-			// si la date d'appel est renseignée
+			// si la date d'appel est renseignï¿½e
 			if($data->appel_date != '') {
 			
 				// modifie la date de fin d'abonnement
@@ -185,12 +185,12 @@
 				
 			}
 			
-			// réaffecte la variable de date d'appel
+			// rï¿½affecte la variable de date d'appel
 			JL::setVar('appel_date', $annee.'-'.$mois.'-'.$jour);
 			$data->appel_date	= $annee.'-'.$mois.'-'.$jour;
 			
 			
-			// si la date d'appel 2 est renseignée
+			// si la date d'appel 2 est renseignï¿½e
 			if($data->appel_date2 != '') {
 			
 				// modifie la date de fin d'abonnement
@@ -207,15 +207,15 @@
 				
 			}
 			
-			// réaffecte la variable de date d'appel 2
+			// rï¿½affecte la variable de date d'appel 2
 			JL::setVar('appel_date2', $annee.'-'.$mois.'-'.$jour);
 			$data->appel_date2	= $annee.'-'.$mois.'-'.$jour;
 			
 		}
 		
 		
-		// si des photos ont été cochées
-		if(count($photos)) {
+		// si des photos ont ï¿½tï¿½ cochï¿½es
+		if (is_array($photos)) {
 			
 			foreach($photos as $photo) {
 				
@@ -230,7 +230,7 @@
 					@unlink('../images/profil/'.$data->id.'/parent-solo-109-'.$file.'.jpg');
 					@unlink('../images/profil/'.$data->id.'/parent-solo-220-'.$file.'.jpg');
 					
-					// retire la photo de la liste des dernières photos ajoutées
+					// retire la photo de la liste des derniï¿½res photos ajoutï¿½es
 					$query = "DELETE FROM photo_last WHERE user_id = '".$data->id."' AND photo_name = '".$file."'";
 					$db->query($query);
 				
@@ -249,7 +249,7 @@
 				
 				
 				if($data->confirmed == 0){
-					// récup les détails du paiement
+					// rï¿½cup les dï¿½tails du paiement
 					$query = "SELECT id, reference_paypal, intitule_abo, montant, nom_paypal, prenom_paypal, valide"
 					." FROM abonnement_paypal"
 					." WHERE user_id = '".(int)$data->id."' and valide=1"
@@ -257,7 +257,7 @@
 					;
 					$abonnement_paypal	= $db->loadObject($query);
 					
-					// récup les détails de l'utilisateur
+					// rï¿½cup les dï¿½tails de l'utilisateur
 					$queryUser = "SELECT u.id, u.username, u.gid, u.confirmed"
 					." FROM user AS u"
 					." WHERE u.id = '".(int)$data->id."'"
@@ -266,7 +266,7 @@
 					$userProfil = $db->loadObject($queryUser);
 				
 					if($abonnement_paypal && $userProfil){
-						mail('abonnement@parentsolo.ch', 'Désactivation d\'un membre', "Désactivation d'un membre abonné\n\n Username : ".$userProfil->username."\n Id User (Marie) : ".$userProfil->id."\n\n Intitulé Abo : ".$abonnement_paypal->intitule_abo."\n Montant : ".$abonnement_paypal->montant."\n Nom Paypal : ".$abonnement_paypal->nom_paypal."\n Prénom Paypal : ".$abonnement_paypal->prenom_paypal."\n Référence Paypal : ".$abonnement_paypal->reference_paypal."\n Validité de l'Abonnement (0->non validé, 1->en cours, 2->annulé) : ".$abonnement_paypal->valide."\n Id Abonnement Paypal (Marie) : ".$abonnement_paypal->id."\n");
+						mail('abonnement@solocircl.com', 'Dï¿½sactivation d\'un membre', "Dï¿½sactivation d'un membre abonnï¿½\n\n Username : ".$userProfil->username."\n Id User (Marie) : ".$userProfil->id."\n\n Intitulï¿½ Abo : ".$abonnement_paypal->intitule_abo."\n Montant : ".$abonnement_paypal->montant."\n Nom Paypal : ".$abonnement_paypal->nom_paypal."\n Prï¿½nom Paypal : ".$abonnement_paypal->prenom_paypal."\n Rï¿½fï¿½rence Paypal : ".$abonnement_paypal->reference_paypal."\n Validitï¿½ de l'Abonnement (0->non validï¿½, 1->en cours, 2->annulï¿½) : ".$abonnement_paypal->valide."\n Id Abonnement Paypal (Marie) : ".$abonnement_paypal->id."\n");
 					}
 					
 					if($userProfil->confirmed){
@@ -296,7 +296,7 @@
 				}	
 					
 				
-				// mise à jour du profil
+				// mise ï¿½ jour du profil
 				$query 	= "UPDATE user_profil SET"
 				." nom_origine = '".$db->escape($data->nom_origine)."',"
 				." prenom_origine = '".$db->escape($data->prenom_origine)."',"
@@ -308,7 +308,7 @@
 				;
 				$db->query($query);
 				
-				// mise à jour des stats du compte
+				// mise ï¿½ jour des stats du compte
 				$query 	= "UPDATE user_stats SET"
 				." gold_limit_date = '".$db->escape($data->gold_limit_date)."',"
 				." appel_date = '".$db->escape($data->appel_date)."',"
@@ -319,14 +319,14 @@
 				$db->query($query);
 				
 				
-				// désactivation du profil si confirmed = 0
+				// dï¿½sactivation du profil si confirmed = 0
 				if($data->confirmed == 0) {
 					$updatePublished = ', published = 0';
 				} else {
 					$updatePublished = ', published = 1';
 				}
 				
-				// mise à jour de la confirmation du compte
+				// mise ï¿½ jour de la confirmation du compte
 			 	$query	= "UPDATE user SET"
 				." confirmed = '".$data->confirmed."'"
 				.$updatePublished
@@ -335,7 +335,7 @@
 				$db->query($query);
 				
 				
-				// mise à jour de l'annonce du profil
+				// mise ï¿½ jour de l'annonce du profil
 				$query = "UPDATE user_annonce SET"
 				." annonce_valide = '".$db->escape($data->annonce_valide)."'"
 				." WHERE user_id = '".$db->escape($data->id)."'"
@@ -343,19 +343,19 @@
 				$db->query($query);
 				
 				
-				// si des jours ont été crédités
+				// si des jours ont ï¿½tï¿½ crï¿½ditï¿½s
 				if($data->abonnement_crediter) {
 					$messages[]	= '<span class="valid">'.$data->abonnement_crediter.' jour(s) cr&eacute;dit&eacute;(s).</span>';
 				}
 				
 				
-				// si des points ont été crédités
+				// si des points ont ï¿½tï¿½ crï¿½ditï¿½s
 				if($data->points_id > 0) {
 				
 					$query = "SELECT points FROM points WHERE id = '".$db->escape($data->points_id)."' LIMIT 0,1";
 					$points = $db->loadResult($query);
 					
-					// crédite les points
+					// crï¿½dite les points
 					JL::addPoints($data->points_id, $data->id);
 					
 					// message de confirmation
@@ -364,7 +364,7 @@
 				}
 				
 				
-				// points à retirer
+				// points ï¿½ retirer
 				if($data->points_retirer > 0) {
 				
 					JL::addPoints(20, $data->id, $data->points_retirer);
@@ -377,20 +377,20 @@
 				
 				if($data->confirmed == 1) {
 					
-					// crédite l'action profil complet (compté qu'une fois np)
+					// crï¿½dite l'action profil complet (comptï¿½ qu'une fois np)
 					JL::addPoints(5, $data->id);
 					
-					// récup le parrain_id de l'utilisateur
+					// rï¿½cup le parrain_id de l'utilisateur
 					$query = "SELECT parrain_id FROM user_profil WHERE user_id = '".$db->escape($data->id)."' LIMIT 0,1";
 					$parrain_id = $db->loadResult($query);
 					
 					// parrainage
 					if($parrain_id > 0) {
 					
-						// crédite les points: être parrainé
+						// crï¿½dite les points: ï¿½tre parrainï¿½
 						JL::addPoints(21, $data->id, $parrain_id);
 						
-						// crédite les points: parrainer un(e) ami(e)
+						// crï¿½dite les points: parrainer un(e) ami(e)
 						JL::addPoints(22, $parrain_id, $data->id);
 						
 					}
@@ -410,11 +410,11 @@
 	}
 	
 	
-	// éditer profil
+	// ï¿½diter profil
 	function profilEditer() {
 		global $db, $messages;
 		
-		// récup les données par défaut
+		// rï¿½cup les donnï¿½es par dï¿½faut
 		$data 		= getData();
 	
 		// nouvel utilisateur
@@ -424,7 +424,7 @@
 		
 		} else {
 			
-			// récup les infos du profil
+			// rï¿½cup les infos du profil
 			$query = "SELECT u.id, u.username, u.email, up.langue_appel, up.helvetica, up.genre, up.nom, up.prenom, up.telephone, up.adresse, up.code_postal, up.nom_origine, up.prenom_origine, up.telephone_origine, up.adresse_origine, up.code_postal_origine, us.gold_limit_date, 0 AS abonnement_crediter, us.appel_date, us.appel_date2, us.commentaire, u.confirmed, u.creation_date, ua.annonce_valide, us.points_total"
 			." FROM user AS u"
 			." INNER JOIN user_profil AS up ON up.user_id = u.id"
@@ -441,13 +441,13 @@
 			$userObj->points_retirer	= 0;
 			
 			
-			// variables par défaut
+			// variables par dï¿½faut
 			foreach($data as $k => $v) {
 				$userObj->{$k} = $v ? $v : $userObj->{$k};
 			}
 			
 			
-			// récup le dernier abonnement payé par carte
+			// rï¿½cup le dernier abonnement payï¿½ par carte
 			$query = "SELECT nom_paypal, prenom_paypal, IF(date_dernier_renouvellement = '0000-00-00 00:00:00', date_souscription, date_dernier_renouvellement) as datetime, valide"
 			." FROM abonnement_paypal"
 			." WHERE user_id = '".$userObj->id."' AND valide > 0"
@@ -464,7 +464,7 @@
 			}
 			
 			
-			// récup les 4 actions d'abonnement, id en dur !
+			// rï¿½cup les 4 actions d'abonnement, id en dur !
 			$query = "SELECT id, nom_fr as nom, points"
 			." FROM points"
 			." WHERE id IN (1,2,3,19)"
@@ -474,7 +474,7 @@
 			$points = $db->loadObjectList($query);
 			
 			
-			// affichage du formulaire d'édition
+			// affichage du formulaire d'ï¿½dition
 			profil_HTML::profilEditer($userObj, $messages, $points);
 		
 		}
@@ -486,11 +486,11 @@
 		
 		$ids = JL::getVar('id', array());
 		
-		// s'il y a des id passés
-		if(count($ids)) {
+		// s'il y a des id passï¿½s
+		if (is_array($ids)) {
 			
 			foreach($ids as $id){
-				// récup les détails du paiement
+				// rï¿½cup les dï¿½tails du paiement
 				$query = "SELECT id, reference_paypal, intitule_abo, montant, nom_paypal, prenom_paypal, valide"
 				." FROM abonnement_paypal"
 				." WHERE user_id = '".(int)$id."' and valide=1"
@@ -498,7 +498,7 @@
 				;
 				$abonnement_paypal	= $db->loadObject($query);
 				
-				// récup les détails de l'utilisateur
+				// rï¿½cup les dï¿½tails de l'utilisateur
 				$queryUser = "SELECT u.id, u.username, u.gid"
 				." FROM user AS u"
 				." WHERE u.id = '".(int)$id."'"
@@ -507,7 +507,7 @@
 				$userProfil = $db->loadObject($queryUser);
 			
 				if($abonnement_paypal && $userProfil){
-					mail('abonnement@parentsolo.ch', 'Désactivation d\'un membre', "Désactivation d'un membre abonné\n\n Username : ".$userProfil->username."\n Id User (Marie) : ".$userProfil->id."\n\n Intitulé Abo : ".$abonnement_paypal->intitule_abo."\n Montant : ".$abonnement_paypal->montant."\n Nom Paypal : ".$abonnement_paypal->nom_paypal."\n Prénom Paypal : ".$abonnement_paypal->prenom_paypal."\n Référence Paypal : ".$abonnement_paypal->reference_paypal."\n Validité de l'Abonnement (0->non validé, 1->en cours, 2->annulé) : ".$abonnement_paypal->valide."\n Id Abonnement Paypal (Marie) : ".$abonnement_paypal->id."\n");
+					mail('abonnement@solocircl.com', 'Dï¿½sactivation d\'un membre', "Dï¿½sactivation d'un membre abonnï¿½\n\n Username : ".$userProfil->username."\n Id User (Marie) : ".$userProfil->id."\n\n Intitulï¿½ Abo : ".$abonnement_paypal->intitule_abo."\n Montant : ".$abonnement_paypal->montant."\n Nom Paypal : ".$abonnement_paypal->nom_paypal."\n Prï¿½nom Paypal : ".$abonnement_paypal->prenom_paypal."\n Rï¿½fï¿½rence Paypal : ".$abonnement_paypal->reference_paypal."\n Validitï¿½ de l'Abonnement (0->non validï¿½, 1->en cours, 2->annulï¿½) : ".$abonnement_paypal->valide."\n Id Abonnement Paypal (Marie) : ".$abonnement_paypal->id."\n");
 				}
 				
 				$q = "INSERT INTO user_desinscription SET"
@@ -520,7 +520,7 @@
 			$in_id	= implode(',', $ids);
 			
 			
-			// mise à jour du champ id
+			// mise ï¿½ jour du champ id
 			$query = "INSERT INTO `user_suppr` (id,username,password,password_new,email,gid,published,confirmed,creation_date,last_online,ip,ip_pays,online) SELECT id,username,password,password_new,email,gid,published,confirmed,creation_date,last_online,ip,ip_pays,online FROM `user` where id IN (".$in_id.")";
 			$db->query($query);
 			$insert_user_suppr = $db->affected_rows();
@@ -543,10 +543,10 @@
 			}
 			
 							
-			// mise à jour des messages
+			// mise ï¿½ jour des messages
 			profilUpdateMessages($ids);
 				
-			// mise à jour des messages non lus envoyés par cet utilisateur
+			// mise ï¿½ jour des messages non lus envoyï¿½s par cet utilisateur
 			$query = "UPDATE message SET non_lu = 0 WHERE user_id_from IN (".$in_id.")";
 			$db->query($query);
 				
@@ -562,18 +562,18 @@
 	}
 	
 	
-	// active/désactive des profils passés en param
+	// active/dï¿½sactive des profils passï¿½s en param
 	function profilActivation($published) {
 		global $db, $messages;
 		
 		$ids = JL::getVar('id', array());
 		
-		// s'il y a des id passés
-		if(count($ids)) {
+		// s'il y a des id passï¿½s
+		if (is_array($ids)) {
 			
 			if($published == 0){
 				foreach($ids as $id){
-					// récup les détails du paiement
+					// rï¿½cup les dï¿½tails du paiement
 					$query = "SELECT id, reference_paypal, intitule_abo, montant, nom_paypal, prenom_paypal, valide"
 					." FROM abonnement_paypal"
 					." WHERE user_id = '".(int)$id."' and valide=1"
@@ -581,7 +581,7 @@
 					;
 					$abonnement_paypal	= $db->loadObject($query);
 					
-					// récup les détails de l'utilisateur
+					// rï¿½cup les dï¿½tails de l'utilisateur
 					$queryUser = "SELECT u.id, u.username, u.gid, u.confirmed"
 					." FROM user AS u"
 					." WHERE u.id = '".(int)$id."'"
@@ -590,7 +590,7 @@
 					$userProfil = $db->loadObject($queryUser);
 				
 					if($abonnement_paypal && $userProfil){
-						mail('abonnement@parentsolo.ch', 'Désactivation d\'un membre', "Désactivation d'un membre abonné\n\n Username : ".$userProfil->username."\n Id User (Marie) : ".$userProfil->id."\n\n Intitulé Abo : ".$abonnement_paypal->intitule_abo."\n Montant : ".$abonnement_paypal->montant."\n Nom Paypal : ".$abonnement_paypal->nom_paypal."\n Prénom Paypal : ".$abonnement_paypal->prenom_paypal."\n Référence Paypal : ".$abonnement_paypal->reference_paypal."\n Validité de l'Abonnement (0->non validé, 1->en cours, 2->annulé) : ".$abonnement_paypal->valide."\n Id Abonnement Paypal (Marie) : ".$abonnement_paypal->id."\n");
+						mail('abonnement@solocircl.com', 'Dï¿½sactivation d\'un membre', "Dï¿½sactivation d'un membre abonnï¿½\n\n Username : ".$userProfil->username."\n Id User (Marie) : ".$userProfil->id."\n\n Intitulï¿½ Abo : ".$abonnement_paypal->intitule_abo."\n Montant : ".$abonnement_paypal->montant."\n Nom Paypal : ".$abonnement_paypal->nom_paypal."\n Prï¿½nom Paypal : ".$abonnement_paypal->prenom_paypal."\n Rï¿½fï¿½rence Paypal : ".$abonnement_paypal->reference_paypal."\n Validitï¿½ de l'Abonnement (0->non validï¿½, 1->en cours, 2->annulï¿½) : ".$abonnement_paypal->valide."\n Id Abonnement Paypal (Marie) : ".$abonnement_paypal->id."\n");
 					}
 					
 						
@@ -625,7 +625,7 @@
 			
 			$in_id	= implode(',', $ids);
 			
-			// mise à jour du champ id
+			// mise ï¿½ jour du champ id
 			$query = "UPDATE user SET published = '".$published."' WHERE id IN (".$in_id.")";
 			$db->query($query);
 			
@@ -636,13 +636,13 @@
 				$messages[]	= '<span class="valid">Profil(s) d&eacute;sactiv&eacute;(s).</span>';
 			}
 			
-			// utilisateur à désactiver
+			// utilisateur ï¿½ dï¿½sactiver
 			if($published == 0) {
 				
-				// mise à jour des messages
+				// mise ï¿½ jour des messages
 				profilUpdateMessages($ids);
 				
-				// mise à jour des messages non lus envoyés par cet utilisateur
+				// mise ï¿½ jour des messages non lus envoyï¿½s par cet utilisateur
 				$query = "UPDATE message SET non_lu = 0 WHERE user_id_from IN (".$in_id.")";
 				$db->query($query);
 				
@@ -670,10 +670,10 @@
 		
 		// params
 		
-		// si on passe une recherche en param, alors on force la page 1 (pour éviter de charger la page 36, s'il n'y a que 2 pages à voir)
+		// si on passe une recherche en param, alors on force la page 1 (pour ï¿½viter de charger la page 36, s'il n'y a que 2 pages ï¿½ voir)
 		$search['page']			= JL::getVar('search_page', JL::getSessionInt('search_page', 1));
 		
-		// mot cherché
+		// mot cherchï¿½
 		$search['word']			= trim(JL::getVar('search_word', JL::getSession('search_word', ''), true));
 		$search['order']		= JL::getVar('search_order', JL::getSession('search_order', 'u.creation_date'));
 		$search['ascdesc']		= JL::getVar('search_ascdesc', JL::getSession('search_ascdesc', 'desc'));
@@ -682,7 +682,7 @@
 		$search['abonnement']	= JL::getVar('search_abonnement', JL::getSession('search_abonnement', ''));
 		$search['helvetica']	= (int)JL::getVar('search_helvetica', JL::getSession('search_helvetica', 2));
 		
-		// conserve en session ces paramètres
+		// conserve en session ces paramï¿½tres
 		JL::setSession('search_page', 		$search['page']);
 		JL::setSession('search_word', 		$search['word']);
 		JL::setSession('search_order', 		$search['order']);
@@ -693,29 +693,29 @@
 		JL::setSession('search_helvetica', 	$search['helvetica']);
 		
 		
-		// critère de tri
+		// critï¿½re de tri
 		$order					= array();
 		$order[]				= JL::makeOption('u.creation_date', 	'Date inscription');
 		$order[]				= JL::makeOption('us.appel_date', 	'Date appel');
-		$order[]				= JL::makeOption('u.last_online', 		'Dernière connexion');
+		$order[]				= JL::makeOption('u.last_online', 		'Derniï¿½re connexion');
 		$order[]				= JL::makeOption('us.gold_limit_date', 	'Fin abonnement');
 		$order[]				= JL::makeOption('u.ip_pays', 			'Pays');
 		$order[]				= JL::makeOption('us.points_total', 	'Points Total');
 		$order[]				= JL::makeOption('u.username', 			'Pseudo');
 		$lists['order']			= JL::makeSelectList($order, 'search_order', 'class="searchInput"', 'value', 'text', $search['order']);
 
-		// ordre croissant/décroissant
+		// ordre croissant/dï¿½croissant
 		$ascdesc				= array();
 		$ascdesc[]				= JL::makeOption('asc', 			'Croissant');
-		$ascdesc[]				= JL::makeOption('desc', 			'Décroissant');
+		$ascdesc[]				= JL::makeOption('desc', 			'Dï¿½croissant');
 		$lists['ascdesc']		= JL::makeSelectList($ascdesc, 'search_ascdesc', 'class="searchInput"', 'value', 'text', $search['ascdesc']);
 		
 		// statut
 		$confirmed				= array();
 		$confirmed[]			= JL::makeOption('-1', 				'Tous');
 		$confirmed[]			= JL::makeOption('2', 				'A valider');
-		$confirmed[]			= JL::makeOption('1', 				'Confirmés');
-		$confirmed[]			= JL::makeOption('0', 				'Refusés');
+		$confirmed[]			= JL::makeOption('1', 				'Confirmï¿½s');
+		$confirmed[]			= JL::makeOption('0', 				'Refusï¿½s');
 		$lists['confirmed']		= JL::makeSelectList($confirmed, 'search_confirmed', 'class="searchInput"', 'value', 'text', $search['confirmed']);
 		
 		// genre
@@ -730,7 +730,7 @@
 		$abonnement[]			= JL::makeOption('', 				'Tous');
 		$abonnement[]			= JL::makeOption('1',				'Aucun');
 		$abonnement[]			= JL::makeOption('2', 				'En cours');
-		$abonnement[]			= JL::makeOption('3', 				'Terminé');
+		$abonnement[]			= JL::makeOption('3', 				'Terminï¿½');
 		$lists['abonnement']	= JL::makeSelectList($abonnement, 'search_abonnement', 'class="searchInput"', 'value', 'text', $search['abonnement']);
 		
 		// profil helvetica
@@ -752,7 +752,7 @@
 			
 				$where[]		= "us.gold_limit_date >= NOW()";
 			
-			} elseif($search['abonnement'] == '3') { // abo terminé
+			} elseif($search['abonnement'] == '3') { // abo terminï¿½
 			
 				$where[]		= "us.gold_limit_date < NOW()";
 				$where[]		= "us.gold_limit_date != '0000-00-00'";
@@ -783,13 +783,13 @@
 			$where[]			= "up.helvetica = 0";
 		}
 		
-		// génère le where
-		if(count($where)) {
+		// gï¿½nï¿½re le where
+		if (is_array($where)) {
 			$_where				= " WHERE ".implode(' AND ', $where);
 		}
 		
 		
-		// compte le nombre de résultats
+		// compte le nombre de rï¿½sultats
 		$query = "SELECT COUNT(*)"
 		." FROM user AS u"
 		." INNER JOIN user_profil AS up ON up.user_id = u.id"
@@ -800,7 +800,7 @@
 		$search['page_total'] 	= ceil($search['result_total']/$resultatParPage);
 		
 		
-		// recherche des données
+		// recherche des donnï¿½es
 		$query = "SELECT u.id, u.username, u.confirmed, u.published, u.ip, u.ip_pays, up.helvetica, up.genre, us.gold_limit_date, up.nom_origine, up.prenom_origine, up.telephone_origine, us.appel_date, us.appel_date2, us.points_total"
 		." FROM user AS u"
 		." INNER JOIN user_profil AS up ON up.user_id = u.id"
@@ -812,12 +812,12 @@
 		$results	= $db->loadObjectList($query);
 		
 		
-		// récup le nombre d'inscrits (table à part pour éviter les COUNT(*) sur la table user à chaque chargement de page
+		// rï¿½cup le nombre d'inscrits (table ï¿½ part pour ï¿½viter les COUNT(*) sur la table user ï¿½ chaque chargement de page
 		/*$query = "SELECT papa, maman"
 		." FROM inscrits"
 		." LIMIT 0,1"
 		;
-		$inscrits = $db->loadResultArray($query);
+		$inscrits = $db->loadObjectList($query);
 		
 		$total 	= $inscrits['maman'] + $inscrits['papa'];
 		
@@ -845,12 +845,12 @@
 	}
 	
 	
-	// liste les photos à valider
+	// liste les photos ï¿½ valider
 	function photoLister() {
 		global $db, $messages;
 		
 		
-		// récup 10 utilisateurs pour qui il faut valider des photos
+		// rï¿½cup 10 utilisateurs pour qui il faut valider des photos
 		$query = "SELECT u.username, us.user_id"
 		." FROM user_stats AS us"
 		." INNER JOIN user AS u ON u.id = us.user_id"
@@ -859,18 +859,18 @@
 		;
 		$users = $db->loadObjectList($query);
 		
-		// parcourt la lsite des utilisateurs avec photo à valider
+		// parcourt la lsite des utilisateurs avec photo ï¿½ valider
 		$usersTotal	= count($users);
 		for($i=0; $i<$usersTotal; $i++) {
 			$users[$i]->photos = array();
 			
-			// parcourt le répertoire de photos de l'utilisateur
+			// parcourt le rï¿½pertoire de photos de l'utilisateur
 			$dir = '../images/profil/'.$users[$i]->user_id;
 			if(is_dir($dir)) {
 				$dir_id 	= opendir($dir);
 				while($file = trim(readdir($dir_id))) {
 					
-					// récup les photos à valider
+					// rï¿½cup les photos ï¿½ valider
 					if(preg_match('#^pending.*109#', $file)) {
 						$photo = preg_replace('#^.*-(.*-[0-9]+)\.jpg#', '$1', $file);
 						$users[$i]->photos[] = $photo;
@@ -896,8 +896,8 @@
 		// variables
 		$msg		= '';
 		
-		// si des photos ont été cochées
-		if(count($photos)) {
+		// si des photos ont ï¿½tï¿½ cochï¿½es
+		if (is_array($photos)) {
 			
 			foreach($photos as $photo) {
 				
@@ -916,7 +916,7 @@
 						@unlink('../images/profil/'.$user_id.'/pending-parent-solo-109-'.$file.'.jpg');
 						@unlink('../images/profil/'.$user_id.'/pending-parent-solo-220-'.$file.'.jpg');
 						
-						// retire la photo de la liste des dernières photos ajoutées
+						// retire la photo de la liste des derniï¿½res photos ajoutï¿½es
 						$query = "DELETE FROM photo_last WHERE user_id = '".$user_id."' AND photo_name = '".$file."'";
 						$db->query($query);
 						
@@ -931,16 +931,16 @@
 						@rename('../images/profil/'.$user_id.'/pending-parent-solo-109-'.$file.'.jpg', '../images/profil/'.$user_id.'/parent-solo-109-'.$file.'.jpg');
 						@rename('../images/profil/'.$user_id.'/pending-parent-solo-220-'.$file.'.jpg', '../images/profil/'.$user_id.'/parent-solo-220-'.$file.'.jpg');
 						
-						// sauvegarde dans la table des dernières photos validées
+						// sauvegarde dans la table des derniï¿½res photos validï¿½es
 						$query = "INSERT INTO photo_last SET user_id = '".$user_id."', photo_name = '".$file."'";
 						$db->query($query);
 						
-						// crédite l'action 6 photos validées
+						// crï¿½dite l'action 6 photos validï¿½es
 						JL::addPoints(6, $user_id);
 						
 					}
 					
-					// mise à jour de la table user_stats
+					// mise ï¿½ jour de la table user_stats
 					$query = "UPDATE user_stats SET photo_a_valider = photo_a_valider - 1 WHERE photo_a_valider > 0 AND user_id = '".$user_id."'";
 					$db->query($query);
 				
@@ -968,11 +968,11 @@
 		
 	}
 	
-	// liste les photos à valider
+	// liste les photos ï¿½ valider
 	function texteLister() {
 		global $db, $messages;
 		
-		// récup 10 utilisateurs pour qui il faut valider des textes
+		// rï¿½cup 10 utilisateurs pour qui il faut valider des textes
 		$query = "SELECT u.username, ua.user_id, ua.annonce"
 		." FROM user_annonce AS ua"
 		." INNER JOIN user AS u ON u.id = ua.user_id"
@@ -997,14 +997,14 @@
 		// variables
 		$msg		= '';
 		
-		// si des photos ont été cochées
-		if(count($textes)) {
+		// si des photos ont ï¿½tï¿½ cochï¿½es
+		if (is_array($textes)) {
 			
 			foreach($textes as $texte) {
 				
 				// suppression
 				if($task == 'refuser') {
-					// mise à jour de la table user_annonce
+					// mise ï¿½ jour de la table user_annonce
 					$query = "UPDATE user_annonce SET published = '0' WHERE user_id = '".$texte."'";
 					$db->query($query);
 				}
@@ -1012,10 +1012,10 @@
 				// validation
 				if($task == 'valider') {
 				
-					// récup le texte de l'annonce
+					// rï¿½cup le texte de l'annonce
 					$annonce	= JL::getVar('annonce'.$texte, '', true);
 					
-					// mise à jour de la table user_annonce
+					// mise ï¿½ jour de la table user_annonce
 					$query = "UPDATE user_annonce SET annonce = '".$annonce."', annonce_valide = '".$annonce."', published = '1' WHERE user_id = '".$texte."'";
 					$db->query($query);
 					
@@ -1043,7 +1043,7 @@
 		
 	}
 	
-	// données de l'utilisateur
+	// donnï¿½es de l'utilisateur
 	function &getData() {
 		global $userObj;
 		
@@ -1076,16 +1076,16 @@
 	}
 	
 	
-	// mise à jour des messages
+	// mise ï¿½ jour des messages
 	function profilUpdateMessages($ids) {
 		global $db;
 		
 		$in_id	= implode(',', $ids);
 		
-		// parcourt tous les utilisateurs à désactiver
+		// parcourt tous les utilisateurs ï¿½ dï¿½sactiver
 		foreach($ids as $id) {
 		
-			// récup tous les profils à qui l'utilisateur a envoyé des messages, et ceux-ci étant non lu
+			// rï¿½cup tous les profils ï¿½ qui l'utilisateur a envoyï¿½ des messages, et ceux-ci ï¿½tant non lu
 			$query = "SELECT m.user_id_to AS user_id, IF(m.fleur_id>0,1,0) AS fleur, COUNT(*) AS total"
 			." FROM message AS m"
 			." WHERE m.user_id_from = '".(int)$id."' AND m.non_lu = 1"
@@ -1103,7 +1103,7 @@
 						$field = 'message';
 					}
 					
-					// décrémente le total de nouveaux messages/fleurs
+					// dï¿½crï¿½mente le total de nouveaux messages/fleurs
 					$query = "UPDATE user_stats SET ".$field."_new = ".$field."_new - ".$nonLu->total." WHERE user_id = '".$nonLu->user_id."'";
 					$db->query($query);
 				

@@ -20,19 +20,19 @@ $body             = file_get_contents('contents.html');
 $body             = eregi_replace("[\]",'',$body);
 
 $mail->IsSMTP(); // telling the class to use SMTP
-$mail->Host       = "mail.parentsolo.ch"; // SMTP server
+$mail->Host       = "mail.solocircl.com"; // SMTP server
 $mail->SMTPDebug  = 1;                     // enables SMTP debug information (for testing)
                                            // 1 = errors and messages
                                            // 2 = messages only
 $mail->SMTPAuth   = true;                  // enable SMTP authentication
-$mail->Host       = "mail.parentsolo.ch"; // sets the SMTP server
+$mail->Host       = "mail.solocircl.com"; // sets the SMTP server
                    // set the SMTP port for the GMAIL server
-$mail->Username   = "support@parentsolo.ch"; // SMTP account username
+$mail->Username   = "support@solocircl.com"; // SMTP account username
 $mail->Password   = "parent2009";        // SMTP account password
 
-$mail->SetFrom('support@parentsolo.ch', 'First Last');
+$mail->SetFrom('support@solocircl.com', 'First Last');
 
-$mail->AddReplyTo("support@parentsolo.ch","First Last");
+$mail->AddReplyTo("support@solocircl.com","First Last");
 
 $mail->Subject    = "PHPMailer Test Subject via smtp, basic with authentication";
 

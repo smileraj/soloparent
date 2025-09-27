@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 	
 	class user_HTML {	
@@ -24,15 +24,15 @@
 						var ok = true;
 						
 						if(action == 'supprimer') {
-							if(!confirm('Voulez-vous vraiment supprimer les utilisateurs sélectionnés ?')) {
+							if(!confirm('Voulez-vous vraiment supprimer les utilisateurs sï¿½lectionnï¿½s ?')) {
 								ok = false;
 							}
 						} else if(action == 'desactiver') {
-							if(!confirm('Voulez-vous vraiment désactiver les utilisateurs sélectionnés ?')) {
+							if(!confirm('Voulez-vous vraiment dï¿½sactiver les utilisateurs sï¿½lectionnï¿½s ?')) {
 								ok = false;
 							}
 						} else if(action == 'activer') {
-							if(!confirm('Voulez-vous vraiment activer les utilisateurs sélectionnés ?')) {
+							if(!confirm('Voulez-vous vraiment activer les utilisateurs sï¿½lectionnï¿½s ?')) {
 								ok = false;
 							}
 						}
@@ -49,29 +49,29 @@
 						var ok = true;
 						
 						if(action == 'Fermer') {
-							if(!confirm('Êtes-vous sûr de vouloir Fermer?')) {
+							if(!confirm('ï¿½tes-vous sï¿½r de vouloir Fermer?')) {
 								ok = false;
 							}
 						} 
 						
 						if(ok) {
 						
-							window.location.href = "<? echo SITE_URL_ADMIN; ?>"; 
+							window.location.href = "<?php echo SITE_URL_ADMIN; ?>"; 
 						}
 						
 					}
 				</script>
 				
-				<form name="listForm" action="<? echo SITE_URL_ADMIN; ?>/index.php" method="post">
+				<form name="listForm" action="<?php echo SITE_URL_ADMIN; ?>/index.php" method="post">
 				<section class="panel">
                   <header class="panel-heading">
-                        <h2>Gestion des <? echo $search['gid'] ? 'Administrateurs' : 'Membres'; ?></h2>
+                        <h2>Gestion des <?php echo $search['gid'] ? 'Administrateurs' : 'Membres'; ?></h2>
                   </header>
 				
 				<div class="row">
                   <div class="col-lg-12">				
 					<div class="toolbar">
-						<? if($search['gid'] == 1) { ?><a href="<? echo SITE_URL_ADMIN; ?>/index.php?app=user&action=nouveau" title="Activer les utilisateurs s&eacute;lectionn&eacute;s" class="btn btn-default">Nouveau</a><? } ?>
+						<?php if($search['gid'] == 1) { ?><a href="<?php echo SITE_URL_ADMIN; ?>/index.php?app=user&action=nouveau" title="Activer les utilisateurs s&eacute;lectionn&eacute;s" class="btn btn-default">Nouveau</a><?php } ?>
 						<a href="javascript:submitform('activer');" title="Activer les utilisateurs s&eacute;lectionn&eacute;s" class="btn btn-success">Activer</a>
 						<a href="javascript:submitform('desactiver');" title="D&eacute;sactiver les utilisateurs s&eacute;lectionn&eacute;s" class=" btn btn btn-danger">D&eacute;sactiver</a>
 						<a href="javascript:submitform('supprimer');" title="Supprimer les utilisateurs s&eacute;lectionn&eacute;s" class="btn btn-danger">Supprimer</a>
@@ -82,19 +82,19 @@
 				
 				
 				<br />
-				<? if(count($messages)) { ?>
+				<?php if (is_array($messages)) { ?>
 					<div class="messages">
-						<? JL::messages($messages); ?>
+						<?php JL::messages($messages); ?>
 					</div>
 					<br />
-				<? } ?>
+				<?php } ?>
 				<div class="tableAdmin">
 					<div class="filtre form-group col-md-12">
 					<span class="col-md-1" style="padding-top:8px;"><b>Pseudo:</b></span>
-					<span class="col-md-3"><input type="text" class="form-control" name="search_username" id="search_username" value="<? echo htmlentities($search['username']); ?>" onChange="document.listForm.submit();" /></span> 
+					<span class="col-md-3"><input type="text" class="form-control" name="search_username" id="search_username" value="<?php echo makeSafe($search['username']); ?>" onChange="document.listForm.submit();" /></span> 
 					</div>
 					<table cellpadding="0" cellspacing="0" class="table table-bordered table-striped table-condensed cf" style="text-align: center;">
-						<? if(count($userObjs)) { ?>
+						<?php if (is_array($userObjs)) { ?>
 						<tr>
 							<th width="30px"></th>
 							<th>Pseudo</th>
@@ -103,50 +103,45 @@
 							<th width="150px">Date d'inscription</th>
 							<th width="150px">Derni&egrave;re connexion</th>
 						</tr>
-						<?
-						foreach($userObjs as $userObj) {
+						<?php 						foreach($userObjs as $userObj) {
 						?>
 							<tr class="list">
-								<td align="center"><input type="checkbox" name="id[]" value="<? echo $userObj->id; ?>" id="user_<? echo $userObj->id; ?>"></td>
-								<td><a href="<? echo SITE_URL_ADMIN; ?>/index.php?app=user&action=editer&id=<? echo $userObj->id; ?>" title="Modifier l'utilisateur <? echo $userObj->username; ?>"><? echo $userObj->username; ?></td>
-								<td align="center"><img src="images/<? echo $userObj->confirmed; ?>.png" /></td>
-								<td align="center"><a href="<? echo SITE_URL_ADMIN; ?>/index.php?app=user&action=<? echo $userObj->published ? 'desactiver' : 'activer'; ?>&id[]=<? echo $userObj->id; ?>" title="Cliquez pour <? echo $userObj->published ? 'd&eacute;sactiver' : 'activer'; ?> le profil de <? echo $userObj->username; ?>"><img src="images/<? echo $userObj->published; ?>.png" alt="<? echo $userObj->published ? 'Oui' : 'Non'; ?>" /></a></td>
-								<td><? echo date('d/m/Y H:i:s', strtotime($userObj->creation_date)); ?></td>
-								<td><? echo $userObj->last_online != '0000-00-00 00:00:00' ? date('d/m/Y H:i:s', strtotime($userObj->last_online)) : 'jamais'; ?></td>
+								<td align="center"><input type="checkbox" name="id[]" value="<?php echo $userObj->id; ?>" id="user_<?php echo $userObj->id; ?>"></td>
+								<td><a href="<?php echo SITE_URL_ADMIN; ?>/index.php?app=user&action=editer&id=<?php echo $userObj->id; ?>" title="Modifier l'utilisateur <?php echo $userObj->username; ?>"><?php echo $userObj->username; ?></td>
+								<td align="center"><img src="images/<?php echo $userObj->confirmed; ?>.png" /></td>
+								<td align="center"><a href="<?php echo SITE_URL_ADMIN; ?>/index.php?app=user&action=<?php echo $userObj->published ? 'desactiver' : 'activer'; ?>&id[]=<?php echo $userObj->id; ?>" title="Cliquez pour <?php echo $userObj->published ? 'd&eacute;sactiver' : 'activer'; ?> le profil de <?php echo $userObj->username; ?>"><img src="images/<?php echo $userObj->published; ?>.png" alt="<?php echo $userObj->published ? 'Oui' : 'Non'; ?>" /></a></td>
+								<td><?php echo date('d/m/Y H:i:s', strtotime($userObj->creation_date)); ?></td>
+								<td><?php echo $userObj->last_online != '0000-00-00 00:00:00' ? date('d/m/Y H:i:s', strtotime($userObj->last_online)) : 'jamais'; ?></td>
 							</tr>
-						<?
-						} ?>
+						<?php 						} ?>
 					
 						<tr>
 							<td colspan="6">
 								<b>Pages</b>:
-								<? if($debut > 1) { ?> <a href="<? echo JL::url(SITE_URL_ADMIN.'/index.php?app=user&search_page=1&search_gid='.$search['gid']); ?>" title="Afficher la page 1">D&eacute;but</a> ...<? }?>
-								<?
-									for($i=$debut; $i<=$fin; $i++) {
+								<?php if($debut > 1) { ?> <a href="<?php echo JL::url(SITE_URL_ADMIN.'/index.php?app=user&search_page=1&search_gid='.$search['gid']); ?>" title="Afficher la page 1">D&eacute;but</a> ...<?php }?>
+								<?php 									for($i=$debut; $i<=$fin; $i++) {
 									?>
-										 <a href="<? echo JL::url(SITE_URL_ADMIN.'/index.php?app=user&search_page='.$i.'&search_gid='.$search['gid']); ?>" title="Afficher la page <? echo $i; ?>" <? if($i == $search['page']) { ?>class="displayActive"<? } ?>><? echo $i; ?></a>
-									<?
-									}
+										 <a href="<?php echo JL::url(SITE_URL_ADMIN.'/index.php?app=user&search_page='.$i.'&search_gid='.$search['gid']); ?>" title="Afficher la page <?php echo $i; ?>" <?php if($i == $search['page']) { ?>class="displayActive"<?php } ?>><?php echo $i; ?></a>
+									<?php 									}
 								?>
-								<? if($fin < $search['page_total']) { ?> ... <a href="<? echo JL::url(SITE_URL_ADMIN.'/index.php?app=user&search_page='.$search['page_total'].'&search_gid='.$search['gid']); ?>" title="Afficher la page <? echo $search['page_total']; ?>">Fin</a><? }?> <i>(<? echo $search['result_total']; ?> r&eacute;sultats)</i>
+								<?php if($fin < $search['page_total']) { ?> ... <a href="<?php echo JL::url(SITE_URL_ADMIN.'/index.php?app=user&search_page='.$search['page_total'].'&search_gid='.$search['gid']); ?>" title="Afficher la page <?php echo $search['page_total']; ?>">Fin</a><?php }?> <i>(<?php echo $search['result_total']; ?> r&eacute;sultats)</i>
 							</td>
 						</tr>
-					<? } else { ?>
+					<?php } else { ?>
 						<tr>
 							<th>Aucun utilisateur ne correspond &agrave; votre recherche.</th>
 						</tr>
-					<? } ?>
+					<?php } ?>
 					</table>
 				</div>
 					<input type="hidden" name="app" value="user" />
 					<input type="hidden" name="action" value="" />
 				</section>
 				</form>
-			<?
-		}
+			<?php 		}
 		
 		
-		// formlaire d'édition d'un utiisateur
+		// formlaire d'ï¿½dition d'un utiisateur
 		public static function userEditer($userObj, &$messages) {
 			
 			JL::makeSafe($userObj);
@@ -159,12 +154,12 @@
 						var ok = true;
 						
 						if(action == 'Annuler') {
-							if(!confirm('Êtes-vous sûr de vouloir Annuler?')) {
+							if(!confirm('ï¿½tes-vous sï¿½r de vouloir Annuler?')) {
 								ok = false;
 							}
 						} 
 						else if(action == 'Fermer') {
-							if(!confirm('Êtes-vous sûr de vouloir Fermer?')) {
+							if(!confirm('ï¿½tes-vous sï¿½r de vouloir Fermer?')) {
 								ok = false;
 								
 							}
@@ -172,15 +167,15 @@
 						
 						if(ok) {
 						
-							document.location = "<? echo SITE_URL_ADMIN; ?>/index.php?app=user"; 
+							document.location = "<?php echo SITE_URL_ADMIN; ?>/index.php?app=user"; 
 						}
 						
 					}
 				</script>
-			<form name="editForm" action="<? echo SITE_URL_ADMIN; ?>/index.php" method="post">
+			<form name="editForm" action="<?php echo SITE_URL_ADMIN; ?>/index.php" method="post">
 				<section class="panel">
                   <header class="panel-heading">
-                       <h2>Utilisateur: <? echo $userObj->id ? 'Editer' : 'Nouveau'; ?></h2>
+                       <h2>Utilisateur: <?php echo $userObj->id ? 'Editer' : 'Nouveau'; ?></h2>
                   </header>
 				
 				<div class="row">
@@ -192,21 +187,21 @@
 					</div>
 					</div>
 				</div>
-				<? if(count($messages)) { ?>
+				<?php if (is_array($messages)) { ?>
 						<div class="messages">
-							<? JL::messages($messages); ?>
+							<?php JL::messages($messages); ?>
 						</div>
 						<br />
-				<? } ?>
+				<?php } ?>
 				<div class="tableAdmin form-group">
 					<table cellpadding="0" cellspacing="0" class="table table-bordered table-striped table-condensed cf editer">						
 						<tr>
 							<td width="20%" class="key" >Pseudo:</td>
-							<td ><input type="text" name="user_username" maxlength="255" size="30" class="form-control" value="<? echo $userObj->username; ?>" /></td>
+							<td ><input type="text" name="user_username" maxlength="255" size="30" class="form-control" value="<?php echo $userObj->username; ?>" /></td>
 						</tr>
 						<tr>
 							<td class="key">Email:</td>
-							<td><input type="text" name="user_email" maxlength="50" size="30" class="form-control" value="<? echo $userObj->email; ?>" /></td>
+							<td><input type="text" name="user_email" maxlength="50" size="30" class="form-control" value="<?php echo $userObj->email; ?>" /></td>
 						</tr>
 						<tr>
 							<td class="key">Mot de passe:</td>
@@ -218,33 +213,32 @@
 						</tr>
 						<tr>
 							<td class="key">Activ&eacute;:</td>
-							<td><input type="radio" id="pu1" name="user_published" value="1" <? if($userObj->published) { ?>checked<? } ?> /> <label for="pu1">Oui</label>&nbsp;<input type="radio" id="pu0" name="user_published" value="0" <? if(!$userObj->published) { ?>checked<? } ?> /> <label for="pu0">Non</label></td>
+							<td><input type="radio" id="pu1" name="user_published" value="1" <?php if($userObj->published) { ?>checked<?php } ?> /> <label for="pu1">Oui</label>&nbsp;<input type="radio" id="pu0" name="user_published" value="0" <?php if(!$userObj->published) { ?>checked<?php } ?> /> <label for="pu0">Non</label></td>
 						</tr>
 						<tr>
 							<td class="key">Confirm&eacute;:</td>
-							<td><? echo $userObj->confirmed == 1 ? '<span style="color:#00CC00;font-weight:bold">Oui</span>' : '<span style="color:#CC0000;font-weight:bold">Non</span>'; ?></td>
+							<td><?php echo $userObj->confirmed == 1 ? '<span style="color:#00CC00;font-weight:bold">Oui</span>' : '<span style="color:#CC0000;font-weight:bold">Non</span>'; ?></td>
 						</tr>
 						<tr>
 							<td></td>
 							<td>
-								<i>Cr&eacute;&eacute; le <? echo date('d/m/Y à H:i:s', strtotime($userObj->creation_date)); ?></i>
+								<i>Cr&eacute;&eacute; le <?php echo date('d/m/Y ï¿½ H:i:s', strtotime($userObj->creation_date)); ?></i>
 							</td>
 						</tr>
 						<tr>
 							<td></td>
 							<td>
-								<i><? if($userObj->last_online != '0000-00-00') { ?>Derni&egrave;re connexion le <? echo date('d/m/Y à H:i:s', strtotime($userObj->last_online)); } else { ?>Jamais connect&eacute;<? } ?></i>
+								<i><?php if($userObj->last_online != '0000-00-00') { ?>Derni&egrave;re connexion le <?php echo date('d/m/Y ï¿½ H:i:s', strtotime($userObj->last_online)); } else { ?>Jamais connect&eacute;<?php } ?></i>
 							</td>
 						</tr>
 					</table>
 				</div>
-				<input type="hidden" name="id" value="<? echo $userObj->id; ?>" />
+				<input type="hidden" name="id" value="<?php echo $userObj->id; ?>" />
 				<input type="hidden" name="app" value="user" />
 				<input type="hidden" name="action" value="save" />
 				</section>
 			</form>
-			<?
-		}
+			<?php 		}
 		
 	}
 	

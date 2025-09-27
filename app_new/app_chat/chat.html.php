@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 
 	class HTML_chat {
@@ -20,10 +20,10 @@
 			<head>
 				<title><?php echo $lang_chat["ParentSoloChat"];?></title>
 				<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
-				<link href="<? echo $template.'/app_chat.css?'.$version; ?>" rel="stylesheet" type="text/css">
-				<link href="<? echo $template; ?>/favicon.ico" rel="shortcut icon" type="image/x-icon">
-				<script type="text/javascript" src="<? echo SITE_URL; ?>/js/mootools.js?<? echo $version; ?>"></script>
-				<script type="text/javascript" src="<? echo SITE_URL; ?>/js/app_chat.js?<? echo $version; ?>"></script>
+				<link href="<?php echo $template.'/app_chat.css?'.$version; ?>" rel="stylesheet" type="text/css">
+				<link href="<?php echo $template; ?>/favicon.ico" rel="shortcut icon" type="image/x-icon">
+				<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/mootools.js?<?php echo $version; ?>"></script>
+				<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/app_chat.js?<?php echo $version; ?>"></script>
 			</head>
 
 			<body>
@@ -32,7 +32,7 @@
 				<div class="chatBody">
 
 					<div class="chatConversations" id="chatConversations">
-						<div class="conversationUsernameOn" id="chatHelp" onClick="document.location='<? echo SITE_URL.'/index2.php?app=chat&'.$langue; ?>';"><?php echo $lang_chat["Aide"];?></div>
+						<div class="conversationUsernameOn" id="chatHelp" onClick="document.location='<?php echo SITE_URL.'/index2.php?app=chat&'.$langue; ?>';"><?php echo $lang_chat["Aide"];?></div>
 						<div class="conversationCloseOff" style="visibility:hidden;">&nbsp;</div>
 					</div>
 					<div class="chatConversations2" id="chatConversations2">&nbsp;</div>
@@ -40,15 +40,15 @@
 						<div class="chatHelp">
 							<h2><?php echo $lang_chat["BienvenueSurChat"];?></h2>
 							<p>
-								<? if($conversationsNb) { ?>
-									<b><?php echo $lang_chat["VousAvez"];?> <? echo $conversationsNb; ?> <?php echo $lang_chat["Conversation"];?><? echo $conversationsNb > 1 ? 's' : ''; ?> <?php echo $lang_chat["EnCours"];?>.</b><br>
+								<?php if($conversationsNb) { ?>
+									<b><?php echo $lang_chat["VousAvez"];?> <?php echo $conversationsNb; ?> <?php echo $lang_chat["Conversation"];?><?php echo $conversationsNb > 1 ? 's' : ''; ?> <?php echo $lang_chat["EnCours"];?>.</b><br>
 									<br>
 									<?php echo $lang_chat["CliquezSurOnglets"];?> !
-								<? } else { ?>
+								<?php } else { ?>
 									<?php echo $lang_chat["VousNAvezAucune"];?>.<br>
 									<br>
 									<b><?php echo $lang_chat["CliquezUneIcone"];?> !</b>
-								<? } ?>
+								<?php } ?>
 							</p>
 
 							<h2><?php echo $lang_chat["PresentationChat"];?></h2>
@@ -66,7 +66,7 @@
 							<p>
 								<?php echo $lang_chat["VousTrouvezAGauche"];?>:<br>
 								<br>
-								<img src="images/chat-aide-2.jpg" alt="Chat Parentsolo.ch"><br>
+								<img src="images/chat-aide-2.jpg" alt="Chat solocircl.com"><br>
 								<br>
 								<?php echo $lang_chat["LorsqueUnePersonne"];?>.<br>
 								<?php echo $lang_chat["VousPouvezCliquer"];?>.<br>
@@ -84,7 +84,7 @@
 							<p>
 								<?php echo $lang_chat["VousTrouvez"];?>:<br>
 								<br>
-								<img src="images/chat-aide-3.jpg" alt="Chat Parentsolo.ch"><br>
+								<img src="images/chat-aide-3.jpg" alt="Chat solocircl.com"><br>
 								<br>
 								<?php echo $lang_chat["LorsqueVous"];?> <span style="color:#0F0;"><?php echo $lang_chat["EnLigne"];?></span> <?php echo $lang_chat["Ou"];?> <span style="color:#F00;"><?php echo $lang_chat["HorsLigne"];?></span>.<br>
 								<br>
@@ -95,7 +95,7 @@
 							<p>
 								<?php echo $lang_chat["AuMilieuDeLaFenetre"];?>:<br>
 								<br>
-								<img src="images/chat-aide-4.jpg" alt="Chat Parentsolo.ch"><br>
+								<img src="images/chat-aide-4.jpg" alt="Chat solocircl.com"><br>
 								<br>
 								<?php echo $lang_chat["EnRoseSAffiche"];?>.<br>
 								<?php echo $lang_chat["LosqueVousOuvrez"];?>.<br>
@@ -106,7 +106,7 @@
 							<p>
 								<?php echo $lang_chat["EnBasVousPouvez"];?>:<br>
 								<br>
-								<img src="images/chat-aide-5.jpg" alt="Chat Parentsolo.ch"><br>
+								<img src="images/chat-aide-5.jpg" alt="Chat solocircl.com"><br>
 								<br>
 								<?php echo $lang_chat["EnCliquantSur"];?>.<br>
 								<?php echo $lang_chat["VousPouvezAussi"];?>.
@@ -115,10 +115,10 @@
 					</div>
 				</div>
 
-				<input type="hidden" name="user_id_from" id="user_id_from" value="<? echo $user->id; ?>">
-				<input type="hidden" name="key" id="key" value="<? echo $key; ?>">
-				<input type="hidden" name="lang_id" id="lang_id" value="<? echo $_GET["lang"]; ?>">
-				<input type="hidden" name="site_url" id="site_url" value="<? echo SITE_URL; ?>">
+				<input type="hidden" name="user_id_from" id="user_id_from" value="<?php echo $user->id; ?>">
+				<input type="hidden" name="key" id="key" value="<?php echo $key; ?>">
+				<input type="hidden" name="lang_id" id="lang_id" value="<?php echo $_GET["lang"]; ?>">
+				<input type="hidden" name="site_url" id="site_url" value="<?php echo SITE_URL; ?>">
 				</form>
 
 				<script type="text/javascript">
@@ -134,7 +134,7 @@
 					var timerMessages = 0;
 					var timerConversations = 0;
 
-					chatGetConversations(<? echo $user_id_to; ?>);
+					chatGetConversations(<?php echo $user_id_to; ?>);
 
 					timerConversations = setInterval('chatGetConversations(0)', 10000);
 
@@ -145,8 +145,7 @@
 			</body>
 
 		</html>
-		<?
-		}
+		<?php 		}
 
 	}
 ?>

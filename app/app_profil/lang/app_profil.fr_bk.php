@@ -5,7 +5,7 @@ $lang_appprofil = array(
 
 
 	//Fichier profil.html.php
-	"MessagesParentSolo" => "Messages Parentsolo.ch",
+	"MessagesParentSolo" => "Messages solocircl.com",
 	"Enfants" => "Enfants",
 	"addmodify" => "Ajouter / modifier",
 	"edit" => "Modifier",
@@ -112,7 +112,7 @@ $lang_appprofil = array(
 	"Email" => "Email",
 	"ConfirmationEmail" => "Confirmation de l'e-mail",
 	
-	"JeSouhaiteRecevoirOffresPartenaires" => "Je souhaite recevoir par e-mail les offres des partenaires de Parentsolo.ch (facultatif)",
+	"JeSouhaiteRecevoirOffresPartenaires" => "Je souhaite recevoir par e-mail les offres des partenaires de solocircl.com (facultatif)",
 	
 	"CodeDeSecurite" => "Code de s&eacute;curit&eacute;",
 	"CombienDeFleurs" => "Combien y a-t-il de fleurs ci-dessous",
@@ -125,7 +125,7 @@ $lang_appprofil = array(
 	
 	"Conditions" => "Conditions",
 	"VeuillezLireLesCGU" => "Veuillez lire les Conditions G&eacute;n&eacute;rales d'Utilisation en faisant d&eacute;filer la barre de d&eacute;filement ou \"Ascenseur\" se situant &agrave; c&ocirc;t&eacute; du texte vers les bas, puis cliquez sur un des deux boutons ci-dessus afin d'accepter ou de refuser ces conditions",
-	"EnCliquantSurLeBouton" => "En cliquant sur le bouton <span class='accepted'>\"J'accepte\"</span>, je certifie &ecirc;tre majeur(e) et avoir lu et accept&eacute; les <b>Conditions G&eacute;n&eacute;rales d'Utilisation</b> du service <b>Parentsolo.ch</b> &eacute;nonc&eacute;es ci-dessus",
+	"EnCliquantSurLeBouton" => "En cliquant sur le bouton <span class='accepted'>\"J'accepte\"</span>, je certifie &ecirc;tre majeur(e) et avoir lu et accept&eacute; les <b>Conditions G&eacute;n&eacute;rales d'Utilisation</b> du service <b>solocircl.com</b> &eacute;nonc&eacute;es ci-dessus",
 	
 	"EtapeSuivante" => "Etape suivante",
 	"Valider" => "Valider",
@@ -134,7 +134,7 @@ $lang_appprofil = array(
 	
 	"IndiquezVotreGenre" => "Veuillez indiquer votre genre s'il vous pla&icirc;t",
 	"IndiquezVotreDateNaissance" => "Veuillez indiquer votre date de naissance s'il vous pla&icirc;t",
-	"VousDevezEtreMajeur" => "Vous devez &ecirc;tre majeur(e) pour vous inscrire sur Parentsolo.ch",
+	"VousDevezEtreMajeur" => "Vous devez &ecirc;tre majeur(e) pour vous inscrire sur solocircl.com",
 	"IndiquezVotreCanton" => "Veuillez indiquer dans quel canton vous r&eacute;sidez s'il vous pla&icirc;t",
 	
 	
@@ -145,7 +145,7 @@ $lang_appprofil = array(
 	"EmailInvalide" => "Votre adresse e-mail n'est pas valide",
 	"ConfirmationEmailInvalide" => "La confirmation de l'adresse e-mail ne correspond pas &agrave; la premi&egrave;re adresse e-mail entr&eacute;e",
 	
-	"LectureCGU" => "Vous devez lire et accepter les Conditions G&eacute;n&eacute;rales d'Utilisation afin de pouvoir vous inscrire sur Parentsolo.ch",
+	"LectureCGU" => "Vous devez lire et accepter les Conditions G&eacute;n&eacute;rales d'Utilisation afin de pouvoir vous inscrire sur solocircl.com",
 	
 	"CodeSecuriteIncorrect" => "Le code de s&eacute;curit&eacute; entr&eacute; est incorrect",
 	
@@ -170,7 +170,7 @@ $lang_appprofil = array(
 	"PhotosNonEnAttente" => "Si vos photos charg&eacute;es n'apparaissent pas dans la partie \"Photos en attente de validation\", veuillez cliquer sur Valider",
 	
 	"PhotosAttente" => "Photos en attente de validation",
-	"AvantEtrePublierPhotos" => "Avant d'&ecirc;tre publi&eacute;es, vos photos doivent &ecirc;tre valid&eacute;es par un mod&eacute;rateur de Parentsolo.ch",
+	"AvantEtrePublierPhotos" => "Avant d'&ecirc;tre publi&eacute;es, vos photos doivent &ecirc;tre valid&eacute;es par un mod&eacute;rateur de solocircl.com",
 	
 	"PhotosValidees" => "Photos valid&eacute;es",
 	
@@ -186,8 +186,8 @@ $lang_appprofil = array(
 	
 	"NombreDeCaracteres" => "Nombre de caract&egrave;res restants",
 	
-	"AnnonceRefusee" => "Votre annonce a &eacute;t&eacute; refus&eacute;e car elle ne respecte pas les <a href='".JL::url('index.php?app=redac&action=item&id=5'.'&'.$langue)."' title='CGU' target='_blank'>Conditions G&eacute;n&eacute;rales d'Utilisation</a> du service Parentsolo.ch. Nous vous invitons &agrave; modifier votre annonce afin que celle-ci soit publi&eacute;e sur le site",
-	"AvantEtrePublierAnnonce" => "Avant d'&ecirc;tre publi&eacute;e, votre annonce doit &ecirc;tre valid&eacute;e par un mod&eacute;rateur de Parentsolo.ch",
+	"AnnonceRefusee" => "Votre annonce a &eacute;t&eacute; refus&eacute;e car elle ne respecte pas les <a href='".JL::url('index.php?app=redac&action=item&id=5'.'&'.$langue)."' title='CGU' target='_blank'>Conditions G&eacute;n&eacute;rales d'Utilisation</a> du service solocircl.com. Nous vous invitons &agrave; modifier votre annonce afin que celle-ci soit publi&eacute;e sur le site",
+	"AvantEtrePublierAnnonce" => "Avant d'&ecirc;tre publi&eacute;e, votre annonce doit &ecirc;tre valid&eacute;e par un mod&eacute;rateur de solocircl.com",
 	"AnnonceValidee" => "Votre annonce a &eacute;t&eacute; valid&eacute;e",
 	"ModificationAnnonce" => "Si vous cr&eacute;ez une nouvelle annonce ou effectuez des modification sur une annonce d&eacute;j&agrave; cr&eacute;&eacute;, veuillez cliquer sur Valider",
 	
@@ -259,9 +259,9 @@ $lang_appprofil = array(
 	"RetirerEnfant" => "Retirer un enfant",
 	"QuiPeutVoirLesPhotosDeMesEnfants" => "Qui peut voir les photos de mes enfants",
 	
-	"UniquementLesModerateursDeParentsolo_ch" => "Uniquement les <b>mod&eacute;rateurs</b> de Parentsolo.ch",
+	"UniquementLesModerateursDeParentsolo_ch" => "Uniquement les <b>mod&eacute;rateurs</b> de solocircl.com",
 	
-	"TousLesMembresDeParentsolo_ch" => "Tous les <b>membres</b> de Parentsolo.ch",
+	"TousLesMembresDeParentsolo_ch" => "Tous les <b>membres</b> de solocircl.com",
 
 	
 	"UneFille" => "une fille",
@@ -290,7 +290,7 @@ $lang_appprofil = array(
 	
 	"Finaliser" => "Finaliser",
 	
-	"LangueAppel" => "Langue de communication avec les mod&eacute;rateurs de Parentsolo.ch",
+	"LangueAppel" => "Langue de communication avec les mod&eacute;rateurs de solocircl.com",
 	
 	"Francais" => "Fran&ccedil;ais",
 	"Anglais" => "Anglais",
@@ -302,7 +302,7 @@ $lang_appprofil = array(
 	"IndiquezNom" => "Veuillez indiquer votre nom s'il vous pla&icirc;t",
 	"IndiquezAdresse" => "Veuillez indiquer votre adresse s'il vous pla&icirc;t",
 	"IndiquezCodePostal" => "Veuillez indiquer votre code postal s'il vous pla&icirc;t",
-	"IndiquezLangueAppel" => "Veuillez choisir votre langue de communication avec les mod&eacute;rateurs de Parentsolo.ch s'il vous pla&icirc;t",
+	"IndiquezLangueAppel" => "Veuillez choisir votre langue de communication avec les mod&eacute;rateurs de solocircl.com s'il vous pla&icirc;t",
 	"telephonealreadyexist"=>"Num&eacute;ro de t&eacute;l&eacute;phone est existe d&eacute;j&agrave;",
      "zipcodevalidation"=>"Ne correspond pas &agrave; code postal Ouvrir avec le canton",
 
@@ -310,10 +310,10 @@ $lang_appprofil = array(
 	//------------------Page Finalisation---------
 
 	"FelicitationsProfilCree" => "F&eacute;licitations votre profil est maintenant cr&eacute;&eacute;",
-	"ConnexionOK" => "Vous pouvez d&egrave;s &agrave; pr&eacute;sent vous connecter &agrave; <b>Parentsolo.ch</b> avec vos identifiants",
+	"ConnexionOK" => "Vous pouvez d&egrave;s &agrave; pr&eacute;sent vous connecter &agrave; <b>solocircl.com</b> avec vos identifiants",
 	"Pass" => "Pass",
 	"NousVousSouhaitons" => "Nous vous souhaitons d'agr&eacute;ables rencontres sur le site",
-	"LequipeDeParentsolo" => "L'&eacute;quipe de Parentsolo.ch",
+	"LequipeDeParentsolo" => "L'&eacute;quipe de solocircl.com",
 	
 	
 	

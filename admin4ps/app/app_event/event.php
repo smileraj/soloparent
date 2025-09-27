@@ -22,7 +22,7 @@
 	$resultatParPage	= RESULTS_NB_LISTE_ADMIN;
 		$search				= array();
 		
-		
+		$where =[];
 		// params
 		
 		// si on passe une recherche en param, alors on force la page 1 (pour éviter de charger la page 36, s'il n'y a que 2 pages à voir)
@@ -51,7 +51,7 @@
 		}
 		
 		// génère le where
-		if(count($where)) {
+		if (is_array($where)) {
 			$_where			= " WHERE ".implode(' AND ', $where);
 		}
 		

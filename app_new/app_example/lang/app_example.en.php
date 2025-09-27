@@ -1,5 +1,4 @@
-<?
-$lang_appexample = array(
+<?php $lang_appexample = array(
 
 	//Fichier example.html.php
 	
@@ -15,7 +14,7 @@ $lang_appexample = array(
 	"Email" => "Email",
 	"Mdp" => "Password",
 	"BoiteOuReseau" => "Email provider <br /> or social network",
-	"JeDesireRecevoirNewsletter" => "I want receive the newsletters of ParentSolo.ch",
+	"JeDesireRecevoirNewsletter" => "I want receive the newsletters of solocircl.com",
 	"ImporterContacts" => "Import contacts",
 	
 

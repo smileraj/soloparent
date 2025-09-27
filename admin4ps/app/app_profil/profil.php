@@ -215,7 +215,7 @@
 		
 		
 		// si des photos ont été cochées
-		if(count($photos)) {
+		if (is_array($photos)) {
 			
 			foreach($photos as $photo) {
 				
@@ -266,7 +266,7 @@
 					$userProfil = $db->loadObject($queryUser);
 				
 					if($abonnement_paypal && $userProfil){
-						mail('abonnement@parentsolo.ch', 'Désactivation d\'un membre', "Désactivation d'un membre abonné\n\n Username : ".$userProfil->username."\n Id User (Marie) : ".$userProfil->id."\n\n Intitulé Abo : ".$abonnement_paypal->intitule_abo."\n Montant : ".$abonnement_paypal->montant."\n Nom Paypal : ".$abonnement_paypal->nom_paypal."\n Prénom Paypal : ".$abonnement_paypal->prenom_paypal."\n Référence Paypal : ".$abonnement_paypal->reference_paypal."\n Validité de l'Abonnement (0->non validé, 1->en cours, 2->annulé) : ".$abonnement_paypal->valide."\n Id Abonnement Paypal (Marie) : ".$abonnement_paypal->id."\n");
+						mail('abonnement@solocircl.com', 'Désactivation d\'un membre', "Désactivation d'un membre abonné\n\n Username : ".$userProfil->username."\n Id User (Marie) : ".$userProfil->id."\n\n Intitulé Abo : ".$abonnement_paypal->intitule_abo."\n Montant : ".$abonnement_paypal->montant."\n Nom Paypal : ".$abonnement_paypal->nom_paypal."\n Prénom Paypal : ".$abonnement_paypal->prenom_paypal."\n Référence Paypal : ".$abonnement_paypal->reference_paypal."\n Validité de l'Abonnement (0->non validé, 1->en cours, 2->annulé) : ".$abonnement_paypal->valide."\n Id Abonnement Paypal (Marie) : ".$abonnement_paypal->id."\n");
 					}
 					
 					if($userProfil->confirmed){
@@ -532,7 +532,7 @@ if ($yearIni == $yearFin) {
 		$ids = JL::getVar('id', array());
 		
 		// s'il y a des id passés
-		if(count($ids)) {
+		if (is_array($ids)) {
 			
 			foreach($ids as $id){
 				// récup les détails du paiement
@@ -552,7 +552,7 @@ if ($yearIni == $yearFin) {
 				$userProfil = $db->loadObject($queryUser);
 			
 				if($abonnement_paypal && $userProfil){
-					mail('abonnement@parentsolo.ch', 'Désactivation d\'un membre', "Désactivation d'un membre abonné\n\n Username : ".$userProfil->username."\n Id User (Marie) : ".$userProfil->id."\n\n Intitulé Abo : ".$abonnement_paypal->intitule_abo."\n Montant : ".$abonnement_paypal->montant."\n Nom Paypal : ".$abonnement_paypal->nom_paypal."\n Prénom Paypal : ".$abonnement_paypal->prenom_paypal."\n Référence Paypal : ".$abonnement_paypal->reference_paypal."\n Validité de l'Abonnement (0->non validé, 1->en cours, 2->annulé) : ".$abonnement_paypal->valide."\n Id Abonnement Paypal (Marie) : ".$abonnement_paypal->id."\n");
+					mail('abonnement@solocircl.com', 'Désactivation d\'un membre', "Désactivation d'un membre abonné\n\n Username : ".$userProfil->username."\n Id User (Marie) : ".$userProfil->id."\n\n Intitulé Abo : ".$abonnement_paypal->intitule_abo."\n Montant : ".$abonnement_paypal->montant."\n Nom Paypal : ".$abonnement_paypal->nom_paypal."\n Prénom Paypal : ".$abonnement_paypal->prenom_paypal."\n Référence Paypal : ".$abonnement_paypal->reference_paypal."\n Validité de l'Abonnement (0->non validé, 1->en cours, 2->annulé) : ".$abonnement_paypal->valide."\n Id Abonnement Paypal (Marie) : ".$abonnement_paypal->id."\n");
 				}
 				
 				$q = "INSERT INTO user_desinscription SET"
@@ -617,7 +617,7 @@ if ($yearIni == $yearFin) {
 		$ids = JL::getVar('id', array());
 		
 		// s'il y a des id passés
-		if(count($ids)) {
+		if (is_array($ids)) {
 			
 			if($published == 0){
 				foreach($ids as $id){
@@ -638,7 +638,7 @@ if ($yearIni == $yearFin) {
 					$userProfil = $db->loadObject($queryUser);
 				
 					if($abonnement_paypal && $userProfil){
-						mail('abonnement@parentsolo.ch', 'Désactivation d\'un membre', "Désactivation d'un membre abonné\n\n Username : ".$userProfil->username."\n Id User (Marie) : ".$userProfil->id."\n\n Intitulé Abo : ".$abonnement_paypal->intitule_abo."\n Montant : ".$abonnement_paypal->montant."\n Nom Paypal : ".$abonnement_paypal->nom_paypal."\n Prénom Paypal : ".$abonnement_paypal->prenom_paypal."\n Référence Paypal : ".$abonnement_paypal->reference_paypal."\n Validité de l'Abonnement (0->non validé, 1->en cours, 2->annulé) : ".$abonnement_paypal->valide."\n Id Abonnement Paypal (Marie) : ".$abonnement_paypal->id."\n");
+						mail('abonnement@solocircl.com', 'Désactivation d\'un membre', "Désactivation d'un membre abonné\n\n Username : ".$userProfil->username."\n Id User (Marie) : ".$userProfil->id."\n\n Intitulé Abo : ".$abonnement_paypal->intitule_abo."\n Montant : ".$abonnement_paypal->montant."\n Nom Paypal : ".$abonnement_paypal->nom_paypal."\n Prénom Paypal : ".$abonnement_paypal->prenom_paypal."\n Référence Paypal : ".$abonnement_paypal->reference_paypal."\n Validité de l'Abonnement (0->non validé, 1->en cours, 2->annulé) : ".$abonnement_paypal->valide."\n Id Abonnement Paypal (Marie) : ".$abonnement_paypal->id."\n");
 					}
 					
 						
@@ -832,7 +832,7 @@ if ($yearIni == $yearFin) {
 		}
 		
 		// génère le where
-		if(count($where)) {
+		if (is_array($where)) {
 			$_where				= " WHERE ".implode(' AND ', $where);
 		}
 		
@@ -865,7 +865,7 @@ if ($yearIni == $yearFin) {
 		." FROM inscrits"
 		." LIMIT 0,1"
 		;
-		$inscrits = $db->loadResultArray($query);
+		$inscrits = $db->loadObjectList($query);
 		
 		$total 	= $inscrits['maman'] + $inscrits['papa'];
 		
@@ -945,7 +945,7 @@ if ($yearIni == $yearFin) {
 		$msg		= '';
 		
 		// si des photos ont été cochées
-		if(count($photos)) {
+		if (is_array($photos)) {
 			
 			foreach($photos as $photo) {
 				
@@ -1046,7 +1046,7 @@ if ($yearIni == $yearFin) {
 		$msg		= '';
 		
 		// si des photos ont été cochées
-		if(count($textes)) {
+		if (is_array($textes)) {
 			
 			foreach($textes as $texte) {
 				

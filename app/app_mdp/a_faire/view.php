@@ -14,7 +14,7 @@
 			
 			$navArr=array();
 			$navString="";
-			if(count($_GET)>1){
+			if (is_array($_GET)>1){
 				foreach($_GET as $key => $value){
 					if($key!='lang'){
 						$navArr[]="$key=$value";
@@ -29,14 +29,13 @@
 				<?php echo $lang_apphead["Femmes"];?> : <span class="femme">57%</span>
 				<br/>
 				<br />
-				<a href="<?php echo $_SERVER["PHP_SELF"]."?lang=fr$navString";?>"><img src="<? echo $template.'/images/grph_flags_fr_h20.jpg'; ?>" alt="fr" /></a> <a href="<?php echo $_SERVER["PHP_SELF"]."?lang=de$navString";?>"><img src="<? echo $template.'/images/grph_flags_de_h20.jpg'; ?>" alt="de" /></a> <a href="<?php echo $_SERVER["PHP_SELF"]."?lang=en$navString";?>"><img src="<? echo $template.'/images/grph_flags_en_h20.jpg'; ?>" alt="en" /></a>
+				<a href="<?php echo $_SERVER["PHP_SELF"]."?lang=fr$navString";?>"><img src="<?php echo $template.'/images/grph_flags_fr_h20.jpg'; ?>" alt="fr" /></a> <a href="<?php echo $_SERVER["PHP_SELF"]."?lang=de$navString";?>"><img src="<?php echo $template.'/images/grph_flags_de_h20.jpg'; ?>" alt="de" /></a> <a href="<?php echo $_SERVER["PHP_SELF"]."?lang=en$navString";?>"><img src="<?php echo $template.'/images/grph_flags_en_h20.jpg'; ?>" alt="en" /></a>
 			</div>
 			
 			<div id="banner_leader_board">
 				
 				<div class="small"><?php echo $lang_apphead["Publicite"];?></div>
-			<?
-				if($_GET['lang']=="fr"){
+			<?php 				if($_GET['lang']=="fr"){
 			?>
 					
 				<!-- Start of Ad'LINK ADJ Tag for AdFRONT - Javascript Format - PARENTSOLO.EX.CH-FR-HOME-MBR-T SIZE : 468x60,728x90 -->
@@ -51,8 +50,7 @@
 						</a>
 					</noscript>
 					<!-- End of Ad'LINK ADJ Tag for AdFRONT - Javascript Format - PARENTSOLO.EX.CH-FR-HOME-MBR-T SIZE : 468x60,728x90  -->
-			<?
-				}elseif($_GET['lang']=="en"){
+			<?php 				}elseif($_GET['lang']=="en"){
 				
 			?>
 				<!-- Start of Ad'LINK ADJ Tag for AdFRONT - Javascript Format - PARENTSOLO.EX.CH-FR-HOME-MBR-T SIZE : 468x60,728x90 -->
@@ -67,8 +65,7 @@
 						</a>
 					</noscript>
 					<!-- End of Ad'LINK ADJ Tag for AdFRONT - Javascript Format - PARENTSOLO.EX.CH-FR-HOME-MBR-T SIZE : 468x60,728x90  -->
-			<?
-				}else{
+			<?php 				}else{
 			?>
 					<!-- Start of Ad'LINK ADJ Tag for AdFRONT - Javascript Format - PARENTSOLO.EX.CH-DE-HOME-MBR-T SIZE : 468x60,728x90 -->
 					<script type="text/javascript">
@@ -82,29 +79,27 @@
 						</a>
 					</noscript>
 					<!-- End of Ad'LINK ADJ Tag for AdFRONT - Javascript Format - PARENTSOLO.EX.CH-DE-HOME-MBR-T SIZE : 468x60,728x90  -->
-			<?
-				}
+			<?php 				}
 			?>
 				
 			</div>
 			
 			<div class="radio">
 				<?php echo $lang_apphead["EcoutezLaRadioEnLive"];?><br /><br />
-				<a class="lfm" href="javascript:windowOpen('LFM', 'http://www.lfm.ch/portail/player/player.php', '500', '200');"><img alt="Ecoutez Lausanne FM avec ParentSolo.ch" src="<? echo SITE_URL; ?>/parentsolo/images/radio-lfm.jpg"></a><a class="onefm" href="javascript:windowOpen('OneFM', 'http://www.onefm.ch/home/playerv2/player.php', '500', '320');"><img alt="Ecoutez One FM avec ParentSolo.ch" src="<? echo SITE_URL; ?>/parentsolo/images/radio-onefm.jpg"></a><br /><br />
+				<a class="lfm" href="javascript:windowOpen('LFM', 'http://www.lfm.ch/portail/player/player.php', '500', '200');"><img alt="Ecoutez Lausanne FM avec solocircl.com" src="<?php echo SITE_URL; ?>/parentsolo/images/radio-lfm.jpg"></a><a class="onefm" href="javascript:windowOpen('OneFM', 'http://www.onefm.ch/home/playerv2/player.php', '500', '320');"><img alt="Ecoutez One FM avec solocircl.com" src="<?php echo SITE_URL; ?>/parentsolo/images/radio-onefm.jpg"></a><br /><br />
 			</div>
 			
 			<div class="twitter">
 				<?php echo $lang_apphead["SuivezNous"];?><br /><br />
-				<a target="_blank" href="http://www.twitter.com/parentsolo"><img src="<? echo SITE_URL; ?>/parentsolo/images/twitter.jpg"></a>
+				<a target="_blank" href="http://www.twitter.com/parentsolo"><img src="<?php echo SITE_URL; ?>/parentsolo/images/twitter.jpg"></a>
 			</div>
 			
 			<div class="header">
-				<a href="<? echo SITE_URL; ?>/index.php?lang=<? echo $_GET['lang']; ?>" title="<? echo SITE_DESCRIPTION; ?>" class="logo" onmouseover="show();">
-					<img src="<? echo SITE_URL; ?>/parentsolo/images/logo_<? echo $_GET['lang']; ?>.jpg" alt="ParentSolo.ch" />
+				<a href="<?php echo SITE_URL; ?>/index.php?lang=<?php echo $_GET['lang']; ?>" title="<?php echo SITE_DESCRIPTION; ?>" class="logo" onmouseover="show();">
+					<img src="<?php echo SITE_URL; ?>/parentsolo/images/logo_<?php echo $_GET['lang']; ?>.jpg" alt="solocircl.com" />
 				</a>
 			</div>
-		<?
-		
+		<?php 		
 		}
 		
 	}

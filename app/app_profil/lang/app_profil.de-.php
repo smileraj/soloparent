@@ -3,7 +3,7 @@
 $lang_appprofil = array(
 
 	//Fichier profil.html.php
-	"MessagesParentSolo" => "ParentSolo.ch Nachrichten",
+	"MessagesParentSolo" => "solocircl.com Nachrichten",
 	"MotDePasseOublie" => "Passwort vergessen",
 	"VousPouvezReinitialiser" => "Sie k&ouml;nnen Ihr Passwort von dieser Seite zur&uuml;cksetzen ",
 	"PourCeFaire" => "Um dies zu tun, geben Sie bitte die",
@@ -17,7 +17,7 @@ $lang_appprofil = array(
 	"ConfirmationParEmail" => "E-Mail-Best&auml;tigung",
 	"CliquezSurLeLien" => "Klicken Sie auf den daf&uuml;r eingetragene Link in der E-Mail, um Ihr neues Passwort zu best&auml;tigen",
 	"VousPourrez" => "Sie k&ouml;nnen",
-	"EnsuiteVousConnectez" => "sich dann mit Parentsolo.ch verbinden",
+	"EnsuiteVousConnectez" => "sich dann mit solocircl.com verbinden",
 	"AvecVotreNouveau" => "mit dem neuen Passwort",
 	"ChangerMonMotPasse" => "Passwort &auml;ndern",
 	"EmailInscription" => "Anmeldung E-Mail",
@@ -31,10 +31,10 @@ $lang_appprofil = array(
 	"Envoyer" => "Senden",
 	"MotDePasseChanger" => "Passwort erfolgreich ge&auml;ndert",
 	"VotreMotPasseChange" => "Ihr Passwort wurde ge&auml;ndert",
-	"VousPouvezDesPresent" => "Sie k&ouml;nnen nun in Ihrem Konto mit Ihrem Parentsolo.ch einkommen",
+	"VousPouvezDesPresent" => "Sie k&ouml;nnen nun in Ihrem Konto mit Ihrem solocircl.com einkommen",
 	"NouveauIdentifiants" => "Neue anmelde Personen",
 	"IndiquesDansEmail" => "in der Best&auml;tigungs-E-Mail angezeigt ",
-	"ABientotSurParentsolo" => "Bis bald auf Parentsolo.ch",
+	"ABientotSurParentsolo" => "Bis bald auf solocircl.com",
 	"MotDePasseNonChanger" => "Passwort nicht ge&auml;ndert",
 	"VotreMotPasseNonChange" => "Ihr Passwort wurde nicht ge&auml;ndert",
 	"LienSurLequelVousClique" => "Der Link, wo Sie geklickt haben, ist nicht oder nicht mehr g&uuml;ltig",
@@ -114,7 +114,7 @@ $lang_appprofil = array(
 	"ConfirmationmotPasse" => "Best&auml;tigung des Passwort",
 	"Email" => "E-mail",
 	"ConfirmationEmail" => "E-mail best&auml;tigen",
-	"JeSouhaiteRecevoir" => "Ich m&ouml;chte E-Mail-Angebote von Partnern parentsolo.ch erhalten (optional)",
+	"JeSouhaiteRecevoir" => "Ich m&ouml;chte E-Mail-Angebote von Partnern solocircl.com erhalten (optional)",
 	"CodeDeSecurite" => "Sicherheits-Code",
 	"ConditionsUtilisation" => "Nutzungsbedingungen",
 	"JAccepte" => "Ich nehme an",
@@ -124,7 +124,7 @@ $lang_appprofil = array(
 	"EnCliquantBouton" => "Mit einem Klick auf dem Knopf",
 	"JeCertiifeMajeur" => "Hiermit best&auml;tige ich, Erwachsen zu sein und gelesen und akzeptiert haben",
 	"DuService" => "vom Service",
-	"ParentSolo_ch" => "ParentSolo.ch",
+	"ParentSolo_ch" => "solocircl.com",
 	"EnonceesCiDessus" => "hier oben mentionnierte",
 
 	//------------------Page Etape2 Photo---------
@@ -141,7 +141,7 @@ $lang_appprofil = array(
 	"LesPotosAvecEnfant" => "Fotos mit Ihren  Kindern: ein Abschnitt f&uuml;r diesen Zweck ist vorgesehenen",
 	"EnCasProbleme" => "Im Falle von Problemen, kontrollieren Sie dass Ihr Foto im richtigen Format ist",
 	"JpegJpg" => "JPEG (oder  JPG)",
-	"PourTailleMaximale" => "zu einer maximalen Gr&ouml;ße",
+	"PourTailleMaximale" => "zu einer maximalen Gr&ouml;ï¿½e",
 	"UneResolurionMaximle" => "und einer maximalen Aufl&ouml;sung von",
 	"Supprimer" => "L&ouml;schen",
 	"ParDefaut" => "Als Vorgabe",
@@ -153,9 +153,9 @@ $lang_appprofil = array(
 	"NAcceptePas" => "akzeptiere nicht",
 	"MontrerMaPhoto" => "Mein Foto als Vorgabe in der Startseite zu zeigen",
 	"VosPhotosEteValider" => "Ihre Bilder sind validiert",
-	"VosPhotosAttente" => "Ihre Bilder warten auf Validierung von Parentsolo.ch; falls sie nicht einhalten",
+	"VosPhotosAttente" => "Ihre Bilder warten auf Validierung von solocircl.com; falls sie nicht einhalten",
 	"ConditionsGeneralesUtilisation" => "Nutzungsbedingungen",
-	"ServiceParentsolo" => "vom Dienst Parentsolo.ch, werden sie gel&ouml;scht",
+	"ServiceParentsolo" => "vom Dienst solocircl.com, werden sie gel&ouml;scht",
 
 	//------------------Page Etape3 Annonce---------
 
@@ -163,10 +163,10 @@ $lang_appprofil = array(
 	"NombreDeCaracteres" => "Anzahl bleibende Zeichen",
 	"VotreAnnonceEteRefusee" => "Ihre Anzeige wurde abgelehnt, weil sie nicht respektiert die",
 	"ConditionGenerales" => "Nutzungsbedingungen",
-	"DuServiceParentsolo" => "von Parentsolo.ch. Wir laden Sie ein, Ihre Anzeige zu bearbeiten, damit die auf der Website ver&ouml;ffentlicht werden kann",
+	"DuServiceParentsolo" => "von solocircl.com. Wir laden Sie ein, Ihre Anzeige zu bearbeiten, damit die auf der Website ver&ouml;ffentlicht werden kann",
 	"VotreAnnonceEteValide" => "Ihre Anzeige wurde best&auml;tigt",
-	"VotreAnnonceMaintenant" => "Ihre Anzeige wartet jetzt auf &Uuml;berpr&uuml;fung von Parentsolo.ch",
-	"AvantEtrePublier" => "Vor der Ver&ouml;ffentlichung muss Ihre Anzeige von einem Moderator Parentsolo.ch angenommen werden",
+	"VotreAnnonceMaintenant" => "Ihre Anzeige wartet jetzt auf &Uuml;berpr&uuml;fung von solocircl.com",
+	"AvantEtrePublier" => "Vor der Ver&ouml;ffentlichung muss Ihre Anzeige von einem Moderator solocircl.com angenommen werden",
 
 	//------------------Page Etape4 Descripion---------
 
@@ -227,7 +227,7 @@ $lang_appprofil = array(
 	"DeMesEnfants" => "von meinen Kindern",
 	"UniquementLes" => "Nur",
 	"Moderateurs" => "Moderatoren",
-	"DeParentsolo_ch" => "aus Parentsolo.ch",
+	"DeParentsolo_ch" => "aus solocircl.com",
 	"TousLes" => "Alle",
 	"Membres" => "Mitglieder",
 
@@ -279,7 +279,7 @@ $lang_appprofil = array(
 
 	"ParrainezvosAmies" => "Seien Sie Sponsor f&uuml;r Ihre Freunde und verdienen Sie Solofleurs",
 	"SiVousAvezDesAmies" => "Wenn Sie Alleinerziehende Freunde haben, die in der Schweiz leben, seien Sie Sponsor f&uuml;r diese",
-	"SilsSinscriventSurPartentsolo" => "Wenn sie sich auf Parentsolo.ch einschreiben, gewinnen Sie beide",
+	"SilsSinscriventSurPartentsolo" => "Wenn sie sich auf solocircl.com einschreiben, gewinnen Sie beide",
 	"DesQueLeProfil" => "wenn das Profil Ihre Freund nach erfolgter &Uuml;berpr&uuml;fung durch unsere Moderatoren angenehmigt wird",
 	"EmailsDeVosAmies" => "E-Mails Ihren Freund",
 	"SeparezLesEmails" => "trennen Sie die E-Mails von Ihren Freunden durch ein Komma",
@@ -317,7 +317,7 @@ $lang_appprofil = array(
 	"MoinDUnAn" => "Weniger als ein Jahr",
 	"NAPasEncoreIndique" => "hat noch nicht gemeldet",
 	"DansSonProfil" => "in seinem Profi",
-	"Taille" => "Gr&ouml;ße",
+	"Taille" => "Gr&ouml;ï¿½e",
 	"Poids" => "Gewicht",
 	"Silhouette" => "Silhouette",
 	"Coiffure" => "Frisure",
@@ -360,7 +360,7 @@ $lang_appprofil = array(
 
 
 	"VeuillezIndiquerAdresse" => "Bitte geben Sie eine g&uuml;ltige E-Mail-Adresse",
-	"CetteAdresseEmail" => "Diese E-Mail-Adresse ist nicht auf Parentsolo.ch registriert",
+	"CetteAdresseEmail" => "Diese E-Mail-Adresse ist nicht auf solocircl.com registriert",
 	"VeuillezIndiquerNouveau" => "Bitte geben Sie ein neues Passwort",
 	"LeMotDePasseContenir" => "Das Passwort darf nur Buchstaben und Ziffern enthalten, ohne Akzente",
 	"ConfirnationMotDePasse" => "Best&auml;tigung des Passworts kann nur Buchstaben und Ziffern enthalten, ohne Akzente",
@@ -399,7 +399,7 @@ $lang_appprofil = array(
 	"LaConfirmationEmailPasValide" => "Die Best&auml;tigung Ihrer E-Mail-Adresse ist nicht g&uuml;ltig",
 	"LaConfirmationEmailCorrespondPas" => "Die Best&auml;tigung der E-Mail Adresse entspricht nicht zur ersten eingetragenen E-Mail Adresse",
 	"VeuillezIndiquerCantan" => "Bitte melden Sie in welchem Kanton Sie wohnen",
-	"FautLireLesCondition" => "Sie m&uuml;ssen die Bedingungen und Modalit&auml;ten lesen und akzeptieren, damit Sie auf ParentSolo.ch Webseite sich einschreiben k&ouml;nnen",
+	"FautLireLesCondition" => "Sie m&uuml;ssen die Bedingungen und Modalit&auml;ten lesen und akzeptieren, damit Sie auf solocircl.com Webseite sich einschreiben k&ouml;nnen",
 	"CodeSecuriteincorrect" => "Die eingetragene Sicherheitcode ist falsch",
 	"ModificationEnregistrees" => "&Auml;nderungen gespeichert",
 	"CePseudoEstDeja" => "Dieser Nickname ist bereits vergeben, w&auml;hlen Sie bitte einen anderen bitte",
@@ -431,7 +431,7 @@ $lang_appprofil = array(
 	"VeuillezAdresse" => "Bitte geben Sie Ihre Adresse",
 	"VeuillezCodePostal" => "Bitte geben Sie Ihre Postleitzahl",
 	"CesinformationSontDemandes" => "Diese Daten werden Ihnen gefragt, damit wir eine hoche Dienstqualit&auml;t an alle Website-Mitglieder gew&auml;hrleisten k&ouml;nnen",
-	"EnCasDeDoute" => "Im Zweifelfall &uuml;ber ein Profil, Parentsolo.ch kann den Mitglied telefonisch erreichen, um die G&uuml;ltigkeit ihres Profils zu kontrollieren",
+	"EnCasDeDoute" => "Im Zweifelfall &uuml;ber ein Profil, solocircl.com kann den Mitglied telefonisch erreichen, um die G&uuml;ltigkeit ihres Profils zu kontrollieren",
 	"VeuillzAuMoinUnEmail" => "Bitte geben Sie mindestens eine E-Mail-Adresse",
 	"VeuillzAuMoinUnMessage" => "Bitte schreiben Sie eine Nachricht an Ihren Freunden",
 	"MessageEnvoyer" => "Nachricht gesendet",

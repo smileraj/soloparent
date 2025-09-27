@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 	
 	class evolution_semaine_HTML {	
@@ -16,7 +16,7 @@
 						
 						
 						 if(action == 'Fermer') {
-							if(!confirm('Êtes-vous sûr de vouloir Fermer?')) {
+							if(!confirm('ï¿½tes-vous sï¿½r de vouloir Fermer?')) {
 								ok = false;
 								
 							}
@@ -24,7 +24,7 @@
 						
 						if(ok) {
 						
-							document.location = "<? echo SITE_URL_ADMIN; ?>"; 
+							document.location = "<?php echo SITE_URL_ADMIN; ?>"; 
 						}
 						
 					}
@@ -44,10 +44,9 @@
 			<div class="tableAdmin">
 			<table class="table table-bordered table-striped table-condensed cf" width="100%" style="text-align:center;" cellpadding="0" cellspacing="0">
 					<tr>
-						<th>Semaine (Année)</th><th>Nombre d'inscrits</th><!--<th>Hommes</th><th>Femmes</th>-->
+						<th>Semaine (Annï¿½e)</th><th>Nombre d'inscrits</th><!--<th>Hommes</th><th>Femmes</th>-->
 					</tr>
-		<?
-			foreach($rows AS $row){
+		<?php 			foreach($rows AS $row){
 				$total_suppr = 0;
 				$total_h = 0;
 				$total_f = 0;
@@ -59,20 +58,18 @@
 				}
 			?>
 				<tr class="list">
-					<td><b><? echo $row->semaine; ?></b></td>
-					<td><? echo $row->total+$total_suppr; ?></td>
-					<!--<td><? echo $row->total_h+$total_h; ?></td>
-					<td><? echo $row->total_f+$total_f; ?></td>-->
+					<td><b><?php echo $row->semaine; ?></b></td>
+					<td><?php echo $row->total+$total_suppr; ?></td>
+					<!--<td><?php echo $row->total_h+$total_h; ?></td>
+					<td><?php echo $row->total_f+$total_f; ?></td>-->
 				</tr>
-			<?
-			}
+			<?php 			}
 		?>
 		
 			</table>			
 			</div>
 			</section>
-		<?
-		}
+		<?php 		}
 		
 		
 	}

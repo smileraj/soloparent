@@ -2,7 +2,7 @@
 
 $lang_appmdp = array(
 	
-	"MessagesParentSolo" => "ParentSolo.ch messages",	
+	"MessagesParentSolo" => "solocircl.com messages",	
 	
 	
 	"ChangerMonMotPasse" => "Change my password",
@@ -18,7 +18,7 @@ $lang_appmdp = array(
 	
 	
 	"IndiquerEmailValide" => "Please enter a valid email address",
-	"AdresseEmailInconnu" => "This email address is not registered; please enter the email address you used for your registration on Parentsolo.ch",
+	"AdresseEmailInconnu" => "This email address is not registered; please enter the email address you used for your registration on solocircl.com",
 	"IndiquezNouveauMdp" => "Please enter a new password",
 	"MdpIncorrect" => "The password can contain numbers and non-accented letters",
 	"ConfirmationMdpIncorrect" => "The password confirmation does not match the first password entered, please re-enter it",
@@ -29,8 +29,8 @@ $lang_appmdp = array(
 	
 	"MdpModifieSucces" => "Password successfully changed",
 	"MdpModifie" => "Your password has been changed",
-	"ConnexionOk" => "You can now log into your Parentsolo.ch account with your <b>new login</b> (see confirmation email)",
-	"ABientotSurParentsolo" => "See you soon on Parentsolo.ch",
+	"ConnexionOk" => "You can now log into your solocircl.com account with your <b>new login</b> (see confirmation email)",
+	"ABientotSurParentsolo" => "See you soon on solocircl.com",
 	
 	
 	"MdpNonModifie" => "Password unchanged",

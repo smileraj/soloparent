@@ -982,7 +982,7 @@ class PHPMailer {
 
     // To be created automatically by mail()
     if($this->Mailer != 'mail') {
-      if(count($this->to) > 0) {
+      if (is_array($this->to) > 0) {
         $result .= $this->AddrAppend('To', $this->to);
       } elseif (count($this->cc) == 0) {
         $result .= $this->HeaderLine('To', 'undisclosed-recipients:;');
@@ -995,7 +995,7 @@ class PHPMailer {
     $result .= $this->AddrAppend('From', $from);
 
     // sendmail and mail() extract Cc from the header before sending
-    if(count($this->cc) > 0) {
+    if (is_array($this->cc) > 0) {
       $result .= $this->AddrAppend('Cc', $this->cc);
     }
 
@@ -1004,7 +1004,7 @@ class PHPMailer {
       $result .= $this->AddrAppend('Bcc', $this->bcc);
     }
 
-    if(count($this->ReplyTo) > 0) {
+    if (is_array($this->ReplyTo) > 0) {
       $result .= $this->AddrAppend('Reply-to', $this->ReplyTo);
     }
 
@@ -1183,10 +1183,10 @@ class PHPMailer {
    * @return void
    */
   private function SetMessageType() {
-    if(count($this->attachment) < 1 && strlen($this->AltBody) < 1) {
+    if (is_array($this->attachment) < 1 && strlen($this->AltBody) < 1) {
       $this->message_type = 'plain';
     } else {
-      if(count($this->attachment) > 0) {
+      if (is_array($this->attachment) > 0) {
         $this->message_type = 'attachments';
       }
       if(strlen($this->AltBody) > 0 && count($this->attachment) < 1) {
@@ -1843,7 +1843,7 @@ class PHPMailer {
    * @return string
    */
   private function Lang($key) {
-    if(count($this->language) < 1) {
+    if (is_array($this->language) < 1) {
       $this->SetLanguage('en'); // set the default language
     }
 

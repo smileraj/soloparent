@@ -111,7 +111,7 @@
 		$where[]			= "at.active = 1";
 		$where[]			= "m.published = 1";
 
-		if(count($where)) {
+		if (is_array($where)) {
 			$_where = " WHERE ".implode(" AND ", $where);
 		}
 
@@ -152,7 +152,7 @@
 		$where[]	= "at.id = '".$id."'";
 		$where[]	= "at.active = 1";
 
-		if(count($where)) {
+		if (is_array($where)) {
 			$_where = " WHERE ".implode(" AND ", $where);
 		}
 
@@ -188,7 +188,7 @@
 		$list_media_id	= array();
 
 		// r&eacute;cup les donn&eacute;es temporaires
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row->{$key}	= JL::getVar($key, $value);
 			}
@@ -232,7 +232,7 @@
 		$row		= new stdClass();
 
 		// r&eacute;cup les donn&eacute;es temporaires
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row->{$key}	= JL::getVar($key, $value);
 			}

@@ -7,7 +7,7 @@ $lang_mod = array(
 	
 	"PageInexistante" => "Page not found",
 	
-	"LaPageDemandeeNExistePasOuPlusSurParentsolo" => "The page you requested does not exist on Parentsolo.ch",
+	"LaPageDemandeeNExistePasOuPlusSurParentsolo" => "The page you requested does not exist on solocircl.com",
 	
 	//--------------fin error404------------------------
 
@@ -51,7 +51,7 @@ $lang_mod = array(
 	"LancerUnAppelATemoins" => "Launch a call for stories",
 	
 	//Particularit&eacute; du menu presse
-	"ParentsoloDansLaPresse" => "Parentsolo.ch in the press",
+	"ParentsoloDansLaPresse" => "solocircl.com in the press",
 	"Videos" => "Videos",
 	"Articles" => "Articles",
 	"Radios" => "Radios",
@@ -168,7 +168,7 @@ $lang_mod = array(
 	//------------------Page meta.php ---------
 
 
-	"SiteDeRencontre" => "Parentsolo.ch, Single Parent Family - Restructured Family - Divorced - Widowed",
+	"SiteDeRencontre" => "solocircl.com, Single Parent Family - Restructured Family - Divorced - Widowed",
 	"LeSiteDeRencontreDes" => "The dating site reserved for single, separated, divorced or widowed parents, resident in Switzerland",
 	"celibatairesRencontre" => "solo parents, singles, singles, dating, dating site, child, dad, mum, Swiss, love, relationship, serious, serious, concrete, free registration, free, single parents, step families, divorced, widowed",
 
@@ -215,7 +215,7 @@ $lang_mod = array(
 	"Presse" => "Press",
 	"Publicite" => "Advertising",
 	"Tarifs" => "Rates",
-	"Copyright" => "Copyright &copy; 2009 - ".date('Y')." - Parentsolo.ch",
+	"Copyright" => "Copyright &copy; ".date('Y')." - solocircl.com",
 	
 );
 ?>

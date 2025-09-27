@@ -46,7 +46,7 @@ $i 				= 0; // compteur de tr
 						
 						if(ok) {
 						
-							document.location = "<? echo SITE_URL_ADMIN; ?>"; 
+							document.location = "<?php echo SITE_URL_ADMIN; ?>"; 
 						}
 						
 					}
@@ -77,7 +77,7 @@ $i 				= 0; // compteur de tr
 			
 						
 						
-				 <? 
+				 <?php 
 						foreach($eventdetails as $contenu) { 
 							if(strlen($contenu->event_desc) > LISTE_INTRO_CHAR) {
 										
@@ -97,23 +97,20 @@ $i 				= 0; // compteur de tr
 							<td style="width:100px;white-space:nowrap"><?php echo date('d-m-Y',strtotime($contenu->end_date ))?></td>
 							<td style="width:100px;"><table><tr><div style="cursor:pointer" class="edit fa fa-pencil-square-o" id="edit_<?php echo $contenu->id ?>"></div>&nbsp;&nbsp;&nbsp;&nbsp;<div style="color:red;cursor:pointer" class="delete fa fa-trash-o" id="delete_<?php echo $contenu->id ?>"></div></tr></table></td>
 							</tr>
-							<?
-					}
+							<?php 					}
 					?>
 				<tr>
 							<td colspan="5">
 								<b>Pages</b>:
-								<? if($debut > 1) {
+								<?php if($debut > 1) {
  
-								?> <a href="<? echo JL::url(SITE_URL_ADMIN.'/index.php?app=event&search_t_page=1'); ?>" title="Afficher la page 1">D&eacute;but</a> ...<? }?>
-								<?
-									for($i=$debut; $i<=$fin; $i++) {
+								?> <a href="<?php echo JL::url(SITE_URL_ADMIN.'/index.php?app=event&search_t_page=1'); ?>" title="Afficher la page 1">D&eacute;but</a> ...<?php }?>
+								<?php 									for($i=$debut; $i<=$fin; $i++) {
 									?>
-										 <a href="<? echo JL::url(SITE_URL_ADMIN.'/index.php?app=event&search_t_page='.$i); ?>" title="Afficher la page <? echo $i; ?>" <? if($i == $search['page']) { ?>class="displayActive"<? } ?>><? echo $i; ?></a>
-									<?
-									}
+										 <a href="<?php echo JL::url(SITE_URL_ADMIN.'/index.php?app=event&search_t_page='.$i); ?>" title="Afficher la page <?php echo $i; ?>" <?php if($i == $search['page']) { ?>class="displayActive"<?php } ?>><?php echo $i; ?></a>
+									<?php 									}
 								?>
-								<? if($fin < $search['page_total']) { ?> ... <a href="<? echo JL::url(SITE_URL_ADMIN.'/index.php?app=event&search_t_page='.$search['page_total']); ?>" title="Afficher la page <? echo $search['page_total']; ?>">Fin</a><? }?> <i>(<? echo $search['result_total']; ?> r&eacute;sultats)</i>
+								<?php if($fin < $search['page_total']) { ?> ... <a href="<?php echo JL::url(SITE_URL_ADMIN.'/index.php?app=event&search_t_page='.$search['page_total']); ?>" title="Afficher la page <?php echo $search['page_total']; ?>">Fin</a><?php }?> <i>(<?php echo $search['result_total']; ?> r&eacute;sultats)</i>
 							</td>
 						</tr>
 				  </table>

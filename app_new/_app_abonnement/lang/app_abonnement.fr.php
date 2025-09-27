@@ -3,47 +3,47 @@
 $lang_appabonnement = array(
 
 	//Fichier abonnement.html.php
-	"MessagesParentsolo" => "Messages Parentsolo.ch",
+	"MessagesParentsolo" => "Messages solocircl.com",
 	
 	
 	"Abonnement" => "Abonnement",
 	
-	"VeuillezTrouverAbonnementDureeMontant" => "Veuillez trouver ci-dessous la procédure à suivre afin de régler votre <b>abonnement de ".$duree." jours</b> pour un montant total de <b> CHF ".$montant." TTC</b>",
+	"VeuillezTrouverAbonnementDureeMontant" => "Veuillez trouver ci-dessous la procï¿½dure ï¿½ suivre afin de rï¿½gler votre <b>abonnement de ".$duree." jours</b> pour un montant total de <b> CHF ".$montant." TTC</b>",
 	
 	
-	"AvantagesAbonne" => "Les avantages d'être abonné",
+	"AvantagesAbonne" => "Les avantages d'ï¿½tre abonnï¿½",
 	
 	"Visiteur" => "Visiteur",
 	"Membre" => "Membre",
-	"Abonne" => "Abonné",
+	"Abonne" => "Abonnï¿½",
 	
 	"EffectuerDesRecherches" => "Effectuer des recherches",
-	"CreerSonProfil" => "Créer son profil",
+	"CreerSonProfil" => "Crï¿½er son profil",
 	"VoirLesProfils" => "Voir les profils",
 	"RecevoirDesMessages" => "Recevoir des messages",
 	"RecevoirDesFleurs" => "Recevoir des fleurs",
-	"CreerRejoindreGroupes" => "Créer et/ou rejoindre des groupes",
+	"CreerRejoindreGroupes" => "Crï¿½er et/ou rejoindre des groupes",
 	"EnvoyerDesMessages" => "Envoyer des messages",
 	"EnvoyerDesFleurs" => "Envoyer des fleurs",
 	"DialoguerSurChat" => "Dialoguer sur le chat",
 
-	"SelectionAbonnement" => "Sélectionnez l'abonnement de votre choix",
+	"SelectionAbonnement" => "Sï¿½lectionnez l'abonnement de votre choix",
 
 	"Mois12" => "12 mois: CHF 9,50/mois<sup>(1)</sup>",
-	"Duree360" => "(1): durée de 360 jours, facturée en un paiement de CHF 114.-",
+	"Duree360" => "(1): durï¿½e de 360 jours, facturï¿½e en un paiement de CHF 114.-",
 	
 	"Mois6" => "6 mois: CHF 13.-/mois<sup>(2)</sup>",
-	"Duree180" => "(2): durée de 180 jours, facturée en un paiement de CHF 78.-",
+	"Duree180" => "(2): durï¿½e de 180 jours, facturï¿½e en un paiement de CHF 78.-",
 	
 	"Mois3" => "3 mois: CHF 21,50/mois<sup>(3)</sup>",
-	"Duree90" => "(3): durée de 90 jours, facturée en un paiement de CHF 64,50",
+	"Duree90" => "(3): durï¿½e de 90 jours, facturï¿½e en un paiement de CHF 64,50",
 	
 	"Mois1" => "1 mois: CHF 38.-/mois<sup>(4)</sup>",
-	"Duree30" => "(4): durée de 30 jours, facturée en un paiement de CHF 38.-",
+	"Duree30" => "(4): durï¿½e de 30 jours, facturï¿½e en un paiement de CHF 38.-",
 	
-	"SelectionMethodePaiement" => "Sélectionnez la méthode de paiement de votre choix",
+	"SelectionMethodePaiement" => "Sï¿½lectionnez la mï¿½thode de paiement de votre choix",
 
-	"PaiementEnLigne" => "Paiement en ligne par carte de crédit ou compte Paypal",
+	"PaiementEnLigne" => "Paiement en ligne par carte de crï¿½dit ou compte Paypal",
 	"VirementBancaire" => "Virement bancaire",
 	"BulletinVersement" => "Bulletin de versement",
 
@@ -51,19 +51,19 @@ $lang_appabonnement = array(
 	
 	
 	"RedirectionVersPaypal" => "Redirection vers Paypal",
-	"RedirectionPaypal" => "Vous allez être redirigé vers le site de paiement en ligne sécurisé Paypal d'ici quelques instants",
+	"RedirectionPaypal" => "Vous allez ï¿½tre redirigï¿½ vers le site de paiement en ligne sï¿½curisï¿½ Paypal d'ici quelques instants",
 	"NePasAttendre" => "Si vous ne souhaitez pas attendre",
-	"AccesDirectPaypal" => "Accéder directement à la page de paiement sur Paypal",
+	"AccesDirectPaypal" => "Accï¿½der directement ï¿½ la page de paiement sur Paypal",
 	"CliquezIci" => "Cliquez ICI",
 	
 	
 	"FinalisationDuPaiement" => "Finalisation du paiement",
-	"TransactionValidee" => "La transaction a été validée par Paypal",
-	"CompteCredite" => "Votre compte a été crédité de <b>".$duree_credite." jours</b>",
-	"ParentsoloVousRemercie" => "Parentsolo.ch vous remercie et vous souhaite d'effectuer d'agréables rencontres sur le site",
+	"TransactionValidee" => "La transaction a ï¿½tï¿½ validï¿½e par Paypal",
+	"CompteCredite" => "Votre compte a ï¿½tï¿½ crï¿½ditï¿½ de <b>".$duree_credite." jours</b>",
+	"ParentsoloVousRemercie" => "solocircl.com vous remercie et vous souhaite d'effectuer d'agrï¿½ables rencontres sur le site",
 	
-	"TransactionAnnulee" => "Transaction annulée",
-	"ErreurTransaction" => "Une erreur s'est produite lors de la transaction ou vous avez annulée celle-ci",
+	"TransactionAnnulee" => "Transaction annulï¿½e",
+	"ErreurTransaction" => "Une erreur s'est produite lors de la transaction ou vous avez annulï¿½e celle-ci",
 
 	
 	

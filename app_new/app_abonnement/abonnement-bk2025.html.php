@@ -1,6 +1,6 @@
 <?php
 session_start();
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');?>
 <script type = "text/javascript" >
     //history.pushState(null, null, 'index.php?app=abonnement');
@@ -12,13 +12,13 @@ session_start();
 class HTML_abonnement {
 
 
-	// affichage des messages système
+	// affichage des messages systï¿½me
 	function messages(&$messages) {
 		global $langue;
 			include("lang/app_abonnement.".$_GET['lang'].".php");
 
-		// s'il y a des messages à afficher
-		if(count($messages)) {
+		// s'il y a des messages ï¿½ afficher
+		if (is_array($messages)) {
 		?>
 			
 			<h2 class="messages"><?php echo $lang_appabonnement["Messages"];?></h2>
@@ -66,7 +66,7 @@ class HTML_abonnement {
 				
 				<br />
 				<br />
-				<img src="<?php echo SITE_URL; ?>/<?php echo $imageBVR; ?>?<?php echo time(); ?>" alt="BVR ParentSolo.ch CHF <?php echo $montant; ?>.-" style="width:610px" />
+				<img src="<?php echo SITE_URL; ?>/<?php echo $imageBVR; ?>?<?php echo time(); ?>" alt="BVR solocircl.com CHF <?php echo $montant; ?>.-" style="width:610px" />
 			<?php 
 				} 
 			?>
@@ -79,7 +79,7 @@ class HTML_abonnement {
 		<?php
 	}
 
-	// formulaire de recherche + résultats
+	// formulaire de recherche + rï¿½sultats
 	function abonnementTarifs(&$debut) {
 		global $langue;
 		include("lang/app_abonnement.".$_GET['lang'].".php");
@@ -328,8 +328,8 @@ class HTML_abonnement {
 		
 			<form name="formPaypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
 				<input type="hidden" name="cmd" value="_xclick-subscriptions">
-				<input type="hidden" name="business" value="paypal@parentsolo.ch">
-				<input type="hidden" name="item_name" value="<?php echo htmlentities($row->nom); ?> (ref <?php echo $row->paypal_id; ?>)">
+				<input type="hidden" name="business" value="paypal@solocircl.com">
+				<input type="hidden" name="item_name" value="<?php echo makeSafe($row->nom); ?> (ref <?php echo $row->paypal_id; ?>)">
 				<input type="hidden" name="item_number" value="1">
 				<input type="hidden" name="no_shipping" value="1">
 				<input type="hidden" name="return" value="<?php echo SITE_URL; ?>/index.php?app=abonnement&action=methode&<?php echo $langue; ?>">
@@ -472,18 +472,18 @@ $ogone_AMOUNT = round($ogone_AMOUNT1, 2)*100;
 <div class="row bottompadding">
 					<div class="col-md-12">
 						<div class="col-md-4 text-right">
-							<label for="media_id"  class="lable_right"><? echo $lang_appabonnement["Card_holder_name"];?> :</label>
+							<label for="media_id"  class="lable_right"><?php echo $lang_appabonnement["Card_holder_name"];?> :</label>
 						</div>
 						<div class="col-md-8">
 							<!--<input type="text"  required="" class="msgtxt" name="CN_holder_name" maxlength="35" value="<?php echo $row->username;?>" pattern="[a-zA-Z][a-zA-Z0-9\s]*">-->
-<input type="text"  required class="msgtxt" name="CN_holder_name" maxlength="35" placeholder="<? echo $lang_appabonnement["Card_holder_name"];?>"  pattern="[a-zA-Z][a-zA-Z0-9\s]*" >
+<input type="text"  required class="msgtxt" name="CN_holder_name" maxlength="35" placeholder="<?php echo $lang_appabonnement["Card_holder_name"];?>"  pattern="[a-zA-Z][a-zA-Z0-9\s]*" >
 						</div>
 					</div>
 				</div>
 				<div class="row bottompadding">
 					<div class="col-md-12">
 						<div class="col-md-4 text-right">
-							<label for="media_id"  class="lable_right"><? echo $lang_appabonnement["Email_address"];?> :</label>
+							<label for="media_id"  class="lable_right"><?php echo $lang_appabonnement["Email_address"];?> :</label>
 						</div>
 						<div class="col-md-8">
 							<input type="email"  required class="msgtxt" name="Email_address" maxlength="50" value="<?php echo $row->email;?>" >
@@ -494,7 +494,7 @@ $ogone_AMOUNT = round($ogone_AMOUNT1, 2)*100;
 				<!--<div class="row bottompadding">
 					<div class="col-md-12">
 						<div class="col-md-4 text-right">
-							<label for="media_id"  class="lable_right"><? echo $lang_appabonnement["Phone_Number"];?> :</label>
+							<label for="media_id"  class="lable_right"><?php echo $lang_appabonnement["Phone_Number"];?> :</label>
 						</div>
 						<div class="col-md-8">
 							<input type="text"  required class="msgtxt" name="phone_number" maxlength="15" value="<?php echo $row->telephone;?>"  pattern="[-+]?[0-9]*[.,]?[0-9]+">
@@ -504,7 +504,7 @@ $ogone_AMOUNT = round($ogone_AMOUNT1, 2)*100;
 				<div class="row bottompadding">
 					<div class="col-md-12">
 						<div class="col-md-4 text-right">
-							<label for="media_id"  class="lable_right"><? echo $lang_appabonnement["Amount"];?> :</label>
+							<label for="media_id"  class="lable_right"><?php echo $lang_appabonnement["Amount"];?> :</label>
 						</div>
 						<div class="col-md-8">
 							<input type="text" readonly class="msgtxt" readonly name="amount" maxlength="10" value="<?php echo $row1->montant;?>" >
@@ -517,7 +517,7 @@ $ogone_AMOUNT = round($ogone_AMOUNT1, 2)*100;
 					<div class="col-md-12 parentsolo_pt_10 parentsolo_pb_10">
 						
 						<div class="col-md-12 text-center ">
-							<input type="checkbox"  checked class="msgtxt Saved_card_option"  id="Saved_card_option" name="Saved_card_option" Value="Yes" onclick="onclick_show_card()"> &nbsp;<? echo $lang_appabonnement["save_card_msg"];?>
+							<input type="checkbox"  checked class="msgtxt Saved_card_option"  id="Saved_card_option" name="Saved_card_option" Value="Yes" onclick="onclick_show_card()"> &nbsp;<?php echo $lang_appabonnement["save_card_msg"];?>
 						</div>
 					</div>
 				</div>
@@ -526,7 +526,7 @@ $ogone_AMOUNT = round($ogone_AMOUNT1, 2)*100;
 				<div class="row bottompadding">
 					<div class="col-md-12">
 						<div class="col-md-4 text-right">
-							<label for="media_id" class="lable_right"><? echo $lang_appabonnement["Pay_With"];?> :</label>
+							<label for="media_id" class="lable_right"><?php echo $lang_appabonnement["Pay_With"];?> :</label>
 						</div>
 						<div class="col-md-8">
 							<select name="BRAND_val"  id="BRAND_val" required >
@@ -545,10 +545,10 @@ $ogone_AMOUNT = round($ogone_AMOUNT1, 2)*100;
 				<div class="row bottompadding">
 							<div class="col-md-12">
 								<div class="col-md-4 text-right">
-									<label for="media_id"  class="lable_right"><? echo $lang_appabonnement["Card_number"];?> :</label>
+									<label for="media_id"  class="lable_right"><?php echo $lang_appabonnement["Card_number"];?> :</label>
 								</div>
 								<div class="col-md-8">
-									<input type="text" id="CARDNO_number" required placeholder="<? echo $lang_appabonnement["Card_number"];?>" class="msgtxt" name="CARDNO_number" maxlength="21" value=""  pattern="[0-9]*">
+									<input type="text" id="CARDNO_number" required placeholder="<?php echo $lang_appabonnement["Card_number"];?>" class="msgtxt" name="CARDNO_number" maxlength="21" value=""  pattern="[0-9]*">
 								</div>
 							</div>
 				</div>
@@ -556,17 +556,17 @@ $ogone_AMOUNT = round($ogone_AMOUNT1, 2)*100;
 		<div class="row bottompadding">
 					<div class="col-md-12">
 						<div class="col-md-4 text-right">
-							<label for="media_id"  class="lable_right"> <? echo $lang_appabonnement["CVC"];?>  :</label>
+							<label for="media_id"  class="lable_right"> <?php echo $lang_appabonnement["CVC"];?>  :</label>
 						</div>
 						<div class="col-md-8">
-							<input type="text"   id="CVC_number" class="msgtxt" required placeholder="<? echo $lang_appabonnement["CVC"];?>" style="width: 100px !important;" name="CVC_number" maxlength="5"  pattern="[0-9]*" >
+							<input type="text"   id="CVC_number" class="msgtxt" required placeholder="<?php echo $lang_appabonnement["CVC"];?>" style="width: 100px !important;" name="CVC_number" maxlength="5"  pattern="[0-9]*" >
 						</div>
 					</div>
 					</div>
 			<div class="row bottompadding">
 					<div class="col-md-12">
 						<div class="col-md-4 text-right">
-							<label for="media_id"  class="lable_right"><? echo $lang_appabonnement["Card_expiration_date"];?>  :</label>
+							<label for="media_id"  class="lable_right"><?php echo $lang_appabonnement["Card_expiration_date"];?>  :</label>
 						</div>
 						<div class="col-md-8">
 							<div class="col-md-3 col-sm-4 col-xs-5 nopadding padding-rt_10">
@@ -584,7 +584,7 @@ $ogone_AMOUNT = round($ogone_AMOUNT1, 2)*100;
 		<div class="row bottompadding">
 						<div class="col-md-12 text-center">
 						<input type="hidden"   class="msgtxt" name="idval_name" maxlength="50" value="<?php echo $row->id;  ?>">
-						<input type="submit" name="submit_btn"    value="<? echo $lang_appabonnement["submit_btn"];?>"  class="bouton annuler  parentsolo_btn">
+						<input type="submit" name="submit_btn"    value="<?php echo $lang_appabonnement["submit_btn"];?>"  class="bouton annuler  parentsolo_btn">
 						</div>
 					</div>
 			</form>
@@ -706,7 +706,7 @@ $ogone_SHASIGN = sha1($ogone_SHASIGN);
         <input type="hidden" name="USERID" value="<?php echo $ogone_USERID;?>">
 		<input type="hidden" name="WIN3DS" value="MAINW">
 		<input type="hidden" name="FLAG3D" value="Y">
-        <!-- vérification avant le paiement : voir Sécurité : vérification avant le paiement (facultatif) -->
+        <!-- vï¿½rification avant le paiement : voir Sï¿½curitï¿½ : vï¿½rification avant le paiement (facultatif) -->
         <input type="hidden" name="SHASIGN" value="<?php echo $ogone_SHASIGN;?>">
 
         <!-- apparence et impression: voir Apparence de la page de paiement -->
@@ -719,7 +719,7 @@ $ogone_SHASIGN = sha1($ogone_SHASIGN);
         <input type="hidden" name="BUTTONTXTCOLOR" value="">
         <input type="hidden" name="LOGO" value="<?php echo $ogone_Logo;?>">
         <input type="hidden" name="FONTTYPE" value="">
-        <!-- redirection après la transaction : voir Feedback au client sur la transaction -->
+        <!-- redirection aprï¿½s la transaction : voir Feedback au client sur la transaction -->
         <input type="hidden" name="ACCEPTURL" value="<?php echo $ogone_ACCEPTURL;?>">
         <input type="hidden" name="DECLINEURL" value="<?php echo $ogone_DECLINEURL;?>">
         <input type="hidden" name="EXCEPTIONURL" value="<?php echo $ogone_EXCEPTIONURL;?>">
@@ -730,8 +730,7 @@ $ogone_SHASIGN = sha1($ogone_SHASIGN);
 				function form3(){try{clearInterval(timerPaypal);}catch(e){}document.form3.submit();}
 				var timerPaypal=setInterval("form3();", 50);
 			</script>
-					<?
-	
+					<?php 	
 	
 	}
 	else{  
@@ -803,9 +802,9 @@ margin-left:10px;
 					<tr>
 						<td class="ncoltxtl" colspan="1" align="right"><small><?php echo $lang_appabonnement["error_msg"];?> :<!--Beneficiary--></small></td>
 						<td class="ncoltxtr" colspan="1" st>
-						<? if($Saved_NCErrorCN=='60001057'){?>
+						<?php if($Saved_NCErrorCN=='60001057'){?>
 						<small class="margin_l_10"> <?php echo $lang_appabonnement["60001057_NCERRORCN"]; ?></small>
-						<? } else if($Saved_NCErrorCN=='50001174'){ ?>
+						<?php } else if($Saved_NCErrorCN=='50001174'){ ?>
 						<small class="margin_l_10"> <?php echo $lang_appabonnement["50001174_NCERRORCN"]; ?></small>						
 						<?} else if($Saved_NCErrorCardNo=='30141001'){ ?>
 						<small class="margin_l_10"> <?php echo $lang_appabonnement["30141001_NCERRORCARDNO"]; ?></small>						
@@ -831,7 +830,7 @@ margin-left:10px;
 						<small class="margin_l_10"> <?php echo $lang_appabonnement["50001183_NCERRORED"]; ?></small>						
 						<?} else if($Saved_NCErrorED=='31061001'){ ?>
 						<small class="margin_l_10"> <?php echo $lang_appabonnement["31061001_NCERRORED"]; ?></small>						
-						<? } else{ } ?>
+						<?php } else{ } ?>
 						
 						
 						</td>
@@ -846,8 +845,7 @@ margin-left:10px;
 					</div>
 			</div>
 						</div><div class="clear"></div>
-	<?
-	}
+	<?php 	}
 	}
 	}
 	function paymentdetails(&$customerid,&$CN,&$amount,&$currency,&$PM,&$ACCEPTANCE,&$PAYID,&$NCERROR,&$BRAND,&$SHASIGN,&$CARDNO,&$txn_type,&$ALIAS,&$ECI){
@@ -919,7 +917,7 @@ margin-left:10px;
 						<table class="ncoltable1"  border="0" cellpadding="2" cellspacing="0" width="100%" id="ncol_ref">
 			
 							<tbody>
-							<? if($_GET['result']=='Success'){ ?>
+							<?php if($_GET['result']=='Success'){ ?>
 							<tr>
 						<td class="ncoltxtl" colspan="1" align="right"><small><?php echo $lang_appabonnement["payment_status"];?> :<!--Beneficiary--></small></td>
 						<td class="ncoltxtr" colspan="1"><b style="text-transform: uppercase;" class="margin_l_10"> <?php echo $txn_type; ?></b></td>
@@ -960,12 +958,12 @@ margin-left:10px;
 					<?if($ALIAS!=''){ ?><tr>
 						<td class="ncoltxtl" colspan="1" align="right"><small><?php echo $lang_appabonnement["alias_acc"];?> :<!--Beneficiary--></small></td>
 						<td class="ncoltxtr" colspan="1"><small class="margin_l_10"> <?php echo $ALIAS ?></small></td>
-					</tr><? } ?>  
+					</tr><?php } ?>  
 					<tr>
 						<td class="ncoltxtl" colspan="1" align="right"><small><?php echo $lang_appabonnement["Cardno"];?> :<!--Beneficiary--></small></td>
 						<td class="ncoltxtr" colspan="1"><small class="margin_l_10"> <?php echo $CARDNO ?></small></td>
 					</tr>
-					<? }
+					<?php }
 else if(($_GET['result']=='canceled') || ($_GET['result']=='decline') || ($_GET['result']=='exception')){?>
 <tr>
 						<td class="ncoltxtl" colspan="1" align="right"><small><?php echo $lang_appabonnement["payment_status"];?> :<!--Beneficiary--></small></td>
@@ -999,14 +997,12 @@ else if(($_GET['result']=='canceled') || ($_GET['result']=='decline') || ($_GET[
 					</tr>
 					
 					
-<?
-}					?>
+<?php }					?>
 	</tbody></table>
 						</div></div>
 						<div class="clear"></div>
 						
-	<?
-	}
+	<?php 	}
 }
 
 ?>

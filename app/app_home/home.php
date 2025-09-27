@@ -188,11 +188,13 @@
 	$query = "Select id, titre_".$_GET['lang']." as titre, texte_".$_GET['lang']." as texte, url_".$_GET['lang']." as url from box WHERE box_emplacement_id = 6 and published = 1";
 	$box_menus_2 = $db->loadObjectList($query);
 	
-    if(count($box_menus_2) > 0){
-        $num = JL::getSessionInt('box_menu2',0) % count($box_menus_2);
-        $box_menu_2 = $box_menus_2[$num];
-        JL::setSession('box_menu2',($num+1));    
-    }
+if (is_array($box_menus_2) && count($box_menus_2) > 0) {
+    $count = count($box_menus_2);
+    $num = JL::getSessionInt('box_menu2', 0) % $count;
+    $box_menu_2 = $box_menus_2[$num];
+    JL::setSession('box_menu2', $num + 1);    
+}
+
 	
     
 	//affichage

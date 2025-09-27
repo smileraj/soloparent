@@ -4,7 +4,7 @@ $lang_event = array(
 
 	//------------------Page event.html.php ---------
 
-	"MessagesParentsolo" => "Parentsolo.ch messages",
+	"MessagesParentsolo" => "solocircl.com messages",
 	
 	
 	"LancerUnAppel" => "Call for events",

@@ -14,7 +14,7 @@ $langChat= array(
 	"closeConvConfirm" => "Sind Sie sich sicher, dass Sie diese Unterhaltung beenden möchten?",
 	"CorrespBlacklist" => "Sie können keine Mitteilung an einen Nutzer auf Ihrer schwarzen Liste senden.",
 	"UserBlacklist" => "Sie dürfen diesem Mitglied keine Nachricht senden, denn dieses Mitglied existiert nicht oder nicht mehr.",
-	"Abonnement" => " Om te chatten en te gebruiken chatten, moet u een abonnement of verlengen van uw Parentsolo.ch subscription. To abonneren klik HIER ",
+	"Abonnement" => " Om te chatten en te gebruiken chatten, moet u een abonnement of verlengen van uw solocircl.com subscription. To abonneren klik HIER ",
 	
 	"AHeure" => "bis",
 	

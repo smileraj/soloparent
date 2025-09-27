@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 	
 	require_once('home.html.php');
@@ -51,7 +51,7 @@
 			$FROM = " FROM home_".$lang;
 		}
 		
-		if(count($where)) {
+		if (is_array($where)) {
 			$_where		= " WHERE ".implode(' AND ', $where);
 		}
 		
@@ -66,7 +66,7 @@
 		
 	}
 	
-	// affiche un contenu passé en param $id
+	// affiche un contenu passï¿½ en param $id
 	function editer() {
 		global $db, $messages, $action;
 		
@@ -92,7 +92,7 @@
 			
 		} else {
 			
-			// récup le contenu
+			// rï¿½cup le contenu
 			$query = "SELECT *"
 			.$FROM
 			." WHERE id = '".$id."'"
@@ -116,7 +116,7 @@
 		// messages d'erreur
 		$error		= false;
 		
-		// récup les données
+		// rï¿½cup les donnï¿½es
 		$data 		= getData(true);
 		
 		$lang	= JL::getVar('lang', '', true);
@@ -127,7 +127,7 @@
 			$adr = "&lang=".$lang;
 		}
 		
-		// vérifs
+		// vï¿½rifs
 		if(!$data->titre) {
 			$messages[]	= '<span class="error">Veuillez indiquer un titre svp.</span>';
 			$error		= true;

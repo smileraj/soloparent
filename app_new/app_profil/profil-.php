@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 
 	require_once('profil.html.php');
@@ -20,7 +20,7 @@
 	}
 
 
-	// pseudo controller à la joomla 1.0
+	// pseudo controller ï¿½ la joomla 1.0
 	switch($action) {
 
 
@@ -34,7 +34,7 @@
 			if(!$user->id) JL::redirect("index.php?app=profil&action=inscription".'&'.$langue);
 			$messages = parrainagesubmit();
 
-			// ré-affiche le formulaire avec message de validation
+			// rï¿½-affiche le formulaire avec message de validation
 			parrainage($messages);
 		break;
 
@@ -46,7 +46,7 @@
 		case 'view4':
 		case 'view5':
 		case 'view6': // groupes
-		/*case 'view7': // messages échangés */
+		/*case 'view7': // messages ï¿½changï¿½s */
 			if(!$user->id) {
 				JL::redirect("index.php?app=profil&action=inscription".'&'.$langue);
 			}
@@ -92,10 +92,10 @@
 				JL::redirect("index.php?app=profil&action=inscription".'&'.$langue);
 			}
 
-			// traitement des données du formulaire
+			// traitement des donnï¿½es du formulaire
 			$messages = notificationsubmit();
 
-			// ré-affiche le formulaire avec message de validation
+			// rï¿½-affiche le formulaire avec message de validation
 			notification($messages);
 
 		break;
@@ -114,10 +114,10 @@
 			// soumission du formulaire
 			if((int)JL::getVar('save', 0)) {
 
-				// ~model: sauvegarde les données
+				// ~model: sauvegarde les donnï¿½es
 				$messages = mdpsubmit();
 
-				// si les données sont valides
+				// si les donnï¿½es sont valides
 				if(!count($messages)) {
 					JL::redirect(SITE_URL.'/index.php?app=profil&action=mdp&msg=mdpok'.'&'.$langue);
 				}
@@ -135,7 +135,7 @@
 			$id		= (int)JL::getVar('id', 0, true);
 			$key	= JL::getVar('key', '', true);
 
-			// un param non renseigné
+			// un param non renseignï¿½
 			if(!$id || !$key) {
 				JL::redirect(SITE_URL.'/index.php?app=profil&action=mdp'.'&'.$langue);
 			}
@@ -157,24 +157,24 @@
 		break;
 
 		case 'step9':
-			step_check(9); // on peut aller directement à la fin de l'inscription, mais il faut avoir validé l'étape 1
+			step_check(9); // on peut aller directement ï¿½ la fin de l'inscription, mais il faut avoir validï¿½ l'ï¿½tape 1
 			step9();
 		break;
 
 		case 'step9submit':
 
-			// traitement des données du formulaire
+			// traitement des donnï¿½es du formulaire
 			$messages = step9submit();
 
-			// messages présents (un message seul = message de validation, donc user log)
-			if(count($messages)) {
+			// messages prï¿½sents (un message seul = message de validation, donc user log)
+			if (is_array($messages)) {
 
-				// ré-affiche l'étape
+				// rï¿½-affiche l'ï¿½tape
 				step9($messages);
 
 			} else {
 
-				// passe à l'étape suivante
+				// passe ï¿½ l'ï¿½tape suivante
 				JL::redirect('index.php?app=profil&action=finalisation'.'&'.$langue);
 
 			}
@@ -189,18 +189,18 @@
 
 		case 'step8submit':
 
-			// traitement des données du formulaire
+			// traitement des donnï¿½es du formulaire
 			$messages = step8submit();
 
-			// messages présents (un message seul = message de validation, donc user log)
-			if(count($messages)) {
+			// messages prï¿½sents (un message seul = message de validation, donc user log)
+			if (is_array($messages)) {
 
 				step8($messages);
 				//JL::redirect('index.php?app=search&action=saved');
 
 			} else {
 
-				// passe à l'étape suivante
+				// passe ï¿½ l'ï¿½tape suivante
 				JL::redirect('index.php?app=profil&action=step9'.'&'.$langue);
 
 			}
@@ -216,18 +216,18 @@
 
 		case 'step7submit':
 
-			// traitement des données du formulaire
+			// traitement des donnï¿½es du formulaire
 			$messages = step7submit();
 
-			// messages présents (un message seul = message de validation, donc user log)
-			if(count($messages)) {
+			// messages prï¿½sents (un message seul = message de validation, donc user log)
+			if (is_array($messages)) {
 
-				// ré-affiche l'étape
+				// rï¿½-affiche l'ï¿½tape
 				step7($messages);
 
 			} else {
 
-				// passe à l'étape suivante
+				// passe ï¿½ l'ï¿½tape suivante
 				JL::redirect('index.php?app=profil&action=step8'.'&'.$langue);
 
 			}
@@ -243,18 +243,18 @@
 
 		case 'step6submit':
 
-			// traitement des données du formulaire
+			// traitement des donnï¿½es du formulaire
 			$messages = step6submit();
 
-			// messages présents (un message seul = message de validation, donc user log)
-			if(count($messages)) {
+			// messages prï¿½sents (un message seul = message de validation, donc user log)
+			if (is_array($messages)) {
 
-				// ré-affiche l'étape
+				// rï¿½-affiche l'ï¿½tape
 				step6($messages);
 
 			} else {
 
-				// passe à l'étape suivante
+				// passe ï¿½ l'ï¿½tape suivante
 				JL::redirect('index.php?app=profil&action=step7'.'&'.$langue);
 
 			}
@@ -270,18 +270,18 @@
 
 		case 'step5submit':
 
-			// traitement des données du formulaire
+			// traitement des donnï¿½es du formulaire
 			$messages = step5submit();
 
-			// messages présents (un message seul = message de validation, donc user log)
-			if(count($messages)) {
+			// messages prï¿½sents (un message seul = message de validation, donc user log)
+			if (is_array($messages)) {
 
-				// ré-affiche l'étape
+				// rï¿½-affiche l'ï¿½tape
 				step5($messages);
 
 			} else {
 
-				// passe à l'étape suivante
+				// passe ï¿½ l'ï¿½tape suivante
 				JL::redirect('index.php?app=profil&action=step6'.'&'.$langue);
 
 			}
@@ -297,18 +297,18 @@
 
 		case 'step4submit':
 
-			// traitement des données du formulaire
+			// traitement des donnï¿½es du formulaire
 			$messages = step4submit();
 
-			// messages présents (un message seul = message de validation, donc user log)
-			if(count($messages)) {
+			// messages prï¿½sents (un message seul = message de validation, donc user log)
+			if (is_array($messages)) {
 
-				// ré-affiche l'étape
+				// rï¿½-affiche l'ï¿½tape
 				step4($messages);
 
 			} else {
 
-				// passe à l'étape suivante
+				// passe ï¿½ l'ï¿½tape suivante
 				JL::redirect('index.php?app=profil&action=step5'.'&'.$langue);
 
 			}
@@ -324,18 +324,18 @@
 
 		case 'step3submit':
 
-			// traitement des données du formulaire
+			// traitement des donnï¿½es du formulaire
 			$messages = step3submit();
 
-			// messages présents (un message seul = message de validation, donc user log)
-			if(count($messages)) {
+			// messages prï¿½sents (un message seul = message de validation, donc user log)
+			if (is_array($messages)) {
 
-				// ré-affiche l'étape
+				// rï¿½-affiche l'ï¿½tape
 				step3($messages);
 
 			} else {
 
-				// passe à l'étape suivante
+				// passe ï¿½ l'ï¿½tape suivante
 				JL::redirect('index.php?app=profil&action=step4'.'&'.$langue);
 
 			}
@@ -351,18 +351,18 @@
 
 		case 'step2submit':
 
-			// traitement des données du formulaire
+			// traitement des donnï¿½es du formulaire
 			$messages = step2submit();
 
-			// messages présents (un message seul = message de validation, donc user log)
-			if(count($messages)) {
+			// messages prï¿½sents (un message seul = message de validation, donc user log)
+			if (is_array($messages)) {
 
-				// ré-affiche l'étape
+				// rï¿½-affiche l'ï¿½tape
 				step2($messages);
 
 			} else {
 
-				// passe à l'étape suivante
+				// passe ï¿½ l'ï¿½tape suivante
 				JL::redirect('index.php?app=profil&action=step3'.'&'.$langue);
 
 			}
@@ -377,18 +377,18 @@
 
 		case 'step1submit':
 
-			// traitement des données du formulaire
+			// traitement des donnï¿½es du formulaire
 			$messages = step1submit();
 
-			// messages présents (un message seul = message de validation, donc user log)
-			if(count($messages)) {
+			// messages prï¿½sents (un message seul = message de validation, donc user log)
+			if (is_array($messages)) {
 
-				// ré-affiche l'étape
+				// rï¿½-affiche l'ï¿½tape
 				step1($messages);
 
 			} else {
 
-				// passe à l'étape suivante
+				// passe ï¿½ l'ï¿½tape suivante
 				JL::redirect('index.php?app=profil&action=step2'.'&'.$langue);
 
 			}
@@ -409,15 +409,15 @@
 		global $langue,$langString;
 		global $db, $user;
 
-		// connexion aléatoire de nos profils entre 8 et 24 heures
+		// connexion alï¿½atoire de nos profils entre 8 et 24 heures
 		/*if(date('G') >= 8 AND rand(0,10) == 0) {
 
-			// user id à exclure
+			// user id ï¿½ exclure
 			$connectUserId	= array();
 
 			/
 
-				profils à exclure des connexions automatiques
+				profils ï¿½ exclure des connexions automatiques
 				> jolito 		672
 				> pauline33		22
 				> benji		21
@@ -431,7 +431,7 @@
 			$exclureUserId	= array(672,22,21,19,15,25,677,678);
 
 
-			// récup nos profils
+			// rï¿½cup nos profils
 			$query = "SELECT user_id"
 			." FROM user_profil"
 			." WHERE helvetica = 1 AND user_id NOT IN (".implode(',', $exclureUserId).")"
@@ -532,7 +532,7 @@
 		$row = new stdClass();
 
 		// Form data
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row->{$key} = trim(JL::getVar($key, $value));
 			}
@@ -595,7 +595,7 @@
 		// Data Recovery
 		$_data	= mdp_data();
 
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$_data[$key] = trim(JL::getVar($key, $value, true));
 			}
@@ -668,7 +668,7 @@
 			$texte		.= '<b>'.$lang_appprofil["Login"].':</b> '.$userTemp->username.'<br />';
 			$texte		.= '<b>'.$lang_appprofil["MotdePasse"].':</b> '.$_data['password'].'<br /><br />';
 			$texte		.= ''.$lang_appprofil["Attention"].' !<br /><br />';
-			$texte		.= ''.$lang_appprofil["ABientotSur"].' <a href="'.SITE_URL.'&'.$langue.'" title="Premier site de rencontres pour parents c&eacute;libataires Suisses">Parentsolo.ch</a> !';
+			$texte		.= ''.$lang_appprofil["ABientotSur"].' <a href="'.SITE_URL.'&'.$langue.'" title="Premier site de rencontres pour parents c&eacute;libataires Suisses">solocircl.com</a> !';
 
 			// envoi du mail
 			mail($_data['email'], $titre, $texte, $headers);
@@ -682,7 +682,7 @@
 	}
 
 
-	// le visiteur a-t-il rempli l'étape précédent la numéro $step_num
+	// le visiteur a-t-il rempli l'ï¿½tape prï¿½cï¿½dent la numï¿½ro $step_num
 	function step_check($step_num) {
 		global $langue;
 		global $db, $user;
@@ -694,9 +694,9 @@
 			} elseif(!isset($_SESSION['step_ok'])) {
 				JL::redirect("index.php?app=profil&action=inscription");*/
 
-			if($step_num > 1 && JL::getSessionInt('step_ok', 0) < 1) { // page inscription obligatoire (étape 1)
+			if($step_num > 1 && JL::getSessionInt('step_ok', 0) < 1) { // page inscription obligatoire (ï¿½tape 1)
 				JL::redirect("index.php?app=profil&action=inscription".'&'.$langue);
-			} elseif($step_num > 9 && JL::getSessionInt('step_ok', 0) < 9) { // page coordonnées obligatoire (étape 9)
+			} elseif($step_num > 9 && JL::getSessionInt('step_ok', 0) < 9) { // page coordonnï¿½es obligatoire (ï¿½tape 9)
 				JL::redirect("index.php?app=profil&action=step9".'&'.$langue);
 			} else {
 				$query = "UPDATE user_inscription SET step = '".$step_num."', ip = '".$_SERVER["REMOTE_ADDR"]."' WHERE username LIKE '".JL::getSession('username', '', true)."'";
@@ -714,7 +714,7 @@
 
 
 		// affecte un ID temporaire au visiteur s'il n'en a pas encore
-		// ATTENTION: ne surtout pas mettre le id_tmp en donnée du formulaire, quelqu'un pourrait voler l'id_tmp d'une autre personne sinon !
+		// ATTENTION: ne surtout pas mettre le id_tmp en donnï¿½e du formulaire, quelqu'un pourrait voler l'id_tmp d'une autre personne sinon !
 		if(!isset($_SESSION['id_tmp'])) {
 			JL::setSession('id_tmp', JL::microtime_float()*10000);
 		}
@@ -736,25 +736,25 @@
 		$list_recherche_nb_enfants	= array();
 
 
-		// conserve les données envoyées en session, si on vient de l'inscription rapide uniquement !
+		// conserve les donnï¿½es envoyï¿½es en session, si on vient de l'inscription rapide uniquement !
 		if((int)JL::getVar('inscriptionrapide', 0) > 0 || (int)JL::getVar('parrain_id', 0) > 0) {
-			if(count($_data)) {
+			if (is_array($_data)) {
 				foreach($_data as $key => $value) {
 					JL::setSession($key, JL::getVar($key, $value));
 				}
 			}
 		}
 
-		// utilisateur log et aucun message présent
+		// utilisateur log et aucun message prï¿½sent
 		if($user->id && !count($messages)) {
 
-			// récup les données en db
+			// rï¿½cup les donnï¿½es en db
 			$query = "SELECT genre, naissance_date, nb_enfants, canton_id, ville_id, offres, recherche_age_min, recherche_age_max, recherche_nb_enfants, parrain_id"
 			." FROM user_profil"
 			." WHERE user_id = '".$user->id."'"
 			." LIMIT 0,1"
 			;
-			$tmp = $db->loadResultArray($query);
+			$tmp = $db->loadObjectList($query);
 
 			// extrait les valeurs de la date de naissance
 			$naissance_date	= explode('-', $tmp['naissance_date']);
@@ -762,7 +762,7 @@
 			$tmp['naissance_mois'] 		= $naissance_date[1];
 			$tmp['naissance_jour'] 		= $naissance_date[2];
 
-			// conditions générales acceptées par défaut si l'utilisateur est log ! possibilité de reset les conditions comme ça
+			// conditions gï¿½nï¿½rales acceptï¿½es par dï¿½faut si l'utilisateur est log ! possibilitï¿½ de reset les conditions comme ï¿½a
 			$tmp['conditions']			= 1;
 
 			// pseudo
@@ -779,36 +779,36 @@
 		}
 
 
-		// récup les données temporaires en session
-		if(count($_data)) {
+		// rï¿½cup les donnï¿½es temporaires en session
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row[$key]	= JL::getSession($key, $value);
 			}
 		}
 
 		// homme / femme
-		$list_genre[] = JL::makeOption('', '» '.$lang_appprofil["Genre_s"].'');
+		$list_genre[] = JL::makeOption('', 'ï¿½ '.$lang_appprofil["Genre_s"].'');
 		$list_genre[] = JL::makeOption('f', ''.$lang_appprofil["UneFemme"].'');
 		$list_genre[] = JL::makeOption('h', ''.$lang_appprofil["UnHomme"].'');
 		$list['genre'] = JL::makeSelectList( $list_genre, 'genre', 'onChange="step1GenderChange(this.value);" class="genreCanton"', 'value', 'text', $row['genre']);
 
 
 		// jour de naissance
-		$list_naissance_jour[] = JL::makeOption('0', '» '.$lang_appprofil["JJ"].'');
+		$list_naissance_jour[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["JJ"].'');
 		for($i=1; $i<=31; $i++) {
 			$list_naissance_jour[] = JL::makeOption($i, sprintf('%02d', $i));
 		}
 		$list['naissance_jour'] = JL::makeSelectList( $list_naissance_jour, 'naissance_jour', '', 'value', 'text', $row['naissance_jour']);
 
 		// mois de naissance
-		$list_naissance_mois[] = JL::makeOption('0', '» '.$lang_appprofil["MM"].'');
+		$list_naissance_mois[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["MM"].'');
 		for($i=1; $i<=12; $i++) {
 			$list_naissance_mois[] = JL::makeOption($i, sprintf('%02d', $i));
 		}
 		$list['naissance_mois'] = JL::makeSelectList( $list_naissance_mois, 'naissance_mois', '', 'value', 'text', $row['naissance_mois']);
 
-		// année de naissance
-		$list_naissance_annee[] = JL::makeOption('0', '» '.$lang_appprofil["AAAA"].'');
+		// annï¿½e de naissance
+		$list_naissance_annee[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["AAAA"].'');
 		for($i=(intval(date('Y'))-18); $i>=1930; $i--) {
 			$list_naissance_annee[] = JL::makeOption($i, sprintf('%04d', $i));
 		}
@@ -823,14 +823,14 @@
 		$list['nb_enfants'] = JL::makeSelectList( $list_nb_enfants, 'nb_enfants', '', 'value', 'text', $row['nb_enfants']);
 
 
-		// recherche âge mini
-		$list_recherche_age_min[] = JL::makeOption('0', '» '.$lang_appprofil["Age"].'');
+		// recherche ï¿½ge mini
+		$list_recherche_age_min[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["Age"].'');
 		for($i=18; $i<=(intval(date('Y'))-1930); $i++) {
 			$list_recherche_age_min[] = JL::makeOption($i, $i);
 		}
 		$list['recherche_age_min'] = JL::makeSelectList( $list_recherche_age_min, 'recherche_age_min', '', 'value', 'text', $row['recherche_age_min']);
 
-		$list_recherche_age_max[] = JL::makeOption('0', '» '.$lang_appprofil["Age"].'');
+		$list_recherche_age_max[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["Age"].'');
 		for($i=18; $i<=(intval(date('Y'))-1930); $i++) {
 			$list_recherche_age_max[] = JL::makeOption($i, $i);
 		}
@@ -847,7 +847,7 @@
 
 
 		// cantons
-		$list_canton_id[] = JL::makeOption('0', '» '.$lang_appprofil["Canton_s"].'');
+		$list_canton_id[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["Canton_s"].'');
 		$query = "SELECT id AS value, nom AS text"
 		." FROM profil_canton$langString"
 		." WHERE published = 1"
@@ -859,10 +859,10 @@
 		$list['ville_id']	= '<input type="hidden" id="ville_id" name="ville_id" value="'.$row['ville_id'].'" />';
 
 
-		// récup le texte de gauche pendant l'inscription
+		// rï¿½cup le texte de gauche pendant l'inscription
 		$notice = getNotice(1);
 
-		// récup les conditions générales d'utilisation
+		// rï¿½cup les conditions gï¿½nï¿½rales d'utilisation
 		$query = "SELECT texte FROM contenu$langString WHERE id = 5 LIMIT 0,1";
 		$conditions = $db->loadResult($query);
 
@@ -870,7 +870,7 @@
 		// parrainage
 		if($row['parrain_id'] > 0) {
 
-			// récup le pseudo du parrain
+			// rï¿½cup le pseudo du parrain
 			$query = "SELECT username FROM user WHERE id = '".$db->escape($row['parrain_id'])."' LIMIT 0,1";
 			$list['parrain'] = $db->loadResult($query);
 
@@ -914,11 +914,11 @@
 		$messages			= array();
 
 
-		// données à récup de l'étape précédente + valeur par défaut
+		// donnï¿½es ï¿½ rï¿½cup de l'ï¿½tape prï¿½cï¿½dente + valeur par dï¿½faut
 		$_data	= step1_data();
 
-		// conserve les données envoyées en session
-		if(count($_data)) {
+		// conserve les donnï¿½es envoyï¿½es en session
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				JL::setSession($key, JL::getVar($key, $value));
 			}
@@ -933,7 +933,7 @@
 		}
 
 
-		// vérif les données
+		// vï¿½rif les donnï¿½es
 		if(JL::getSession('genre', '') == '') {
 			$messages[]	= '<span class="error">'.$lang_appprofil["IndiquezVousEtesHomme"].'.</span>';
 		}
@@ -986,7 +986,7 @@
 			$messages[]	= '<span class="error">'.$lang_appprofil["FautLireLesCondition"].'.</span>';
 		}
 
-		// vérification du captcha
+		// vï¿½rification du captcha
 		if(!$user->id && intval(JL::getVar('codesecurite', -1)) != JL::getSession('captcha', 0)) {
 			$messages[]	= '<span class="error">'.$lang_appprofil["CodeSecuriteincorrect"].'.</span>';
 		}
@@ -997,7 +997,7 @@
 			// user log
 			if($user->id) {
 
-				// enregistre les modifs en DB (certains champs ne sont pas mis à jour volontairement ==> sécurité oblige !)
+				// enregistre les modifs en DB (certains champs ne sont pas mis ï¿½ jour volontairement ==> sï¿½curitï¿½ oblige !)
 				$query = "UPDATE user_profil SET"
 				." offres = '".JL::getSession('offres', '0', true)."',"
 				." naissance_date = '".JL::getSessionInt('naissance_annee', 0)."-".JL::getSessionInt('naissance_mois', 0)."-".JL::getSessionInt('naissance_jour', 0)."',"
@@ -1019,33 +1019,33 @@
 					$db->query($query);
 				}
 
-				// à laisser que l'user soit log ou pas, même si on affiche pas le message (utile dans le swtich case sur $action
+				// ï¿½ laisser que l'user soit log ou pas, mï¿½me si on affiche pas le message (utile dans le swtich case sur $action
 				$messages[]	= '<span class="valid">'.$lang_appprofil["ModificationEnregistrees"].' !</span>';
 
 			} else { // user non log
 
-				// check que le pseudo n'est pas déjà pris
+				// check que le pseudo n'est pas dï¿½jï¿½ pris
 				$query = "SELECT id FROM user WHERE username LIKE '".JL::getSession('username', '', true)."' LIMIT 0,1";
 				$pseudoExistantUser = $db->loadResult($query);
 
-				// check que le pseudo n'est pas déjà réservé par un autre utilisateur (en cours d'inscription), max 1 heure de réservation
+				// check que le pseudo n'est pas dï¿½jï¿½ rï¿½servï¿½ par un autre utilisateur (en cours d'inscription), max 1 heure de rï¿½servation
 				$query = "SELECT username FROM user_inscription WHERE username LIKE '".JL::getSession('username', '', true)."' AND id_tmp NOT LIKE '".JL::getSession('id_tmp', '')."' AND (UNIX_TIMESTAMP(NOW())-UNIX_TIMESTAMP(reservation_date)) < 3600 LIMIT 0,1";
 				$pseudoExistantTmp = $db->loadResult($query);
 
-				// pseudo déjà pris
+				// pseudo dï¿½jï¿½ pris
 				if($pseudoExistantUser || $pseudoExistantTmp) {
 					$messages[]	= '<span class="error">'.$lang_appprofil["CePseudoEstDeja"].'.</span>';
 				}
 
-				// check que le pseudo n'est pas déjà pris
+				// check que le pseudo n'est pas dï¿½jï¿½ pris
 				$query = "SELECT id FROM user WHERE username LIKE '".JL::getSession('email', '', true)."' LIMIT 0,1";
 				$emailExistantUser = $db->loadResult($query);
 
-				// check que le pseudo n'est pas déjà réservé par un autre utilisateur (en cours d'inscription), max 1 heure de réservation
+				// check que le pseudo n'est pas dï¿½jï¿½ rï¿½servï¿½ par un autre utilisateur (en cours d'inscription), max 1 heure de rï¿½servation
 				$query = "SELECT email FROM user_inscription WHERE email LIKE '".JL::getSession('email', '', true)."' AND id_tmp NOT LIKE '".JL::getSession('id_tmp', '')."' AND (UNIX_TIMESTAMP(NOW())-UNIX_TIMESTAMP(reservation_date)) < 3600 LIMIT 0,1";
 				$emailExistantTmp = $db->loadResult($query);
 
-				// pseudo déjà pris
+				// pseudo dï¿½jï¿½ pris
 				if($emailExistantUser || $emailExistantTmp) {
 					$messages[]	= '<span class="error">'.$lang_appprofil["CetEmailEstDeja"].'.</span>';
 				}
@@ -1053,12 +1053,12 @@
 				// si l'email et le pseudo sont dispo
 				if(!$pseudoExistantUser && !$pseudoExistantTmp && !$emailExistantUser && !$emailExistantTmp) {
 
-					// efface la précédente réservation de l'utilisateur au cas où
+					// efface la prï¿½cï¿½dente rï¿½servation de l'utilisateur au cas oï¿½
 					$query = "DELETE FROM user_inscription WHERE username LIKE '".JL::getSession('username','',true)."' OR email LIKE '".JL::getSession('email','',true)."'";
 					$db->query($query);
 
 
-					// réserve le pseudo et l'email
+					// rï¿½serve le pseudo et l'email
 					$query = "INSERT INTO user_inscription SET "
 					." username = '".JL::getSession('username', '', true)."',"
 					." email = '".JL::getSession('email', '', true)."',"
@@ -1070,7 +1070,7 @@
 				}
 
 
-				// valide l'étape
+				// valide l'ï¿½tape
 				if(!isset($_SESSION['step_ok'])) {
 					$_SESSION['step_ok']	= 1;
 				}
@@ -1090,11 +1090,11 @@
 		include("lang/app_profil.".$_GET['lang'].".php");
 		global $db, $user;
 
-		// crée le dossier d'upload temporaire
+		// crï¿½e le dossier d'upload temporaire
 		JL::makeUploadDir();
 
 
-		// données de l'étape + valeurs par défaut
+		// donnï¿½es de l'ï¿½tape + valeurs par dï¿½faut
 		$_data					= step2_data();
 		$row					= array();
 		$list					= array();
@@ -1103,7 +1103,7 @@
 		// utilisateur log
 		if($user->id) {
 
-			// récup les données en db
+			// rï¿½cup les donnï¿½es en db
 			$query = "SELECT photo_defaut, photo_home"
 			." FROM user_profil"
 			." WHERE user_id = '".$user->id."'"
@@ -1118,8 +1118,8 @@
 		}
 
 
-		// récup les champs correspondant en session, sinon valeur par défaut
-		if(count($_data)) {
+		// rï¿½cup les champs correspondant en session, sinon valeur par dï¿½faut
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row[$key]	= JL::getSession($key, $value);
 			}
@@ -1129,7 +1129,7 @@
 		// si l'user est log
 		if($user->id) {
 
-			// supprime les fichiers temporaires de son répertoire de photos
+			// supprime les fichiers temporaires de son rï¿½pertoire de photos
 			$dest_dossier = 'images/profil/'.$user->id;
 			if(is_dir($dest_dossier)) {
 				$dir_id 	= opendir($dest_dossier);
@@ -1142,7 +1142,7 @@
 
 		}
 
-		// récup le texte de gauche pendant l'inscription
+		// rï¿½cup le texte de gauche pendant l'inscription
 		$notice = getNotice(2);
 
 		HTML_profil::step2($row, $list, $messages, $notice);
@@ -1167,10 +1167,10 @@
 		$messages			= array();
 
 
-		// données à récup de l'étape précédente + valeur par défaut
+		// donnï¿½es ï¿½ rï¿½cup de l'ï¿½tape prï¿½cï¿½dente + valeur par dï¿½faut
 		$_data	= step2_data();
 
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				JL::setSession($key, JL::getVar($key, $value));
 			}
@@ -1195,12 +1195,12 @@
 				$db->query($query);
 
 
-				// à laisser que l'user soit log ou pas, même si on affiche pas le message (utile dans le swtich case sur $action
+				// ï¿½ laisser que l'user soit log ou pas, mï¿½me si on affiche pas le message (utile dans le swtich case sur $action
 				$messages[]	= '<span class="valid">'.$lang_appprofil["ModificationEnregistrees"].'!</span>';
 
 			} else { // user non log
 
-				// valide l'étape
+				// valide l'ï¿½tape
 				if(isset($_SESSION['step_ok']) && $_SESSION['step_ok'] < 2) {
 					$_SESSION['step_ok']	= 2;
 				}
@@ -1219,16 +1219,16 @@
 		global $langue;
 		global $db, $user;
 
-		// données de l'étape + valeurs par défaut
+		// donnï¿½es de l'ï¿½tape + valeurs par dï¿½faut
 		$_data						= step3_data();
 		$row						= array();
 		$list						= array();
 
 
-		// utilisateur log et aucun message présent
+		// utilisateur log et aucun message prï¿½sent
 		if($user->id && !count($messages)) {
 
-			// récup les données en db
+			// rï¿½cup les donnï¿½es en db
 			$query = "SELECT annonce, published"
 			." FROM user_annonce"
 			." WHERE user_id = '".$user->id."'"
@@ -1243,14 +1243,14 @@
 		}
 
 
-		// récup les champs correspondant en session, sinon valeur par défaut
-		if(count($_data)) {
+		// rï¿½cup les champs correspondant en session, sinon valeur par dï¿½faut
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row[$key]	= JL::getSession($key, $value);
 			}
 		}
 
-		// récup le texte de gauche pendant l'inscription
+		// rï¿½cup le texte de gauche pendant l'inscription
 		$notice = getNotice(3);
 
 		HTML_profil::step3($row, $list, $messages, $notice);
@@ -1275,17 +1275,17 @@
 		$messages			= array();
 
 
-		// données à récup de l'étape précédente + valeur par défaut
+		// donnï¿½es ï¿½ rï¿½cup de l'ï¿½tape prï¿½cï¿½dente + valeur par dï¿½faut
 		$_data	= step3_data();
 
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				JL::setSession($key, JL::getVar($key, $value));
 			}
 		}
 
 
-		// si l'annonce (sans retours à la ligne) dépasse les 2000 caractères
+		// si l'annonce (sans retours ï¿½ la ligne) dï¿½passe les 2000 caractï¿½res
 		if(strlen(str_replace("\n",'',JL::getSession('annonce', '', false))) > 2000) {
 
 			// on tronque
@@ -1300,14 +1300,14 @@
 			// user log
 			if($user->id) {
 
-				// récup l'annonce existante
+				// rï¿½cup l'annonce existante
 				$query = "SELECT annonce FROM user_annonce WHERE user_id = '".$user->id."' LIMIT 0,1";
 				$annonce = $db->loadResult($query);
 
-				// si l'annonce rédigée est différente de l'ancienne
+				// si l'annonce rï¿½digï¿½e est diffï¿½rente de l'ancienne
 				if(strcmp($annonce, JL::getSession('annonce', ''))) {
 
-					// enregistre les modifs en DB (certains champs ne sont pas mis à jour volontairement ==> sécurité oblige !)
+					// enregistre les modifs en DB (certains champs ne sont pas mis ï¿½ jour volontairement ==> sï¿½curitï¿½ oblige !)
 					$query = "UPDATE user_annonce SET"
 					." annonce = '".JL::getSession('annonce', '', true)."',"
 					." published = 2"
@@ -1315,12 +1315,12 @@
 					;
 					$db->query($query);
 
-					// à laisser que l'user soit log ou pas, même si on affiche pas le message (utile dans le swtich case sur $action
+					// ï¿½ laisser que l'user soit log ou pas, mï¿½me si on affiche pas le message (utile dans le swtich case sur $action
 					$messages[]	= '<span class="valid">'.$lang_appprofil["ModificationEnregistrees"].' !</span>';
 
 				} else {
 
-					// à laisser que l'user soit log ou pas, même si on affiche pas le message (utile dans le swtich case sur $action
+					// ï¿½ laisser que l'user soit log ou pas, mï¿½me si on affiche pas le message (utile dans le swtich case sur $action
 					$messages[]	= '<span class="warning">'.$lang_appprofil["AucuneModificationEnregistrees"].' !</span>';
 
 				}
@@ -1328,7 +1328,7 @@
 
 			} else { // user non log
 
-				// valide l'étape
+				// valide l'ï¿½tape
 				if(isset($_SESSION['step_ok']) && $_SESSION['step_ok'] < 3) {
 					$_SESSION['step_ok']	= 3;
 				}
@@ -1349,7 +1349,7 @@
 		include("lang/app_profil.".$_GET['lang'].".php");
 		global $db, $user;
 
-		// données de l'étape + valeurs par défaut
+		// donnï¿½es de l'ï¿½tape + valeurs par dï¿½faut
 		$_data						= step4_data();
 		$row						= array();
 		$list						= array();
@@ -1363,16 +1363,16 @@
 		$list_origine_id			= array();
 
 
-		// utilisateur log et aucun message présent
+		// utilisateur log et aucun message prï¿½sent
 		if($user->id && !count($messages)) {
 
-			// récup les données en db
+			// rï¿½cup les donnï¿½es en db
 			$query = "SELECT signe_astrologique_id, taille_id, poids_id, silhouette_id, style_coiffure_id, cheveux_id, yeux_id, origine_id"
 			." FROM user_profil"
 			." WHERE user_id = '".$user->id."'"
 			." LIMIT 0,1"
 			;
-			$tmp = $db->loadResultArray($query);
+			$tmp = $db->loadObjectList($query);
 
 			// mise en session des valeurs
 			foreach($tmp as $key => $value) {
@@ -1382,8 +1382,8 @@
 		}
 
 
-		// récup les champs correspondant en session, sinon valeur par défaut
-		if(count($_data)) {
+		// rï¿½cup les champs correspondant en session, sinon valeur par dï¿½faut
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row[$key]	= JL::getSession($key, $value);
 			}
@@ -1391,7 +1391,7 @@
 
 
 		// signe astrologique
-		$list_signe_astrologique_id[] = JL::makeOption('0', '» '.$lang_appprofil["JeLeGardePourMois"]);
+		$list_signe_astrologique_id[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["JeLeGardePourMois"]);
 		$query = "SELECT id AS value, nom AS text"
 		." FROM profil_signe_astrologique$langString"
 		." WHERE published = 1"
@@ -1402,7 +1402,7 @@
 		$list['signe_astrologique_id'] = JL::makeSelectList( $list_signe_astrologique_id, 'signe_astrologique_id', 'class="select_profil"', 'value', 'text', $row['signe_astrologique_id']);
 
 		// taille
-		$list_taille_id[] = JL::makeOption('0', '» '.$lang_appprofil["JeLeGardePourMois"].'');
+		$list_taille_id[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["JeLeGardePourMois"].'');
 		for($i=140; $i<=200; $i++) {
 			$list_taille_id[] = JL::makeOption($i, $i.'cm');
 		}
@@ -1410,7 +1410,7 @@
 		$list['taille_id'] = JL::makeSelectList( $list_taille_id, 'taille_id', 'class="select_profil"', 'value', 'text', $row['taille_id']);
 
 		// poids
-		$list_poids_id[] = JL::makeOption('0', '» '.$lang_appprofil["JeLeGardePourMois"].'');
+		$list_poids_id[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["JeLeGardePourMois"].'');
 		for($i=40; $i<=120; $i++) {
 			$list_poids_id[] = JL::makeOption($i, $i.'kg');
 		}
@@ -1418,7 +1418,7 @@
 		$list['poids_id'] = JL::makeSelectList( $list_poids_id, 'poids_id', 'class="select_profil"', 'value', 'text', $row['poids_id']);
 
 		// silhouette
-		$list_silhouette_id[] = JL::makeOption('0', '» '.$lang_appprofil["JeLeGardePourMois"].'');
+		$list_silhouette_id[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["JeLeGardePourMois"].'');
 		$query = "SELECT id AS value, nom AS text"
 		." FROM profil_silhouette$langString"
 		." WHERE published = 1"
@@ -1429,7 +1429,7 @@
 		$list['silhouette_id'] = JL::makeSelectList( $list_silhouette_id, 'silhouette_id', 'class="select_profil"', 'value', 'text', $row['silhouette_id']);
 
 		// style coiffure
-		$list_style_coiffure_id[] = JL::makeOption('0', '» '.$lang_appprofil["JeLeGardePourMois"].'');
+		$list_style_coiffure_id[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["JeLeGardePourMois"].'');
 		$query = "SELECT id AS value, nom AS text"
 		." FROM profil_style_coiffure$langString"
 		." WHERE published = 1"
@@ -1440,7 +1440,7 @@
 		$list['style_coiffure_id'] = JL::makeSelectList( $list_style_coiffure_id, 'style_coiffure_id', 'class="select_profil"', 'value', 'text', $row['style_coiffure_id']);
 
 		// cheveux
-		$list_cheveux_id[] = JL::makeOption('0', '» '.$lang_appprofil["JeLeGardePourMois"].'');
+		$list_cheveux_id[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["JeLeGardePourMois"].'');
 		$query = "SELECT id AS value, nom AS text"
 		." FROM profil_cheveux$langString"
 		." WHERE published = 1"
@@ -1451,7 +1451,7 @@
 		$list['cheveux_id'] = JL::makeSelectList( $list_cheveux_id, 'cheveux_id', 'class="select_profil"', 'value', 'text', $row['cheveux_id']);
 
 		// yeux
-		$list_yeux_id[] = JL::makeOption('0', '» '.$lang_appprofil["JeLeGardePourMois"].'');
+		$list_yeux_id[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["JeLeGardePourMois"].'');
 		$query = "SELECT id AS value, nom AS text"
 		." FROM profil_yeux$langString"
 		." WHERE published = 1"
@@ -1462,7 +1462,7 @@
 		$list['yeux_id'] = JL::makeSelectList( $list_yeux_id, 'yeux_id', 'class="select_profil"', 'value', 'text', $row['yeux_id']);
 
 		// origine
-		$list_origine_id[] = JL::makeOption('0', '» '.$lang_appprofil["JeLeGardePourMois"].'');
+		$list_origine_id[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["JeLeGardePourMois"].'');
 		$query = "SELECT id AS value, nom AS text"
 		." FROM profil_origine$langString"
 		." WHERE published = 1"
@@ -1472,7 +1472,7 @@
 		$list_origine_id = array_merge($list_origine_id, $db->loadObjectList($query));
 		$list['origine_id'] = JL::makeSelectList( $list_origine_id, 'origine_id', 'class="select_profil"', 'value', 'text', $row['origine_id']);
 
-		// récup le texte de gauche pendant l'inscription
+		// rï¿½cup le texte de gauche pendant l'inscription
 		$notice = getNotice(4);
 
 		HTML_profil::step4($row, $list, $messages, $notice);
@@ -1503,10 +1503,10 @@
 		$messages			= array();
 
 
-		// données à récup de l'étape précédente + valeur par défaut
+		// donnï¿½es ï¿½ rï¿½cup de l'ï¿½tape prï¿½cï¿½dente + valeur par dï¿½faut
 		$_data	= step4_data();
 
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				JL::setSession($key, JL::getVar($key, $value));
 			}
@@ -1519,7 +1519,7 @@
 			// user log
 			if($user->id) {
 
-				// enregistre les modifs en DB (certains champs ne sont pas mis à jour volontairement ==> sécurité oblige !)
+				// enregistre les modifs en DB (certains champs ne sont pas mis ï¿½ jour volontairement ==> sï¿½curitï¿½ oblige !)
 				$query = "UPDATE user_profil SET"
 				." signe_astrologique_id = '".JL::getSessionInt('signe_astrologique_id', 0)."',"
 				." taille_id = '".JL::getSessionInt('taille_id', 0)."',"
@@ -1533,12 +1533,12 @@
 				;
 				$db->query($query);
 
-				// à laisser que l'user soit log ou pas, même si on affiche pas le message (utile dans le swtich case sur $action
+				// ï¿½ laisser que l'user soit log ou pas, mï¿½me si on affiche pas le message (utile dans le swtich case sur $action
 				$messages[]	= '<span class="valid">'.$lang_appprofil["ModificationEnregistrees"].' !</span>';
 
 			} else { // user non log
 
-				// valide l'étape
+				// valide l'ï¿½tape
 				if(isset($_SESSION['step_ok']) && $_SESSION['step_ok'] < 4) {
 					$_SESSION['step_ok']	= 4;
 				}
@@ -1559,7 +1559,7 @@
 		include("lang/app_profil.".$_GET['lang'].".php");
 		global $db, $user;
 
-		// données de l'étape + valeurs par défaut
+		// donnï¿½es de l'ï¿½tape + valeurs par dï¿½faut
 		$_data						= step5_data();
 		$row						= array();
 		$list						= array();
@@ -1579,16 +1579,16 @@
 		$list_garde_id 				= array();
 
 
-		// utilisateur log et aucun message présent
+		// utilisateur log et aucun message prï¿½sent
 		if($user->id && !count($messages)) {
 
-			// récup les données en db
+			// rï¿½cup les donnï¿½es en db
 			$query = "SELECT nationalite_id, religion_id, langue1_id, langue2_id, langue3_id, statut_marital_id, me_marier_id, cherche_relation_id, niveau_etude_id, secteur_activite_id, fumer_id, temperament_id, vouloir_enfants_id, garde_id"
 			." FROM user_profil"
 			." WHERE user_id = '".$user->id."'"
 			." LIMIT 0,1"
 			;
-			$tmp = $db->loadResultArray($query);
+			$tmp = $db->loadObjectList($query);
 
 			// mise en session des valeurs
 			foreach($tmp as $key => $value) {
@@ -1598,15 +1598,15 @@
 		}
 
 
-		// récup les champs correspondant en session, sinon valeur par défaut
-		if(count($_data)) {
+		// rï¿½cup les champs correspondant en session, sinon valeur par dï¿½faut
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row[$key]	= JL::getSession($key, $value);
 			}
 		}
 
-		// nationalité
-		$list_nationalite_id[] = JL::makeOption('0', '» '.$lang_appprofil["JeLeGardePourMois"].'');
+		// nationalitï¿½
+		$list_nationalite_id[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["JeLeGardePourMois"].'');
 		$query = "SELECT id AS value, nom AS text"
 		." FROM profil_nationalite$langString"
 		." WHERE published = 1"
@@ -1617,7 +1617,7 @@
 		$list['nationalite_id'] = JL::makeSelectList( $list_nationalite_id, 'nationalite_id', 'class="select_profil"', 'value', 'text', $row['nationalite_id']);
 
 		// religion
-		$list_religion_id[] = JL::makeOption('0', '» '.$lang_appprofil["JeLeGardePourMois"].'');
+		$list_religion_id[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["JeLeGardePourMois"].'');
 		$query = "SELECT id AS value, nom AS text"
 		." FROM profil_religion$langString"
 		." WHERE published = 1"
@@ -1628,7 +1628,7 @@
 		$list['religion_id'] = JL::makeSelectList( $list_religion_id, 'religion_id', 'class="select_profil"', 'value', 'text', $row['religion_id']);
 
 		// langues
-		$list_langue_id[] = JL::makeOption('0', '» '.$lang_appprofil["JeLeGardePourMois"].'');
+		$list_langue_id[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["JeLeGardePourMois"].'');
 		$query = "SELECT id AS value, nom AS text"
 		." FROM profil_langue$langString"
 		." WHERE published = 1"
@@ -1641,7 +1641,7 @@
 		$list['langue3_id'] = JL::makeSelectList( $list_langue_id, 'langue3_id', 'class="select_profil100"', 'value', 'text', $row['langue3_id']);
 
 		// statut marital
-		$list_statut_marital_id[] = JL::makeOption('0', '» '.$lang_appprofil["JeLeGardePourMois"].'');
+		$list_statut_marital_id[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["JeLeGardePourMois"].'');
 		$query = "SELECT id AS value, nom AS text"
 		." FROM profil_statut_marital$langString"
 		." WHERE published = 1"
@@ -1652,7 +1652,7 @@
 		$list['statut_marital_id'] = JL::makeSelectList( $list_statut_marital_id, 'statut_marital_id', 'class="select_profil"', 'value', 'text', $row['statut_marital_id']);
 
 		// me marier c'est...
-		$list_me_marier_id[] = JL::makeOption('0', '» '.$lang_appprofil["JeLeGardePourMois"].'');
+		$list_me_marier_id[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["JeLeGardePourMois"].'');
 		$query = "SELECT id AS value, nom AS text"
 		." FROM profil_me_marier$langString"
 		." WHERE published = 1"
@@ -1663,7 +1663,7 @@
 		$list['me_marier_id'] = JL::makeSelectList( $list_me_marier_id, 'me_marier_id', 'class="select_profil"', 'value', 'text', $row['me_marier_id']);
 
 		// je cherche une relation
-		$list_cherche_relation_id[] = JL::makeOption('0', '» '.$lang_appprofil["JeLeGardePourMois"].'');
+		$list_cherche_relation_id[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["JeLeGardePourMois"].'');
 		$query = "SELECT id AS value, nom AS text"
 		." FROM profil_cherche_relation$langString"
 		." WHERE published = 1"
@@ -1673,8 +1673,8 @@
 		$list_cherche_relation_id = array_merge($list_cherche_relation_id, $db->loadObjectList($query));
 		$list['cherche_relation_id'] = JL::makeSelectList( $list_cherche_relation_id, 'cherche_relation_id', 'class="select_profil"', 'value', 'text', $row['cherche_relation_id']);
 
-		// niveau d'études
-		$list_niveau_etude_id[] = JL::makeOption('0', '» '.$lang_appprofil["JeLeGardePourMois"].'');
+		// niveau d'ï¿½tudes
+		$list_niveau_etude_id[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["JeLeGardePourMois"].'');
 		$query = "SELECT id AS value, nom AS text"
 		." FROM profil_niveau_etude$langString"
 		." WHERE published = 1"
@@ -1684,8 +1684,8 @@
 		$list_niveau_etude_id = array_merge($list_niveau_etude_id, $db->loadObjectList($query));
 		$list['niveau_etude_id'] = JL::makeSelectList( $list_niveau_etude_id, 'niveau_etude_id', 'class="select_profil"', 'value', 'text', $row['niveau_etude_id']);
 
-		// secteur d'activité
-		$list_secteur_activite_id[] = JL::makeOption('0', '» '.$lang_appprofil["JeLeGardePourMois"].'');
+		// secteur d'activitï¿½
+		$list_secteur_activite_id[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["JeLeGardePourMois"].'');
 		$query = "SELECT id AS value, nom AS text"
 		." FROM profil_secteur_activite$langString"
 		." WHERE published = 1"
@@ -1696,7 +1696,7 @@
 		$list['secteur_activite_id'] = JL::makeSelectList( $list_secteur_activite_id, 'secteur_activite_id', 'class="select_profil"', 'value', 'text', $row['secteur_activite_id']);
 
 		// je fume
-		$list_fumer_id[] = JL::makeOption('0', '» Je le garde pour moi');
+		$list_fumer_id[] = JL::makeOption('0', 'ï¿½ Je le garde pour moi');
 		$query = "SELECT id AS value, nom AS text"
 		." FROM profil_fumer$langString"
 		." WHERE published = 1"
@@ -1706,8 +1706,8 @@
 		$list_fumer_id = array_merge($list_fumer_id, $db->loadObjectList($query));
 		$list['fumer_id'] = JL::makeSelectList( $list_fumer_id, 'fumer_id', 'class="select_profil"', 'value', 'text', $row['fumer_id']);
 
-		// tempérament
-		$list_temperament_id[] = JL::makeOption('0', '» '.$lang_appprofil["JeLeGardePourMois"].'');
+		// tempï¿½rament
+		$list_temperament_id[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["JeLeGardePourMois"].'');
 		$query = "SELECT id AS value, nom AS text"
 		." FROM profil_temperament$langString"
 		." WHERE published = 1"
@@ -1718,7 +1718,7 @@
 		$list['temperament_id'] = JL::makeSelectList( $list_temperament_id, 'temperament_id', 'class="select_profil"', 'value', 'text', $row['temperament_id']);
 
 		// veux des enfants
-		$list_vouloir_enfants_id[] = JL::makeOption('0', '» '.$lang_appprofil["JeLeGardePourMois"].'');
+		$list_vouloir_enfants_id[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["JeLeGardePourMois"].'');
 		$query = "SELECT id AS value, nom AS text"
 		." FROM profil_vouloir_enfants$langString"
 		." WHERE published = 1"
@@ -1729,7 +1729,7 @@
 		$list['vouloir_enfants_id'] = JL::makeSelectList( $list_vouloir_enfants_id, 'vouloir_enfants_id', 'class="select_profil"', 'value', 'text', $row['vouloir_enfants_id']);
 
 		// qui a la garde ?
-		$list_garde_id[] = JL::makeOption('0', '» '.$lang_appprofil["JeLeGardePourMois"].'');
+		$list_garde_id[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["JeLeGardePourMois"].'');
 		$query = "SELECT id AS value, nom AS text"
 		." FROM profil_garde$langString"
 		." WHERE published = 1"
@@ -1739,7 +1739,7 @@
 		$list_garde_id = array_merge($list_garde_id, $db->loadObjectList($query));
 		$list['garde_id'] = JL::makeSelectList( $list_garde_id, 'garde_id', 'class="select_profil"', 'value', 'text', $row['garde_id']);
 
-		// récup le texte de gauche pendant l'inscription
+		// rï¿½cup le texte de gauche pendant l'inscription
 		$notice = getNotice(5);
 
 		HTML_profil::step5($row, $list, $messages, $notice);
@@ -1776,10 +1776,10 @@
 		$messages			= array();
 
 
-		// données à récup de l'étape précédente + valeur par défaut
+		// donnï¿½es ï¿½ rï¿½cup de l'ï¿½tape prï¿½cï¿½dente + valeur par dï¿½faut
 		$_data	= step5_data();
 
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				JL::setSession($key, JL::getVar($key, $value));
 			}
@@ -1792,7 +1792,7 @@
 			// user log
 			if($user->id) {
 
-				// enregistre les modifs en DB (certains champs ne sont pas mis à jour volontairement ==> sécurité oblige !)
+				// enregistre les modifs en DB (certains champs ne sont pas mis ï¿½ jour volontairement ==> sï¿½curitï¿½ oblige !)
 				$query = "UPDATE user_profil SET"
 				." nationalite_id = '".JL::getSessionInt('nationalite_id', 0)."',"
 				." religion_id = '".JL::getSessionInt('religion_id', 0)."',"
@@ -1812,12 +1812,12 @@
 				;
 				$db->query($query);
 
-				// à laisser que l'user soit log ou pas, même si on affiche pas le message (utile dans le swtich case sur $action
+				// ï¿½ laisser que l'user soit log ou pas, mï¿½me si on affiche pas le message (utile dans le swtich case sur $action
 				$messages[]	= '<span class="valid">'.$lang_appprofil["ModificationEnregistrees"].' !</span>';
 
 			} else { // user non log
 
-				// valide l'étape
+				// valide l'ï¿½tape
 				if(isset($_SESSION['step_ok']) && $_SESSION['step_ok'] < 5) {
 					$_SESSION['step_ok']	= 5;
 				}
@@ -1838,7 +1838,7 @@
 		include("lang/app_profil.".$_GET['lang'].".php");
 		global $db, $user;
 
-		// données de l'étape + valeurs par défaut
+		// donnï¿½es de l'ï¿½tape + valeurs par dï¿½faut
 		$_data						= step6_data();
 		$row						= array();
 		$list						= array();
@@ -1853,16 +1853,16 @@
 		$list_animaux_id 			= array();
 
 
-		// utilisateur log et aucun message présent
+		// utilisateur log et aucun message prï¿½sent
 		if($user->id && !count($messages)) {
 
-			// récup les données en db
+			// rï¿½cup les donnï¿½es en db
 			$query = "SELECT vie_id, cuisine1_id, cuisine2_id, cuisine3_id, sortie1_id, sortie2_id, sortie3_id, loisir1_id, loisir2_id, loisir3_id, sport1_id, sport2_id, sport3_id, musique1_id, musique2_id, musique3_id, film1_id, film2_id, film3_id, lecture1_id, lecture2_id, lecture3_id, animaux1_id, animaux2_id, animaux3_id"
 			." FROM user_profil"
 			." WHERE user_id = '".$user->id."'"
 			." LIMIT 0,1"
 			;
-			$tmp = $db->loadResultArray($query);
+			$tmp = $db->loadObjectList($query);
 
 			// mise en session des valeurs
 			foreach($tmp as $key => $value) {
@@ -1872,8 +1872,8 @@
 		}
 
 
-		// récup les champs correspondant en session, sinon valeur par défaut
-		if(count($_data)) {
+		// rï¿½cup les champs correspondant en session, sinon valeur par dï¿½faut
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row[$key]	= JL::getSession($key, $value);
 			}
@@ -1881,7 +1881,7 @@
 
 
 		// style de vie
-		$list_vie_id[] = JL::makeOption('0', '» '.$lang_appprofil["JeLeGardePourMois"].'');
+		$list_vie_id[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["JeLeGardePourMois"].'');
 		$query = "SELECT id AS value, nom AS text"
 		." FROM profil_vie$langString"
 		." WHERE published = 1"
@@ -1893,7 +1893,7 @@
 
 
 		// cuisine
-		$list_cuisine_id[] = JL::makeOption('0', '» '.$lang_appprofil["JeLeGardePourMois"].'');
+		$list_cuisine_id[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["JeLeGardePourMois"].'');
 		$query = "SELECT id AS value, nom AS text"
 		." FROM profil_cuisine$langString"
 		." WHERE published = 1"
@@ -1907,7 +1907,7 @@
 
 
 		// sortie
-		$list_sortie_id[] = JL::makeOption('0', '» '.$lang_appprofil["JeLeGardePourMois"].'');
+		$list_sortie_id[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["JeLeGardePourMois"].'');
 		$query = "SELECT id AS value, nom AS text"
 		." FROM profil_sortie$langString"
 		." WHERE published = 1"
@@ -1921,7 +1921,7 @@
 
 
 		// loisir
-		$list_loisir_id[] = JL::makeOption('0', '» '.$lang_appprofil["JeLeGardePourMois"].'');
+		$list_loisir_id[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["JeLeGardePourMois"].'');
 		$query = "SELECT id AS value, nom AS text"
 		." FROM profil_loisir$langString"
 		." WHERE published = 1"
@@ -1935,7 +1935,7 @@
 
 
 		// sport
-		$list_sport_id[] = JL::makeOption('0', '» '.$lang_appprofil["JeLeGardePourMois"].'');
+		$list_sport_id[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["JeLeGardePourMois"].'');
 		$query = "SELECT id AS value, nom AS text"
 		." FROM profil_sport$langString"
 		." WHERE published = 1"
@@ -1949,7 +1949,7 @@
 
 
 		// musique
-		$list_musique_id[] = JL::makeOption('0', '» '.$lang_appprofil["JeLeGardePourMois"].'');
+		$list_musique_id[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["JeLeGardePourMois"].'');
 		$query = "SELECT id AS value, nom AS text"
 		." FROM profil_musique$langString"
 		." WHERE published = 1"
@@ -1963,7 +1963,7 @@
 
 
 		// film
-		$list_film_id[] = JL::makeOption('0', '» '.$lang_appprofil["JeLeGardePourMois"].'');
+		$list_film_id[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["JeLeGardePourMois"].'');
 		$query = "SELECT id AS value, nom AS text"
 		." FROM profil_film$langString"
 		." WHERE published = 1"
@@ -1977,7 +1977,7 @@
 
 
 		// lecture
-		$list_lecture_id[] = JL::makeOption('0', '» '.$lang_appprofil["JeLeGardePourMois"].'');
+		$list_lecture_id[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["JeLeGardePourMois"].'');
 		$query = "SELECT id AS value, nom AS text"
 		." FROM profil_lecture$langString"
 		." WHERE published = 1"
@@ -1991,7 +1991,7 @@
 
 
 		// animaux
-		$list_animaux_id[] = JL::makeOption('0', '» '.$lang_appprofil["JeLeGardePourMois"].'');
+		$list_animaux_id[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["JeLeGardePourMois"].'');
 		$query = "SELECT id AS value, nom AS text"
 		." FROM profil_animaux$langString"
 		." WHERE published = 1"
@@ -2004,7 +2004,7 @@
 		$list['animaux3_id'] = JL::makeSelectList( $list_animaux_id, 'animaux3_id', 'class="select_profil100"', 'value', 'text', $row['animaux3_id']);
 
 
-		// récup le texte de gauche pendant l'inscription
+		// rï¿½cup le texte de gauche pendant l'inscription
 		$notice = getNotice(6);
 
 		HTML_profil::step6($row, $list, $messages, $notice);
@@ -2052,10 +2052,10 @@
 		$messages			= array();
 
 
-		// données à récup de l'étape précédente + valeur par défaut
+		// donnï¿½es ï¿½ rï¿½cup de l'ï¿½tape prï¿½cï¿½dente + valeur par dï¿½faut
 		$_data	= step6_data();
 
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				JL::setSession($key, JL::getVar($key, $value));
 			}
@@ -2068,7 +2068,7 @@
 			// user log
 			if($user->id) {
 
-				// enregistre les modifs en DB (certains champs ne sont pas mis à jour volontairement ==> sécurité oblige !)
+				// enregistre les modifs en DB (certains champs ne sont pas mis ï¿½ jour volontairement ==> sï¿½curitï¿½ oblige !)
 				$query = "UPDATE user_profil SET"
 				." vie_id = '".JL::getSessionInt('vie_id', 0)."',"
 				." cuisine1_id = '".JL::getSessionInt('cuisine1_id', 0)."',"
@@ -2099,12 +2099,12 @@
 				;
 				$db->query($query);
 
-				// à laisser que l'user soit log ou pas, même si on affiche pas le message (utile dans le swtich case sur $action
+				// ï¿½ laisser que l'user soit log ou pas, mï¿½me si on affiche pas le message (utile dans le swtich case sur $action
 				$messages[]	= '<span class="valid">'.$lang_appprofil["ModificationEnregistrees"].' !</span>';
 
 			} else { // user non log
 
-				// valide l'étape
+				// valide l'ï¿½tape
 				if(isset($_SESSION['step_ok']) && $_SESSION['step_ok'] < 6) {
 					$_SESSION['step_ok']	= 6;
 				}
@@ -2126,14 +2126,14 @@
 		global $db, $user, $action;
 
 
-		// crée le dossier d'uplaod temporaire
+		// crï¿½e le dossier d'uplaod temporaire
 		JL::makeUploadDir();
 
 
-		// si l'user est log et arrive sur l'étape 7 (ne prend donc pas le step7submit)
+		// si l'user est log et arrive sur l'ï¿½tape 7 (ne prend donc pas le step7submit)
 		if($user->id && $action == 'step7') {
 
-			// supprime les fichiers temporaires de son répertoire de photos
+			// supprime les fichiers temporaires de son rï¿½pertoire de photos
 			$dest_dossier = 'images/profil/'.$user->id;
 			if(is_dir($dest_dossier)) {
 				$dir_id 	= opendir($dest_dossier);
@@ -2147,7 +2147,7 @@
 		}
 
 
-		// données de l'étape + valeurs par défaut
+		// donnï¿½es de l'ï¿½tape + valeurs par dï¿½faut
 		$_data						= step7_data();
 		$row						= array();
 		$list						= array();
@@ -2158,10 +2158,10 @@
 		$list_signe_astrologique_id	= array();
 
 
-		// utilisateur log et aucun message présent
+		// utilisateur log et aucun message prï¿½sent
 		if($user->id && !count($messages)) {
 
-			// récup les données en db
+			// rï¿½cup les donnï¿½es en db
 			$query = "SELECT num, naissance_date, signe_astrologique_id, genre"
 			." FROM user_enfant"
 			." WHERE user_id = '".$user->id."'"
@@ -2171,7 +2171,7 @@
 			$tmps = $db->loadObjectList($query);
 
 			// mise en session des valeurs
-			if(count($tmps)) {
+			if (is_array($tmps)) {
 				foreach($tmps as $tmp) {
 
 					// extrait les valeurs de la date de naissance
@@ -2190,7 +2190,7 @@
 				}
 			}
 
-			// récup la valeur de photo_montrer
+			// rï¿½cup la valeur de photo_montrer
 			$query = "SELECT photo_montrer FROM user_profil WHERE user_id = '".$user->id."' LIMIT 0,1";
 			$photo_montrer = $db->loadResult($query);
 			JL::setSession('photo_montrer', $photo_montrer);
@@ -2198,43 +2198,43 @@
 		}
 
 
-		// récup les champs correspondant en session, sinon valeur par défaut
-		if(count($_data)) {
+		// rï¿½cup les champs correspondant en session, sinon valeur par dï¿½faut
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row[$key]	= JL::getSession($key, $value);
 			}
 		}
 
 
-		// garçon / fille
-		$list_genre[] = JL::makeOption('', '» '.$lang_appprofil["Choisissez"].'');
+		// garï¿½on / fille
+		$list_genre[] = JL::makeOption('', 'ï¿½ '.$lang_appprofil["Choisissez"].'');
 		$list_genre[] = JL::makeOption('f', ''.$lang_appprofil["UneFille"].'');
 		$list_genre[] = JL::makeOption('g', ''.$lang_appprofil["UnGarcon"].'');
 
 
 		// jour de naissance
-		$list_naissance_jour[] = JL::makeOption('0', '» '.$lang_appprofil["Jour"].'');
+		$list_naissance_jour[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["Jour"].'');
 		for($i=1; $i<=31; $i++) {
 			$list_naissance_jour[] = JL::makeOption($i, sprintf('%02d', $i));
 		}
 
 
 		// mois de naissance
-		$list_naissance_mois[] = JL::makeOption('0', '» '.$lang_appprofil["Mois"].'');
+		$list_naissance_mois[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["Mois"].'');
 		for($i=1; $i<=12; $i++) {
 			$list_naissance_mois[] = JL::makeOption($i, sprintf('%02d', $i));
 		}
 
 
-		// année de naissance
-		$list_naissance_annee[] = JL::makeOption('0', '» '.$lang_appprofil["Annee"].'');
+		// annï¿½e de naissance
+		$list_naissance_annee[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["Annee"].'');
 		for($i=intval(date('Y')); $i>=1950; $i--) {
 			$list_naissance_annee[] = JL::makeOption($i, sprintf('%04d', $i));
 		}
 
 
 		// signe astrologique
-		$list_signe_astrologique_id[] = JL::makeOption('0', '» '.$lang_appprofil["JeLeGardePourMois"].'');
+		$list_signe_astrologique_id[] = JL::makeOption('0', 'ï¿½ '.$lang_appprofil["JeLeGardePourMois"].'');
 
 		$query = "SELECT id AS value, nom AS text"
 		." FROM profil_signe_astrologique$langString"
@@ -2244,7 +2244,7 @@
 		$list_signe_astrologique_id = array_merge($list_signe_astrologique_id, $db->loadObjectList($query));
 
 
-		// créations des 6 sets de listes déroulantes
+		// crï¿½ations des 6 sets de listes dï¿½roulantes
 		for($i=1; $i<=6; $i++) {
 			$list['genre'.$i] 						= JL::makeSelectList( $list_genre, 'genre'.$i, 'class="select_profil"', 'value', 'text', $row['genre'.$i]);
 			$list['naissance_jour'.$i] 				= JL::makeSelectList( $list_naissance_jour, 'naissance_jour'.$i, '', 'value', 'text', $row['naissance_jour'.$i]);
@@ -2254,7 +2254,7 @@
 		}
 
 
-		// récup le texte de gauche pendant l'inscription
+		// rï¿½cup le texte de gauche pendant l'inscription
 		$notice = getNotice(7);
 
 		HTML_profil::step7($row, $list, $messages, $notice);
@@ -2314,10 +2314,10 @@
 		$messages			= array();
 
 
-		// données à récup de l'étape précédente + valeur par défaut
+		// donnï¿½es ï¿½ rï¿½cup de l'ï¿½tape prï¿½cï¿½dente + valeur par dï¿½faut
 		$_data	= step7_data();
 
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				JL::setSession($key, JL::getVar($key, $value));
 			}
@@ -2330,7 +2330,7 @@
 		}
 
 
-		// vérification des enfants
+		// vï¿½rification des enfants
 		for($i=1; $i<=6; $i++) {
 			$child	= JL::getSessionInt('child'.$i, 0);
 			if($child) {
@@ -2386,15 +2386,15 @@
 				// sauvegarde les photos
 				photosSave('enfant');
 
-				// mise à jour des enfants
+				// mise ï¿½ jour des enfants
 				for($i=1; $i<=6; $i++) {
 					$child	= JL::getSessionInt('child'.$i, 0);
 
-					// dans tous les cas, supprime l'ancien enregistrement (évite un select puis test si insert ou update...)
+					// dans tous les cas, supprime l'ancien enregistrement (ï¿½vite un select puis test si insert ou update...)
 					$query = "DELETE FROM user_enfant WHERE user_id = '".$user->id."' AND num = '".$i."'";
 					$db->query($query);
 
-					// si l'enfant a été ajouté par l'utilisateur
+					// si l'enfant a ï¿½tï¿½ ajoutï¿½ par l'utilisateur
 					if($child) {
 
 						// ajoute l'enfant dans la db
@@ -2409,7 +2409,7 @@
 
 					} else {
 
-						// supprime les photos car l'enfant n'est pas ou plus présent dans la liste
+						// supprime les photos car l'enfant n'est pas ou plus prï¿½sent dans la liste
 						$dir 			= 'images/profil/'.JL::getSession('upload_dir', 'error');
 						$file 			= $dir.'/parent-solo-109-enfant-'.$i.'.jpg';
 						$file_pending 	= $dir.'/pending-parent-solo-109-enfant-'.$i.'.jpg';
@@ -2436,18 +2436,18 @@
 				}
 
 
-				// mise à jour du champ photo_montrer
+				// mise ï¿½ jour du champ photo_montrer
 				$photo_montrer = JL::getSessionInt('photo_montrer', 0);
 				$query = "UPDATE user_profil SET photo_montrer = '".$photo_montrer."' WHERE user_id = '".$user->id."'";
 				$db->query($query);
 
 
-				// à laisser que l'user soit log ou pas, même si on affiche pas le message (util dans le swtich case sur $action)
+				// ï¿½ laisser que l'user soit log ou pas, mï¿½me si on affiche pas le message (util dans le swtich case sur $action)
 				$messages[]	= '<span class="valid">'.$lang_appprofil["ModificationEnregistrees"].' !</span>';
 
 			} else { // user non log
 
-				// valide l'étape
+				// valide l'ï¿½tape
 				if(isset($_SESSION['step_ok']) && $_SESSION['step_ok'] < 7) {
 					$_SESSION['step_ok']	= 7;
 				}
@@ -2470,11 +2470,11 @@
 		// user log
 		if($user->id) {
 
-			// récup la recherche de l'utilisateur
+			// rï¿½cup la recherche de l'utilisateur
 			$query = "SELECT * FROM user_recherche WHERE user_id = '".$user->id."' ORDER BY id DESC LIMIT 0,1";
-			$_data = $db->loadResultArray($query);
+			$_data = $db->loadObjectList($query);
 
-			// récup les champs correspondant en session, sinon valeur par défaut
+			// rï¿½cup les champs correspondant en session, sinon valeur par dï¿½faut
 			if(is_array($_data)) {
 				foreach($_data as $key => $value) {
 					if($key != 'user_id' && $key != 'id' && $key != 'user_id_tmp') {
@@ -2485,10 +2485,10 @@
 
 		}
 
-		// génère le moteur de recherche avec les paramètres de recherche de l'utilisateur
-		$list =& FCT::getSearchEngine(JL::getSession('search_nb_enfants', 0), JL::getSession('search_recherche_age_min', 18), JL::getSession('search_recherche_age_max', 70), JL::getSession('search_canton_id', 0), JL::getSession('search_ville_id', 0), JL::getSession('search_username', ''), JL::getSession('search_online', 0), JL::getSession('search_titre', '')); // todo: compléter les champs
+		// gï¿½nï¿½re le moteur de recherche avec les paramï¿½tres de recherche de l'utilisateur
+		$list =& FCT::getSearchEngine(JL::getSession('search_nb_enfants', 0), JL::getSession('search_recherche_age_min', 18), JL::getSession('search_recherche_age_max', 70), JL::getSession('search_canton_id', 0), JL::getSession('search_ville_id', 0), JL::getSession('search_username', ''), JL::getSession('search_online', 0), JL::getSession('search_titre', '')); // todo: complï¿½ter les champs
 
-		// récup le texte de gauche pendant l'inscription
+		// rï¿½cup le texte de gauche pendant l'inscription
 		$notice = getNotice(8);
 
 		// affiche le moteur de recherche
@@ -2510,10 +2510,10 @@
 		// gestion des messages d'erreurs
 		$messages			= array();
 
-		// données à récup de l'étape précédente + valeur par défaut
+		// donnï¿½es ï¿½ rï¿½cup de l'ï¿½tape prï¿½cï¿½dente + valeur par dï¿½faut
 		$_data	= step8_data();
 
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				JL::setSession($key, JL::getVar($key, $value));
 			}
@@ -2526,12 +2526,12 @@
 			// user log
 			if($user->id) {
 
-				// à laisser que l'user soit log ou pas, même si on affiche pas le message (utile dans le swtich case sur $action)
+				// ï¿½ laisser que l'user soit log ou pas, mï¿½me si on affiche pas le message (utile dans le swtich case sur $action)
 				$messages[]	= '<span class="valid">'.$lang_appprofil["ModificationEnregistrees"].' !</span>';
 
 			} else { // user non log
 
-				// valide l'étape
+				// valide l'ï¿½tape
 				if(isset($_SESSION['step_ok']) && $_SESSION['step_ok'] < 8) {
 					$_SESSION['step_ok']	= 8;
 				}
@@ -2551,16 +2551,16 @@
 		global $langue,$langString;
 		global $db, $user;
 
-		// données de l'étape + valeurs par défaut
+		// donnï¿½es de l'ï¿½tape + valeurs par dï¿½faut
 		$_data						= step9_data();
 		$row						= array();
 		$list						= array();
 
 
-		// utilisateur log et aucun message présent
+		// utilisateur log et aucun message prï¿½sent
 		if($user->id && !count($messages)) {
 
-			// récup les données en db
+			// rï¿½cup les donnï¿½es en db
 			$query = "SELECT nom, prenom, telephone, adresse, code_postal"
 			." FROM user_profil"
 			." WHERE user_id = '".$user->id."'"
@@ -2578,18 +2578,18 @@
 		}
 
 
-		// récup les champs correspondant en session, sinon valeur par défaut
-		if(count($_data)) {
+		// rï¿½cup les champs correspondant en session, sinon valeur par dï¿½faut
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row[$key]	= JL::getSession($key, $value);
 			}
 		}
 
-		// récup le message d'explication
+		// rï¿½cup le message d'explication
 		$query = "SELECT texte FROM contenu$langString WHERE id = 1 LIMIT 0,1";
 		$row['disclaimer']	= $db->loadResult($query);
 
-		// récup le texte de gauche pendant l'inscription
+		// rï¿½cup le texte de gauche pendant l'inscription
 		$notice = getNotice(9);
 
 		HTML_profil::step9($row, $list, $messages, $notice);
@@ -2617,37 +2617,37 @@
 		$messages			= array();
 
 
-		// données à récup de l'étape précédente + valeur par défaut
+		// donnï¿½es ï¿½ rï¿½cup de l'ï¿½tape prï¿½cï¿½dente + valeur par dï¿½faut
 		$_data	= step9_data();
 
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				JL::setSession($key, JL::getVar($key, $value));
 			}
 		}
 
 
-		// téléphone
+		// tï¿½lï¿½phone
 		if(strlen(JL::getSession('telephone', '', false)) == '') {
 			$messages[]	= '<span class="error">'.$lang_appprofil["VeuillezNumTel"].'.</span>';
 		}
 
-		// prénom non renseigné
+		// prï¿½nom non renseignï¿½
 		if(strlen(JL::getSession('prenom', '', false)) == '') {
 			$messages[]	= '<span class="error">'.$lang_appprofil["VeuillezPrenom"].'.</span>';
 		}
 
-		// nom non renseigné
+		// nom non renseignï¿½
 		if(strlen(JL::getSession('nom', '', false)) == '') {
 			$messages[]	= '<span class="error">'.$lang_appprofil["Veuilleznom"].'.</span>';
 		}
 
-		// adresse non renseigné
+		// adresse non renseignï¿½
 		if(strlen(JL::getSession('adresse', '', false)) == '') {
 			$messages[]	= '<span class="error">'.$lang_appprofil["VeuillezAdresse"].'.</span>';
 		}
 
-		// code postal non renseigné
+		// code postal non renseignï¿½
 		if(strlen(JL::getSession('code_postal', '', false)) == '') {
 			$messages[]	= '<span class="error">'.$lang_appprofil["VeuillezCodePostal"].'.</span>';
 		}
@@ -2659,7 +2659,7 @@
 			// user log
 			if($user->id) {
 
-				// enregistre les modifs en DB (certains champs ne sont pas mis à jour volontairement ==> sécurité oblige !)
+				// enregistre les modifs en DB (certains champs ne sont pas mis ï¿½ jour volontairement ==> sï¿½curitï¿½ oblige !)
 				$query = "UPDATE user_profil SET"
 				." nom = '".JL::getSession('nom', '', true)."',"
 				." prenom = '".JL::getSession('prenom', '', true)."',"
@@ -2670,12 +2670,12 @@
 				;
 				$db->query($query);
 
-				// à laisser que l'user soit log ou pas, même si on affiche pas le message (utile dans le swtich case sur $action
+				// ï¿½ laisser que l'user soit log ou pas, mï¿½me si on affiche pas le message (utile dans le swtich case sur $action
 				$messages[]	= '<span class="valid">'.$lang_appprofil["ModificationEnregistrees"].' !</span>';
 
 			} else { // user non log
 
-				// valide l'étape
+				// valide l'ï¿½tape
 				if(isset($_SESSION['step_ok']) && $_SESSION['step_ok'] < 9) {
 					$_SESSION['step_ok']	= 9;
 				}
@@ -2703,11 +2703,11 @@
 		// variables
 		$row						= new stdClass();
 
-		// initialise les données
+		// initialise les donnï¿½es
 		$_data			=& parrainage_data();
 
-		// conserve les données envoyées en session
-		if(count($_data)) {
+		// conserve les donnï¿½es envoyï¿½es en session
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row->{$key} = JL::getVar($key, $value);
 			}
@@ -2736,11 +2736,11 @@
 		$messages		= array();
 		$row			= new stdClass();
 
-		// initialise les données
+		// initialise les donnï¿½es
 		$_data			=& parrainage_data();
 
-		// conserve les données envoyées en session
-		if(count($_data)) {
+		// conserve les donnï¿½es envoyï¿½es en session
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row->{$key} = JL::getVar($key, $value);
 			}
@@ -2778,7 +2778,7 @@
 				// envoi du mail
 				if(preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,3}$/', $email)) {
 
-					// check si l'email n'est pas déjà enregistré
+					// check si l'email n'est pas dï¿½jï¿½ enregistrï¿½
 					$query = "SELECT id FROM user_parrainage WHERE emails LIKE '%".$email."%' LIMIT 0,1";
 					$emailExistant = $db->loadResult($query);
 
@@ -2787,13 +2787,13 @@
 						// pseudo dans le titre
 						$mailing->titre		= str_replace('{username}', $user->username, 	$mailing->titre);
 
-						// intégration du texte et du template, ainsi que traitement des mots clés
+						// intï¿½gration du texte et du template, ainsi que traitement des mots clï¿½s
 						$mailingTexte 	= JL::getMailHtml(SITE_PATH_ADMIN.'/app/app_mailing/template/'.$mailing->template, $mailing->titre, $mailing->texte, $user->username, array($row->message, JL::url(SITE_URL.'/index.php?app=profil&action=inscription&parrain_id='.$user->id.'&'.$langue)));
 
 						// envoi du mail
 						@JL::mail($email, $mailing->titre, $mailingTexte);
 
-						// ajout de l'email dans le talbeau d'emails à insérer dans la DB
+						// ajout de l'email dans le talbeau d'emails ï¿½ insï¿½rer dans la DB
 						$emails[]	= $email;
 
 					}
@@ -2802,8 +2802,8 @@
 
 			}
 
-			// s'il y a des emails à enregistrer
-			if(count($emails)) {
+			// s'il y a des emails ï¿½ enregistrer
+			if (is_array($emails)) {
 
 				// enregistre l'email
 				$query = "INSERT INTO user_parrainage SET user_id = '".$db->escape($user->id)."', emails = '".$db->escape(implode(',',$emails))."', message = '".$db->escape($row->message)."', datetime_send = NOW()";
@@ -2836,16 +2836,16 @@
 		// variables
 		$row						= array();
 
-		// récup les données en db
+		// rï¿½cup les donnï¿½es en db
 		$query = "SELECT *"
 		." FROM user_notification"
 		." WHERE user_id = '".$user->id."'"
 		." LIMIT 0,1"
 		;
-		$row = $db->loadResultArray($query);
+		$row = $db->loadObjectList($query);
 
 
-		// récup le genre de l'user log
+		// rï¿½cup le genre de l'user log
 		$query = "SELECT genre FROM user_profil WHERE user_id = '".$user->id."' LIMIT 0,1";
 		$row['genre']	= $db->loadResult($query);
 
@@ -2874,11 +2874,11 @@
 		$messages		= array();
 		$row			= array();
 
-		// initialise les données
+		// initialise les donnï¿½es
 		$_data			=& notification_data();
 
-		// conserve les données envoyées en session
-		if(count($_data)) {
+		// conserve les donnï¿½es envoyï¿½es en session
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row[$key] = JL::getVar($key, $value) ? 1 : 0;
 			}
@@ -2913,14 +2913,14 @@
 		global $langue;
 		global $db;
 
-		// vérifie une nouvelle fois que l'email n'est pas déjà renseigné
+		// vï¿½rifie une nouvelle fois que l'email n'est pas dï¿½jï¿½ renseignï¿½
 		$query = "SELECT id FROM user WHERE email = '".JL::getSession('email', '', true)."' LIMIT 0,1";
 		$emailExistant	= $db->loadResult($query);
 
-		// si l'email n'est pas déjà présent dans la DB
+		// si l'email n'est pas dï¿½jï¿½ prï¿½sent dans la DB
 		if(!$emailExistant) {
 
-			// conserve l'heure de création
+			// conserve l'heure de crï¿½ation
 			JL::setSession('creation_time', time());
 
 			// check l'ip du visiteur
@@ -2932,7 +2932,7 @@
 			@curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			$ip_pays 			= @curl_exec($ch);
 
-			// création du compte utilisateur
+			// crï¿½ation du compte utilisateur
 			$query = "INSERT INTO user SET"
 			." username = '".JL::getSession('username', '', true)."',"
 			." password = MD5('".JL::getSession('password', '', true)."'),"
@@ -2944,7 +2944,7 @@
 			$db->query($query);
 			JL::setSession('user_id', $db->insert_id());
 
-			// création du profil
+			// crï¿½ation du profil
 			$query = "INSERT INTO user_profil SET"
 			." user_id = '".JL::getSessionInt('user_id', 0)."',"
 			." offres = '".JL::getSessionInt('offres', 0)."',"
@@ -3020,7 +3020,7 @@
 			$db->query($query);
 
 
-			// création de l'annonce
+			// crï¿½ation de l'annonce
 			$query = "INSERT INTO user_annonce SET"
 			." user_id = '".JL::getSessionInt('user_id', 0)."',"
 			." annonce = '".JL::getSession('annonce', '', true)."'"
@@ -3031,7 +3031,7 @@
 			// abonnement initial
 			$gold_limit_date	= '0000-00-00';
 
-			// si des jours sont offerts (défini dans config.php)
+			// si des jours sont offerts (dï¿½fini dans config.php)
 			if(ABONNEMENT_INITIAL > 0) {
 
 				$date	= explode('/', date('d/m/Y'));
@@ -3043,7 +3043,7 @@
 			}
 
 
-			// création des stats
+			// crï¿½ation des stats
 			$query = "INSERT INTO user_stats SET"
 			." user_id = '".JL::getSessionInt('user_id', 0)."',"
 			." gold_limit_date = '".$gold_limit_date."',"
@@ -3052,7 +3052,7 @@
 			$db->query($query);
 
 
-			// inscription au groupe par défaut
+			// inscription au groupe par dï¿½faut
 			$query = "INSERT INTO groupe_user SET groupe_id = 1, user_id = '".JL::getSessionInt('user_id', 0)."', date_join = NOW()";
 			$db->query($query);
 
@@ -3062,7 +3062,7 @@
 			$db->query($query);
 
 
-			// création des enfants
+			// crï¿½ation des enfants
 			for($i=1; $i<=6; $i++) {
 				$child	= JL::getSessionInt('child'.$i, 0);
 				if($child) {
@@ -3083,22 +3083,22 @@
 			$db->query($query);
 
 
-			// supprime la réservation username et email
+			// supprime la rï¿½servation username et email
 			$query = "DELETE FROM user_inscription WHERE username LIKE '".JL::getSession('username','',true)."' OR email LIKE '".JL::getSession('email','',true)."'";
 			$db->query($query);
 
 
-			// met à jour la table du nombre d'inscrits
+			// met ï¿½ jour la table du nombre d'inscrits
 			$field = JL::getSession('genre', '', true) == 'h' ? 'papa' : 'maman';
 			$query = "UPDATE inscrits SET ".$field." = ".$field." + 1";
 			$db->query($query);
 
 
-			// sauvegarde les photos et suppression du répertoire temporaire d'upload
+			// sauvegarde les photos et suppression du rï¿½pertoire temporaire d'upload
 			photosSave('', true);
 
 
-			// récup le message privée de bienvenue
+			// rï¿½cup le message privï¿½e de bienvenue
 			$query = "SELECT titre, texte"
 			." FROM notification"
 			." WHERE id = 2"
@@ -3106,7 +3106,7 @@
 			;
 			$mp = $db->loadObject($query);
 
-			// envoie le message privée de bienvenue
+			// envoie le message privï¿½e de bienvenue
 			$query = "INSERT INTO message SET"
 			." user_id_from = '1',"
 			." user_id_to = '".JL::getSessionInt('user_id', 0)."',"
@@ -3116,13 +3116,13 @@
 			;
 			$db->query($query);
 
-			// crédite les points
+			// crï¿½dite les points
 			JL::addPoints(4, JL::getSessionInt('user_id', 0), '');
 
 		}
 
 
-		// récup le mail de confirmation
+		// rï¿½cup le mail de confirmation
 		$query = "SELECT titre, texte, published"
 		." FROM notification"
 		." WHERE id = 1"
@@ -3142,7 +3142,7 @@
 
 		}
 
-		// récup le texte de gauche pendant l'inscription
+		// rï¿½cup le texte de gauche pendant l'inscription
 		$notice = getNotice(9);
 
 		HTML_profil::finalisation($notice);
@@ -3157,7 +3157,7 @@
 		$key			= JL::getVar('key', 0, true);
 		$value			= JL::getVar('value', 0, true);
 
-		// récup l'utilisateur
+		// rï¿½cup l'utilisateur
 		$query = "SELECT id"
 		." FROM user"
 		." WHERE MD5(id) = '".$key."' AND MD5(creation_date) = '".$value."' AND active = 0"
@@ -3165,14 +3165,14 @@
 		;
 		$user_id = $db->loadResult($query);
 
-		// si l'utilisateur est trouvé
+		// si l'utilisateur est trouvï¿½
 		if($user_id) {
 
 			// active le compte
 			$query = "UPDATE user SET active = 1 WHERE id = '".$user_id."'";
 			$db->query($query);
 
-			// récup le genre de l'utilisateur
+			// rï¿½cup le genre de l'utilisateur
 			$query = "SELECT genre"
 			." FROM user_profil"
 			." WHERE user_id = '".$user_id."'"
@@ -3180,14 +3180,14 @@
 			;
 			$user_genre	= $db->loadResult($query);
 
-			// détermine le champ à mettre à jour
+			// dï¿½termine le champ ï¿½ mettre ï¿½ jour
 			if($user_genre == 'h') {
 				$field	= 'papa';
 			} else {
 				$field	= 'maman';
 			}
 
-			// détruit la session par mesure de sécurité
+			// dï¿½truit la session par mesure de sï¿½curitï¿½
 			JL::sessionDestroy();
 
 		}
@@ -3197,7 +3197,7 @@
 	}*/
 
 
-	// copie les images du répertoire d'upload temporaire vers le répertoire de l'utilisateur, en ajoutant 'pending-' au début du nom de chaque fichier
+	// copie les images du rï¿½pertoire d'upload temporaire vers le rï¿½pertoire de l'utilisateur, en ajoutant 'pending-' au dï¿½but du nom de chaque fichier
 	function photosSave($photo_type = '', $rmdir = false) {
 		global $langue;
 		global $db, $user;
@@ -3208,13 +3208,13 @@
 
 		if($user_id) {
 
-			// création du dossier utilisateur si besoin est
+			// crï¿½ation du dossier utilisateur si besoin est
 			if(!is_dir($dest_dir)) {
 				mkdir($dest_dir);
 				chmod($dest_dir, 0777);
 			}
 
-			// récup les miniatures de photos déjà envoyées
+			// rï¿½cup les miniatures de photos dï¿½jï¿½ envoyï¿½es
 			$dir = 'images/profil/'.JL::getSession('upload_dir', 'error');
 			if(is_dir($dir)) {
 				$dir_id 	= opendir($dir);
@@ -3224,8 +3224,8 @@
 						@unlink($dir.'/'.$file);
 
 						/* A NE SURTOUT PAS FAIRE CA ICI !!: je le laisse pour l'exemple
-						Car on peut envoyer une photo de l'enfant 1, qui écrasera la photo existante en pending.
-						Ainsi, la nouvelle photo sera ajoutée à $photo_a_valider, alors qu'elle était déjà comptée !
+						Car on peut envoyer une photo de l'enfant 1, qui ï¿½crasera la photo existante en pending.
+						Ainsi, la nouvelle photo sera ajoutï¿½e ï¿½ $photo_a_valider, alors qu'elle ï¿½tait dï¿½jï¿½ comptï¿½e !
 
 						if(preg_match('#.*109-'.$photo_type.'#', $file)) {
 							$photo_a_valider++;
@@ -3237,7 +3237,7 @@
 			}
 
 			// PATCH ANTI PHOTOS FANTOMES: enfin !
-			// détermine le nombre de photos à valider pour cet utilisateur, peu importe le type de photos
+			// dï¿½termine le nombre de photos ï¿½ valider pour cet utilisateur, peu importe le type de photos
 			if(is_dir($dir)) {
 				$dir_id 	= opendir($dir);
 				while($file = trim(readdir($dir_id))) {
@@ -3250,7 +3250,7 @@
 
 			if($photo_a_valider > 0) {
 
-				// mise à jour du champ photo_a_valider de l'utilisateur.
+				// mise ï¿½ jour du champ photo_a_valider de l'utilisateur.
 				$query = "UPDATE user_stats SET photo_a_valider = ".strval($photo_a_valider)." WHERE user_id = '".$user_id."'";
 				$db->query($query);
 
@@ -3259,7 +3259,7 @@
 			// profil uniquement
 			if($photo_type == 'profil') {
 
-				// mise à jour de la photo par défaut.
+				// mise ï¿½ jour de la photo par dï¿½faut.
 				$query = "UPDATE user_profil SET photo_defaut = '".intval(JL::getVar('photo_defaut', true))."' WHERE user_id = '".$user_id."'";
 				$db->query($query);
 
@@ -3293,10 +3293,10 @@
 		$profilGroupes			= array();
 
 
-		// id du profil à afficher
+		// id du profil ï¿½ afficher
 		$id	= JL::getVar('id', 0, true);
 
-		// récup le genre de l'utilisateur log
+		// rï¿½cup le genre de l'utilisateur log
 		$query = "SELECT genre FROM user_profil WHERE user_id = '".$user->id."' LIMIT 0,1";
 		$genre = $db->loadResult($query);
 
@@ -3307,11 +3307,11 @@
 		$where[]	= "u.published = 1";
 
 
-		// génère le where
+		// gï¿½nï¿½re le where
 		$_where		= " WHERE ".implode(' AND ', $where);
 
 
-		// récup les infos de base du profil
+		// rï¿½cup les infos de base du profil
 		$query = "SELECT u.id, IF(up.genre!='".$db->escape($genre)."' OR u.id = '".$db->escape($user->id)."',1,0) AS accessok, u.username, u.email, u.creation_date, IFNULL(ua.annonce_valide, '') AS annonce, up.genre, up.photo_defaut, up.nb_enfants, pc.nom AS canton, IFNULL(pv.nom, '') AS ville, (YEAR(CURRENT_DATE)-YEAR(up.naissance_date)) - (RIGHT(CURRENT_DATE,5)<RIGHT(up.naissance_date,5)) AS age, (UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(u.last_online)) AS last_online_time, up.photo_montrer, IFNULL(uf.user_id_to,0) AS blacklist"
 		." FROM user AS u"
 		." INNER JOIN user_profil AS up ON up.user_id = u.id"
@@ -3324,24 +3324,24 @@
 		;
 		$profil = $db->loadObject($query);
 
-		// si le profil est trouvé
+		// si le profil est trouvï¿½
 		if($profil->id) {
 
-			// si l'user log visite un profil de genre opposé, et ne visite pas son propre profil
+			// si l'user log visite un profil de genre opposï¿½, et ne visite pas son propre profil
 			if($profil->accessok == 1 && $id != $user->id) {
 
-				// mise à jour des stats générales
+				// mise ï¿½ jour des stats gï¿½nï¿½rales
 				$query = "UPDATE user_stats SET visite_total = visite_total + 1 WHERE user_id = '".$id."'";
 				$db->query($query);
 
 				// si un utilisateur n'est pas en blacklist de l'autre
 				if($profil->blacklist == 0) {
 
-					// mise à jour des stats de visites
+					// mise ï¿½ jour des stats de visites
 					$query = "UPDATE user_visite SET visite_last_date = NOW(), visite_nb = visite_nb + 1 WHERE user_id_to = '".$id."' AND user_id_from = '".$user->id."'";
 					$db->query($query);
 
-					// si aucune ligne n'a été affectée
+					// si aucune ligne n'a ï¿½tï¿½ affectï¿½e
 					if(!$db->affected_rows()) {
 
 						// on insert les stats
@@ -3353,17 +3353,17 @@
 
 					}
 
-					// enregistre le dernier événement chez le profil cible
+					// enregistre le dernier ï¿½vï¿½nement chez le profil cible
 					JL::addLastEvent($profil->id, $user->id, 1);
 
-					// crédite l'action visite par user et pas jour
+					// crï¿½dite l'action visite par user et pas jour
 					JL::addPoints(18, $profil->id, $profil->id.'#'.$user->id.'#'.date('d-m-Y'));
 
 				}
 
 			}
 
-			// récup la description
+			// rï¿½cup la description
 			$query = "SELECT psa.nom AS signe_astrologique, up.taille_id AS taille, up.poids_id AS poids, ps.nom AS silhouette, psc.nom AS style_coiffure, pc.nom AS cheveux, py.nom AS yeux, po.nom AS origine"
 			." FROM user_profil AS up"
 			." LEFT JOIN profil_signe_astrologique$langString AS psa ON psa.id = up.signe_astrologique_id AND psa.published = 1"
@@ -3378,10 +3378,10 @@
 			$profilDescription = $db->loadObject($query);
 
 
-			// le membre a-t-il accepté de montrer les photos de ses enfants ?
+			// le membre a-t-il acceptï¿½ de montrer les photos de ses enfants ?
 			if($profil->photo_montrer == 2) {
 
-				// récup les enfants
+				// rï¿½cup les enfants
 				$query = "SELECT ue.num, ue.genre, IFNULL(psa.nom, '') AS signe_astrologique, IF(ue.naissance_date!='0000-00-00',(YEAR(CURRENT_DATE)-YEAR(ue.naissance_date)) - (RIGHT(CURRENT_DATE,5)<RIGHT(ue.naissance_date,5)), -1) AS age"
 				." FROM user_enfant AS ue"
 				." LEFT JOIN profil_signe_astrologique$langString AS psa ON psa.id = ue.signe_astrologique_id"
@@ -3393,7 +3393,7 @@
 			}
 
 
-			// récup les infos diverses (partie 1)
+			// rï¿½cup les infos diverses (partie 1)
 			$query = "SELECT pn.nom AS nationalite, pr.nom AS religion, pl1.nom AS langue1, pl2.nom AS langue2, pl3.nom AS langue3, psm.nom AS statut_marital, pmm.nom AS me_marier"
 			." FROM user_profil AS up"
 			." LEFT JOIN profil_nationalite$langString AS pn ON pn.id = up.nationalite_id AND pn.published = 1"
@@ -3409,7 +3409,7 @@
 			$profilInfosEnVrac1 = $db->loadObject($query);
 
 
-			// récup les infos diverses (partie 2)
+			// rï¿½cup les infos diverses (partie 2)
 			$query = "SELECT pcr.nom AS cherche_relation, pne.nom AS niveau_etude, psa.nom AS secteur_activite, pf.nom AS fumer, pt.nom AS temperament, pve.nom AS vouloir_enfants, pg.nom AS garde"
 			." FROM user_profil AS up"
 			." LEFT JOIN profil_cherche_relation$langString AS pcr ON pcr.id = up.cherche_relation_id AND pcr.published = 1"
@@ -3425,7 +3425,7 @@
 			$profilInfosEnVrac2 = $db->loadObject($query);
 
 
-			// récup le quotidien 1
+			// rï¿½cup le quotidien 1
 			$query = "SELECT pv.nom AS vie, pc1.nom AS cuisine1, pc2.nom AS cuisine2, pc3.nom AS cuisine3, ps1.nom AS sortie1, ps2.nom AS sortie2, ps3.nom AS sortie3"
 			." FROM user_profil AS up"
 			." LEFT JOIN profil_vie$langString AS pv ON pv.id = up.vie_id AND pv.published = 1"
@@ -3441,7 +3441,7 @@
 			$profilQuotidien1 = $db->loadObject($query);
 
 
-			// récup le quotidien 2
+			// rï¿½cup le quotidien 2
 			$query = "SELECT pl1.nom AS loisir1, pl2.nom AS loisir2, pl3.nom AS loisir3, ps1.nom AS sport1, ps2.nom AS sport2, ps3.nom AS sport3"
 			." FROM user_profil AS up"
 			." LEFT JOIN profil_loisir$langString AS pl1 ON pl1.id = up.loisir1_id AND pl1.published = 1"
@@ -3456,7 +3456,7 @@
 			$profilQuotidien2 = $db->loadObject($query);
 
 
-			// récup le quotidien 3
+			// rï¿½cup le quotidien 3
 			$query = "SELECT pm1.nom AS musique1, pm2.nom AS musique2, pm3.nom AS musique3, pf1.nom AS film1, pf2.nom AS film2, pf3.nom AS film3"
 			." FROM user_profil AS up"
 			." LEFT JOIN profil_musique$langString AS pm1 ON pm1.id = up.musique1_id AND pm1.published = 1"
@@ -3471,7 +3471,7 @@
 			$profilQuotidien3 = $db->loadObject($query);
 
 
-			// récup le quotidien 4
+			// rï¿½cup le quotidien 4
 			$query = "SELECT pl1.nom AS lecture1, pl2.nom AS lecture2, pl3.nom AS lecture3, pa1.nom AS animaux1, pa2.nom AS animaux2, pa3.nom AS animaux3"
 			." FROM user_profil AS up"
 			." LEFT JOIN profil_lecture$langString AS pl1 ON pl1.id = up.lecture1_id AND pl1.published = 1"
@@ -3486,7 +3486,7 @@
 			$profilQuotidien4 = $db->loadObject($query);
 
 
-			// récup les groupes du profil
+			// rï¿½cup les groupes du profil
 			$query = "SELECT g.id, g.titre"
 			." FROM groupe AS g"
 			." INNER JOIN groupe_user AS gu ON gu.groupe_id = g.id"
@@ -3503,7 +3503,7 @@
 	}
 
 
-	// récup la notice/indication de gauche affichée lors de l'inscription
+	// rï¿½cup la notice/indication de gauche affichï¿½e lors de l'inscription
 	function getNotice($step_num) {
 		global $langue, $langString;
 		global $db;
@@ -3526,7 +3526,7 @@
 
 		}
 
-		// récup le texte
+		// rï¿½cup le texte
 		$query = "SELECT texte FROM contenu$langString WHERE id = '".(int)$id."' LIMIT 0,1";
 		$notice = $db->loadResult($query);
 

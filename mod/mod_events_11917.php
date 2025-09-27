@@ -19,7 +19,7 @@
 
 	
 	
-	// &agrave; placer toujours après les 2 limitations
+	// &agrave; placer toujours aprï¿½s les 2 limitations
 	//JL::makeSafe($events, 'event_desc');
 
 	// si une photo a &eacute;t&eacute; envoy&eacute;e
@@ -55,20 +55,20 @@
                 <div class="box">
                     <div class="outer">
                         <div class="round">
-								<a href="<? echo JL::url('index.php?app=event&action=read&id='.$contenu->id.'&'.$langue); ?>" title="<? echo $groupe->event_name; ?>"><img width="100" height="100" src="<? echo SITE_URL.'/'.$filePath; ?>" alt="<? echo $groupe->event_name; ?>"   class="attachment-70x70 size-70x70 wp-post-image" alt="26" srcset="<? echo SITE_URL.'/'.$filePath; ?>" sizes="(max-width: 70px) 100vw, 70px"></a>
+								<a href="<?php echo JL::url('index.php?app=event&action=read&id='.$contenu->id.'&'.$langue); ?>" title="<?php echo $groupe->event_name; ?>"><img width="100" height="100" src="<?php echo SITE_URL.'/'.$filePath; ?>" alt="<?php echo $groupe->event_name; ?>"   class="attachment-70x70 size-70x70 wp-post-image" alt="26" srcset="<?php echo SITE_URL.'/'.$filePath; ?>" sizes="(max-width: 70px) 100vw, 70px"></a>
                         </div>
 					</div>
 				</div>
             </div>
             <div class="col-md-9 col-sm-8 col-sx-8">
                 <div class="parentsolo_pt_15 parentsolo_pl_15">
-                   <h3 class="name " style="text-align:left"> <a href="<? echo JL::url('index.php?app=event&action=read&id='.$contenu->id.'&'.$langue); ?>"  style="text-align:left"><? echo $contenu->event_name; ?></a></h3>
+                   <h3 class="name " style="text-align:left"> <a href="<?php echo JL::url('index.php?app=event&action=read&id='.$contenu->id.'&'.$langue); ?>"  style="text-align:left"><?php echo $contenu->event_name; ?></a></h3>
                     <div class="text-box parentsolo_pt_10 parentsolo_pb_10">
-						<? echo $contenu->event_desc; ?>
+						<?php echo $contenu->event_desc; ?>
 						</div>
 				
 						<h6 class="parentsolo_text-right parentsolo_txt_clr parentsolo_txt_overflow">
-							<a href="<? echo JL::url('index.php?app=event'.'&'.$langue); ?>" title="<?php echo $lang_mod["More_events"];?>" class="plus"><?php echo $lang_mod["More_events"];?></a>
+							<a href="<?php echo JL::url('index.php?app=event'.'&'.$langue); ?>" title="<?php echo $lang_mod["More_events"];?>" class="plus"><?php echo $lang_mod["More_events"];?></a>
 						</h6>
 					
                    
@@ -86,20 +86,19 @@
 		<table width="100%">
 			<tr>
 				<td valign="top">
-					<img src="<? echo SITE_URL.'/'.$image; ?>" alt="<? echo $groupe->titre; ?>" />
+					<img src="<?php echo SITE_URL.'/'.$image; ?>" alt="<?php echo $groupe->titre; ?>" />
 				</td>
 				<td valign="top" align="left">
-					<div class="titre"><? echo $groupe->titre; ?></div>
-					<? echo $groupe->texte; ?><br />
-					<a href="<? echo JL::url('index.php?app=groupe&action=list&groupe_type=all'.'&'.$langue); ?>" title="<?php echo $lang_mod["TousLesGroupes"];?>" class="plus"><?php echo $lang_mod["TousLesGroupes"];?></a><br />
+					<div class="titre"><?php echo $groupe->titre; ?></div>
+					<?php echo $groupe->texte; ?><br />
+					<a href="<?php echo JL::url('index.php?app=groupe&action=list&groupe_type=all'.'&'.$langue); ?>" title="<?php echo $lang_mod["TousLesGroupes"];?>" class="plus"><?php echo $lang_mod["TousLesGroupes"];?></a><br />
 					<br />
 					<center>
-						<? // si user log est une femme
+						<?php // si user log est une femme
 							if($user->genre == 'f') {
 						?>
 								<a href="http://www.babybook.ch/blog/forum" title="<?php echo $lang_mod["ForumEntreMamans"];?>" class="forum_maman" target="_blank"><?php echo $lang_mod["ForumEntreMamans"];?></a>
-						<?
-							} */
+						<?php 							} */
 						?>
 					</center>
 				</td>

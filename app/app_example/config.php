@@ -3,8 +3,8 @@
 		"username"=>"parentsolo",
 		"private_key"=>"a12529844db3a0a1d1b9d3b75f8038ce",
 		"cookie_path"=>'/tmp',
-		"message_body"=>"You are invited to www.parentsolo.ch", // www.parentsolo.ch is the website on your account. If wrong, please update your account at OpenInviter.com
-		"message_subject"=>" is inviting you to www.parentsolo.ch", // www.parentsolo.ch is the website on your account. If wrong, please update your account at OpenInviter.com
+		"message_body"=>"You are invited to www.solocircl.com", // www.solocircl.com is the website on your account. If wrong, please update your account at OpenInviter.com
+		"message_subject"=>" is inviting you to www.solocircl.com", // www.solocircl.com is the website on your account. If wrong, please update your account at OpenInviter.com
 		"transport"=>"curl", //Replace "curl" with "wget" if you would like to use wget instead
 		"local_debug"=>"on_error", //Available options: on_error => log only requests containing errors; always => log all requests; false => don`t log anything
 		"remote_debug"=>FALSE, //When set to TRUE OpenInviter sends debug information to our servers. Set it to FALSE to disable this feature

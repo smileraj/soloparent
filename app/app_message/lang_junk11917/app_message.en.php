@@ -11,7 +11,7 @@ $lang_message = array(
 
 	//------------------Page message.html.php ---------
 
-	"MessagesParentsolo" => "Parentsolo.ch messages",
+	"MessagesParentsolo" => "solocircl.com messages",
 	
 	"MailsRecus" => "Messages received",
 	"RosesRecues" => "Roses received",
@@ -109,7 +109,7 @@ $lang_message = array(
 	
 	"ProfilNonValide" => "Your profile has not yet been validated by a moderator. You'll receive a phone call within 1 to 2 business days to confirm your profile. These waiting days will of course be added to your subscription",
 	"QualiteServiceOptimale" => "This action is taken in order to guarantee an optimal quality of service. Any malicious person wishing to bypass the phone confirmation is therefore unable to contact other members as their profile will not be validated",
-	"ParentsoloVousRemercie" =>"Parentsolo.ch thanks you for your understanding",
+	"ParentsoloVousRemercie" =>"solocircl.com thanks you for your understanding",
 	
 	"SelectionnezFleur" => "Please select a flower",
 	"IndiquezDestinataire" => "Please specify a recipient",
@@ -118,7 +118,7 @@ $lang_message = array(
 	"WarningMailVousMeme" => "You can't send your message to yourself",
 	"PseudoInconnu" => "User name of the addressee unknown",
 	"WarningUtilisateurDansListeNoire" => "You can't send messages to a user on your blacklist",
-	"WarningVousDansListeNoireUtilisateur" => "You can't send messages to this user because you’re on their blacklist",
+	"WarningVousDansListeNoireUtilisateur" => "You can't send messages to this user because youï¿½re on their blacklist",
 	
 	"IndiquezTitre" => "Please enter the title of your message",
 	"IndiquezTexte" => "Please enter the text of your message",

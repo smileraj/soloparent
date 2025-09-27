@@ -3,15 +3,15 @@
 $lang_appprofil = array(
 
 	//Fichier profil.html.php
-	"MessagesParentSolo" => "Messages Parentsolo.ch",
+	"MessagesParentSolo" => "Messages solocircl.com",
 	"Enfants" => "Enfants",
 	"addmodify" => "Ajouter / modifier",
 	"edit" => "Modifier",
 	
-"message_profile"=> "Notre cupidon recherche pour vous les profils compatibles avec vos attentes et vos centres d'intérets",
+"message_profile"=> "Notre cupidon recherche pour vous les profils compatibles avec vos attentes et vos centres d'intï¿½rets",
 	
 	//---------------Profil_menu----------------------------------------//
-	//connecté
+	//connectï¿½
 	
 	"Profil" => "Profil",
 	"PROFILE_SELECT" => "Profils compatibles avec le votre!",
@@ -24,14 +24,14 @@ $lang_appprofil = array(
 	
 	"Compte" => "Compte",
 	
-	"ParametresCompte" => "Paramètres du compte",
+	"ParametresCompte" => "Paramï¿½tres du compte",
 	"Notifications" => "Notifications",
 	"Abonnement" => "Abonnement",
 	"See_More" => "Bekijk meer",
 	
 	"Mails" => "Mails",
-	"Cupid" => "Cupidon recherche votre âme soeur, attendez quelques secondes",
-	/*"BoiteReception" => "Boîte de réception",
+	"Cupid" => "Cupidon recherche votre ï¿½me soeur, attendez quelques secondes",
+	/*"BoiteReception" => "Boï¿½te de rï¿½ception",
 	"Envois" => "Envois",
 	"Archives" => "Archives",	
 	"Corbeille" => "Corbeille",*/
@@ -48,9 +48,9 @@ $lang_appprofil = array(
     
     "champsObligatoires" => " * champs obligatoires",
 	
-	//Non connecté
+	//Non connectï¿½
 	"InscriptionInterrompu" => "Inscription interrompu",
-	"InscriptionTerminee" => "Inscription terminée",
+	"InscriptionTerminee" => "Inscription terminï¿½e",
 	"Etape" => "Etape",
 	//---------------------------------Fin - Profil_panel---------------//
 	
@@ -59,8 +59,8 @@ $lang_appprofil = array(
 	//------------------Page Etape1 Moi---------
 	
 	
-	"condReadAccepted" => "Lues et Acceptées",
-	"condReadNotAccepted" => "Lues et Refusées",
+	"condReadAccepted" => "Lues et Acceptï¿½es",
+	"condReadNotAccepted" => "Lues et Refusï¿½es",
 	
 	"Genre" => "Genre",
 	"UnHomme" => "un homme",
@@ -95,9 +95,9 @@ $lang_appprofil = array(
 	"ans" => "ans",
 	
 	
-	"MesCoordonnees" => "Mes coordonnées",
+	"MesCoordonnees" => "Mes coordonnï¿½es",
 	"Moi" => "Moi",
-	"MesDonnees" => "Mes données",
+	"MesDonnees" => "Mes donnï¿½es",
 	
 	"Parrain" => "Parrain",
 	
@@ -110,47 +110,47 @@ $lang_appprofil = array(
 	"Email" => "Email",
 	"ConfirmationEmail" => "Confirmation de l'e-mail",
 	
-	"JeSouhaiteRecevoirOffresPartenaires" => "Je souhaite recevoir par e-mail les offres des partenaires de Parentsolo.ch (facultatif)",
+	"JeSouhaiteRecevoirOffresPartenaires" => "Je souhaite recevoir par e-mail les offres des partenaires de solocircl.com (facultatif)",
 	
-	"CodeDeSecurite" => "Code de sécurité",
+	"CodeDeSecurite" => "Code de sï¿½curitï¿½",
 	"CombienDeFleurs" => "Combien y a-t-il de fleurs ci-dessous",
 	
 	
-	"CGU" => "Conditions Générales d'Utilisation",
+	"CGU" => "Conditions Gï¿½nï¿½rales d'Utilisation",
 	
 	"JAccepte" => "J'accepte",
 	"JeRefuse" => "Je refuse",
 	
 	"Conditions" => "Conditions",
-	"VeuillezLireLesCGU" => "Veuillez lire les Conditions Générales d'Utilisation en faisant défiler la barre de défilement ou \"Ascenseur\" se situant à côté du texte vers les bas, puis cliquez sur un des deux boutons ci-dessus afin d'accepter ou de refuser ces conditions",
-	"EnCliquantSurLeBouton" => "En cliquant sur le bouton <span class='accepted'>\"J'accepte\"</span>, je certifie être majeur(e) et avoir lu et accepté les <b>Conditions Générales d'Utilisation</b> du service <b>Parentsolo.ch</b> énoncées ci-dessus",
+	"VeuillezLireLesCGU" => "Veuillez lire les Conditions Gï¿½nï¿½rales d'Utilisation en faisant dï¿½filer la barre de dï¿½filement ou \"Ascenseur\" se situant ï¿½ cï¿½tï¿½ du texte vers les bas, puis cliquez sur un des deux boutons ci-dessus afin d'accepter ou de refuser ces conditions",
+	"EnCliquantSurLeBouton" => "En cliquant sur le bouton <span class='accepted'>\"J'accepte\"</span>, je certifie ï¿½tre majeur(e) et avoir lu et acceptï¿½ les <b>Conditions Gï¿½nï¿½rales d'Utilisation</b> du sersolocircl.comtsolo.ch</b> ï¿½noncï¿½es ci-dessus",
 	
 	"EtapeSuivante" => "Etape suivante",
 	"Valider" => "Valider",
 	
 	
 	
-	"IndiquezVotreGenre" => "Veuillez indiquer votre genre s'il vous plaît",
-	"IndiquezVotreDateNaissance" => "Veuillez indiquer votre date de naissance s'il vous plaît",
-	"VousDevezEtreMajeur" => "Vous devez être majeur(e) pour vous inscrire sur Parentsolo.ch",
-	"IndiquezVotreCanton" => "Veuillez indiquer dans quel canton vous résidez s'il vous plaît",
+	"IndiquezVotreGenre" => "Veuillez indiquer votre genre s'il vous plaï¿½t",
+	"IndiquezVotreDateNaissance" => "Veuillez indiquer votre date de naissance s'il vous plaï¿½t",
+	"VousDevezEtreMajeur" => "Vous devez ï¿½tre majeur(e) pour vous inscrire susolocircl.comch",
+	"IndiquezVotreCanton" => "Veuillez indiquer dans quel canton vous rï¿½sidez s'il vous plaï¿½t",
 	
 	
-	"PseudoInvalideNbCaracteres" => "Votre pseudo doit comporter entre 4 et 13 caractères inclus",
-	"PseudoInvalideCaracteresSpeciaux" => "Votre pseudo ne doit contenir que des caractères non accentués et des chiffres",
-	"MdpInvalideCaracteresSpeciaux" => "Votre mot de passe ne doit contenir que des caractères non accentués et des chiffres",
-	"ConfirmationMdpInvalide" => "La confirmation du mot de passe ne correspond pas au premier mot de passe entré",
+	"PseudoInvalideNbCaracteres" => "Votre pseudo doit comporter entre 4 et 13 caractï¿½res inclus",
+	"PseudoInvalideCaracteresSpeciaux" => "Votre pseudo ne doit contenir que des caractï¿½res non accentuï¿½s et des chiffres",
+	"MdpInvalideCaracteresSpeciaux" => "Votre mot de passe ne doit contenir que des caractï¿½res non accentuï¿½s et des chiffres",
+	"ConfirmationMdpInvalide" => "La confirmation du mot de passe ne correspond pas au premier mot de passe entrï¿½",
 	"EmailInvalide" => "Votre adresse e-mail n'est pas valide",
-	"ConfirmationEmailInvalide" => "La confirmation de l'adresse e-mail ne correspond pas à la première adresse e-mail entrée",
+	"ConfirmationEmailInvalide" => "La confirmation de l'adresse e-mail ne correspond pas ï¿½ la premiï¿½re adresse e-mail entrï¿½e",
 	
-	"LectureCGU" => "Vous devez lire et accepter les Conditions Générales d'Utilisation afin de pouvoir vous inscrire sur Parentsolo.ch",
+	"LectureCGU" => "Vous devez lire et accepter les Conditions Gï¿½nï¿½rales d'Utilisation afin de pouvoir vous inscrire solocircl.como.ch",
 	
-	"CodeSecuriteIncorrect" => "Le code de sécurité entré est incorrect",
+	"CodeSecuriteIncorrect" => "Le code de sï¿½curitï¿½ entrï¿½ est incorrect",
 	
-	"ModificationEnregistrees" => "Modifications enregistrées",
+	"ModificationEnregistrees" => "Modifications enregistrï¿½es",
 	
-	"PseudoDejaEnregistre" => "Le pseudo indiqué est déjà utilisé sur notre site, veuillez en choisir un autre s'il vous plaît",
-	"EmailDejaEnregistre" => "L'email indiqué est déjà enregistré sur notre site",
+	"PseudoDejaEnregistre" => "Le pseudo indiquï¿½ est dï¿½jï¿½ utilisï¿½ sur notre site, veuillez en choisir un autre s'il vous plaï¿½t",
+	"EmailDejaEnregistre" => "L'email indiquï¿½ est dï¿½jï¿½ enregistrï¿½ sur notre site",
 	
 	
 
@@ -159,21 +159,21 @@ $lang_appprofil = array(
 
 	"MesPhotos" => "Mes photos",
 	"Supprimer" => "Supprimer",
-	"ParDefaut" => "Par défaut",
+	"ParDefaut" => "Par dï¿½faut",
 	
 	"PageAccueil" => "Page d'accueil",
-	"MontrerPhotoHomePage" => "<u>J'accepte</u> de montrer ma photo par défaut en page d'accueil",
-	"NePasMontrerPhotoHomePage" => "<u>Je n'accepte pas</u> de montrer ma photo par défaut en page d'accueil",
+	"MontrerPhotoHomePage" => "<u>J'accepte</u> de montrer ma photo par dï¿½faut en page d'accueil",
+	"NePasMontrerPhotoHomePage" => "<u>Je n'accepte pas</u> de montrer ma photo par dï¿½faut en page d'accueil",
 	
-	"PhotosNonEnAttente" => "Si vos photos chargées n'apparaissent pas dans la partie \"Photos en attente de validation\", veuillez cliquer sur Valider",
+	"PhotosNonEnAttente" => "Si vos photos chargï¿½es n'apparaissent pas dans la partie \"Photos en attente de validation\", veuillez cliquer sur Valider",
 	
 	"PhotosAttente" => "Photos en attente de validation",
-	"AvantEtrePublierPhotos" => "Avant d'être publiées, vos photos doivent être validées par un modérateur de Parentsolo.ch",
+	"AvantEtrePublierPhotos" => "Avant d'ï¿½tre publiï¿½es, vos photos doivent ï¿½tre validï¿½es par un modï¿½solocircl.comentsolo.ch",
 	
-	"PhotosValidees" => "Photos validées",
+	"PhotosValidees" => "Photos validï¿½es",
 	
-	"EtapePrecedente" => "étape précédente",
-	"RemettrePlusTard" => "Remettre à plus tard",
+	"EtapePrecedente" => "ï¿½tape prï¿½cï¿½dente",
+	"RemettrePlusTard" => "Remettre ï¿½ plus tard",
 	
 	
 	
@@ -182,14 +182,14 @@ $lang_appprofil = array(
 
 	"MonAnnonce" => "Mon annonce",
 	
-	"NombreDeCaracteres" => "Nombre de caractères restants",
+	"NombreDeCaracteres" => "Nombre de caractï¿½res restants",
 	
-	"AnnonceRefusee" => "Votre annonce a été refusée car elle ne respecte pas les <a href='".JL::url('index.php?app=redac&action=item&id=5'.'&'.$langue)."' title='CGU' target='_blank'>Conditions Générales d'Utilisation</a> du service Parentsolo.ch. Nous vous invitons à modifier votre annonce afin que celle-ci soit publiée sur le site",
-	"AvantEtrePublierAnnonce" => "Avant d'être publiée, votre annonce doit être validée par un modérateur de Parentsolo.ch",
-	"AnnonceValidee" => "Votre annonce a été validée",
-	"ModificationAnnonce" => "Si vous créez une nouvelle annonce ou effectuez des modification sur une annonce déjà créé, veuillez cliquer sur Valider",
+	"AnnonceRefusee" => "Votre annonce a ï¿½tï¿½ refusï¿½e car elle ne respecte pas les <a href='".JL::url('index.php?app=redac&action=item&id=5'.'&'.$langue)."' title='CGU' target='_blank'>Conditions Gï¿½nï¿½rales d'Utilisation</a> dsolocircl.comentsolo.ch. Nous vous invitons ï¿½ modifier votre annonce afin que celle-ci soit publiï¿½e sur le site",
+	"AvantEtrePublierAnnonce" => "Avant d'ï¿½tre publiï¿½e, votre annonce doit ï¿½tre validï¿½e par un modï¿½solocircl.comentsolo.ch",
+	"AnnonceValidee" => "Votre annonce a ï¿½tï¿½ validï¿½e",
+	"ModificationAnnonce" => "Si vous crï¿½ez une nouvelle annonce ou effectuez des modification sur une annonce dï¿½jï¿½ crï¿½ï¿½, veuillez cliquer sur Valider",
 	
-	"AucuneModificationEnregistrees" => "Aucune modification effectuée",
+	"AucuneModificationEnregistrees" => "Aucune modification effectuï¿½e",
 
 
 
@@ -197,20 +197,20 @@ $lang_appprofil = array(
 	
 	"MaDescription" => "Ma description",	
 	
-	"General" => "Général",
+	"General" => "Gï¿½nï¿½ral",
 	"ModeDeVie" => "Mode de vie",
-	"Nationalite" => "Nationalité",
+	"Nationalite" => "Nationalitï¿½",
 	"Religion" => "Religion",
 	"StatutMarital" => "Statut marital",
 	"LeMariageEst" => "Le mariage est",
-	"RelationCherchee" => "Relation cherchée",
-	"NiveauEtudes" => "Niveau d'études",
-	"SecteurActivite" => "Secteur d'activité",
+	"RelationCherchee" => "Relation cherchï¿½e",
+	"NiveauEtudes" => "Niveau d'ï¿½tudes",
+	"SecteurActivite" => "Secteur d'activitï¿½",
 	"Fumeur" => "Fumeur",
-	"Temperament" => "Tempérament",
-	"NombreEnfantsSouhaites" => "Nombre d'enfants souhaités",
+	"Temperament" => "Tempï¿½rament",
+	"NombreEnfantsSouhaites" => "Nombre d'enfants souhaitï¿½s",
 	"QuiLaGarde" => "Qui a la garde",
-	"LanguesParlees" => "Langues parlées",
+	"LanguesParlees" => "Langues parlï¿½es",
 	
 	
 	"Physique" => "Physique",
@@ -224,7 +224,7 @@ $lang_appprofil = array(
 
 	"JeLeGarde" => "Je le garde pour moi",
 	
-	"CentresInterets" => "Centres d'intérêts",
+	"CentresInterets" => "Centres d'intï¿½rï¿½ts",
 	
 	"Cuisine" => "Cuisine",
 	"Sorties" => "Sorties",
@@ -247,27 +247,27 @@ $lang_appprofil = array(
 
 	"PremierEnfant" => "Premier enfant",
 	"SecondEnfant" => "Second enfant",
-	"TroisiemeEnfant" => "Troisième enfant",
-	"QuatriemeEnfant" => "Quatrième enfant",
-	"CinquiemeEnfant" => "Cinquième enfant",
-	"SixiemeEnfant" => "Sixième enfant",
+	"TroisiemeEnfant" => "Troisiï¿½me enfant",
+	"QuatriemeEnfant" => "Quatriï¿½me enfant",
+	"CinquiemeEnfant" => "Cinquiï¿½me enfant",
+	"SixiemeEnfant" => "Sixiï¿½me enfant",
 	
 	
 	"AjouterEnfant" => "Ajouter un enfant",
 	"RetirerEnfant" => "Retirer un enfant",
 	"QuiPeutVoirLesPhotosDeMesEnfants" => "Qui peut voir les photos de mes enfants",
 	
-	"UniquementLesModerateursDeParentsolo_ch" => "Uniquement les <b>modérateurs</b> de Parentsolo.ch",
+	"UniquementLesModerateursDeParentsolo_ch" => "Uniquement les <b>modï¿½rateurs</b> dsolocircl.comch",
 	
-	"TousLesMembresDeParentsolo_ch" => "Tous les <b>membres</b> de Parentsolo.ch",
+	"TousLesMembresDeParentsolo_ch" => "Tous les <b>membres</b> de solocircl.com",
 
 	
 	"UneFille" => "une fille",
-	"UnGarcon" => "un garçon",
+	"UnGarcon" => "un garï¿½on",
 	
 	
 	"IndiquezGenreEnfantNum" => "Veuillez indiquer le genre de votre ".$enfant_num,
-	"IndiquerDateNaissanceEnfantNum" => "Veuillez indiquer la date de naissance complète de votre ".$enfant_num,
+	"IndiquerDateNaissanceEnfantNum" => "Veuillez indiquer la date de naissance complï¿½te de votre ".$enfant_num,
 
 
 	//---------------Page Etape 8 Recherche- ----------------
@@ -278,48 +278,48 @@ $lang_appprofil = array(
 
 
 
-	//------------------Page Etape 9 Données Perso---------
+	//------------------Page Etape 9 Donnï¿½es Perso---------
 
 	"Nom" => "Nom",
-	"Prenom" => "Prénom",
-	"Telephone" => "Téléphone",
+	"Prenom" => "Prï¿½nom",
+	"Telephone" => "Tï¿½lï¿½phone",
 	"Adresse" => "Adresse",
 	"CodePostal" => "Code postal",
 	
 	"Finaliser" => "Finaliser",
 	
-	"LangueAppel" => "Langue de communication avec les modérateurs de Parentsolo.ch",
+	"LangueAppel" => "Langue de communication avec les modï¿½rateurs dsolocircl.comch",
 	
-	"Francais" => "Français",
+	"Francais" => "Franï¿½ais",
 	"Anglais" => "Anglais",
 	"Allemand" => "Allemand",
 
 
-	"IndiquezNumTel" => "Veuillez indiquer votre numéro de téléphone s'il vous plaît",
-	"IndiquezPrenom" => "Veuillez indiquer votre prénom s'il vous plaît",
-	"IndiquezNom" => "Veuillez indiquer votre nom s'il vous plaît",
-	"IndiquezAdresse" => "Veuillez indiquer votre adresse s'il vous plaît",
-	"IndiquezCodePostal" => "Veuillez indiquer votre code postal s'il vous plaît",
-	"IndiquezLangueAppel" => "Veuillez choisir votre langue de communication avec les modérateurs de Parentsolo.ch s'il vous plaît",
-	"telephonealreadyexist"=>"Numéro de téléphone est existe déjà",
-     "zipcodevalidation"=>"Ne correspond pas à code postal Ouvrir avec le canton",
+	"IndiquezNumTel" => "Veuillez indiquer votre numï¿½ro de tï¿½lï¿½phone s'il vous plaï¿½t",
+	"IndiquezPrenom" => "Veuillez indiquer votre prï¿½nom s'il vous plaï¿½t",
+	"IndiquezNom" => "Veuillez indiquer votre nom s'il vous plaï¿½t",
+	"IndiquezAdresse" => "Veuillez indiquer votre adresse s'il vous plaï¿½t",
+	"IndiquezCodePostal" => "Veuillez indiquer votre code postal s'il vous plaï¿½t",
+	"IndiquezLangueAppel" => "Veuillez choisir votre langue de communication avec les modï¿½rateurs dsolocircl.comch s'il vous plaï¿½t",
+	"telephonealreadyexist"=>"Numï¿½ro de tï¿½lï¿½phone est existe dï¿½jï¿½",
+     "zipcodevalidation"=>"Ne correspond pas ï¿½ code postal Ouvrir avec le canton",
 
 	
 	//------------------Page Finalisation---------
 
-	"FelicitationsProfilCree" => "Félicitations votre profil est maintenant créé",
-	"ConnexionOK" => "Vous pouvez dès à présent vous connecter à <b>Parentsolo.ch</b> avec vos identifiants",
+	"FelicitationsProfilCree" => "Fï¿½licitations votre profil est maintenant crï¿½ï¿½",
+	"ConnexionOK" => "Vous pouvez dï¿½s ï¿½ prï¿½sent vous connectersolocircl.comolo.ch</b> avec vos identifiants",
 	"Pass" => "Pass",
-	"NousVousSouhaitons" => "Nous vous souhaitons d'agréables rencontres sur le site",
-	"LequipeDeParentsolo" => "L'équipe de Parentsolo.ch",
+	"NousVousSouhaitons" => "Nous vous souhaitons d'agrï¿½ables rencontres sur le site",
+	"LequipeDeParentsolo" => "L'ï¿½quipe dsolocircl.comch",
 	
 	
 	
 	
 	//-----------------Page InscriptionInterrompu----
 	
-	"MalheureusementInscriptionInterrompu" => "Malheureusement votre inscription a été interrompu lors de la création de votre compte",
-	"VousPouvezRetenter" => "Vous pouvez rententer une nouvelle inscription dès maintenant en changeant de pseudo et d'e-mail",
+	"MalheureusementInscriptionInterrompu" => "Malheureusement votre inscription a ï¿½tï¿½ interrompu lors de la crï¿½ation de votre compte",
+	"VousPouvezRetenter" => "Vous pouvez rententer une nouvelle inscription dï¿½s maintenant en changeant de pseudo et d'e-mail",
 	
 	"NouvelleInscription" => "Nouvelle inscription",
 
@@ -329,11 +329,11 @@ $lang_appprofil = array(
 
 	"NotificationEmail" => "Notifications par email",
 	"CochezLesCasesSouhaites" => "Cochez les cases en face des notifications que vous souhaitez recevoir par email",
-	"UnPapaAConsulteVotreProfil" => "Un papa a consulté votre profil",
-	"UneMamanAConsulteVotreProfil" => "Une maman a consulté votre profil",
-	"VousAvezNouveauMessage" => "Vous avez reçu un nouveau message",
-	"VousAvezRecuNouvelleFleur" => "Vous avez reçu une nouvelle fleur",
-	"DiversRappels" => "Divers rappels (sécurité, photo, fin d'abonnement, etc.)",
+	"UnPapaAConsulteVotreProfil" => "Un papa a consultï¿½ votre profil",
+	"UneMamanAConsulteVotreProfil" => "Une maman a consultï¿½ votre profil",
+	"VousAvezNouveauMessage" => "Vous avez reï¿½u un nouveau message",
+	"VousAvezRecuNouvelleFleur" => "Vous avez reï¿½u une nouvelle fleur",
+	"DiversRappels" => "Divers rappels (sï¿½curitï¿½, photo, fin d'abonnement, etc.)",
 	
 
 
@@ -357,18 +357,18 @@ $lang_appprofil = array(
 	"Hier" => "hier",
 	"CetteSemaine" => "cette semaine",
 	
-	"Publicite" => "Publicité",
+	"Publicite" => "Publicitï¿½",
 	
-	"NAPasRedigeAnnonce" => "<b>".$profil->username."</b> n'a pas encore rédigé d'annonce",
+	"NAPasRedigeAnnonce" => "<b>".$profil->username."</b> n'a pas encore rï¿½digï¿½ d'annonce",
 	
 	"Fille" => "Fille",
-	"Garcon" => "Garçon",
+	"Garcon" => "Garï¿½on",
 	
 	"Age" => "Age",
 	"an" => "an",
 	"MoinDUnAn" => "Moins d'un an",
 	
-	"DetailsEnfantNonIndique" => "Les détails concernant les enfants de <b>".$profil->username."</b> n'ont pas encore été indiqués",
+	"DetailsEnfantNonIndique" => "Les dï¿½tails concernant les enfants de <b>".$profil->username."</b> n'ont pas encore ï¿½tï¿½ indiquï¿½s",
 	
 	
 	"NARejointAucunGroupe" => "<b>".$profil->username."</b> n'a rejoint aucun groupe pour le moment",
@@ -376,7 +376,7 @@ $lang_appprofil = array(
 	"InscritDepuisLe" => "Inscrit depuis le",
 	"InscriteDepuisLe" => "Inscrite depuis le",
 	
-	"DerniereConnexion" => "Dernière connexion",
+	"DerniereConnexion" => "Derniï¿½re connexion",
 	"EnvoyerMessage" => "Envoyer un message",
 	"EnvoyerRose" => "Envoyer une rose",
 	"CHAT" => "TCHAT",
@@ -384,7 +384,7 @@ $lang_appprofil = array(
 	"bloquerMembre" => "Bloquer ce membre",
 	"SignalerAbus" => "Signaler un abus",
 	
-	"NonRenseigne" => "Non renseignée",
+	"NonRenseigne" => "Non renseignï¿½e",
 	
 	"ProfilInaccessible" => "Profil inaccessible",
 	
@@ -399,19 +399,19 @@ $lang_appprofil = array(
 	"Nouveau" => "Nouveau",
 	
 	
-	"BoiteReception" => "Boîte de réception",
+	"BoiteReception" => "Boï¿½te de rï¿½ception",
 	"NouveauMessage" => "nouveau message",
 	"NouveauxMessages" => "nouveaux messages",
 	
-	"BoiteReceptionRoses" => "Boîte de réception des roses",
+	"BoiteReceptionRoses" => "Boï¿½te de rï¿½ception des roses",
 	"NouvelleRose" => "nouvelle rose",
 	"NouvellesRoses" => "nouvelles roses",
 	
-	"VisiteursProfil" => "Qui a visité votre profil depuis votre inscription",
+	"VisiteursProfil" => "Qui a visitï¿½ votre profil depuis votre inscription",
 	"Visites" => "visites",
 	"Visite" => "visite",
 	
-	"DetailPoints" => "Détail des points que vous avez accumulé",
+	"DetailPoints" => "Dï¿½tail des points que vous avez accumulï¿½",
 
 	
 	
@@ -434,7 +434,7 @@ $lang_appprofil = array(
 	"EnvoyerUneRose" => "Envoyer une rose",
 	"Chat" => "TChat",
 	"AjouterAuxFavoris" => "Ajouter aux favoris",
-	"AjouterALaListeNoire" => "Ajouter à la liste noire",
+	"AjouterALaListeNoire" => "Ajouter ï¿½ la liste noire",
 	"SignalerUnAbus" => "Signaler un abus",
 	
 	"AucunPapaEnLigne" => "Aucun papa n'est en ligne pour le moment",
@@ -449,18 +449,18 @@ $lang_appprofil = array(
 	"VoirPlusDePapaInscrit" => "VOIR PLUS DE PROFILS SELECTIONNES",
 	"VoirPlusDeMamanInscrit" => "VOIR PLUS DE PROFILS SELECTIONNES",
 	
-	"see_profile_select" => "Découvrir la suite",
+	"see_profile_select" => "Dï¿½couvrir la suite",
 	
 	"AucunPapaInscrit" => "Aucun papa n'est inscrit pour le moment",
 	"AucuneMamanInscrite" => "Aucune maman n'est inscrite pour le moment",
 	
 	
-	//Témoignage
-	"Temoignages" => "Témoignages",
-	"VoirTousLesTemoignages" => "Voir tous les témoignages",
+	//Tï¿½moignage
+	"Temoignages" => "Tï¿½moignages",
+	"VoirTousLesTemoignages" => "Voir tous les tï¿½moignages",
 	
 	
-	"LireLeTemoignage" => "Lire le témoignage",
+	"LireLeTemoignage" => "Lire le tï¿½moignage",
 //PROFILE
 "SELECTEDPROFILES" => "MATCHING",	
 "Addbutton" => "Ajouter une photo",

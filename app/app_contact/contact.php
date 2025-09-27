@@ -148,7 +148,7 @@
 				$texte 		= 'De: '.$contact->email."\n\n";
 				$texte		.= 'Message: '.$contact->message;
 				
-				$email = 'info@parentsolo.ch';
+				$email = 'info@solocircl.com';
 				//$email = 'm.jombart@babybook.ch';
 				
 				// envoi du mail

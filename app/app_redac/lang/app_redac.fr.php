@@ -7,12 +7,12 @@ $lang_redac = array(
 	"ActualiteDu" => "actualit&eacute; du",
 	
 	"MenuPresse" => "Menu Presse",
-	"ParentsoloDansPresse" => "ParentSolo.ch dans la presse",
+	"ParentsoloDansPresse" => "solocircl.com dans la presse",
 	"CommuniqueDePresse" => "Communiqu&eacute; de presse",
 	"DossierDePresse" => "Dossier de presse",
 	"Medias" => "M&eacute;dias",
 	
-	"RebriquePresse" => "Rubrique Presse Parentsolo.ch",
+	"RebriquePresse" => "Rubrique Presse solocircl.com",
 	
 	"VousPouvezUtiliser" => "Vous pouvez utiliser le menu situ&eacute; &agrave; gauche pour naviguer d'une page &agrave; l'autre de la rubrique &quot;Presse&quot;",
 	

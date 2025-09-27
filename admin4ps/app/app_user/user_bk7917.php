@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 	
 	require_once('user.html.php');
@@ -57,7 +57,7 @@
 		global $db, $messages;
 		
 		
-		// récup les données
+		// rï¿½cup les donnï¿½es
 		$data 		= getData(true);
 		
 		// passe les variables en session
@@ -66,7 +66,7 @@
 		}
 		
 		
-		// vérifs
+		// vï¿½rifs
 		if(!$data->username) {
 			$messages[]	= '<span class="error">Veuillez indiquer un pseudo svp.</span>';
 		}
@@ -77,20 +77,20 @@
 		// nouvel utilisateur
 		if(!$data->id) {
 			
-			// vérifie si le pseudo est dispo
+			// vï¿½rifie si le pseudo est dispo
 			$query = "SELECT id FROM user WHERE username LIKE '".$data->username."' LIMIT 0,1";
 			$userObjnameExistant = $db->loadResult($query);
 			
-			// pseudo déjà pris
+			// pseudo dï¿½jï¿½ pris
 			if($userObjnameExistant) {
 				$messages[]	= '<span class="error">Veuillez indiquer un autre pseudo svp, celui-ci est d&eacute;j&agrave; pris.</span>';
 			}
 			
-			// vérifie si l'adresse email est dispo
+			// vï¿½rifie si l'adresse email est dispo
 			$query = "SELECT id FROM user WHERE email LIKE '".$data->email."' LIMIT 0,1";
 			$emailExistant = $db->loadResult($query);
 			
-			// email déjà pris
+			// email dï¿½jï¿½ pris
 			if($emailExistant) {
 				$messages[]	= '<span class="error">Veuillez indiquer une autre adresse email svp, celle-ci est d&eacute;j&agrave; prise.</span>';
 			}
@@ -171,7 +171,7 @@
 	}
 	
 	
-	// éditer utilisateur
+	// ï¿½diter utilisateur
 	function userEditer() {
 		global $db, $messages;
 		
@@ -193,7 +193,7 @@
 		
 		} else {
 			
-			// récup les infos du profil
+			// rï¿½cup les infos du profil
 			$query = "SELECT id, username, email, published, confirmed, creation_date, last_online, gid"
 			." FROM user"
 			." WHERE id = '".$id."'"
@@ -208,17 +208,17 @@
 	}
 	
 	
-	// active/désactive des profils passés en param
+	// active/dï¿½sactive des profils passï¿½s en param
 	function userActivation($published) {
 		global $db, $messages;
 		
 		$ids = JL::getVar('id', array());
 		
-		// s'il y a des id passés
-		if(count($ids)) {
+		// s'il y a des id passï¿½s
+		if (is_array($ids)) {
 			$in_id	= implode(',', $ids);
 			
-			// mise à jour du champ id
+			// mise ï¿½ jour du champ id
 			$query = "UPDATE user SET published = '".$published."' WHERE id IN (".$in_id.")";
 			$db->query($query);
 			
@@ -230,15 +230,15 @@
 			}
 			
 			
-			// utilisateur à désactiver
+			// utilisateur ï¿½ dï¿½sactiver
 			if($published == 0) {
 				
-				// mise à jour des stats nouveaux messages
+				// mise ï¿½ jour des stats nouveaux messages
 				userUpdateMessages($ids);
 				
 				foreach($ids as $id){
 					
-					// récup les détails du paiement
+					// rï¿½cup les dï¿½tails du paiement
 					$query = "SELECT id, reference_paypal, intitule_abo, montant, nom_paypal, prenom_paypal, valide"
 					." FROM abonnement_paypal"
 					." WHERE user_id = '".(int)$id."' and valide=1"
@@ -246,7 +246,7 @@
 					;
 					$abonnement_paypal	= $db->loadObject($query);
 					
-					// récup les détails de l'utilisateur
+					// rï¿½cup les dï¿½tails de l'utilisateur
 					$queryUser = "SELECT u.id, u.username, u.gid"
 					." FROM user AS u"
 					." WHERE u.id = '".(int)$id."'"
@@ -255,7 +255,7 @@
 					$userProfil = $db->loadObject($queryUser);
 				
 					if($abonnement_paypal && $userProfil){
-						mail('abonnement@parentsolo.ch', 'Désactivation d\'un membre', "Désactivation d'un membre abonné\n\n Username : ".$userProfil->username."\n Id User (Marie) : ".$userProfil->id."\n\n Intitulé Abo : ".$abonnement_paypal->intitule_abo."\n Montant : ".$abonnement_paypal->montant."\n Nom Paypal : ".$abonnement_paypal->nom_paypal."\n Prénom Paypal : ".$abonnement_paypal->prenom_paypal."\n Référence Paypal : ".$abonnement_paypal->reference_paypal."\n Validité de l'Abonnement (0->non validé, 1->en cours, 2->annulé) : ".$abonnement_paypal->valide."\n Id Abonnement Paypal (Marie) : ".$abonnement_paypal->id."\n");
+						mail('abonnement@solocircl.com', 'Dï¿½sactivation d\'un membre', "Dï¿½sactivation d'un membre abonnï¿½\n\n Username : ".$userProfil->username."\n Id User (Marie) : ".$userProfil->id."\n\n Intitulï¿½ Abo : ".$abonnement_paypal->intitule_abo."\n Montant : ".$abonnement_paypal->montant."\n Nom Paypal : ".$abonnement_paypal->nom_paypal."\n Prï¿½nom Paypal : ".$abonnement_paypal->prenom_paypal."\n Rï¿½fï¿½rence Paypal : ".$abonnement_paypal->reference_paypal."\n Validitï¿½ de l'Abonnement (0->non validï¿½, 1->en cours, 2->annulï¿½) : ".$abonnement_paypal->valide."\n Id Abonnement Paypal (Marie) : ".$abonnement_paypal->id."\n");
 					}
 				
 				}
@@ -279,7 +279,7 @@
 		// variables
 		$resultatParPage	= RESULTS_NB_LISTE_ADMIN;
 		$search				= array();
-		$where				= array();
+		$where				= null;
 		$_where				= '';
 		
 		// params
@@ -295,13 +295,13 @@
 			$where[]		= "u.username LIKE '%".$search['username']."%'";
 		}
 		
-		// génère le where
-		if(count($where)) {
+		// gï¿½nï¿½re le where
+		if (is_array($where)) {
 			$_where		= " WHERE ".implode(' AND ', $where);
 		}
 		
 		
-		// compte le nombre de résultats
+		// compte le nombre de rï¿½sultats
 		$query = "SELECT COUNT(*)"
 		." FROM user AS u"
 		.$_where
@@ -310,7 +310,7 @@
 		$search['page_total'] 	= ceil($search['result_total']/$resultatParPage);
 		
 		
-		// recherche des données
+		// recherche des donnï¿½es
 		$query = "SELECT u.id, u.username, u.confirmed, u.published, u.creation_date, u.last_online"
 		." FROM user AS u"
 		.$_where
@@ -325,20 +325,20 @@
 	}
 	
 	
-	// supprime des profils passés en param
+	// supprime des profils passï¿½s en param
 	function userSupprimer() {
 		global $db, $messages;
 		
 		$ids 		= JL::getVar('id', array());
 		$ids_profil	= array();
 		
-		// s'il y a des id passés
-		if(count($ids)) {
+		// s'il y a des id passï¿½s
+		if (is_array($ids)) {
 		
-			// mise à jour des stats nouveaux messages
+			// mise ï¿½ jour des stats nouveaux messages
 			userUpdateMessages($ids);
 			
-			// pour chaque utilisateur à supprimer
+			// pour chaque utilisateur ï¿½ supprimer
 			foreach($ids as $id) {
 			
 				// check si c'est un profil
@@ -348,11 +348,11 @@
 				// si c'est un utilisateur avec profil
 				if($userObj_id) {
 				
-					// récup le genre
+					// rï¿½cup le genre
 					$query = "SELECT genre FROM user_profil WHERE user_id = '".$id."' LIMIT 0,1";
 					$genre = $db->loadResult($query);
 				
-					// met à jour les stats
+					// met ï¿½ jour les stats
 					$field = ($genre == 'h') ? 'papa' : 'maman';
 					$query = "UPDATE inscrits SET ".$field." = ".$field." - 1 WHERE 1";
 					$db->query($query);
@@ -377,7 +377,7 @@
 			}
 			
 		
-			// crée une chaine contenant tous les id à supprimer
+			// crï¿½e une chaine contenant tous les id ï¿½ supprimer
 			$in_id	= implode(',', $ids);
 			
 			// supprime de la table USER
@@ -385,7 +385,7 @@
 			$db->query($query);
 			
 			
-			// crée une chaine contenant tous les id de profils à supprimer
+			// crï¿½e une chaine contenant tous les id de profils ï¿½ supprimer
 			$in_id_profil	= implode(',', $ids_profil);
 			
 			// supprime de la table USER_PROFIL
@@ -414,7 +414,7 @@
 			
 			foreach($ids_profil as $id_profil){
 					
-					// récup les détails du paiement
+					// rï¿½cup les dï¿½tails du paiement
 					$query = "SELECT id, reference_paypal, intitule_abo, montant, nom_paypal, prenom_paypal, valide"
 					." FROM abonnement_paypal"
 					." WHERE user_id = '".(int)$id_profil."'"
@@ -422,7 +422,7 @@
 					;
 					$abonnement_paypal	= $db->loadObject($query);
 					
-					// récup les détails de l'utilisateur
+					// rï¿½cup les dï¿½tails de l'utilisateur
 					$queryUser = "SELECT u.id, u.username, u.gid"
 					." FROM user AS u"
 					." WHERE u.id = '".(int)$id_profil."'"
@@ -431,7 +431,7 @@
 					$userProfil = $db->loadObject($queryUser);
 				
 					if($abonnement_paypal && $userProfil){
-						mail('abonnement@parentsolo.ch', 'Suppression d\'un membre', "Suppression d'un membre abonné\n\n Username : ".$userProfil->username."\n Id User (Marie) : ".$userProfil->id."\n\n Intitulé Abo : ".$abonnement_paypal->intitule_abo."\n Montant : ".$abonnement_paypal->montant."\n Nom Paypal : ".$abonnement_paypal->nom_paypal."\n Prénom Paypal : ".$abonnement_paypal->prenom_paypal."\n Référence Paypal : ".$abonnement_paypal->reference_paypal."\n Validité de l'Abonnement (0->non validé, 1->en cours, 2->annulé) : ".$abonnement_paypal->valide."\n  Id Abonnement Paypal (Marie) : ".$abonnement_paypal->id."\n");
+						mail('abonnement@solocircl.com', 'Suppression d\'un membre', "Suppression d'un membre abonnï¿½\n\n Username : ".$userProfil->username."\n Id User (Marie) : ".$userProfil->id."\n\n Intitulï¿½ Abo : ".$abonnement_paypal->intitule_abo."\n Montant : ".$abonnement_paypal->montant."\n Nom Paypal : ".$abonnement_paypal->nom_paypal."\n Prï¿½nom Paypal : ".$abonnement_paypal->prenom_paypal."\n Rï¿½fï¿½rence Paypal : ".$abonnement_paypal->reference_paypal."\n Validitï¿½ de l'Abonnement (0->non validï¿½, 1->en cours, 2->annulï¿½) : ".$abonnement_paypal->valide."\n  Id Abonnement Paypal (Marie) : ".$abonnement_paypal->id."\n");
 					}
 				
 				}
@@ -448,7 +448,7 @@
 	}
 	
 	
-	// données de l'utilisateur
+	// donnï¿½es de l'utilisateur
 	function &getData($addslashes = false) {
 		global $userObj;
 		
@@ -472,10 +472,10 @@
 		
 		$in_id	= implode(',', $ids);
 			
-		// parcourt tous les utilisateurs à désactiver
+		// parcourt tous les utilisateurs ï¿½ dï¿½sactiver
 		foreach($ids as $id) {
 		
-			// récup tous les profils à qui l'utilisateur a envoyé des messages, et ceux-ci étant non lu
+			// rï¿½cup tous les profils ï¿½ qui l'utilisateur a envoyï¿½ des messages, et ceux-ci ï¿½tant non lu
 			$query = "SELECT m.user_id_to AS user_id, IF(m.fleur_id>0,1,0) AS fleur, COUNT(*) AS total"
 			." FROM message AS m"
 			." WHERE m.user_id_from = '".(int)$id."' AND m.non_lu = 1"
@@ -493,7 +493,7 @@
 						$field = 'message';
 					}
 					
-					// décrémente le total de nouveaux messages/fleurs
+					// dï¿½crï¿½mente le total de nouveaux messages/fleurs
 					$query = "UPDATE user_stats SET ".$field."_new = ".$field."_new - ".$nonLu->total." WHERE user_id = '".$nonLu->user_id."'";
 					$db->query($query);
 				
@@ -502,7 +502,7 @@
 			
 		}
 		
-		// mise à jour des messages non lus envoyés par cet utilisateur
+		// mise ï¿½ jour des messages non lus envoyï¿½s par cet utilisateur
 		$query = "UPDATE message SET non_lu = 0 WHERE user_id_from IN (".$in_id.")";
 		$db->query($query);
 	

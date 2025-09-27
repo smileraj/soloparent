@@ -49,7 +49,7 @@ FCKFitWindow.prototype.Execute = function()
 		if( FCKBrowserInfo.IsIE )
 			eMainWindow.attachEvent( 'onresize', FCKFitWindow_Resize ) ;
 		else
-			eMainWindow.addEventListener( 'resize', FCKFitWindow_Resize, true ) ;
+			eMainwindow.addEventListener( 'resize', FCKFitWindow_Resize, true ) ;
 
 		// Save the scrollbars position.
 		this._ScrollPos = FCKTools.GetScrollPosition( eMainWindow ) ;

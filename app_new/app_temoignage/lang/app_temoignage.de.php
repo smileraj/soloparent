@@ -3,10 +3,10 @@
 $lang_apptemoignage = array(
 
 	//View
-	"MessagesParentsolo" => "Parentsolo.ch-Mitteilungen",
+	"MessagesParentsolo" => "solocircl.com-Mitteilungen",
 	
 	
-	//*Listes de tous les témoignages
+	//*Listes de tous les tï¿½moignages
 	"TousLesTemoignages" => "Alle Erfahrungsberichte",
 	
 	"LireLeTemoignage" => "Den Erfahrungsbericht lesen",
@@ -18,21 +18,21 @@ $lang_apptemoignage = array(
 	"Temoignage" => "Erfahrungsbericht",
 	"Temoignages" => "Erfahrungsberichte",
 	"Fin" => "Ende",
-	"PageSuivante" => "Nächste Seite",
-	"AucunTemoignage" => "Kein Erfahrungsbericht ist im Moment verfügbar",
+	"PageSuivante" => "Nï¿½chste Seite",
+	"AucunTemoignage" => "Kein Erfahrungsbericht ist im Moment verfï¿½gbar",
 	"CodeDeVerification" => "Verifizierungscode",
-	"VeuillezRecopierCodeVerification" => "Übertragen Sie bitte nachfolgend diesen Prüfungscode:",
+	"VeuillezRecopierCodeVerification" => "ï¿½bertragen Sie bitte nachfolgend diesen Prï¿½fungscode:",
 	"WarningCodeVerifIncorrect" => "Der eingegebene Verifizierungscode ist falsch",
-	//*Affichage d'un témoignage en partculier
-	"TemoignagePublieLePar" => "Erfahrungsbericht veröffentlicht am ".date("d.m.Y",strtotime($temoignage->date_add))." von ".$temoignage->username,
+	//*Affichage d'un tï¿½moignage en partculier
+	"TemoignagePublieLePar" => "Erfahrungsbericht verï¿½ffentlicht am ".date("d.m.Y",strtotime($temoignage->date_add))." von ".$temoignage->username,
 	
-	//*Je désire témoigner
+	//*Je dï¿½sire tï¿½moigner
 	"VotreTemoignage" => "Ihr Erfahrungsbericht",
 	
 	"Titre" => "Titel:",
 	"Texte" => "Text:",
 	
-	"LesChampsMarques" => "Die mit einem Sternchen markierten Felder * sind verpflichtend auszufüllen.",
+	"LesChampsMarques" => "Die mit einem Sternchen markierten Felder * sind verpflichtend auszufï¿½llen.",
 	
 	"Envoyer" => "Senden",
 	
@@ -41,13 +41,13 @@ $lang_apptemoignage = array(
 
 	//Model
 
-	//*Je désire témoigner
-	"VousDevezEtreConnecte" => "Sie müssen angemeldet sein, um einen Erfahrungsbericht verfassen zu können",
+	//*Je dï¿½sire tï¿½moigner
+	"VousDevezEtreConnecte" => "Sie mï¿½ssen angemeldet sein, um einen Erfahrungsbericht verfassen zu kï¿½nnen",
 	
 	"VeuillezIndiquerTitre" => "Geben Sie bitte den Titel Ihres Erfahrungsberichtes ein",
 	"VeuillezIndiquerTexte" => "Geben Sie bitte den Text Ihres Erfahrungsberichtes ein",
 
-	"TemoignageEnvoye" => "Ihr Erfahrungsbericht wurde gesendet!<br /> Ein Moderator von SinglEltern.ch wird diesen prüfen, um zu entscheiden ob er veröffentlicht wird oder nicht. In beiden Fällen werden Sie per E-Mail benachrichtigt.",
+	"TemoignageEnvoye" => "Ihr Erfahrungsbericht wurde gesendet!<br /> Ein Moderator von SinglEltern.ch wird diesen prï¿½fen, um zu entscheiden ob er verï¿½ffentlicht wird oder nicht. In beiden Fï¿½llen werden Sie per E-Mail benachrichtigt.",
 	
 	
 	

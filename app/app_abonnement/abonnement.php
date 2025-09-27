@@ -694,7 +694,7 @@ $query = "INSERT INTO postfinance SET"
 						$Siteurl = SITE_URL;
 						$notify_email1 = $userProfil->email;
 						if($_GET['lang']=='en'){
-$confrm_subject="Parentsolo.ch Payment Details";
+$confrm_subject="solocircl.com Payment Details";
 			 $message_con="<table cellpadding='0' cellspacing='0' style='width:590px;margin:auto;text-align:left;font-family:Arial, Verdana, Helvetica, sans-serif;font-size:12px;color:#000; background-color:#FFF;border:2px solid #ccc;'>
 		<tr><td align='center' style='width:590px; background-color:#fff; height:120px'><img src='".$Siteurl."/images/mail/header-en.jpg'/></td></tr>
 		<tr><td style='text-align:justify;padding:10px 30px 10px 30px;'>
@@ -710,7 +710,7 @@ $confrm_subject="Parentsolo.ch Payment Details";
 		</p></td></tr>
 		</table>";
 	} else if($_GET['lang']=='de'){
-	$confrm_subject="Parentsolo.ch Betalings details";
+	$confrm_subject="solocircl.com Betalings details";
 			 $message_con="	<table cellpadding='0' cellspacing='0' style='width:590px;margin:auto;text-align:left;font-family:Arial, Verdana, Helvetica, sans-serif;font-size:12px;color:#000; background-color:#FFF;border:2px solid #ccc;'>
 		<tr><td align='center' style='width:590px; background-color:#fff; height:120px'><img src='".$Siteurl."/images/mail/header-en.jpg'/></td></tr>
 		<tr><td style='text-align:justify;padding:10px 30px 10px 30px;'>
@@ -728,7 +728,7 @@ $confrm_subject="Parentsolo.ch Payment Details";
 	
 	}
 	else{
-	$confrm_subject="Parentsolo.ch Détails de paiement";
+	$confrm_subject="solocircl.com Détails de paiement";
 			 $message_con="	<table cellpadding='0' cellspacing='0' style='width:590px;margin:auto;text-align:left;font-family:Arial, Verdana, Helvetica, sans-serif;font-size:12px;color:#000; background-color:#FFF;border:2px solid #ccc;'>
 		<tr><td align='center' style='width:590px; background-color:#fff; height:120px'><img src='".$Siteurl."/images/mail/header-en.jpg'/></td></tr>
 		<tr><td style='text-align:justify;padding:10px 30px 10px 30px;'>

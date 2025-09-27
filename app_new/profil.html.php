@@ -1,12 +1,12 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 
 	class HTML_profil {
 		var $lang_appprofil;
 
-		// affichage des messages système
+		// affichage des messages systï¿½me
 		function HTML_profil() {
 			global $langue;
 			include("lang/app_profil.".$_GET['lang'].".php");
@@ -17,21 +17,19 @@
 		function messages(&$messages) {
 			global $langue;
 			include("lang/app_profil.".$_GET['lang'].".php");
-			// s'il y a des messages à afficher
-			if(count($messages)) {
+			// s'il y a des messages ï¿½ afficher
+			if (is_array($messages)) {
 			?>
 				<script src="../../Scripts/swfobject_modified.js" type="text/javascript"></script>
 
 				<h2 class="messages"><?php echo $lang_appprofil["MessagesParentSolo"];?></h2>
 				<div class="messages">
-				<?
-					// affiche les messages
+				<?php 					// affiche les messages
 					JL::messages($messages);
 				?>
 				</div>
 				<br />
-			<?
-			}
+			<?php 			}
 
 		}
 		
@@ -43,7 +41,7 @@
 			global $user, $action;
 				
 			
-			// détermine le texte du h1
+			// dï¿½termine le texte du h1
 			switch($step_num) {
 				
 				case 7:
@@ -113,13 +111,12 @@
 		?>
 		
 		
-			<div class="parentsolo_txt_center"><h2 class="barre parentsolo_title "><? echo $row['disclaimer']->titre; ?></h2>
+			<div class="parentsolo_txt_center"><h2 class="barre parentsolo_title "><?php echo $row['disclaimer']->titre; ?></h2>
 			<div class="wedd-seperator parentsolo_pb_10"><img src="images/bg_img/saprator.png" alt=""></div>
 			</div>
-			<div class="texte_explicatif"><? echo $row['disclaimer']->texte; ?></div>
+			<div class="texte_explicatif"><?php echo $row['disclaimer']->texte; ?></div>
 			<br />
-			<?
-				// affichage des messages
+			<?php 				// affichage des messages
 				HTML_profil::messages($messages);
 			?>
 			<form action="index.php?app=profil&action=step1<?php echo '&'.$langue;?>" name="step1" method="post">
@@ -131,60 +128,60 @@
 					<!-- Name -->
 					<div class="formwidth bottompadding">
 					<div class="col-md-3"><label><?php echo $lang_appprofil["Nom"];?> *</label></div>
-					<div class="col-md-9"><input type="text" name="nom" value="<? echo $row['nom']; ?>" /></div>						
+					<div class="col-md-9"><input type="text" name="nom" value="<?php echo $row['nom']; ?>" /></div>						
 					</div>
 					
 					
 					<div class="formwidth bottompadding">
 					<div class="col-md-3"><label><?php echo $lang_appprofil["Prenom"];?> *</label></div>
-					<div class="col-md-9"><input type="text" name="prenom" value="<? echo $row['prenom']; ?>" /></div>						
+					<div class="col-md-9"><input type="text" name="prenom" value="<?php echo $row['prenom']; ?>" /></div>						
 					</div>
 					
 					
 					<div class="formwidth bottompadding">
 					<div class="col-md-3"><label><?php echo $lang_appprofil["Telephone"];?> *</label></div>
-					<div class="col-md-9"><input type="text" name="telephone" value="<? echo ($row['telephone']=='')?"+41":$row['telephone']; ?>" class="telephone" /></div>						
+					<div class="col-md-9"><input type="text" name="telephone" value="<?php echo ($row['telephone']=='')?"+41":$row['telephone']; ?>" class="telephone" /></div>						
 					</div>
 					
 					
 					<div class="formwidth bottompadding">
 					<div class="col-md-3"><label><?php echo $lang_appprofil["Adresse"];?> *</label></div>
-					<div class="col-md-9"><input type="text" name="adresse" value="<? echo $row['adresse']; ?>" /></div>						
+					<div class="col-md-9"><input type="text" name="adresse" value="<?php echo $row['adresse']; ?>" /></div>						
 					</div>
 					
 					
 					<div class="formwidth bottompadding">
 					<div class="col-md-3"><label><?php echo $lang_appprofil["CodePostal"];?> *</label></div>
-					<div class="col-md-9"><input type="text" name="code_postal" value="<? echo $row['code_postal']; ?>" /></div>						
+					<div class="col-md-9"><input type="text" name="code_postal" value="<?php echo $row['code_postal']; ?>" /></div>						
 					</div>
 					
 					
 					<div class="formwidth bottompadding">
 					<div class="col-md-12"><label><?php echo $lang_appprofil["LangueAppel"]; ?> *</label></div>
 				    <div class="col-md-5">
-						<? if($row['langue_appel'] == 1){ ?>
+						<?php if($row['langue_appel'] == 1){ ?>
 									<input type="radio" name="langue_appel" value="1" style="width:20px;" CHECKED>
-								<? }else{ ?>
+								<?php }else{ ?>
 									<input type="radio" name="langue_appel" value="1" style="width:20px;">
-								<? } ?>
+								<?php } ?>
 								<?php echo $lang_appprofil['Francais']; ?>
 								
 								<br />
 								
-								<? if($row['langue_appel'] == 2){ ?>
+								<?php if($row['langue_appel'] == 2){ ?>
 									<input type="radio" name="langue_appel" value="2" style="width:20px;" CHECKED>
-								<? }else{ ?>
+								<?php }else{ ?>
 									<input type="radio" name="langue_appel" value="2" style="width:20px;">
-								<? } ?>
+								<?php } ?>
 								<?php echo $lang_appprofil['Anglais']; ?>
 								
 								<br />
 								
-								<? if($row['langue_appel'] == 3){ ?>
+								<?php if($row['langue_appel'] == 3){ ?>
 									<input type="radio" name="langue_appel" value="3" style="width:20px;" CHECKED>
-								<? }else{ ?>
+								<?php }else{ ?>
 									<input type="radio" name="langue_appel" value="3" style="width:20px;">
-								<? } ?>	
+								<?php } ?>	
 								<?php echo $lang_appprofil['Allemand']; ?>
 						
 					</div>
@@ -196,23 +193,20 @@
 					
 					<div class="formwidth bottompadding">
 					<div class="col-md-3"><label for="genre"><?php echo $lang_appprofil["Genre"];?> *</label></div>	
-					<div class="col-md-9">	<?
-									// user log
+					<div class="col-md-9">	<?php 									// user log
 									if($user->id) {
 
 										?>
-										<input type="hidden" name="genre" value="<? echo $row['genre']; ?>" />
+										<input type="hidden" name="genre" value="<?php echo $row['genre']; ?>" />
 										<b>
-										<?
-										if($row['genre'] == 'h') {
+										<?php 										if($row['genre'] == 'h') {
 											echo $lang_appprofil["UnHomme"];
 										} else {
 											echo $lang_appprofil["UneFemme"];
 										}
 										?>
 										</b>
-										<?
-
+										<?php 
 									} else {
 										echo $list['genre'];
 									}
@@ -223,34 +217,33 @@
 					<div class="formwidth bottompadding">
 					<div class="col-md-3"><label><?php echo $lang_appprofil["DateDeNaissance"];?> *</label></div>	
 					<div class="col-md-9">
-					<span class="col-md-3 nopadding"><? echo $list['naissance_jour']; ?></span> <span class="nopadding col-md-3"><? echo $list['naissance_mois']; ?></span> <span class="nopadding col-md-4"><? echo $list['naissance_annee']; ?></span></div>
+					<span class="col-md-3 nopadding"><?php echo $list['naissance_jour']; ?></span> <span class="nopadding col-md-3"><?php echo $list['naissance_mois']; ?></span> <span class="nopadding col-md-4"><?php echo $list['naissance_annee']; ?></span></div>
 					</div>	
 						
 				    <div class="formwidth bottompadding">
 					<div class="col-md-3"><label><?php echo $lang_appprofil["SigneAstrologique"];?></label></div>	
-					<div class="col-md-9"><? echo $list['signe_astrologique_id']; ?></div>
+					<div class="col-md-9"><?php echo $list['signe_astrologique_id']; ?></div>
 					</div>
 					
 					<div class="formwidth bottompadding">
 					<div class="col-md-3"><label><?php echo $lang_appprofil["NombreDEnfants"];?></label></div>	
-					<div class="col-md-9">	<? echo $list['nb_enfants']; ?> <?php echo $lang_appprofil["enfant(s)"];?></div>
+					<div class="col-md-9">	<?php echo $list['nb_enfants']; ?> <?php echo $lang_appprofil["enfant(s)"];?></div>
 					</div>
 					
 					<div class="formwidth bottompadding">
 					<div class="col-md-3"><label><?php echo $lang_appprofil["Canton"];?> *</label></div>	
-					<div class="col-md-9"><? echo $list['canton_id']; ?></div>
+					<div class="col-md-9"><?php echo $list['canton_id']; ?></div>
 					</div>
 					
 					<div class="formwidth bottompadding">
 					<div class="col-md-3"><label><?php echo $lang_appprofil["Ville"];?></label></div>	
-					<div class="col-md-9" id="villes">	<? echo $list['ville_id']; ?></div>
+					<div class="col-md-9" id="villes">	<?php echo $list['ville_id']; ?></div>
 					</div>	
 					
 					<div class="formwidth bottompadding">
 					<div class="col-md-3"><label><?php echo $lang_appprofil["JesouhaiteTrouver"];?></label></div>
 					<div class="col-md-9" id="step1gender">
-						<?
-									switch($row['genre']) {
+						<?php 									switch($row['genre']) {
 
 										case 'h':
 											echo "<span class='femme'>".$lang_appprofil["UneFemme"]."</span>";
@@ -277,60 +270,49 @@
 				</div>
 				
 				<div class="formwidth bottompadding">
-					<?
-						if(isset($list['parrain'])) {
+					<?php 						if(isset($list['parrain'])) {
 					?>
 					<div class="col-md-3">	<label><?php echo $lang_appprofil["Parrain"];?></label>
 					</div>
-					<div class="col-md-9"><span class="pink"><? echo $list['parrain']; ?></span><? if(!$user->id) { ?><input type="hidden" name="parrain_id" value="<? echo $row['parrain_id']; ?>" /><? } ?>
+					<div class="col-md-9"><span class="pink"><?php echo $list['parrain']; ?></span><?php if(!$user->id) { ?><input type="hidden" name="parrain_id" value="<?php echo $row['parrain_id']; ?>" /><?php } ?>
 					</div>
-					<?
-					   }
+					<?php 					   }
 					?>
 				</div>
 				
 				<div class="formwidth bottompadding">
-					<div class="col-md-3"><?
-									// user log
+					<div class="col-md-3"><?php 									// user log
 									if($user->id) {
 									?>
 										<label><?php echo $lang_appprofil["Pseudo"];?> </label>
-									<?
-									} else {
+									<?php 									} else {
 									?>
 										<label for="usernameIns"><?php echo $lang_appprofil["Pseudo"];?> *</label>
-									<?
-									}
+									<?php 									}
 								?></div>
-					<div class="col-md-9"><?
-									// user log
+					<div class="col-md-9"><?php 									// user log
 									if($user->id) {
 									?>
-									<input type="hidden" name="username" value="<? echo $row['username']; ?>" />
-									<b><? echo $row['username']; ?></b>
-									<?
-									} else {
+									<input type="hidden" name="username" value="<?php echo $row['username']; ?>" />
+									<b><?php echo $row['username']; ?></b>
+									<?php 									} else {
 									?>
-									<input type="text" name="username" id="usernameIns" value="<? echo $row['username']; ?>" />
-									<?
-									}
+									<input type="text" name="username" id="usernameIns" value="<?php echo $row['username']; ?>" />
+									<?php 									}
 								?></div>
 				</div>
 				
 				<div class="formwidth bottompadding">
 				<div class="col-md-3">
 					<label for="passwordIns">
-								<?
-									// user log
+								<?php 									// user log
 									if($user->id) {
 									?>
 										<?php echo $lang_appprofil["ChangerMonMdp"];?>
-									<?
-									} else {
+									<?php 									} else {
 									?>
 										<?php echo $lang_appprofil["MotDePasse"];?>
-									<?
-									}
+									<?php 									}
 								?> * 
 					</label>
 				</div>
@@ -351,36 +333,32 @@
 				
 				<div class="formwidth bottompadding">
 				<div class="col-md-3"><label for="emailIns"><?php echo $lang_appprofil["Email"];?> *</label></div>
-				<div class="col-md-9"><?
-									// user log
+				<div class="col-md-9"><?php 									// user log
 									if($user->id) {
 									?>
-										<b><? echo $row['email']; ?></b>
-										<input type="hidden" name="email" id="emailIns" value="<? echo $row['email']; ?>" />
-										<input type="hidden" name="email2" value="<? echo $row['email']; ?>" />
-									<?
-									} else {
+										<b><?php echo $row['email']; ?></b>
+										<input type="hidden" name="email" id="emailIns" value="<?php echo $row['email']; ?>" />
+										<input type="hidden" name="email2" value="<?php echo $row['email']; ?>" />
+									<?php 									} else {
 									?>
-										<input type="text" name="email" id="emailIns" value="<? echo $row['email']; ?>" />
-									<?
-									}
+										<input type="text" name="email" id="emailIns" value="<?php echo $row['email']; ?>" />
+									<?php 									}
 								?></div>					
 				</div>
 						
-				<?
-				// user non log
+				<?php 				// user non log
 				if(!$user->id)
 				{
 				?>
 				
 				<div class="formwidth bottompadding">
 				<div class="col-md-3"><label for="email2Ins"><?php echo $lang_appprofil["ConfirmationEmail"];?> *</label></div>
-				<div class="col-md-9"><input type="text" name="email2" id="email2Ins" value="<? echo $row['email2']; ?>" /></div>
+				<div class="col-md-9"><input type="text" name="email2" id="email2Ins" value="<?php echo $row['email2']; ?>" /></div>
 				</div>
 					 
 				<div class="row bottompadding">
 				<div class="col-md-12">
-					<input type="checkbox" name="offres" <? if($row['offres'] == 1) {?>checked<? } ?> style="width:20px;"  /> <b><?php echo $lang_appprofil["JeSouhaiteRecevoirOffresPartenaires"];?></b>
+					<input type="checkbox" name="offres" <?php if($row['offres'] == 1) {?>checked<?php } ?> style="width:20px;"  /> <b><?php echo $lang_appprofil["JeSouhaiteRecevoirOffresPartenaires"];?></b>
 				</div>				
 				</div>
 				<div class="formwidth bottompadding">
@@ -388,20 +366,17 @@
 				<div class="col-md-9">
 						<span class="capQ"><?php echo $lang_appprofil["CombienDeFleurs"];?> ?</span><br />
 									<br />
-									<?
-									$captcha = rand(2,7);
+									<?php 									$captcha = rand(2,7);
 									JL::setSession('captcha', $captcha);
 									for($i=0;$i<$captcha;$i++) {
 									?>
-										<img src="<? echo SITE_URL; ?>/parentsolo/images/flower.png" alt="Fleur" align="left" />
-									<?
-									}
+										<img src="<?php echo SITE_URL; ?>/parentsolo/images/flower.png" alt="Fleur" align="left" />
+									<?php 									}
 									?>
 									= <input type="text" name="codesecurite" id="codesecurite" value="" maxlength="2" style="width:60px;"/>					
 				</div>
 				</div>
-				<?
-				}
+				<?php 				}
 				
 				if(!$user->id) {
 				?>
@@ -413,7 +388,7 @@
 				<div class="col-md-12">
 				<div class="conditions">
 										<div id="divConditions">
-											<? echo $conditions; ?>
+											<?php echo $conditions; ?>
 										</div>
 										
 									
@@ -429,63 +404,63 @@
 									</div>
 							</div>
 						</div>
-						<? 
+						<?php 
 							} 
 						?>
 				
 					<div class="col-lg-12">
 						<div class="text-right">
-							<a href="javascript:document.step1.submit();" class="btn btn-primary bouton envoyer"><? echo $user->id ? $lang_appprofil["Valider"] : $lang_appprofil["EtapeSuivante"].' &raquo;'; ?></a>
+							<a href="javascript:document.step1.submit();" class="btn btn-primary bouton envoyer"><?php echo $user->id ? $lang_appprofil["Valider"] : $lang_appprofil["EtapeSuivante"].' &raquo;'; ?></a>
 						</div>							
 					</div>
 					<input type="hidden" name="lang" id="lang" value="<?php echo $_GET["lang"];?>" />
 					<input type="hidden" id="condReadAccepted" value="<?php echo $lang_appprofil["condReadAccepted"];?>" />
 					<input type="hidden" id="condReadNotAccepted" value="<?php echo $lang_appprofil["condReadNotAccepted"];?>" />
-					<input type="hidden" name="conditions" id="inputconditions" value="<? echo $row['conditions'] ; ?>" />
+					<input type="hidden" name="conditions" id="inputconditions" value="<?php echo $row['conditions'] ; ?>" />
 					<input type="hidden" name="app" value="profil" />
 					<input type="hidden" name="action" value="step1submit" />
-					<input type="hidden" name="site_url" id="site_url" value="<? echo SITE_URL; ?>" />
+					<input type="hidden" name="site_url" id="site_url" value="<?php echo SITE_URL; ?>" />
 				</form>
 </div>
 				<script language="javascript" type="text/javascript">
 					var scrollMax = 0;
-					window.addEvent('domready',function(){
+					window.addEventListener('domready',function(){
 
 						scrollMax = getScrollMax('divConditions');
 
-						<? if($row['conditions'] > 0) { ?>
-							$('conditionsAccept').disabled = false;
-							$('conditionsRefuse').disabled = false;
-							$('conditionsAccept').className = 'accept';
-							$('conditionsRefuse').className = 'refuse';
+						<?php if($row['conditions'] > 0) { ?>
+							$('#conditionsAccept').disabled = false;
+							$('#conditionsRefuse').disabled = false;
+							$('#conditionsAccept').className = 'accept';
+							$('#conditionsRefuse').className = 'refuse';
 							btnconditions(1);
-							$('divConditions').scrollTop = scrollMax;
-						<? } else { ?>
-							$('conditionsAccept').disabled = true;
-							$('conditionsRefuse').disabled = true;
-							$('conditionsAccept').className = '';
-							$('conditionsRefuse').className = '';
-							<? if($row['conditions'] == 0) { ?>
+							$('#divConditions').scrollTop = scrollMax;
+						<?php } else { ?>
+							$('#conditionsAccept').disabled = true;
+							$('#conditionsRefuse').disabled = true;
+							$('#conditionsAccept').className = '';
+							$('#conditionsRefuse').className = '';
+							<?php if($row['conditions'] == 0) { ?>
 								btnconditions(0);
-							<? } ?>
-						<? } ?>
+							<?php } ?>
+						<?php } ?>
 					});
 					
-					<? if(!$user->id) {?>
-					$('divConditions').addEvent('scroll',function(){
+					<?php if(!$user->id) { ?>
+					$('#divConditions').on('scroll', function() {
 						if(this.scrollTop == scrollMax) {
-							$('conditionsAccept').disabled 	= false;
-							$('conditionsRefuse').disabled 	= false;
-							$('conditionsAccept').className = 'accept';
-							$('conditionsRefuse').className = 'refuse';
+							$('#conditionsAccept').disabled 	= false;
+							$('#conditionsRefuse').disabled 	= false;
+							$('#conditionsAccept').className = 'accept';
+							$('#conditionsRefuse').className = 'refuse';
 						} else {
-							$('conditionsAccept').disabled 	= true;
-							$('conditionsRefuse').disabled 	= true;
-							$('conditionsAccept').className = '';
-							$('conditionsRefuse').className = '';
+							$('#conditionsAccept').disabled 	= true;
+							$('#conditionsRefuse').disabled 	= true;
+							$('#conditionsAccept').className = '';
+							$('#conditionsRefuse').className = '';
 						}
 					});
-					<? } ?>
+					<?php } ?>
 					function loadVilles(prefix) {
 						if(prefix==null){
 							prefix='';
@@ -510,8 +485,7 @@
 					}
 					loadVilles();
 				</script>
-			<?
-		}
+			<?php 		}
 
 
 		function step2(&$data, &$row, &$list, $messages = array(), $notice = '') {
@@ -524,19 +498,19 @@
 			$photos		= array();
 			$valid		= false;
 
-			// récup les miniatures de photos déjà envoyées
+			// rï¿½cup les miniatures de photos dï¿½jï¿½ envoyï¿½es
 			$dir = 'images/profil/'.JL::getSession('upload_dir', 'error');
 			if(is_dir($dir)) {
 				$dir_id 	= opendir($dir);
 				while($file = trim(readdir($dir_id))) {
 
-					// récup les miniatures de photos pending
+					// rï¿½cup les miniatures de photos pending
 					if(preg_match('/pending.*109-profil/', $file)) {
 
 						$photos_attente[]	= $dir.'/'.$file;
 						$attente = 1;
 
-					} elseif(preg_match('/109-profil/', $file) && !preg_match('/pending/', $file) && !preg_match('/temp/', $file)) { // récup les miniatures de photos validées
+					} elseif(preg_match('/109-profil/', $file) && !preg_match('/pending/', $file) && !preg_match('/temp/', $file)) { // rï¿½cup les miniatures de photos validï¿½es
 
 						$photos_validee[]	= $dir.'/'.$file;
 
@@ -556,14 +530,13 @@
 			}		
 			
 		?>
-			<h2 class="barre 3"><? echo $data->titre; ?></h2>
+			<h2 class="barre 3"><?php echo $data->titre; ?></h2>
 			<div class="texte_explicatif">
-				<img src="<? echo SITE_URL; ?>/parentsolo/images/step2photo.png" alt="" align="right" style="margin:10px;" />
-				<? echo $data->texte; ?>
+				<img src="<?php echo SITE_URL; ?>/parentsolo/images/step2photo.png" alt="" align="right" style="margin:10px;" />
+				<?php echo $data->texte; ?>
 			</div>
 		
-			<?
-				// affichage des messages
+			<?php 				// affichage des messages
 				HTML_profil::messages($messages);
 			?>
 			<form action="index.php?app=profil&action=step2<?php echo '&'.$langue;?>" name="step2" method="post" enctype="multipart/form-data">
@@ -637,12 +610,10 @@
 				<table class="table_form" cellpadding="0" cellspacing="0">
 					<tr>
 						<td >
-							<?
-								if($_GET['lang']=='fr'){
+							<?php 								if($_GET['lang']=='fr'){
 							?>
 									<div class="swfu_btn 1 "><span id="spanButtonPlaceholder"></span></div>
-							<?
-								}elseif($_GET['lang']=='en'){
+							<?php 								}elseif($_GET['lang']=='en'){
 							?>
 							<div class="row content">
 		
@@ -670,18 +641,18 @@
 </div>
 </div><input type="hidden" name="app" value="profil" />
 				<input type="hidden" name="action" value="step2submit" />
-				<input type="hidden" name="photo_defaut" value="<? echo $row['photo_defaut']; ?>" />
+				<input type="hidden" name="photo_defaut" value="<?php echo $row['photo_defaut']; ?>" />
 
-				<? // indispensable pour swfupload version sécurisé ?>
-				<input type="hidden" name="site_url" id="site_url" value="<? echo SITE_URL; ?>" />
-				<input type="hidden" name="upload_dir" id="upload_dir" value="<? echo JL::getSession('upload_dir', 'error'); ?>" />
-				<input type="hidden" name="hash" id="hash" value="<? echo md5(date('y').JL::getSession('upload_dir', 'error').date('Y')); ?>" />
+				<?php // indispensable pour swfupload version sï¿½curisï¿½ ?>
+				<input type="hidden" name="site_url" id="site_url" value="<?php echo SITE_URL; ?>" />
+				<input type="hidden" name="upload_dir" id="upload_dir" value="<?php echo JL::getSession('upload_dir', 'error'); ?>" />
+				<input type="hidden" name="hash" id="hash" value="<?php echo md5(date('y').JL::getSession('upload_dir', 'error').date('Y')); ?>" />
 
 			</form>
 		</div>-->
 							
 							
-<form id="imageform" method="post" enctype="multipart/form-data" action='http://www.parentsolo.ch/newdev/ajaximage.php'>
+<form id="imageform" method="post" enctype="multipart/form-data" action='http://www.solocircl.com/newdev/ajaximage.php'>
 <div class="demo profile-picture">
 				<div class="crop-element circle1" 
 				data-name="profile_picture" 
@@ -691,19 +662,17 @@
 					<input type="file" name="photoimg" id="photoimg" /><br>
 			</div></div>	<br><input type="button" value="Add" class="submit" id="formsubmitval">
 			<div id="newregimage" style="padding-top:20px;" ></div>
-<input type="hidden" name="site_url" id="site_url" value="<? echo SITE_URL; ?>" />
-<input type="hidden" name="upload_dir" id="upload_dir" value="<? echo JL::getSession('upload_dir', 'error'); ?>" />
+<input type="hidden" name="site_url" id="site_url" value="<?php echo SITE_URL; ?>" />
+<input type="hidden" name="upload_dir" id="upload_dir" value="<?php echo JL::getSession('upload_dir', 'error'); ?>" />
 
 </form>
 							<!--<span id="spanButtonPlaceholder"></span>-->
 								<!--<div class="swfu_btn_en 1" onclick="alert();"><div class="demo profile-picture"><span id="spanButtonPlaceholder"></span></div></div>-->
 								
-							<?
-								}elseif($_GET['lang']=='de'){
+							<?php 								}elseif($_GET['lang']=='de'){
 							?>
 								<div class="swfu_btn_de 1"><span id="spanButtonPlaceholder"></span></div>
-							<?
-							}
+							<?php 							}
 							?>
 						</td>
 						<td>
@@ -713,34 +682,32 @@
 					<tr>
 						<td colspan="2">
 							<div id="thumbnails">
-							<?
-
+							<?php 
 								// affiche les miniatures de photos VALIDEES
-								if(count($photos_temp)) {
+								if (is_array($photos_temp)) {
 									foreach($photos_temp as $photo_temp) {
 										$photo_i_temp = preg_replace('#^.*([0-9]{1}).*$#', '$1', $photo_temp);
 										?>
-										<div class="miniature" id="<? echo $photo_temp; ?>">
-											<img src="<? echo $photo_temp; ?>" class="findface" />
-											<a href="javascript:deleteImage('<? echo $photo_temp; ?>','','thumbnails');" class="btnDelete"><? echo $lang_appprofil["Supprimer"];?></a>
-											<? if(!$user->id){?><a href="javascript:setDefault('<? echo $photo_i_temp; ?>');" class="<? echo $row['photo_defaut'] == $photo_i_temp ? 'yes' : 'no'; ?>" id="photo<? echo $photo_i_temp; ?>"><? echo $lang_appprofil["ParDefaut"];?></a><?}?>
+										<div class="miniature" id="<?php echo $photo_temp; ?>">
+											<img src="<?php echo $photo_temp; ?>" class="findface" />
+											<a href="javascript:deleteImage('<?php echo $photo_temp; ?>','','thumbnails');" class="btnDelete"><?php echo $lang_appprofil["Supprimer"];?></a>
+											<?php if(!$user->id){?><a href="javascript:setDefault('<?php echo $photo_i_temp; ?>');" class="<?php echo $row['photo_defaut'] == $photo_i_temp ? 'yes' : 'no'; ?>" id="photo<?php echo $photo_i_temp; ?>"><?php echo $lang_appprofil["ParDefaut"];?></a><?}?>
 										</div>
-									<?
-									}
+									<?php 									}
 								}
 
 							?>
 							</div>
 						</td>
 					</tr>
-				<? 
+				<?php 
 					if(!$user->id){
 				?>
 						<tr>
 							<td colspan="2">
 								<div class="messages">
 									<div class="warning">
-										<span class="warning"><? echo $lang_appprofil["AvantEtrePublierPhotos"];?>.</span>
+										<span class="warning"><?php echo $lang_appprofil["AvantEtrePublierPhotos"];?>.</span>
 									</div>
 								</div>
 							</td>
@@ -748,22 +715,21 @@
 				<?	
 					}
 				?>
-				<? 
+				<?php 
 					if($user->id){
 						// s'il y a des photos
-						if(count($photos_temp)) {
+						if (is_array($photos_temp)) {
 						?>
 						<tr>
 							<td colspan="2">
 								<div class="messages">
 									<div class="warning">
-										<span class="warning"><? echo $lang_appprofil["PhotosNonEnAttente"];?>.</span>
+										<span class="warning"><?php echo $lang_appprofil["PhotosNonEnAttente"];?>.</span>
 									</div>
 								</div>
 							</td>
 						</tr>
-						<?
-						}
+						<?php 						}
 						?>
 						<tr>
 							<td colspan="2">
@@ -772,44 +738,40 @@
 						</tr>
 						<tr>
 							<td colspan="2" colspan="2">
-							<h4><? echo $lang_appprofil["PhotosAttente"];?></h4>
+							<h4><?php echo $lang_appprofil["PhotosAttente"];?></h4>
 							<br />
 								<div id="attente">
 								
-								<?
-
+								<?php 
 									// affiche les miniatures de photos VALIDEES
-									if(count($photos_attente)) {
+									if (is_array($photos_attente)) {
 										foreach($photos_attente as $photo_attente) {
 											$photo_i_attente = preg_replace('#^.*([0-9]{1}).*$#', '$1', $photo_attente);
 											?>
-											<div class="miniature" id="<? echo $photo_attente; ?>">
-												<img src="<? echo $photo_attente; ?>" />
-												<a href="javascript:deleteImage('<? echo $photo_attente; ?>','','attente');" class="btnDelete"><? echo $lang_appprofil["Supprimer"];?></a>
+											<div class="miniature" id="<?php echo $photo_attente; ?>">
+												<img src="<?php echo $photo_attente; ?>" />
+												<a href="javascript:deleteImage('<?php echo $photo_attente; ?>','','attente');" class="btnDelete"><?php echo $lang_appprofil["Supprimer"];?></a>
 											</div>
-										<?
-										}
+										<?php 										}
 									}
 
 								?>
 								</div>
 							</td>
 						</tr>
-						<?
-						// s'il y a des photos
-						if(count($photos_attente)) {
+						<?php 						// s'il y a des photos
+						if (is_array($photos_attente)) {
 						?>
 						<tr>
 							<td colspan="2">
 								<div class="messages">
 									<div class="warning">
-										<span class="warning"><? echo $lang_appprofil["AvantEtrePublierPhotos"];?>.</span>
+										<span class="warning"><?php echo $lang_appprofil["AvantEtrePublierPhotos"];?>.</span>
 									</div>
 								</div>
 							</td>
 						</tr>
-						<?
-						}
+						<?php 						}
 						?>
 						<tr>
 							<td colspan="2">
@@ -818,32 +780,29 @@
 						</tr>
 						<tr>
 							<td colspan="2" colspan="2">
-							<h4><? echo $lang_appprofil["PhotosValidees"];?></h4>
+							<h4><?php echo $lang_appprofil["PhotosValidees"];?></h4>
 							<br />
 								<div id="validees">
 								
-								<?
-
+								<?php 
 									// affiche les miniatures de photos VALIDEES
-									if(count($photos_validee)) {
+									if (is_array($photos_validee)) {
 										foreach($photos_validee as $photo_validee) {
 											$photo_i_validee = preg_replace('#^.*([0-9]{1}).*$#', '$1', $photo_validee);
 											?>
-											<div class="miniature" id="<? echo $photo_validee; ?>">
-												<img src="<? echo $photo_validee; ?>" />
-												<a href="javascript:deleteImage('<? echo $photo_validee; ?>','','validees');" class="btnDelete"><? echo $lang_appprofil["Supprimer"];?></a>
-												<a href="javascript:setDefault('<? echo $photo_i_validee; ?>');" class="<? echo $row['photo_defaut'] == $photo_i_validee ? 'yes' : 'no'; ?>" id="photo<? echo $photo_i_validee; ?>"><? echo $lang_appprofil["ParDefaut"];?></a>
+											<div class="miniature" id="<?php echo $photo_validee; ?>">
+												<img src="<?php echo $photo_validee; ?>" />
+												<a href="javascript:deleteImage('<?php echo $photo_validee; ?>','','validees');" class="btnDelete"><?php echo $lang_appprofil["Supprimer"];?></a>
+												<a href="javascript:setDefault('<?php echo $photo_i_validee; ?>');" class="<?php echo $row['photo_defaut'] == $photo_i_validee ? 'yes' : 'no'; ?>" id="photo<?php echo $photo_i_validee; ?>"><?php echo $lang_appprofil["ParDefaut"];?></a>
 											</div>
-										<?
-										}
+										<?php 										}
 									}
 
 								?>
 								</div>
 							</td>
 						</tr>
-					<?
-						}
+					<?php 						}
 					?>
 					<tr>
 						<td>&nbsp;</td>
@@ -851,8 +810,8 @@
 					<tr>
 						<td class="key" valign="top"><label><?php echo $lang_appprofil["PageAccueil"];?></label></td>
 						<td>
-							<label class="radio-inline" for="photo_home_1"><input type="radio" name="photo_home" id="photo_home_1" value="1" <? if($row['photo_home'] == 1) { ?>checked<? } ?> style="width:20px;"/> <?php echo $lang_appprofil["MontrerPhotoHomePage"];?>.</label><br />
-							<label class="radio-inline" for="photo_home_0"><input type="radio" name="photo_home" id="photo_home_0" value="0" <? if($row['photo_home'] == 0) { ?>checked<? } ?> style="width:20px;"/> <?php echo $lang_appprofil["NePasMontrerPhotoHomePage"];?>.</label>
+							<label class="radio-inline" for="photo_home_1"><input type="radio" name="photo_home" id="photo_home_1" value="1" <?php if($row['photo_home'] == 1) { ?>checked<?php } ?> style="width:20px;"/> <?php echo $lang_appprofil["MontrerPhotoHomePage"];?>.</label><br />
+							<label class="radio-inline" for="photo_home_0"><input type="radio" name="photo_home" id="photo_home_0" value="0" <?php if($row['photo_home'] == 0) { ?>checked<?php } ?> style="width:20px;"/> <?php echo $lang_appprofil["NePasMontrerPhotoHomePage"];?>.</label>
 						</td>
 					</tr>
 					<tr>
@@ -863,15 +822,15 @@
 							<table class="toolbarsteps" cellpadding="0" cellspacing="0">
 								<tr>
 									<td class="text-left">
-										<? // user non log
+										<?php // user non log
 										if(!$user->id) { ?>
-											<a href="<? echo JL::url("index.php?app=profil&action=inscription"."&".$langue); ?>" class="btn btn-primary bouton envoyer"><?php echo '&laquo; '.$lang_appprofil["EtapePrecedente"];?></a>
-										<? } ?>
+											<a href="<?php echo JL::url("index.php?app=profil&action=inscription"."&".$langue); ?>" class="btn btn-primary bouton envoyer"><?php echo '&laquo; '.$lang_appprofil["EtapePrecedente"];?></a>
+										<?php } ?>
 									</td>
 									<td class="text-center">
 									</td>
 									<td class="text-right">
-										<a href="javascript:document.step2.submit();" class="btn btn-primary bouton envoyer"><? echo $user->id ? $lang_appprofil["Valider"] : $lang_appprofil["EtapeSuivante"].' &raquo;'; ?></a>
+										<a href="javascript:document.step2.submit();" class="btn btn-primary bouton envoyer"><?php echo $user->id ? $lang_appprofil["Valider"] : $lang_appprofil["EtapeSuivante"].' &raquo;'; ?></a>
 									</td>
 								</tr>
 							</table>
@@ -880,39 +839,34 @@
 				</table>
 				<input type="hidden" name="app" value="profil" />
 				<input type="hidden" name="action" value="step2submit" />
-				<input type="hidden" name="photo_defaut" value="<? echo $row['photo_defaut']; ?>" />
+				<input type="hidden" name="photo_defaut" value="<?php echo $row['photo_defaut']; ?>" />
 
-				<? // indispensable pour swfupload version sécurisé ?>
-				<input type="hidden" name="site_url" id="site_url" value="<? echo SITE_URL; ?>" />
-				<input type="hidden" name="upload_dir" id="upload_dir" value="<? echo JL::getSession('upload_dir', 'error'); ?>" />
-				<input type="hidden" name="hash" id="hash" value="<? echo md5(date('y').JL::getSession('upload_dir', 'error').date('Y')); ?>" />
+				<?php // indispensable pour swfupload version sï¿½curisï¿½ ?>
+				<input type="hidden" name="site_url" id="site_url" value="<?php echo SITE_URL; ?>" />
+				<input type="hidden" name="upload_dir" id="upload_dir" value="<?php echo JL::getSession('upload_dir', 'error'); ?>" />
+				<input type="hidden" name="hash" id="hash" value="<?php echo md5(date('y').JL::getSession('upload_dir', 'error').date('Y')); ?>" />
 
 			</form>
 			
-			<?
-				if($_GET['lang']=='fr'){
+			<?php 				if($_GET['lang']=='fr'){
 			?>
 				<script type="text/javascript">
 					uploaderInit_fr();
 				</script>
-			<?
-				}elseif($_GET['lang']=='en'){
+			<?php 				}elseif($_GET['lang']=='en'){
 			?>
 				<script type="text/javascript">
 					uploaderInit_en();
 				</script>
-			<?
-				}elseif($_GET['lang']=='de'){
+			<?php 				}elseif($_GET['lang']=='de'){
 			?>
 				<script type="text/javascript">
 					uploaderInit_de();
 				</script>
-			<?
-			}
+			<?php 			}
 			?>
 			
-		<?
-		}
+		<?php 		}
 
 
 		function step3(&$data, &$row, &$list, $messages = array(), $notice = '') {
@@ -931,67 +885,61 @@
 		
 
 		?>
-			<h2 class="barre 4"><? echo $data->titre; ?></h2>
+			<h2 class="barre 4"><?php echo $data->titre; ?></h2>
 			<div class="texte_explicatif">
-				<? echo $data->texte; ?>
+				<?php echo $data->texte; ?>
 			</div>
 			<br />
-			<?
-				// affichage des messages
+			<?php 				// affichage des messages
 				HTML_profil::messages($messages);
 			?>
 			<form action="index.php?app=profil&action=step3<?php echo '&'.$langue;?>" name="step3" method="post">
 				<h3 class="form"><?php echo $lang_appprofil["MonAnnonce"];?></h3>
 				<div class="col-lg-12">
-					<textarea name="annonce" class="annonce" onKeyDown="textCounter(this.form.annonce,parseInt(document.getElementById('chars_limit').innerHTML),<? echo $annonce_limite; ?>);" onKeyUp="textCounter(this.form.annonce,parseInt(document.getElementById('chars_limit').innerHTML),<? echo $annonce_limite; ?>);"><? echo $row['annonce']; ?></textarea>
-				    <label><?php echo $lang_appprofil["NombreDeCaracteres"];?>: <span id="chars_limit"><? echo $annonce_limite-strlen(str_replace("\n",'',$row['annonce'])); ?></span></label>
+					<textarea name="annonce" class="annonce" onKeyDown="textCounter(this.form.annonce,parseInt(document.getElementById('chars_limit').innerHTML),<?php echo $annonce_limite; ?>);" onKeyUp="textCounter(this.form.annonce,parseInt(document.getElementById('chars_limit').innerHTML),<?php echo $annonce_limite; ?>);"><?php echo $row['annonce']; ?></textarea>
+				    <label><?php echo $lang_appprofil["NombreDeCaracteres"];?>: <span id="chars_limit"><?php echo $annonce_limite-strlen(str_replace("\n",'',$row['annonce'])); ?></span></label>
 					<div class="messages">
-							<?
-								if($row['published'] == 0) {
+							<?php 								if($row['published'] == 0) {
 								?>
 									<div class="error">
-										<span class="error"><? echo $lang_appprofil["AnnonceRefusee"];?>.</span>
+										<span class="error"><?php echo $lang_appprofil["AnnonceRefusee"];?>.</span>
 									</div>
-								<?
-								} elseif($row['published'] == 1) {
+								<?php 								} elseif($row['published'] == 1) {
 								?>
 									<div class="valid">
-										<span class="valid"><? echo $lang_appprofil["AnnonceValidee"];?> !</span>
+										<span class="valid"><?php echo $lang_appprofil["AnnonceValidee"];?> !</span>
 									</div>
-								<?
-								} elseif($row['annonce'] != '') {
+								<?php 								} elseif($row['annonce'] != '') {
 								?>
 									<div class="warning">
-										<span class="warning"><? echo $lang_appprofil["AvantEtrePublierAnnonce"];?>.</span>
+										<span class="warning"><?php echo $lang_appprofil["AvantEtrePublierAnnonce"];?>.</span>
 									</div>
-								<?
-								}
+								<?php 								}
 							?>
 							
 								<div class="warning">
-									<span class="warning"><? echo $lang_appprofil["ModificationAnnonce"];?>.</span>
+									<span class="warning"><?php echo $lang_appprofil["ModificationAnnonce"];?>.</span>
 								</div>
 							</div>
 				
 					<div class="col-lg-12">
 							<div class="text-left">
-										<? // user non log
+										<?php // user non log
 										if(!$user->id) { ?>
-											<a href="<? echo JL::url("index.php?app=profil&action=step2".'&'.$langue); ?>" class="btn btn-primary bouton envoyer"><?php echo '&laquo; '.$lang_appprofil["EtapePrecedente"];?></a>
-										<? } ?>
+											<a href="<?php echo JL::url("index.php?app=profil&action=step2".'&'.$langue); ?>" class="btn btn-primary bouton envoyer"><?php echo '&laquo; '.$lang_appprofil["EtapePrecedente"];?></a>
+										<?php } ?>
 									</div>
 									<div class="text-center">
 									</div>
 									<div class="text-right">
-										<a href="javascript:document.step3.submit();" class="btn btn-primary bouton envoyer"><? echo $user->id ? $lang_appprofil["Valider"] : $lang_appprofil["EtapeSuivante"].' &raquo;'; ?></a>
+										<a href="javascript:document.step3.submit();" class="btn btn-primary bouton envoyer"><?php echo $user->id ? $lang_appprofil["Valider"] : $lang_appprofil["EtapeSuivante"].' &raquo;'; ?></a>
 									</div>
 					</div>			
 				</div>
 				<input type="hidden" name="app" value="profil" />
 				<input type="hidden" name="action" value="step3submit" />
 			</form>
-			<?
-
+			<?php 
 		}
 
 
@@ -1007,12 +955,11 @@
 			}
 		
 		?>
-		<div class="parentsolo_txt_center"><h2 class="barre parentsolo_title "><? echo $data-> titre;?></h2>
+		<div class="parentsolo_txt_center"><h2 class="barre parentsolo_title "><?php echo $data-> titre;?></h2>
 			<div class="wedd-seperator parentsolo_pb_10"><img src="images/bg_img/saprator.png" alt=""></div>
 			</div>
-			<div class="texte_explicatif"><? echo $data-> texte;?></div>
-			<?
-				// affichage des messages
+			<div class="texte_explicatif"><?php echo $data-> texte;?></div>
+			<?php 				// affichage des messages
 				HTML_profil::messages($messages);
 			?>
 			<form action="index.php?app=profil&action=step4<?php echo '&'.$langue;?>" name="step4" method="post">
@@ -1023,58 +970,58 @@
 				<br>
 				<div class="descriptionform bottompadding">
 					<div class="col-md-3"><label><?php echo $lang_appprofil["Nationalite"];?></label></div>
-					<div class="col-md-3"><? echo $list['nationalite_id']; ?></div>
+					<div class="col-md-3"><?php echo $list['nationalite_id']; ?></div>
 					<div class="col-md-3"><label><?php echo $lang_appprofil["Religion"];?></label></div>
-					<div class="col-md-3"><? echo $list['religion_id']; ?></div>
+					<div class="col-md-3"><?php echo $list['religion_id']; ?></div>
 				</div>
 				<div class="descriptionform bottompadding">
 					<div class="col-md-3"><label><?php echo $lang_appprofil["NiveauEtudes"];?></label></div>
-					<div class="col-md-3"><? echo $list['niveau_etude_id']; ?></div>
+					<div class="col-md-3"><?php echo $list['niveau_etude_id']; ?></div>
 					<div class="col-md-3"><label><?php echo $lang_appprofil["SecteurActivite"];?></label></div>						
-					<div class="col-md-3"><? echo $list['secteur_activite_id']; ?></div>
+					<div class="col-md-3"><?php echo $list['secteur_activite_id']; ?></div>
 				</div>
 				
 				<div class="descriptionform bottompadding">
 					<div class="col-md-3"><label><?php echo $lang_appprofil["StatutMarital"];?></label></div>
-					<div class="col-md-3">	<? echo $list['statut_marital_id']; ?></div>
+					<div class="col-md-3">	<?php echo $list['statut_marital_id']; ?></div>
 				</div>
 				
 				<div class="descriptionform bottompadding">
 					<div class="col-md-3"><label><?php echo $lang_appprofil["ModeDeVie"];?></label></div>
-					<div class="col-md-3"><? echo $list['vie_id']; ?></div>
+					<div class="col-md-3"><?php echo $list['vie_id']; ?></div>
 				</div>
 				<div class="descriptionform bottompadding">
 				<div class="col-md-3"><label><?php echo $lang_appprofil["QuiLaGarde"];?> ?</label></div>
-				<div class="col-md-3"><? echo $list['garde_id']; ?></div>
+				<div class="col-md-3"><?php echo $list['garde_id']; ?></div>
 				</div>
 				
 				<div class="descriptionform bottompadding">
 				<div class="col-md-3"><label><?php echo $lang_appprofil["Fumeur"];?>?</label></div>
-				<div class="col-md-3"><? echo $list['fumer_id']; ?></div>
+				<div class="col-md-3"><?php echo $list['fumer_id']; ?></div>
 				</div>
 				
 				<div class="descriptionform bottompadding">
 				<div class="col-md-3"><label><?php echo $lang_appprofil["Temperament"];?></label></div>
-				<div class="col-md-3"><? echo $list['temperament_id']; ?></div>
+				<div class="col-md-3"><?php echo $list['temperament_id']; ?></div>
 				</div>
 				<br><hr />
 				<div class="descriptionform bottompadding">
 				<label><?php echo $lang_appprofil["LanguesParlees"];?></label>
 				<div class="col-md-12" style="padding-top:8px;">
-				<? echo $list['langue_id']; ?>	
+				<?php echo $list['langue_id']; ?>	
 				</div>	
 				</div>
 				
 				<div class="descriptionform bottompadding">
 				<div class="col-md-3"><label><?php echo $lang_appprofil["RelationCherchee"];?></label></div>
-				<div class="col-md-3"><? echo $list['cherche_relation_id']; ?></div>
+				<div class="col-md-3"><?php echo $list['cherche_relation_id']; ?></div>
 				<div class="col-md-3"><label><?php echo $lang_appprofil["LeMariageEst"];?></label></div>
-				<div class="col-md-3"><? echo $list['me_marier_id']; ?></div>
+				<div class="col-md-3"><?php echo $list['me_marier_id']; ?></div>
 				</div>
 				
 				<div class="descriptionform bottompadding">
 				<div class="col-md-3"><label><?php echo $lang_appprofil["NombreEnfantsSouhaites"];?></label></div>
-				<div class="col-md-3"><? echo $list['vouloir_enfants_id']; ?></div>
+				<div class="col-md-3"><?php echo $list['vouloir_enfants_id']; ?></div>
 				</div>
 				
 				<hr /><br>
@@ -1085,25 +1032,25 @@
 				
 				<div class="descriptionform bottompadding">
 				<div class="col-md-2"><label><?php echo $lang_appprofil["Taille"];?></label></div>
-				<div class="col-md-2"><? echo $list['taille_id']; ?></div>
+				<div class="col-md-2"><?php echo $list['taille_id']; ?></div>
 				<div class="col-md-2"><label><?php echo $lang_appprofil["Poids"];?></label></div>
-				<div class="col-md-2"><? echo $list['poids_id']; ?></div>
+				<div class="col-md-2"><?php echo $list['poids_id']; ?></div>
 				<div class="col-md-2"><label><?php echo $lang_appprofil["Silhouette"];?></label></div>
-				<div class="col-md-2"><? echo $list['silhouette_id']; ?></div>
+				<div class="col-md-2"><?php echo $list['silhouette_id']; ?></div>
 				</div>
 				
 				<div class="descriptionform bottompadding">
 				<div class="col-md-2"><label><?php echo $lang_appprofil["Yeux"];?></label></div>
-				<div class="col-md-2"><? echo $list['yeux_id']; ?></div>
+				<div class="col-md-2"><?php echo $list['yeux_id']; ?></div>
 				<div class="col-md-2"><label><?php echo $lang_appprofil["Cheveux"];?></label></div>
-				<div class="col-md-2"><? echo $list['cheveux_id']; ?></div>
+				<div class="col-md-2"><?php echo $list['cheveux_id']; ?></div>
 				<div class="col-md-2"><label><?php echo $lang_appprofil["Coiffure"];?></label></div>
-				<div class="col-md-2"><? echo $list['style_coiffure_id']; ?></div>
+				<div class="col-md-2"><?php echo $list['style_coiffure_id']; ?></div>
 				</div>
 				
 				<div class="descriptionform bottompadding">
 				<div class="col-md-2"><label><?php echo $lang_appprofil["Origine"];?></label></div>
-				<div class="col-md-2"><? echo $list['origine_id']; ?></div>
+				<div class="col-md-2"><?php echo $list['origine_id']; ?></div>
 				</div>
 				
 				<br /><hr /><br />
@@ -1115,78 +1062,78 @@
 				<div class="descriptionform bottompadding">
 				<label><?php echo $lang_appprofil["Cuisine"];?></label>
 				<div class="col-md-12">
-				<? echo $list['cuisine_id']; ?>
+				<?php echo $list['cuisine_id']; ?>
 				</div>
 				</div>
 				
 				<div class="descriptionform bottompadding">
 				<label><?php echo $lang_appprofil["Sorties"];?></label>
 				<div class="col-md-12">
-				<? echo $list['sortie_id']; ?>
+				<?php echo $list['sortie_id']; ?>
 				</div>
 				</div>
 				
 				<div class="descriptionform bottompadding">
 				<label><?php echo $lang_appprofil["Loisirs"];?></label>
 				<div class="col-md-12">
-				<? echo $list['loisir_id']; ?>
+				<?php echo $list['loisir_id']; ?>
 				</div>
 				</div>
 				
 				<div class="descriptionform bottompadding">
 				<label><?php echo $lang_appprofil["PratiquesSportives"];?></label>
 				<div class="col-md-12">
-				<? echo $list['sport_id']; ?>
+				<?php echo $list['sport_id']; ?>
 				</div>
 				</div>
 				
 				<div class="descriptionform bottompadding">
 				<label><?php echo $lang_appprofil["Musique"];?></label>
 				<div class="col-md-12">
-				<? echo $list['musique_id']; ?>
+				<?php echo $list['musique_id']; ?>
 				</div>
 				</div>
 				
 				<div class="descriptionform bottompadding">
 				<label><?php echo $lang_appprofil["Films"];?></label>
 				<div class="col-md-12">
-				<? echo $list['film_id']; ?>
+				<?php echo $list['film_id']; ?>
 				</div>
 				</div>
 				
 				<div class="descriptionform bottompadding">
 				<label><?php echo $lang_appprofil["Lecture"];?></label>
 				<div class="col-md-12">
-				<? echo $list['lecture_id']; ?>
+				<?php echo $list['lecture_id']; ?>
 				</div>
 				</div>
 				
 				<div class="descriptionform bottompadding">
 				<label><?php echo $lang_appprofil["Animaux"];?></label>
 				<div class="col-md-12">
-				<? echo $list['animaux_id']; ?>
+				<?php echo $list['animaux_id']; ?>
 				</div>
 				</div>
 				
 				<div class="descriptionform bottompadding">
 				<label><?php echo $lang_appprofil["Animaux"];?></label>
 				<div class="col-md-12">
-				<? echo $list['animaux_id']; ?>
+				<?php echo $list['animaux_id']; ?>
 				</div>
 				</div>
 				<br /><hr /><br />
 				<div class="descriptionform bottompadding">
 				<div class="toolbarsteps">
 				<div class="col-md-5">
-				    <? // user non log
+				    <?php // user non log
 					if(!$user->id) { ?>
-							<a href="<? echo JL::url("index.php?app=profil&action=step4".'&'.$langue); ?>" class="btn btn-primary bouton envoyer"><?php echo '&laquo; '.$lang_appprofil["EtapePrecedente"];?></a>
-					<? } ?>
+							<a href="<?php echo JL::url("index.php?app=profil&action=step4".'&'.$langue); ?>" class="btn btn-primary bouton envoyer"><?php echo '&laquo; '.$lang_appprofil["EtapePrecedente"];?></a>
+					<?php } ?>
 				</div>
 				<div class="col-md-4">
 				</div>	
 				<div class="col-md-3">
-				<a href="javascript:document.step4.submit();" class="btn btn-primary bouton envoyer"><? echo $user->id ? $lang_appprofil["Valider"] : $lang_appprofil["EtapeSuivante"].' &raquo;'; ?></a>
+				<a href="javascript:document.step4.submit();" class="btn btn-primary bouton envoyer"><?php echo $user->id ? $lang_appprofil["Valider"] : $lang_appprofil["EtapeSuivante"].' &raquo;'; ?></a>
 				</div>	
 					
 				</div>	
@@ -1199,8 +1146,7 @@
 				</div>
 				
 			</form>
-			<?
-
+			<?php 
 		}
 		
 
@@ -1212,7 +1158,7 @@
 
 			
 
-			// récup les miniatures de photos déjà envoyées
+			// rï¿½cup les miniatures de photos dï¿½jï¿½ envoyï¿½es
 			
 			$dir = 'images/profil/'.JL::getSession('upload_dir', 'error');
 			if(is_dir($dir)) {
@@ -1220,13 +1166,13 @@
 				while($file = trim(readdir($dir_id))) {
 					
 					for($i=1;$i<=6;$i++) {
-						// récup les miniatures de photos pending
+						// rï¿½cup les miniatures de photos pending
 						if(preg_match('/pending.*109-enfant-'.$i.'/', $file)) {
 
 							$photo_attente[$i]	= $dir.'/'.$file;
 							$attente[$i] = 1;
 
-						} elseif(preg_match('/109-enfant-'.$i.'/', $file) && !preg_match('/pending/', $file) && !preg_match('/temp/', $file)) { // récup les miniatures de photos validées
+						} elseif(preg_match('/109-enfant-'.$i.'/', $file) && !preg_match('/pending/', $file) && !preg_match('/temp/', $file)) { // rï¿½cup les miniatures de photos validï¿½es
 
 							$photo_validee[$i]	= $dir.'/'.$file;
 
@@ -1247,14 +1193,13 @@
 
 		?>
 			
-			<div class="parentsolo_txt_center"><h2 class="barre 7 parentsolo_title "><? echo $data-> titre;?></h2>
+			<div class="parentsolo_txt_center"><h2 class="barre 7 parentsolo_title "><?php echo $data-> titre;?></h2>
 			<div class="wedd-seperator parentsolo_pb_10"><img src="images/bg_img/saprator.png" alt=""></div>
 			</div>
-			<div class="texte_explicatif"><? echo $data-> texte;?></div>
+			<div class="texte_explicatif"><?php echo $data-> texte;?></div>
 			
 			
-		<?
-			// affichage des messages
+		<?php 			// affichage des messages
 			HTML_profil::messages($messages);
 		?>
 			<form action="index.php?app=profil&action=step5<?php echo '&'.$langue;?>" name="step5" method="post">
@@ -1262,8 +1207,7 @@
 				
 				<div class="col-md-12 accountset">
 					
-			<?
-				// création des 6 blocks d'enfants
+			<?php 				// crï¿½ation des 6 blocks d'enfants
 				for($i=1; $i<=6; $i++) {
 
 					switch($i) {
@@ -1296,26 +1240,26 @@
 				?>
 				
 					<div class="col-md-12">
-							<div  id="child<? echo $i; ?>" style="display:<? echo $row['child'.$i] ? 'block' : 'none'; ?>;">
-								<h4><? echo $enfant_num; ?></h4>
+							<div  id="child<?php echo $i; ?>" style="display:<?php echo $row['child'.$i] ? 'block' : 'none'; ?>;">
+								<h4><?php echo $enfant_num; ?></h4>
 								<br />
 									<div class="formwidth bottompadding">
 									<div class="col-md-3"><label><span class="childTitle"><?php echo $lang_appprofil["DateDeNaissance"];?></span></label></div>
 									<div class="col-md-9">
-									<div class="col-md-3 nopadding"><? echo $list['naissance_jour'.$i]; ?></div>
-									<div class="col-md-3 nopadding"><? echo $list['naissance_mois'.$i]; ?></div>
-									<div class="col-md-4 nopadding"><? echo $list['naissance_annee'.$i]; ?></div>
+									<div class="col-md-3 nopadding"><?php echo $list['naissance_jour'.$i]; ?></div>
+									<div class="col-md-3 nopadding"><?php echo $list['naissance_mois'.$i]; ?></div>
+									<div class="col-md-4 nopadding"><?php echo $list['naissance_annee'.$i]; ?></div>
 									</div>
 									</div>
 									
 									<div class="formwidth bottompadding">
 									<div class="col-md-3"><label><span class="childTitle"><?php echo $lang_appprofil["Genre"];?></span></label></div>
-									<div class="col-md-9"><? echo $list['genre'.$i]; ?></div>
+									<div class="col-md-9"><?php echo $list['genre'.$i]; ?></div>
 									</div>
 									
 									<div class="formwidth bottompadding">
 									<div class="col-md-3"><label><span class="childTitle"><?php echo $lang_appprofil["SigneAstrologique"];?></span></label></div>
-									<div class="col-md-9"><? echo $list['signe_astrologique'.$i.'_id']; ?></div>
+									<div class="col-md-9"><?php echo $list['signe_astrologique'.$i.'_id']; ?></div>
 									</div>
 									<br /><hr /><br />
 								
@@ -1323,24 +1267,20 @@
 								
 									<div class="formwidth bottompadding">
 										<div class="col-md-3">
-										<?
-											if($_GET['lang']=='fr'){
+										<?php 											if($_GET['lang']=='fr'){
 										?>
-												<div class="swfu_btn"><span id="spanButtonPlaceholder<? echo $i; ?>"></span></div>
-										<?
-											}elseif($_GET['lang']=='en'){
+												<div class="swfu_btn"><span id="spanButtonPlaceholder<?php echo $i; ?>"></span></div>
+										<?php 											}elseif($_GET['lang']=='en'){
 										?>
-											<div class="swfu_btn_en"><span id="spanButtonPlaceholder<? echo $i; ?>"></span></div>
-										<?
-											}elseif($_GET['lang']=='de'){
+											<div class="swfu_btn_en"><span id="spanButtonPlaceholder<?php echo $i; ?>"></span></div>
+										<?php 											}elseif($_GET['lang']=='de'){
 										?>
-											<div class="swfu_btn_de"><span id="spanButtonPlaceholder<? echo $i; ?>"></span></div>
-										<?
-										}
+											<div class="swfu_btn_de"><span id="spanButtonPlaceholder<?php echo $i; ?>"></span></div>
+										<?php 										}
 										?>
 										</div>
 										<div class="col-md-9">
-											<div id="divFileProgressContainer<? echo $i; ?>"></div>
+											<div id="divFileProgressContainer<?php echo $i; ?>"></div>
 										</div>
 									   </div>
 									
@@ -1348,32 +1288,30 @@
 									
 									<div class="formwidth bottompadding">
 										<div class="col-md-12">
-											<div id="thumbnails<? echo $i; ?>">
-											<?
-
+											<div id="thumbnails<?php echo $i; ?>">
+											<?php 
 												// affiche les miniatures de photos VALIDEES
 												if($photo_temp[$i]) {
 											?>
-													<div class="miniature" id="<? echo $photo_temp[$i]; ?>">
-														<img src="<? echo $photo_temp[$i]; ?>" />
-														<a href="javascript:deleteImage('<? echo $photo_temp[$i]; ?>','<? echo $i; ?>','thumbnails<? echo $i; ?>');" class="btnDelete"><? echo $lang_appprofil["Supprimer"];?></a>
+													<div class="miniature" id="<?php echo $photo_temp[$i]; ?>">
+														<img src="<?php echo $photo_temp[$i]; ?>" />
+														<a href="javascript:deleteImage('<?php echo $photo_temp[$i]; ?>','<?php echo $i; ?>','thumbnails<?php echo $i; ?>');" class="btnDelete"><?php echo $lang_appprofil["Supprimer"];?></a>
 													</div>
-											<?
-												}
+											<?php 												}
 
 											?>
 											</div>
 											</div>
 										</div>
 								
-								<? 
+								<?php 
 									if(!$user->id){
 								?>
 										<div class="formwidth bottompadding">
 										<div class="col-md-12">
 												<div class="messages">
 													<div class="warning">
-														<span class="warning"><? echo $lang_appprofil["AvantEtrePublierPhotos"];?>.</span>
+														<span class="warning"><?php echo $lang_appprofil["AvantEtrePublierPhotos"];?>.</span>
 													</div>
 												</div>
 										</div>
@@ -1381,7 +1319,7 @@
 								<?	
 									}
 								?>
-								<? 
+								<?php 
 									if($user->id){
 										// s'il y a des photos
 										if($photo_temp[$i]) {
@@ -1391,81 +1329,73 @@
 										<div class="col-md-12">
 												<div class="messages">
 													<div class="warning">
-														<span class="warning"><? echo $lang_appprofil["PhotosNonEnAttente"];?>.</span>
+														<span class="warning"><?php echo $lang_appprofil["PhotosNonEnAttente"];?>.</span>
 													</div>
 												</div>
 											</div>
 										</div>
-										<?
-										}
+										<?php 										}
 										?>
 										
 										<div class="formwidth bottompadding">
 										<div class="col-md-12">
-											<h2><? echo $lang_appprofil["PhotosAttente"];?></h2>
+											<h2><?php echo $lang_appprofil["PhotosAttente"];?></h2>
 											<br />
-											<div id="attente<? echo $i; ?>">
+											<div id="attente<?php echo $i; ?>">
 												
-												<?
-
+												<?php 
 													// affiche les miniatures de photos VALIDEES
 													if($photo_attente[$i]) {
 												?>
-														<div class="miniature" id="<? echo $photo_attente[$i]; ?>">
-															<img src="<? echo $photo_attente[$i]; ?>" />
-															<a href="javascript:deleteImage('<? echo $photo_attente[$i]; ?>','<? echo $i; ?>','attente<? echo $i; ?>');" class="btnDelete"><? echo $lang_appprofil["Supprimer"];?></a>
+														<div class="miniature" id="<?php echo $photo_attente[$i]; ?>">
+															<img src="<?php echo $photo_attente[$i]; ?>" />
+															<a href="javascript:deleteImage('<?php echo $photo_attente[$i]; ?>','<?php echo $i; ?>','attente<?php echo $i; ?>');" class="btnDelete"><?php echo $lang_appprofil["Supprimer"];?></a>
 														</div>
-												<?
-
+												<?php 
 													}
 
 												?>
 												</div>
 											</div>
 										</div>
-										<?
-										// s'il y a des photos
-										if(count($photo_attente[$i])) {
+										<?php 										// s'il y a des photos
+										if (is_array($photo_attente[$i])) {
 										?>
 										
 										<div class="formwidth bottompadding">
 										<div class="col-md-12">
 												<div class="messages">
 													<div class="warning">
-														<span class="warning"><? echo $lang_appprofil["AvantEtrePublierPhotos"];?>.</span>
+														<span class="warning"><?php echo $lang_appprofil["AvantEtrePublierPhotos"];?>.</span>
 													</div>
 												</div>
 											</div>
 										</div>
-										<?
-										}
+										<?php 										}
 										?>
 										
 										<div class="formwidth bottompadding">
 										<div class="col-md-12">
-											<h3><? echo $lang_appprofil["PhotosValidees"];?></h3>
+											<h3><?php echo $lang_appprofil["PhotosValidees"];?></h3>
 											<br />
-												<div id="validees<? echo $i; ?>">
+												<div id="validees<?php echo $i; ?>">
 												
-												<?
-
+												<?php 
 													// affiche les miniatures de photos VALIDEES
 													if($photo_validee[$i]) {
 												?>
-														<div class="miniature" id="<? echo $photo_validee[$i]; ?>">
-															<img src="<? echo $photo_validee[$i]; ?>" />
-															<a href="javascript:deleteImage('<? echo $photo_validee[$i]; ?>','<? echo $i; ?>','validees<? echo $i; ?>');" class="btnDelete"><? echo $lang_appprofil["Supprimer"];?></a>
+														<div class="miniature" id="<?php echo $photo_validee[$i]; ?>">
+															<img src="<?php echo $photo_validee[$i]; ?>" />
+															<a href="javascript:deleteImage('<?php echo $photo_validee[$i]; ?>','<?php echo $i; ?>','validees<?php echo $i; ?>');" class="btnDelete"><?php echo $lang_appprofil["Supprimer"];?></a>
 														</div>
-													<?
-
+													<?php 
 													}
 
 												?>
 												</div>
 											</div>
 										</div>
-									<?
-										}
+									<?php 										}
 									?>
 									
 									<br /><hr /><br />
@@ -1473,11 +1403,10 @@
 							</div>
 						</div>					
 						
-					<input type="hidden" name="child<? echo $i; ?>" value="<? echo $row['child'.$i] ? 1 : 0; ?>" />
+					<input type="hidden" name="child<?php echo $i; ?>" value="<?php echo $row['child'.$i] ? 1 : 0; ?>" />
 							
 						
-				<?
-
+				<?php 
 					}
 
 				?>
@@ -1496,24 +1425,24 @@
 					</div>
 					<div class="formwidth bottompadding">
 						<div class="col-md-12">
-						   <div class="col-md-1"><input type="radio" name="photo_montrer" <? if($row['photo_montrer'] == 0) { ?>checked<? } ?> value="0" id="photo_montrer_0"  style="width:20px;" /></div><div class="col-md-11 nopadding"><label class="notoppadding" for="photo_montrer_0"><?php echo $lang_appprofil["UniquementLesModerateursDeParentsolo_ch"];?>.</label></div>
+						   <div class="col-md-1"><input type="radio" name="photo_montrer" <?php if($row['photo_montrer'] == 0) { ?>checked<?php } ?> value="0" id="photo_montrer_0"  style="width:20px;" /></div><div class="col-md-11 nopadding"><label class="notoppadding" for="photo_montrer_0"><?php echo $lang_appprofil["UniquementLesModerateursDeParentsolo_ch"];?>.</label></div>
 					    </div>
 						<div class="col-md-12">
-						  <div class="col-md-1"><input type="radio" name="photo_montrer" <? if($row['photo_montrer'] == 2) { ?>checked<? } ?> value="2" id="photo_montrer_2" style="width:20px;" /></div> <div class="col-md-11 nopadding"><label class="notoppadding" for="photo_montrer_2"><?php echo $lang_appprofil["TousLesMembresDeParentsolo_ch"];?>.</label></div>
+						  <div class="col-md-1"><input type="radio" name="photo_montrer" <?php if($row['photo_montrer'] == 2) { ?>checked<?php } ?> value="2" id="photo_montrer_2" style="width:20px;" /></div> <div class="col-md-11 nopadding"><label class="notoppadding" for="photo_montrer_2"><?php echo $lang_appprofil["TousLesMembresDeParentsolo_ch"];?>.</label></div>
 					    </div> 
 						</div>
 					<div class="formwidth bottompadding">
 							<div class="toolbarsteps" cellpadding="0" cellspacing="0">
 								<div class="col-md-4">
-										<? // user non log
+										<?php // user non log
 										if(!$user->id) { ?>
-											<a href="<? echo JL::url("index.php?app=profil&action=step4".'&'.$langue); ?>" class="btn btn-primary bouton envoyer"><?php echo '&laquo; '.$lang_appprofil["EtapePrecedente"];?></a>
-										<? } ?>
+											<a href="<?php echo JL::url("index.php?app=profil&action=step4".'&'.$langue); ?>" class="btn btn-primary bouton envoyer"><?php echo '&laquo; '.$lang_appprofil["EtapePrecedente"];?></a>
+										<?php } ?>
 									</div>
 									<div class="col-md-4">
 									</div>
 									<div class="col-md-4">
-										<a href="javascript:document.step5.submit();" class="btn btn-primary bouton envoyer"><? echo $user->id ? $lang_appprofil["Valider"] : $lang_appprofil["EtapeSuivante"].' &raquo;'; ?></a>
+										<a href="javascript:document.step5.submit();" class="btn btn-primary bouton envoyer"><?php echo $user->id ? $lang_appprofil["Valider"] : $lang_appprofil["EtapeSuivante"].' &raquo;'; ?></a>
 									</div>
 							</div>
 						</div>
@@ -1522,36 +1451,32 @@
 				<input type="hidden" name="app" value="profil" />
 				<input type="hidden" name="action" value="step5submit" />
 
-				<? // indispensable pour swfupload version sécurisé ?>
-				<input type="hidden" name="site_url" id="site_url" value="<? echo SITE_URL; ?>" />
-				<input type="hidden" name="upload_dir" id="upload_dir" value="<? echo JL::getSession('upload_dir', 'error'); ?>" />
-				<input type="hidden" name="hash" id="hash" value="<? echo md5(date('y').JL::getSession('upload_dir', 'error').date('Y')); ?>" />
-				<input type="hidden" name="key" id="key" value="<? echo $user->id ? md5($user->id) : md5(time()); ?>" />
+				<?php // indispensable pour swfupload version sï¿½curisï¿½ ?>
+				<input type="hidden" name="site_url" id="site_url" value="<?php echo SITE_URL; ?>" />
+				<input type="hidden" name="upload_dir" id="upload_dir" value="<?php echo JL::getSession('upload_dir', 'error'); ?>" />
+				<input type="hidden" name="hash" id="hash" value="<?php echo md5(date('y').JL::getSession('upload_dir', 'error').date('Y')); ?>" />
+				<input type="hidden" name="key" id="key" value="<?php echo $user->id ? md5($user->id) : md5(time()); ?>" />
 				<input type="hidden" name="childNum" id="childNum" value="1" />
 
 			</form>
 				
 
-			<?
-				if($_GET['lang']=='fr'){
+			<?php 				if($_GET['lang']=='fr'){
 			?>
 				<script type="text/javascript">
 					uploaderInitChildren_fr();
 				</script>
-			<?
-				}elseif($_GET['lang']=='en'){
+			<?php 				}elseif($_GET['lang']=='en'){
 			?>
 				<script type="text/javascript">
 					uploaderInitChildren_en();
 				</script>
-			<?
-				}elseif($_GET['lang']=='de'){
+			<?php 				}elseif($_GET['lang']=='de'){
 			?>
 				<script type="text/javascript">
 					uploaderInitChildren_de();
 				</script>
-			<?
-			}
+			<?php 			}
 
 		}
 
@@ -1574,16 +1499,15 @@
 					<br />
 					<?php echo $lang_appprofil["ConnexionOK"];?><br />
 					<br />
-					<b><?php echo $lang_appprofil["Pseudo"];?>:</b> <? echo htmlentities(JL::getSession('username', '')); ?><br />
-					<b><?php echo $lang_appprofil["Pass"];?>:</b> <? echo htmlentities(JL::getSession('password', '')); ?><br />
+					<b><?php echo $lang_appprofil["Pseudo"];?>:</b> <?php echo makeSafe(JL::getSession('username', '')); ?><br />
+					<b><?php echo $lang_appprofil["Pass"];?>:</b> <?php echo makeSafe(JL::getSession('password', '')); ?><br />
 					<br />
 					<br />
 					<?php echo $lang_appprofil["NousVousSouhaitons"];?>.<br />
 					<br />
 					<?php echo $lang_appprofil["LequipeDeParentsolo"];?>
 				</div>
-			<?
-
+			<?php 
 		}
 		
 		function inscription_interrompu($notice) {
@@ -1610,15 +1534,14 @@
 					<tr>
 						<td class="left"> </td>
 						<td class="center">
-							<a href="<? echo JL::url('index.php?app=profil&action=inscription'.'&'.$langue); ?>" class="btn btn-primary bouton envoyer"><?php echo $lang_appprofil["NouvelleInscription"];?></a>
+							<a href="<?php echo JL::url('index.php?app=profil&action=inscription'.'&'.$langue); ?>" class="btn btn-primary bouton envoyer"><?php echo $lang_appprofil["NouvelleInscription"];?></a>
 						</td>
 						<td class="right"> </td>
 					</tr>
 				</table>
 			</div>
 
-			<?
-
+			<?php 
 		}
 		
 		
@@ -1642,25 +1565,25 @@
 				<div class="col-sm-12 nopadding parentsolo_pt_10">
 				<label><?php echo $lang_appprofil["CochezLesCasesSouhaites"];?>.</label>
 				<div class="radio">					
-				<label for="new_visite" <? if($row['new_visite']) { ?>class="notificationActive"<? } ?>>
-				<input type="checkbox" name="new_visite" id="new_visite" <? if($row['new_visite']) { ?>checked<? } ?> style="width:20px;" />
-				 <? echo $row['genre'] == 'h' ? $lang_appprofil["UneMamanAConsulteVotreProfil"] : $lang_appprofil["UnPapaAConsulteVotreProfil"]; ?>.
+				<label for="new_visite" <?php if($row['new_visite']) { ?>class="notificationActive"<?php } ?>>
+				<input type="checkbox" name="new_visite" id="new_visite" <?php if($row['new_visite']) { ?>checked<?php } ?> style="width:20px;" />
+				 <?php echo $row['genre'] == 'h' ? $lang_appprofil["UneMamanAConsulteVotreProfil"] : $lang_appprofil["UnPapaAConsulteVotreProfil"]; ?>.
 				</label>
 				</div>
 				
 				<div class="radio">
-				<label for="new_message" <? if($row['new_message']) { ?>class="notificationActive"<? } ?>>
-				<input type="checkbox" name="new_message" id="new_message" <? if($row['new_message']) { ?>checked<? } ?> style="width:20px;" />
+				<label for="new_message" <?php if($row['new_message']) { ?>class="notificationActive"<?php } ?>>
+				<input type="checkbox" name="new_message" id="new_message" <?php if($row['new_message']) { ?>checked<?php } ?> style="width:20px;" />
 				<?php echo $lang_appprofil["VousAvezNouveauMessage"];?>.
 				</label>
 				</div>
 				
 				<div class="radio">
-				<label for="new_fleur" <? if($row['new_fleur']) { ?>class="notificationActive"<? } ?>><input type="checkbox" name="new_fleur" id="new_fleur" <? if($row['new_fleur']) { ?>checked<? } ?> style="width:20px;" /> <?php echo $lang_appprofil["VousAvezRecuNouvelleFleur"];?>.</label>
+				<label for="new_fleur" <?php if($row['new_fleur']) { ?>class="notificationActive"<?php } ?>><input type="checkbox" name="new_fleur" id="new_fleur" <?php if($row['new_fleur']) { ?>checked<?php } ?> style="width:20px;" /> <?php echo $lang_appprofil["VousAvezRecuNouvelleFleur"];?>.</label>
 				</div>
 				
 				<div class="radio">
-				<label for="rappels" <? if($row['rappels']) { ?>class="notificationActive"<? } ?>><input type="checkbox" name="rappels" id="rappels" <? if($row['rappels']) { ?>checked<? } ?> style="width:20px;" /> <?php echo $lang_appprofil["DiversRappels"];?>.</label>
+				<label for="rappels" <?php if($row['rappels']) { ?>class="notificationActive"<?php } ?>><input type="checkbox" name="rappels" id="rappels" <?php if($row['rappels']) { ?>checked<?php } ?> style="width:20px;" /> <?php echo $lang_appprofil["DiversRappels"];?>.</label>
 				</div>
 				
 				</div>	
@@ -1675,8 +1598,7 @@
 				<input type="hidden" name="app" value="profil" />
 				<input type="hidden" name="action" value="notificationsubmit" />
 			</form>
-			<?
-
+			<?php 
 		}
 		
 		
@@ -1709,22 +1631,22 @@
 			// profil existe
 			if($profil->accessok) {
 
-				// récup la photo par défaut de l'utilisateur
+				// rï¿½cup la photo par dï¿½faut de l'utilisateur
 				$photoDefaut = JL::userGetPhoto($profil->id, 'profil', '', $profil->photo_defaut);
 
-				// pas de photo par défaut
+				// pas de photo par dï¿½faut
 				if(!$photoDefaut) {
 					$photoDefaut = SITE_URL.'/parentsolo/images/parent-solo-profil-'.$profil->genre.'-'.$_GET['lang'].'.jpg';
 				}
 
-				// récup les photos de l'utilisateur, autres que celle par défaut
+				// rï¿½cup les photos de l'utilisateur, autres que celle par dï¿½faut
 				if(is_dir($dir)) {
 
 					$dir_id 	= opendir($dir);
 					while($file = trim(readdir($dir_id))) {
 
-						// récup les miniatures de photos
-						if(preg_match('/^parent-solo-35-profil/', $file)) { // récup les micro-miniatures de photos validées
+						// rï¿½cup les miniatures de photos
+						if(preg_match('/^parent-solo-35-profil/', $file)) { // rï¿½cup les micro-miniatures de photos validï¿½es
 
 							$photos[]	= $dir.'/'.$file;
 
@@ -1737,10 +1659,10 @@
 				// conserve le nombre de photos
 				$photosNb	= count($photos);
 
-				// génération de la chaine des langues
+				// gï¿½nï¿½ration de la chaine des langues
 				$profilInfosEnVrac1->langues	= HTML_profil::profil3values($profilInfosEnVrac1, 'langue', $nonRenseigne);
 
-				// génération de la chaine des cuisines
+				// gï¿½nï¿½ration de la chaine des cuisines
 				$profilQuotidien1->cuisines		= HTML_profil::profil3values($profilQuotidien1, 'cuisine', $nonRenseigne);
 				$profilQuotidien1->sorties		= HTML_profil::profil3values($profilQuotidien1, 'sortie', $nonRenseigne);
 				$profilQuotidien2->loisirs		= HTML_profil::profil3values($profilQuotidien2, 'loisir', $nonRenseigne);
@@ -1750,7 +1672,7 @@
 				$profilQuotidien4->animaux		= HTML_profil::profil3values($profilQuotidien4, 'animaux', $nonRenseigne);
 				$profilQuotidien4->lectures		= HTML_profil::profil3values($profilQuotidien4, 'lecture', $nonRenseigne);
 
-				// class supplémentaire au last_online
+				// class supplï¿½mentaire au last_online
 
 				
 				// en ligne
@@ -1790,54 +1712,54 @@
 			      <!-- Profile Informations-->
                 <div class="profile col-md-3 wow fadeInDown">
                     <div class="profile-image">
-                      <img src="<? echo $photoDefaut; ?>" alt="<? echo $profil->username; ?>" />
+                      <img src="<?php echo $photoDefaut; ?>" alt="<?php echo $profil->username; ?>" />
                     </div>
                     <div class="profile-info">
                     	<div class="name-job">
-                            <h1><span class="<? echo $profil->genre == 'h' ? "homme" : "femme"; ?>"><? echo $profil->username; ?></span></h1>
+                            <h1><span class="<?php echo $profil->genre == 'h' ? "homme" : "femme"; ?>"><?php echo $profil->username; ?></span></h1>
                             <span class="job"><?php echo $lang_appprofil["DerniereConnexion"];?>:
-							<span class="<? echo $last_online_class; ?>"><? echo $last_online_label; ?></span><br />
-							<? echo $lang_appprofil["Inscription"]; ?>: <? echo date('d.m.Y', strtotime($profil->creation_date)); ?></span>
+							<span class="<?php echo $last_online_class; ?>"><?php echo $last_online_label; ?></span><br />
+							<?php echo $lang_appprofil["Inscription"]; ?>: <?php echo date('d.m.Y', strtotime($profil->creation_date)); ?></span>
                         </div><!-- .name-job -->                        
                        
 					   <div class="col-md-12">
 						<div class="service">
-                            <a href="<? echo JL::url('index.php?app=message&action=write&user_to='.$profil->username.'&'.$langue); ?>" target="_blank" title="<?php echo $lang_appprofil["EnvoyerUnMail"];?>"><img src="<? echo SITE_URL; ?>/<? echo SITE_TEMPLATE; ?>/images/btn_message.png" alt="<?php echo $lang_search["EnvoyerUnMail"];?>" /></a>
-                            <span><b><a href="<? echo JL::url('index.php?app=message&action=write&user_to='.$profil->username.'&'.$langue); ?>" target="_blank" title="<?php echo $lang_appprofil["EnvoyerUnMail"];?>"><?php echo $lang_appprofil["EnvoyerUnMail"];?></a></b></span>                                  
+                            <a href="<?php echo JL::url('index.php?app=message&action=write&user_to='.$profil->username.'&'.$langue); ?>" target="_blank" title="<?php echo $lang_appprofil["EnvoyerUnMail"];?>"><img src="<?php echo SITE_URL; ?>/<?php echo SITE_TEMPLATE; ?>/images/btn_message.png" alt="<?php echo $lang_search["EnvoyerUnMail"];?>" /></a>
+                            <span><b><a href="<?php echo JL::url('index.php?app=message&action=write&user_to='.$profil->username.'&'.$langue); ?>" target="_blank" title="<?php echo $lang_appprofil["EnvoyerUnMail"];?>"><?php echo $lang_appprofil["EnvoyerUnMail"];?></a></b></span>                                  
                         </div>
 					   </div>
 					   
 					   <div class="col-md-12">
 					   <div class="service">
-						<a href="<? echo JL::url('index.php?app=message&action=flower&user_to='.$profil->username.'&'.$langue); ?>" target="_blank" title="<?php echo $lang_appprofil["EnvoyerUneRose"];?>"><img src="<? echo SITE_URL; ?>/<? echo SITE_TEMPLATE; ?>/images/btn_rose.png" alt="<?php echo $lang_search["EnvoyerUneRose"];?>" /></a>
-					     <span><b><a href="<? echo JL::url('index.php?app=message&action=flower&user_to='.$profil->username.'&'.$langue); ?>" target="_blank" title="<?php echo $lang_appprofil["EnvoyerUneRose"];?>"><?php echo $lang_appprofil["EnvoyerUneRose"];?></a></b></span>        
+						<a href="<?php echo JL::url('index.php?app=message&action=flower&user_to='.$profil->username.'&'.$langue); ?>" target="_blank" title="<?php echo $lang_appprofil["EnvoyerUneRose"];?>"><img src="<?php echo SITE_URL; ?>/<?php echo SITE_TEMPLATE; ?>/images/btn_rose.png" alt="<?php echo $lang_search["EnvoyerUneRose"];?>" /></a>
+					     <span><b><a href="<?php echo JL::url('index.php?app=message&action=flower&user_to='.$profil->username.'&'.$langue); ?>" target="_blank" title="<?php echo $lang_appprofil["EnvoyerUneRose"];?>"><?php echo $lang_appprofil["EnvoyerUneRose"];?></a></b></span>        
 					   </div>
 					   </div>
 					   
 					   <div class="col-md-12">
 					   <div class="service">
-						<a href="javascript:windowOpen('ParentSoloChat','<? echo JL::url('index.php?app=chat&id='.$profil->id.'&'.$langue); ?>','800px','600px');" title="<?php echo $lang_appprofil["Chat"];?>"><img src="<? echo SITE_URL; ?>/<? echo SITE_TEMPLATE; ?>/images/btn_chat.png" alt="<?php echo $lang_search["Chat"];?>" /></a></td>
-						<span><b><a href="javascript:windowOpen('ParentSoloChat','<? echo JL::url('index.php?app=chat&id='.$profil->id.'&'.$langue); ?>','800px','600px');" title="<?php echo $lang_appprofil["Chat"];?>"><?php echo $lang_appprofil["Chat"];?></a></b></span>        
+						<a href="javascript:windowOpen('ParentSoloChat','<?php echo JL::url('index.php?app=chat&id='.$profil->id.'&'.$langue); ?>','800px','600px');" title="<?php echo $lang_appprofil["Chat"];?>"><img src="<?php echo SITE_URL; ?>/<?php echo SITE_TEMPLATE; ?>/images/btn_chat.png" alt="<?php echo $lang_search["Chat"];?>" /></a></td>
+						<span><b><a href="javascript:windowOpen('ParentSoloChat','<?php echo JL::url('index.php?app=chat&id='.$profil->id.'&'.$langue); ?>','800px','600px');" title="<?php echo $lang_appprofil["Chat"];?>"><?php echo $lang_appprofil["Chat"];?></a></b></span>        
 					   </div>
 					   </div>
 					
 					
 						<div class="col-md-12">
 					    <div class="service">
-						<a href="<? echo JL::url('index.php?app=flbl&action=add&list_type=1&user_id_to='.$profil->id.'&'.$langue); ?>" title="<?php echo $lang_appprofil["AjouterAuxFavoris"];?>" target="_blank"><img src="<? echo SITE_URL; ?>/<? echo SITE_TEMPLATE; ?>/images/btn_favoris.png" alt="<?php echo $lang_search["AjouterAuxFavoris"];?>" /></a></td>
-						<span><b><a href="<? echo JL::url('index.php?app=flbl&action=add&list_type=1&user_id_to='.$profil->id.'&'.$langue); ?>" title="<?php echo $lang_appprofil["AjouterAuxFavoris"];?>" target="_blank"><?php echo $lang_appprofil["AjouterAuxFavoris"];?></a></b></span>
+						<a href="<?php echo JL::url('index.php?app=flbl&action=add&list_type=1&user_id_to='.$profil->id.'&'.$langue); ?>" title="<?php echo $lang_appprofil["AjouterAuxFavoris"];?>" target="_blank"><img src="<?php echo SITE_URL; ?>/<?php echo SITE_TEMPLATE; ?>/images/btn_favoris.png" alt="<?php echo $lang_search["AjouterAuxFavoris"];?>" /></a></td>
+						<span><b><a href="<?php echo JL::url('index.php?app=flbl&action=add&list_type=1&user_id_to='.$profil->id.'&'.$langue); ?>" title="<?php echo $lang_appprofil["AjouterAuxFavoris"];?>" target="_blank"><?php echo $lang_appprofil["AjouterAuxFavoris"];?></a></b></span>
 						</div>
 					    </div>
 						<div class="col-md-12">
 					    <div class="service">
-						<a href="<? echo JL::url('index.php?app=flbl&action=add&list_type=0&user_id_to='.$profil->id.'&'.$langue); ?>" title="<?php echo $lang_appprofil["AjouterALaListeNoire"];?>" target="_blank"><img src="<? echo SITE_URL; ?>/<? echo SITE_TEMPLATE; ?>/images/btn_black.png" alt="<?php echo $lang_search["AjouterALaListeNoire"];?>" /></a></td>
-						<span><b><a href="<? echo JL::url('index.php?app=flbl&action=add&list_type=0&user_id_to='.$profil->id.'&'.$langue); ?>" title="<?php echo $lang_appprofil["AjouterALaListeNoire"];?>" target="_blank"><?php echo $lang_appprofil["AjouterALaListeNoire"];?></a></b></span>
+						<a href="<?php echo JL::url('index.php?app=flbl&action=add&list_type=0&user_id_to='.$profil->id.'&'.$langue); ?>" title="<?php echo $lang_appprofil["AjouterALaListeNoire"];?>" target="_blank"><img src="<?php echo SITE_URL; ?>/<?php echo SITE_TEMPLATE; ?>/images/btn_black.png" alt="<?php echo $lang_search["AjouterALaListeNoire"];?>" /></a></td>
+						<span><b><a href="<?php echo JL::url('index.php?app=flbl&action=add&list_type=0&user_id_to='.$profil->id.'&'.$langue); ?>" title="<?php echo $lang_appprofil["AjouterALaListeNoire"];?>" target="_blank"><?php echo $lang_appprofil["AjouterALaListeNoire"];?></a></b></span>
 						</div>
 					    </div>
 						<div class="col-md-12">
 					    <div class="service">
-						<a href="<? echo JL::url('index.php?app=signaler_abus&user_id_to='.$profil->id.'&'.$langue); ?>" title="<?php echo $lang_appprofil["SignalerUnAbus"];?>" target="_blank"><img src="<? echo SITE_URL; ?>/<? echo SITE_TEMPLATE; ?>/images/btn_abus.png" alt="<?php echo $lang_search["SignalerUnAbus"];?>" /></a></td>
-						<span><b><a href="<? echo JL::url('index.php?app=signaler_abus&user_id_to='.$profil->id.'&'.$langue); ?>" title="<?php echo $lang_appprofil["SignalerUnAbus"];?>" target="_blank"><?php echo $lang_appprofil["SignalerUnAbus"];?></a></b></span>
+						<a href="<?php echo JL::url('index.php?app=signaler_abus&user_id_to='.$profil->id.'&'.$langue); ?>" title="<?php echo $lang_appprofil["SignalerUnAbus"];?>" target="_blank"><img src="<?php echo SITE_URL; ?>/<?php echo SITE_TEMPLATE; ?>/images/btn_abus.png" alt="<?php echo $lang_search["SignalerUnAbus"];?>" /></a></td>
+						<span><b><a href="<?php echo JL::url('index.php?app=signaler_abus&user_id_to='.$profil->id.'&'.$langue); ?>" title="<?php echo $lang_appprofil["SignalerUnAbus"];?>" target="_blank"><?php echo $lang_appprofil["SignalerUnAbus"];?></a></b></span>
 						</div>
 					    </div>
 						<div style="clear:both;"></div>
@@ -1848,11 +1770,10 @@
                 <div id="tab-container" class="col-md-9">
                     	<!--Top Menu -->
                         <div class="responsive-menu hidden-md hidden-lg">MENU</div>				
-						<? JL::loadMod("menu_profil");?>
+						<?php JL::loadMod("menu_profil");?>
 					
-					<?
-
-							// affichage des données spécifiques de la page
+					<?php 
+							// affichage des donnï¿½es spï¿½cifiques de la page
 							switch($action) {
 								
 								// DESCRIPTION
@@ -1863,7 +1784,7 @@
                     <div id="about" class="content col-md-12 fadeInUp">
                     	<div class="row">
                     		<div class="page-title">
-								<h2 class="result"><? echo $labelDescription; ?></h2>
+								<h2 class="result"><?php echo $labelDescription; ?></h2>
 						 </div>
 						 <div class="col-md-12 pinfo">	
 						<table class="result" cellpadding="0" cellspacing="0" width="100%">
@@ -1871,10 +1792,10 @@
 											<td>
 												<h2 class="section-title"><?php echo $lang_appprofil["Moi"];?></h2>
 												<table class="detail_table" cellpadding="0" cellspacing="0" width="100%">
-													<tr><td class="key"><?php echo $lang_appprofil["Age"];?></td><td class="result"><? echo JL::calcul_age($profil->naissance_date); ?></td></tr>
-													<tr><td class="key"><?php echo $labelEnfant;?></td><td class="result"><? echo $profil->nb_enfants; ?> <? echo $profil->nb_enfants > 1 ? $lang_appprofil["enfants"] : $lang_appprofil["enfant"]; ?></td></tr>
-													<tr><td class="key"><?php echo $lang_appprofil["Canton"];?></td><td class="result"><? echo $profil->canton; ?></td></tr>
-													<tr><td class="key fin"><?php echo $lang_appprofil["Ville"];?></td><td class="result fin"><? echo $profil->ville ? $profil->ville : $lang_appprofil["NonRenseigne"]; ?></td></tr>
+													<tr><td class="key"><?php echo $lang_appprofil["Age"];?></td><td class="result"><?php echo JL::calcul_age($profil->naissance_date); ?></td></tr>
+													<tr><td class="key"><?php echo $labelEnfant;?></td><td class="result"><?php echo $profil->nb_enfants; ?> <?php echo $profil->nb_enfants > 1 ? $lang_appprofil["enfants"] : $lang_appprofil["enfant"]; ?></td></tr>
+													<tr><td class="key"><?php echo $lang_appprofil["Canton"];?></td><td class="result"><?php echo $profil->canton; ?></td></tr>
+													<tr><td class="key fin"><?php echo $lang_appprofil["Ville"];?></td><td class="result fin"><?php echo $profil->ville ? $profil->ville : $lang_appprofil["NonRenseigne"]; ?></td></tr>
 												</table>
 											</td>
 										</tr>
@@ -1885,20 +1806,20 @@
 											<td>
 												<h2 class="section-title"><?php echo $lang_appprofil["General"];?></h2>
 												<table class="detail_table" cellpadding="0" cellspacing="0" width="100%">
-													<tr><td class="key"><?php echo $lang_appprofil["Nationalite"];?></td><td class="result"><? echo $profilInfosEnVrac1->nationalite ? $profilInfosEnVrac1->nationalite : $nonRenseigne; ?></td></tr>
-													<tr><td class="key"><?php echo $lang_appprofil["Religion"];?></td><td class="result"><? echo $profilInfosEnVrac1->religion ? $profilInfosEnVrac1->religion : $nonRenseigne; ?></td></tr>
-													<tr><td class="key"><?php echo $lang_appprofil["NiveauEtudes"];?></td><td class="result"><? echo $profilInfosEnVrac2->niveau_etude ? $profilInfosEnVrac2->niveau_etude : $nonRenseigne; ?></td></tr>
-													<tr><td class="key"><?php echo $lang_appprofil["SecteurActivite"];?></td><td class="result"><? echo $profilInfosEnVrac2->secteur_activite ? $profilInfosEnVrac2->secteur_activite : $nonRenseigne; ?></td></tr>
-													<tr><td class="key"><?php echo $lang_appprofil["StatutMarital"];?></td><td class="result"><? echo $profilInfosEnVrac1->statut_marital ? $profilInfosEnVrac1->statut_marital : $nonRenseigne; ?></td></tr>
-													<tr><td class="key"><?php echo $lang_appprofil["ModeDeVie"];?></td><td class="result"><? echo $profilQuotidien1->vie ? $profilQuotidien1->vie : $nonRenseigne; ?></td></tr>
-													<tr><td class="key"><?php echo $lang_appprofil["QuiLaGarde"];?>?</td><td class="result"><? echo $profilInfosEnVrac2->garde ? $profilInfosEnVrac2->garde : $nonRenseigne; ?></td></tr>
-													<tr><td class="key"><?php echo $lang_appprofil["Fumeur"];?>?</td><td class="result"><? echo $profilInfosEnVrac2->fumer ? $profilInfosEnVrac2->fumer : $nonRenseigne; ?></td></tr>
-													<tr><td class="key"><?php echo $lang_appprofil["Temperament"];?></td><td class="result"><? echo $profilInfosEnVrac2->temperament ? $profilInfosEnVrac2->temperament : $nonRenseigne; ?></td></tr>
-													<tr><td class="key"><?php echo $lang_appprofil["LanguesParlees"];?></td><td class="result"><? echo $profilInfosEnVrac1->langues ?></td></tr>
+													<tr><td class="key"><?php echo $lang_appprofil["Nationalite"];?></td><td class="result"><?php echo $profilInfosEnVrac1->nationalite ? $profilInfosEnVrac1->nationalite : $nonRenseigne; ?></td></tr>
+													<tr><td class="key"><?php echo $lang_appprofil["Religion"];?></td><td class="result"><?php echo $profilInfosEnVrac1->religion ? $profilInfosEnVrac1->religion : $nonRenseigne; ?></td></tr>
+													<tr><td class="key"><?php echo $lang_appprofil["NiveauEtudes"];?></td><td class="result"><?php echo $profilInfosEnVrac2->niveau_etude ? $profilInfosEnVrac2->niveau_etude : $nonRenseigne; ?></td></tr>
+													<tr><td class="key"><?php echo $lang_appprofil["SecteurActivite"];?></td><td class="result"><?php echo $profilInfosEnVrac2->secteur_activite ? $profilInfosEnVrac2->secteur_activite : $nonRenseigne; ?></td></tr>
+													<tr><td class="key"><?php echo $lang_appprofil["StatutMarital"];?></td><td class="result"><?php echo $profilInfosEnVrac1->statut_marital ? $profilInfosEnVrac1->statut_marital : $nonRenseigne; ?></td></tr>
+													<tr><td class="key"><?php echo $lang_appprofil["ModeDeVie"];?></td><td class="result"><?php echo $profilQuotidien1->vie ? $profilQuotidien1->vie : $nonRenseigne; ?></td></tr>
+													<tr><td class="key"><?php echo $lang_appprofil["QuiLaGarde"];?>?</td><td class="result"><?php echo $profilInfosEnVrac2->garde ? $profilInfosEnVrac2->garde : $nonRenseigne; ?></td></tr>
+													<tr><td class="key"><?php echo $lang_appprofil["Fumeur"];?>?</td><td class="result"><?php echo $profilInfosEnVrac2->fumer ? $profilInfosEnVrac2->fumer : $nonRenseigne; ?></td></tr>
+													<tr><td class="key"><?php echo $lang_appprofil["Temperament"];?></td><td class="result"><?php echo $profilInfosEnVrac2->temperament ? $profilInfosEnVrac2->temperament : $nonRenseigne; ?></td></tr>
+													<tr><td class="key"><?php echo $lang_appprofil["LanguesParlees"];?></td><td class="result"><?php echo $profilInfosEnVrac1->langues ?></td></tr>
 													<tr><td>&nbsp;</td></tr>
-													<tr><td class="key"><?php echo $lang_appprofil["RelationCherchee"];?></td><td class="result"><? echo $profilInfosEnVrac2->cherche_relation ? $profilInfosEnVrac2->cherche_relation : $nonRenseigne; ?></td></tr>
-													<tr><td class="key"><?php echo $lang_appprofil["LeMariageEst"];?></td><td class="result"><? echo $profilInfosEnVrac1->me_marier ? $profilInfosEnVrac1->me_marier : $nonRenseigne; ?></td></tr>
-													<tr><td class="key fin"><?php echo $lang_appprofil["NombreEnfantsSouhaites"];?></td><td class="result fin"><? echo $profilInfosEnVrac2->vouloir_enfants ? $profilInfosEnVrac2->vouloir_enfants : $nonRenseigne; ?></td></tr>
+													<tr><td class="key"><?php echo $lang_appprofil["RelationCherchee"];?></td><td class="result"><?php echo $profilInfosEnVrac2->cherche_relation ? $profilInfosEnVrac2->cherche_relation : $nonRenseigne; ?></td></tr>
+													<tr><td class="key"><?php echo $lang_appprofil["LeMariageEst"];?></td><td class="result"><?php echo $profilInfosEnVrac1->me_marier ? $profilInfosEnVrac1->me_marier : $nonRenseigne; ?></td></tr>
+													<tr><td class="key fin"><?php echo $lang_appprofil["NombreEnfantsSouhaites"];?></td><td class="result fin"><?php echo $profilInfosEnVrac2->vouloir_enfants ? $profilInfosEnVrac2->vouloir_enfants : $nonRenseigne; ?></td></tr>
 												</table>
 											</td>
 										</tr>
@@ -1909,13 +1830,13 @@
 											<td>
 												<h2 class="section-title"><?php echo $lang_appprofil["Physique"];?></h2>
 												<table class="detail_table" cellpadding="0" cellspacing="0" width="100%">
-													<tr><td class="key"><?php echo $lang_appprofil["Taille"];?></td><td class="result"><? echo $profilDescription->taille ? $profilDescription->taille.' cm' : $nonRenseigne; ?></td></tr>
-													<tr><td class="key"><?php echo $lang_appprofil["Poids"];?></td><td class="result"><? echo $profilDescription->poids ? $profilDescription->poids.' kg' : $nonRenseigne; ?></td></tr>
-													<tr><td class="key"><?php echo $lang_appprofil["Silhouette"];?></td><td class="result"><? echo $profilDescription->silhouette ? $profilDescription->silhouette : $nonRenseigne; ?></td></tr>
-													<tr><td class="key"><?php echo $lang_appprofil["Yeux"];?></td><td class="result"><? echo $profilDescription->yeux ? $profilDescription->yeux : $nonRenseigne; ?></td></tr>
-													<tr><td class="key"><?php echo $lang_appprofil["Cheveux"];?></td><td class="result"><? echo $profilDescription->cheveux ? $profilDescription->cheveux : $nonRenseigne; ?></td></tr>
-													<tr><td class="key"><?php echo $lang_appprofil["Coiffure"];?></td><td class="result"><? echo $profilDescription->style_coiffure ? $profilDescription->style_coiffure : $nonRenseigne; ?></td></tr>
-													<tr><td class="key fin"><?php echo $lang_appprofil["Origine"];?></td><td class="result fin"><? echo $profilDescription->origine ? $profilDescription->origine : $nonRenseigne; ?></td></tr>
+													<tr><td class="key"><?php echo $lang_appprofil["Taille"];?></td><td class="result"><?php echo $profilDescription->taille ? $profilDescription->taille.' cm' : $nonRenseigne; ?></td></tr>
+													<tr><td class="key"><?php echo $lang_appprofil["Poids"];?></td><td class="result"><?php echo $profilDescription->poids ? $profilDescription->poids.' kg' : $nonRenseigne; ?></td></tr>
+													<tr><td class="key"><?php echo $lang_appprofil["Silhouette"];?></td><td class="result"><?php echo $profilDescription->silhouette ? $profilDescription->silhouette : $nonRenseigne; ?></td></tr>
+													<tr><td class="key"><?php echo $lang_appprofil["Yeux"];?></td><td class="result"><?php echo $profilDescription->yeux ? $profilDescription->yeux : $nonRenseigne; ?></td></tr>
+													<tr><td class="key"><?php echo $lang_appprofil["Cheveux"];?></td><td class="result"><?php echo $profilDescription->cheveux ? $profilDescription->cheveux : $nonRenseigne; ?></td></tr>
+													<tr><td class="key"><?php echo $lang_appprofil["Coiffure"];?></td><td class="result"><?php echo $profilDescription->style_coiffure ? $profilDescription->style_coiffure : $nonRenseigne; ?></td></tr>
+													<tr><td class="key fin"><?php echo $lang_appprofil["Origine"];?></td><td class="result fin"><?php echo $profilDescription->origine ? $profilDescription->origine : $nonRenseigne; ?></td></tr>
 												</table>
 											</td>
 										</tr>
@@ -1926,14 +1847,14 @@
 											<td>
 												<h2 class="section-title"><?php echo $lang_appprofil["CentresInterets"];?></h2>
 												<table class="detail_table" cellpadding="0" cellspacing="0" width="100%">
-													<tr><td class="key"><?php echo $lang_appprofil["Cuisine"];?></td><td class="result"><? echo $profilQuotidien1->cuisines; ?></td></tr>
-													<tr><td class="key"><?php echo $lang_appprofil["Sorties"];?></td><td class="result"><? echo $profilQuotidien1->sorties; ?></td></tr>
-													<tr><td class="key"><?php echo $lang_appprofil["Loisirs"];?></td><td class="result"><? echo $profilQuotidien2->loisirs; ?></td></tr>
-													<tr><td class="key"><?php echo $lang_appprofil["PratiquesSportives"];?></td><td class="result"><? echo $profilQuotidien2->sports; ?></td></tr>
-													<tr><td class="key"><?php echo $lang_appprofil["Musique"];?></td><td class="result"><? echo $profilQuotidien3->musiques; ?></td></tr>
-													<tr><td class="key"><?php echo $lang_appprofil["Films"];?></td><td class="result"><? echo $profilQuotidien3->films; ?></td></tr>
-													<tr><td class="key"><?php echo $lang_appprofil["Lecture"];?></td><td class="result"><? echo $profilQuotidien4->lectures; ?></td></tr>
-													<tr><td class="key fin"><?php echo $lang_appprofil["Animaux"];?></td><td class="result fin"><? echo $profilQuotidien4->animaux; ?></td></tr>
+													<tr><td class="key"><?php echo $lang_appprofil["Cuisine"];?></td><td class="result"><?php echo $profilQuotidien1->cuisines; ?></td></tr>
+													<tr><td class="key"><?php echo $lang_appprofil["Sorties"];?></td><td class="result"><?php echo $profilQuotidien1->sorties; ?></td></tr>
+													<tr><td class="key"><?php echo $lang_appprofil["Loisirs"];?></td><td class="result"><?php echo $profilQuotidien2->loisirs; ?></td></tr>
+													<tr><td class="key"><?php echo $lang_appprofil["PratiquesSportives"];?></td><td class="result"><?php echo $profilQuotidien2->sports; ?></td></tr>
+													<tr><td class="key"><?php echo $lang_appprofil["Musique"];?></td><td class="result"><?php echo $profilQuotidien3->musiques; ?></td></tr>
+													<tr><td class="key"><?php echo $lang_appprofil["Films"];?></td><td class="result"><?php echo $profilQuotidien3->films; ?></td></tr>
+													<tr><td class="key"><?php echo $lang_appprofil["Lecture"];?></td><td class="result"><?php echo $profilQuotidien4->lectures; ?></td></tr>
+													<tr><td class="key fin"><?php echo $lang_appprofil["Animaux"];?></td><td class="result fin"><?php echo $profilQuotidien4->animaux; ?></td></tr>
 												</table>
 											</td>
 										</tr>
@@ -1941,20 +1862,19 @@
 						</div>
 					</div>
 					</div>
-					<?
-					break;
+					<?php 					break;
 					// ANNONCE
 					case 'view2':
 					?>
 					 <div id="advertisement" class="content col-md-12">
 						<div class="row">
 						<div class="page-title">
-							<h2 class="detail"><? echo $labelAnnonce; ?></h2>
+							<h2 class="detail"><?php echo $labelAnnonce; ?></h2>
 						</div>
 						<div class="col-md-12 pinfo">
 						<table class="detail_table" cellpadding="0" cellspacing="0" width="100%">
 							<tr>
-							<td class="annonce"><? echo $profil->annonce ? nl2br($profil->annonce) : $lang_appprofil["NAPasRedigeAnnonce"].' .'; ?></td>
+							<td class="annonce"><?php echo $profil->annonce ? nl2br($profil->annonce) : $lang_appprofil["NAPasRedigeAnnonce"].' .'; ?></td>
 							</tr>
 						</table>
 						</div>
@@ -1962,8 +1882,7 @@
 						</div>
 					 
 					 	
-								<?
-								break;
+								<?php 								break;
 								// PHOTOS
 								case 'view3':
 									
@@ -1971,13 +1890,12 @@
 								 <div id="resume" class="content col-md-12">
                     	         <div class="row">
 									<div class="page-title">
-									<h2 class="result"><? echo $labelPhotos; ?></h2>
+									<h2 class="result"><?php echo $labelPhotos; ?></h2>
 									</div>
 									<div class="col-md-12 pinfo">
 									<table class="result" cellpadding="0" cellspacing="0" width="100%">
-										<tr><td align="middle"><img src="<? echo $photoDefaut; ?>" alt="Parent c&eacute;libataire <? echo $profil->username; ?>" class="big" id="profilPhotoDefaut" /></td></tr>
-									<?
-										// s'il y a plus d'une photo
+										<tr><td align="middle"><img src="<?php echo $photoDefaut; ?>" alt="Parent c&eacute;libataire <?php echo $profil->username; ?>" class="big" id="profilPhotoDefaut" /></td></tr>
+									<?php 										// s'il y a plus d'une photo
 										if($photosNb > 1) {
 											$i = 0;
 											?>
@@ -1986,18 +1904,16 @@
 												<td>
 													<table class="miniatures" cellpadding="0" cellspacing="0" width="100%">
 														<tr align="middle">
-														<?
-															// pour chaque photo
+														<?php 															// pour chaque photo
 															foreach($photos as $photo) {
 
-																// on limite à 6 photos
+																// on limite ï¿½ 6 photos
 																if($i < 6) {
 																	$photo_i = preg_replace('#^.*([0-9]{1}).*$#', '$1', $photo);
 
 																	?>
-																		<td class="miniature"><img src="<? echo SITE_URL.'/'.$photo; ?>" alt="<? echo $profil->username; ?><? echo $photo_i; ?>" class="mini_photo <? echo $i; ?>" id="profilPhoto<? echo $photo_i; ?>" onClick="javascript:setProfilPhoto('<? echo $profil->id; ?>', '<? echo $photo_i; ?>');" /></td>
-																	<?
-																	$i++;
+																		<td class="miniature"><img src="<?php echo SITE_URL.'/'.$photo; ?>" alt="<?php echo $profil->username; ?><?php echo $photo_i; ?>" class="mini_photo <?php echo $i; ?>" id="profilPhoto<?php echo $photo_i; ?>" onClick="javascript:setProfilPhoto('<?php echo $profil->id; ?>', '<?php echo $photo_i; ?>');" /></td>
+																	<?php 																	$i++;
 																}
 
 															}
@@ -2006,16 +1922,14 @@
 													</table>
 												</td>
 											</tr>
-									<?
-										}
+									<?php 										}
 									?>	
 					        </table>
 							</div>
 							</div>
 							</div>
 					 
-					     	   <?
-								break;
+					     	   <?php 								break;
 								// ENFANTS
 								case 'view4':
 								?>
@@ -2023,13 +1937,12 @@
                                     <div id="result" class="content col-md-12">
 									<div class="row">
 									<div class="page-title">
-									<h2 class="result"><? echo $labelEnfant; ?></h2>
+									<h2 class="result"><?php echo $labelEnfant; ?></h2>
 									</div>
 									<div class="col-md-12 pinfo">
 									<table class="result" cellpadding="0" cellspacing="0" width="100%">
-									<?
-										// montrer photos des enfants
-										if(count($profilEnfants)) {
+									<?php 										// montrer photos des enfants
+										if (is_array($profilEnfants)) {
 										
 											// pour chaque enfant
 											$i		= 1;
@@ -2064,7 +1977,7 @@
 
 												}
 												
-												// récup la photo
+												// rï¿½cup la photo
 												$file 				= $dir.'/parent-solo-enfant-'.$enfant->num.'.jpg';
 												$file				= is_file($file) && $profil->photo_montrer == 2 ? $file : 'parentsolo/images/parent-solo-enfant-'.$enfant->genre.'-'.$_GET['lang'].'.jpg';
 
@@ -2078,23 +1991,21 @@
 														<div class="col-md-4 parentsolo_txt_center">
 														
 														<div class="hovereffect ">
-															<img src="<? echo SITE_URL.'/'.$file; ?>" alt="<? echo $enfant->genre; ?> - <? echo $profil->username; ?>" />														
+															<img src="<?php echo SITE_URL.'/'.$file; ?>" alt="<?php echo $enfant->genre; ?> - <?php echo $profil->username; ?>" />														
 														
 														<div class="overlay"><h2><?php echo $enfant_num;?></h2></div>
 														</div>
 														<div class="clear"></div>
 														<h3 class=""></h3>
 														<div class="col-md-12 nopadding">
-														<div class="col-md-4" style="text-align:left"><? echo $enfant->genre; ?></div>
-														<div class="col-md-8" style="text-align:right"><? echo JL::calcul_age($enfant->naissance_date); ?></div>
+														<div class="col-md-4" style="text-align:left"><?php echo $enfant->genre; ?></div>
+														<div class="col-md-8" style="text-align:right"><?php echo JL::calcul_age($enfant->naissance_date); ?></div>
 														</div>
 														<div class="col-md-12">
-														<?
-														if($enfant->signe_astrologique) { 
+														<?php 														if($enfant->signe_astrologique) { 
 														?>
-														<p><? echo $enfant->signe_astrologique; ?></p>
-														<?
-														} 
+														<p><?php echo $enfant->signe_astrologique; ?></p>
+														<?php 														} 
 														?>
 														
 														</div>
@@ -2109,21 +2020,19 @@
 																<td class="detail_enfant">
 																	<table class="detail_enfant" cellpadding="0" cellspacing="0" width="100%">
 																		<tr>
-																			<td><? echo $enfant->genre; ?></td>
+																			<td><?php echo $enfant->genre; ?></td>
 																		</tr>
 																			<tr>
 																				<td>
-																					<? echo JL::calcul_age($enfant->naissance_date); ?>
+																					<?php echo JL::calcul_age($enfant->naissance_date); ?>
 																				</td>
 																			</tr>
-																	<?
-																		if($enfant->signe_astrologique) { 
+																	<?php 																		if($enfant->signe_astrologique) { 
 																	?>
 																			<tr>
-																				<td><? echo $enfant->signe_astrologique; ?></td>
+																				<td><?php echo $enfant->signe_astrologique; ?></td>
 																			</tr>
-																	<?
-																		} 
+																	<?php 																		} 
 																	?>
 																	</table>
 																</td>
@@ -2131,8 +2040,7 @@
 														</table>-->
 													</td>
 												</tr>
-											<?
-												if($i!=$iMax){
+											<?php 												if($i!=$iMax){
 													echo "<tr><td>&nbsp;</td></tr>";
 												}
 										
@@ -2143,9 +2051,9 @@
 								?>			
 											
 										<tr>
-											<td align="middle"><? echo $lang_appprofil["DetailsEnfantNonIndique"].' .' ;?></td>
+											<td align="middle"><?php echo $lang_appprofil["DetailsEnfantNonIndique"].' .' ;?></td>
 										</tr>
-								<?			
+								<?php
 										}
 								?>
 											
@@ -2153,8 +2061,7 @@
 						</div>
 						</div>
 						</div>
-					<?
-								break;
+					<?php 								break;
 								// GROUPES
 								case 'view5':
 								?>
@@ -2162,13 +2069,12 @@
                                     <div id="group" class="content col-md-12">
 									<div class="row">
 									<div class="page-title">										
-									<h2 class="result"><? echo $labelGroupes; ?></h2>
+									<h2 class="result"><?php echo $labelGroupes; ?></h2>
 									</div>
 									<div class="col-md-12 pinfo">
 									<table class="result" cellpadding="0" cellspacing="0" width="100%">
-									<?
-										// s'il y a des groupes
-										if(count($profilGroupes) > 0) {
+									<?php 										// s'il y a des groupes
+										if (is_array($profilGroupes) > 0) {
 											
 												$i = 1;
 
@@ -2183,7 +2089,7 @@
 													// htmlentities
 													JL::makeSafe($groupe,'texte');
 
-													// si une photo a été envoyée
+													// si une photo a ï¿½tï¿½ envoyï¿½e
 													$filePath = 'images/groupe/'.$groupe->id.'.jpg';
 													if(is_file(SITE_PATH.'/'.$filePath)) {
 														$image	= $filePath;
@@ -2194,18 +2100,17 @@
 												?>
 													<tr>
 														<td>
-															<h3 class="profilegroup"><a href="<? echo JL::url('index.php?app=groupe&action=details&id='.$groupe->id.'&'.$langue); ?>" title="<? echo $groupe->titre; ?>" target="_blank"><? echo $groupe->titre; ?></a></h3>
+															<h3 class="profilegroup"><a href="<?php echo JL::url('index.php?app=groupe&action=details&id='.$groupe->id.'&'.$langue); ?>" title="<?php echo $groupe->titre; ?>" target="_blank"><?php echo $groupe->titre; ?></a></h3>
 															<table class="detail_table" cellpadding="0" cellspacing="0" width="100%">
 																<tr>
-																	<td class="groupe"><a href="<? echo JL::url('index.php?app=groupe&action=details&id='.$groupe->id.'&'.$langue); ?>" title="<? echo $groupe->titre; ?>" target="_blank">
-																	<img class="groupeffect parentsolo_border_radius" src="<? echo SITE_URL.'/'.$image; ?>" alt="<? echo $groupe->titre; ?>" /></a></td>
-																	<td class="annonce"><? echo $groupe->texte; ?></td>
+																	<td class="groupe"><a href="<?php echo JL::url('index.php?app=groupe&action=details&id='.$groupe->id.'&'.$langue); ?>" title="<?php echo $groupe->titre; ?>" target="_blank">
+																	<img class="groupeffect parentsolo_border_radius" src="<?php echo SITE_URL.'/'.$image; ?>" alt="<?php echo $groupe->titre; ?>" /></a></td>
+																	<td class="annonce"><?php echo $groupe->texte; ?></td>
 																</tr>
 															</table>
 														</td>
 													</tr>
-												<?
-												if($i!=count($profilGroupes)){
+												<?php 												if($i!=count($profilGroupes)){
 													echo "<tr><td>&nbsp;</td></tr>";
 												}
 										
@@ -2215,17 +2120,15 @@
 										} else {
 										?>
 											<tr>
-												<td align="middle"><? echo $lang_appprofil["NARejointAucunGroupe"];?>!</td>
+												<td align="middle"><?php echo $lang_appprofil["NARejointAucunGroupe"];?>!</td>
 											</tr>
-									<?
-										}
+									<?php 										}
 									?>
 									</table>
 							</div>
 							</div>
 							</div>
-					<?
-								break;
+					<?php 								break;
 
 
 
@@ -2244,45 +2147,45 @@
 				<div class="content">
 					<!--<div class="contentl">
 						<div class="profil">
-							<img src="<? echo $photoDefaut; ?>" alt="<? echo $profil->username; ?>" />
+							<img src="<?php echo $photoDefaut; ?>" alt="<?php echo $profil->username; ?>" />
 					
-							<h3><span class="<? echo $profil->genre == 'h' ? "homme" : "femme"; ?>"><? echo $profil->username; ?></span></h2>
+							<h3><span class="<?php echo $profil->genre == 'h' ? "homme" : "femme"; ?>"><?php echo $profil->username; ?></span></h2>
 							<?php echo $lang_appprofil["DerniereConnexion"];?>:<br />
-							<span class="<? echo $last_online_class; ?>"><? echo $last_online_label; ?></span><br />
-							<? echo $lang_appprofil["Inscription"]; ?>: <? echo date('d.m.Y', strtotime($profil->creation_date)); ?>
+							<span class="<?php echo $last_online_class; ?>"><?php echo $last_online_label; ?></span><br />
+							<?php echo $lang_appprofil["Inscription"]; ?>: <?php echo date('d.m.Y', strtotime($profil->creation_date)); ?>
 						</div>	
 						<br />
 						<div class="actions">
 							<table class="actions message" cellpadding="0" cellspacing="0">
 								<tr>
-									<td class="img"><a href="<? echo JL::url('index.php?app=message&action=write&user_to='.$profil->username.'&'.$langue); ?>" target="_blank" title="<?php echo $lang_appprofil["EnvoyerUnMail"];?>"><img src="<? echo SITE_URL; ?>/<? echo SITE_TEMPLATE; ?>/images/btn_message.png" alt="<?php echo $lang_search["EnvoyerUnMail"];?>" /></a></td>
-									<td><a href="<? echo JL::url('index.php?app=message&action=write&user_to='.$profil->username.'&'.$langue); ?>" target="_blank" title="<?php echo $lang_appprofil["EnvoyerUnMail"];?>"><?php echo $lang_appprofil["EnvoyerUnMail"];?></a></td>
+									<td class="img"><a href="<?php echo JL::url('index.php?app=message&action=write&user_to='.$profil->username.'&'.$langue); ?>" target="_blank" title="<?php echo $lang_appprofil["EnvoyerUnMail"];?>"><img src="<?php echo SITE_URL; ?>/<?php echo SITE_TEMPLATE; ?>/images/btn_message.png" alt="<?php echo $lang_search["EnvoyerUnMail"];?>" /></a></td>
+									<td><a href="<?php echo JL::url('index.php?app=message&action=write&user_to='.$profil->username.'&'.$langue); ?>" target="_blank" title="<?php echo $lang_appprofil["EnvoyerUnMail"];?>"><?php echo $lang_appprofil["EnvoyerUnMail"];?></a></td>
 								</tr>
 							</table>
 							<table class="actions" cellpadding="0" cellspacing="0">
 								<tr>
-									<td class="img"><a href="<? echo JL::url('index.php?app=message&action=flower&user_to='.$profil->username.'&'.$langue); ?>" target="_blank" title="<?php echo $lang_appprofil["EnvoyerUneRose"];?>"><img src="<? echo SITE_URL; ?>/<? echo SITE_TEMPLATE; ?>/images/btn_rose.png" alt="<?php echo $lang_search["EnvoyerUneRose"];?>" /></a></td>
-									<td><a href="<? echo JL::url('index.php?app=message&action=flower&user_to='.$profil->username.'&'.$langue); ?>" target="_blank" title="<?php echo $lang_appprofil["EnvoyerUneRose"];?>"><?php echo $lang_appprofil["EnvoyerUneRose"];?></a></td>
+									<td class="img"><a href="<?php echo JL::url('index.php?app=message&action=flower&user_to='.$profil->username.'&'.$langue); ?>" target="_blank" title="<?php echo $lang_appprofil["EnvoyerUneRose"];?>"><img src="<?php echo SITE_URL; ?>/<?php echo SITE_TEMPLATE; ?>/images/btn_rose.png" alt="<?php echo $lang_search["EnvoyerUneRose"];?>" /></a></td>
+									<td><a href="<?php echo JL::url('index.php?app=message&action=flower&user_to='.$profil->username.'&'.$langue); ?>" target="_blank" title="<?php echo $lang_appprofil["EnvoyerUneRose"];?>"><?php echo $lang_appprofil["EnvoyerUneRose"];?></a></td>
 								</tr>
 							</table>
 							<table class="actions" cellpadding="0" cellspacing="0">
 								<tr>
-									<td class="img"><a href="javascript:windowOpen('ParentSoloChat','<? echo JL::url('index.php?app=chat&id='.$profil->id.'&'.$langue); ?>','800px','600px');" title="<?php echo $lang_appprofil["Chat"];?>"><img src="<? echo SITE_URL; ?>/<? echo SITE_TEMPLATE; ?>/images/btn_chat.png" alt="<?php echo $lang_search["Chat"];?>" /></a></td>
-									<td><a href="javascript:windowOpen('ParentSoloChat','<? echo JL::url('index.php?app=chat&id='.$profil->id.'&'.$langue); ?>','800px','600px');" title="<?php echo $lang_appprofil["Chat"];?>"><?php echo $lang_appprofil["Chat"];?></a></td>
+									<td class="img"><a href="javascript:windowOpen('ParentSoloChat','<?php echo JL::url('index.php?app=chat&id='.$profil->id.'&'.$langue); ?>','800px','600px');" title="<?php echo $lang_appprofil["Chat"];?>"><img src="<?php echo SITE_URL; ?>/<?php echo SITE_TEMPLATE; ?>/images/btn_chat.png" alt="<?php echo $lang_search["Chat"];?>" /></a></td>
+									<td><a href="javascript:windowOpen('ParentSoloChat','<?php echo JL::url('index.php?app=chat&id='.$profil->id.'&'.$langue); ?>','800px','600px');" title="<?php echo $lang_appprofil["Chat"];?>"><?php echo $lang_appprofil["Chat"];?></a></td>
 								</tr>
 							</table>
 							<table class="actions_secondaire" cellpadding="0" cellspacing="0" width="100%">
 								<tr>
-									<td><a href="<? echo JL::url('index.php?app=flbl&action=add&list_type=1&user_id_to='.$profil->id.'&'.$langue); ?>" title="<?php echo $lang_appprofil["AjouterAuxFavoris"];?>" target="_blank"><img src="<? echo SITE_URL; ?>/<? echo SITE_TEMPLATE; ?>/images/btn_favoris.png" alt="<?php echo $lang_search["AjouterAuxFavoris"];?>" /></a></td>
-									<td><a href="<? echo JL::url('index.php?app=flbl&action=add&list_type=1&user_id_to='.$profil->id.'&'.$langue); ?>" title="<?php echo $lang_appprofil["AjouterAuxFavoris"];?>" target="_blank"><?php echo $lang_appprofil["AjouterAuxFavoris"];?></a></td>
+									<td><a href="<?php echo JL::url('index.php?app=flbl&action=add&list_type=1&user_id_to='.$profil->id.'&'.$langue); ?>" title="<?php echo $lang_appprofil["AjouterAuxFavoris"];?>" target="_blank"><img src="<?php echo SITE_URL; ?>/<?php echo SITE_TEMPLATE; ?>/images/btn_favoris.png" alt="<?php echo $lang_search["AjouterAuxFavoris"];?>" /></a></td>
+									<td><a href="<?php echo JL::url('index.php?app=flbl&action=add&list_type=1&user_id_to='.$profil->id.'&'.$langue); ?>" title="<?php echo $lang_appprofil["AjouterAuxFavoris"];?>" target="_blank"><?php echo $lang_appprofil["AjouterAuxFavoris"];?></a></td>
 								</tr>
 								<tr>
-									<td><a href="<? echo JL::url('index.php?app=flbl&action=add&list_type=0&user_id_to='.$profil->id.'&'.$langue); ?>" title="<?php echo $lang_appprofil["AjouterALaListeNoire"];?>" target="_blank"><img src="<? echo SITE_URL; ?>/<? echo SITE_TEMPLATE; ?>/images/btn_black.png" alt="<?php echo $lang_search["AjouterALaListeNoire"];?>" /></a></td>
-									<td><a href="<? echo JL::url('index.php?app=flbl&action=add&list_type=0&user_id_to='.$profil->id.'&'.$langue); ?>" title="<?php echo $lang_appprofil["AjouterALaListeNoire"];?>" target="_blank"><?php echo $lang_appprofil["AjouterALaListeNoire"];?></a></td>
+									<td><a href="<?php echo JL::url('index.php?app=flbl&action=add&list_type=0&user_id_to='.$profil->id.'&'.$langue); ?>" title="<?php echo $lang_appprofil["AjouterALaListeNoire"];?>" target="_blank"><img src="<?php echo SITE_URL; ?>/<?php echo SITE_TEMPLATE; ?>/images/btn_black.png" alt="<?php echo $lang_search["AjouterALaListeNoire"];?>" /></a></td>
+									<td><a href="<?php echo JL::url('index.php?app=flbl&action=add&list_type=0&user_id_to='.$profil->id.'&'.$langue); ?>" title="<?php echo $lang_appprofil["AjouterALaListeNoire"];?>" target="_blank"><?php echo $lang_appprofil["AjouterALaListeNoire"];?></a></td>
 								</tr>
 								<tr>
-									<td><a href="<? echo JL::url('index.php?app=signaler_abus&user_id_to='.$profil->id.'&'.$langue); ?>" title="<?php echo $lang_appprofil["SignalerUnAbus"];?>" target="_blank"><img src="<? echo SITE_URL; ?>/<? echo SITE_TEMPLATE; ?>/images/btn_abus.png" alt="<?php echo $lang_search["SignalerUnAbus"];?>" /></a></td>
-									<td><a href="<? echo JL::url('index.php?app=signaler_abus&user_id_to='.$profil->id.'&'.$langue); ?>" title="<?php echo $lang_appprofil["SignalerUnAbus"];?>" target="_blank"><?php echo $lang_appprofil["SignalerUnAbus"];?></a></td>
+									<td><a href="<?php echo JL::url('index.php?app=signaler_abus&user_id_to='.$profil->id.'&'.$langue); ?>" title="<?php echo $lang_appprofil["SignalerUnAbus"];?>" target="_blank"><img src="<?php echo SITE_URL; ?>/<?php echo SITE_TEMPLATE; ?>/images/btn_abus.png" alt="<?php echo $lang_search["SignalerUnAbus"];?>" /></a></td>
+									<td><a href="<?php echo JL::url('index.php?app=signaler_abus&user_id_to='.$profil->id.'&'.$langue); ?>" title="<?php echo $lang_appprofil["SignalerUnAbus"];?>" target="_blank"><?php echo $lang_appprofil["SignalerUnAbus"];?></a></td>
 								</tr>
 							</table>
 						</div>	
@@ -2303,27 +2206,23 @@
 					<div style="clear:both"> </div>
 				
 				
-			<?
-				} elseif($profil->id && $profil->accessok == 0) { // profil n'existe pas
+			<?php 				} elseif($profil->id && $profil->accessok == 0) { // profil n'existe pas
 				?>
 					<h2 class="barre 2"><?php echo $lang_appprofil["ProfilInaccessible"];?></h2>
 					<div class="texte_explicatif">
-						<b><? echo $profil->genre == 'h' ? $lang_appprofil["CeProfilNEstPAsAccessiblePapas"] : $lang_appprofil["CeProfilNEstPAsAccessibleMamans"]; ?></b>!
+						<b><?php echo $profil->genre == 'h' ? $lang_appprofil["CeProfilNEstPAsAccessiblePapas"] : $lang_appprofil["CeProfilNEstPAsAccessibleMamans"]; ?></b>!
 					</div>
 					
-				<?
-				} else {
+				<?php 				} else {
 				?>
 					<h2 class="barre 1"><?php echo $lang_appprofil["ProfilInaccessible"];?></h2>
 					<div class="texte_explicatif">
 						<?php echo $lang_appprofil["CeProfilNEstPasAccessible"];?>!
 					</div>
-				<?
-				}
+				<?php 				}
 			?>
 			</div>
-			<?
-		}
+			<?php 		}
 		
 		
 		// page 'mon compte'
@@ -2331,13 +2230,13 @@
 			global $langue,$user;
 			include("lang/app_profil.".$_GET['lang'].".php");
 
-			// limitation appel à témoins
+			// limitation appel ï¿½ tï¿½moins
 			$annonceLimite	= 125;
 			if(strlen($appel_a_temoins->annonce) > $annonceLimite) {
 				$appel_a_temoins->annonce = substr($appel_a_temoins->annonce, 0, $annonceLimite).'...';
 			}
 
-			// limitation témoignage
+			// limitation tï¿½moignage
 			$annonceLimite	= 125;
 			if(strlen($temoignage->texte) > $annonceLimite) {
 				$temoignage->texte = substr($temoignage->texte, 0, $annonceLimite).'...';
@@ -2371,25 +2270,21 @@
 											<i class="gi gi-message_new text-light-op"></i>                                          
                                         </div>
 										 <h2 class="widget-heading h3 text-light">
-											<?
-											if($userStats->message_new <= 0){
+											<?php 											if($userStats->message_new <= 0){
 											echo $userStats->message_new;
 											?>
 											</h2>
 										   <span class="text-light-op">
-											<?
-											echo $lang_appprofil["NouveauMessage"];  
+											<?php 											echo $lang_appprofil["NouveauMessage"];  
 											?>
 										   </span>
-											<?
-											}
+											<?php 											}
 											else{
 											?>										
 										
-                                         <h2 class="widget-heading h3 text-light"><strong><? echo $userStats->message_new; ?></strong></h2>
-                                        <span class="text-light-op"><? echo $userStats->message_new > 1 ? ''.$lang_appprofil["NouveauxMessages"].'' : ''.$lang_appprofil["NouveauMessage"].''; ?></span>
-										<?
-										}
+                                         <h2 class="widget-heading h3 text-light"><strong><?php echo $userStats->message_new; ?></strong></h2>
+                                        <span class="text-light-op"><?php echo $userStats->message_new > 1 ? ''.$lang_appprofil["NouveauxMessages"].'' : ''.$lang_appprofil["NouveauMessage"].''; ?></span>
+										<?php 										}
 									?>
                                     </div>
                               
@@ -2402,25 +2297,21 @@
                                             <i class="gi gi-flower text-light-op"></i>
                                         </div>
 										 <h2 class="widget-heading h3 text-light">
-										<?
-										if($userStats->fleur_new <= 0){
+										<?php 										if($userStats->fleur_new <= 0){
 											echo $userStats->fleur_new; 
 										?>
 										</h2>
 										 <span class="text-light-op">
-										<?
-										echo $lang_appprofil["NouvelleRose"]; 
+										<?php 										echo $lang_appprofil["NouvelleRose"]; 
 										?>
 										 </span>
-										<?
-										}
+										<?php 										}
 										else
 										{
 									   ?>
-											<h2 class="widget-heading h3 text-light"><strong><? echo $userStats->fleur_new; ?></strong></h2>
-											<a href="<? echo JL::url('index.php?app=message&action=flowers'.'&'.$langue); ?>" title="<?php echo $lang_appprofil["BoiteReceptionRoses"];?>"> <span class="text-light-op"><? echo $userStats->fleur_new > 1 ? ''.$lang_appprofil["NouvellesRoses"].'' : ''.$lang_appprofil["NouvelleRose"].''; ?></span></a>
-									   <?
-										}
+											<h2 class="widget-heading h3 text-light"><strong><?php echo $userStats->fleur_new; ?></strong></h2>
+											<a href="<?php echo JL::url('index.php?app=message&action=flowers'.'&'.$langue); ?>" title="<?php echo $lang_appprofil["BoiteReceptionRoses"];?>"> <span class="text-light-op"><?php echo $userStats->fleur_new > 1 ? ''.$lang_appprofil["NouvellesRoses"].'' : ''.$lang_appprofil["NouvelleRose"].''; ?></span></a>
+									   <?php 										}
 									?>
                                       
                                     </div>
@@ -2433,8 +2324,7 @@
                                             <i class="gi gi-user text-light-op"></i>
                                         </div>
 										 <h2 class="widget-heading h3 text-light">
-										<?
-										if($userStats->visite_total <= 0){
+										<?php 										if($userStats->visite_total <= 0){
 											echo $userStats->visite_total;
 											?>
 										</h2>
@@ -2443,17 +2333,15 @@
 										echo $lang_appprofil["Visite"];
 										?>
 										 </span>
-										<?
-										}
+										<?php 										}
 										else
 										{
 									   ?>
-											<h2 class="widget-heading h3 text-light"><? echo $userStats->visite_total; ?></h2>
-											<a href="<? echo JL::url('index.php?app=search&action=visits'.'&'.$langue); ?>" title="<? echo $lang_appprofil["VisiteursProfil"]; ?>">
-											 <span class="text-light-op"><? echo $userStats->visite_total > 1 ? ''.$lang_appprofil["Visites"].'' : ''.$lang_appprofil["Visite"].''; ?>
+											<h2 class="widget-heading h3 text-light"><?php echo $userStats->visite_total; ?></h2>
+											<a href="<?php echo JL::url('index.php?app=search&action=visits'.'&'.$langue); ?>" title="<?php echo $lang_appprofil["VisiteursProfil"]; ?>">
+											 <span class="text-light-op"><?php echo $userStats->visite_total > 1 ? ''.$lang_appprofil["Visites"].'' : ''.$lang_appprofil["Visite"].''; ?>
 											</span></a>
-									<?
-										}
+									<?php 										}
 									?>
                                     </div>
                              
@@ -2464,8 +2352,7 @@
                                             <i class="gi gi-coins text-light-op"></i>
                                         </div>
 										<h2 class="widget-heading h3 text-light">
-										<?
-											if($userStats->points_total <= 0){
+										<?php 											if($userStats->points_total <= 0){
 											echo $userStats->points_total; 
 											?>
 										</h2>
@@ -2474,17 +2361,15 @@
 										echo SoloFleur;
 										?>
 										 </span>
-										<?
-										}
+										<?php 										}
 										else
 										{
 									   ?>
-											<h2 class="widget-heading h3 text-light"><? echo $userStats->points_total; ?></h2>
-											<a href="<? echo JL::url('index.php?app=points&action=mespoints'.'&'.$langue); ?>" title="<?php echo $lang_appprofil["DetailPoints"];?>">
-											 <span class="text-light-op">SoloFleur<? echo $userStats->points_total > 0 ? 's' : ''; ?>
+											<h2 class="widget-heading h3 text-light"><?php echo $userStats->points_total; ?></h2>
+											<a href="<?php echo JL::url('index.php?app=points&action=mespoints'.'&'.$langue); ?>" title="<?php echo $lang_appprofil["DetailPoints"];?>">
+											 <span class="text-light-op">SoloFleur<?php echo $userStats->points_total > 0 ? 's' : ''; ?>
 											</span></a>
-									<?
-										}
+									<?php 										}
 									?>
                                     </div>
                              
@@ -2506,23 +2391,23 @@
 						</div>
 						<div class="row">
 					<div class="col-md-12  parentsolo_form_style">
-						<form name="search" action="<? echo JL::url(SITE_URL.'/index.php?'.$langue); ?>" method="post">
+						<form name="search" action="<?php echo JL::url(SITE_URL.'/index.php?'.$langue); ?>" method="post">
 						<div class="col-md-12 nopadding">
 						<div class="col-md-4 nopadding parentsolo_mt_20">
-							<h4 class=" parentsolo_pb_15 parentsolo_pt_15 parentsolo_sub_title_blk"><? echo $list['search_genre']; ?></h4>
+							<h4 class=" parentsolo_pb_15 parentsolo_pt_15 parentsolo_sub_title_blk"><?php echo $list['search_genre']; ?></h4>
 						</div>
 						<div class="col-md-8">
 							<div class="col-md-5 parentsolo_pl_0"><?php echo $lang_appprofil["Entre"];?>
-										<? echo $list['search_recherche_age_min']; ?></div>
+										<?php echo $list['search_recherche_age_min']; ?></div>
 										<div class="col-md-5 parentsolo_pl_0"><?php echo $lang_appprofil["et"];?>
-										<? echo $list['search_recherche_age_max']; ?></div>
+										<?php echo $list['search_recherche_age_max']; ?></div>
 										<div class="col-md-2 parentsolo_mt_40 parentsolo_pl_0"><?php echo $lang_appprofil["ans"];?></div>
 						</div>
 					</div>
 						<div class="col-md-12 nopadding">
 						
-						<div class="col-md-8  col-md-offset-4 parentsolo_mt_20"><? echo $list['search_canton_id']; ?>
-							<span id="villes"><? echo $list['search_ville_id']; ?></span>
+						<div class="col-md-8  col-md-offset-4 parentsolo_mt_20"><?php echo $list['search_canton_id']; ?>
+							<span id="villes"><?php echo $list['search_ville_id']; ?></span>
 						</div>
 					</div>
 						<div class="col-md-12 nopadding">
@@ -2530,7 +2415,7 @@
 							<h4 class=" parentsolo_pb_15 parentsolo_pt_15 parentsolo_sub_title_blk"><?php echo $lang_appprofil["Enfants"];?> </h4>
 						</div>
 						<div class="col-md-8 parentsolo_mt_20">
-							<? echo $list['search_nb_enfants']; ?>
+							<?php echo $list['search_nb_enfants']; ?>
 						</div>
 					</div>
 						<div class="col-md-12 nopadding">
@@ -2546,8 +2431,8 @@
 									<input type="hidden" name="search_display" value="0" />
 							<input type="hidden" name="app" value="search" />
 							<input type="hidden" name="action" value="searchsubmit" />
-							<input type="hidden" name="search_lang" id="search_lang" value="<? echo $_GET['lang']; ?>" />
-							<input type="hidden" name="site_url" id="site_url" value="<? echo SITE_URL; ?>" />
+							<input type="hidden" name="search_lang" id="search_lang" value="<?php echo $_GET['lang']; ?>" />
+							<input type="hidden" name="site_url" id="site_url" value="<?php echo SITE_URL; ?>" />
 									
 						</div>
 						
@@ -2555,26 +2440,26 @@
 						</form>
 					</div>
 				</div>
-						<!--<form name="search" action="<? //echo JL::url(SITE_URL.'/index.php?'.$langue); ?>" method="post">
+						<!--<form name="search" action="<?php //echo JL::url(SITE_URL.'/index.php?'.$langue); ?>" method="post">
 							<table cellpadding="0" cellspacing="0" width="100%">
 								<tr>
 									<td class="key_rr">
-										<span id="step1gender"><? //echo $list['search_genre']; ?></span>
+										<span id="step1gender"><?php //echo $list['search_genre']; ?></span>
 									</td>
 									<td class="key_rr" colspan="2">
 										<?php //echo $lang_appprofil["Entre"];?>
-										<? //echo $list['search_recherche_age_min']; ?>
+										<?php //echo $list['search_recherche_age_min']; ?>
 										<?php //echo $lang_appprofil["et"];?>
-										<? //echo $list['search_recherche_age_max']; ?>
+										<?php //echo $list['search_recherche_age_max']; ?>
 										<?php// echo $lang_appprofil["ans"];?>
 									</td>
 								</tr>
 								<tr>
 									<td class="key_rr">
-										<? //echo $list['search_canton_id']; ?>
+										<?php //echo $list['search_canton_id']; ?>
 									</td>
 									<td class="key_rr" colspan="2">
-										<span id="villes"><? //echo $list['search_ville_id']; ?></span>
+										<span id="villes"><?php //echo $list['search_ville_id']; ?></span>
 									</td>
 								</tr>
 								<tr>
@@ -2582,7 +2467,7 @@
 										<input type="checkbox" name="search_online" id="search_online" style='width:20px;'/> <label><?php //echo $lang_appprofil["EnLigne"];?></label>
 									</td>
 									<td class="key_rr">
-										<?php// echo $lang_appprofil["Enfants"];?> <? //echo $list['search_nb_enfants']; ?>
+										<?php// echo $lang_appprofil["Enfants"];?> <?php //echo $list['search_nb_enfants']; ?>
 									</td>
 									
 									<td align="right">
@@ -2593,8 +2478,8 @@
 							<input type="hidden" name="search_display" value="0" />
 							<input type="hidden" name="app" value="search" />
 							<input type="hidden" name="action" value="searchsubmit" />
-							<input type="hidden" name="search_lang" id="search_lang" value="<? echo $_GET['lang']; ?>" />
-							<input type="hidden" name="site_url" id="site_url" value="<? echo SITE_URL; ?>" />
+							<input type="hidden" name="search_lang" id="search_lang" value="<?php echo $_GET['lang']; ?>" />
+							<input type="hidden" name="site_url" id="site_url" value="<?php echo SITE_URL; ?>" />
 						</form>-->
 						<script language="javascript" type="text/javascript">
 							function loadVilles(prefix) {
@@ -2625,7 +2510,7 @@
 					</div>
 					<div class="col-md-6">
 						<div class="block-title ">
-						<h3 class="loginprofile_title_h3 parentsolo_mt_20  parentsolo_pb_15 "><? echo $genreRecherche == 'h' ? $lang_appprofil["PAPASENLIGNE"] : $lang_appprofil["MAMANSENLIGNE"]; ?></h3>
+						<h3 class="loginprofile_title_h3 parentsolo_mt_20  parentsolo_pb_15 "><?php echo $genreRecherche == 'h' ? $lang_appprofil["PAPASENLIGNE"] : $lang_appprofil["MAMANSENLIGNE"]; ?></h3>
 						</div>
 						
 						
@@ -2634,15 +2519,14 @@
 										
 						<div class="parentsolo_txt_center parentsolo_mt_20 text-center" ><!--BEGIN: CAROUSEL -->
 							<div id="owl_online_family" class="owl-carousel owl-theme">
-							<?
-								if(count($profilsOnline)) {
+							<?php 								if (is_array($profilsOnline)) {
 									$i=1;
 									?>
 										
-									<?								
+									<?php					
 									foreach($profilsOnline as $profil) {
 										
-										// à placer toujours après les 2 limitations
+										// ï¿½ placer toujours aprï¿½s les 2 limitations
 										JL::makeSafe($profil);
 										
 										if($profil->last_online_time < ONLINE_TIME_LIMIT+AFK_TIME_LIMIT && $profil->online) { // 30 minutes (60*30)
@@ -2657,7 +2541,7 @@
 
 										}
 										
-										// récup la photo de l'utilisateur
+										// rï¿½cup la photo de l'utilisateur
 										$photo = JL::userGetPhoto($profil->id, 'profil', '', $profil->photo_defaut);
 
 										if(!$photo) {
@@ -2667,10 +2551,10 @@
 										<div class="item">
 											   <div class="friend-img">
 												   <div class="imgoverlay wd_gal_img">
-													   <a href="javascript:windowOpen('<? echo str_replace('-', '', $profil->username); ?>','<? echo JL::url('index.php?app=profil&action=view&id='.$profil->id.'&lang='.$_GET['lang']); ?>','615px','511px','yes');" title="<? echo $lang_appprofil["VoirCeProfil"]; ?>"><img src="<? echo $photo; ?>" alt="<? echo $profil->username; ?>" class="profil"/>
-													    <span class="wd_gal_overlay span_stl_over"><? echo JL::calcul_age($profil->naissance_date); ?><br />
-													<? echo $profil->nb_enfants; ?> <? echo $profil->nb_enfants > 1 ? $lang_appprofil["enfants"] : $lang_appprofil["enfant"]; ?><br />
-													<? echo $profil->canton; ?>
+													   <a href="javascript:windowOpen('<?php echo str_replace('-', '', $profil->username); ?>','<?php echo JL::url('index.php?app=profil&action=view&id='.$profil->id.'&lang='.$_GET['lang']); ?>','615px','511px','yes');" title="<?php echo $lang_appprofil["VoirCeProfil"]; ?>"><img src="<?php echo $photo; ?>" alt="<?php echo $profil->username; ?>" class="profil"/>
+													    <span class="wd_gal_overlay span_stl_over"><?php echo JL::calcul_age($profil->naissance_date); ?><br />
+													<?php echo $profil->nb_enfants; ?> <?php echo $profil->nb_enfants > 1 ? $lang_appprofil["enfants"] : $lang_appprofil["enfant"]; ?><br />
+													<?php echo $profil->canton; ?>
 													</span>
 													   </a>
 											  
@@ -2678,15 +2562,14 @@
 												    
 											   </div>
 												   <h3>
-													<a href="javascript:windowOpen('<? echo str_replace('-', '', $profil->username); ?>','<? echo JL::url('index.php?app=profil&action=view&id='.$profil->id.'&lang='.$_GET['lang']); ?>','615px','511px','yes');" title="<? echo $lang_appprofil["VoirCeProfil"];?>" class="username"><? echo $profil->username; ?></a>	
+													<a href="javascript:windowOpen('<?php echo str_replace('-', '', $profil->username); ?>','<?php echo JL::url('index.php?app=profil&action=view&id='.$profil->id.'&lang='.$_GET['lang']); ?>','615px','511px','yes');" title="<?php echo $lang_appprofil["VoirCeProfil"];?>" class="username"><?php echo $profil->username; ?></a>	
 												   </h3>
-												   <p  class="<? echo $last_online_class; ?>"><? echo $last_online_label; ?></p>
+												   <p  class="<?php echo $last_online_class; ?>"><?php echo $last_online_label; ?></p>
 												  
 										   </div>
 												
 											
-										<?
-											if($i%2==0){
+										<?php 											if($i%2==0){
 												echo "";
 											}
 											$i++;
@@ -2704,19 +2587,19 @@
 							?>
 									<tr>
 										<td colspan="2" align="middle">
-							<?				
+							<?php	
 											echo $genreRecherche == 'h' ? $lang_appprofil["AucunPapaEnLigne"] : $lang_appprofil["AucuneMamanEnLigne"];
 							?>
 										</td>
 							<?		
 								}
 							?>
-						<? if(count($profilsOnline)==8){ ?>
+						<?php if (is_array($profilsOnline)==8){ ?>
 								<tr>
 										<td colspan="2" align="right">
-											<div class="lien_plus"><a href="<? echo JL::url('index.php?app=search&action=search_online'.'&'.$langue); ?>" title="<? echo $genreRecherche == 'h' ? $lang_appprofil["VoirPlusDePapaEnLigne"] : $lang_appprofil["VoirPlusDeMamanEnLigne"]; ?>"><? echo $genreRecherche == 'h' ? $lang_appprofil["VoirPlusDePapaEnLigne"] : $lang_appprofil["VoirPlusDeMamanEnLigne"]; ?></a></div> <a href="<? echo JL::url('index.php?app=search&action=search_online'.'&'.$langue); ?>" title="<? echo $genreRecherche == 'h' ? $lang_appprofil["VoirPlusDePapaEnLigne"] : $lang_appprofil["VoirPlusDeMamanEnLigne"]; ?>"><img src="<? echo SITE_URL; ?>/<? echo SITE_TEMPLATE; ?>/images/preview-plus.png"  class="plus"/></a>
+											<div class="lien_plus"><a href="<?php echo JL::url('index.php?app=search&action=search_online'.'&'.$langue); ?>" title="<?php echo $genreRecherche == 'h' ? $lang_appprofil["VoirPlusDePapaEnLigne"] : $lang_appprofil["VoirPlusDeMamanEnLigne"]; ?>"><?php echo $genreRecherche == 'h' ? $lang_appprofil["VoirPlusDePapaEnLigne"] : $lang_appprofil["VoirPlusDeMamanEnLigne"]; ?></a></div> <a href="<?php echo JL::url('index.php?app=search&action=search_online'.'&'.$langue); ?>" title="<?php echo $genreRecherche == 'h' ? $lang_appprofil["VoirPlusDePapaEnLigne"] : $lang_appprofil["VoirPlusDeMamanEnLigne"]; ?>"><img src="<?php echo SITE_URL; ?>/<?php echo SITE_TEMPLATE; ?>/images/preview-plus.png"  class="plus"/></a>
 										</td>
-						<? } ?>
+						<?php } ?>
 							</tr>
 									</div></div>
 					</div>
@@ -2726,13 +2609,12 @@
 				<div class="blocs">
 					<div class="bloc bloc_right bloc_4profil ">
 							<div class="block-title">
-						<h3 class="loginprofile_title_h3 parentsolo_mt_20 parentsolo_pb_15"><? echo $genreRecherche == 'h' ? $lang_appprofil["LESDERNIERSPAPASINSCRITS"] : $lang_appprofil["LESDERNIERESMAMANSINSCRITES"]; ?></h3>
+						<h3 class="loginprofile_title_h3 parentsolo_mt_20 parentsolo_pb_15"><?php echo $genreRecherche == 'h' ? $lang_appprofil["LESDERNIERSPAPASINSCRITS"] : $lang_appprofil["LESDERNIERESMAMANSINSCRITES"]; ?></h3>
 							</div>
 							<div class="parentsolo_txt_center parentsolo_mt_20" ><!--BEGIN: CAROUSEL -->
 							<div class="bridegroom-friend fade_in_hide element_fade_in">
 									<div id="owl-demo" class="owl-carousel col-sm-10 col-xs-12 col-md-10">
-		                <?
-								if(count($profilsInscrits)) {
+		                <?php 								if (is_array($profilsInscrits)) {
 									$i=1;
 									?>
 									<tr>
@@ -2740,7 +2622,7 @@
 									foreach($profilsInscrits as $profil) {
 										
 										
-										// à placer toujours après les 2 limitations
+										// ï¿½ placer toujours aprï¿½s les 2 limitations
 										JL::makeSafe($profil);
 										
 										if($profil->last_online_time < ONLINE_TIME_LIMIT+AFK_TIME_LIMIT && $profil->online) { // 30 minutes (60*30)
@@ -2751,7 +2633,7 @@
 											$last_online_label	= $lang_appprofil["HorsLigne"];
 										}
 										
-										// récup la photo de l'utilisateur
+										// rï¿½cup la photo de l'utilisateur
 										$photo = JL::userGetPhoto($profil->id, 'profil', '', $profil->photo_defaut);
 
 										if(!$photo) {
@@ -2761,37 +2643,36 @@
 											<div class="item">
 											   <div class="friend-img">
 												   <div class="imgoverlay"></div>
-													   <a href="javascript:windowOpen('<? echo str_replace('-', '', $profil->username); ?>','<? echo JL::url('index.php?app=profil&action=view&id='.$profil->id.'&lang='.$_GET['lang']); ?>','615px','511px','yes');" title="<? echo $lang_appprofil["VoirCeProfil"]; ?>">
-													   <img src="<? echo $photo; ?>" alt="<? echo $profil->username; ?>">
+													   <a href="javascript:windowOpen('<?php echo str_replace('-', '', $profil->username); ?>','<?php echo JL::url('index.php?app=profil&action=view&id='.$profil->id.'&lang='.$_GET['lang']); ?>','615px','511px','yes');" title="<?php echo $lang_appprofil["VoirCeProfil"]; ?>">
+													   <img src="<?php echo $photo; ?>" alt="<?php echo $profil->username; ?>">
 													   </a>
 											   </div>
 												   <h3>
-													<a href="javascript:windowOpen('<? echo str_replace('-', '', $profil->username); ?>','<? echo JL::url('index.php?app=profil&action=view&id='.$profil->id.'&lang='.$_GET['lang']); ?>','615px','511px','yes');" title="<? echo $lang_appprofil["VoirCeProfil"];?>" class="username">
-													<? echo $profil->username; ?>
+													<a href="javascript:windowOpen('<?php echo str_replace('-', '', $profil->username); ?>','<?php echo JL::url('index.php?app=profil&action=view&id='.$profil->id.'&lang='.$_GET['lang']); ?>','615px','511px','yes');" title="<?php echo $lang_appprofil["VoirCeProfil"];?>" class="username">
+													<?php echo $profil->username; ?>
 													</a>
-												   </h3><p class="<? echo $last_online_class; ?>"><? echo $last_online_label; ?></p>
-												   <span><? echo JL::calcul_age($profil->naissance_date); ?><br />
-													<? echo $profil->nb_enfants; ?> <? echo $profil->nb_enfants > 1 ? $lang_appprofil["enfants"] : $lang_appprofil["enfant"]; ?><br />
-													<? echo $profil->canton; ?>
+												   </h3><p class="<?php echo $last_online_class; ?>"><?php echo $last_online_label; ?></p>
+												   <span><?php echo JL::calcul_age($profil->naissance_date); ?><br />
+													<?php echo $profil->nb_enfants; ?> <?php echo $profil->nb_enfants > 1 ? $lang_appprofil["enfants"] : $lang_appprofil["enfant"]; ?><br />
+													<?php echo $profil->canton; ?>
 													</span>
 										   </div>
 											<!--<td class="preview">
-												<a href="javascript:windowOpen('<? // echo str_replace('-', '', $profil->username); ?>','<?// echo JL::url('index.php?app=profil&action=view&id='.$profil->id.'&lang='.$_GET['lang']); ?>','615px','511px','yes');" title="<? echo $lang_appprofil["VoirCeProfil"]; ?>"><img src="<? echo $photo; ?>" alt="<? echo $profil->username; ?>" class="profil"/></a>
+												<a href="javascript:windowOpen('<?php // echo str_replace('-', '', $profil->username); ?>','<?php // echo JL::url('index.php?app=profil&action=view&id='.$profil->id.'&lang='.$_GET['lang']); ?>','615px','511px','yes');" title="<?php echo $lang_appprofil["VoirCeProfil"]; ?>"><img src="<?php echo $photo; ?>" alt="<?php echo $profil->username; ?>" class="profil"/></a>
 												<div class="infos">
-													<?// echo JL::calcul_age($profil->naissance_date); ?><br />
-													<? //echo $profil->nb_enfants; ?> <?// echo $profil->nb_enfants > 1 ? $lang_appprofil["enfants"] : $lang_appprofil["enfant"]; ?><br />
-													<? //echo $profil->canton; ?><br />
+													<?php // echo JL::calcul_age($profil->naissance_date); ?><br />
+													<?php //echo $profil->nb_enfants; ?> <?php // echo $profil->nb_enfants > 1 ? $lang_appprofil["enfants"] : $lang_appprofil["enfant"]; ?><br />
+													<?php //echo $profil->canton; ?><br />
 													<br />
-													<span class="<?// echo $last_online_class; ?>"><?// echo $last_online_label; ?></span>
+													<span class="<?php // echo $last_online_class; ?>"><?php // echo $last_online_label; ?></span>
 												</div>
 												<div style="clear:both"> </div>
 												<div class="username">
-													<a href="javascript:windowOpen('<?// echo str_replace('-', '', $profil->username); ?>','<? echo JL::url('index.php?app=profil&action=view&id='.$profil->id.'&lang='.$_GET['lang']); ?>','615px','511px','yes');" title="<? echo $lang_appprofil["VoirCeProfil"];?>" class="username"><? echo $profil->username; ?></a>	
+													<a href="javascript:windowOpen('<?php // echo str_replace('-', '', $profil->username); ?>','<?php echo JL::url('index.php?app=profil&action=view&id='.$profil->id.'&lang='.$_GET['lang']); ?>','615px','511px','yes');" title="<?php echo $lang_appprofil["VoirCeProfil"];?>" class="username"><?php echo $profil->username; ?></a>	
 												</div>
 											</td>	-->
 											
-										<?
-											if($i%2==0){
+										<?php 											if($i%2==0){
 												echo "</tr><tr>";
 											}
 											$i++;
@@ -2811,11 +2692,10 @@
 							?>
 									<tr>
 										<td colspan="2" align="middle">
-							<?
-											echo $genreRecherche == 'h' ? $lang_appprofil["AucunPapaInscrit"] : $lang_appprofil["AucuneMamanInscrite"];
+							<?php 											echo $genreRecherche == 'h' ? $lang_appprofil["AucunPapaInscrit"] : $lang_appprofil["AucuneMamanInscrite"];
 							?>
 										</td>
-							<?			
+							<?php
 								}
 							?>
 						
@@ -2823,30 +2703,29 @@
     		</div>
 		
 
-    </div><? if(count($profilsInscrits)==8){ ?>
+    </div><?php if (is_array($profilsInscrits)==8){ ?>
 
 									
 										<div  class="parentsolo_mb_20 " align="right">
 											<div class="lien_plus">
-												<a  href="<? echo JL::url('index.php?app=search&action=search_last_inscription'.'&'.$langue); ?>" title="<? echo $genreRecherche == 'h' ? $lang_appprofil["VoirPlusDePapaInscrit"] : $lang_appprofil["VoirPlusDeMamanInscrit"]; ?>" class="link offset-sm-top-25 preffix-xs-left-60 "><? echo $genreRecherche == 'h' ? $lang_appprofil["VoirPlusDePapaInscrit"] : $lang_appprofil["VoirPlusDeMamanInscrit"]; ?><span class="fl-budicons-launch-right164"></span></a>
+												<a  href="<?php echo JL::url('index.php?app=search&action=search_last_inscription'.'&'.$langue); ?>" title="<?php echo $genreRecherche == 'h' ? $lang_appprofil["VoirPlusDePapaInscrit"] : $lang_appprofil["VoirPlusDeMamanInscrit"]; ?>" class="link offset-sm-top-25 preffix-xs-left-60 "><?php echo $genreRecherche == 'h' ? $lang_appprofil["VoirPlusDePapaInscrit"] : $lang_appprofil["VoirPlusDeMamanInscrit"]; ?><span class="fl-budicons-launch-right164"></span></a>
 												
 										</div>
 									</div>
-						<? } ?>
+						<?php } ?>
 							
 					</div>
 					<div style="clear:both"> </div>
 					
 					<div class="bloc1 bloc_right1 bloc_4profil parentsolo_mt_20">
 						<div class="block-title">
-						<h3 class="loginprofile_title_h3 parentsolo_mt_20 parentsolo_pb_15"><? echo $lang_appprofil["SELECTEDPROFILES"];  ?></h3>
+						<h3 class="loginprofile_title_h3 parentsolo_mt_20 parentsolo_pb_15"><?php echo $lang_appprofil["SELECTEDPROFILES"];  ?></h3>
 						</div>
 							<div class="parentsolo_txt_center parentsolo_mt_20" ><!--BEGIN: CAROUSEL -->
 							<div class="bridegroom-friend fade_in_hide element_fade_in">
 								 <div id="owl_woman_family" class="owl-carousel owl-theme">
                                     
-									<?
-								if(count($profilsMatching)) {
+									<?php 								if (is_array($profilsMatching)) {
 									$i=1;
 									?>
 									<tr>
@@ -2869,7 +2748,7 @@
 
 										}
 										
-										// récup la photo de l'utilisateur
+										// rï¿½cup la photo de l'utilisateur
 										$photo = JL::userGetPhoto($profilMatch->id, 'profil', '', $profilMatch->photo_defaut);
 
 										if(!$photo) {
@@ -2879,11 +2758,11 @@
 										<div class="item ">
 											   <div class="friend-img ">
 												   <div class="imgoverlay wd_gal_img">
-													   <a href="javascript:windowOpen('<? echo str_replace('-', '', $profilMatch->username); ?>','<? echo JL::url('index.php?app=profil&action=view&id='.$profilMatch->id.'&lang='.$_GET['lang']); ?>','615px','511px','yes');" title="<? echo $lang_appprofil["VoirCeProfil"]; ?>">
-													   <img src="<? echo $photo; ?>" alt="<? echo $profilMatch->username; ?>" class="hr_eff_img">
-													   <span class="wd_gal_overlay span_stl_over"><? echo JL::calcul_age($profilMatch->naissance_date); ?><br />
-													<? echo $profilMatch->nb_enfants; ?> <? echo $profilMatch->nb_enfants > 1 ? $lang_appprofil["enfants"] : $lang_appprofil["enfant"]; ?><br />
-													<? echo $profilMatch->canton; ?>
+													   <a href="javascript:windowOpen('<?php echo str_replace('-', '', $profilMatch->username); ?>','<?php echo JL::url('index.php?app=profil&action=view&id='.$profilMatch->id.'&lang='.$_GET['lang']); ?>','615px','511px','yes');" title="<?php echo $lang_appprofil["VoirCeProfil"]; ?>">
+													   <img src="<?php echo $photo; ?>" alt="<?php echo $profilMatch->username; ?>" class="hr_eff_img">
+													   <span class="wd_gal_overlay span_stl_over"><?php echo JL::calcul_age($profilMatch->naissance_date); ?><br />
+													<?php echo $profilMatch->nb_enfants; ?> <?php echo $profilMatch->nb_enfants > 1 ? $lang_appprofil["enfants"] : $lang_appprofil["enfant"]; ?><br />
+													<?php echo $profilMatch->canton; ?>
 													</span>
 													   </a>
 													    
@@ -2891,16 +2770,15 @@
 											   
 											   </div>
 												   <h3>
-													<a href="javascript:windowOpen('<? echo str_replace('-', '', $profilMatch->username); ?>','<? echo JL::url('index.php?app=profil&action=view&id='.$profilMatch->id.'&lang='.$_GET['lang']); ?>','615px','511px','yes');" title="<? echo $lang_appprofil["VoirCeProfil"];?>" class="username">
-													<? echo $profilMatch->username; ?>
+													<a href="javascript:windowOpen('<?php echo str_replace('-', '', $profilMatch->username); ?>','<?php echo JL::url('index.php?app=profil&action=view&id='.$profilMatch->id.'&lang='.$_GET['lang']); ?>','615px','511px','yes');" title="<?php echo $lang_appprofil["VoirCeProfil"];?>" class="username">
+													<?php echo $profilMatch->username; ?>
 													</a>
-												   </h3><p class="<? echo $last_online_class; ?>"><? echo $last_online_label; ?></p>
+												   </h3><p class="<?php echo $last_online_class; ?>"><?php echo $last_online_label; ?></p>
 												  
 										   </div>
 											
 											
-										<?
-											if($i%2==0){
+										<?php 											if($i%2==0){
 												echo "";
 											}
 											$i++;
@@ -2920,26 +2798,25 @@
 							?>
 									
 										<div>
-							<?
-											echo $genreRecherche == 'h' ? $lang_appprofil["AucunPapaInscrit"] : $lang_appprofil["AucuneMamanInscrite"];
+							<?php 											echo $genreRecherche == 'h' ? $lang_appprofil["AucunPapaInscrit"] : $lang_appprofil["AucuneMamanInscrite"];
 							?>
 										</div>
-							<?			
+							<?php
 								}
 							?>
 						
 							
 						</div>
-								 <? if(count($profilsInscrits)==8){ ?>
+								 <?php if (is_array($profilsInscrits)==8){ ?>
 								
 <div  class="parentsolo_mb_20 " align="right">
 											<div class="lien_plus">
-												<a  href="<? echo JL::url('index.php?app=search&action=profile_matching'.'&'.$langue); ?>" title="<? echo $genreRecherche == 'h' ? $lang_appprofil["VoirPlusDePapaInscrit_profile"] : $lang_appprofil["VoirPlusDeMamanInscrit"]; ?>" class="link offset-sm-top-25 preffix-xs-left-60 "><? echo $genreRecherche == 'h' ? $lang_appprofil["VoirPlusDePapaInscrit_profile"] : $lang_appprofil["VoirPlusDeMamanInscrit"]; ?><span class="fl-budicons-launch-right164"></span></a>
+												<a  href="<?php echo JL::url('index.php?app=search&action=profile_matching'.'&'.$langue); ?>" title="<?php echo $genreRecherche == 'h' ? $lang_appprofil["VoirPlusDePapaInscrit_profile"] : $lang_appprofil["VoirPlusDeMamanInscrit"]; ?>" class="link offset-sm-top-25 preffix-xs-left-60 "><?php echo $genreRecherche == 'h' ? $lang_appprofil["VoirPlusDePapaInscrit_profile"] : $lang_appprofil["VoirPlusDeMamanInscrit"]; ?><span class="fl-budicons-launch-right164"></span></a>
 												
 										</div>
 									</div>
 									
-						<? } ?>
+						<?php } ?>
 											</div>
 					</div>
 							</div>
@@ -2949,9 +2826,8 @@
 				</div>
 				<br><hr>
 				<div class="blocs blocs_home">
-			<?
-
-				// charge le module gagnant du mois (dernier témoignage du système de points)
+			<?php 
+				// charge le module gagnant du mois (dernier tï¿½moignage du systï¿½me de points)
 				JL::loadMod('gagnant_du_mois');
 				
 				JL::loadMod('groupe');
@@ -2961,9 +2837,8 @@
 				</div>
 				
 				<div class="blocs blocs_home">
-					<?
-
-						// charge le module gagnant du mois (dernier témoignage du système de points)
+					<?php 
+						// charge le module gagnant du mois (dernier tï¿½moignage du systï¿½me de points)
 						JL::loadMod('actu');
 				
 
@@ -2978,13 +2853,13 @@
 							$temoignage->texte = substr($temoignage->texte, 0, INTRO_HOME).'...';
 						}
 						
-						// à placer toujours après les 2 limitations
+						// ï¿½ placer toujours aprï¿½s les 2 limitations
 						JL::makeSafe($temoignage, 'texte');
 						
-						// récup la photo de l'utilisateur
+						// rï¿½cup la photo de l'utilisateur
 						$photo = JL::userGetPhoto($temoignage->user_id, '109', 'profil', $temoignage->photo_defaut);
 
-						// photo par défaut
+						// photo par dï¿½faut
 						if(!$photo) {
 							$photo = SITE_URL.'/parentsolo/images/parent-solo-109-'.$temoignage->genre.'-'.$_GET['lang'].'.jpg';
 						}
@@ -2997,7 +2872,7 @@
                 <div class="box">
                     <div class="outer">
                         <div class="round">
-                            <img width="100" height="100" src="<? echo $photo; ?>" alt="<? echo $temoignage->username; ?>"  class="attachment-70x70 size-70x70 wp-post-image" alt="26" srcset="<? echo $photo; ?>" sizes="(max-width: 70px) 100vw, 70px">
+                            <img width="100" height="100" src="<?php echo $photo; ?>" alt="<?php echo $temoignage->username; ?>"  class="attachment-70x70 size-70x70 wp-post-image" alt="26" srcset="<?php echo $photo; ?>" sizes="(max-width: 70px) 100vw, 70px">
                             
                         </div>
 
@@ -3007,12 +2882,12 @@
             </div>
             <div class="col-md-9 col-sm-8 col-sx-8">
                 <div class="parentsolo_pt_15 parentsolo_pl_15 parentsolo_pb_15">
-                    <h2 class="name parentsolo_pt_10"><? echo $temoignage->username; ?></h2>
+                    <h2 class="name parentsolo_pt_10"><?php echo $temoignage->username; ?></h2>
                     <div class="text-box parentsolo_pt_10 parentsolo_pb_10">
-						<h6 class="parentsolo_text-left parentsolo_txt_clr parentsolo_txt_overflow icon_font_size"><? echo $temoignage->titre; ?></h6>
-<? echo $temoignage->texte; ?>
+						<h6 class="parentsolo_text-left parentsolo_txt_clr parentsolo_txt_overflow icon_font_size"><?php echo $temoignage->titre; ?></h6>
+<?php echo $temoignage->texte; ?>
 <h6 class="parentsolo_text-right parentsolo_txt_clr parentsolo_txt_overflow icon_font_size">
-							<a href="<? echo JL::url('index.php?app=temoignage&lang='.$_GET['lang']); ?>" title="<? echo $lang_apptemoignage["LireLeTemoignage"]; ?>" class="lire">Tous les t&eacute;moignages</a>
+							<a href="<?php echo JL::url('index.php?app=temoignage&lang='.$_GET['lang']); ?>" title="<?php echo $lang_apptemoignage["LireLeTemoignage"]; ?>" class="lire">Tous les t&eacute;moignages</a>
 						</h6>
 						</div>
                    
@@ -3025,12 +2900,12 @@
 						<h3><?php /* echo $lang_appprofil["Temoignages"];?></h3>
 						<table width="100%">
 							<tr>
-								<td valign="top"><img src="<? echo $photo; ?>" alt="<? echo $temoignage->username; ?>" /></td>
+								<td valign="top"><img src="<?php echo $photo; ?>" alt="<?php echo $temoignage->username; ?>" /></td>
 								<td>
-									<div class="titre"><? echo $temoignage->titre; ?></div>
-									<? echo $temoignage->texte; ?><br />
-									<span class="username"><? echo $temoignage->username; ?></span><br />
-									<a href="<? echo JL::url('index.php?app=temoignage&lang='.$_GET['lang']); ?>" title="<? echo $lang_apptemoignage["LireLeTemoignage"]; */?>" class="lire">Tous les t&eacute;moignages</a>
+									<div class="titre"><?php echo $temoignage->titre; ?></div>
+									<?php echo $temoignage->texte; ?><br />
+									<span class="username"><?php echo $temoignage->username; ?></span><br />
+									<a href="<?php echo JL::url('index.php?app=temoignage&lang='.$_GET['lang']); ?>" title="<?php echo $lang_apptemoignage["LireLeTemoignage"]; */ ?>" class="lire">Tous les t&eacute;moignages</a>
 								</td>
 							</tr>
 						</table>
@@ -3038,14 +2913,13 @@
 					<div style="clear:both"> </div>
 				</div>
 					
-		<?
-		}
+		<?php 		}
 
 
 
 		
 
-		// récupère les 3 $field dans l'objet $obj, pour retourner une chaine concaténée avec les valeurs renseignées, sinon retourne $defaut
+		// rï¿½cupï¿½re les 3 $field dans l'objet $obj, pour retourner une chaine concatï¿½nï¿½e avec les valeurs renseignï¿½es, sinon retourne $defaut
 		function profil3values(&$obj, $field, $defaut) {
 			global $langue;
 
@@ -3062,7 +2936,7 @@
 				$tab[]	= $obj->{$field.'3'};
 			}
 
-			if(count($tab)) {
+			if (is_array($tab)) {
 				return implode('<br /> ', $tab);
 			} else {
 				return $defaut;
@@ -3071,20 +2945,19 @@
 		}
 
 
-		// affichage des conditions générales en popup
+		// affichage des conditions gï¿½nï¿½rales en popup
 		function conditionsPopUp($texte) {
 			global $langue;
 		?>
 			<style>
 				body {background:#000;color:#fff;font-size:11px;font-family:Verdana,Arial,Helvetica;}
-				h1,h2 {font-size:18px;font-weight:bold;color:#CC0066;padding:0 0 0 25px;background:url(<? echo SITE_URL; ?>/parentsolo/images/flower.jpg) left no-repeat;}
+				h1,h2 {font-size:18px;font-weight:bold;color:#CC0066;padding:0 0 0 25px;background:url(<?php echo SITE_URL; ?>/parentsolo/images/flower.jpg) left no-repeat;}
 				p{padding:10px;}
 			</style>
 
-			<? echo $texte; ?>
+			<?php echo $texte; ?>
 
-		<?
-		}
+		<?php 		}
 
 	}
 ?>

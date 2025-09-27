@@ -4,7 +4,7 @@ $lang_appel_a_temoins = array(
 
 	//------------------Page appel_a_temoins.html.php ---------
 
-	"MessagesParentsolo" => "Messages Parentsolo.ch",
+	"MessagesParentsolo" => "Messages solocircl.com",
 	
 	
 	"LancerUnAppel" => "Lancer un appel &agrave; t&eacute;moins",
@@ -81,7 +81,7 @@ $lang_appel_a_temoins = array(
 
 	//------------------Page appel_a_temoins.php ---------
 
-	"VotreAppelATemoinsEnvoye" => "Votre appel &agrave; t&eacute;moins a &eacute;t&eacute; envoy&eacute;! Un mod&eacute;rateur de ParentSolo.ch va traiter celui-ci, et vous recevrez une confirmation par email de la publication ou non de votre appel",
+	"VotreAppelATemoinsEnvoye" => "Votre appel &agrave; t&eacute;moins a &eacute;t&eacute; envoy&eacute;! Un mod&eacute;rateur de solocircl.com va traiter celui-ci, et vous recevrez une confirmation par email de la publication ou non de votre appel",
 	"VeillezTypeMedia" => "Veuillez indiquer le type de m&eacute;dia concern&eacute; s'il vous pla&icirc;t",
 	"VeillezTitreAppel" => "Veuillez indiquer le titre de votre appel &agrave; t&eacute;moins s'il vous pla&icirc;t",
 	"VeillezAnnonce" => "Veuillez indiquer l'annonce de votre appel &agrave; t&eacute;moins s'il vous pla&icirc;t",

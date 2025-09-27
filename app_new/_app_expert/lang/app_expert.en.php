@@ -4,7 +4,7 @@ $lang_appexpert = array(
 	
 	//*View
 	
-	"MessagesParentsolo" => "Parentsolo.ch messages",
+	"MessagesParentsolo" => "solocircl.com messages",
 	
 	//**Liste des experts
 	
@@ -21,7 +21,7 @@ $lang_appexpert = array(
 	"Email" => "Email:",
 	"Sujet" => "Sujet:",
 	"VotreQuestion" => "Votre question:",
-	"JAcceptePublication" => "J'accepte que ma question et sa réponse puissent-être publié sur le site Parentsolo.ch de manière anonyme.",
+	"JAcceptePublication" => "J'accepte que ma question et sa réponse puissent-être publié sur le site solocircl.com de manière anonyme.",
 	
 	"CodeDeVerification" => "Code de vérification",
 	

@@ -796,7 +796,7 @@ class ADODB_Active_Record {
 		if(!$rows)
 			return false;
 		$db->SetFetchMode($save);
-		if(count($rows) < 1)
+		if (is_array($rows) < 1)
 			return false;
 		$class = get_class($this);
 		$isFirstRow = true;
@@ -834,7 +834,7 @@ class ADODB_Active_Record {
 				$obj = new $class($table,false,$db);
 				$obj->Set($row);
 				// TODO Copy/paste code below: bad!
-				if(count($table->_hasMany) > 0)
+				if (is_array($table->_hasMany) > 0)
 				{
 					foreach($table->_hasMany as $foreignTable)
 					{
@@ -854,7 +854,7 @@ class ADODB_Active_Record {
 						}
 					}
 				}
-				if(count($table->_belongsTo) > 0)
+				if (is_array($table->_belongsTo) > 0)
 				{
 					foreach($table->_belongsTo as $foreignTable)
 					{

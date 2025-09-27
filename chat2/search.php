@@ -67,22 +67,22 @@ $final_username = str_ireplace($q, $b_username, $username);
 $final_email = str_ireplace($q, $b_email, $id);
 ?>
 <div class="top chatboxhead show">
-			<a href="<? echo SITE_URL; ?>/chat2/chat.php?lang=<?php echo $Language;?>&id=<?php echo $id;?>"><div class="col-md-6 col-sm-6 col-xs-6  parentsolo_plr_0"> <div class="col-md-3  col-sm-3 col-xs-3  parentsolo_plr_0 parentsolo_mt_20">  <span style="">
-                    <span class="userimage chatProfileToImg " onclick="self.opener.location.href='<? echo SITE_URL; ?>/index.php?app=profil&action=view&id=<? echo $correspondant->id.$langue; ?>'">
-					<img src='<? echo $corresp->photoURL; ?>' alt='profil' /></span>
+			<a href="<?php echo SITE_URL; ?>/chat2/chat.php?lang=<?php echo $Language;?>&id=<?php echo $id;?>"><div class="col-md-6 col-sm-6 col-xs-6  parentsolo_plr_0"> <div class="col-md-3  col-sm-3 col-xs-3  parentsolo_plr_0 parentsolo_mt_20">  <span style="">
+                    <span class="userimage chatProfileToImg " onclick="self.opener.location.href='<?php echo SITE_URL; ?>/index.php?app=profil&action=view&id=<?php echo $correspondant->id.$langue; ?>'">
+					<img src='<?php echo $corresp->photoURL; ?>' alt='profil' /></span>
                    </div> <div class="col-md-9  col-sm-9 col-xs-9 parentsolo_plr_0" style=" line-height: 30px;   margin-top: 8px;"
-> <span  class="name nickname<? echo $corresp->genre; ?>"><? echo $username; ?></span><br>
-					<span class='online_<? echo $corresp->online; ?>'><? echo $online_2; ?></span>
+> <span  class="name nickname<?php echo $corresp->genre; ?>"><?php echo $username; ?></span><br>
+					<span class='online_<?php echo $corresp->online; ?>'><?php echo $online_2; ?></span>
                 </span></div></div>
                <div class="col-md-6  col-sm-6 col-xs-6"><div class='chatProfileToTxt  text-right'>
 					
-					<span class="project" style="line-height:45px;"><? echo $corresp->nb_enfants." ".$enfant; ?></span>
+					<span class="project" style="line-height:45px;"><?php echo $corresp->nb_enfants." ".$enfant; ?></span>
                 </div></div> </a>
               
             </div>
 
 <!--
-<a href="http://www.parentsolo.ch/newdev/index.php?app=chat&id=<?php echo $id;?>&lang=<?php echo $Language;?>" >
+<a href="http://www.solocircl.com/newdev/index.php?app=chat&id=<?php echo $id;?>&lang=<?php echo $Language;?>" >
 <div class="show" align="left"><span class="name"><?php echo $final_username; ?></span>&nbsp;<br/><?php echo $final_email; ?><br/>
 </div></a>-->
 <?php

@@ -170,7 +170,7 @@ try {
             $body = $_POST['Message'];
         }
 
-        $example_code .= "\n\$body = <<<'EOT'\n" . htmlentities($body) . "\nEOT;";
+        $example_code .= "\n\$body = <<<'EOT'\n" . makeSafe($body) . "\nEOT;";
 
         $mail->WordWrap = 78; // set word wrap to the RFC2822 limit
         $mail->msgHTML($body, dirname(__FILE__), true); //Create message bodies and embed images

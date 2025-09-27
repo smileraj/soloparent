@@ -1,30 +1,29 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 	
 	class HTML_appel_a_temoins {
 		
-		// affichage des messages système
+		// affichage des messages systï¿½me
 		function messages(&$messages) {
 			
-			// s'il y a des messages à afficher
-			if(count($messages)) {
+			// s'il y a des messages ï¿½ afficher
+			if (is_array($messages)) {
 			?>
 				<h2>Messages</h2>
 				<div class="messages">
-				<?
-					// affiche les messages
+				<?php 					// affiche les messages
 					JL::messages($messages);
 				?>
 				</div>
-			<? 
+			<?php 
 			}
 			
 		}
 		
 		
-		// menu de l'appel à témoins
+		// menu de l'appel ï¿½ tï¿½moins
 		function appel_a_temoinsMenu($h1Force = '') {
 			global $action;
 			
@@ -54,18 +53,17 @@
 			
 			?>
 				<table class="profil_menu"><tr>
-					<td <? if(in_array($action, array('list','read'))) { ?>class="active"<? } ?>><a href="<? echo JL::url('index.php?app=appel_a_temoins&action=list'); ?>" title="Liste des appels &agrave; t&eacute;moins propos&eacute;s">Appels &agrave; t&eacute;moins</a></td>
-					<td <? if($action == 'info') { ?>class="active"<? } ?>><a href="<? echo JL::url('index.php?app=appel_a_temoins&action=info'); ?>" title="Informations concernant les appels &agrave; t&eacute;moins">Informations</a></td>
-					<td <? if(in_array($action, array('new','save'))) { ?>class="active"<? } ?>><a href="<? echo JL::url('index.php?app=appel_a_temoins&action=new'); ?>" title="Lancez votre appel &agrave; t&eacute;moins">Lancer un appel &agrave; t&eacute;moins</a></td>
+					<td <?php if(in_array($action, array('list','read'))) { ?>class="active"<?php } ?>><a href="<?php echo JL::url('index.php?app=appel_a_temoins&action=list'); ?>" title="Liste des appels &agrave; t&eacute;moins propos&eacute;s">Appels &agrave; t&eacute;moins</a></td>
+					<td <?php if($action == 'info') { ?>class="active"<?php } ?>><a href="<?php echo JL::url('index.php?app=appel_a_temoins&action=info'); ?>" title="Informations concernant les appels &agrave; t&eacute;moins">Informations</a></td>
+					<td <?php if(in_array($action, array('new','save'))) { ?>class="active"<?php } ?>><a href="<?php echo JL::url('index.php?app=appel_a_temoins&action=new'); ?>" title="Lancez votre appel &agrave; t&eacute;moins">Lancer un appel &agrave; t&eacute;moins</a></td>
 					<td style="width:40%;"> </td>
 				</tr></table>
-				<h1 class="aat"><? echo $h1; ?></h1>
-			<?
-		
+				<h1 class="aat"><?php echo $h1; ?></h1>
+			<?php 		
 		}
 		
 		
-		// affiche la liste des appels à témoins
+		// affiche la liste des appels ï¿½ tï¿½moins
 		function appel_a_temoinsList(&$rows, &$messages, &$search) {
 			
 			// variables
@@ -75,8 +73,7 @@
 						
 			?>
 			<div class="app_body appel_a_temoins">
-			<?
-				
+			<?php 				
 				// affichage du menu
 				HTML_appel_a_temoins::appel_a_temoinsMenu();
 				
@@ -102,54 +99,50 @@
 						?>
 							<div class="top">&nbsp;</div><div class="center">
 								
-								<? if(is_file('images/appel-a-temoins/'.$row->id.'.jpg')) { ?>
-									<a href="<? echo JL::url('index.php?app=appel_a_temoins&action=read&id='.$row->id); ?>" title="Lire l'appel &agrave; t&eacute;moins pour parents solos"><img src="<? echo SITE_URL.'/images/appel-a-temoins/'.$row->id.'.jpg'; ?>" alt="" class="AATlogo" /></a>
-								<? } ?>
+								<?php if(is_file('images/appel-a-temoins/'.$row->id.'.jpg')) { ?>
+									<a href="<?php echo JL::url('index.php?app=appel_a_temoins&action=read&id='.$row->id); ?>" title="Lire l'appel &agrave; t&eacute;moins pour parents solos"><img src="<?php echo SITE_URL.'/images/appel-a-temoins/'.$row->id.'.jpg'; ?>" alt="" class="AATlogo" /></a>
+								<?php } ?>
 								
-								<h3><a href="<? echo JL::url('index.php?app=appel_a_temoins&action=read&id='.$row->id); ?>" title="Lire l'appel &agrave; t&eacute;moins pour parents solos"><span><? echo $row->media; ?>:</span> <? echo $row->titre; ?></a></h3>
-								<? echo $row->annonce; ?>
-								<a href="<? echo JL::url('index.php?app=appel_a_temoins&action=read&id='.$row->id); ?>" title="Lire l'appel &agrave; t&eacute;moins pour parents solos" class="more">Lire l'annonce compl&egrave;te &raquo;</a>
+								<h3><a href="<?php echo JL::url('index.php?app=appel_a_temoins&action=read&id='.$row->id); ?>" title="Lire l'appel &agrave; t&eacute;moins pour parents solos"><span><?php echo $row->media; ?>:</span> <?php echo $row->titre; ?></a></h3>
+								<?php echo $row->annonce; ?>
+								<a href="<?php echo JL::url('index.php?app=appel_a_temoins&action=read&id='.$row->id); ?>" title="Lire l'appel &agrave; t&eacute;moins pour parents solos" class="more">Lire l'annonce compl&egrave;te &raquo;</a>
 								
-								<? if(is_file('images/appel-a-temoins/'.$row->id.'.jpg')) { ?>
+								<?php if(is_file('images/appel-a-temoins/'.$row->id.'.jpg')) { ?>
 									<div class="clear">&nbsp;</div>
-								<? } ?>
+								<?php } ?>
 							</div>
 							<div class="bottom">&nbsp;</div>
-						<?
-					}
+						<?php 					}
 					
 					?>
 					<table class="searchnavbar" cellpadding="0" cellspacing="0">
 						<tr>
 							<td class="left">
-								<? // page précédente
+								<?php // page prï¿½cï¿½dente
 								if($search['page'] > 1) { ?>
-									<a href="<? echo JL::url(SITE_URL.'/index.php?app=appel_a_temoins&action=list&page='.($search['page']-1)); ?>" class="bouton step_previous" title="Page pr&eacute;c&eacute;dente">&laquo; Page pr&eacute;c&eacute;dente</a>
-								<? } ?>
+									<a href="<?php echo JL::url(SITE_URL.'/index.php?app=appel_a_temoins&action=list&page='.($search['page']-1)); ?>" class="bouton step_previous" title="Page pr&eacute;c&eacute;dente">&laquo; Page pr&eacute;c&eacute;dente</a>
+								<?php } ?>
 							</td>
 							<td class="center">
 								<span class="orange">Pages</span>:
-								<? if($debut > 1) { ?> <a href="<? echo JL::url(SITE_URL.'/index.php?app=appel_a_temoins&action=list&page=1'); ?>" title="Afficher la page 1">D&eacute;but</a> ...<? }?>
-								<?
-									for($i=$debut; $i<=$fin; $i++) {
+								<?php if($debut > 1) { ?> <a href="<?php echo JL::url(SITE_URL.'/index.php?app=appel_a_temoins&action=list&page=1'); ?>" title="Afficher la page 1">D&eacute;but</a> ...<?php }?>
+								<?php 									for($i=$debut; $i<=$fin; $i++) {
 									?>
-										 <a href="<? echo JL::url(SITE_URL.'/index.php?app=appel_a_temoins&action=list&page='.$i); ?>" title="Afficher la page <? echo $i; ?>" <? if($i == $search['page']) { ?>class="active"<? } ?>><? echo $i; ?></a>
-									<?
-									}
+										 <a href="<?php echo JL::url(SITE_URL.'/index.php?app=appel_a_temoins&action=list&page='.$i); ?>" title="Afficher la page <?php echo $i; ?>" <?php if($i == $search['page']) { ?>class="active"<?php } ?>><?php echo $i; ?></a>
+									<?php 									}
 								?>
-								<? if($fin < $search['page_total']) { ?> ... <a href="<? echo JL::url(SITE_URL.'/index.php?app=appel_a_temoins&action=list&page='.$search['page_total']); ?>" title="Afficher la page <? echo $search['page_total']; ?>">Fin</a><? }?> <i>(<? echo $search['result_total']; ?> appel<? echo $search['result_total'] > 1 ? 's' : ''; ?>)</i>
+								<?php if($fin < $search['page_total']) { ?> ... <a href="<?php echo JL::url(SITE_URL.'/index.php?app=appel_a_temoins&action=list&page='.$search['page_total']); ?>" title="Afficher la page <?php echo $search['page_total']; ?>">Fin</a><?php }?> <i>(<?php echo $search['result_total']; ?> appel<?php echo $search['result_total'] > 1 ? 's' : ''; ?>)</i>
 							</td>
 							<td class="right">
-								<? // page suivante
+								<?php // page suivante
 								if($search['page'] < $search['page_total']) { ?>
-									<a href="<? echo JL::url(SITE_URL.'/index.php?app=appel_a_temoins&action=list&page='.($search['page']+1)); ?>" class="bouton step_next" title="Page suivante">&raquo; Page suivante</a>
-								<? } ?>
+									<a href="<?php echo JL::url(SITE_URL.'/index.php?app=appel_a_temoins&action=list&page='.($search['page']+1)); ?>" class="bouton step_next" title="Page suivante">&raquo; Page suivante</a>
+								<?php } ?>
 							</td>
 						</tr>
 					</table>
 					
-				<?
-				} else {
+				<?php 				} else {
 				?>
 					
 					<div class="top">&nbsp;</div>
@@ -158,27 +151,24 @@
 					</div>
 					<div class="bottom">&nbsp;</div>
 					
-				<?
-				}
+				<?php 				}
 			?>
 			
 				<br />
 				<br />
-				<a href="<? echo JL::url('index.php'); ?>" class="bouton return_home" title="Retour &agrave; l'accueil de ParentSolo.ch">Retour &agrave; l'accueil</a>
-			</div><? // fin app_body ?>
+				<a href="<?php echo JL::url('index.php'); ?>" class="bouton return_home" title="Retour &agrave; l'accueil de solocircl.com">Retour &agrave; l'accueil</a>
+			</div><?php // fin app_body ?>
 		
-			<?
-		
+			<?php 		
 			// colonne de gauche
 			JL::loadMod('profil_panel');
 			
 		?>
 		<div class="clear"> </div>
-		<?
-		}
+		<?php 		}
 		
 		
-		// formulaire de rédaction d'un appel
+		// formulaire de rï¿½daction d'un appel
 		function appel_a_temoinsWrite(&$row, &$messages, &$list) {
 		
 			// htmlentities
@@ -188,8 +178,7 @@
 			
 			<div class="app_body">
 			
-			<?
-			
+			<?php 			
 				// affichage du menu
 				HTML_appel_a_temoins::appel_a_temoinsMenu();
 				
@@ -202,14 +191,13 @@
 					<br />
 					Profitez de notre site pour le faire en remplissant les champs suivants.&quot;<br />
 					<br />
-					Votre appel &agrave; t&eacute;moins sera v&eacute;rifi&eacute; par un mod&eacute;rateur de ParentSolo.ch.<br />
+					Votre appel &agrave; t&eacute;moins sera v&eacute;rifi&eacute; par un mod&eacute;rateur de solocircl.com.<br />
 					Vous serez averti(e) &agrave; l'adresse email indiqu&eacute;e de la publication ou non de votre appel &agrave; t&eacute;moins.<br />
 					<br />
 					<i>Les champs marqu&eacute;s d'un ast&eacute;risque * sont obligatoires.</i>
 				</p>
 				
-				<?
-				
+				<?php 				
 					// affichage des messages
 					HTML_appel_a_temoins::messages($messages);
 					
@@ -219,25 +207,25 @@
 				<table class="message_table appel" cellpadding="0" cellspacing="0">
 					<tr>
 						<td class="key"><label for="media_id">Type de M&eacute;dia:</label></td>
-						<td><? echo $list['media_id']; ?></td>
+						<td><?php echo $list['media_id']; ?></td>
 					</tr>
 					<tr>
 						<td class="key"><label for="titre">Titre:*</label></td>
-						<td><input type="text" id="titre" class="msgtxt" name="titre" maxlength="150" value="<? echo $row->titre; ?>"></td>
+						<td><input type="text" id="titre" class="msgtxt" name="titre" maxlength="150" value="<?php echo $row->titre; ?>"></td>
 					</tr>
 					<tr>
 						<td class="key"><label for="annonce">Annonce:*</label></td>
 						<td>
-							<textarea name="annonce" id="annonce" class="msgtxt"><? echo $row->annonce; ?></textarea>
+							<textarea name="annonce" id="annonce" class="msgtxt"><?php echo $row->annonce; ?></textarea>
 						</td>
 					</tr>
 					<tr>
 						<td class="key"><label for="date_limite">Date limite:</label></td>
-						<td><input type="text" id="date_limite" class="msgtxt" name="date_limite" maxlength="50" value="<? echo $row->date_limite; ?>"></td>
+						<td><input type="text" id="date_limite" class="msgtxt" name="date_limite" maxlength="50" value="<?php echo $row->date_limite; ?>"></td>
 					</tr>
 					<tr>
 						<td class="key"><label for="date_diffusion">Date de publication:</label></td>
-						<td><input type="text" id="date_diffusion" class="msgtxt" name="date_diffusion" maxlength="50" value="<? echo $row->date_diffusion; ?>"></td>
+						<td><input type="text" id="date_diffusion" class="msgtxt" name="date_diffusion" maxlength="50" value="<?php echo $row->date_diffusion; ?>"></td>
 					</tr>
 					<tr>
 						<td class="key"><label for="file_logo">Logo:</label></td>
@@ -252,29 +240,29 @@
 				<table class="message_table appel" cellpadding="0" cellspacing="0">
 					<tr>
 						<td class="key"><label for="nom">Nom:*</label></td>
-						<td><input type="text" id="nom" class="msgtxt" name="nom" maxlength="50" value="<? echo $row->nom; ?>"></td>
+						<td><input type="text" id="nom" class="msgtxt" name="nom" maxlength="50" value="<?php echo $row->nom; ?>"></td>
 					</tr>
 					<tr>
 						<td class="key"><label for="prenom">Pr&eacute;nom:*</label></td>
-						<td><input type="text" id="prenom" class="msgtxt" name="prenom" maxlength="50" value="<? echo $row->prenom; ?>"></td>
+						<td><input type="text" id="prenom" class="msgtxt" name="prenom" maxlength="50" value="<?php echo $row->prenom; ?>"></td>
 					</tr>
 					<tr>
 						<td class="key"><label for="telephone">Telephone:*</label></td>
-						<td><input type="text" id="telephone" class="msgtxt" name="telephone" maxlength="50" value="<? echo $row->telephone; ?>"></td>
+						<td><input type="text" id="telephone" class="msgtxt" name="telephone" maxlength="50" value="<?php echo $row->telephone; ?>"></td>
 					</tr>
 					<tr>
 						<td class="key"><label for="adresse">Adresse:</label></td>
 						<td>
-							<textarea name="adresse" class="msgtxt" style="height:50px;"><? echo $row->adresse; ?></textarea>
+							<textarea name="adresse" class="msgtxt" style="height:50px;"><?php echo $row->adresse; ?></textarea>
 						</td>
 					</tr>
 					<tr>
 						<td class="key"><label for="email">Email:*</label></td>
-						<td><input type="text" id="email" class="msgtxt" name="email" maxlength="50" value="<? echo $row->email; ?>"></td>
+						<td><input type="text" id="email" class="msgtxt" name="email" maxlength="50" value="<?php echo $row->email; ?>"></td>
 					</tr>
 					<tr>
 						<td class="key"><label for="email2">Email:*<br /><i>confirmation</i></label></td>
-						<td><input type="text" id="email2" class="msgtxt" name="email2" maxlength="50" value="<? echo $row->email2; ?>"></td>
+						<td><input type="text" id="email2" class="msgtxt" name="email2" maxlength="50" value="<?php echo $row->email2; ?>"></td>
 					</tr>
 				</table>
 					
@@ -285,12 +273,10 @@
 					<tr>
 						<td class="key"> </td>
 						<td><u><b>Combien y a-t-il de fleurs ci-dessous ?</b></u><br /><br />
-						<?
-						for($i=0;$i<$list['captcha'];$i++){
+						<?php 						for($i=0;$i<$list['captcha'];$i++){
 						?>
-							<img src="<? echo SITE_URL; ?>/parentsolo/images/flower.jpg" alt="Fleur" align="left" />
-						<?
-						}
+							<img src="<?php echo SITE_URL; ?>/parentsolo/images/flower.jpg" alt="Fleur" align="left" />
+						<?php 						}
 						?>
 						&nbsp;=&nbsp;<input type="text" name="codesecurite" id="codesecurite" value="" maxlength="1" />
 						</td>
@@ -301,7 +287,7 @@
 							<table cellpadding="0" cellspacing="0">
 							<tr>
 								<td>
-									<a href="javascript:if(confirm('Voulez-vous vraiment annuler la r&eacute;daction de cet appel ?')){document.location='<? echo JL::url('index.php?app=appel_a_temoins&action=list'); ?>';}" class="bouton annuler">Annuler</a>
+									<a href="javascript:if(confirm('Voulez-vous vraiment annuler la r&eacute;daction de cet appel ?')){document.location='<?php echo JL::url('index.php?app=appel_a_temoins&action=list'); ?>';}" class="bouton annuler">Annuler</a>
 								</td>
 								<td>
 									<a href="javascript:document.appel_a_temoins.submit();" class="bouton envoyer">Envoyer</a>
@@ -315,37 +301,34 @@
 				<input type="hidden" name="app" value="appel_a_temoins" />
 				<input type="hidden" name="action" value="save" />
 			</form>
-			</div><? // fin app_body ?>
+			</div><?php // fin app_body ?>
 		
-			<?
-		
+			<?php 		
 			// colonne de gauche
 			JL::loadMod('profil_panel');
 			
 		?>
 		<div class="clear"> </div>
-		<?
-		}
+		<?php 		}
 		
 		
-		// affichage d'un appel à témoins
+		// affichage d'un appel ï¿½ tï¿½moins
 		function appel_a_temoinsRead(&$row) {
 		
 			JL::makeSafe($row);
 			
 			?>
 			<div class="app_body appel_a_temoins">
-			<?
-				
+			<?php 				
 				// affichage du menu
 				HTML_appel_a_temoins::appel_a_temoinsMenu($row->titre);
 				
 				?>
 				<div class="appel_annonce">
-					<? if(is_file('images/appel-a-temoins/'.$row->id.'.jpg')) { ?>
-						<img src="<? echo SITE_URL.'/images/appel-a-temoins/'.$row->id.'.jpg' ?>" alt="" class="AATlogo" />
-					<? } ?>
-					<? echo nl2br($row->annonce); ?>
+					<?php if(is_file('images/appel-a-temoins/'.$row->id.'.jpg')) { ?>
+						<img src="<?php echo SITE_URL.'/images/appel-a-temoins/'.$row->id.'.jpg' ?>" alt="" class="AATlogo" />
+					<?php } ?>
+					<?php echo nl2br($row->annonce); ?>
 					<div class="clear">&nbsp;</div>
 				</div>
 				
@@ -353,34 +336,32 @@
 				
 					<span class="infos">Informations compl&eacute;mentaires:</span><br />
 					<br />
-					<? if($row->date_limite) { ?><b>Date de l'appel:</b> <? echo date('d/m/Y', strtotime($row->date_add)); ?><br /><? } ?>
-					<? if($row->date_limite) { ?><b>Date limite d'inscription:</b> <? echo $row->date_limite; ?><br /><? } ?>
-					<? if($row->date_diffusion) { ?><b>Date de diffusion:</b> <? echo $row->date_diffusion; ?><br /><? } ?>
+					<?php if($row->date_limite) { ?><b>Date de l'appel:</b> <?php echo date('d/m/Y', strtotime($row->date_add)); ?><br /><?php } ?>
+					<?php if($row->date_limite) { ?><b>Date limite d'inscription:</b> <?php echo $row->date_limite; ?><br /><?php } ?>
+					<?php if($row->date_diffusion) { ?><b>Date de diffusion:</b> <?php echo $row->date_diffusion; ?><br /><?php } ?>
 					<br />
 				
 					<span class="infos">Pour plus d'informations, veuillez contacter:</span><br />
 					<br />
-					<? echo $row->prenom.' '.$row->nom; ?><br />
-					<? if($row->adresse) nl2br($row->adresse).'<br />'; ?>
+					<?php echo $row->prenom.' '.$row->nom; ?><br />
+					<?php if($row->adresse) nl2br($row->adresse).'<br />'; ?>
 					<br />
-					<b>Email:</b> <a href="mailto:<? echo $row->email; ?>" title="Contacter <? echo $row->prenom.' '.$row->nom; ?> par email"><? echo $row->email; ?></a><br />
-					<b>T&eacute;l&eacute;phone:</b> <? echo $row->telephone; ?>
+					<b>Email:</b> <a href="mailto:<?php echo $row->email; ?>" title="Contacter <?php echo $row->prenom.' '.$row->nom; ?> par email"><?php echo $row->email; ?></a><br />
+					<b>T&eacute;l&eacute;phone:</b> <?php echo $row->telephone; ?>
 					
 				</div>
 				<div class="bottom">&nbsp;</div>
 
-				<a href="<? echo JL::url('index.php?app=appel_a_temoins&action=list'); ?>" class="bouton page_previous">&laquo; Page pr&eacute;c&eacute;dente</a>
-			</div><? // fin app_body ?>
+				<a href="<?php echo JL::url('index.php?app=appel_a_temoins&action=list'); ?>" class="bouton page_previous">&laquo; Page pr&eacute;c&eacute;dente</a>
+			</div><?php // fin app_body ?>
 			
-			<?
-		
+			<?php 		
 			// colonne de gauche
 			JL::loadMod('profil_panel');
 			
 		?>
 		<div class="clear"> </div>
-		<?
-		}
+		<?php 		}
 		
 		
 		// page d'info
@@ -391,31 +372,28 @@
 			
 			?>
 			<div class="app_body">
-				<?
-					
+				<?php 					
 					// affichage du menu
 					HTML_appel_a_temoins::appel_a_temoinsMenu($row->titre);
 					
 				?>
 					
 				<div class="contenu">
-					<? echo $row->texte; ?>
+					<?php echo $row->texte; ?>
 					
 				</div>
 			
-				<a href="<? echo JL::url('index.php?app=appel_a_temoins&action=list'); ?>" class="bouton page_previous">&laquo; Page pr&eacute;c&eacute;dente</a>
+				<a href="<?php echo JL::url('index.php?app=appel_a_temoins&action=list'); ?>" class="bouton page_previous">&laquo; Page pr&eacute;c&eacute;dente</a>
 				
-			</div><? // fin app_body ?>
+			</div><?php // fin app_body ?>
 			
-			<?
-		
+			<?php 		
 			// colonne de gauche
 			JL::loadMod('profil_panel');
 			
 		?>
 		<div class="clear"> </div>
-		<?
-		}
+		<?php 		}
 		
 	}
 ?>

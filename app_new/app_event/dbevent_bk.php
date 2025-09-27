@@ -1,11 +1,11 @@
 <?php 
-	require_once('http://www.parentsolo.ch/newdev/config.php');
+	require_once('http://www.solocircl.com/newdev/config.php');
 	
 	// framework joomlike
-	require_once('http://www.parentsolo.ch/newdev/framework/joomlike.class.php');
+	require_once('http://www.solocircl.com/newdev/framework/joomlike.class.php');
 
 	// framework base de données
-	require_once('http://www.parentsolo.ch/newdev/framework/mysql.class.php');
+	require_once('http://www.solocircl.com/newdev/framework/mysql.class.php');
 	$db	= new DB();
 if($_REQUEST['option']=='common'){
 $date = date('d-m-Y');
@@ -24,8 +24,8 @@ $query='select max(start_date)as maxdate from events_creations';
 echo json_encode($finalvalue);
 }
  if($_REQUEST['option']=='save'){
- $name=mysql_real_escape_string($_REQUEST['name']);
- $desc=mysql_real_escape_string($_REQUEST['desc']);
+ $name=$db->escape($_REQUEST['name']);
+ $desc=$db->escape($_REQUEST['desc']);
  $sdate=date('Y-m-d',strtotime($_REQUEST['sdate']));
  $edate=date('Y-m-d',strtotime($_REQUEST['edate']));
  $userids=$_REQUEST['userid'];
@@ -50,8 +50,8 @@ $editquery="select id,event_name,event_desc,start_date,end_date from events_crea
 $result1=mysql_query($editquery);
 while($row=mysql_fetch_array($result1)){
 $id=$row['id'];
-$evtname=mysql_real_escape_string($row['event_name']);
-$evtdesc=mysql_real_escape_string($row['event_desc']);
+$evtname=$db->escape($row['event_name']);
+$evtdesc=$db->escape($row['event_desc']);
 $sdate=date('d-m-Y',strtotime($row['start_date']));
 $edate=date('d-m-Y',strtotime($row['end_date']));
 }
@@ -60,8 +60,8 @@ echo json_encode($finalvalue);
 }
 if($_REQUEST['option']=='update'){
 $id=$_REQUEST['editid'];
- $name=mysql_real_escape_string($_REQUEST['name']);
- $desc=mysql_real_escape_string($_REQUEST['desc']);
+ $name=$db->escape($_REQUEST['name']);
+ $desc=$db->escape($_REQUEST['desc']);
  $sdate=date('Y-m-d',strtotime($_REQUEST['sdate']));
  $edate=date('Y-m-d',strtotime($_REQUEST['edate']));
 

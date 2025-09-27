@@ -844,7 +844,7 @@ class soap_transport_http extends nusoap_base {
 		$this->incoming_cookies = array();
 		foreach($header_array as $header_line){
 			$arr = explode(':',$header_line, 2);
-			if(count($arr) > 1){
+			if (is_array($arr) > 1){
 				$header_name = strtolower(trim($arr[0]));
 				$this->incoming_headers[$header_name] = trim($arr[1]);
 				if ($header_name == 'set-cookie') {
@@ -1022,7 +1022,7 @@ class soap_transport_http extends nusoap_base {
 		// clean headers
 		foreach ($header_array as $header_line) {
 			$arr = explode(':',$header_line,2);
-			if(count($arr) > 1){
+			if (is_array($arr) > 1){
 				$header_name = strtolower(trim($arr[0]));
 				$this->incoming_headers[$header_name] = trim($arr[1]);
 				if ($header_name == 'set-cookie') {

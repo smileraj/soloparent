@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 
 	require_once('signaler_abus.html.php');
@@ -17,7 +17,7 @@
 
 	// variables
 
-	// si search_online et search_page ne sont pas renseignés, on reset leurs valeurs. Indispensable pour l'url rewriting par la suite !
+	// si search_online et search_page ne sont pas renseignï¿½s, on reset leurs valeurs. Indispensable pour l'url rewriting par la suite !
 	
 
 	switch($action) {
@@ -47,7 +47,7 @@
 	}
 
 
-	// sauvegarde la recherche dans la base de données
+	// sauvegarde la recherche dans la base de donnï¿½es
 	function signaler($messages) {
 		global $langue, $langString;
 		global $db, $user;
@@ -58,8 +58,8 @@
 		$_data			= signaler_data();
 		$list			= array();
 
-		// récup les données temporaires
-		if(count($_data)) {
+		// rï¿½cup les donnï¿½es temporaires
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row->{$key}	= JL::getVar($key, $value);
 			}
@@ -80,7 +80,7 @@
 		$username = $db->loadResult($query);
 
 
-		// récup la liste des médias
+		// rï¿½cup la liste des mï¿½dias
 		$row->sujet = $lang_signaler_abus["SignalerUnAbus"].' de '.$username.' par '.$user->username;
 		
 
@@ -106,14 +106,14 @@
 		$_data		= signaler_data();
 		$row		= new stdClass();
 
-		// récup les données temporaires
-		if(count($_data)) {
+		// rï¿½cup les donnï¿½es temporaires
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row->{$key}	= JL::getVar($key, $value);
 			}
 		}
 
-		// vérifications des champs
+		// vï¿½rifications des champs
 		if($row->user_id_to == '') {
 			$messages[]	= '<span class="error">'.$lang_signaler_abus["MembreNonIndique"].'.</span>';
 		}else{
@@ -133,7 +133,7 @@
 			$messages[]	= '<span class="error">'.$lang_signaler_abus["IndiquezMessage"].'.</span>';
 		}
 
-		// vérification du captcha
+		// vï¿½rification du captcha
 		if($row->codesecurite != JL::getSession('captcha', 0)) {
 			$messages[]	= '<span class="error">'.$lang_signaler_abus["CodeSecuriteIncorrect"].'.</span>';
 		}
@@ -148,7 +148,7 @@
 			$sujet = "Signalement d'abus de ".$username." (par ".$user->username.": ".$user->email.")";
 
 			// envoi du message
-			JL::mail('info@parentsolo.ch', '[ Signaler un abus ] '.$sujet, nl2br($sujet." \n\n".$row->message));
+			JL::mail('info@solocircl.com', '[ Signaler un abus ] '.$sujet, nl2br($sujet." \n\n".$row->message));
 			//JL::mail('m.jombart@babybook.ch', '[ Abus ] '.$sujet, nl2br($sujet." \n\n".$row->message));
 
 			JL::redirect(SITE_URL.'/index.php?app=signaler_abus&user_id_to='.$row->user_id_to.'&msg=sent&'.$langue);

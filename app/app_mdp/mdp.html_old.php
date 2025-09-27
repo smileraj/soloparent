@@ -12,20 +12,18 @@
 			global $langue;
 			include("lang/app_mdp.".$_GET['lang'].".php");
 			// s'il y a des messages &agrave; afficher
-			if(count($messages)) {
+			if (is_array($messages)) {
 			?>
 				<script src="../../Scripts/swfobject_modified.js" type="text/javascript"></script>
 
 				<h2 class="messages"><?php echo $lang_appmdp["MessagesParentSolo"];?></h2>
 				<div class="messages">
-				<?
-					// affiche les messages
+				<?php 					// affiche les messages
 					JL::messages($messages);
 				?>
 				</div>
 				<br />
-			<?
-			}
+			<?php 			}
 
 		} 
 
@@ -40,16 +38,15 @@
 			
 			<h2 class="barre"><?php echo $data->titre; ?></h2>
 			<div class="texte_explicatif">
-				<? echo $data->texte; ?>
+				<?php echo $data->texte; ?>
 			</div>
 			<br />
-		<?
-			// affichage des messages
+		<?php 			// affichage des messages
 			mdp_HTML::messages($messages);
 
 		?>
 			
-			<form action="<? echo JL::url(SITE_URL.'/index.php?app=mdp&action=mdp'.'&'.$langue); ?>" name="mdpForm" method="post">
+			<form action="<?php echo JL::url(SITE_URL.'/index.php?app=mdp&action=mdp'.'&'.$langue); ?>" name="mdpForm" method="post">
 				<h3 class="form"><?php echo $lang_appmdp["ChangerMonMotPasse"];?></h3>
 				<table class="table_form" cellpadding="0" cellspacing="0" width="100%">
 					<tr>
@@ -57,7 +54,7 @@
 							<label for="email"><?php echo $lang_appmdp["EmailInscription"];?></label>
 						</td>
 						<td>
-							<input type="text" name="email" id="email" value="<? echo $row->email; ?>" class="inputtext" />
+							<input type="text" name="email" id="email" value="<?php echo $row->email; ?>" class="inputtext" />
 						</td>
 					</tr>
 					<tr>
@@ -89,12 +86,10 @@
 							<?php echo $lang_appmdp["CombienDeFleurs"];?>?
 						</td>
 						<td>
-						<?
-							for($i=0;$i<$row->captcha;$i++){
+						<?php 							for($i=0;$i<$row->captcha;$i++){
 						?>
 								<img src="parentsolo/images/flower.png" alt="Fleur" align="left" />
-						<?
-							}
+						<?php 							}
 						?>
 						&nbsp;=&nbsp;<input type="text" name="verif" id="codesecurite" value="" maxlength="2" style="width:30px;"/>
 						</td>
@@ -109,8 +104,7 @@
 				<input type="hidden" name="captchaMd5" value="<?php echo $row->captchaMd5; ?>" />
 				<input type="hidden" name="save" value="1" />
 			</form>
-		<?
-		}
+		<?php 		}
 
 
 		// confirmation de changement de mot de passe
@@ -127,8 +121,7 @@
 				<br />
 				<?php echo $lang_appmdp["ABientotSurParentsolo"];?>!
 			</div>
-		<?
-		}
+		<?php 		}
 
 
 		// confirmation de changement non valide
@@ -147,8 +140,7 @@
 				<br />
 				<?php echo $lang_appmdp["ABientotSurParentsolo"];?>!
 			</div>
-		<?
-		}
+		<?php 		}
 		
 	}
 ?>

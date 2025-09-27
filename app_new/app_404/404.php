@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 
 	// envoi du header 404
@@ -17,7 +17,7 @@
 	</div>
 
 	<div class="colr"> 
-		<? JL::loadMod('menu_right');?>
+		<?php JL::loadMod('menu_right');?>
 	</div>
 	<div style="clear:both"> </div>
 </div>

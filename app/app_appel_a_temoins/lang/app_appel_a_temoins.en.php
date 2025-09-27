@@ -4,7 +4,7 @@ $lang_appel_a_temoins = array(
 
 	//------------------Page appel_a_temoins.html.php ---------
 
-	"MessagesParentsolo" => "Parentsolo.ch messages",
+	"MessagesParentsolo" => "solocircl.com messages",
 	
 	
 	"LancerUnAppel" => "Launch a call for stories",
@@ -81,7 +81,7 @@ $lang_appel_a_temoins = array(
 
 	//------------------Page appel_a_temoins.php ---------
 
-	"VotreAppelATemoinsEnvoye" => "Your call for stories has been sent! A ParentSolo.ch moderator will review this, and you’ll receive an email confirmation of the publication or not of your call",
+	"VotreAppelATemoinsEnvoye" => "Your call for stories has been sent! A solocircl.com moderator will review this, and you’ll receive an email confirmation of the publication or not of your call",
 	"VeillezTypeMedia" => "Please enter the type of media involved",
 	"VeillezTitreAppel" => "Please enter the title of your call for stories",
 	"VeillezAnnonce" => "Please enter the advertisement of your call for stories",

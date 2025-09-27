@@ -1,10 +1,10 @@
 <?php
 
-	// mini framework fortement inspiré du framework joomla
+	// mini framework fortement inspirï¿½ du framework joomla
 	class DB {
 
 		var	$connexion_id	= null; // connexion mysql
-		var	$ressource		= null;	// id du résultat d'une requête
+		var	$ressource		= null;	// id du rï¿½sultat d'une requï¿½te
 
 		function DB() {
 			$this->connexion_id	= null;
@@ -67,7 +67,7 @@
 			}
 		}
 
-		function loadResultArray($query = '') {
+		function loadObjectList($query = '') {
 			if($query) {
 				$this->setQuery($query);
 			}
@@ -113,7 +113,7 @@
 		}
 
 		function escape($string) {
-			return mysql_real_escape_string($string, $this->connexion_id);
+			return $db->escape($string, $this->connexion_id);
 		}
 	}
 ?>

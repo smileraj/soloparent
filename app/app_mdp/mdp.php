@@ -69,7 +69,7 @@
 		$row = new stdClass();
 
 		// donn&eacute;es du formulaire
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row->{$key} = trim(JL::getVar($key, $value));
 			}
@@ -135,7 +135,7 @@
 		// donn&eacute;es &agrave; r&eacute;cup
 		$_data	= mdp_data();
 
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$_data[$key] = trim(JL::getVar($key, $value, true));
 			}

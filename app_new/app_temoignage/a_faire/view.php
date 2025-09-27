@@ -18,10 +18,10 @@
 				<div class="contentl">
 					<div class="colc">
 						
-						<h1><? echo $contenu->titre;?></h1>
+						<h1><?php echo $contenu->titre;?></h1>
 						<br />
 						<p>
-							<? echo  $contenu->texte; ?>
+							<?php echo  $contenu->texte; ?>
 						</p>
 					</div>
 				</div>
@@ -32,15 +32,13 @@
 				
 				<!-- Partie Droite -->
 				<div class="colr"> 
-				<?
-					JL::loadApp('menu_temoignage_offline');
+				<?php 					JL::loadApp('menu_temoignage_offline');
 				?>
 				</div>
 				<div style="clear:both"> </div>
 			</div>
     
-		<?
-		
+		<?php 		
 		}
 		
 		function listall(&$temoignages, &$pagination) {
@@ -58,8 +56,7 @@
 						<h1><?php echo $lang_apptemoignage["TousLesTemoignages"];?></h1>
 						<br />
 						<p>
-						<?
-							$i = 1;
+						<?php 							$i = 1;
 							
 							if(is_array($temoignages) && $nb_temoignages){
 								
@@ -91,30 +88,28 @@
 									if($temoignage->id){
 						?>
 									
-										<div class="temoignages temoignage_<? if($i%2==1){ echo 'left'; }else{ echo 'right'; } ?>">
-												<h3><a href="<? echo JL::url('index.php?app=temoignage&action=lire&id='.$temoignage->id.'&lang='.$_GET['lang']); ?>" title="<? echo $lang_apptemoignage["LireLeTemoignage"];?>"><span><? echo $temoignage->username; ?>:</span> <? echo $temoignage->titre; ?></a></h3>
+										<div class="temoignages temoignage_<?php if($i%2==1){ echo 'left'; }else{ echo 'right'; } ?>">
+												<h3><a href="<?php echo JL::url('index.php?app=temoignage&action=lire&id='.$temoignage->id.'&lang='.$_GET['lang']); ?>" title="<?php echo $lang_apptemoignage["LireLeTemoignage"];?>"><span><?php echo $temoignage->username; ?>:</span> <?php echo $temoignage->titre; ?></a></h3>
 												<br />
-												<a href="<? echo JL::url('index.php?app=temoignage&action=lire&id='.$temoignage->id.'&lang='.$_GET['lang']); ?>" title="<? echo $lang_apptemoignage["LireLeTemoignage"]; ?>"><img src="<? echo $photo; ?>" alt="<? echo $temoignage->username; ?>" /></a> <? echo $temoignage->texte; ?>
+												<a href="<?php echo JL::url('index.php?app=temoignage&action=lire&id='.$temoignage->id.'&lang='.$_GET['lang']); ?>" title="<?php echo $lang_apptemoignage["LireLeTemoignage"]; ?>"><img src="<?php echo $photo; ?>" alt="<?php echo $temoignage->username; ?>" /></a> <?php echo $temoignage->texte; ?>
 												<br />
-												<a href="<? echo JL::url('index.php?app=temoignage&action=lire&id='.$temoignage->id.'&lang='.$_GET['lang']); ?>" title="<? echo $lang_apptemoignage["LireLeTemoignage"]; ?>" class="lire"><? echo $lang_apptemoignage["LireLeTemoignage"];?></a>
+												<a href="<?php echo JL::url('index.php?app=temoignage&action=lire&id='.$temoignage->id.'&lang='.$_GET['lang']); ?>" title="<?php echo $lang_apptemoignage["LireLeTemoignage"]; ?>" class="lire"><?php echo $lang_apptemoignage["LireLeTemoignage"];?></a>
 										</div>
-						<?
-									}
+						<?php 									}
 									 if($i%2==0){
 						?>
 									<div class="clear"></div>
-						<?				 
+						<?php	 
 									}
 									$i++;
 								}
 							
 						?>
-							<div class="small"><? echo $lang_apptemoignage["Publicite"]; ?></div>
+							<div class="small"><?php echo $lang_apptemoignage["Publicite"]; ?></div>
 							<div class="silver_banner">
-								<img src="<? echo SITE_URL; ?>/parentsolo/images/pub/silver_banner.jpg" alt="silver_banner" />
+								<img src="<?php echo SITE_URL; ?>/parentsolo/images/pub/silver_banner.jpg" alt="silver_banner" />
 							</div>
-						<?
-							if($nb_temoignages > 4){
+						<?php 							if($nb_temoignages > 4){
 								
 								for($j=4; $j<$nb_temoignages; $j++) {
 									$temoignage = $temoignages[$j];
@@ -143,33 +138,30 @@
 									
 									if($temoignage->id){
 						?>
-										<div class="temoignages temoignage_<? if($i%2==1){ echo 'left'; }else{ echo 'right'; } ?>">
-												<h3><a href="<? echo JL::url('index.php?app=temoignage&action=lire&id='.$temoignage->id.'&lang='.$_GET['lang']); ?>" title="<? echo $lang_apptemoignage["LireLeTemoignage"];?>"><span><? echo $temoignage->username; ?>:</span> <? echo $temoignage->titre; ?></a></h3>
+										<div class="temoignages temoignage_<?php if($i%2==1){ echo 'left'; }else{ echo 'right'; } ?>">
+												<h3><a href="<?php echo JL::url('index.php?app=temoignage&action=lire&id='.$temoignage->id.'&lang='.$_GET['lang']); ?>" title="<?php echo $lang_apptemoignage["LireLeTemoignage"];?>"><span><?php echo $temoignage->username; ?>:</span> <?php echo $temoignage->titre; ?></a></h3>
 												<br />
-												<a href="<? echo JL::url('index.php?app=temoignage&action=lire&id='.$temoignage->id.'&lang='.$_GET['lang']); ?>" title="<? echo $lang_apptemoignage["LireLeTemoignage"]; ?>"><img src="<? echo $photo; ?>" alt="<? echo $temoignage->username; ?>" /></a> <? echo $temoignage->texte; ?>
+												<a href="<?php echo JL::url('index.php?app=temoignage&action=lire&id='.$temoignage->id.'&lang='.$_GET['lang']); ?>" title="<?php echo $lang_apptemoignage["LireLeTemoignage"]; ?>"><img src="<?php echo $photo; ?>" alt="<?php echo $temoignage->username; ?>" /></a> <?php echo $temoignage->texte; ?>
 												<br />
-												<a href="<? echo JL::url('index.php?app=temoignage&action=lire&id='.$temoignage->id.'&lang='.$_GET['lang']); ?>" title="<? echo $lang_apptemoignage["LireLeTemoignage"]; ?>" class="lire"><? echo $lang_apptemoignage["LireLeTemoignage"];?></a>
+												<a href="<?php echo JL::url('index.php?app=temoignage&action=lire&id='.$temoignage->id.'&lang='.$_GET['lang']); ?>" title="<?php echo $lang_apptemoignage["LireLeTemoignage"]; ?>" class="lire"><?php echo $lang_apptemoignage["LireLeTemoignage"];?></a>
 										</div>
-						<?
-									}
+						<?php 									}
 									 if($i%2==0){
 						?>
 									<div class="clear"></div>
-						<?				 
+						<?php	 
 									}
 									$i++;
 								}
 							}
 						?>
 							
-						<?
-							// pagination à affiche
+						<?php 							// pagination à affiche
 							if($pagination->pageTotal > 1) { ?>
 							<div class="pagination">
-								<span><? echo $lang_apptemoignage["Pages"]; ?></span> 
+								<span><?php echo $lang_apptemoignage["Pages"]; ?></span> 
 								
-								<?
-								$previous = 0;
+								<?php 								$previous = 0;
 								foreach($pagination->pageList as $page) {
 								
 									// détermine si on affiche la page active
@@ -179,20 +171,17 @@
 										echo '... ';
 									}
 									?>
-										<a href="<? echo JL::url('index.php?app=temoignage'.($page->value > 1 ? '&page='.$page->value : '').'&lang='.$_GET['lang']); ?>" title="<? echo $categorie->nom; if($page->value > 1) { ?> - <? echo $lang_apptemoignage["Page"].' '.$page->value; } ?>" <? if($pageActive) { ?>class="pageActive"<? } ?>><? echo $page->value; ?></a> 
-									<?
-									$previous = $page->value;
+										<a href="<?php echo JL::url('index.php?app=temoignage'.($page->value > 1 ? '&page='.$page->value : '').'&lang='.$_GET['lang']); ?>" title="<?php echo $categorie->nom; if($page->value > 1) { ?> - <?php echo $lang_apptemoignage["Page"].' '.$page->value; } ?>" <?php if($pageActive) { ?>class="pageActive"<?php } ?>><?php echo $page->value; ?></a> 
+									<?php 									$previous = $page->value;
 								}
 							?>
 							</div>
-							<?
-							}
+							<?php 							}
 						
 						} else {
 						?>
-								<? echo $lang_apptemoignage["AucunTemoignage"]; ?>
-						<?
-						}
+								<?php echo $lang_apptemoignage["AucunTemoignage"]; ?>
+						<?php 						}
 						?>
 						</p>
 					</div>
@@ -204,15 +193,13 @@
 				
 				<!-- Partie Droite -->
 				<div class="colr"> 
-				<?
-					JL::loadApp('menu_temoignage_offline');
+				<?php 					JL::loadApp('menu_temoignage_offline');
 				?>
 				</div>
 				<div style="clear:both"> </div>
 			</div>
     
-		<?
-		
+		<?php 		
 		}
 		
 		function lire(&$temoignage) {
@@ -230,8 +217,7 @@
 						<h1><?php echo $temoignage->titre;?></h1>
 						<br />
 						<p>
-						<?
-							// récup la photo de l'utilisateur
+						<?php 							// récup la photo de l'utilisateur
 							$photo = JL::userGetPhoto($temoignage->user_id, '220', 'profil', $temoignage->photo_defaut);
 
 							// photo par défaut
@@ -240,10 +226,10 @@
 							}
 						?>
 							<div class="temoignage">
-									<img width="200" src="<? echo $photo; ?>" alt="<? echo $temoignage->username; ?>" /> <? echo $temoignage->texte; ?>
+									<img width="200" src="<?php echo $photo; ?>" alt="<?php echo $temoignage->username; ?>" /> <?php echo $temoignage->texte; ?>
 									<div class="clear"></div>
 									<div class="publication">
-										<? echo $lang_apptemoignage["TemoignagePublieLePar"]; ?>
+										<?php echo $lang_apptemoignage["TemoignagePublieLePar"]; ?>
 									</div>
 							</div>
 						</p>
@@ -256,15 +242,13 @@
 				
 				<!-- Partie Droite -->
 				<div class="colr"> 
-				<?
-					JL::loadApp('menu_temoignage_offline');
+				<?php 					JL::loadApp('menu_temoignage_offline');
 				?>
 				</div>
 				<div style="clear:both"> </div>
 			</div>
     
-		<?
-		
+		<?php 		
 		}
 		
 		
@@ -283,34 +267,33 @@
 						<h1><?php echo $contenu->titre; ?></h1>
 						<br />
 						<p>
-							<? echo $contenu->texte; ?>
+							<?php echo $contenu->texte; ?>
 						</p>
-						<?
-							if(count($messages)){
+						<?php 							if (is_array($messages)){
 								// affichage des messages
 								$this->messages($messages, false);
 							}
 						?>
 						<p>
 							<div class="formulaire">
-								<form name="temoignageform" action="<? echo JL::url('index.php?app=temoignage&action=edit').'&lang='.$_GET['lang']; ?>" method="post">
+								<form name="temoignageform" action="<?php echo JL::url('index.php?app=temoignage&action=edit').'&lang='.$_GET['lang']; ?>" method="post">
 									<div class="formu" style="height:300px;">
-										<h2><? echo $lang_apptemoignage["VotreTemoignage"]; ?></h2>
+										<h2><?php echo $lang_apptemoignage["VotreTemoignage"]; ?></h2>
 										<div class="pad">
 											<table cellpadding="0px" cellspacing="0px">
-												<tr><td class="key"><label for="nom"><? echo $lang_apptemoignage["Titre"]; ?></label> *</td><td><input type="text" name="titre" id="titre" maxlength="20" value="<?php echo $row->titre; ?>" /></td></tr>
-												<tr><td class="key"><label for="prenom"><? echo $lang_apptemoignage["Texte"]; ?></label> *</td><td><textarea name="texte" id="texte" style="width:325px;height:235px;"><?php echo $row->texte; ?></textarea></td></tr>
+												<tr><td class="key"><label for="nom"><?php echo $lang_apptemoignage["Titre"]; ?></label> *</td><td><input type="text" name="titre" id="titre" maxlength="20" value="<?php echo $row->titre; ?>" /></td></tr>
+												<tr><td class="key"><label for="prenom"><?php echo $lang_apptemoignage["Texte"]; ?></label> *</td><td><textarea name="texte" id="texte" style="width:325px;height:235px;"><?php echo $row->texte; ?></textarea></td></tr>
 											</table>
 										</div>
 									</div>
 									
 									<p class="small"  style="font-style:italic">
-										* <? echo $lang_apptemoignage["LesChampsMarques"]; ?>
+										* <?php echo $lang_apptemoignage["LesChampsMarques"]; ?>
 									</p>
 									
 									
 									<input type="hidden" name="action" value="envoyer" />
-									<input type="submit" value="<? echo $lang_apptemoignage["Envoyer"]; ?>" class="envoyerForm" />
+									<input type="submit" value="<?php echo $lang_apptemoignage["Envoyer"]; ?>" class="envoyerForm" />
 								</form>
 							</div>
 						</p>
@@ -323,15 +306,13 @@
 				
 				<!-- Partie Droite -->
 				<div class="colr"> 
-				<?
-					JL::loadApp('menu_temoignage_offline');
+				<?php 					JL::loadApp('menu_temoignage_offline');
 				?>
 				</div>
 				<div style="clear:both"> </div>
 			</div>
     
-		<?
-		
+		<?php 		
 		}
 		
 	}

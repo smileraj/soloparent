@@ -9,7 +9,7 @@
 	if($_GET["lang"]=='fr')
 		$langString = "";
 	else
-		$langString = "_".$_GET[lang];
+		$langString = "_".$_GET["lang"];
 
 	/*
 		info: pr&eacute;sentation du syst&egrave;me de points (content)
@@ -160,7 +160,7 @@
 		// WHERE
 		$where[]			= "pu.user_id = '".$db->escape($user->id)."'";
 
-		if(count($where)) {
+		if (is_array($where)) {
 			$_where = " WHERE ".implode(" AND ", $where);
 		}
 
@@ -228,7 +228,7 @@
 		$where[]	= 'u.confirmed = 1';
 		$where[]	= 'u.published = 1';
 
-		if(count($where)) {
+		if (is_array($where)) {
 			$_where = " WHERE ".implode(" AND ", $where);
 		}
 

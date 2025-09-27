@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 	
 	require_once('temoignage.html.php');
@@ -32,11 +32,11 @@
 	function temoignageSave() {
 		global $db, $messages;
 		
-		// récup les données
+		// rï¿½cup les donnï¿½es
 		$row 		=& getData();
 		
 
-		// vérifications des champs
+		// vï¿½rifications des champs
 		if(!$row->titre) {
 			$messages[]	= '<span class="error">Veuillez indiquer le titre de votre t&eacute;moignage s\'il vous pla&icirc;t.</span>';
 		}
@@ -49,14 +49,14 @@
 		// s'il n'y a pas d'erreur
 		if(!count($messages)) {
 		
-			// récup le active actuel
+			// rï¿½cup le active actuel
 			$query = "SELECT active FROM temoignage WHERE id = '".(int)$row->id."' LIMIT 0,1";
 			$active = $db->loadResult($query);
 			
 			// temoignage en attente de validation avant la sauvegarde
 			if($active == 2) {
 			
-				// récup l'email de l'auteur
+				// rï¿½cup l'email de l'auteur
 				$query = "SELECT email"
 				." FROM"
 				." ("
@@ -77,55 +77,55 @@
 			
 				if($row->active == 1) {
 				
-					// envoi du mail "votre appel à témoins a été publié"
-					$message = "Bonjour,\n\nVotre témoignage a été publié !\n\nCelui-ci est disponible à l'adresse suivante:\n".SITE_URL."/".JL::url('index.php?app=temoignage&action=read&id='.$row->id)."\n\n";
+					// envoi du mail "votre appel ï¿½ tï¿½moins a ï¿½tï¿½ publiï¿½"
+					$message = "Bonjour,\n\nVotre tï¿½moignage a ï¿½tï¿½ publiï¿½ !\n\nCelui-ci est disponible ï¿½ l'adresse suivante:\n".SITE_URL."/".JL::url('index.php?app=temoignage&action=read&id='.$row->id)."\n\n";
 					
-					// si un motif a été indiqué
+					// si un motif a ï¿½tï¿½ indiquï¿½
 					if($row->motif) {
 					
 						$message .= $row->motif."\n\n";
 						
 					}
 					
-					$message .= "Cordialement,\nL'équipe ParentSolo.ch";
+					$message .= "Cordialement,\nL'ï¿½quipsolocircl.comch";
 					
 					// version texte et html
 					$message = str_replace("\n", "\n<br />", $message);
 					
-					JL::mail($email, '[ ParentSolo.ch ] Votre témoignage', $message);
+					JL::mail($email, '[ solocircl.com ] Votre tï¿½moignage', $message);
 					
 					// mesage de confirmation
-					$messages[]	= '<span class="valid">Email de validation envoyé !</span>';
+					$messages[]	= '<span class="valid">Email de validation envoyï¿½ !</span>';
 				
 				} elseif($row->active == 0) {
 				
-					// envoi du mail "votre appel à témoins a été publié"
-					$message = "Bonjour,\n\nVotre témoignage a été refusé !\n\n";
+					// envoi du mail "votre appel ï¿½ tï¿½moins a ï¿½tï¿½ publiï¿½"
+					$message = "Bonjour,\n\nVotre tï¿½moignage a ï¿½tï¿½ refusï¿½ !\n\n";
 					
-					// si un motif a été indiqué
+					// si un motif a ï¿½tï¿½ indiquï¿½
 					if($row->motif) {
 					
 						$message .= $row->motif."\n\n";
 						
 					}
 					
-					$message .= "Cordialement,\nL'équipe ParentSolo.ch";
+					$message .= "Cordialement,\nL'ï¿½quipsolocircl.comch";
 					
 					// version texte et html
 					$message = str_replace("\n", "\n<br />", $message);
 					
-					JL::mail($email, '[ ParentSolo.ch ] Votre témoignage', $message);
-					JL::mail('n.favaron@babybook.ch', '[ ParentSolo.ch ] Votre témoignage', $message);
+					JL::mail($email, '[ solocircl.com ] Votre tï¿½moignage', $message);
+					JL::mail('n.favaron@babybook.ch', '[ solocircl.com ] Votre tï¿½moignage', $message);
 					
 					// mesage de confirmation
-					$messages[]	= '<span class="valid">Email de refus envoyé !</span>';
+					$messages[]	= '<span class="valid">Email de refus envoyï¿½ !</span>';
 				
 				}
 				
 			}
 			
 			
-			// mise à jour dans la DB
+			// mise ï¿½ jour dans la DB
 			$query = "UPDATE temoignage SET"
 			." titre = '".$db->escape($row->titre)."',"
 			." texte = '".$db->escape($row->texte)."',"
@@ -145,14 +145,14 @@
 	}
 	
 	
-	// éditer temoignage
+	// ï¿½diter temoignage
 	function temoignageEditer() {
 		global $db, $messages;
 		
-		// récup les données par défaut
+		// rï¿½cup les donnï¿½es par dï¿½faut
 		$data 		=& getData();
 	
-		// récup les infos du temoignage
+		// rï¿½cup les infos du temoignage
 		$query = "SELECT t.*"
 		." FROM temoignage AS t"
 		." WHERE t.id = '".$data->id."'"
@@ -163,7 +163,7 @@
 		// appel invalide
 		if(!$row->id) JL::redirect(SITE_URL_ADMIN.'/index.php?app=temoignage');
 		
-		// variables par défaut
+		// variables par dï¿½faut
 		foreach($data as $k => $v) {
 			$row->{$k} = $v ? $v : $row->{$k};
 		}
@@ -182,21 +182,21 @@
 		$resultatParPage	= RESULTS_NB_LISTE_ADMIN;
 		$search				= array();
 		$lists				= array();
-		$where				= array();
+		$where				= null;
 		$_where				= '';
 		
 		// params
 		
-		// si on passe une recherche en param, alors on force la page 1 (pour éviter de charger la page 36, s'il n'y a que 2 pages à voir)
+		// si on passe une recherche en param, alors on force la page 1 (pour ï¿½viter de charger la page 36, s'il n'y a que 2 pages ï¿½ voir)
 		$search['page']			= JL::getVar('search_t_page', JL::getSessionInt('search_t_page', 1));
 		
-		// mot cherché
+		// mot cherchï¿½
 		$search['word']			= trim(JL::getVar('search_t_word', JL::getSession('search_t_word', ''), true));
 		$search['order']		= JL::getVar('search_t_order', JL::getSession('search_t_order', 'date_add'), 'date_add');
 		$search['ascdesc']		= JL::getVar('search_t_ascdesc', JL::getSession('search_t_ascdesc', 'desc'), 'desc');
 		$search['active']		= JL::getVar('search_t_active', JL::getSession('search_t_active', -1), -1);
 		
-		// conserve en session ces paramètres
+		// conserve en session ces paramï¿½tres
 		JL::setSession('search_t_page', 		$search['page']);
 		JL::setSession('search_t_word', 		$search['word']);
 		JL::setSession('search_t_order', 		$search['order']);
@@ -204,25 +204,25 @@
 		JL::setSession('search_t_active', 		$search['active']);
 		
 		
-		// critère de tri
+		// critï¿½re de tri
 		$order				= array();
 		$order[]			= JL::makeOption('date_add', 	'Date ajout');
 		$order[]			= JL::makeOption('username', 	'Pseudo');
 		$order[]			= JL::makeOption('titre', 	'Titre');
 		$lists['order']		= JL::makeSelectList($order, 'search_t_order', 'class="searchInput"', 'value', 'text', $search['order']);
 
-		// ordre croissant/décroissant
+		// ordre croissant/dï¿½croissant
 		$ascdesc			= array();
 		$ascdesc[]			= JL::makeOption('asc', 			'Croissant');
-		$ascdesc[]			= JL::makeOption('desc', 			'Décroissant');
+		$ascdesc[]			= JL::makeOption('desc', 			'Dï¿½croissant');
 		$lists['ascdesc']	= JL::makeSelectList($ascdesc, 'search_t_ascdesc', 'class="searchInput"', 'value', 'text', $search['ascdesc']);
 		
 		// statut
 		$active				= array();
 		$active[]			= JL::makeOption('-1', 				'Tous');
 		$active[]			= JL::makeOption('2', 				'A valider');
-		$active[]			= JL::makeOption('1', 				'Confirmés');
-		$active[]			= JL::makeOption('0', 				'Refusés');
+		$active[]			= JL::makeOption('1', 				'Confirmï¿½s');
+		$active[]			= JL::makeOption('0', 				'Refusï¿½s');
 		$lists['active']	= JL::makeSelectList($active, 'search_t_active', 'class="searchInput"', 'value', 'text', $search['active']);
 		
 		
@@ -236,13 +236,13 @@
 			$where[]		= "t.active = '".addslashes($search['active'])."'";
 		}
 		
-		// génère le where
-		if(count($where)) {
+		// gï¿½nï¿½re le where
+		if (is_array($where)) {
 			$_where			= " WHERE ".implode(' AND ', $where);
 		}
 		
 		
-		// compte le nombre de résultats
+		// compte le nombre de rï¿½sultats
 		$query = "SELECT COUNT(id)"
 		." FROM"
 		." ("
@@ -261,7 +261,7 @@
 		$search['page_total'] 	= ceil($search['result_total']/$resultatParPage);
 		
 		
-		// recherche des données
+		// recherche des donnï¿½es
 		$query = "SELECT id, titre, active, username, date_add"
 		." FROM"
 		." ("
@@ -286,7 +286,7 @@
 	}
 	
 	
-	// données de l'utilisateur
+	// donnï¿½es de l'utilisateur
 	function &getData() {
 	
 		$data = new StdClass();

@@ -190,7 +190,7 @@
 					$texte .= "Possible publication de mani&egrave;re anonyme sur le site:  Non";
 				}
 				
-				//$email = 'info@parentsolo.ch';
+				//$email = 'info@solocircl.com';
 				$email = $contact->email_expert;
 				//$email = 'm.jombart@babybook.ch';
 				

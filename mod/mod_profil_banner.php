@@ -5,8 +5,7 @@
 
 ?>
 <div class="profil_banner">
-	<?
-	/*if($_GET['lang']=="fr" || $_GET['lang']=="en"){
+	<?php 	/*if($_GET['lang']=="fr" || $_GET['lang']=="en"){
 	?>
 		<!-- Start of Ad'LINK ADJ Tag for AdFRONT - Javascript Format - PARENTSOLO.EX.CH-FR-DIVERSERUBRIKEN-MBR-T SIZE : 468x60,728x90 -->
 		<script type="text/javascript">
@@ -20,8 +19,7 @@
 			</a>
 		</noscript>
 		<!-- End of Ad'LINK ADJ Tag for AdFRONT - Javascript Format - PARENTSOLO.EX.CH-FR-DIVERSERUBRIKEN-MBR-T SIZE : 468x60,728x90  -->
-	<?
-	}else{
+	<?php 	}else{
 	?>
 		<!-- Start of Ad'LINK ADJ Tag for AdFRONT - Javascript Format - PARENTSOLO.EX.CH-DE-DIVERSERUBRIKEN-MBR-T SIZE : 468x60,728x90 -->
 		<script type="text/javascript">
@@ -35,7 +33,7 @@
 			</a>
 		</noscript>
 		<!-- End of Ad'LINK ADJ Tag for AdFRONT - Javascript Format - PARENTSOLO.EX.CH-DE-DIVERSERUBRIKEN-MBR-T SIZE : 468x60,728x90  -->
-	<?   
+	<?php   
 	}   */
 	?>
 </div>

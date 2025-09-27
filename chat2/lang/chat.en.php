@@ -14,7 +14,7 @@ $langChat= array(
 	"closeConvConfirm" => "Are you sure you want to close this conversation?",
 	"CorrespBlacklist" => "You can't send messages to a user on your blacklist.",
 	"UserBlacklist" => "You can send no message to this member, then the member does not exist or not anymore.",
-	"Abonnement" => " To chat and use chat, you must subscribe or renew your Parentsolo.ch subscription.To subscribe click HERE ",
+	"Abonnement" => " To chat and use chat, you must subscribe or renew your solocircl.com subscription.To subscribe click HERE ",
 	
 	"AHeure" => "to",
 	
@@ -27,7 +27,7 @@ $langChat= array(
 	
 	"ProfilNonValide" => "Your profile has not yet been validated by a moderator. You'll receive a phone call within 1 to 2 business days to confirm your profile. These waiting days will of course be added to your subscription",
 	"QualiteServiceOptimale" => "This action is taken in order to guarantee an optimal quality of service. Any malicious person wishing to bypass the phone confirmation is therefore unable to contact other members as their profile will not have been validated",
-	"ParentsoloVousRemercie" => "Parentsolo.ch thanks you for your understanding",
+	"ParentsoloVousRemercie" => "solocircl.com thanks you for your understanding",
 	
 	"MembreNonConfirme" => "This member profile has not yet been confirmed",
 	

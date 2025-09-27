@@ -4,19 +4,19 @@ $lang_redac = array(
 
 	//------------------Page redac.html.php ---------
 
-	"ActualiteDu" => "actualité du",
+	"ActualiteDu" => "actualitï¿½ du",
 	
 	"MenuPresse" => "Menu Presse",
-	"ParentsoloDansPresse" => "ParentSolo.ch dans la presse",
-	"CommuniqueDePresse" => "Communiqué de presse",
+	"ParentsoloDansPresse" => "solocircl.com dans la presse",
+	"CommuniqueDePresse" => "Communiquï¿½ de presse",
 	"DossierDePresse" => "Dossier de presse",
-	"Medias" => "Médias",
+	"Medias" => "Mï¿½dias",
 	
-	"RebriquePresse" => "Rubrique Presse Parentsolo.ch",
+	"RebriquePresse" => "Rubrique Presse solocircl.com",
 	
-	"VousPouvezUtiliser" => "Vous pouvez utiliser le menu situé à gauche pour naviguer d'une page à l'autre de la rubrique &quot;Presse&quot;",
+	"VousPouvezUtiliser" => "Vous pouvez utiliser le menu situï¿½ ï¿½ gauche pour naviguer d'une page ï¿½ l'autre de la rubrique &quot;Presse&quot;",
 	
-	"RetourALAccueil" => "Retour à l'accueil",
+	"RetourALAccueil" => "Retour ï¿½ l'accueil",
 	"Envoyer" => "Envoyer",
 
 	

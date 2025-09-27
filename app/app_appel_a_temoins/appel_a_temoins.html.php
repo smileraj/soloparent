@@ -11,18 +11,16 @@ public static function messages(&$messages) {
 			include("lang/app_appel_a_temoins.".$_GET['lang'].".php");
 
 			// s'il y a des messages &agrave; afficher
-			if(count($messages)) {
+			if (is_array($messages)) {
 			?>
 				<h2 class="messages parentsolo_title_h3"><?php echo $lang_appel_a_temoins["MessagesParentsolo"];?></h2>
 				<div class="messages">
-				<?
-					// affiche les messages
+				<?php 					// affiche les messages
 					JL::messages($messages);
 				?>
 				</div>
 				<br />
-			<?
-			}
+			<?php 			}
 
 		}
 
@@ -47,8 +45,7 @@ public static function messages(&$messages) {
 			<div class="row parentsolo_pt_15">
     <div class="col-md-12">
         
-    <?
-							$i = 1;
+    <?php 							$i = 1;
 							
 							if(is_array($appels_temoins) && $nb_appels_temoins){
 								
@@ -87,8 +84,8 @@ public static function messages(&$messages) {
                 <div class="box">
                     <div class="outer">
                         <div class="round">
-                            <a href="<? echo JL::url('index.php?app=appel_a_temoins&action=read&id='.$appel_temoins->id.'&lang='.$_GET['lang']); ?>" title="<?php echo $lang_appel_a_temoins["LireAppelATemoins"];?>" >
-                                <img width="100" height="100" src="<? echo $photo; ?>" alt="<? echo $appel_temoins->username; ?>" class="attachment-70x70 size-70x70 wp-post-image" alt="26" srcset="<? echo $photo; ?>" sizes="(max-width: 70px) 100vw, 70px">
+                            <a href="<?php echo JL::url('index.php?app=appel_a_temoins&action=read&id='.$appel_temoins->id.'&lang='.$_GET['lang']); ?>" title="<?php echo $lang_appel_a_temoins["LireAppelATemoins"];?>" >
+                                <img width="100" height="100" src="<?php echo $photo; ?>" alt="<?php echo $appel_temoins->username; ?>" class="attachment-70x70 size-70x70 wp-post-image" alt="26" srcset="<?php echo $photo; ?>" sizes="(max-width: 70px) 100vw, 70px">
                             </a>
                         </div>
 
@@ -98,12 +95,12 @@ public static function messages(&$messages) {
             </div>
             <div class="col-md-9 col-sm-8 col-sx-8">
                 <div class="parentsolo_pt_15 parentsolo_pl_15 parentsolo_pb_15">
-                    <h2 class="name parentsolo_pt_10"><? echo $appel_temoins->media; ?></h2>
+                    <h2 class="name parentsolo_pt_10"><?php echo $appel_temoins->media; ?></h2>
                     <div class="text-box parentsolo_pt_10 parentsolo_pb_10">
-                       <? echo $appel_temoins->annonce; ?>
+                       <?php echo $appel_temoins->annonce; ?>
 						</div>
-                    <a class="username" href="<? echo JL::url('index.php?app=appel_a_temoins&action=read&id='.$appel_temoins->id.'&lang='.$_GET['lang']); ?>" title="<?php echo $lang_appel_a_temoins["LireAppelATemoins"];?>">
-						<h6 class="parentsolo_text-right parentsolo_txt_clr parentsolo_txt_overflow"><? echo $appel_temoins->titre; ?></h6>
+                    <a class="username" href="<?php echo JL::url('index.php?app=appel_a_temoins&action=read&id='.$appel_temoins->id.'&lang='.$_GET['lang']); ?>" title="<?php echo $lang_appel_a_temoins["LireAppelATemoins"];?>">
+						<h6 class="parentsolo_text-right parentsolo_txt_clr parentsolo_txt_overflow"><?php echo $appel_temoins->titre; ?></h6>
 					</a>
                 </div>
             </div>
@@ -115,8 +112,7 @@ public static function messages(&$messages) {
 						
 						
 								
-						<?
-									if($i%2 == 0){echo "<div class='clear'></div>"; }
+						<?php 									if($i%2 == 0){echo "<div class='clear'></div>"; }
 								
 									$i++;
 								}
@@ -137,8 +133,7 @@ public static function messages(&$messages) {
 										<?php echo $lang_appel_a_temoins["AucuneAppelATemoins"];?>
 									</td>
 								</tr>
-						<?
-							}
+						<?php 							}
 						?>
 	</div>
 			</div>
@@ -149,13 +144,11 @@ public static function messages(&$messages) {
 					</td>
 				</tr>
 			</table>
-		<?
-			
+		<?php 			
 			if($nb_appels_temoins > 6){
 		?>
 				<div class="row parentsolo_pt_15">
-    <div class="col-md-12"><?
-								for($j=6; $j<$nb_appels_temoins; $j++) {
+    <div class="col-md-12"><?php 								for($j=6; $j<$nb_appels_temoins; $j++) {
 									$appel_temoins = $appels_temoins[$j];
 									
 									// limitation de la longueur du titre
@@ -188,8 +181,8 @@ public static function messages(&$messages) {
                 <div class="box">
                     <div class="outer">
                         <div class="round">
-                            <a href="<? echo JL::url('index.php?app=appel_a_temoins&action=read&id='.$appel_temoins->id.'&lang='.$_GET['lang']); ?>" title="<?php echo $lang_appel_a_temoins["LireAppelATemoins"];?>">
-                                <img width="100" height="100" src="<? echo $photo; ?>" alt="<? echo $appel_temoins->username; ?>" class="attachment-70x70 size-70x70 wp-post-image" alt="26" srcset="<? echo $photo; ?>" sizes="(max-width: 70px) 100vw, 70px">
+                            <a href="<?php echo JL::url('index.php?app=appel_a_temoins&action=read&id='.$appel_temoins->id.'&lang='.$_GET['lang']); ?>" title="<?php echo $lang_appel_a_temoins["LireAppelATemoins"];?>">
+                                <img width="100" height="100" src="<?php echo $photo; ?>" alt="<?php echo $appel_temoins->username; ?>" class="attachment-70x70 size-70x70 wp-post-image" alt="26" srcset="<?php echo $photo; ?>" sizes="(max-width: 70px) 100vw, 70px">
                             </a>
                         </div>
 
@@ -199,18 +192,17 @@ public static function messages(&$messages) {
             </div>
             <div class="col-md-9 col-sm-8 col-sx-8">
                 <div class="parentsolo_pt_15 parentsolo_pl_15 parentsolo_pb_15">
-                    <h2 class="name parentsolo_pt_10"><? echo $appel_temoins->media; ?></h2>
+                    <h2 class="name parentsolo_pt_10"><?php echo $appel_temoins->media; ?></h2>
                     <div class="text-box parentsolo_pt_10 parentsolo_pb_10">
-                       <? echo $appel_temoins->annonce; ?>
+                       <?php echo $appel_temoins->annonce; ?>
 						</div>
-                    <a class="username"  href="<? echo JL::url('index.php?app=appel_a_temoins&action=read&id='.$appel_temoins->id.'&lang='.$_GET['lang']); ?>" title="<?php echo $lang_appel_a_temoins["LireAppelATemoins"];?>">
-						<h6 class="parentsolo_text-right parentsolo_txt_clr parentsolo_txt_overflow"><? echo $appel_temoins->titre; ?></h6>
+                    <a class="username"  href="<?php echo JL::url('index.php?app=appel_a_temoins&action=read&id='.$appel_temoins->id.'&lang='.$_GET['lang']); ?>" title="<?php echo $lang_appel_a_temoins["LireAppelATemoins"];?>">
+						<h6 class="parentsolo_text-right parentsolo_txt_clr parentsolo_txt_overflow"><?php echo $appel_temoins->titre; ?></h6>
 					</a>
                 </div>
             </div>
         </div></div>
-						<?
-									if($i%2 == 0){echo "<div class='clear'></div>"; }
+						<?php 									if($i%2 == 0){echo "<div class='clear'></div>"; }
 								
 									$i++;
 								}
@@ -231,8 +223,7 @@ public static function messages(&$messages) {
 										<?php echo $lang_appel_a_temoins["AucuneAppelATemoins"];?>
 									</td>
 								</tr>
-						<?
-							}
+						<?php 							}
 						?>
 	</div>
 				</div>
@@ -240,35 +231,32 @@ public static function messages(&$messages) {
 				<div class="col-md-12 parentsolo_plr_0">
 					<div class="col-md-12 parentsolo_pagination parentsolo_plr_0" >
 						<div class="col-md-3 text-left">								
-									<? // page pr&eacute;c&eacute;dente
+									<?php // page pr&eacute;c&eacute;dente
 									if($search['page'] > 1) { ?>
-										<a href="<? echo JL::url(SITE_URL.'/index.php?app=appel_a_temoins&page='.($search['page']-1).'&'.'&lang='.$_GET["lang"]); ?>" class="bouton envoyer" title="<?php echo $lang_appel_a_temoins["PagePrecedente"];?>">&laquo; <?php echo $lang_appel_a_temoins["PagePrecedente"];?></a>
-									<? } ?>
+										<a href="<?php echo JL::url(SITE_URL.'/index.php?app=appel_a_temoins&page='.($search['page']-1).'&'.'&lang='.$_GET["lang"]); ?>" class="bouton envoyer" title="<?php echo $lang_appel_a_temoins["PagePrecedente"];?>">&laquo; <?php echo $lang_appel_a_temoins["PagePrecedente"];?></a>
+									<?php } ?>
 								</div>
 							<div class="col-md-6 text-center page_nav">
 									<span class="orange"><?php echo $search['page_total'] == 1 ? $lang_appel_a_temoins["Page"] : $lang_appel_a_temoins["Pages"];?></span>:
-									<? if($debut > 1) { ?> <a href="<? echo JL::url(SITE_URL.'/index.php?app=appel_a_temoins&page=1'.'&'.'&lang='.$_GET["lang"]); ?>" title="<?php echo $lang_appel_a_temoins["Debut"];?>"><?php echo $lang_appel_a_temoins["Debut"];?></a> ...<? }?>
-									<?
-										for($i=$debut; $i<=$fin; $i++) {
+									<?php if($debut > 1) { ?> <a href="<?php echo JL::url(SITE_URL.'/index.php?app=appel_a_temoins&page=1'.'&'.'&lang='.$_GET["lang"]); ?>" title="<?php echo $lang_appel_a_temoins["Debut"];?>"><?php echo $lang_appel_a_temoins["Debut"];?></a> ...<?php }?>
+									<?php 										for($i=$debut; $i<=$fin; $i++) {
 										?>
-											 <a href="<? echo JL::url(SITE_URL.'/index.php?app=appel_a_temoins&page='.$i.'&'.'&lang='.$_GET["lang"]); ?>" title="<?php echo $lang_appel_a_temoins["Page"];?> <? echo $i; ?>" <? if($i == $search['page']) { ?>class="active"<? } ?>><? echo $i; ?></a>
-										<?
-										}
+											 <a href="<?php echo JL::url(SITE_URL.'/index.php?app=appel_a_temoins&page='.$i.'&'.'&lang='.$_GET["lang"]); ?>" title="<?php echo $lang_appel_a_temoins["Page"];?> <?php echo $i; ?>" <?php if($i == $search['page']) { ?>class="active"<?php } ?>><?php echo $i; ?></a>
+										<?php 										}
 									?>
-									<? if($fin < $search['page_total']) { ?> ... <a href="<? echo JL::url(SITE_URL.'/index.php?app=appel_a_temoins&page='.$search['page_total'].'&'.'&lang='.$_GET["lang"]); ?>" title="<?php echo $lang_appel_a_temoins["Fin"];?> <? echo $search['page_total']; ?>"><?php echo $lang_appel_a_temoins["Fin"];?></a><? }?> <i>(<? echo $search['result_total']; ?> <? echo $search['result_total'] > 1 ? ''.$lang_appel_a_temoins["AppelsATemoins"].'' : ''.$lang_apptemoignage["AppelATemoins"].''; ?>)</i>
+									<?php if($fin < $search['page_total']) { ?> ... <a href="<?php echo JL::url(SITE_URL.'/index.php?app=appel_a_temoins&page='.$search['page_total'].'&'.'&lang='.$_GET["lang"]); ?>" title="<?php echo $lang_appel_a_temoins["Fin"];?> <?php echo $search['page_total']; ?>"><?php echo $lang_appel_a_temoins["Fin"];?></a><?php }?> <i>(<?php echo $search['result_total']; ?> <?php echo $search['result_total'] > 1 ? ''.$lang_appel_a_temoins["AppelsATemoins"].'' : ''.$lang_apptemoignage["AppelATemoins"].''; ?>)</i>
 									</div>
 								    <div class="col-md-3 text-right">
-									<? // page suivante
+									<?php // page suivante
 									if($search['page'] < $search['page_total']) { ?>
-										<a href="<? echo JL::url(SITE_URL.'/index.php?app=appel_a_temoins&page='.($search['page']+1).'&'.'&lang='.$_GET["lang"]); ?>" class="bouton envoyer" title="<?php echo $lang_appel_a_temoins["PageSuivante"];?>"><?php echo $lang_appel_a_temoins["PageSuivante"];?> &raquo;</a>
-									<? } ?>
+										<a href="<?php echo JL::url(SITE_URL.'/index.php?app=appel_a_temoins&page='.($search['page']+1).'&'.'&lang='.$_GET["lang"]); ?>" class="bouton envoyer" title="<?php echo $lang_appel_a_temoins["PageSuivante"];?>"><?php echo $lang_appel_a_temoins["PageSuivante"];?> &raquo;</a>
+									<?php } ?>
 								</div>
 							</div>
 						</div>
 					
 				
-		<?
-		}
+		<?php 		}
 
 
 		// formulaire de r&eacute;daction d'un appel
@@ -284,11 +272,10 @@ public static function messages(&$messages) {
 			<div class="wedd-seperator parentsolo_pb_10"><img src="images/bg_img/saprator.png" alt=""></div>
 			</div>
 		<div class="texte_explicatif">
-			<? echo $data->texte; ?>
+			<?php echo $data->texte; ?>
 		</div>
 		<br />
-		<?
-			if(count($messages)){
+		<?php 			if (is_array($messages)){
 				// affichage des messages
 				HTML_appel_a_temoins::messages($messages, false);
 			}
@@ -304,7 +291,7 @@ public static function messages(&$messages) {
 							<label for="media_id"><?php echo $lang_appel_a_temoins["TypeDeMedia"];?>:</label>
 						</div>
 						<div class="col-md-8">
-							<? echo $list['media_id']; ?>
+							<?php echo $list['media_id']; ?>
 						</div>
 					</div>
 					</div>
@@ -314,7 +301,7 @@ public static function messages(&$messages) {
 							<label for="titre"><?php echo $lang_appel_a_temoins["Titre"];?>:*</label>
 						</div>
 						<div class="col-md-8">
-							<input type="text" id="titre" class="msgtxt" required name="titre" maxlength="150" value="<? echo $row->titre; ?>">
+							<input type="text" id="titre" class="msgtxt" required name="titre" maxlength="150" value="<?php echo $row->titre; ?>">
 						</div>
 					</div>
 					</div>
@@ -324,7 +311,7 @@ public static function messages(&$messages) {
 							<label for="annonce"><?php echo $lang_appel_a_temoins["Annonce"];?>:*</label>
 						</div>
 						<div class="col-md-8">
-							<textarea name="annonce" id="annonce" required style="width:100%; height: 105px;" ><? echo $row->annonce; ?></textarea>
+							<textarea name="annonce" id="annonce" required style="width:100%; height: 105px;" ><?php echo $row->annonce; ?></textarea>
 						</div>
 					</div>
 					</div>
@@ -334,7 +321,7 @@ public static function messages(&$messages) {
 							<label for="date_limite"><?php echo $lang_appel_a_temoins["DateLimite"];?>:</label>
 						</div>
 						<div class="col-md-8">
-							<input type="text" id="date_limite"  class="msgtxt" name="date_limite" maxlength="50" value="<? echo $row->date_limite; ?>">
+							<input type="text" id="date_limite"  class="msgtxt" name="date_limite" maxlength="50" value="<?php echo $row->date_limite; ?>">
 						</div>
 					</div>
 					</div>
@@ -344,7 +331,7 @@ public static function messages(&$messages) {
 							<label for="date_diffusion"><?php echo $lang_appel_a_temoins["DateDePublication"];?>:</label>
 						</div>
 						<div class="col-md-8">
-							<input type="text" id="date_diffusion"  class="msgtxt" name="date_diffusion" maxlength="50" value="<? echo $row->date_diffusion; ?>">
+							<input type="text" id="date_diffusion"  class="msgtxt" name="date_diffusion" maxlength="50" value="<?php echo $row->date_diffusion; ?>">
 						</div>
 					</div>
 					</div>
@@ -372,7 +359,7 @@ public static function messages(&$messages) {
 								<label for="nom"><?php echo $lang_appel_a_temoins["Nom"];?>:*</label>
 							</div>
 							<div class="col-md-8">
-								<input type="text" required id="nom" class="msgtxt" name="nom" maxlength="50" pattern="[a-zA-Z][a-zA-Z\s]*" value="<? echo $row->nom; ?>">
+								<input type="text" required id="nom" class="msgtxt" name="nom" maxlength="50" pattern="[a-zA-Z][a-zA-Z\s]*" value="<?php echo $row->nom; ?>">
 							</div>
 						</div>
 					</div>
@@ -382,7 +369,7 @@ public static function messages(&$messages) {
 								<label for="prenom"><?php echo $lang_appel_a_temoins["Prenom"];?>:*</label>
 							</div>
 							<div class="col-md-8">
-								<input type="text" required id="prenom" class="msgtxt" name="prenom" maxlength="50" pattern="[a-zA-Z][a-zA-Z\s]*" value="<? echo $row->prenom; ?>">
+								<input type="text" required id="prenom" class="msgtxt" name="prenom" maxlength="50" pattern="[a-zA-Z][a-zA-Z\s]*" value="<?php echo $row->prenom; ?>">
 							</div>
 						</div>
 					</div>
@@ -392,7 +379,7 @@ public static function messages(&$messages) {
 								<label for="telephone"><?php echo $lang_appel_a_temoins["Telephone"];?>:*</label>
 							</div>
 							<div class="col-md-8">
-								<input type="text" required id="telephone" class="msgtxt" name="telephone" maxlength="15"  pattern="[0-9]*" value="<? echo $row->telephone; ?>">
+								<input type="text" required id="telephone" class="msgtxt" name="telephone" maxlength="15"  pattern="[0-9]*" value="<?php echo $row->telephone; ?>">
 							</div>
 						</div>
 					</div>
@@ -402,7 +389,7 @@ public static function messages(&$messages) {
 								<label for="adresse"><?php echo $lang_appel_a_temoins["Adresse"];?>:</label>
 							</div>
 							<div class="col-md-8">
-								<textarea name="adresse"  style="width:100%; height: 105px;"><? echo $row->adresse; ?></textarea>
+								<textarea name="adresse"  style="width:100%; height: 105px;"><?php echo $row->adresse; ?></textarea>
 							</div>
 						</div>
 					</div>
@@ -412,7 +399,7 @@ public static function messages(&$messages) {
 								<label for="email"><?php echo $lang_appel_a_temoins["Email"];?>:*</label>
 							</div>
 							<div class="col-md-8">
-								<input type="email" required id="email" class="msgtxt" name="email" maxlength="50" value="<? echo $row->email; ?>">
+								<input type="email" required id="email" class="msgtxt" name="email" maxlength="50" value="<?php echo $row->email; ?>">
 							</div>
 						</div>
 					</div>
@@ -422,7 +409,7 @@ public static function messages(&$messages) {
 								<label for="email2"><?php echo $lang_appel_a_temoins["Email"];?>:*<br /><i><?php echo $lang_appel_a_temoins["Confirmation"];?></i></label>
 							</div>
 							<div class="col-md-8">
-								<input type="email" required id="email2" class="msgtxt" name="email2" maxlength="50" value="<? echo $row->email2; ?>">
+								<input type="email" required id="email2" class="msgtxt" name="email2" maxlength="50" value="<?php echo $row->email2; ?>">
 							</div>
 						</div>
 					</div>
@@ -443,12 +430,10 @@ public static function messages(&$messages) {
 					<div class="row bottompadding">
 						<div class="col-md-12">
 							<div class="col-md-6">
-							<?
-						for($i=0;$i<$list['captcha'];$i++){
+							<?php 						for($i=0;$i<$list['captcha'];$i++){
 						?>
-							<img src="<? echo SITE_URL; ?>/parentsolo/images/flower.png" alt="Fleur" align="left" />
-						<?
-						}
+							<img src="<?php echo SITE_URL; ?>/parentsolo/images/flower.png" alt="Fleur" align="left" />
+						<?php 						}
 						?>
 							</div>
 							<div class="col-md-6">
@@ -459,7 +444,7 @@ public static function messages(&$messages) {
 					<div class="row bottompadding">
 					<div class="col-md-12">
 						<div class="col-md-12 parentsolo_txt_center parentsolo_mt_20">
-							<a href="javascript:if(confirm('<?php echo $lang_appel_a_temoins["AnnulerAppelConfirm"];?>')){document.location='<? echo JL::url('index.php?app=appel_a_temoins&action=list&'.$langue); ?>';}" class="bouton annuler  parentsolo_btn"><?php echo $lang_appel_a_temoins["Annuler"];?></a>
+							<a href="javascript:if(confirm('<?php echo $lang_appel_a_temoins["AnnulerAppelConfirm"];?>')){document.location='<?php echo JL::url('index.php?app=appel_a_temoins&action=list&'.$langue); ?>';}" class="bouton annuler  parentsolo_btn"><?php echo $lang_appel_a_temoins["Annuler"];?></a>
 							<!--<a href="javascript:document.appel_a_temoins.submit();" class="bouton envoyer parentsolo_btn"><?php echo $lang_appel_a_temoins["Envoyer"];?></a>-->
 							<input type="submit" value="<?php echo $lang_appel_a_temoins["Envoyer"];?>" class="bouton envoyer parentsolo_btn">
 
@@ -475,8 +460,7 @@ public static function messages(&$messages) {
 			
 			</form>
 					
-		<?
-		}
+		<?php 		}
 
 
 		// affichage d'un appel &agrave; t&eacute;moins
@@ -503,24 +487,24 @@ public static function messages(&$messages) {
 			</div>
 						<p>
 							<div class="temoignage">
-									<img style="float:left;margin:0 10px 10px 0;"width="90" src="<? echo $photo; ?>" alt="<?php echo $row->titre;?>" /> <? echo  nl2br(htmlspecialchars_decode($row->annonce)); ?>
+									<img style="float:left;margin:0 10px 10px 0;"width="90" src="<?php echo $photo; ?>" alt="<?php echo $row->titre;?>" /> <?php echo  nl2br(htmlspecialchars_decode($row->annonce)); ?>
 									<div class="clear"></div>
 									<br />
 									<div class="publication">
 										<b><?php echo $lang_appel_a_temoins["InformationComplementaires"];?>:</b><br />
 										<br />
-										<? if($row->date_limite) { ?><b><?php echo $lang_appel_a_temoins["DateDeLappel"];?>:</b> <? echo date('d/m/Y', strtotime($row->date_add)); ?><br /><? } ?>
-										<? if($row->date_limite) { ?><b><?php echo $lang_appel_a_temoins["DateLimiteInscription"];?>:</b> <? echo $row->date_limite; ?><br /><? } ?>
-										<? if($row->date_diffusion) { ?><b><?php echo $lang_appel_a_temoins["DateDiffusion"];?>:</b> <? echo $row->date_diffusion; ?><br /><? } ?>
+										<?php if($row->date_limite) { ?><b><?php echo $lang_appel_a_temoins["DateDeLappel"];?>:</b> <?php echo date('d/m/Y', strtotime($row->date_add)); ?><br /><?php } ?>
+										<?php if($row->date_limite) { ?><b><?php echo $lang_appel_a_temoins["DateLimiteInscription"];?>:</b> <?php echo $row->date_limite; ?><br /><?php } ?>
+										<?php if($row->date_diffusion) { ?><b><?php echo $lang_appel_a_temoins["DateDiffusion"];?>:</b> <?php echo $row->date_diffusion; ?><br /><?php } ?>
 										<br />
 
 										<b><?php echo $lang_appel_a_temoins["PourPlusDInformations"];?>:</b><br />
 										<br />
-										<? echo $row->prenom.' '.$row->nom; ?><br />
-										<? if($row->adresse) nl2br($row->adresse).'<br />'; ?>
+										<?php echo $row->prenom.' '.$row->nom; ?><br />
+										<?php if($row->adresse) nl2br($row->adresse).'<br />'; ?>
 										<br />
-										<b><?php echo $lang_appel_a_temoins["Email"];?>:</b> <a href="mailto:<? echo $row->email; ?>" title="Contacter <? echo $row->prenom.' '.$row->nom; ?> par email"><? echo $row->email; ?></a><br />
-										<b><?php echo $lang_appel_a_temoins["Telephone"];?>:</b> <? echo $row->telephone; ?>
+										<b><?php echo $lang_appel_a_temoins["Email"];?>:</b> <a href="mailto:<?php echo $row->email; ?>" title="Contacter <?php echo $row->prenom.' '.$row->nom; ?> par email"><?php echo $row->email; ?></a><br />
+										<b><?php echo $lang_appel_a_temoins["Telephone"];?>:</b> <?php echo $row->telephone; ?>
 									</div>
 							</div>
 						</p>
@@ -533,14 +517,12 @@ public static function messages(&$messages) {
 				
 				<!-- Partie Droite -->
 				<!--<div class="colr"> 
-				<?
-				//	JL::loadMod('menu_right');
+				<?php 				//	JL::loadMod('menu_right');
 				?>
 				</div>-->
 				<div style="clear:both"> </div>
 			</div>
-		<?
-		}
+		<?php 		}
 
 
 		// page d'info
@@ -555,11 +537,11 @@ public static function messages(&$messages) {
 			<div class="content">
 				<div class="contentl">
 					<div class="colc">
-						<div class="parentsolo_txt_center"><h2 class="barre parentsolo_title parentsolo_mt_40"><? echo $row->titre;?></h2>
+						<div class="parentsolo_txt_center"><h2 class="barre parentsolo_title parentsolo_mt_40"><?php echo $row->titre;?></h2>
 			<div class="wedd-seperator parentsolo_pb_10"><img src="images/bg_img/saprator.png" alt=""></div>
 			</div>
 						<div class="texte_explicatif">
-							<? echo  $row->texte; ?>
+							<?php echo  $row->texte; ?>
 						</div>
 					</div>
 				</div>
@@ -570,14 +552,12 @@ public static function messages(&$messages) {
 				
 				<!-- Partie Droite -->
 				<!--<div class="colr"> 
-				<?
-					// JL::loadMod('menu_right');
+				<?php 					// JL::loadMod('menu_right');
 				?>
 				</div> -->
 				<div style="clear:both"> </div>
 			</div>
-			<?
-		}
+			<?php 		}
 
 	}
 ?>

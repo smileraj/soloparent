@@ -1,13 +1,13 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 
 	require_once('search.html.php');
 
 	global $app, $action, $user, $langue, $langString;
 
-	// si non log dans l'appli search (hors step6submit qui fait partie du processus compliqué d'inscription)
+	// si non log dans l'appli search (hors step6submit qui fait partie du processus compliquï¿½ d'inscription)
 	if($app == 'search' && $action != 'step6submit' && !$user->id) {
 		JL::redirect(SITE_URL.'/index.php?app=profil&action=inscription'.'&'.$langue);
 	}
@@ -23,7 +23,7 @@
 	else
 		$langString = "_".$_GET['lang'];
 
-	// si search_online et search_page ne sont pas renseignés, on reset leurs valeurs. Indispensable pour l'url rewriting par la suite !
+	// si search_online et search_page ne sont pas renseignï¿½s, on reset leurs valeurs. Indispensable pour l'url rewriting par la suite !
 	JL::setSession('search_page', intval(JL::getVar('search_page', 1)));
 
 	switch($action) {
@@ -108,7 +108,7 @@
 
 	}
 
-	// sauvegarde la recherche dans la base de données
+	// sauvegarde la recherche dans la base de donnï¿½es
 	function searchSave() {
 			global $langue;
 			include("lang/app_search.".$_GET['lang'].".php");
@@ -118,12 +118,12 @@
 		$search 			= array();
 
 
-		// données du formulaire de recherche
+		// donnï¿½es du formulaire de recherche
 		$_data	= search_data();
 
 
-		// récup les données en session
-		if(count($_data)) {
+		// rï¿½cup les donnï¿½es en session
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$search[$key]	= JL::getSession($key, $value, true);
 			}
@@ -131,19 +131,19 @@
 
 		// petites corrections
 		if(!$search['search_titre']) {
-			$search['search_titre'] = ''.$lang_search["MaRechercheDu"].' '.date('d/m/Y').' à '.date('H:i');
+			$search['search_titre'] = ''.$lang_search["MaRechercheDu"].' '.date('d/m/Y').' ï¿½ '.date('H:i');
 		}
 
 		// user log
 		if($user->id) {
 
-			// supprime l'ancienne recherche du même nom si elle existe
+			// supprime l'ancienne recherche du mï¿½me nom si elle existe
 			$query = "DELETE FROM user_recherche WHERE user_id = '".$user->id."'"; // AND titre LIKE '".$search['search_titre']."'"; TODO par la suite pour gestion de multiples recherches
 			$db->query($query);
 
 		} else {
 
-			// supprime l'ancienne recherche du même nom si elle existe
+			// supprime l'ancienne recherche du mï¿½me nom si elle existe
 			$query = "DELETE FROM user_recherche WHERE user_id_tmp LIKE '".JL::getSession('upload_dir', 0)."'"; // AND titre LIKE '".$search['search_titre']."'"; TODO par la suite pour gestion de multiples recherches
 			$db->query($query);
 
@@ -193,7 +193,7 @@
 	}
 
 
-	// variables acceptées par le moteur de recherche
+	// variables acceptï¿½es par le moteur de recherche
 	function search_data() {
 			global $langue;
 		$_data	= array(
@@ -221,7 +221,7 @@
 				'search_recherche_poids_min' => 0,
 				'search_recherche_poids_max' => 0,
 
-				// critères facultatifs
+				// critï¿½res facultatifs
 				'search_signe_astrologique_id' => array(0),
 				'search_silhouette_id' => array(0),
 				'search_style_coiffure_id' => array(0),
@@ -254,7 +254,7 @@
 		return $_data;
 	}
 
-	// récupération des résultats
+	// rï¿½cupï¿½ration des rï¿½sultats
 	function searchResults() {
 			global $langue,$langString;
 			include("lang/app_search.".$_GET['lang'].".php");
@@ -262,28 +262,28 @@
 
 		// variables
 		$search 			= array();
-		$where				= array();
+		$where				= null;
 		$_where				= '';
 
 
-		// données du formulaire de recherche
+		// donnï¿½es du formulaire de recherche
 		$_data	= search_data();
 
 
-		// récup les données en session
-		if(count($_data)) {
+		// rï¿½cup les donnï¿½es en session
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$search[$key]	= JL::getSession($key, $value, true);
 			}
 		}
 
-		// récup les variables qui peuvent être passées directement dans l'url
+		// rï¿½cup les variables qui peuvent ï¿½tre passï¿½es directement dans l'url
 		
 		// pagination
 		$resultatParPage	= 16;
 		
 
-		// correction au cas où le visiteur s'amuserait avec les params de l'url
+		// correction au cas oï¿½ le visiteur s'amuserait avec les params de l'url
 		if($search['search_page'] <= 0) {
 			$search['search_page'] = 1;
 			JL::setSession('search_page', 1);
@@ -307,15 +307,15 @@
 		$where[]	= "u.id NOT IN (SELECT user_id_to FROM user_flbl WHERE user_id_from = ".$user->id." AND list_type=0)";
 
 
-		// critères principaux
+		// critï¿½res principaux
 
-		// âge mini
+		// ï¿½ge mini
 		
 		if(intval($search['search_recherche_age_min']) > 0) {
 			$where[]	= "up.naissance_date <= DATE_SUB(NOW(), INTERVAL ".intval($search['search_recherche_age_min'])." YEAR)";
 		}
 
-		// âge max
+		// ï¿½ge max
 		if(intval($search['search_recherche_age_max']) > 0) {
 			$where[]	= "up.naissance_date >= DATE_SUB(NOW(), INTERVAL ".(intval($search['search_recherche_age_max'])+1)." YEAR)";
 		}
@@ -385,7 +385,7 @@
 		// origine
 		SQLwhereCritFac($where, $search, 'search_origine_id');
 
-		// nationalité
+		// nationalitï¿½
 		SQLwhereCritFac($where, $search, 'search_nationalite_id');
 
 		// religion
@@ -451,12 +451,12 @@
 		// pas en black list
 		//$where[]	= "uf.user_id_to IS NULL";
 
-		// génère le where
+		// gï¿½nï¿½re le where
 		$_where		= " WHERE ".implode(' AND ', $where);
 
 
 
-		// compte le nombre de résultats
+		// compte le nombre de rï¿½sultats
 		$query = "SELECT COUNT(*)"
 		." FROM user AS u"
 		." INNER JOIN user_profil AS up ON up.user_id = u.id"
@@ -465,7 +465,7 @@
 		JL::setSession('search_page_total', ceil(intval($db->loadResult($query))/$resultatParPage));
 
 
-		// recherche des données		
+		// recherche des donnï¿½es		
 		$query = "SELECT u.id, u.username, IFNULL(pc.nom_".$_GET['lang'].", '') AS canton, pc.abreviation AS canton_abrev, up.genre, up.recherche_age_min, up.recherche_age_max, up.recherche_nb_enfants, IFNULL(pv.nom, '') AS ville, IFNULL(ua.annonce_valide, '') AS annonce, up.photo_defaut, up.nb_enfants, CURRENT_DATE, up.naissance_date, IF(us.gold_limit_date >= NOW(),1,0) AS gold, (UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(u.last_online)) AS last_online_time, u.online"
 		." FROM user AS u"
 		." INNER JOIN user_profil AS up ON up.user_id = u.id"
@@ -483,7 +483,7 @@
 	}
 
 
-	// récupération des visites d'un profil
+	// rï¿½cupï¿½ration des visites d'un profil
 	function searchVisits() {
 			global $langue,$langString;
 			include("lang/app_search.".$_GET['lang'].".php");
@@ -492,16 +492,16 @@
 		// variables
 		$search 			= array();
 		$list 			= array();
-		$where				= array();
+		$where				= null;
 		$_where				= '';
 
 
-		// données du formulaire de recherche
+		// donnï¿½es du formulaire de recherche
 		$_data	= search_data();
 
 
-		// récup les données en session
-		if(count($_data)) {
+		// rï¿½cup les donnï¿½es en session
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$search[$key]	= JL::getSession($key, $value, true);
 			}
@@ -512,7 +512,7 @@
 		$resultatParPage	= 16;
 		
 
-		// correction au cas où le visiteur s'amuserait avec les params de l'url
+		// correction au cas oï¿½ le visiteur s'amuserait avec les params de l'url
 		if($search['search_page'] <= 0) {
 			$search['search_page'] = 1;
 			JL::setSession('search_page', 1);
@@ -529,12 +529,12 @@
 		$where[]	= "u.id NOT IN (SELECT user_id_to FROM user_flbl WHERE user_id_from = ".$user->id." AND list_type=0)";
 
 
-		// génère le where
+		// gï¿½nï¿½re le where
 		$_where		= " WHERE ".implode(' AND ', $where);
 
 
 
-		// compte le nombre de résultats
+		// compte le nombre de rï¿½sultats
 		$query = "SELECT COUNT(*)"
 		." FROM user AS u"
 		." INNER JOIN user_profil AS up ON up.user_id = u.id"
@@ -544,7 +544,7 @@
 		JL::setSession('search_page_total', ceil(intval($db->loadResult($query))/$resultatParPage));
 
 
-		// recherche des données
+		// recherche des donnï¿½es
 		$query = "SELECT u.id, u.username, IFNULL(pc.nom_".$_GET['lang'].", '') AS canton, pc.abreviation AS canton_abrev, up.genre, up.recherche_age_min, up.recherche_age_max, up.recherche_nb_enfants, IFNULL(pv.nom, '') AS ville, ua.annonce_valide AS annonce, up.photo_defaut, up.nb_enfants, CURRENT_DATE, up.naissance_date, (UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(u.last_online)) AS last_online_time, uv.visite_nb, uv.visite_last_date, u.online,u.on_off_status"
 		." FROM user AS u"
 		." INNER JOIN user_profil AS up ON up.user_id = u.id"
@@ -562,7 +562,7 @@
 		HTML_search::searchVisits($list, $results, $messages);
 	}
 	
-	// récupération des visites d'un profil
+	// rï¿½cupï¿½ration des visites d'un profil
 	function searchMyprofile() {
 			global $langue,$langString;
 			include("lang/app_search.".$_GET['lang'].".php");
@@ -571,16 +571,16 @@
 		// variables
 		$search 			= array();
 		$list 			= array();
-		$where				= array();
+		$where				= null;
 		$_where				= '';
 
 
-		// données du formulaire de recherche
+		// donnï¿½es du formulaire de recherche
 		$_data	= search_data();
 
 
-		// récup les données en session
-		if(count($_data)) {
+		// rï¿½cup les donnï¿½es en session
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$search[$key]	= JL::getSession($key, $value, true);
 			}
@@ -591,7 +591,7 @@
 		$resultatParPage	= 16;
 		
 
-		// correction au cas où le visiteur s'amuserait avec les params de l'url
+		// correction au cas oï¿½ le visiteur s'amuserait avec les params de l'url
 		if($search['search_page'] <= 0) {
 			$search['search_page'] = 1;
 			JL::setSession('search_page', 1);
@@ -608,12 +608,12 @@
 		$where[]	= "u.id NOT IN (SELECT user_id_to FROM user_flbl WHERE user_id_from = ".$user->id." AND list_type=0)";
 
 
-		// génère le where
+		// gï¿½nï¿½re le where
 		$_where		= " WHERE ".implode(' AND ', $where);
 
 
 
-		// compte le nombre de résultats
+		// compte le nombre de rï¿½sultats
 		$query = "SELECT COUNT(*)"
 		." FROM user AS u"
 		." INNER JOIN user_profil AS up ON up.user_id = u.id"
@@ -623,7 +623,7 @@
 		JL::setSession('search_page_total', ceil(intval($db->loadResult($query))/$resultatParPage));
 
 
-		// recherche des données
+		// recherche des donnï¿½es
 		 $query = "SELECT u.id, u.username, IFNULL(pc.nom_".$_GET['lang'].", '') AS canton, pc.abreviation AS canton_abrev, up.genre, up.recherche_age_min, up.recherche_age_max, up.recherche_nb_enfants, IFNULL(pv.nom, '') AS ville, ua.annonce_valide AS annonce, up.photo_defaut, up.nb_enfants, CURRENT_DATE, up.naissance_date, (UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(u.last_online)) AS last_online_time, uv.visite_nb, uv.visite_last_date, u.online,u.on_off_status"
 		." FROM user AS u"
 		." INNER JOIN user_profil AS up ON up.user_id = u.id"
@@ -642,7 +642,7 @@
 	}
 
 	
-	// récupération des résultats
+	// rï¿½cupï¿½ration des rï¿½sultats
 	function searchOnline() {
 		global $langue,$langString;
 		include("lang/app_search.".$_GET['lang'].".php");
@@ -651,28 +651,28 @@
 		// variables
 		$search 			= array();
 		$list 			= array();
-		$where				= array();
+		$where				= null;
 		$_where				= '';
 
 
-		// données du formulaire de recherche
+		// donnï¿½es du formulaire de recherche
 		$_data	= search_data();
 
 
-		// récup les données en session
-		if(count($_data)) {
+		// rï¿½cup les donnï¿½es en session
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$search[$key]	= JL::getSession($key, $value, true);
 			}
 		}
 
-		// récup les variables qui peuvent être passées directement dans l'url
+		// rï¿½cup les variables qui peuvent ï¿½tre passï¿½es directement dans l'url
 		
 		// pagination
 		$resultatParPage	= 16;
 		
 
-		// correction au cas où le visiteur s'amuserait avec les params de l'url
+		// correction au cas oï¿½ le visiteur s'amuserait avec les params de l'url
 		if($search['search_page'] <= 0) {
 			$search['search_page'] = 1;
 			JL::setSession('search_page', 1);
@@ -697,16 +697,16 @@
 		$where[]	= "u.id NOT IN (SELECT user_id_to FROM user_flbl WHERE user_id_from = ".$user->id." AND list_type=0)";
 
 
-		// critères principaux
+		// critï¿½res principaux
 		$where[] = "(u.online = '1' and (UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(u.last_online)) < ".(ONLINE_TIME_LIMIT+AFK_TIME_LIMIT).")";
 		
 
-		// génère le where
+		// gï¿½nï¿½re le where
 		$_where		= " WHERE ".implode(' AND ', $where);
 
 
 
-		// compte le nombre de résultats
+		// compte le nombre de rï¿½sultats
 		$query = "SELECT COUNT(*)"
 		." FROM user AS u"
 		." INNER JOIN user_profil AS up ON up.user_id = u.id"
@@ -715,7 +715,7 @@
 		JL::setSession('search_page_total', ceil(intval($db->loadResult($query))/$resultatParPage));
 
 
-		// recherche des données		
+		// recherche des donnï¿½es		
 		$query = "SELECT u.id, u.username, IFNULL(pc.nom_".$_GET['lang'].", '') AS canton, pc.abreviation AS canton_abrev, up.genre, up.recherche_age_min, up.recherche_age_max, up.recherche_nb_enfants, IFNULL(pv.nom, '') AS ville, IFNULL(ua.annonce_valide, '') AS annonce, up.photo_defaut, up.nb_enfants, CURRENT_DATE, up.naissance_date, IF(us.gold_limit_date >= NOW(),1,0) AS gold, (UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(u.last_online)) AS last_online_time, u.online"
 		." FROM user AS u"
 		." INNER JOIN user_profil AS up ON up.user_id = u.id"
@@ -734,7 +734,7 @@
 	}
 	
 	
-	// récupération des résultats
+	// rï¿½cupï¿½ration des rï¿½sultats
 	function searchLastInscription() {
 		global $langue,$langString;
 		include("lang/app_search.".$_GET['lang'].".php");
@@ -743,28 +743,28 @@
 		// variables
 		$search 			= array();
 		$list 			= array();
-		$where				= array();
+		$where				= null;
 		$_where				= '';
 
 
-		// données du formulaire de recherche
+		// donnï¿½es du formulaire de recherche
 		$_data	= search_data();
 
 
-		// récup les données en session
-		if(count($_data)) {
+		// rï¿½cup les donnï¿½es en session
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$search[$key]	= JL::getSession($key, $value, true);
 			}
 		}
 
-		// récup les variables qui peuvent être passées directement dans l'url
+		// rï¿½cup les variables qui peuvent ï¿½tre passï¿½es directement dans l'url
 		
 		// pagination
 		$resultatParPage	= 16;
 		
 
-		// correction au cas où le visiteur s'amuserait avec les params de l'url
+		// correction au cas oï¿½ le visiteur s'amuserait avec les params de l'url
 		if($search['search_page'] <= 0) {
 			$search['search_page'] = 1;
 			JL::setSession('search_page', 1);
@@ -789,12 +789,12 @@
 		$where[]	= "u.id NOT IN (SELECT user_id_to FROM user_flbl WHERE user_id_from = ".$user->id." AND list_type=0)";
 		
 
-		// génère le where
+		// gï¿½nï¿½re le where
 		$_where		= " WHERE ".implode(' AND ', $where);
 
 
 
-		// compte le nombre de résultats
+		// compte le nombre de rï¿½sultats
 		$query = "SELECT COUNT(*)"
 		." FROM user AS u"
 		." INNER JOIN user_profil AS up ON up.user_id = u.id"
@@ -803,7 +803,7 @@
 		JL::setSession('search_page_total', ceil(intval($db->loadResult($query))/$resultatParPage));
 
 
-		// recherche des données		
+		// recherche des donnï¿½es		
 		$query = "SELECT u.id, u.username, IFNULL(pc.nom_".$_GET['lang'].", '') AS canton, pc.abreviation AS canton_abrev, up.genre, up.recherche_age_min, up.recherche_age_max, up.recherche_nb_enfants, IFNULL(pv.nom, '') AS ville, IFNULL(ua.annonce_valide, '') AS annonce, up.photo_defaut, up.nb_enfants, CURRENT_DATE, up.naissance_date, IF(us.gold_limit_date >= NOW(),1,0) AS gold, (UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(u.last_online)) AS last_online_time, u.creation_date, u.online"
 		." FROM user AS u"
 		." INNER JOIN user_profil AS up ON up.user_id = u.id"
@@ -822,7 +822,7 @@
 	}
 	
 	//Profile Matching
-	// récupération des résultats
+	// rï¿½cupï¿½ration des rï¿½sultats
 	function profileMatching() {
 		global $langue,$langString;
 		include("lang/app_search.".$_GET['lang'].".php");
@@ -831,28 +831,28 @@
 		// variables
 		$search 			= array();
 		$list 			= array();
-		$where				= array();
+		$where				= null;
 		$_where				= '';
 
 
-		// données du formulaire de recherche
+		// donnï¿½es du formulaire de recherche
 		$_data	= search_data();
 
 
-		// récup les données en session
-		if(count($_data)) {
+		// rï¿½cup les donnï¿½es en session
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$search[$key]	= JL::getSession($key, $value, true);
 			}
 		}
 
-		// récup les variables qui peuvent être passées directement dans l'url
+		// rï¿½cup les variables qui peuvent ï¿½tre passï¿½es directement dans l'url
 		
 		// pagination
 		$resultatParPage	= 16;
 		
 
-		// correction au cas où le visiteur s'amuserait avec les params de l'url
+		// correction au cas oï¿½ le visiteur s'amuserait avec les params de l'url
 		if($search['search_page'] <= 0) {
 			$search['search_page'] = 1;
 			JL::setSession('search_page', 1);
@@ -890,12 +890,12 @@ $age_max_pro=(($values_select->userage)+5);
 		$where[]	= "u.id NOT IN (SELECT user_id_to FROM user_flbl WHERE user_id_from = ".$user->id." AND list_type=0)";
 		
 
-		// génère le where
+		// gï¿½nï¿½re le where
 		$_where		= " WHERE ".implode(' AND ', $where);
 
 
 
-		// compte le nombre de résultats
+		// compte le nombre de rï¿½sultats
 		$query = "SELECT COUNT(*)"
 		." FROM user AS u"
 		." INNER JOIN user_profil AS up ON up.user_id = u.id"
@@ -904,7 +904,7 @@ $age_max_pro=(($values_select->userage)+5);
 		JL::setSession('search_page_total', ceil(intval($db->loadResult($query))/$resultatParPage));
 
 
-		// recherche des données		
+		// recherche des donnï¿½es		
 		 $query = "SELECT u.id, u.username, IFNULL(pc.nom_".$_GET['lang'].", '') AS canton, TIMESTAMPDIFF(YEAR,up.naissance_date,NOW()) AS age, pc.abreviation AS canton_abrev, up.genre, up.religion_id, up.nationalite_id, up.canton_id, up.recherche_age_min, up.recherche_age_max, up.recherche_nb_enfants, IFNULL(pv.nom, '') AS ville, IFNULL(ua.annonce_valide, '') AS annonce, up.photo_defaut, up.nb_enfants, CURRENT_DATE, up.naissance_date, IF(us.gold_limit_date >= NOW(),1,0) AS gold, (UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(u.last_online)) AS last_online_time, u.creation_date, u.online,u.on_off_status"
 		." FROM user AS u"
 		." INNER JOIN user_profil AS up ON up.user_id = u.id"
@@ -931,14 +931,14 @@ $age_max_pro=(($values_select->userage)+5);
 			include("lang/app_search.".$_GET['lang'].".php");
 		global $db, $user;
 
-		// données du formulaire de recherche
+		// donnï¿½es du formulaire de recherche
 		$_data	= search_data();
 
 
 		// user log
 		if($user->id) {
 
-			// récup le genre de l'utilisateur
+			// rï¿½cup le genre de l'utilisateur
 			$query = "SELECT genre FROM user_profil WHERE user_id = '".$user->id."' LIMIT 0,1";
 			$genre = $db->loadResult($query);
 
@@ -957,8 +957,8 @@ $age_max_pro=(($values_select->userage)+5);
 		
 		JL::setVar('search_display',JL::getSession('search_display', 0));
 		
-		// stock les données temporaires en session
-		if(count($_data)) {
+		// stock les donnï¿½es temporaires en session
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				JL::setSession($key, JL::getVar($key, $value));
 			}
@@ -976,19 +976,19 @@ $age_max_pro=(($values_select->userage)+5);
 		// variables
 		$list 		= array();
 
-		// données du formulaire de recherche
+		// donnï¿½es du formulaire de recherche
 		$_data	= search_data();
 
 
-		// récup les données en session
-		if(count($_data)) {
+		// rï¿½cup les donnï¿½es en session
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {				
 				$row[$key]	= JL::getSession($key, $value);
 			}
 		}
 
 
-		// critères principaux
+		// critï¿½res principaux
 
 			// genre
 			if($user->id || JL::getSession('genre', '', true)) { // user log ou user en cours d'inscription
@@ -996,7 +996,7 @@ $age_max_pro=(($values_select->userage)+5);
 				// user log
 				if($user->id) {
 
-					// récup le genre de l'utilisateur
+					// rï¿½cup le genre de l'utilisateur
 					$query = "SELECT genre FROM user_profil WHERE user_id = '".$user->id."' LIMIT 0,1";
 					$genre = $db->loadResult($query);
 
@@ -1033,7 +1033,7 @@ $age_max_pro=(($values_select->userage)+5);
 			$list['search_nb_enfants'] = JL::makeSelectList( $list_nb_enfants, 'search_nb_enfants', '', 'value', 'text', $row['search_nb_enfants']);
 
 
-			// recherche âge mini
+			// recherche ï¿½ge mini
 			$list_recherche_age_min[] = JL::makeOption('0', '--');
 			for($i=18; $i<=(intval(date('Y'))-1930); $i++) {
 				$list_recherche_age_min[] = JL::makeOption($i, $i);
@@ -1069,10 +1069,10 @@ $canton= $row['search_canton_id'];
 		$list_Ville_id = array_merge($list_Ville_id, $db->loadObjectList($query));
 		$list['search_ville_id'] 	= JL::makeSelectList( $list_Ville_id, 'search_ville_id', 'id="search_ville_id"  class="genreCanton"', 'value', 'text', $row['search_ville_id']);
 			// pseudo
-			$list['search_username']	= htmlentities($row['search_username']);
+			$list['search_username']	= makeSafe($row['search_username']);
 
 			// titre de la recherche
-			$list['search_titre']		= htmlentities($row['search_titre']);
+			$list['search_titre']		= makeSafe($row['search_titre']);
 
 			// en ligne
 			$list['search_online']		= $row['search_online'];
@@ -1081,7 +1081,7 @@ $canton= $row['search_canton_id'];
 			$list['search_display']		= $row['search_display'];
 
 
-		// critères facultatifs
+		// critï¿½res facultatifs
 			$list_recherche_taille_min[] = JL::makeOption('0', '--');
 			for($i=140; $i<=200; $i++) {
 				$list_recherche_taille_min[] = JL::makeOption($i, $i);
@@ -1095,7 +1095,7 @@ $canton= $row['search_canton_id'];
 			$list['search_recherche_taille_max'] = JL::makeSelectList( $list_recherche_taille_max, 'search_recherche_taille_max', 'class="select50"', 'value', 'text', $row['search_recherche_taille_max']);
 		
 		
-		// critères facultatifs
+		// critï¿½res facultatifs
 			$list_recherche_poids_min[] = JL::makeOption('0', '--');
 			for($i=40; $i<=120; $i++) {
 				$list_recherche_poids_min[] = JL::makeOption($i, $i);
@@ -1163,14 +1163,14 @@ $canton= $row['search_canton_id'];
 			$dborigine=$db->loadObjectList($query);
 			$list['search_origine_id'] = JL::makeCheckboxSearchList($dborigine,'search_origine_id[]', '', 'value', 'text', $row['search_origine_id']); 
 
-			// nationalité
+			// nationalitï¿½
 			$query = "SELECT id AS value, nom_".$_GET['lang']." AS text"
 			." FROM profil_nationalite"
 			." WHERE published = 1"
 			." ORDER BY nom_".$_GET['lang']." ASC"
 			;
-			$dbnationalité=$db->loadObjectList($query);
-			$list['search_nationalite_id'] = JL::makeCheckboxSearchList($dbnationalité, 'search_nationalite_id[]', '', 'value', 'text', $row['search_nationalite_id']); 
+			$dbnationalitï¿½=$db->loadObjectList($query);
+			$list['search_nationalite_id'] = JL::makeCheckboxSearchList($dbnationalitï¿½, 'search_nationalite_id[]', '', 'value', 'text', $row['search_nationalite_id']); 
 
 			// religion
 			$query = "SELECT id AS value, nom_".$_GET['lang']." AS text"
@@ -1217,7 +1217,7 @@ $canton= $row['search_canton_id'];
 			$dbcherche=$db->loadObjectList($query);
 			$list['search_cherche_relation_id'] = JL::makeCheckboxSearchList($dbcherche, 'search_cherche_relation_id[]', '', 'value', 'text', $row['search_cherche_relation_id']); 
 
-			// niveau d'études
+			// niveau d'ï¿½tudes
 			$query = "SELECT id AS value, nom_".$_GET['lang']." AS text"
 			." FROM profil_niveau_etude"
 			." WHERE published = 1"
@@ -1226,7 +1226,7 @@ $canton= $row['search_canton_id'];
 			$dbniveau=$db->loadObjectList($query);
 			$list['search_niveau_etude_id'] = JL::makeCheckboxSearchList($dbniveau, 'search_niveau_etude_id[]', '', 'value', 'text', $row['search_niveau_etude_id']); 
 
-			// Niveaux d'étude
+			// Niveaux d'ï¿½tude
 			$query = "SELECT id AS value, nom_".$_GET['lang']." AS text"
 			." FROM profil_secteur_activite"
 			." WHERE published = 1"
@@ -1244,14 +1244,14 @@ $canton= $row['search_canton_id'];
 			$dbfume=$db->loadObjectList($query);
 			$list['search_fumer_id'] = JL::makeCheckboxSearchList($dbfume, 'search_fumer_id[]', '', 'value', 'text', $row['search_fumer_id']); 
 
-			// tempérament
+			// tempï¿½rament
 			$query = "SELECT id AS value, nom_".$_GET['lang']." AS text"
 			." FROM profil_temperament"
 			." WHERE published = 1"
 			." ORDER BY nom_".$_GET['lang']." ASC"
 			;
-			$dbtempérament=$db->loadObjectList($query);
-			$list['search_temperament_id'] = JL::makeCheckboxSearchList($dbtempérament, 'search_temperament_id[]', '', 'value', 'text', $row['search_temperament_id']); 
+			$dbtempï¿½rament=$db->loadObjectList($query);
+			$list['search_temperament_id'] = JL::makeCheckboxSearchList($dbtempï¿½rament, 'search_temperament_id[]', '', 'value', 'text', $row['search_temperament_id']); 
 			
 			// Qui a la garde?
 			$query = "SELECT id AS value, nom_".$_GET['lang']." AS text"
@@ -1363,10 +1363,10 @@ $canton= $row['search_canton_id'];
 	}
 
 
-	// création de la clause WHERE d'un critère facultatif
+	// crï¿½ation de la clause WHERE d'un critï¿½re facultatif
 	function SQLwhereCritFac(&$where, &$search, $field, $triple = false) {
 			global $langue;
-		if(count($search[$field])) {
+		if (is_array($search[$field])) {
 			if(in_array(0, $search[$field])) {
 				JL::setSession($field, array(0));
 			} else {

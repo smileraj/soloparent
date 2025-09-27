@@ -1,28 +1,26 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 
 	class HTML_inviter {
 
-		// affichage des messages système
+		// affichage des messages systï¿½me
 		function messages(&$messages) {
 			global $langue;
 			include("lang/app_inviter.".$_GET['lang'].".php");
 
-			// s'il y a des messages à afficher
-			if(count($messages)) {
+			// s'il y a des messages ï¿½ afficher
+			if (is_array($messages)) {
 			?>
 				<h2 class="messages"><?php echo $lang_inviter["MessagesParentsolo"];?></h2>
 				<div class="messages">
-				<?
-					// affiche les messages
+				<?php 					// affiche les messages
 					JL::messages($messages);
 				?>
 				</div>
 				<br />
-			<?
-			}
+			<?php 			}
 
 		}
 
@@ -37,11 +35,10 @@
 			
 			<h2 class="barre"><?php echo $data->titre; ?></h2>
 			<div class="texte_explicatif">
-				<? echo $data->texte; ?>
+				<?php echo $data->texte; ?>
 			</div>
 			<br />
-			<?
-					// affichage des messages
+			<?php 					// affichage des messages
 					HTML_inviter::messages($messages);
 
 				?>
@@ -55,31 +52,31 @@
 					<tr>
 						<td class="key" valign="top"><label for="email1"><?php echo $lang_inviter["Email"];?> 1</label></td>
 						<td>
-							<input type="text" name="email1" id="email1" value="<? echo $row->email1; ?>">
+							<input type="text" name="email1" id="email1" value="<?php echo $row->email1; ?>">
 						</td>
 					</tr>
 					<tr>
 						<td class="key" valign="top"><label for="email2"><?php echo $lang_inviter["Email"];?> 2</label></td>
 						<td>
-							<input type="text" name="email2" id="email2" value="<? echo $row->email2; ?>">
+							<input type="text" name="email2" id="email2" value="<?php echo $row->email2; ?>">
 						</td>
 					</tr>
 					<tr>
 						<td class="key" valign="top"><label for="email3"><?php echo $lang_inviter["Email"];?> 3</label></td>
 						<td>
-							<input type="text" name="email3" id="email3" value="<? echo $row->email3; ?>">
+							<input type="text" name="email3" id="email3" value="<?php echo $row->email3; ?>">
 						</td>
 					</tr>
 					<tr>
 						<td class="key" valign="top"><label for="email4"><?php echo $lang_inviter["Email"];?> 4</label></td>
 						<td>
-							<input type="text" name="email4" id="email4" value="<? echo $row->email4; ?>">
+							<input type="text" name="email4" id="email4" value="<?php echo $row->email4; ?>">
 						</td>
 					</tr>
 					<tr>
 						<td class="key" valign="top"><label for="email5"><?php echo $lang_inviter["Email"];?> 5</label></td>
 						<td>
-							<input type="text" name="email5" id="email5" value="<? echo $row->email5; ?>">
+							<input type="text" name="email5" id="email5" value="<?php echo $row->email5; ?>">
 						</td>
 					</tr>
 					<tr>
@@ -91,7 +88,7 @@
 					<tr>
 						<td class="key" valign="top"><label for="message"><?php echo $lang_inviter["VotreMessage"];?></label></td>
 						<td>
-							<textarea name="message" id="message"><? echo $row->message; ?></textarea>
+							<textarea name="message" id="message"><?php echo $row->message; ?></textarea>
 						</td>
 					</tr>
 					<tr>
@@ -107,8 +104,7 @@
 				<input type="hidden" name="app" value="inviter" />
 				<input type="hidden" name="action" value="parrainagesubmit" />
 			</form>
-			<?
-
+			<?php 
 		}
 
 	
@@ -123,11 +119,10 @@
 			
 			<h2 class="barre"><?php echo $data->titre; ?></h2>
 			<div class="texte_explicatif">
-				<? echo $data->texte; ?>
+				<?php echo $data->texte; ?>
 			</div>
 			<br />
-		<?
-			// affichage des messages
+		<?php 			// affichage des messages
 			HTML_inviter::messages($messages);
 
 		?>
@@ -140,19 +135,19 @@
 					<tr>
 						<td class="key" valign="top"><label for="nom"><?php echo $lang_inviter["Nom"];?></label></td>
 						<td>
-							<input type="text" name="nom" id="nom" value="<? echo $row->nom; ?>">
+							<input type="text" name="nom" id="nom" value="<?php echo $row->nom; ?>">
 						</td>
 					</tr>
 					<tr>
 						<td class="key" valign="top"><label for="prenom"><?php echo $lang_inviter["Prenom"];?></label></td>
 						<td>
-							<input type="text" name="prenom" id="prenom" value="<? echo $row->prenom; ?>">
+							<input type="text" name="prenom" id="prenom" value="<?php echo $row->prenom; ?>">
 						</td>
 					</tr>
 					<tr>
 						<td class="key" valign="top"><label for="email"><?php echo $lang_inviter["Email"];?></label></td>
 						<td>
-							<input type="text" name="email" id="email" value="<? echo $row->email; ?>">
+							<input type="text" name="email" id="email" value="<?php echo $row->email; ?>">
 						</td>
 					</tr>
 					<tr>
@@ -164,31 +159,31 @@
 					<tr>
 						<td class="key" valign="top"><label for="email1"><?php echo $lang_inviter["Email"];?> 1</label></td>
 						<td>
-							<input type="text" name="email1" id="email1" value="<? echo $row->email1; ?>">
+							<input type="text" name="email1" id="email1" value="<?php echo $row->email1; ?>">
 						</td>
 					</tr>
 					<tr>
 						<td class="key" valign="top"><label for="email2"><?php echo $lang_inviter["Email"];?> 2</label></td>
 						<td>
-							<input type="text" name="email2" id="email2" value="<? echo $row->email2; ?>">
+							<input type="text" name="email2" id="email2" value="<?php echo $row->email2; ?>">
 						</td>
 					</tr>
 					<tr>
 						<td class="key" valign="top"><label for="email3"><?php echo $lang_inviter["Email"];?> 3</label></td>
 						<td>
-							<input type="text" name="email3" id="email3" value="<? echo $row->email3; ?>">
+							<input type="text" name="email3" id="email3" value="<?php echo $row->email3; ?>">
 						</td>
 					</tr>
 					<tr>
 						<td class="key" valign="top"><label for="email4"><?php echo $lang_inviter["Email"];?> 4</label></td>
 						<td>
-							<input type="text" name="email4" id="email4" value="<? echo $row->email4; ?>">
+							<input type="text" name="email4" id="email4" value="<?php echo $row->email4; ?>">
 						</td>
 					</tr>
 					<tr>
 						<td class="key" valign="top"><label for="email5"><?php echo $lang_inviter["Email"];?> 5</label></td>
 						<td>
-							<input type="text" name="email5" id="email5" value="<? echo $row->email5; ?>">
+							<input type="text" name="email5" id="email5" value="<?php echo $row->email5; ?>">
 						</td>
 					</tr>
 					<tr>
@@ -200,7 +195,7 @@
 					<tr>
 						<td class="key" valign="top"><label for="message"><?php echo $lang_inviter["VotreMessage"];?></label></td>
 						<td>
-							<textarea name="message" id="message"><? echo $row->message; ?></textarea>
+							<textarea name="message" id="message"><?php echo $row->message; ?></textarea>
 						</td>
 					</tr>
 					<tr>
@@ -216,8 +211,7 @@
 				<input type="hidden" name="app" value="inviter" />
 				<input type="hidden" name="action" value="conseillersubmit" />
 			</form>
-			<?
-
+			<?php 
 		}
 
 		

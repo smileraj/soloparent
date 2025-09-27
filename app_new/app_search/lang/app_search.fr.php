@@ -5,17 +5,17 @@ $lang_search = array(
 	//------------------Page search.html.php ---------
 
 
-	"MessagesParentsolo" => "Messages Parentsolo.ch",
+	"MessagesParentsolo" => "Messages solocircl.com",
 	
 	
 	"Recherche" => "Recherche",
 	"EnLigne" => "En ligne",
 	"HorsLigne" => "Hors ligne",
 	"Visites" => "Visites",
-	"DernieresMamansInscrites" => "Dernières mamans inscrites",
+	"DernieresMamansInscrites" => "Derniï¿½res mamans inscrites",
 	"DerniersPapasInscrits" => "Derniers papas inscrits",
 	
-	"RechercheAvancee" => "Recherche avancée",
+	"RechercheAvancee" => "Recherche avancï¿½e",
 	"Affichage" => "Affichage",
 	"Galerie" => "Galerie",
 	"Liste" => "Liste",
@@ -24,7 +24,7 @@ $lang_search = array(
 	
 	"Age" => "Age",
 	"De" => "de",
-	"A" => "à",
+	"A" => "ï¿½",
 	"Ans" => "ans",
 	
 	"Pseudo" => "Pseudo",
@@ -43,9 +43,9 @@ $lang_search = array(
 	"Rechercher" => "Rechercher",
 	
 	
-	"mylastvisites" => "Mes dernières visites",
+	"mylastvisites" => "Mes derniï¿½res visites",
 	
-	"ResultatDeMaRecherche" => "Résultat de ma recherche",
+	"ResultatDeMaRecherche" => "Rï¿½sultat de ma recherche",
 	
 	
 	"PlusDe2Semaines" => "Plus de 2 semaines",
@@ -60,7 +60,7 @@ $lang_search = array(
 	"enfant" => "enfant",
 	"enfants" => "enfants",
 	
-	"DerniereConnexion" => "Dernière connexion",
+	"DerniereConnexion" => "Derniï¿½re connexion",
 	
 	
 	
@@ -68,33 +68,33 @@ $lang_search = array(
 	"EnvoyerUneRose" => "Envoyer une rose",
 	"Chat" => "Chat",
 	"AjouterAuxFavoris" => "Ajouter aux favoris",
-	"AjouterALaListeNoire" => "Ajouter à la liste noire",
+	"AjouterALaListeNoire" => "Ajouter ï¿½ la liste noire",
 	"SignalerUnAbus" => "Signaler un abus",
 	
 	
-	"Publicite" => "Publicité",
+	"Publicite" => "Publicitï¿½",
 	
 	
 	
-	"PagePrecedente" => "Page précédente",
+	"PagePrecedente" => "Page prï¿½cï¿½dente",
 	"Pages" => "Pages",
 	"Page" => "Page",
-	"Debut" => "Début",
+	"Debut" => "Dï¿½but",
 	"Fin" => "Fin",
 	"PageSuivante" => "Page suivante",
 	
-	"RechercheAucunMembre" => "Aucun membre ne correspond à votre recherche",
+	"RechercheAucunMembre" => "Aucun membre ne correspond ï¿½ votre recherche",
 	
 	
 	
 	
 	
-	"QuiAConsulteMonProfil" => "Qui a consulté mon profil",
+	"QuiAConsulteMonProfil" => "Qui a consultï¿½ mon profil",
 	
-	"DerniereVisite" => "Dernière visite",
+	"DerniereVisite" => "Derniï¿½re visite",
 	"NombreTotalVisites" => "Nombre total de visites",
 	
-	"VisitesAucunMembre" => "Aucun membre n'a visité votre profil",
+	"VisitesAucunMembre" => "Aucun membre n'a visitï¿½ votre profil",
 	
 	
 	"OnlineAucunMembre" => "Aucun membre n'est en ligne actuellement",
@@ -125,7 +125,7 @@ $lang_search = array(
 	"AgeMaximum" => "Age maximum",
     
 
-	"RechercheSauvegardee" => "Recherche sauvegardée",
+	"RechercheSauvegardee" => "Recherche sauvegardï¿½e",
 	
 	"SigneAstrologique" => "Signe astrologique",
 	"Taille" => "Taille",
@@ -142,18 +142,18 @@ $lang_search = array(
 	//------------------Page Etape5 Infos Diverses---------
 
 	
-	"Nationalite" => "Nationalité",
+	"Nationalite" => "Nationalitï¿½",
 	"Religion" => "Religion",
 	"StatutMarital" => "Statut marital",
 	"LeMariageEst" => "Le mariage est",
-	"RelationCherchee" => "Relation cherchée",
-	"NiveauEtudes" => "Niveau d'études",
-	"SecteurActivite" => "Secteur d'activité",
+	"RelationCherchee" => "Relation cherchï¿½e",
+	"NiveauEtudes" => "Niveau d'ï¿½tudes",
+	"SecteurActivite" => "Secteur d'activitï¿½",
 	"Fumeur" => "Fumeur",
-	"Temperament" => "Tempérament",
-	"NombreEnfantsSouhaites" => "Nombre d'enfants souhaités",
+	"Temperament" => "Tempï¿½rament",
+	"NombreEnfantsSouhaites" => "Nombre d'enfants souhaitï¿½s",
 	"QuiLaGarde" => "Qui a la garde",
-	"LanguesParlees" => "Langues parlées",
+	"LanguesParlees" => "Langues parlï¿½es",
 
 
 
@@ -171,7 +171,7 @@ $lang_search = array(
 	"Animaux" => "Animaux",
 
 //PROFILE
-"SELECTEDPROFILES" => "Profils Sélectionnés",	
+"SELECTEDPROFILES" => "Profils Sï¿½lectionnï¿½s",	
 
 
     

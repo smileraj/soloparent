@@ -1,18 +1,17 @@
-<?
-	require_once('ajax.php');
+<?php 	require_once('ajax.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" >
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" >
         <head>
-			<title><? echo $langChat["ParentSoloChat"];?></title>
+			<title><?php echo $langChat["ParentSoloChat"];?></title>
 			<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-			<link href="<? echo SITE_URL;?>/chat_new/chat.css" rel="stylesheet" type="text/css">
-			<link href="<? echo SITE_URL;?>/parentsolo/favicon.ico" rel="shortcut icon" type="image/x-icon">
+			<link href="<?php echo SITE_URL;?>/chat_new/chat.css" rel="stylesheet" type="text/css">
+			<link href="<?php echo SITE_URL;?>/parentsolo/favicon.ico" rel="shortcut icon" type="image/x-icon">
 	
-			<script type="text/javascript" src="<? echo SITE_URL;?>/js/jquery-1.4.1.min.js"></script>
-			<script type="text/javascript" src="<? echo SITE_URL;?>/js/jquery-ui-1.7.2.custom.min.js"></script>
-			<script type="text/javascript" src="<? echo SITE_URL;?>/chat_new/ajax.js"></script>
-			<script type="text/javascript" src="<? echo SITE_URL;?>/chat_new/chat.js"></script>
+			<script type="text/javascript" src="<?php echo SITE_URL;?>/js/jquery-1.4.1.min.js"></script>
+			<script type="text/javascript" src="<?php echo SITE_URL;?>/js/jquery-ui-1.7.2.custom.min.js"></script>
+			<script type="text/javascript" src="<?php echo SITE_URL;?>/chat_new/ajax.js"></script>
+			<script type="text/javascript" src="<?php echo SITE_URL;?>/chat_new/chat.js"></script>
 			<script type="text/javascript">
 				function initPage(){
 
@@ -35,28 +34,26 @@
 			<div class="chatRight">
 				<div class="chatUsers">
 					<div class="chatUsersScroll">
-						<div id="aide" class="helpLink" onclick="affichAide();"><p><? echo $langChat["Aide"];?></p></div>
+						<div id="aide" class="helpLink" onclick="affichAide();"><p><?php echo $langChat["Aide"];?></p></div>
 						<div id="openConv">
 						</div>
 					</div>
 				</div>
 				<div class="chatProfileFrom" id="chatProfileFrom">
-					<?
-						getUtilisateur();
+					<?php 						getUtilisateur();
 					?>
 				</div>
 			</div>
 			<div class="chatLeft">
-				<div id="chatHelp" <? if (isset($_GET["id"])&&$_GET["id"]>0){echo 'style="display:none;"';}?>>
-				<?
-					loadAide();
+				<div id="chatHelp" <?php if (isset($_GET["id"])&&$_GET["id"]>0){echo 'style="display:none;"';}?>>
+				<?php 					loadAide();
 				?>
 				</div>
-				<div id="chatConversation" <? if (!isset($_GET["id"])||$_GET["id"]<=0){echo 'style="display:none;"';}?>>
+				<div id="chatConversation" <?php if (!isset($_GET["id"])||$_GET["id"]<=0){echo 'style="display:none;"';}?>>
 					<div class="chatProfileTo" id="chatProfileTo">
 					</div>
 					<div class="chatWarning">
-						<img src="<? echo SITE_URL;?>/chat2/images/warning.jpg" alt="warning"/><p><? echo $langChat["warning"];?></p>
+						<img src="<?php echo SITE_URL;?>/chat2/images/warning.jpg" alt="warning"/><p><?php echo $langChat["warning"];?></p>
 					</div>
 					<div class="chatMessages">
 						<div class="chatMessagesContent" id="chatMessagesContent">
@@ -134,9 +131,9 @@
 							<input type="hidden" name="site_url" id="site_url" value="<?php echo SITE_URL;?>">
 							<input type="hidden" name="id_corresp" id="id_corresp" value="<?php echo (isset($_GET["id_corresp"])&&$_GET["id_corresp"]>0)?$_GET["id_corresp"]:"0" ; ?>">
 							<input type="hidden" name="user_id_to_close" id="user_id_to_close" value="0">
-							<input type="hidden" name="closeConfirm" value="<? echo utf8_decode($langChat["closeConvConfirm"]); ?>">
+							<input type="hidden" name="closeConfirm" value="<?php echo utf8_decode($langChat["closeConvConfirm"]); ?>">
 							<textarea name="texte" id="texte" class="texte" onKeyUp="actionMessage(event);"></textarea>
-							<div class="envoyer" onClick="sendMessage();"><? echo $langChat["Envoyer"]; ?></div>
+							<div class="envoyer" onClick="sendMessage();"><?php echo $langChat["Envoyer"]; ?></div>
 						</form>
 					</div>
 				</div>

@@ -25,7 +25,7 @@ $lang_apphead = array(
 	"Confirme" => "Confirm&eacute;",
 	
 	"FinDAbonnement" => "Fin d'abonnement",
-	"AboPourToute" => "Abonnez-vous pour profiter de toutes les fonctionnalit&eacute;s de Parentsolo.ch",
+	"AboPourToute" => "Abonnez-vous pour profiter de toutes les fonctionnalit&eacute;s de solocircl.com",
 	"AbonnezVous" => "Abonnez-vous",
 	
 	"LogoutTitle" => "D&eacute;connexion de votre profil",

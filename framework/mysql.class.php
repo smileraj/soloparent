@@ -14,6 +14,24 @@ class DB
         }
         mysqli_set_charset($this->connection, 'utf8');
     }
+    
+public function query(string $sql)
+{
+    $this->result = mysqli_query($this->connection, $sql);
+    if ($this->result === false) {
+        throw new Exception("MySQL Query Error: " . mysqli_error($this->connection));
+    }
+    return $this->result;
+}
+public function affected_rows(): int
+{
+    return mysqli_affected_rows($this->connection);
+}
+public function escape(string $value): string
+{
+    return mysqli_real_escape_string($this->connection, $value);
+}
+
     public static function getVar(string $name, mixed $default = null, string $scope = 'request'): mixed
     {
         switch (strtolower($scope)) {

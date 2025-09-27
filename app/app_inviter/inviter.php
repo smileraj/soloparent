@@ -61,7 +61,7 @@
 		$_data			=& parrainage_data();
 
 		// conserve les donn&eacute;es envoy&eacute;es en session
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row->{$key} = JL::getVar($key, $value);
 			}
@@ -102,7 +102,7 @@
 		$_data			=& parrainage_data();
 
 		// conserve les donn&eacute;es envoy&eacute;es en session
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row->{$key} = JL::getVar($key, $value);
 			}
@@ -206,7 +206,7 @@
 			}
 
 			// s'il y a des emails &agrave; enregistrer
-			if(count($emails_envoyes)) {
+			if (is_array($emails_envoyes)) {
 
 				// message de confirmation
 				$messages[]	= '<span class="valid">'.$lang_inviter["MessageEnvoye"].' !</span>';
@@ -237,7 +237,7 @@
 		$_data			=& conseiller_data();
 
 		// conserve les donn&eacute;es envoy&eacute;es en session
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row->{$key} = JL::getVar($key, $value);
 			}
@@ -281,7 +281,7 @@
 		$_data			=& conseiller_data();
 
 		// conserve les donn&eacute;es envoy&eacute;es en session
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row->{$key} = JL::getVar($key, $value);
 			}
@@ -390,7 +390,7 @@
 			}
 
 			// s'il y a des emails &agrave; enregistrer
-			if(count($emails_envoyes)) {
+			if (is_array($emails_envoyes)) {
 
 				// message de confirmation
 				$messages[]	= '<span class="valid">'.$lang_inviter["MessageEnvoye"].' !</span>';

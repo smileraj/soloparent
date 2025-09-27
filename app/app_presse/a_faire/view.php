@@ -30,9 +30,9 @@
 						<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=parentsolo"></script>
 						<!-- AddThis Button END -->
 						<br />
-						<h2><? echo $contenu->titre;?></h2>
+						<h2><?php echo $contenu->titre;?></h2>
 						<p>
-							<? echo  $contenu->texte; ?>
+							<?php echo  $contenu->texte; ?>
 						</p>
 					</div>
 				</div>
@@ -43,15 +43,13 @@
 				
 				<!-- Partie Droite -->
 				<div class="colr"> 
-				<?
-					JL::loadApp('menu_presse_offline');
+				<?php 					JL::loadApp('menu_presse_offline');
 				?>
 				</div>
 				<div style="clear:both"> </div>
 			</div>
     
-		<?
-		
+		<?php 		
 		}
 		
 	}

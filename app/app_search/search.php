@@ -123,7 +123,7 @@
 
 
 		// r&eacute;cup les donn&eacute;es en session
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$search[$key]	= JL::getSession($key, $value, true);
 			}
@@ -262,7 +262,7 @@
 
 		// variables
 		$search 			= array();
-		$where				= array();
+		$where				= null;
 		$_where				= '';
 
 
@@ -271,7 +271,7 @@
 
 
 		// r&eacute;cup les donn&eacute;es en session
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$search[$key]	= JL::getSession($key, $value, true);
 			}
@@ -492,7 +492,7 @@
 		// variables
 		$search 			= array();
 		$list 			= array();
-		$where				= array();
+		$where				= null;
 		$_where				= '';
 
 
@@ -501,7 +501,7 @@
 
 
 		// r&eacute;cup les donn&eacute;es en session
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$search[$key]	= JL::getSession($key, $value, true);
 			}
@@ -571,7 +571,7 @@
 		// variables
 		$search 			= array();
 		$list 			= array();
-		$where				= array();
+		$where				= null;
 		$_where				= '';
 
 
@@ -580,7 +580,7 @@
 
 
 		// r&eacute;cup les donn&eacute;es en session
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$search[$key]	= JL::getSession($key, $value, true);
 			}
@@ -651,7 +651,7 @@
 		// variables
 		$search 			= array();
 		$list 			= array();
-		$where				= array();
+		$where				= null;
 		$_where				= '';
 
 
@@ -660,7 +660,7 @@
 
 
 		// r&eacute;cup les donn&eacute;es en session
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$search[$key]	= JL::getSession($key, $value, true);
 			}
@@ -743,7 +743,7 @@
 		// variables
 		$search 			= array();
 		$list 			= array();
-		$where				= array();
+		$where				= null;
 		$_where				= '';
 
 
@@ -752,7 +752,7 @@
 
 
 		// r&eacute;cup les donn&eacute;es en session
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$search[$key]	= JL::getSession($key, $value, true);
 			}
@@ -831,7 +831,7 @@
 		// variables
 		$search 			= array();
 		$list 			= array();
-		$where				= array();
+		$where				= null;
 		$_where				= '';
 
 
@@ -840,7 +840,7 @@
 
 
 		// r&eacute;cup les donn&eacute;es en session
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$search[$key]	= JL::getSession($key, $value, true);
 			}
@@ -958,7 +958,7 @@ $age_max_pro=(($values_select->userage)+5);
 		JL::setVar('search_display',JL::getSession('search_display', 0));
 		
 		// stock les donn&eacute;es temporaires en session
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				JL::setSession($key, JL::getVar($key, $value));
 			}
@@ -981,7 +981,7 @@ $age_max_pro=(($values_select->userage)+5);
 
 
 		// r&eacute;cup les donn&eacute;es en session
-		if(count($_data)) {
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {				
 				$row[$key]	= JL::getSession($key, $value);
 			}
@@ -1069,10 +1069,10 @@ $canton= $row['search_canton_id'];
 		$list_Ville_id = array_merge($list_Ville_id, $db->loadObjectList($query));
 		$list['search_ville_id'] 	= JL::makeSelectList( $list_Ville_id, 'search_ville_id', 'id="search_ville_id"  class="genreCanton"', 'value', 'text', $row['search_ville_id']);
 			// pseudo
-			$list['search_username']	= htmlentities($row['search_username']);
+			$list['search_username']	= makeSafe($row['search_username']);
 
 			// titre de la recherche
-			$list['search_titre']		= htmlentities($row['search_titre']);
+			$list['search_titre']		= makeSafe($row['search_titre']);
 
 			// en ligne
 			$list['search_online']		= $row['search_online'];
@@ -1366,7 +1366,7 @@ $canton= $row['search_canton_id'];
 	// cr&eacute;ation de la clause WHERE d'un crit&egrave;re facultatif
 	function SQLwhereCritFac(&$where, &$search, $field, $triple = false) {
 			global $langue;
-		if(count($search[$field])) {
+		if (is_array($search[$field])) {
 			if(in_array(0, $search[$field])) {
 				JL::setSession($field, array(0));
 			} else {

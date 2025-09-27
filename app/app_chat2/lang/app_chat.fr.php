@@ -6,7 +6,7 @@ $lang_chat = array(
 
 	"ParentSoloChat" => "ParentSoloChat",
 	"Aide" => "Aide",
-	"BienvenueSurChat" => "Bienvenue sur le chat Parentsolo.ch",
+	"BienvenueSurChat" => "Bienvenue sur le chat solocircl.com",
 	"VousAvez" => "Vous avez",
 	"Conversation" => "conversation",
 	"EnCours" => "en cours",

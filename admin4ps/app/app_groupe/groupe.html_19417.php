@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 	
 	class HTML_groupe {	
@@ -24,15 +24,15 @@
 						var ok = true;
 						
 						if(action == 'supprimer') {
-							if(!confirm('Voulez-vous vraiment supprimer les groupes sélectionnés ?')) {
+							if(!confirm('Voulez-vous vraiment supprimer les groupes sï¿½lectionnï¿½s ?')) {
 								ok = false;
 							}
 						} else if(action == 'desactiver') {
-							if(!confirm('Voulez-vous vraiment désactiver les groupes sélectionnés ?')) {
+							if(!confirm('Voulez-vous vraiment dï¿½sactiver les groupes sï¿½lectionnï¿½s ?')) {
 								ok = false;
 							}
 						} else if(action == 'activer') {
-							if(!confirm('Voulez-vous vraiment activer les groupes sélectionnés ?')) {
+							if(!confirm('Voulez-vous vraiment activer les groupes sï¿½lectionnï¿½s ?')) {
 								ok = false;
 							}
 						}
@@ -50,7 +50,7 @@
 						
 						
 						 if(action == 'Fermer') {
-							if(!confirm('Êtes-vous sûr de vouloir Fermer?')) {
+							if(!confirm('ï¿½tes-vous sï¿½r de vouloir Fermer?')) {
 								ok = false;
 								
 							}
@@ -58,14 +58,14 @@
 						
 						if(ok) {
 						
-							document.location = "<? echo SITE_URL_ADMIN; ?>"; 
+							document.location = "<?php echo SITE_URL_ADMIN; ?>"; 
 						}
 						
 					}
 					
 				</script>
 				
-				<form name="listForm" action="<? echo SITE_URL_ADMIN; ?>/index.php" method="post">
+				<form name="listForm" action="<?php echo SITE_URL_ADMIN; ?>/index.php" method="post">
 				<section class="panel">
                   <header class="panel-heading">
                       	<h2>Groupes</h2>
@@ -78,29 +78,29 @@
 					</div></div>	
 				</div>
 				<br />
-				<? if(count($messages)) { ?>
+				<?php if (is_array($messages)) { ?>
 						<div class="messages">
-							<? JL::messages($messages); ?>
+							<?php JL::messages($messages); ?>
 						</div>
 						<br />
-				<? } ?>
+				<?php } ?>
 				<div class="tableAdmin">
 					<div class="filtre">
 						<table class="table table-bordered table-striped table-condensed cf">
 							<tr>
 								<td><b>Recherche:</b></td>
-								<td><input type="text" name="search_g_word" id="search_g_word" value="<? echo htmlentities($search['word']); ?>" class="searchInput" /></td>
+								<td><input type="text" name="search_g_word" id="search_g_word" value="<?php echo makeSafe($search['word']); ?>" class="searchInput" /></td>
 							<tr>
 							<tr>
 								<td><b>Tri par:</b></td>
-								<td><? echo $lists['order']; ?></td>
+								<td><?php echo $lists['order']; ?></td>
 								<td><b>Statut:</b></td>
-								<td><? echo $lists['active']; ?></td>
+								<td><?php echo $lists['active']; ?></td>
 
 							</tr>
 							<tr>
 								<td><b>Ordre:</b></td>
-								<td><? echo $lists['ascdesc']; ?></td>
+								<td><?php echo $lists['ascdesc']; ?></td>
 							</tr>
 							<tr>
 								<td colspan="4" align="right">
@@ -111,52 +111,48 @@
 					</div>
 					<table cellpadding="0" cellspacing="0" class="table table-bordered table-striped table-condensed cf lister">
 						
-						<? if(count($rows)) { ?>
+						<?php if (is_array($rows)) { ?>
 						<tr>
 							<th width="20px"></th>
 							<th style="width:50px; text-align:center;">Statut</th>
 							<th>Titre</th>
 							<th style="width: 150px;">Cr&eacute;ation date</th>
 						</tr>
-						<?
-						foreach($rows as $row) {
+						<?php 						foreach($rows as $row) {
 						
 							// htmlentities
 							JL::makeSafe($row);
 							
 							?>
 							<tr class="list">
-								<td align="center"><input type="checkbox" name="id[]" value="<? echo $row->id; ?>" id="user_<? echo $row->id; ?>"></td>
-								<td align="center"><img src="images/<? echo $row->active; ?>.png" alt="" /></td>
+								<td align="center"><input type="checkbox" name="id[]" value="<?php echo $row->id; ?>" id="user_<?php echo $row->id; ?>"></td>
+								<td align="center"><img src="images/<?php echo $row->active; ?>.png" alt="" /></td>
 								<td>
-									<a href="<? echo SITE_URL_ADMIN; ?>/index.php?app=groupe&action=edit&id=<? echo $row->id; ?>" title="Modifier le t&eacute;moignage"><? echo $row->titre; ?></a><br />
-									<i>par <b><? echo $row->username; ?></b></i>
+									<a href="<?php echo SITE_URL_ADMIN; ?>/index.php?app=groupe&action=edit&id=<?php echo $row->id; ?>" title="Modifier le t&eacute;moignage"><?php echo $row->titre; ?></a><br />
+									<i>par <b><?php echo $row->username; ?></b></i>
 								</td>
-								<td><? echo date('d/m/Y à H:i:s', strtotime($row->date_add)); ?></td>
+								<td><?php echo date('d/m/Y ï¿½ H:i:s', strtotime($row->date_add)); ?></td>
 							</tr>
-							<?
-						}
+							<?php 						}
 						?>
 					
 						<tr>
-							<td colspan="<? echo $tdParTr; ?>">
+							<td colspan="<?php echo $tdParTr; ?>">
 								<b>Pages</b>:
-								<? if($debut > 1) { ?> <a href="<? echo JL::url(SITE_URL_ADMIN.'/index.php?app=groupe&search_g_page=1'); ?>" title="Afficher la page 1">D&eacute;but</a> ...<? }?>
-								<?
-									for($i=$debut; $i<=$fin; $i++) {
+								<?php if($debut > 1) { ?> <a href="<?php echo JL::url(SITE_URL_ADMIN.'/index.php?app=groupe&search_g_page=1'); ?>" title="Afficher la page 1">D&eacute;but</a> ...<?php }?>
+								<?php 									for($i=$debut; $i<=$fin; $i++) {
 									?>
-										 <a href="<? echo JL::url(SITE_URL_ADMIN.'/index.php?app=groupe&search_g_page='.$i); ?>" title="Afficher la page <? echo $i; ?>" <? if($i == $search['page']) { ?>class="displayActive"<? } ?>><? echo $i; ?></a>
-									<?
-									}
+										 <a href="<?php echo JL::url(SITE_URL_ADMIN.'/index.php?app=groupe&search_g_page='.$i); ?>" title="Afficher la page <?php echo $i; ?>" <?php if($i == $search['page']) { ?>class="displayActive"<?php } ?>><?php echo $i; ?></a>
+									<?php 									}
 								?>
-								<? if($fin < $search['page_total']) { ?> ... <a href="<? echo JL::url(SITE_URL_ADMIN.'/index.php?app=groupe&search_g_page='.$search['page_total']); ?>" title="Afficher la page <? echo $search['page_total']; ?>">Fin</a><? }?> <i>(<? echo $search['result_total']; ?> r&eacute;sultats)</i>
+								<?php if($fin < $search['page_total']) { ?> ... <a href="<?php echo JL::url(SITE_URL_ADMIN.'/index.php?app=groupe&search_g_page='.$search['page_total']); ?>" title="Afficher la page <?php echo $search['page_total']; ?>">Fin</a><?php }?> <i>(<?php echo $search['result_total']; ?> r&eacute;sultats)</i>
 							</td>
 						</tr>
-					<? } else { ?>
+					<?php } else { ?>
 						<tr>
-							<th colspan="<? echo $tdParTr; ?>">Aucun groupe ne correspond &agrave; votre recherche.</th>
+							<th colspan="<?php echo $tdParTr; ?>">Aucun groupe ne correspond &agrave; votre recherche.</th>
 						</tr>
-					<? } ?>
+					<?php } ?>
 					</table>
 				</div>
 					<input type="hidden" name="search_g_page" value="1" />
@@ -164,11 +160,10 @@
 					<input type="hidden" name="action" value="" />
 				</section>
 				</form>
-			<?
-		}
+			<?php 		}
 		
 		
-		// formlaire d'édition d'un profil
+		// formlaire d'ï¿½dition d'un profil
 		function groupeEditer(&$row, &$messages) {
 			
 			// htmlentities
@@ -182,12 +177,12 @@
 						var ok = true;
 						
 						if(action == 'Annuler') {
-							if(!confirm('Êtes-vous sûr de vouloir Annuler?')) {
+							if(!confirm('ï¿½tes-vous sï¿½r de vouloir Annuler?')) {
 								ok = false;
 							}
 						} 
 						else if(action == 'Fermer') {
-							if(!confirm('Êtes-vous sûr de vouloir Fermer?')) {
+							if(!confirm('ï¿½tes-vous sï¿½r de vouloir Fermer?')) {
 								ok = false;
 								
 							}
@@ -195,12 +190,12 @@
 						
 						if(ok) {
 						
-							document.location = "<? echo SITE_URL_ADMIN; ?>/index.php?app=groupe"; 
+							document.location = "<?php echo SITE_URL_ADMIN; ?>/index.php?app=groupe"; 
 						}
 						
 					}
 			</script>
-			<form name="editForm" action="<? echo SITE_URL_ADMIN; ?>/index.php" method="post">
+			<form name="editForm" action="<?php echo SITE_URL_ADMIN; ?>/index.php" method="post">
 				<section class="panel">
                   <header class="panel-heading">
                      	<h2>Groupe</h2>
@@ -216,31 +211,30 @@
 				  </div>
 				</div>
 				<br />
-				<? // messages d'erreurs
-				if(count($messages)) { ?>
+				<?php // messages d'erreurs
+				if (is_array($messages)) { ?>
 					<div class="messages">
-						<? JL::messages($messages); ?>
+						<?php JL::messages($messages); ?>
 					</div>
 					<br />
-				<? } ?>
+				<?php } ?>
 				<div class="tableAdmin">
 					<h3>Informations</h3>
 					<br />
 					<table cellpadding="0" cellspacing="0" class="table table-bordered table-striped table-condensed cf editer">
 						<tr>
 							<td class="key"><b>Titre d'origine:</b></td>
-							<td><? echo $row->titre_origine; ?></td>
+							<td><?php echo $row->titre_origine; ?></td>
 						</tr>
 						<tr>
 							<td class="key"><b>Texte d'origine:</b></td>
-							<td><? echo nl2br($row->texte_origine); ?></td>
+							<td><?php echo nl2br($row->texte_origine); ?></td>
 						</tr>
 						<tr>
 							<td class="key"><b>Photo active:</b></td>
 							<td>
-							<?
-							
-								// si une photo a été envoyée
+							<?php 							
+								// si une photo a ï¿½tï¿½ envoyï¿½e
 								$filePath = 'images/groupe/'.$row->id.'.jpg';
 								if(is_file(SITE_PATH.'/'.$filePath)) {
 									$image	= $filePath;
@@ -249,8 +243,8 @@
 								}
 								
 								?>
-								<label for="<? echo $filePath; ?>"><img src="<? echo SITE_URL.'/'.$image; ?>?<? echo time(); ?>" /></label><br />
-								<? if(is_file(SITE_PATH.'/'.$filePath)) { ?><input type="checkbox" name="photo_delete" value="<? echo $filePath; ?>" id="photo_delete" /> <label for="photo_delete">Supprimer</label><? } ?>
+								<label for="<?php echo $filePath; ?>"><img src="<?php echo SITE_URL.'/'.$image; ?>?<?php echo time(); ?>" /></label><br />
+								<?php if(is_file(SITE_PATH.'/'.$filePath)) { ?><input type="checkbox" name="photo_delete" value="<?php echo $filePath; ?>" id="photo_delete" /> <label for="photo_delete">Supprimer</label><?php } ?>
 							</td>
 						</tr>
 						<tr>
@@ -258,12 +252,12 @@
 						</tr>
 						<tr>
 							<td class="key"><label for="titre">Titre:</label></td>
-							<td><input type="text" id="titre" style="width:450px;" name="titre" maxlength="70" value="<? echo $row->titre; ?>"></td>
+							<td><input type="text" id="titre" style="width:450px;" name="titre" maxlength="70" value="<?php echo $row->titre; ?>"></td>
 						</tr>
 						<tr>
 							<td class="key"><label for="texte">Texte:</label></td>
 							<td>
-								<textarea name="texte" id="texte" rows="10" cols="72"><? echo $row->texte; ?></textarea>
+								<textarea name="texte" id="texte" rows="10" cols="72"><?php echo $row->texte; ?></textarea>
 							</td>
 						</tr>
 						<?	
@@ -274,14 +268,13 @@
 							<tr>
 								<td class="key"><b>Photo envoy&eacute;e:</b></td>
 								<td>
-									<img src="<? echo SITE_URL.'/images/groupe/pending/'.$row->id.'.jpg'; ?>?<? echo time(); ?>" /><br />
+									<img src="<?php echo SITE_URL.'/images/groupe/pending/'.$row->id.'.jpg'; ?>?<?php echo time(); ?>" /><br />
 									<div class="statut statut1"><input type="radio" name="photo_valider" value="1" id="photo_valider1" /> <label for="photo_valider1">Valider</label></div>
 									<div class="statut statut0"><input type="radio" name="photo_valider" value="0" id="photo_valider0" /> <label for="photo_valider0">Refuser</label></div>
 									<div class="statut statut2"><input type="radio" name="photo_valider" value="2" id="photo_valider2" checked="true" /> <label for="photo_valider2">En attente</label></div>
 								</td>
 							</tr>
-							<?
-							}
+							<?php 							}
 							
 						?>
 					</table>
@@ -294,34 +287,33 @@
 						<tr>
 							<td class="key"><b>Fondateur:</b</td>
 							<td>
-								<a href="<? echo SITE_URL_ADMIN; ?>/index.php?app=profil&action=editer&id=<? echo $row->user_id; ?>" title="Profil de <? echo $row->username; ?>" target="_blank"><? echo $row->username; ?></a>
+								<a href="<?php echo SITE_URL_ADMIN; ?>/index.php?app=profil&action=editer&id=<?php echo $row->user_id; ?>" title="Profil de <?php echo $row->username; ?>" target="_blank"><?php echo $row->username; ?></a>
 							</td>
 						</tr>
 						<tr>
 							<td class="key"><label for="statut">Statut:</label></td>
 							<td>
-								<div class="statut statut1"><input type="radio" name="active" value="1" id="active1" <? if($row->active == 1) { ?>checked="true"<? } ?> /> <label for="active1">Publi&eacute;</label></div>
-								<div class="statut statut0"><input type="radio" name="active" value="0" id="active0" <? if($row->active == 0) { ?>checked="true"<? } ?> /> <label for="active0">Refus&eacute;</label></div>
-								<div class="statut statut2"><input type="radio" name="active" value="2" id="active2" <? if($row->active == 2) { ?>checked="true"<? } ?> /> <label for="active2">En attente</label></div>
-								<div class="statut statut3"><input type="radio" name="active" value="3" id="active3" <? if($row->active == 3) { ?>checked="true"<? } ?> /> <label for="active3">Verouill&eacute;</label>: Le groupe sera <b>publi&eacute;</b> et ne pourra plus &ecirc;tre modifi&eacute; par son fondateur</div>
+								<div class="statut statut1"><input type="radio" name="active" value="1" id="active1" <?php if($row->active == 1) { ?>checked="true"<?php } ?> /> <label for="active1">Publi&eacute;</label></div>
+								<div class="statut statut0"><input type="radio" name="active" value="0" id="active0" <?php if($row->active == 0) { ?>checked="true"<?php } ?> /> <label for="active0">Refus&eacute;</label></div>
+								<div class="statut statut2"><input type="radio" name="active" value="2" id="active2" <?php if($row->active == 2) { ?>checked="true"<?php } ?> /> <label for="active2">En attente</label></div>
+								<div class="statut statut3"><input type="radio" name="active" value="3" id="active3" <?php if($row->active == 3) { ?>checked="true"<?php } ?> /> <label for="active3">Verouill&eacute;</label>: Le groupe sera <b>publi&eacute;</b> et ne pourra plus &ecirc;tre modifi&eacute; par son fondateur</div>
 							</td>
 						</tr>
 						<tr>
 							<td class="key"><label for="motif">Message:</label></td>
 							<td>
-								<textarea name="motif" id="motif"rows="10" cols="72"><? echo $row->motif; ?></textarea><br />
+								<textarea name="motif" id="motif"rows="10" cols="72"><?php echo $row->motif; ?></textarea><br />
 								<i>Vous pouvez indiquer un motif de refus, ou des pr&eacute;cisions si vous avez effectu&eacute; des corrections/modifications. Ce message sera <span style="color:#990000;font-weight:bold;">lisible par le membre</span>.</i>
 							</td>
 						</tr>
 					</table>
 				</div>
-				<input type="hidden" name="id" value="<? echo $row->id; ?>" />
+				<input type="hidden" name="id" value="<?php echo $row->id; ?>" />
 				<input type="hidden" name="app" value="groupe" />
 				<input type="hidden" name="action" value="save" />
 				</section>
 			</form>
-			<?
-		}
+			<?php 		}
 		
 	}
 ?>

@@ -3,7 +3,7 @@
 $lang_appabonnement = array(
 
 	//Fichier abonnement.html.php
-	"MessagesParentsolo" => "Messages Parentsolo.ch",
+	"MessagesParentsolo" => "Messages solocircl.com",
 	
 	
 	"Abonnement" => "Abonnement",
@@ -60,7 +60,7 @@ $lang_appabonnement = array(
 	"FinalisationDuPaiement" => "Finalisation du paiement",
 	"TransactionValidee" => "La transaction a &eacute;t&eacute; valid&eacute;e par Paypal",
 	"CompteCredite" => "Votre compte a &eacute;t&eacute; cr&eacute;dit&eacute; de <b>".$duree_credite." jours</b>",
-	"ParentsoloVousRemercie" => "Parentsolo.ch vous remercie et vous souhaite d'effectuer d'agr&eacute;ables rencontres sur le site",
+	"ParentsoloVousRemercie" => "solocircl.com vous remercie et vous souhaite d'effectuer d'agr&eacute;ables rencontres sur le site",
 	
 	"TransactionAnnulee" => "Transaction annul&eacute;e",
 	"ErreurTransaction" => "Une erreur s'est produite lors de la transaction ou vous avez annul&eacute;e celle-ci",

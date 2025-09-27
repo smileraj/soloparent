@@ -1,5 +1,4 @@
-<?
-// crée une miniature sans fond
+<?php // crée une miniature sans fond
 function createPictureSansFond($source, $dest, $x, $y, $ext) {
 
 	//récup l'image d'origine

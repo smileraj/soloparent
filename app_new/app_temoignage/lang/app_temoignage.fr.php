@@ -3,36 +3,36 @@
 $lang_apptemoignage = array(
 
 	//View
-	"MessagesParentsolo" => "Messages Parentsolo.ch",
+	"MessagesParentsolo" => "Messages solocircl.com",
 	
 	
-	//*Listes de tous les témoignages
-	"TousLesTemoignages" => "Tous les témoignages",
+	//*Listes de tous les tï¿½moignages
+	"TousLesTemoignages" => "Tous les tï¿½moignages",
 	
-	"LireLeTemoignage" => "Lire le témoignage",
-	"Publicite" => "Publicité",
-	"PagePrecedente" => "Page précédente",
+	"LireLeTemoignage" => "Lire le tï¿½moignage",
+	"Publicite" => "Publicitï¿½",
+	"PagePrecedente" => "Page prï¿½cï¿½dente",
 	"Pages" => "Pages",
 	"Page" => "Page",
-	"Debut" => "Début",
-	"Temoignage" => "témoignage",
-	"Temoignages" => "témoignages",
+	"Debut" => "Dï¿½but",
+	"Temoignage" => "tï¿½moignage",
+	"Temoignages" => "tï¿½moignages",
 	"Fin" => "Fin",
 	"PageSuivante" => "Page suivante",
-	"AucunTemoignage" => "Aucun témoignage n'est disponible pour le moment",
-	"CodeDeVerification" => "Code de vérification",
-	"VeuillezRecopierCodeVerification" => "Veuillez recopier ci-dessous, ce code de vérification:",
-	"WarningCodeVerifIncorrect" => "Le code de vérification entré est incorrect",
-	//*Affichage d'un témoignage en partculier
-	"TemoignagePublieLePar" => "Témoignage publié le ".date("d.m.Y",strtotime($temoignage->date_add))." par ".$temoignage->username,
+	"AucunTemoignage" => "Aucun tï¿½moignage n'est disponible pour le moment",
+	"CodeDeVerification" => "Code de vï¿½rification",
+	"VeuillezRecopierCodeVerification" => "Veuillez recopier ci-dessous, ce code de vï¿½rification:",
+	"WarningCodeVerifIncorrect" => "Le code de vï¿½rification entrï¿½ est incorrect",
+	//*Affichage d'un tï¿½moignage en partculier
+	"TemoignagePublieLePar" => "Tï¿½moignage publiï¿½ le ".date("d.m.Y",strtotime($temoignage->date_add))." par ".$temoignage->username,
 	
-	//*Je désire témoigner
-	"VotreTemoignage" => "Votre témoignage",
+	//*Je dï¿½sire tï¿½moigner
+	"VotreTemoignage" => "Votre tï¿½moignage",
 	
 	"Titre" => "Titre:",
 	"Texte" => "Texte:",
 	
-	"LesChampsMarques" => "Les champs marqués d'un astérisque * sont obligatoires.",
+	"LesChampsMarques" => "Les champs marquï¿½s d'un astï¿½risque * sont obligatoires.",
 	
 	"Envoyer" => "Envoyer",
 	
@@ -41,13 +41,13 @@ $lang_apptemoignage = array(
 
 	//Model
 
-	//*Je désire témoigner
-	"VousDevezEtreConnecte" => "Vous devez être connecté afin de pouvoir laisser un témoignage",
+	//*Je dï¿½sire tï¿½moigner
+	"VousDevezEtreConnecte" => "Vous devez ï¿½tre connectï¿½ afin de pouvoir laisser un tï¿½moignage",
 	
-	"VeuillezIndiquerTitre" => "Veuillez indiquer le titre de votre témoignage s'il vous plaît",
-	"VeuillezIndiquerTexte" => "Veuillez indiquer le texte de votre témoignage s'il vous plaît",
+	"VeuillezIndiquerTitre" => "Veuillez indiquer le titre de votre tï¿½moignage s'il vous plaï¿½t",
+	"VeuillezIndiquerTexte" => "Veuillez indiquer le texte de votre tï¿½moignage s'il vous plaï¿½t",
 
-	"TemoignageEnvoye" => "Votre témoignage a été envoyé!<br /> Un modérateur de ParentSolo.ch va vérifier celui-ci afin de le publier ou non, dans les deux cas vous serez averti(e) par email.",
+	"TemoignageEnvoye" => "Votre tï¿½moignage a ï¿½tï¿½ envoyï¿½!<br /> Un modï¿½solocircl.comentSolo.ch va vï¿½rifier celui-ci afin de le publier ou non, dans les deux cas vous serez averti(e) par email.",
 	
 	
 	

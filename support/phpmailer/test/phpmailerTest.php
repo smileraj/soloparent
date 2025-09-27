@@ -154,7 +154,7 @@ class phpmailerTest extends PHPUnit_Framework_TestCase {
         
         // If attachments then create an attachment list
         $attachments = $this->Mail->GetAttachments();
-        if(count($attachments) > 0)
+        if (is_array($attachments) > 0)
         {
             $ReportBody .= "Attachments:" . $eol;
             $ReportBody .= $bullet_start;
@@ -167,7 +167,7 @@ class phpmailerTest extends PHPUnit_Framework_TestCase {
         }
         
         // If there are changes then list them
-        if(count($this->ChangeLog) > 0)
+        if (is_array($this->ChangeLog) > 0)
         {
             $ReportBody .= "Changes" . $eol;
             $ReportBody .= "-------" . $eol;
@@ -182,7 +182,7 @@ class phpmailerTest extends PHPUnit_Framework_TestCase {
         }
         
         // If there are notes then list them
-        if(count($this->NoteLog) > 0)
+        if (is_array($this->NoteLog) > 0)
         {
             $ReportBody .= "Notes" . $eol;
             $ReportBody .= "-----" . $eol;
@@ -607,9 +607,9 @@ class phpmailerTest extends PHPUnit_Framework_TestCase {
 	*/
 	function test_Encodings() {
 	    $this->Mail->Charset = 'iso-8859-1';
-	    $this->assertEquals('=A1Hola!_Se=F1or!', $this->Mail->EncodeQ('¡Hola! Señor!', 'text'), 'Q Encoding (text) failed');
-	    $this->assertEquals('=A1Hola!_Se=F1or!', $this->Mail->EncodeQ('¡Hola! Señor!', 'comment'), 'Q Encoding (comment) failed');
-	    $this->assertEquals('=A1Hola!_Se=F1or!', $this->Mail->EncodeQ('¡Hola! Señor!', 'phrase'), 'Q Encoding (phrase) failed');
+	    $this->assertEquals('=A1Hola!_Se=F1or!', $this->Mail->EncodeQ('ï¿½Hola! Seï¿½or!', 'text'), 'Q Encoding (text) failed');
+	    $this->assertEquals('=A1Hola!_Se=F1or!', $this->Mail->EncodeQ('ï¿½Hola! Seï¿½or!', 'comment'), 'Q Encoding (comment) failed');
+	    $this->assertEquals('=A1Hola!_Se=F1or!', $this->Mail->EncodeQ('ï¿½Hola! Seï¿½or!', 'phrase'), 'Q Encoding (phrase) failed');
 	}
 	
 	/**

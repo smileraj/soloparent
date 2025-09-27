@@ -1,5 +1,4 @@
-<?
-	// sécurité
+<?php 	// sécurité
 	defined('JL') or die('Error 401');
 	
 	class FUNCTION_mailing_auto {
@@ -85,9 +84,9 @@
 				
 				if(is_file($prefix_ajax.'../images/mailing_auto/'.$mailing->id.'/news_publi.png')){
 					if($mailing->lien_news_publi)
-						$html =str_replace('{news_publi}', "<div style='clear:both;padding-top:20px;'></div><div style='padding:15px 15px 35px 15px;background:#F3BCBC;color:#333;'><h1 style='font-family: Verdana,Helvetica,sans-serif; font-size: 20px; color: #333; font-weight: normal;margin:0;'>".$mailing->titre_news_publi."</h1><br /><a href='".$mailing->lien_news_publi."' target='_blank'><img src='http://www.parentsolo.ch/images/mailing_auto/".$mailing->id."/news_publi.png' alt='' style='float:left;margin-right:10px;' /></a>".$mailing->texte_news_publi."<div style='clear:both'></div></div>",$html);
+						$html =str_replace('{news_publi}', "<div style='clear:both;padding-top:20px;'></div><div style='padding:15px 15px 35px 15px;background:#F3BCBC;color:#333;'><h1 style='font-family: Verdana,Helvetica,sans-serif; font-size: 20px; color: #333; font-weight: normal;margin:0;'>".$mailing->titre_news_publi."</h1><br /><a href='".$mailing->lien_news_publi."' target='_blank'><img src='http://www.solocircl.com/images/mailing_auto/".$mailing->id."/news_publi.png' alt='' style='float:left;margin-right:10px;' /></a>".$mailing->texte_news_publi."<div style='clear:both'></div></div>",$html);
 					else
-						$html =str_replace('{news_publi}', "<div style='clear:both;padding-top:20px;'></div><div style='padding:15px 15px 35px 15px;background:#F3BCBC;color:#333;'><h1 style='font-family: Verdana,Helvetica,sans-serif; font-size: 20px; color: #333; font-weight: normal;margin:0;'>".$mailing->titre_news_publi."</h1><br /><img src='http://www.parentsolo.ch/images/mailing_auto/".$mailing->id."/news_publi.png' alt='' style='float:left;margin-right:10px;' />".$mailing->texte_news_publi."<div style='clear:both'></div></div>",$html);
+						$html =str_replace('{news_publi}', "<div style='clear:both;padding-top:20px;'></div><div style='padding:15px 15px 35px 15px;background:#F3BCBC;color:#333;'><h1 style='font-family: Verdana,Helvetica,sans-serif; font-size: 20px; color: #333; font-weight: normal;margin:0;'>".$mailing->titre_news_publi."</h1><br /><img src='http://www.solocircl.com/images/mailing_auto/".$mailing->id."/news_publi.png' alt='' style='float:left;margin-right:10px;' />".$mailing->texte_news_publi."<div style='clear:both'></div></div>",$html);
 				}else{
 					$html =str_replace('{news_publi}', "<div style='clear:both;padding-top:20px;'></div><div style='padding:15px 15px 35px 15px;background:#F3BCBC;color:#333;'><h1 style='font-family: Verdana,Helvetica,sans-serif; font-size: 20px; color: #333; font-weight: normal;margin:0;'>".$mailing->titre_news_publi."</h1><br />".$mailing->texte_news_publi."</div>",$html);
 				}
@@ -108,7 +107,7 @@
 								<h1 style='font-family: Verdana,Helvetica,sans-serif; font-size: 20px; color: #333; font-weight: normal;margin:0;'>".$mailing->titre_actu_ps."</h1><br />
 								<table style='text-align:justify;font-family:Arial,Verdana, Helvetica, sans-serif;font-size:12px;'>
 									<tr>
-										<td valign='top'><a href='".$mailing->lien_actu_ps."' target='_blank'><img src='http://www.parentsolo.ch/images/mailing_auto/".$mailing->id."/actu_ps.png' alt='' /></a></td>
+										<td valign='top'><a href='".$mailing->lien_actu_ps."' target='_blank'><img src='http://www.solocircl.com/images/mailing_auto/".$mailing->id."/actu_ps.png' alt='' /></a></td>
 										<td style='width:10px;'></td>
 										<td>".$mailing->texte_actu_ps."</td>
 									</tr>
@@ -121,7 +120,7 @@
 								<h1 style='font-family: Verdana,Helvetica,sans-serif; font-size: 20px; color: #333; font-weight: normal;margin:0;'>".$mailing->titre_actu_ps."</h1><br />
 								<table style='text-align:justify;font-family:Arial,Verdana, Helvetica, sans-serif;font-size:12px;'>
 									<tr>
-										<td valign='top'><img src='http://www.parentsolo.ch/images/mailing_auto/".$mailing->id."/actu_ps.png' alt='' /></td>
+										<td valign='top'><img src='http://www.solocircl.com/images/mailing_auto/".$mailing->id."/actu_ps.png' alt='' /></td>
 										<td style='width:10px;'></td>
 										<td>".$mailing->texte_actu_ps."</td>
 									</tr>
@@ -143,7 +142,7 @@
 								<h1 style='font-family: Verdana,Helvetica,sans-serif; font-size: 20px; color: #c32a2c; font-weight: normal;margin:0;'>".$mailing->titre_actu_ps."</h1><br />
 								<table style='text-align:justify;font-family:Arial,Verdana, Helvetica, sans-serif;font-size:12px;'>
 									<tr>
-										<td valign='top'><a href='".$mailing->lien_actu_ps."' target='_blank'><img src='http://www.parentsolo.ch/images/mailing_auto/".$mailing->id."/actu_ps.png' alt='' /></a></td>
+										<td valign='top'><a href='".$mailing->lien_actu_ps."' target='_blank'><img src='http://www.solocircl.com/images/mailing_auto/".$mailing->id."/actu_ps.png' alt='' /></a></td>
 										<td style='width:10px;'></td>
 											<td>".$mailing->texte_actu_ps."</td>
 									</tr>
@@ -156,7 +155,7 @@
 								<h1 style='font-family: Verdana,Helvetica,sans-serif; font-size: 20px; color: #c32a2c; font-weight: normal;margin:0;'>".$mailing->titre_actu_ps."</h1><br />
 								<table style='text-align:justify;font-family:Arial,Verdana, Helvetica, sans-serif;font-size:12px;'>
 									<tr>
-										<td valign='top'><img src='http://www.parentsolo.ch/images/mailing_auto/".$mailing->id."/actu_ps.png' alt='' /></td>
+										<td valign='top'><img src='http://www.solocircl.com/images/mailing_auto/".$mailing->id."/actu_ps.png' alt='' /></td>
 										<td style='width:10px;'></td>
 											<td>".$mailing->texte_actu_ps."</td>
 									</tr>

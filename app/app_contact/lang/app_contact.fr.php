@@ -4,7 +4,7 @@ $lang_appcontact = array(
 	
 	//*View
 	
-	"MessagesParentsolo" => "Messages Parentsolo.ch",
+	"MessagesParentsolo" => "Messages solocircl.com",
 	
 	//**Formulaire de contact
 	

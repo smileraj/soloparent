@@ -63,16 +63,16 @@
 						
 						if(ok) {
 						
-							window.location.href = "<? echo SITE_URL_ADMIN; ?>"; 
+							window.location.href = "<?php echo SITE_URL_ADMIN; ?>"; 
 						}
 						
 					}
 				</script>
 				
-				<form name="listForm" action="<? echo SITE_URL_ADMIN; ?>/index.php" method="post">
+				<form name="listForm" action="<?php echo SITE_URL_ADMIN; ?>/index.php" method="post">
 				<section class="panel">
                   <header class="panel-heading">
-                      <h2>Gestion des profils <i>(H: <? echo $stats['papas']; ?>% / F: <? echo $stats['mamans']; ?>%)</i></h2>
+                      <h2>Gestion des profils <i>(H: <?php echo $stats['papas']; ?>% / F: <?php echo $stats['mamans']; ?>%)</i></h2>
                   </header>
 				
 				<div class="row">
@@ -86,37 +86,37 @@
 					</div>	
 				</div>
 				<br />
-				<? if(count($messages)) { ?>
+				<?php if (is_array($messages)) { ?>
 						<div class="messages">
-							<? JL::messages($messages); ?>
+							<?php JL::messages($messages); ?>
 						</div>
 						<br />
-				<? } ?>
+				<?php } ?>
 				<div class="tableAdmin">
 					<div class="filtre">
 						<table class="table table-bordered table-striped  cf">
 							<tr>
 								<td><b>Recherche:</b></td>
-								<td><input type="text" name="search_word" id="search_word" value="<? echo htmlentities($search['word']); ?>" class="searchInput" /></td>
+								<td><input type="text" name="search_word" id="search_word" value="<?php echo makeSafe($search['word']); ?>" class="searchInput" /></td>
 								<td><b>Profil Helvetica:</b></td>
-								<td><? echo $lists['helvetica']; ?></td>
+								<td><?php echo $lists['helvetica']; ?></td>
 							</tr>
 							
 							<tr>
 								<td><b>Tri par:</b></td>
-								<td><? echo $lists['order']; ?></td>
+								<td><?php echo $lists['order']; ?></td>
 								<td><b>Statut:</b></td>
-								<td> <? echo $lists['confirmed']; ?></td>
+								<td> <?php echo $lists['confirmed']; ?></td>
 							</tr>
 							<tr>
 								<td><b>Ordre:</b></td>
-								<td><? echo $lists['ascdesc']; ?></td>
+								<td><?php echo $lists['ascdesc']; ?></td>
 								<td><b>Genre:</b></td>
-								<td><? echo $lists['genre']; ?></td>
+								<td><?php echo $lists['genre']; ?></td>
 							</tr>
 							<tr>
 								<td><b>Abonnement:</b></td>
-								<td colspan="3"><? echo $lists['abonnement']; ?></td>
+								<td colspan="3"><?php echo $lists['abonnement']; ?></td>
 							</tr>
 							<tr>
 								<td colspan="4" align="right"><a href="javascript:document.listForm.submit();" class="bouton envoyer">Rechercher</a></td>
@@ -125,7 +125,7 @@
 					</div>	
 					<table cellpadding="0" cellspacing="0" class="table table-bordered table-striped table-condensed cf lister">
 											
-						<? if(count($users)) { ?>
+						<?php if (is_array($users)) { ?>
 						<tr>
 							<th width="20px"></th>
 							<th>Pseudo</th>
@@ -139,8 +139,7 @@
 							<th>Appels</th>
 							<th>Pays</th>
 						</tr>
-						<?
-						foreach($users as $user) {
+						<?php 						foreach($users as $user) {
 						
 							// htmlentities
 							JL::makeSafe($user);
@@ -213,42 +212,41 @@
 							}
 							
 						?>
-							<tr class="list<? if($jours > 0 && $jours <= 3) { ?> jours3<? } ?><? if($warning) { ?> warning<? } ?>" >
-								<td align="center"><input type="checkbox" name="id[]" value="<? echo $user->id; ?>" id="user_<? echo $user->id; ?>"></td>
+							<tr class="list<?php if($jours > 0 && $jours <= 3) { ?> jours3<?php } ?><?php if($warning) { ?> warning<?php } ?>" >
+								<td align="center"><input type="checkbox" name="id[]" value="<?php echo $user->id; ?>" id="user_<?php echo $user->id; ?>"></td>
 								<td>
-									<a href="<? echo SITE_URL_ADMIN; ?>/index.php?app=profil&action=editer&id=<? echo $user->id; ?>" title="Modifier le profil de <? echo $user->username; ?>"><? echo $user->username; ?></a><br />
-									<span style="font-size:10px;font-style:italic;"><? echo $user->points_total; ?> pts</span>
+									<a href="<?php echo SITE_URL_ADMIN; ?>/index.php?app=profil&action=editer&id=<?php echo $user->id; ?>" title="Modifier le profil de <?php echo $user->username; ?>"><?php echo $user->username; ?></a><br />
+									<span style="font-size:10px;font-style:italic;"><?php echo $user->points_total; ?> pts</span>
 								</td>
-								<td align="center"><img src="images/<? echo $user->genre; ?>.png" alt="<? echo $user->genre == 'h' ? 'Homme' : 'Femme'; ?>" /></td>
+								<td align="center"><img src="images/<?php echo $user->genre; ?>.png" alt="<?php echo $user->genre == 'h' ? 'Homme' : 'Femme'; ?>" /></td>
 								<td align="center">
-								<? /*
-								<a href="<? echo SITE_URL_ADMIN; ?>/index.php?app=profil&action=<? echo $user->published ? 'desactiver' : 'activer'; ?>&id[]=<? echo $user->id; ?>" title="Cliquez pour <? echo $user->published ? 'd&eacute;sactiver' : 'activer'; ?> le profil de <? echo $user->username; ?>">
+								<?php /*
+								<a href="<?php echo SITE_URL_ADMIN; ?>/index.php?app=profil&action=<?php echo $user->published ? 'desactiver' : 'activer'; ?>&id[]=<?php echo $user->id; ?>" title="Cliquez pour <?php echo $user->published ? 'd&eacute;sactiver' : 'activer'; ?> le profil de <?php echo $user->username; ?>">
 								*/ ?>
-								<img src="images/<? echo $user->published; ?>.png" alt="<? echo $user->published ? 'Oui' : 'Non'; ?>" />
-								<? /*
+								<img src="images/<?php echo $user->published; ?>.png" alt="<?php echo $user->published ? 'Oui' : 'Non'; ?>" />
+								<?php /*
 								</a>
 								*/ ?>
 								</td>
-								<td align="center"><img src="images/<? echo $user->confirmed; ?>.png" alt="" /></td>
-								<td><? echo $user->abonnement; ?></td>
+								<td align="center"><img src="images/<?php echo $user->confirmed; ?>.png" alt="" /></td>
+								<td><?php echo $user->abonnement; ?></td>
 								
-								<? if($user->helvetica == 1) { 
+								<?php if($user->helvetica == 1) { 
 									
 								?>
 									<td colspan="4">
-										<img src="<? echo SITE_URL_ADMIN; ?>/images/helvetica.jpg" alt="" />
+										<img src="<?php echo SITE_URL_ADMIN; ?>/images/helvetica.jpg" alt="" />
 									</td>
 									
-								<? } else { ?>
+								<?php } else { ?>
 								
-									<td style="color: <? echo $colorNom; ?>;"><? echo $user->nom_origine; ?></td>
-									<td><? echo $user->prenom_origine; ?></td>
-									<td style="color: <? echo $colorPhone; ?>;">
-										<? echo substr($user->telephone_origine, 0, 1) == '0' ? $user->telephone_origine : '0'.$user->telephone_origine; ?>
+									<td style="color: <?php echo $colorNom; ?>;"><?php echo $user->nom_origine; ?></td>
+									<td><?php echo $user->prenom_origine; ?></td>
+									<td style="color: <?php echo $colorPhone; ?>;">
+										<?php echo substr($user->telephone_origine, 0, 1) == '0' ? $user->telephone_origine : '0'.$user->telephone_origine; ?>
 									</td>
 									<td>
-									<?
-										// date d'appel
+									<?php 										// date d'appel
 										if($user->appel_date != '0000-00-00') {
 										
 											$userTime	= strtotime($user->appel_date);
@@ -266,13 +264,13 @@
 									?>
 									</td>
 									
-								<? } ?>
+								<?php } ?>
 								
-								<td style="color:<? echo $colorPays; ?>; font-weight:bold; text-align: center;">
-									<? echo str_replace('XX', '?', $pays); ?>
+								<td style="color:<?php echo $colorPays; ?>; font-weight:bold; text-align: center;">
+									<?php echo str_replace('XX', '?', $pays); ?>
 								</td>
 							</tr>
-							<? if($user->helvetica == 1) { 
+							<?php if($user->helvetica == 1) { 
 									$photos	= array();
 			
 									// rcup les photos de l'utilisateur, autres que celle par dfaut
@@ -293,43 +291,38 @@
 										
 									}
 								?>
-							<tr class="list_photos<? if($jours > 0 && $jours <= 3) { ?> jours3<? } ?><? if($warning) { ?> warning<? } ?>" >
+							<tr class="list_photos<?php if($jours > 0 && $jours <= 3) { ?> jours3<?php } ?><?php if($warning) { ?> warning<?php } ?>" >
 								<td colspan="11">
-									<?
-											foreach($photos as $photo) {
+									<?php 											foreach($photos as $photo) {
 											?>
 												<div class="profilPhoto">
-													<img src="<? echo SITE_URL; ?>/images/profil/<? echo $user->id; ?>/<? echo $photo; ?>" alt="" />
+													<img src="<?php echo SITE_URL; ?>/images/profil/<?php echo $user->id; ?>/<?php echo $photo; ?>" alt="" />
 												</div>
-											<?
-											}
+											<?php 											}
 										?>
 								</td>
 							</tr>
 							
-						<?
-							}
+						<?php 							}
 						} ?>
 					
 						<tr>
-							<td colspan="<? echo $tdParTr; ?>">
+							<td colspan="<?php echo $tdParTr; ?>">
 								<b>Pages</b>:
-								<? if($debut > 1) { ?> <a href="<? echo JL::url(SITE_URL_ADMIN.'/index.php?app=profil&search_page=1'); ?>" title="Afficher la page 1">D&eacute;but</a> ...<? }?>
-								<?
-									for($i=$debut; $i<=$fin; $i++) {
+								<?php if($debut > 1) { ?> <a href="<?php echo JL::url(SITE_URL_ADMIN.'/index.php?app=profil&search_page=1'); ?>" title="Afficher la page 1">D&eacute;but</a> ...<?php }?>
+								<?php 									for($i=$debut; $i<=$fin; $i++) {
 									?>
-										 <a href="<? echo JL::url(SITE_URL_ADMIN.'/index.php?app=profil&search_page='.$i); ?>" title="Afficher la page <? echo $i; ?>" <? if($i == $search['page']) { ?>class="displayActive"<? } ?>><? echo $i; ?></a>
-									<?
-									}
+										 <a href="<?php echo JL::url(SITE_URL_ADMIN.'/index.php?app=profil&search_page='.$i); ?>" title="Afficher la page <?php echo $i; ?>" <?php if($i == $search['page']) { ?>class="displayActive"<?php } ?>><?php echo $i; ?></a>
+									<?php 									}
 								?>
-								<? if($fin < $search['page_total']) { ?> ... <a href="<? echo JL::url(SITE_URL_ADMIN.'/index.php?app=profil&search_page='.$search['page_total']); ?>" title="Afficher la page <? echo $search['page_total']; ?>">Fin</a><? }?> <i>(<? echo $search['result_total']; ?> r&eacute;sultats)</i>
+								<?php if($fin < $search['page_total']) { ?> ... <a href="<?php echo JL::url(SITE_URL_ADMIN.'/index.php?app=profil&search_page='.$search['page_total']); ?>" title="Afficher la page <?php echo $search['page_total']; ?>">Fin</a><?php }?> <i>(<?php echo $search['result_total']; ?> r&eacute;sultats)</i>
 							</td>
 						</tr>
-					<? } else { ?>
+					<?php } else { ?>
 						<tr>
-							<th colspan="<? echo $tdParTr; ?>">Aucun profil ne correspond &agrave; votre recherche.</th>
+							<th colspan="<?php echo $tdParTr; ?>">Aucun profil ne correspond &agrave; votre recherche.</th>
 						</tr>
-					<? } ?>
+					<?php } ?>
 					</table>
 				</div>
 					<input type="hidden" name="search_page" value="1" />
@@ -337,8 +330,7 @@
 					<input type="hidden" name="action" value="" />
 				</section>
 				</form>
-			<?
-		}
+			<?php 		}
 	
 		public static function photoLister(&$users, &$messages) {
 			
@@ -378,13 +370,13 @@
 						
 						if(ok) {
 						
-							window.location.href = "<? echo SITE_URL_ADMIN; ?>"; 
+							window.location.href = "<?php echo SITE_URL_ADMIN; ?>"; 
 						}
 						
 					}
 				</script>
 				
-				<form name="listForm" action="<? echo SITE_URL_ADMIN; ?>/index.php" method="post">
+				<form name="listForm" action="<?php echo SITE_URL_ADMIN; ?>/index.php" method="post">
 				<section class="panel">
                   <header class="panel-heading">
                        <h2>Validation des photos</h2>
@@ -400,21 +392,20 @@
 				</div>
 				</div>
 				
-				<? if(count($messages)) { ?>
+				<?php if (is_array($messages)) { ?>
 						<div class="messages">
-							<? JL::messages($messages); ?>
+							<?php JL::messages($messages); ?>
 						</div>
 						<br />
-				<? } ?>
+				<?php } ?>
 				<div class="tableAdmin">
 					<table cellpadding="0" cellspacing="0" class="table table-bordered table-striped table-condensed cf lister">
-						<? if(count($users)) { ?>
+						<?php if (is_array($users)) { ?>
 						<tr>
-							<th colspan="<? echo $tdParTr; ?>">Photos en attente de validation</th>
+							<th colspan="<?php echo $tdParTr; ?>">Photos en attente de validation</th>
 						</tr>
-						<?
-						foreach($users as $user) {
-							if(count($user->photos)) {
+						<?php 						foreach($users as $user) {
+							if (is_array($user->photos)) {
 								foreach($user->photos as $photo) {
 									
 									// limite de photos par page atteinte
@@ -425,19 +416,16 @@
 									if($td%$tdParTr == 0) {
 									?>
 									<tr class="list">
-									<?
-									}
+									<?php 									}
 									?>
 										<td>
-											<label for="<? echo $user->user_id; ?>_<? echo $photo; ?>"><img src="<? echo SITE_URL; ?>/images/profil/<? echo $user->user_id; ?>/pending-parent-solo-<? echo $photo; ?>.jpg?<? echo time(); ?>" /><br />
-											<input type="checkbox" checked="true" name="photo[]" value="<? echo $user->user_id; ?>_<? echo $photo; ?>" id="<? echo $user->user_id; ?>_<? echo $photo; ?>"> <? echo $user->username.' '.$photo; ?></label>
+											<label for="<?php echo $user->user_id; ?>_<?php echo $photo; ?>"><img src="<?php echo SITE_URL; ?>/images/profil/<?php echo $user->user_id; ?>/pending-parent-solo-<?php echo $photo; ?>.jpg?<?php echo time(); ?>" /><br />
+											<input type="checkbox" checked="true" name="photo[]" value="<?php echo $user->user_id; ?>_<?php echo $photo; ?>" id="<?php echo $user->user_id; ?>_<?php echo $photo; ?>"> <?php echo $user->username.' '.$photo; ?></label>
 										</td>
-									<?
-									if($td%$tdParTr == $tdParTr-1) {
+									<?php 									if($td%$tdParTr == $tdParTr-1) {
 									?>
 									</tr>
-									<?
-									}
+									<?php 									}
 									
 									$td++;
 									$photoTotal++;
@@ -450,13 +438,12 @@
 								if($photoTotal%$tdParTr != $tdParTr-1) {
 								?>
 									</tr>
-								<?
-								}
+								<?php 								}
 					 } else { ?>
 						<tr>
 							<th>Aucune photo en attente de validation.</th>
 						</tr>
-					<? } ?>
+					<?php } ?>
 					</table>
 					</div>
 					<input type="hidden" name="app" value="profil" />
@@ -464,8 +451,7 @@
 					<input type="hidden" name="task" value="" />
 				</section>
 				</form>
-			<?
-		}
+			<?php 		}
 		
 		
 		// liste les textes  valider
@@ -494,13 +480,13 @@
 						
 						if(ok) {
 						
-							window.location.href = "<? echo SITE_URL_ADMIN; ?>"; 
+							window.location.href = "<?php echo SITE_URL_ADMIN; ?>"; 
 						}
 						
 					}
 				</script>
 				
-				<form name="listForm" action="<? echo SITE_URL_ADMIN; ?>/index.php" method="post">
+				<form name="listForm" action="<?php echo SITE_URL_ADMIN; ?>/index.php" method="post">
 				<section class="panel">
                   <header class="panel-heading">
                       <h2>Validation des textes</h2>
@@ -513,18 +499,18 @@
 						<a href="javascript:submitform('refuser');" title="Supprimer" class=" btn btn-success">Refuser</a>
 						<a href="javascript:cancelsubmit('Fermer')" title="Fermer" class=" btn btn-success">Fermer</a>
 					</div></div></div>
-				<? if(count($messages)) { ?>
+				<?php if (is_array($messages)) { ?>
 						<div class="messages">
-							<? JL::messages($messages); ?>
+							<?php JL::messages($messages); ?>
 						</div>
 						<br/>
-				<? } ?>
+				<?php } ?>
 				<div class="tableAdmin">
 					<table cellpadding="0" cellspacing="0" class="table table-bordered table-striped table-condensed cf lister">
 					
 						
 						
-						<? if(count($textes)) {
+						<?php if (is_array($textes)) {
 							$i 				= 0; // compteur de tr
 							$texteTotal		= 0; // compteur de textes
 							$texteLimite	= 10; // nombre de textes par page
@@ -533,8 +519,7 @@
 							<tr>
 								<th>Textes en attente de validation</th>
 							</tr>
-							<?
-							foreach($textes as $texte) {
+							<?php 							foreach($textes as $texte) {
 								
 								// limite de textes par page atteinte
 								if($texteTotal >= $texteLimite) {
@@ -543,19 +528,18 @@
 							?>
 								<tr class="list">
 									<td>
-										<input type="checkbox" checked="true" name="texte[]" value="<? echo $texte->user_id; ?>" id="texte<? echo $texte->user_id; ?>"> <label for="texte<? echo $texte->user_id; ?>"><b><? echo $texte->username; ?>:</b></label><br /><br />
-										<div><textarea name="annonce<? echo $texte->user_id; ?>" rows="10" cols="92"><? echo htmlentities($texte->annonce); ?></textarea></div>
+										<input type="checkbox" checked="true" name="texte[]" value="<?php echo $texte->user_id; ?>" id="texte<?php echo $texte->user_id; ?>"> <label for="texte<?php echo $texte->user_id; ?>"><b><?php echo $texte->username; ?>:</b></label><br /><br />
+										<div><textarea name="annonce<?php echo $texte->user_id; ?>" rows="10" cols="92"><?php echo makeSafe($texte->annonce); ?></textarea></div>
 									</td>
 								</tr>
-								<?
-								$texteTotal++;
+								<?php 								$texteTotal++;
 							}
 							?>
-					<? } else { ?>
+					<?php } else { ?>
 						<tr>
 							<th>Aucun texte en attente de validation.</th>
 						</tr>
-					<? } ?>
+					<?php } ?>
 					</table>
 				</div>
 					<input type="hidden" name="app" value="profil" />
@@ -563,8 +547,7 @@
 					<input type="hidden" name="task" value="" />
 				</section>
 				</form>
-			<?
-		}
+			<?php 		}
 		
 		
 		// formlaire dtion d'un profil
@@ -615,15 +598,15 @@
 						
 						if(ok) {
 						
-							window.location.href = "<? echo SITE_URL_ADMIN; ?>/index.php?app=profil"; 
+							window.location.href = "<?php echo SITE_URL_ADMIN; ?>/index.php?app=profil"; 
 						}
 						
 					}
 				</script>
-			<form name="editForm" action="<? echo SITE_URL_ADMIN; ?>/index.php" method="post">
+			<form name="editForm" action="<?php echo SITE_URL_ADMIN; ?>/index.php" method="post">
 				<section class="panel">
                   <header class="panel-heading">
-                      <h2>Profil : <? echo $userObj->username; ?></h2>
+                      <h2>Profil : <?php echo $userObj->username; ?></h2>
                   </header>
 				
 				<div class="row">
@@ -635,28 +618,28 @@
 					</div></div>
 				</div>
 				
-				<? if(count($messages)) { ?>
+				<?php if (is_array($messages)) { ?>
 						<div class="messages">
-							<? JL::messages($messages); ?>
+							<?php JL::messages($messages); ?>
 						</div>
 						<br />
-				<? } ?>
+				<?php } ?>
 				<div class="tableAdmin">
 					<h3>Donn&eacute;es inscription</h3>
 					<br />
 					<table cellpadding="0" cellspacing="0" class="table table-bordered table-striped table-condensed cf editer">
 						<tr>
 							<td class="key" width="200px">Pseudo:</td>
-							<td width="250px"><? echo $userObj->username; ?></td>
-							<td><a href="<? echo SITE_URL_ADMIN; ?>/index.php?app=user&action=editer&id=<? echo $userObj->id; ?>"><i>(modifier)</i></a></td>
+							<td width="250px"><?php echo $userObj->username; ?></td>
+							<td><a href="<?php echo SITE_URL_ADMIN; ?>/index.php?app=user&action=editer&id=<?php echo $userObj->id; ?>"><i>(modifier)</i></a></td>
 						</tr>
 						<tr>
 							<td class="key" width="200px">Genre:</td>
-							<td><img src="images/<? echo $userObj->genre; ?>.png" alt="<? echo $userObj->genre == 'h' ? 'Homme' : 'Femme'; ?>" /></td>
+							<td><img src="images/<?php echo $userObj->genre; ?>.png" alt="<?php echo $userObj->genre == 'h' ? 'Homme' : 'Femme'; ?>" /></td>
 						</tr>
 						<tr>
 							<td class="key">Profil Helvetica:</td>
-							<td><input type="radio" id="helvetica1" name="helvetica" value="1" <? if($userObj->helvetica) { ?>checked<? } ?> /> <label for="helvetica1">Oui</label>&nbsp;<input type="radio" id="helvetica0" name="helvetica" value="0" <? if(!$userObj->helvetica) { ?>checked<? } ?> /> <label for="helvetica0">Non</label></td>
+							<td><input type="radio" id="helvetica1" name="helvetica" value="1" <?php if($userObj->helvetica) { ?>checked<?php } ?> /> <label for="helvetica1">Oui</label>&nbsp;<input type="radio" id="helvetica0" name="helvetica" value="0" <?php if(!$userObj->helvetica) { ?>checked<?php } ?> /> <label for="helvetica0">Non</label></td>
 						</tr>
 						<tr>
 							<td colspan="2">&nbsp;</td>
@@ -664,7 +647,7 @@
 						<tr>
 							<td class="key">Langue d'appel:</td>
 							<td>
-								<? switch($userObj->langue_appel){
+								<?php switch($userObj->langue_appel){
 									case 1: echo "Fran&ccedil;ais"; break;
 									case 2: echo "Anglais"; break;
 									case 3: echo "Allemand"; break;
@@ -677,33 +660,33 @@
 						</tr>
 						<tr>
 							<td class="key">Email:</td>
-							<td><a href="mailto:<? echo $userObj->email; ?>" title="Envoyer un email &agrave; <? echo $userObj->username; ?>"><? echo $userObj->email; ?></a></td>
-							<td><a href="<? echo SITE_URL_ADMIN; ?>/index.php?app=user&action=editer&id=<? echo $userObj->id; ?>"><i>(modifier)</i></a></td>
+							<td><a href="mailto:<?php echo $userObj->email; ?>" title="Envoyer un email &agrave; <?php echo $userObj->username; ?>"><?php echo $userObj->email; ?></a></td>
+							<td><a href="<?php echo SITE_URL_ADMIN; ?>/index.php?app=user&action=editer&id=<?php echo $userObj->id; ?>"><i>(modifier)</i></a></td>
 						</tr>
 						<tr>
 							<td class="key">Nom:</td>
-							<td><input type="text" name="nom" value="<? echo $userObj->nom_origine; ?>" /></td>
-							<td><i><? echo $userObj->nom; ?></i></td>
+							<td><input type="text" name="nom" value="<?php echo $userObj->nom_origine; ?>" /></td>
+							<td><i><?php echo $userObj->nom; ?></i></td>
 						</tr>
 						<tr>
 							<td class="key">Pr&eacute;nom:</td>
-							<td><input type="text" name="prenom" value="<? echo $userObj->prenom_origine; ?>" /></td>
-							<td><i><? echo $userObj->prenom; ?></i></td>
+							<td><input type="text" name="prenom" value="<?php echo $userObj->prenom_origine; ?>" /></td>
+							<td><i><?php echo $userObj->prenom; ?></i></td>
 						</tr>
 						<tr>
 							<td class="key">T&eacute;l&eacute;phone:</td>
-							<td><input type="text" name="telephone" value="<? echo $userObj->telephone_origine; ?>" /></td>
-							<td><i><? echo $userObj->telephone; ?></i></td>
+							<td><input type="text" name="telephone" value="<?php echo $userObj->telephone_origine; ?>" /></td>
+							<td><i><?php echo $userObj->telephone; ?></i></td>
 						</tr>
 						<tr>
 							<td class="key">Adresse:</td>
-							<td><input type="text" name="adresse" value="<? echo $userObj->adresse_origine; ?>" /></td>
-							<td><i><? echo $userObj->adresse; ?></i></td>
+							<td><input type="text" name="adresse" value="<?php echo $userObj->adresse_origine; ?>" /></td>
+							<td><i><?php echo $userObj->adresse; ?></i></td>
 						</tr>
 						<tr>
 							<td class="key">Code postal:</td>
-							<td><input type="text" name="code_postal" value="<? echo $userObj->code_postal_origine; ?>" /></td>
-							<td><i><? echo $userObj->code_postal; ?></i></td>
+							<td><input type="text" name="code_postal" value="<?php echo $userObj->code_postal_origine; ?>" /></td>
+							<td><i><?php echo $userObj->code_postal; ?></i></td>
 						</tr>
 					</table>
 				</div>
@@ -714,7 +697,7 @@
 					<table cellpadding="0" cellspacing="0" class="table table-bordered table-striped table-condensed cf editer">
 						<tr>
 							<td class="key">Abonnement jusqu'au:</td>
-							<td><input type="text" name="gold_limit_date" value="<? echo $userObj->gold_limit_date != '0000-00-00' ? date('d/m/Y', strtotime($userObj->gold_limit_date)) : ''; ?>" size="9" /> <i>(jj/mm/aaaa)</i></td>
+							<td><input type="text" name="gold_limit_date" value="<?php echo $userObj->gold_limit_date != '0000-00-00' ? date('d/m/Y', strtotime($userObj->gold_limit_date)) : ''; ?>" size="9" /> <i>(jj/mm/aaaa)</i></td>
 						</tr>
 						<tr>
 							<td class="key">Cr&eacute;diter abonnement:</td>
@@ -723,14 +706,13 @@
 						<tr>
 							<td class="key">Points actuels:</td>
 							<td>
-								<? echo $userObj->points_total; ?>
+								<?php echo $userObj->points_total; ?>
 							</td>
 						</tr>
 						<tr>
 							<td class="key">Cr&eacute;diter points</td>
 							<td>
-							<?
-								// s'il y a des points ter
+							<?php 								// s'il y a des points ter
 								if(is_array($points) && count($points) > 0) {
 								?>
 								<table cellpadding="0" cellspacing="0" class="table table-bordered table-striped table-condensed cf pointsTable">
@@ -743,8 +725,7 @@
 										<td><label for="points_id_0">Ne pas cr&eacute;diter de points</label></td>
 										<td>+0</td>
 									</tr>
-									<?
-									
+									<?php 									
 										// pour chaque point
 										foreach($points as $point) {
 										
@@ -753,17 +734,15 @@
 										
 										?>
 											<tr>
-												<td><input type="radio" name="points_id" id="points_id_<? echo $point->id; ?>" value="<? echo $point->id; ?>" /></td>
-												<td><label for="points_id_<? echo $point->id; ?>"><? echo $point->nom; ?></label></td>
-												<td>+<? echo $point->points; ?></td>
+												<td><input type="radio" name="points_id" id="points_id_<?php echo $point->id; ?>" value="<?php echo $point->id; ?>" /></td>
+												<td><label for="points_id_<?php echo $point->id; ?>"><?php echo $point->nom; ?></label></td>
+												<td>+<?php echo $point->points; ?></td>
 											</tr>
-										<?
-										}
+										<?php 										}
 									
 									?>
 								</table>
-								<?
-								}
+								<?php 								}
 							?>
 							</td>
 						</tr>
@@ -781,22 +760,20 @@
 						<tr>
 							<td class="key">Photos:</td>
 							<td>
-							<?
-								foreach($photos as $photo) {
+							<?php 								foreach($photos as $photo) {
 								?>
 									<div class="profilPhoto">
-										<i><? echo preg_replace('/^parent\-solo\-109\-(.*)\-[1-9].jpg$/', '$1', $photo); ?></i><br />
-										<label for="<? echo $photo; ?>"><img src="<? echo SITE_URL; ?>/images/profil/<? echo $userObj->id; ?>/<? echo $photo; ?>" alt="" /></label><br />
-										<input type="checkbox" name="photo[]" value="<? echo $photo; ?>" id="<? echo $photo; ?>" /> <label for="<? echo $photo; ?>">Supprimer</label>
+										<i><?php echo preg_replace('/^parent\-solo\-109\-(.*)\-[1-9].jpg$/', '$1', $photo); ?></i><br />
+										<label for="<?php echo $photo; ?>"><img src="<?php echo SITE_URL; ?>/images/profil/<?php echo $userObj->id; ?>/<?php echo $photo; ?>" alt="" /></label><br />
+										<input type="checkbox" name="photo[]" value="<?php echo $photo; ?>" id="<?php echo $photo; ?>" /> <label for="<?php echo $photo; ?>">Supprimer</label>
 									</div>
-								<?
-								}
+								<?php 								}
 							?>
 							</td>
 						</tr>
 						<tr>
 							<td class="key">Annonce publi&eacute;e:</td>
-							<td><textarea name="annonce_valide" rows="5" cols="50"><? echo $userObj->annonce_valide; ?></textarea></td>
+							<td><textarea name="annonce_valide" rows="5" cols="50"><?php echo $userObj->annonce_valide; ?></textarea></td>
 						</tr>
 					</table>
 				</div>
@@ -808,45 +785,44 @@
 						<tr>
 							<td class="key">Inscription:</td>
 							<td>
-								<? echo date('d/m/Y', strtotime($userObj->creation_date)); ?>
+								<?php echo date('d/m/Y', strtotime($userObj->creation_date)); ?>
 							</td>
 						</tr>
 						<tr>
 							<td class="key">Confirm&eacute;:</td>
 							<td>
-								<div class="statut statut0"><input type="radio" name="confirmed" value="0" id="confirmed0" <? if($userObj->confirmed == 0) { ?>checked="true"<? } ?> /> <label for="confirmed0" style="cursor:pointer;">Non</label></div>
-								<div class="statut statut1"><input type="radio" name="confirmed" value="1" id="confirmed1" <? if($userObj->confirmed == 1) { ?>checked="true"<? } ?> /> <label for="confirmed1" style="cursor:pointer;">Oui</label></div>
-								<div class="statut statut2"><input type="radio" name="confirmed" value="2" id="confirmed2" <? if($userObj->confirmed == 2) { ?>checked="true"<? } ?> /> <label for="confirmed2" style="cursor:pointer;">En attente</label></div>
+								<div class="statut statut0"><input type="radio" name="confirmed" value="0" id="confirmed0" <?php if($userObj->confirmed == 0) { ?>checked="true"<?php } ?> /> <label for="confirmed0" style="cursor:pointer;">Non</label></div>
+								<div class="statut statut1"><input type="radio" name="confirmed" value="1" id="confirmed1" <?php if($userObj->confirmed == 1) { ?>checked="true"<?php } ?> /> <label for="confirmed1" style="cursor:pointer;">Oui</label></div>
+								<div class="statut statut2"><input type="radio" name="confirmed" value="2" id="confirmed2" <?php if($userObj->confirmed == 2) { ?>checked="true"<?php } ?> /> <label for="confirmed2" style="cursor:pointer;">En attente</label></div>
 							</td>
 						</tr>
 						<tr>
 							<td class="key">Paiement en ligne:</td>
 							<td>
-								<? echo $userObj->abonnement_carte ? date('d/m/Y', strtotime($userObj->abonnement_carte)).' - '.$userObj->abonnement_carte_nom.' '.$userObj->abonnement_carte_prenom.' - '.($userObj->abonnement_carte_valide==1 ? 'en cours' : 'annul&eacute;' ) : '-'; ?>
+								<?php echo $userObj->abonnement_carte ? date('d/m/Y', strtotime($userObj->abonnement_carte)).' - '.$userObj->abonnement_carte_nom.' '.$userObj->abonnement_carte_prenom.' - '.($userObj->abonnement_carte_valide==1 ? 'en cours' : 'annul&eacute;' ) : '-'; ?>
 							</td>
 						</tr>
 						<tr>
 							<td class="key">1er appel:</td>
-							<td><input type="text" name="appel_date" value="<? echo $userObj->appel_date != '0000-00-00' ? date('d/m/Y', strtotime($userObj->appel_date)) : ''; ?>" size="9" /> <i>(jj/mm/aaaa)</i></td>
+							<td><input type="text" name="appel_date" value="<?php echo $userObj->appel_date != '0000-00-00' ? date('d/m/Y', strtotime($userObj->appel_date)) : ''; ?>" size="9" /> <i>(jj/mm/aaaa)</i></td>
 						</tr>
 						<tr>
 							<td class="key">2&egrave;me appel:</td>
-							<td><input type="text" name="appel_date2" value="<? echo $userObj->appel_date2 != '0000-00-00' ? date('d/m/Y', strtotime($userObj->appel_date2)) : ''; ?>" size="9" /> <i>(jj/mm/aaaa)</i></td>
+							<td><input type="text" name="appel_date2" value="<?php echo $userObj->appel_date2 != '0000-00-00' ? date('d/m/Y', strtotime($userObj->appel_date2)) : ''; ?>" size="9" /> <i>(jj/mm/aaaa)</i></td>
 						</tr>
 						<tr>
 							<td class="key">Commentaire:</td>
-							<td><textarea name="commentaire" rows="5" cols="50"><? echo $userObj->commentaire; ?></textarea></td>
+							<td><textarea name="commentaire" rows="5" cols="50"><?php echo $userObj->commentaire; ?></textarea></td>
 						</tr>
 					</table>
 				</div>
 				
-				<input type="hidden" name="id" value="<? echo $userObj->id; ?>" />
+				<input type="hidden" name="id" value="<?php echo $userObj->id; ?>" />
 				<input type="hidden" name="app" value="profil" />
 				<input type="hidden" name="action" value="save" />
 				</section>
 			</form>
-			<?
-		}
+			<?php 		}
 		
 	}
 ?>

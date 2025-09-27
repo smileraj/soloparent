@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 	
 	class evolution_abonne_HTML {	
@@ -16,7 +16,7 @@
 						
 						
 						 if(action == 'Fermer') {
-							if(!confirm('Êtes-vous sûr de vouloir Fermer?')) {
+							if(!confirm('ï¿½tes-vous sï¿½r de vouloir Fermer?')) {
 								ok = false;
 								
 							}
@@ -24,7 +24,7 @@
 						
 						if(ok) {
 						
-							document.location = "<? echo SITE_URL_ADMIN; ?>"; 
+							document.location = "<?php echo SITE_URL_ADMIN; ?>"; 
 						}
 						
 					}
@@ -44,10 +44,9 @@
 			<div class="tableAdmin">
 			<table class="table table-bordered table-striped table-condensed cf" style="text-align:center;" cellpadding="0" cellspacing="0">
 					<tr>
-						<th>Année</th><th>Nombre d'inscrits</th><th>Hommes</th><th>Femmes</th>
+						<th>Annï¿½e</th><th>Nombre d'inscrits</th><th>Hommes</th><th>Femmes</th>
 					</tr>
-		<?
-			foreach($rows_total AS $row_t){
+		<?php 			foreach($rows_total AS $row_t){
 				$total_suppr = 0;
 				$total_f = 0;
 				$total_f_suppr = 0;
@@ -80,13 +79,12 @@
 				}
 			?>
 				<tr class="list">
-					<td><b><? echo $row_t->annee; ?></b></td>
-					<td><? echo $row_t->total+$total_suppr; ?></td>
-					<td><? echo $total_h+$total_h_suppr; ?></td>
-					<td><? echo $total_f+$total_f_suppr; ?></td>
+					<td><b><?php echo $row_t->annee; ?></b></td>
+					<td><?php echo $row_t->total+$total_suppr; ?></td>
+					<td><?php echo $total_h+$total_h_suppr; ?></td>
+					<td><?php echo $total_f+$total_f_suppr; ?></td>
 				</tr>
-			<?
-			}
+			<?php 			}
 		?>
 		
 			</table>
@@ -94,8 +92,7 @@
 			
 			</div>
 			</section>
-		<?
-		}
+		<?php 		}
 		
 		
 	}

@@ -59,7 +59,7 @@
 		if(!count($messages)) {
 
 			// envoi du message
-			JL::mail('info@parentsolo.ch', '[ Contact ] '.$sujets[$sujet], nl2br("De: ".$email."\n\n".$texte));
+			JL::mail('info@solocircl.com', '[ Contact ] '.$sujets[$sujet], nl2br("De: ".$email."\n\n".$texte));
 
 			// confirmation
 			$messages[]	= '<span class="valid">'.$lang_mod["MessageEnvoye"].' !</span>';
@@ -74,43 +74,38 @@
 
 ?>
 
-<form name="contactform" action="<? echo JL::url('index.php?app=redac&action=item&id=6&'.$langue); ?>" method="post">
+<form name="contactform" action="<?php echo JL::url('index.php?app=redac&action=item&id=6&'.$langue); ?>" method="post">
 	<div class="profil_form contact">
-		<?
-			// s'il y a des messages &agrave; afficher
-			if(count($messages)) {
+		<?php 			// s'il y a des messages &agrave; afficher
+			if (is_array($messages)) {
 			?>
 				<div class="messages">
-				<?
-					// affiche les messages
+				<?php 					// affiche les messages
 					JL::messages($messages);
 				?>
 				</div>
-			<?
-			}
+			<?php 			}
 		?>
 
 		<p>
 			<label for="email"><?php echo $lang_mod["VotreEmail"];?>:</label><br />
-			<input type="text" name="email" id="email" value="<? echo htmlentities($email); ?>" class="contact" />
+			<input type="text" name="email" id="email" value="<?php echo makeSafe($email); ?>" class="contact" />
 		</p>
 		<p>
 			<label for="sujet"><?php echo $lang_mod["Sujet"];?>:</label><br />
-			<? echo $listSujets; ?>
+			<?php echo $listSujets; ?>
 		</p>
 		<p>
 			<label for="texte"><?php echo $lang_mod["Message"];?>:</label><br />
-			<textarea name="texte" id="texte" class="contact" rows="5" cols="10"><? echo htmlentities($texte); ?></textarea>
+			<textarea name="texte" id="texte" class="contact" rows="5" cols="10"><?php echo makeSafe($texte); ?></textarea>
 		</p>
 		<p>
 			<label for="codesecurite"><u><?php echo $lang_mod["CodeDeSecurite"];?>:</u> <?php echo $lang_mod["CombienYATIlDe"];?> ?</label><br /><br />
-			<?
-				JL::setSession('captcha', $captcha);
+			<?php 				JL::setSession('captcha', $captcha);
 				for($i=0;$i<$captcha;$i++){
 				?>
 					<img src="parentsolo/images/flower.jpg" alt="Fleur" align="left" />
-				<?
-				}
+				<?php 				}
 				?>
 				&nbsp;=&nbsp;<input type="text" name="codesecurite" id="codesecurite" value="" maxlength="1" />
 		</p>

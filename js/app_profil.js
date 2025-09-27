@@ -726,10 +726,10 @@ function getScrollMax(id){
 function btnconditions(newValue) {
 	$('inputconditions').value = newValue;
 	if(newValue > 0) {
-		$('reponse').innerHTML = $('condReadAccepted').value;
+		$('reponse').innerHTML = $('#condReadAccepted').value;
 		$('reponse').className = 'accepted';
 	} else {
-		$('reponse').innerHTML = $('condReadNotAccepted').value;
+		$('reponse').innerHTML = $('#condReadNotAccepted').value;
 		$('reponse').className = 'refused';
 	}
 }

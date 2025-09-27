@@ -9,9 +9,9 @@
     /*
 ?>
 
-	<div class="small"><? echo $lang_mod["Partenaire"]; ?></div>
+	<div class="small"><?php echo $lang_mod["Partenaire"]; ?></div>
 	<div class="silver_banner">
-		<a href="http://www.seniorsolo.net" target="_blank"><img src="<? echo SITE_URL; ?>/parentsolo/images/pub/seniorsolo.gif" alt="silver_banner"/></a>
+		<a href="http://www.seniorsolo.net" target="_blank"><img src="<?php echo SITE_URL; ?>/parentsolo/images/pub/seniorsolo.gif" alt="silver_banner"/></a>
 	</div>
 
-*/?>
+*/ ?>

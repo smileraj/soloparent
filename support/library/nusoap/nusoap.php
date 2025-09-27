@@ -580,7 +580,7 @@ class nusoap_base {
 							$xml .= $this->serialize_val($v,'item',false,false,false,false,$use);
 							++$i;
 						}
-						if(count($array_types) > 1){
+						if (is_array($array_types) > 1){
 							$array_typename = 'xsd:anyType';
 						} elseif(isset($tt) && isset($this->typemap[$this->XMLSchemaVersion][$tt])) {
 							if ($tt == 'integer') {
@@ -1264,7 +1264,7 @@ class nusoap_xmlschema extends nusoap_base  {
         }
 		
         // loop thru attributes, expanding, and registering namespace declarations
-        if(count($attrs) > 0){
+        if (is_array($attrs) > 0){
         	foreach($attrs as $k => $v){
                 // if ns declarations, add to class level array of valid namespaces
 				if(ereg("^xmlns",$k)){
@@ -1838,7 +1838,7 @@ class nusoap_xmlschema extends nusoap_base  {
 		}
 	    }
 	    $str .= " xmlns=\"".$this->schema['targetNamespace']."\"";
-	    if(count($typeDef['elements']) > 0){
+	    if (is_array($typeDef['elements']) > 0){
 		$str .= ">";
 		foreach($typeDef['elements'] as $element => $eData){
 		    $str .= $this->serializeTypeDef($element);
@@ -2951,7 +2951,7 @@ class soap_transport_http extends nusoap_base {
 		$this->incoming_cookies = array();
 		foreach($header_array as $header_line){
 			$arr = explode(':',$header_line, 2);
-			if(count($arr) > 1){
+			if (is_array($arr) > 1){
 				$header_name = strtolower(trim($arr[0]));
 				$this->incoming_headers[$header_name] = trim($arr[1]);
 				if ($header_name == 'set-cookie') {
@@ -3129,7 +3129,7 @@ class soap_transport_http extends nusoap_base {
 		// clean headers
 		foreach ($header_array as $header_line) {
 			$arr = explode(':',$header_line,2);
-			if(count($arr) > 1){
+			if (is_array($arr) > 1){
 				$header_name = strtolower(trim($arr[0]));
 				$this->incoming_headers[$header_name] = trim($arr[1]);
 				if ($header_name == 'set-cookie') {

@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 
 	require_once('appel_a_temoins.html.php');
@@ -25,10 +25,10 @@
 	$messages	= array();
 
 	/*
-		new: formulaire nouvel appel à témoins
-		save: submit le formulaire de nouvel appel à témoins
-		list: lister les appels à témoins
-		read: lire un appel à témoins complet
+		new: formulaire nouvel appel ï¿½ tï¿½moins
+		save: submit le formulaire de nouvel appel ï¿½ tï¿½moins
+		list: lister les appels ï¿½ tï¿½moins
+		read: lire un appel ï¿½ tï¿½moins complet
 	*/
 	switch($action) {
 
@@ -101,22 +101,22 @@
 			$resultatParPage	= LISTE_RESULT;
 		
 
-		// correction au cas où le visiteur s'amuserait avec les params de l'url
+		// correction au cas oï¿½ le visiteur s'amuserait avec les params de l'url
 		$search['page']		= (int)JL::getVar('page', 1);
 		if($search['page'] <= 0) JL::redirect(SITE_URL.'/index.php?app=appel_a_temoins'.'&'.$langue);
-		// récup le total
+		// rï¿½cup le total
 
 
 		// WHERE
 		$where[]			= "at.active = 1";
 		$where[]			= "m.published = 1";
 
-		if(count($where)) {
+		if (is_array($where)) {
 			$_where = " WHERE ".implode(" AND ", $where);
 		}
 
 
-		// récup le total
+		// rï¿½cup le total
 		$query = "SELECT COUNT(*)"
 		." FROM appel_a_temoins AS at"
 		." INNER JOIN appel_media AS m ON m.id = at.media_id"
@@ -125,7 +125,7 @@
 		$search['result_total']	= (int)$db->loadResult($query);
 		$search['page_total'] 	= ceil($search['result_total']/$resultatParPage);
 
-		// récup les messages de l'utilisateur log
+		// rï¿½cup les messages de l'utilisateur log
 		$query = "SELECT at.id, at.titre, at.annonce, at.date_add, m.nom_".$_GET['lang']." AS media"
 		." FROM appel_a_temoins AS at"
 		." INNER JOIN appel_media AS m ON m.id = at.media_id"
@@ -152,12 +152,12 @@
 		$where[]	= "at.id = '".$id."'";
 		$where[]	= "at.active = 1";
 
-		if(count($where)) {
+		if (is_array($where)) {
 			$_where = " WHERE ".implode(" AND ", $where);
 		}
 
 
-		// récup le message de l'utilisateur log
+		// rï¿½cup le message de l'utilisateur log
 		$query = "SELECT at.id, at.titre, at.annonce, at.nom, at.prenom, at.email, at.telephone, at.adresse, at.active, am.nom_".$_GET['lang']." AS media, at.date_add, at.date_limite, at.date_diffusion, at.date_add"
 		." FROM appel_a_temoins AS at"
 		." INNER JOIN appel_media AS am ON am.id = at.media_id"
@@ -187,16 +187,16 @@
 		$list			= array();
 		$list_media_id	= array();
 
-		// récup les données temporaires
-		if(count($_data)) {
+		// rï¿½cup les donnï¿½es temporaires
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row->{$key}	= JL::getVar($key, $value);
 			}
 		}
 
 
-		// récup la liste des médias
-		$list_media_id[] = JL::makeOption('0', '> Types de médias');
+		// rï¿½cup la liste des mï¿½dias
+		$list_media_id[] = JL::makeOption('0', '> Types de mï¿½dias');
 		$query = "SELECT id AS value, nom_".$_GET['lang']." AS text"
 		." FROM appel_media"
 		." WHERE published = 1"
@@ -231,14 +231,14 @@
 		$_data		= appel_a_temoins_data();
 		$row		= new stdClass();
 
-		// récup les données temporaires
-		if(count($_data)) {
+		// rï¿½cup les donnï¿½es temporaires
+		if (is_array($_data)) {
 			foreach($_data as $key => $value) {
 				$row->{$key}	= JL::getVar($key, $value);
 			}
 		}
 
-		// vérifications des champs
+		// vï¿½rifications des champs
 		if($row->media_id == 0) {
 			$messages[]	= '<span class="error">'.$lang_appel_a_temoins["VeillezTypeMedia"].'.</span>';
 		}
@@ -281,10 +281,10 @@
 			$messages[]	= '<span class="error">'.$lang_appel_a_temoins["VeillezEmail"].' !</span>';
 		}
 
-		// vérification fichier envoyé
+		// vï¿½rification fichier envoyï¿½
 		if(isset($_FILES["file_logo"]) && is_uploaded_file($_FILES["file_logo"]["tmp_name"]) && $_FILES["file_logo"]["size"] > 0 && $_FILES["file_logo"]["error"] == 0) {
 
-			// détermine l'extension en fonction du type mime
+			// dï¿½termine l'extension en fonction du type mime
 			list($width, $height, $type, $attr) = getImageSize($_FILES["file_logo"]["tmp_name"]);
 			$mime = image_type_to_mime_type($type);
 			if(preg_match('/jpeg/', $mime)) {
@@ -313,7 +313,7 @@
 
 
 
-		// vérification du captcha
+		// vï¿½rification du captcha
 		if($row->codesecurite != JL::getSession('captcha', 0)) {
 			$messages[]	= '<span class="error">'.$lang_appel_a_temoins["CodeSecuriteIncorrect"].'.</span>';
 		}
@@ -339,13 +339,13 @@
 			;
 			$db->query($query);
 
-			// récup l'id généré
+			// rï¿½cup l'id gï¿½nï¿½rï¿½
 			$id	= $db->insert_id();
 
-			// enregistre le logo s'il a été envoyé
+			// enregistre le logo s'il a ï¿½tï¿½ envoyï¿½
 			if($ext != '' && $ext != 'error') {
 
-				// génère la miniature
+				// gï¿½nï¿½re la miniature
 				creerMiniature($_FILES["file_logo"]["tmp_name"], 'images/appel-a-temoins/'.$id.'.jpg', 90, 90, $ext);
 
 			}
@@ -364,7 +364,7 @@
 
 		$id	= 26; // id de l'article d'information
 
-		// récup l'article
+		// rï¿½cup l'article
 		$query = "SELECT titre_".$_GET['lang']." as titre, texte_".$_GET['lang']." as texte FROM contenu WHERE id = '".(int)$id."' LIMIT 0,1";
 		$row = $db->loadObject($query);
 

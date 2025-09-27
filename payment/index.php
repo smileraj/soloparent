@@ -32,8 +32,8 @@ $ogone_CURRENCY = "CHF";
 $ogone_LANGUAGE = 'en_US'; 
 $ogone_Logo = 'logo_fr.png'; 
 
-$ogone_ACCEPTURL = 'http://www.parentsolo.ch/newdev/payment/index.php?result=1';
-$ogone_CANCELURL = 'http://www.parentsolo.ch/newdev/payment/index.php?result=2';
+$ogone_ACCEPTURL = 'http://www.solocircl.com/newdev/payment/index.php?result=1';
+$ogone_CANCELURL = 'http://www.solocircl.com/newdev/payment/index.php?result=2';
 
 $ogone_SHASIGN = "ACCEPTURL=$ogone_ACCEPTURL$ogone_SHA". 
 "AMOUNT=$ogone_AMOUNT$ogone_SHA".

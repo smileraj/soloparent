@@ -697,7 +697,7 @@ function db_prepare_string( $p_string ) {
 		case 'odbc_mssql':
 			break;
 		case 'mysql':
-			return mysql_real_escape_string( $p_string );
+			return $db->escape( $p_string );
 		case 'mysqli':
 			# For some reason mysqli_escape_string( $p_string ) always returns an empty
 			# string.  This is happening with PHP v5.0.2.

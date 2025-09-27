@@ -1,12 +1,12 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 
 ?>
 
 	<div class="footer2">
-		 &copy; Parentsolo.ch 2008 
+		 &copy; solocircl.com 2008 
 	</div>
 
-	<a href="<? echo SITE_URL; ?>/index.php" title="Accueil de ParentSolo">Retourner au site cot&eacute; visiteur</a>
+	<a href="<?php echo SITE_URL; ?>/index.php" title="Accueil de ParentSolo">Retourner au site cot&eacute; visiteur</a>

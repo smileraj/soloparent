@@ -7,7 +7,7 @@
 	// framework joomlike
 	require_once(SITE_PATH.'/framework/joomlike.class.php');
 
-	// framework base de données
+	// framework base de donnï¿½es
 	require_once(SITE_PATH.'/framework/mysql.class.php');
 	$db	= new DB();
 
@@ -21,16 +21,16 @@
 	$key			= JL::getVar('key', '');
 	$texte			= utf8_decode(JL::getVar('texte', '', true));
 
-	// crée un objet content les infos de l'utilisateur
+	// crï¿½e un objet content les infos de l'utilisateur
 	$user =& getUserInfo($user_id_from);
 
 
-	// vérifie que le user_id_form est bien renseigné, et que la key correspond
+	// vï¿½rifie que le user_id_form est bien renseignï¿½, et que la key correspond
 	if(!$user->id || !checkUserKey($key)) {
 		die();
 	}
 
-	// met à jour le last_online de l'utilisateur log
+	// met ï¿½ jour le last_online de l'utilisateur log
 	$query = "UPDATE user SET last_online = NOW() WHERE id = '".$user->id."'";
 	$db->query($query);
 
@@ -83,10 +83,10 @@
 
 	}
 
-	// déconnexion DB
+	// dï¿½connexion DB
 	$db->disconnect();
 
-	// récup les infos de l'utilisateur
+	// rï¿½cup les infos de l'utilisateur
 	function &getUserInfo($user_id) {
 		global $db;
 
@@ -107,11 +107,11 @@
 	}
 
 
-	// vérifie que le user_id_form et la key correspondent
+	// vï¿½rifie que le user_id_form et la key correspondent
 	function checkUserKey($key) {
 		global $db, $user;
 
-		// clé de sécurité
+		// clï¿½ de sï¿½curitï¿½
 		$key_ok = md5(str_replace('-', $user->id, $user->creation_date));
 
 		if($key != $key_ok) {
@@ -126,10 +126,10 @@
 	// affiche les nouveaux messages entre les 2 utilisateurs
 	function getNewMessages($user_id_from, $user_id_to) {
 
-		// récup les nouveaux messages
+		// rï¿½cup les nouveaux messages
 		$messages =& getMessages($user_id_from, $user_id_to, 1);
 
-		// affiche les nouveaux messages chez l'expéditeur
+		// affiche les nouveaux messages chez l'expï¿½diteur
 		displayMessages($messages);
 
 	}
@@ -146,10 +146,10 @@
 		$where[]		= "cm.user_id_to = '".$user_id_from."'";
 		$where[]		= "cm.new_user_to = '1'";
 
-		// génère le where
+		// gï¿½nï¿½re le where
 		$_where			= " WHERE ".implode(' AND ', $where);
 
-		// récup les conversations
+		// rï¿½cup les conversations
 		$query = "SELECT COUNT(*)"
 		." FROM chat_message AS cm"
 		.$_where
@@ -179,33 +179,33 @@
 
 			if($blacklist->user_to_bl) {
 
-				// message système d'info
+				// message systï¿½me d'info
 				$messages					= array();
 				$messages[0]				= new stdClass();
 				$messages[0]->genre			= 'system';
 				$messages[0]->username		= 'ParentSolo';
 				$messages[0]->date_envoi	= date('Y-m-d H:i:s');
-				$messages[0]->texte			= 'Vous ne pouvez pas envoyer de message à un utilisateur de votre liste noire.';
+				$messages[0]->texte			= 'Vous ne pouvez pas envoyer de message ï¿½ un utilisateur de votre liste noire.';
 
 				// affiche le messages
 				displayMessages($messages);
 
 			} elseif($blacklist->user_from_bl) {
 
-				// message système d'info
+				// message systï¿½me d'info
 				$messages					= array();
 				$messages[0]				= new stdClass();
 				$messages[0]->genre			= 'system';
 				$messages[0]->username		= 'ParentSolo';
 				$messages[0]->date_envoi	= date('Y-m-d H:i:s');
-				$messages[0]->texte			= 'Vous ne pouvez pas envoyer de message à cet utilisateur car vous êtes dans sa liste noire.';
+				$messages[0]->texte			= 'Vous ne pouvez pas envoyer de message ï¿½ cet utilisateur car vous ï¿½tes dans sa liste noire.';
 
 				// affiche le messages
 				displayMessages($messages);
 
 			} else {
 
-				// check membre abonné
+				// check membre abonnï¿½
 				if($user->gold && $user->confirmed == 1) {
 
 					// ajoute la converstion pour le destinataire
@@ -222,50 +222,50 @@
 					$db->query($query);
 
 
-					// enregistre le dernier événement chez le profil cible
+					// enregistre le dernier ï¿½vï¿½nement chez le profil cible
 					JL::addLastEvent($user_id_to, $user_id_from, 4);
 
-					// crédite l'action d'envoi de message par membre et par jour
+					// crï¿½dite l'action d'envoi de message par membre et par jour
 					JL::addPoints(10, $user_id_to, $user_id_to.'#'.$user_id_from.'#'.date('d-m-Y'));
 
-					// récup les nouveaux messages
+					// rï¿½cup les nouveaux messages
 					getNewMessages($user_id_from, $user_id_to);
 
 				} elseif($user->gold && $user->confirmed == 2) { // confirmation en attente
 
-					// message système d'info
+					// message systï¿½me d'info
 					$messages					= array();
 					$messages[0]				= new stdClass();
 					$messages[0]->genre			= 'system';
 					$messages[0]->username		= 'ParentSolo';
 					$messages[0]->date_envoi	= date('Y-m-d H:i:s');
-					$messages[0]->texte			= 'Votre profil n\'a pas encore été validé par un modérateur. Vous allez recevoir un appel téléphonique d\'ici 1 à 2 jours ouvrés afin de confirmer votre profil. Ces jours d\'attente seront bien entendu ajoutés à votre abonnement.';
+					$messages[0]->texte			= 'Votre profil n\'a pas encore ï¿½tï¿½ validï¿½ par un modï¿½rateur. Vous allez recevoir un appel tï¿½lï¿½phonique d\'ici 1 ï¿½ 2 jours ouvrï¿½s afin de confirmer votre profil. Ces jours d\'attente seront bien entendu ajoutï¿½s ï¿½ votre abonnement.';
 
 					$messages[1]				= new stdClass();
 					$messages[1]->genre			= 'system';
 					$messages[1]->username		= 'ParentSolo';
 					$messages[1]->date_envoi	= date('Y-m-d H:i:s');
-					$messages[1]->texte			= 'Cette mesure est prise dans le but de vous garantir une qualité de service optimale. Ainsi, toutes personnes mal intentionnées qui souhaiteraient contourner la confirmation téléphonique ne pourront pas contacter les membres tant que leur profil ne sera pas validé.';
+					$messages[1]->texte			= 'Cette mesure est prise dans le but de vous garantir une qualitï¿½ de service optimale. Ainsi, toutes personnes mal intentionnï¿½es qui souhaiteraient contourner la confirmation tï¿½lï¿½phonique ne pourront pas contacter les membres tant que leur profil ne sera pas validï¿½.';
 
 					$messages[2]				= new stdClass();
 					$messages[2]->genre			= 'system';
 					$messages[2]->username		= 'ParentSolo';
 					$messages[2]->date_envoi	= date('Y-m-d H:i:s');
-					$messages[2]->texte			= 'ParentSolos.fr vous remercie pour votre compréhension.';
+					$messages[2]->texte			= 'SoloCircl.com vous remercie pour votre comprï¿½hension.';
 
 
 					// affiche le messages
 					displayMessages($messages);
 
-				} else { // membre non abonné
+				} else { // membre non abonnï¿½
 
-					// message système d'info
+					// message systï¿½me d'info
 					$messages					= array();
 					$messages[0]				= new stdClass();
 					$messages[0]->genre			= 'system';
 					$messages[0]->username		= 'ParentSolo';
 					$messages[0]->date_envoi	= date('Y-m-d H:i:s');
-					$messages[0]->texte			= 'Seuls les membres abonnés à Parentsolos.fr peuvent envoyer des messages sur le chat. [[[lien-abonnement]]]';
+					$messages[0]->texte			= 'Seuls les membres abonnï¿½s ï¿½ SoloCircl.com peuvent envoyer des messages sur le chat. [[[lien-abonnement]]]';
 
 					// affiche le messages
 					displayMessages($messages);
@@ -278,7 +278,7 @@
 
 	}
 
-	// récup les messages
+	// rï¿½cup les messages
 	function &getMessages($user_id_from, $user_id_to, $newOnly = 0, $limit = 5, $openConversation = false) {
 		global $db;
 
@@ -289,7 +289,7 @@
 		$where			= array();
 		$_where			= '';
 		$_where_custom	= '';
-		$datetime		= date('Y-m-d H:i:s'); // on arrête le temps, pour ne pas avoir d'erreur de message qui sont insérés entre le SELECT et le UPDATE
+		$datetime		= date('Y-m-d H:i:s'); // on arrï¿½te le temps, pour ne pas avoir d'erreur de message qui sont insï¿½rï¿½s entre le SELECT et le UPDATE
 
 
 		$where[]		= "cm.date_envoi <= '".$datetime."'";
@@ -298,7 +298,7 @@
 
 
 
-		// génère le where
+		// gï¿½nï¿½re le where
 		$_where			= " WHERE ".implode(' AND ', $where);
 
 
@@ -314,10 +314,10 @@
 		}
 
 
-		// si on ne veut pas récupérer que les nouveaux messages
+		// si on ne veut pas rï¿½cupï¿½rer que les nouveaux messages
 		if(!$newOnly) {
 
-			// récup au maximum $limit anciens messages (anti flood)
+			// rï¿½cup au maximum $limit anciens messages (anti flood)
 			$query = "SELECT up.genre, u.username, cm.texte, cm.date_envoi"
 			." FROM chat_message AS cm"
 			." INNER JOIN user AS u ON u.id = cm.user_id_from"
@@ -332,7 +332,7 @@
 
 		}
 
-		// récup les nouveaux messages
+		// rï¿½cup les nouveaux messages
 		$query = "SELECT cm.id, up.genre, u.username, cm.texte, cm.date_envoi"
 		." FROM chat_message AS cm"
 		." INNER JOIN user AS u ON u.id = cm.user_id_from"
@@ -347,14 +347,14 @@
 		$messages = array_merge($messagesOld, $messagesNew);
 
 
-		// met à jour le new_user_from des nouveaux messages
+		// met ï¿½ jour le new_user_from des nouveaux messages
 		$query = "UPDATE chat_message SET"
 		." new_user_from = '0'"
 		." WHERE user_id_from = ".$user_id_from." AND user_id_to = ".$user_id_to." AND date_envoi <= '".$datetime."'"
 		;
 		$db->query($query);
 
-		// met à jour le new_user_to des nouveaux messages
+		// met ï¿½ jour le new_user_to des nouveaux messages
 		$query = "UPDATE chat_message SET"
 		." new_user_to = '0'"
 		." WHERE user_id_to = ".$user_id_from." AND user_id_from = ".$user_id_to." AND date_envoi <= '".$datetime."'"
@@ -362,7 +362,7 @@
 		$db->query($query);
 
 
-		// met à jour la conversation
+		// met ï¿½ jour la conversation
 		$query = "UPDATE chat_conversation SET new = 0 WHERE user_id_from = '".$user_id_from."' AND user_id_to = '".$user_id_to."'";
 		$db->query($query);
 
@@ -380,23 +380,22 @@
 
 			if($message->texte) {
 
-				// non abonné
+				// non abonnï¿½
 				if(!$user->gold) {
 					$message->texte = JL::messageEncode($message->texte, '[[[lien-abonnement]]]');
 				}
 
 				// traitement du message
-				$texte	= setSmilies(nl2br(htmlentities($message->texte)));
-				$texte	= str_replace('[[[lien-abonnement]]]', '<a href="'.SITE_URL.'/index.php?app=abonnement&action=tarifs" title="M\'abonner &agrave; Parentsolos.fr" target="_blank">[ Cliquez ici pour vous abonner ]</a>', $texte);
+				$texte	= setSmilies(nl2br(JL::makeSafe($message->texte)));
+				$texte	= str_replace('[[[lien-abonnement]]]', '<a href="'.SITE_URL.'/index.php?app=abonnement&action=tarifs" title="M\'abonner &agrave; SoloCircl.com" target="_blank">[ Cliquez ici pour vous abonner ]</a>', $texte);
 
 				?>
 				<div class="message">
-					<span class="<? echo $message->genre; ?>"><? echo $message->username; ?></span> dit:<br>
-					<span class="heure"><? echo date('d/m/Y', strtotime($message->date_envoi)); ?> &agrave; <? echo date('H:i:s', strtotime($message->date_envoi)); ?></span><br>
-					<p><? echo $texte; ?></p>
+					<span class="<?php echo $message->genre; ?>"><?php echo $message->username; ?></span> dit:<br>
+					<span class="heure"><?php echo date('d/m/Y', strtotime($message->date_envoi)); ?> &agrave; <?php echo date('H:i:s', strtotime($message->date_envoi)); ?></span><br>
+					<p><?php echo $texte; ?></p>
 				</div>
-			<?
-			}
+			<?php 			}
 		}
 
 	}
@@ -406,10 +405,10 @@
 	function addConversation($user_id_from, $user_id_to) {
 		global $db;
 
-		// on ne chat pas avec soi même
+		// on ne chat pas avec soi mï¿½me
 		if($user_id_from != $user_id_to) {
 
-			// supprime la conversation existante au cas où
+			// supprime la conversation existante au cas oï¿½
 			$query = "DELETE FROM chat_conversation WHERE user_id_from = '".$user_id_from."' AND user_id_to = '".$user_id_to."'";
 			$db->query($query);
 
@@ -434,7 +433,7 @@
 		$query = "DELETE FROM chat_conversation WHERE user_id_from = '".$user_id_from."' AND user_id_to = '".$user_id_to."'";
 		$db->query($query);
 
-		// met à jour tous les messages de l'utilisateur dans cette conversation en tant que lu
+		// met ï¿½ jour tous les messages de l'utilisateur dans cette conversation en tant que lu
 		$query = "UPDATE chat_message SET new_user_from = 0 WHERE user_id_from = '".$user_id_from."' AND user_id_to = '".$user_id_to."'";
 		$db->query($query);
 
@@ -444,7 +443,7 @@
 	}
 
 
-	// récup les conversations en cours de l'utilisateur $user_id_from
+	// rï¿½cup les conversations en cours de l'utilisateur $user_id_from
 	function &getConversations($user_id_from, $user_id_to) {
 		global $db;
 
@@ -455,16 +454,16 @@
 
 		$where[]		= "cc.user_id_from = '".$user_id_from."'";
 
-		// génère le where
+		// gï¿½nï¿½re le where
 		$_where			= " WHERE ".implode(' AND ', $where);
 
 
-		// affecte d'office le new = 0 à la conversation en cours
+		// affecte d'office le new = 0 ï¿½ la conversation en cours
 		$query = "UPDATE chat_conversation SET new = 0 WHERE user_id_from = '".$user_id_from."' AND user_id_to = '".$user_id_to."'";
 		$db->query($query);
 
 
-		// récup les conversations
+		// rï¿½cup les conversations
 		$query = "SELECT u.id, u.username, cc.new AS nouveau, cc.user_id_to"
 		." FROM chat_conversation AS cc"
 		." INNER JOIN user AS u ON u.id = cc.user_id_to"
@@ -483,17 +482,15 @@
 		global $lang_id;
 		// aide
 		?>
-		<div class="conversationUsername<? echo $user_id_to ? '0' : 'On'; ?>" id="chatHelp" onClick="document.location='<? echo SITE_URL.'/index2.php?app=chat&lang='.$lang_id; ?>';">Aide</div>
+		<div class="conversationUsername<?php echo $user_id_to ? '0' : 'On'; ?>" id="chatHelp" onClick="document.location='<?php echo SITE_URL.'/index2.php?app=chat&lang='.$lang_id; ?>';">Aide</div>
 		<div class="conversationCloseOff" style="visibility:hidden;">&nbsp;</div>
-		<?
-
+		<?php 
 		// pour chaque conversation
 		foreach($conversations as $conversation) {
 		?>
-			<div class="conversationUsername<? echo $conversation->id != $user_id_to ? $conversation->nouveau : 'On'; ?>" id="conversationOpen<? echo $conversation->id; ?>" onClick="chatOpenConversation(<? echo $conversation->id; ?>);"><? echo $conversation->username; ?></div>
-			<div class="conversationCloseOff" id="conversationClose<? echo $conversation->id; ?>" onClick="chatCloseConversation(<? echo $conversation->id; ?>);" onMouseOver="this.className='conversationCloseOn';" onMouseOut="this.className='conversationCloseOff';">&nbsp;</div>
-		<?
-		}
+			<div class="conversationUsername<?php echo $conversation->id != $user_id_to ? $conversation->nouveau : 'On'; ?>" id="conversationOpen<?php echo $conversation->id; ?>" onClick="chatOpenConversation(<?php echo $conversation->id; ?>);"><?php echo $conversation->username; ?></div>
+			<div class="conversationCloseOff" id="conversationClose<?php echo $conversation->id; ?>" onClick="chatCloseConversation(<?php echo $conversation->id; ?>);" onMouseOver="this.className='conversationCloseOn';" onMouseOut="this.className='conversationCloseOff';">&nbsp;</div>
+		<?php 		}
 
 	}
 
@@ -503,36 +500,36 @@
 		global $db;
 
 
-		// met à jour la conversation
+		// met ï¿½ jour la conversation
 		$query = "UPDATE chat_conversation SET new = 0, date_add = NOW() WHERE user_id_from = '".$user_id_from."' AND user_id_to = '".$user_id_to."'";
 		$db->query($query);
 
 
-		// récup les messages
+		// rï¿½cup les messages
 		$messages =& getMessages($user_id_from, $user_id_to, 0, 5, true);
 
-		// récup les infos de l'expéditeur (user log)
+		// rï¿½cup les infos de l'expï¿½diteur (user log)
 		$user_from 	=& getUserInfo($user_id_from);
 
-		// récup les infos du destinataire
+		// rï¿½cup les infos du destinataire
 		$user_to 	=& getUserInfo($user_id_to);
 
-		// récup la photo de l'utilisateur
+		// rï¿½cup la photo de l'utilisateur
 		$user_from->photo 	= JL::userGetPhoto($user_from->id, '89', 'profil', $user_from->photo_defaut);
 
-		// photo par défaut
+		// photo par dï¿½faut
 		if(!$user_from->photo) {
 			$user_from->photo = SITE_URL.'/parentsolo/images/parent-solo-89-'.$user_from->genre.'.jpg';
 		}
 
 		$user_to->photo 	= JL::userGetPhoto($user_to->id, '89', 'profil', $user_to->photo_defaut);
 
-		// photo par défaut
+		// photo par dï¿½faut
 		if(!$user_to->photo) {
 			$user_to->photo = SITE_URL.'/parentsolo/images/parent-solo-89-'.$user_to->genre.'.jpg';
 		}
 
-		// récup les infos + détaillées du destinataire
+		// rï¿½cup les infos + dï¿½taillï¿½es du destinataire
 		$query = "SELECT IFNULL(pc.nom, '') AS canton, IFNULL(pv.nom, '') AS ville, up.nb_enfants, CURRENT_DATE, (YEAR(CURRENT_DATE)-YEAR(up.naissance_date)) - (RIGHT(CURRENT_DATE,5)<RIGHT(up.naissance_date,5)) AS age, IF((UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(u.last_online)) < ".(ONLINE_TIME_LIMIT+AFK_TIME_LIMIT).", 1, 0) AS online"
 		." FROM user AS u"
 		." INNER JOIN user_profil AS up ON up.user_id = u.id"
@@ -549,13 +546,12 @@
 				<b>Attention</b>, assurez-vous de bien conna&icirc;tre la personne avec qui vous chattez avant de donner vos coordonn&eacute;es personnelles ou adresses email/msn.
 			</div>
 			<div class="messages" id="messages">
-			<?
-				// affiche les messages
+			<?php 				// affiche les messages
 				displayMessages($messages);
 			?>
 			</div>
 			<div class="smilies">
-				<? /*<img src="images/smiley2.gif" alt="(F)" onClick="chatSmiley('(F)');">*/ ?>
+				<?php /*<img src="images/smiley2.gif" alt="(F)" onClick="chatSmiley('(F)');">*/ ?>
 				<img src="images/smiley1.gif" alt="(C)" onClick="chatSmiley('(C)');">
 				<img src="images/smiley6.gif" alt=":|" onClick="chatSmiley(':|');">
 				<img src="images/smiley7.gif" alt=":)" onClick="chatSmiley(':)');">
@@ -567,32 +563,31 @@
 				<img src="images/smiley12.gif" alt=":x" onClick="chatSmiley(':x');">
 			</div>
 			<div class="formulaire">
-				<input type="hidden" name="user_id_to" id="user_id_to" value="<? echo $user_to->id; ?>">
+				<input type="hidden" name="user_id_to" id="user_id_to" value="<?php echo $user_to->id; ?>">
 				<textarea name="texte" id="texte" rows="5" cols="10" class="texte" onkeypress="chatKey(event);"></textarea>
 				<div class="envoyer" onClick="chatSendMessage();">&nbsp;</div>
 				<img src="images/loading.gif" alt="Envoi de votre message en cours..." id="loadingSend" />
 			</div>
 		</div>
 		<div class="chatUsers">
-			<div class="user_to" onClick="self.opener.location.href='http://www.parentsolos.fr/index.php?app=profil&action=view&id=<? echo $user_to->id; ?>'">
-				<img src="<? echo $user_to->photo; ?>" alt="<? echo $user_to->username; ?>">
-				<span><? echo $user_to->username; ?></span>
-				<span style="color:#FFF;"><? echo $user_to->age; ?> ans</span>
-				<span style="color:<? echo $userInfo->online ? '#0F0' : '#F00'; ?>;"><? echo $userInfo->online ? 'en ligne' : 'hors ligne'; ?></span>
+			<div class="user_to" onClick="self.opener.location.href='http://www.SoloCircl.com/index.php?app=profil&action=view&id=<?php echo $user_to->id; ?>'">
+				<img src="<?php echo $user_to->photo; ?>" alt="<?php echo $user_to->username; ?>">
+				<span><?php echo $user_to->username; ?></span>
+				<span style="color:#FFF;"><?php echo $user_to->age; ?> ans</span>
+				<span style="color:<?php echo $userInfo->online ? '#0F0' : '#F00'; ?>;"><?php echo $userInfo->online ? 'en ligne' : 'hors ligne'; ?></span>
 				<div class="sep1">&nbsp;</div>
-				<? if($userInfo->canton) { ?><span><? echo htmlentities($userInfo->canton); ?></span><? } ?>
-				<? if($userInfo->canton) { ?><span><? echo htmlentities($userInfo->ville); ?></span><? } ?>
-				<span style="color:#FFF;"><? echo $userInfo->nb_enfants; ?> enfant<? echo $userInfo->nb_enfants > 1 ? 's' : ''; ?></span>
+				<?php if($userInfo->canton) { ?><span><?php echo makeSafe($userInfo->canton); ?></span><?php } ?>
+				<?php if($userInfo->canton) { ?><span><?php echo makeSafe($userInfo->ville); ?></span><?php } ?>
+				<span style="color:#FFF;"><?php echo $userInfo->nb_enfants; ?> enfant<?php echo $userInfo->nb_enfants > 1 ? 's' : ''; ?></span>
 			</div>
 			<div class="user_from">
 				<div class="sep2">&nbsp;</div>
-				<img src="<? echo $user_from->photo; ?>" alt="<? echo $user_from->username; ?>">
-				<span><? echo $user_from->username; ?></span>
+				<img src="<?php echo $user_from->photo; ?>" alt="<?php echo $user_from->username; ?>">
+				<span><?php echo $user_from->username; ?></span>
 			</div>
 		</div>
 
-		<?
-
+		<?php 
 	}
 
 
@@ -618,23 +613,23 @@
 	/*function getHelp() {
 		global $db, $user;
 
-		// récup le nombre de conversations en cours
+		// rï¿½cup le nombre de conversations en cours
 		$query = "SELECT COUNT(*) FROM chat_conversation WHERE user_id_from = '".$user->id."'";
 		$conversationsNb = $db->loadResult($query);
 
 	?>
 		<div class="chatHelp">
-		<h2>Bienvenue sur le chat Parentsolos.fr</h2>
+		<h2>Bienvenue sur le chat SoloCircl.com</h2>
 		<p>
-			<? if($conversationsNb) { ?>
-				<b>Vous avez <? echo $conversationsNb; ?> conversation<? echo $conversationsNb > 1 ? 's' : ''; ?> en cours.</b><br>
+			<?php if($conversationsNb) { ?>
+				<b>Vous avez <?php echo $conversationsNb; ?> conversation<?php echo $conversationsNb > 1 ? 's' : ''; ?> en cours.</b><br>
 				<br>
 				Cliquez sur un des onglets &agrave; gauche pour ouvrir la conversation avec le membre indiqu&eacute; !
-			<? } else { ?>
+			<?php } else { ?>
 				Vous n'avez aucune conversation en cours.<br>
 				<br>
 				<b>Cliquez sur l'icone CHAT dans le profil d'un membre pour commencer &agrave; chatter !</b>
-			<? } ?>
+			<?php } ?>
 		</p>
 
 		<h2>Pr&eacute;sentation du chat</h2>
@@ -652,7 +647,7 @@
 		<p>
 			Vous trouverez &agrave; gauche la liste de vos conversations en cours:<br>
 			<br>
-			<img src="images/chat-aide-2.jpg" alt="Chat Parentsolos.fr"><br>
+			<img src="images/chat-aide-2.jpg" alt="Chat SoloCircl.com"><br>
 			<br>
 			Lorsqu'une personne vous contacte, un petit onglet rose clair est automatiquement ajout&eacute; &agrave; gauche.<br>
 			Vous pouvez cliquer sur la croix blanche afin de fermer la conversation.<br>
@@ -670,7 +665,7 @@
 		<p>
 			Vous trouverez en haut &agrave; droite un aper&ccedil;u du profil de votre correspondant(e):<br>
 			<br>
-			<img src="images/chat-aide-3.jpg" alt="Chat Parentsolo.ch"><br>
+			<img src="images/chat-aide-3.jpg" alt="Chat solocircl.com"><br>
 			<br>
 			Lorsque vous souhaitez chatter avec un membre, v&eacute;rifiez bien si votre correspondant(e) est <span style="color:#0F0;">en ligne</span> ou <span style="color:#F00;">hors ligne</span>.<br>
 			<br>
@@ -681,7 +676,7 @@
 		<p>
 			Au milieu de la fen&ecirc;tre se trouve la conversation en cours:<br>
 			<br>
-			<img src="images/chat-aide-4.jpg" alt="Chat Parentsolos.fr"><br>
+			<img src="images/chat-aide-4.jpg" alt="Chat SoloCircl.com"><br>
 			<br>
 			En rose s'affiche les pseudos des mamans, en bleu celui des papas.<br>
 			Lorsque vous ouvrez une ancienne conversation, les derniers messages &eacute;chang&eacute;s s'afficheront.<br>
@@ -692,13 +687,12 @@
 		<p>
 			En bas, vous pouvez r&eacute;diger vos messages:<br>
 			<br>
-			<img src="images/chat-aide-5.jpg" alt="Chat Parentsolos.fr"><br>
+			<img src="images/chat-aide-5.jpg" alt="Chat SoloCircl.com"><br>
 			<br>
 			En cliquant sur un smiley, celui-ci est ajout&eacute; &agrave; la suite de votre message.<br>
 			Vous pouvez aussi directement tapper le code du smiley, par exemple &laquo; :) &raquo;, celui-ci sera automatiquement affich&eacute; sous forme de smiley.
 		</p>
 		</div>
-	<?
-	}*/
+	<?php 	}*/
 
 ?>

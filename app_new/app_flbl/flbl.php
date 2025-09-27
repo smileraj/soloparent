@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 
 	require_once('flbl.html.php');
@@ -70,11 +70,11 @@
 		$where[]	= "uf.user_id_from = '".$user->id."'";
 		$where[]	= "u.id NOT IN (SELECT user_id_from FROM user_flbl WHERE user_id_to = ".$user->id." AND list_type=0)";
 
-		if(count($where)) {
+		if (is_array($where)) {
 			$_where = " WHERE ".implode(" AND ", $where);
 		}
 
-		// récup les users en friend/black list
+		// rï¿½cup les users en friend/black list
 		$query = "SELECT u.id, u.username, uf.description, uf.datetime_add, up.genre, up.photo_defaut, ((YEAR(CURRENT_DATE)-YEAR(up.naissance_date)) - (RIGHT(CURRENT_DATE,5)<RIGHT(up.naissance_date,5))) AS age, pc.abreviation AS canton_abrev, up.nb_enfants, (UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(u.last_online)) AS last_online_time, u.online"
 		." FROM user_flbl AS uf"
 		." INNER JOIN user AS u ON u.id = uf.user_id_to"
@@ -86,15 +86,15 @@
 		$rows = $db->loadObjectList($query);
 
 		// messages de confirmation
-		$added		= (int)JL::getVar('added', 0, true); 	// id de l'utilisateur ajouté à $list_type
-		$removed	= (int)JL::getVar('removed', 0, true); 	// id de l'utilisateur retiré de $list_type
+		$added		= (int)JL::getVar('added', 0, true); 	// id de l'utilisateur ajoutï¿½ ï¿½ $list_type
+		$removed	= (int)JL::getVar('removed', 0, true); 	// id de l'utilisateur retirï¿½ de $list_type
 
 		if($added || $removed) {
 
-			// utilisateur ciblé
+			// utilisateur ciblï¿½
 			$user_id	= $added ? $added : $removed;
 
-			// récup le pseudo de l'utilisateur
+			// rï¿½cup le pseudo de l'utilisateur
 			$query = "SELECT u.username, up.genre"
 			." FROM user AS u"
 			." INNER JOIN user_profil AS up ON up.user_id = u.id"
@@ -133,12 +133,12 @@
 	}
 
 
-	// ajoute un utilisateur à la fl/bl de l'utilisateur log
+	// ajoute un utilisateur ï¿½ la fl/bl de l'utilisateur log
 	function flblAdd() {
 		global $langue;
 		global $db, $messages, $user;
 
-		// récup les données du formulaire
+		// rï¿½cup les donnï¿½es du formulaire
 		$row	= new stdClass();
 		$_data 	=& flbl_data();
 
@@ -159,7 +159,7 @@
 		// si l'utilisateur existe
 		if($user_to->id) {
 
-			// vérifie si l'utilisateur cible est déjà dans la FL/BL
+			// vï¿½rifie si l'utilisateur cible est dï¿½jï¿½ dans la FL/BL
 			$query = "SELECT user_id_to, list_type, description"
 			." FROM user_flbl"
 			." WHERE user_id_from = '".$user->id."' AND list_type = '".$row->list_type."' AND user_id_to = '".$row->user_id_to."'"
@@ -167,7 +167,7 @@
 			;
 			$flbl	= $db->loadObject($query);
 
-			// si déjà dans la flbl
+			// si dï¿½jï¿½ dans la flbl
 			if($flbl->user_id_to) {
 				$row->list_type		= $flbl->list_type;
 				$row->description	= $flbl->description;
@@ -195,12 +195,12 @@
 	}
 
 
-	// ajoute un utilisateur à la fl/bl de l'utilisateur log
+	// ajoute un utilisateur ï¿½ la fl/bl de l'utilisateur log
 	function flblSave() {
 		global $langue;
 		global $db, $user;
 
-		// récup les données du formulaire
+		// rï¿½cup les donnï¿½es du formulaire
 		$_data 	=& flbl_data();
 		$row	= new stdClass();
 		foreach($_data as $k => $v) {
@@ -209,7 +209,7 @@
 
 		if($row->user_id_to) {
 
-			// supprime l'enregistrement existant (permet de passer de BL à FL et inversement à coup sûr)
+			// supprime l'enregistrement existant (permet de passer de BL ï¿½ FL et inversement ï¿½ coup sï¿½r)
 			$query = "DELETE FROM user_flbl WHERE user_id_to = '".(int)$row->user_id_to."' AND user_id_from = '".$user->id."'";
 			$db->query($query);
 

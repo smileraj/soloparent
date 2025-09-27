@@ -1,11 +1,11 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 	
 	class HTML_points {
 		
-		// édite un point du barème
+		// ï¿½dite un point du barï¿½me
 		function baremeEdit(&$row, &$messages) {
 		
 			// htmlentities
@@ -19,12 +19,12 @@
 						var ok = true;
 						
 						if(action == 'Annuler') {
-							if(!confirm('Êtes-vous sûr de vouloir Annuler?')) {
+							if(!confirm('ï¿½tes-vous sï¿½r de vouloir Annuler?')) {
 								ok = false;
 							}
 						} 
 						else if(action == 'Fermer') {
-							if(!confirm('Êtes-vous sûr de vouloir Fermer?')) {
+							if(!confirm('ï¿½tes-vous sï¿½r de vouloir Fermer?')) {
 								ok = false;
 								
 							}
@@ -32,12 +32,12 @@
 						
 						if(ok) {
 						
-							document.location = "<? echo SITE_URL_ADMIN; ?>/index.php?app=points&action=bareme"; 
+							document.location = "<?php echo SITE_URL_ADMIN; ?>/index.php?app=points&action=bareme"; 
 						}
 						
 					}
 			</script>
-			<form name="editForm" action="<? echo SITE_URL_ADMIN; ?>/index.php" method="post">
+			<form name="editForm" action="<?php echo SITE_URL_ADMIN; ?>/index.php" method="post">
 			<section class="panel">
                   <header class="panel-heading">
                      	<h2>SoloFleurs: Modifier Bar&egrave;me</h2>
@@ -53,13 +53,13 @@
 					</div>
 				</div>
 				
-				<? // messages d'erreurs
-				if(count($messages)) { ?>
+				<?php // messages d'erreurs
+				if (is_array($messages)) { ?>
 					<div class="messages">
-						<? JL::messages($messages); ?>
+						<?php JL::messages($messages); ?>
 					</div>
 					<br />
-				<? } ?>
+				<?php } ?>
 				<div class="tableAdmin">
 					<h3>Traductions</h3>
 					<br />
@@ -67,7 +67,7 @@
 						<tr>
 							<td class="key" valign="top"><label for="description">Description:</label></td>
 							<td>
-								<input type="text" id="description" class="msgtxt" name="description" maxlength="255" value="<? echo $row->description; ?>"><br />
+								<input type="text" id="description" class="msgtxt" name="description" maxlength="255" value="<?php echo $row->description; ?>"><br />
 								<i>La description correspond au nom fran&ccedil;ais afin d'avoir un rep&egrave;re!</i>
 							</td>
 						</tr>
@@ -75,22 +75,22 @@
 							<td>&nbsp;</td>
 						</tr>
 						<tr>
-							<td class="key"><label for="nom_fr">Nom <img width="20px;" src="http://www.parentsolo.ch/~dev/parentsolo/images/grph_flags_fr_h20.jpg" alt="fr">:</label></td>
-							<td><input type="text" id="nom_fr" class="msgtxt" name="nom_fr" maxlength="255" value="<? echo $row->nom_fr; ?>"></td>
+							<td class="key"><label for="nom_fr">Nom <img width="20px;" src="http://www.solocircl.com/~dev/parentsolo/images/grph_flags_fr_h20.jpg" alt="fr">:</label></td>
+							<td><input type="text" id="nom_fr" class="msgtxt" name="nom_fr" maxlength="255" value="<?php echo $row->nom_fr; ?>"></td>
 						</tr>
 						<tr>
 							<td>&nbsp;</td>
 						</tr>
 						<tr>
-							<td class="key"><label for="nom_en">Nom <img width="20px;" src="http://www.parentsolo.ch/~dev/parentsolo/images/grph_flags_en_h20.jpg" alt="en">:</label></td>
-							<td><input type="text" id="nom_en" class="msgtxt" name="nom_en" maxlength="255" value="<? echo $row->nom_en; ?>"></td>
+							<td class="key"><label for="nom_en">Nom <img width="20px;" src="http://www.solocircl.com/~dev/parentsolo/images/grph_flags_en_h20.jpg" alt="en">:</label></td>
+							<td><input type="text" id="nom_en" class="msgtxt" name="nom_en" maxlength="255" value="<?php echo $row->nom_en; ?>"></td>
 						</tr>
 						<tr>
 							<td>&nbsp;</td>
 						</tr>
 						<tr>
-							<td class="key"><label for="nom_de">Nom <img width="20px;" src="http://www.parentsolo.ch/~dev/parentsolo/images/grph_flags_de_h20.jpg" alt="de">:</label></td>
-							<td><input type="text" id="nom_de" class="msgtxt" name="nom_de" maxlength="255" value="<? echo $row->nom_de; ?>"></td>
+							<td class="key"><label for="nom_de">Nom <img width="20px;" src="http://www.solocircl.com/~dev/parentsolo/images/grph_flags_de_h20.jpg" alt="de">:</label></td>
+							<td><input type="text" id="nom_de" class="msgtxt" name="nom_de" maxlength="255" value="<?php echo $row->nom_de; ?>"></td>
 						</tr>
 					</table>
 				</div>
@@ -101,12 +101,12 @@
 					<table cellpadding="0" cellspacing="0" class="table table-bordered table-striped table-condensed cf editer">
 						<tr>
 							<td class="key"><label for="points">Points:</label></td>
-							<td><input type="text" id="points" class="msgtxt" name="points" maxlength="5" value="<? echo $row->points; ?>"></td>
+							<td><input type="text" id="points" class="msgtxt" name="points" maxlength="5" value="<?php echo $row->points; ?>"></td>
 						</tr>
 						<tr>
 							<td class="key" valign="top"><label for="nb_max_par_data">Occurences Max:</label></td>
 							<td>
-								<input type="text" id="nb_max_par_data" class="msgtxt" name="nb_max_par_data" maxlength="5" value="<? echo $row->nb_max_par_data; ?>">
+								<input type="text" id="nb_max_par_data" class="msgtxt" name="nb_max_par_data" maxlength="5" value="<?php echo $row->nb_max_par_data; ?>">
 								<br />
 								<i>Nombre de fois maximum qu'un utilisateur peut obtenir ces points dans les m&ecirc;mes conditions.</i><br />
 								<i>Ex: recevoir <b><u>une fois</u></b> les points pour <b><u>une</u></b> connexion <b><u>par jour</u></b>.</i>
@@ -116,16 +116,15 @@
 						</tr>
 					</table>
 				</div>				
-				<input type="hidden" name="id" value="<? echo $row->id; ?>" />
+				<input type="hidden" name="id" value="<?php echo $row->id; ?>" />
 				<input type="hidden" name="app" value="points" />
 				<input type="hidden" name="action" value="baremesave" />
 			</section>
 			</form>
-			<?
-		}
+			<?php 		}
 		
 		
-		// liste les points du barème
+		// liste les points du barï¿½me
 		function baremeList(&$rows, &$messages) {
 		
 			// variables
@@ -140,7 +139,7 @@
 						
 						
 						 if(action == 'Fermer') {
-							if(!confirm('Êtes-vous sûr de vouloir Fermer?')) {
+							if(!confirm('ï¿½tes-vous sï¿½r de vouloir Fermer?')) {
 								ok = false;
 								
 							}
@@ -148,12 +147,12 @@
 						
 						if(ok) {
 						
-							document.location = "<? echo SITE_URL_ADMIN; ?>"; 
+							document.location = "<?php echo SITE_URL_ADMIN; ?>"; 
 						}
 						
 					}
 			</script>
-				<form name="listForm" action="<? echo SITE_URL_ADMIN; ?>/index.php" method="post">
+				<form name="listForm" action="<?php echo SITE_URL_ADMIN; ?>/index.php" method="post">
 				<section class="panel">
                   <header class="panel-heading">
                      	<h2>SoloFleurs: Bar&egrave;me</h2>
@@ -166,45 +165,43 @@
 					</div>
 					</div>
 				  </div>
-				<? if(count($messages)) { ?>
+				<?php if (is_array($messages)) { ?>
 						<div class="messages">
-							<? JL::messages($messages); ?>
+							<?php JL::messages($messages); ?>
 						</div>
 						<br />
-				<? } ?>
+				<?php } ?>
 				<div class="tableAdmin">
 					<table cellpadding="0" cellspacing="0" class="table table-bordered table-striped table-condensed cf lister">
 					
 						
 						
-						<? if(count($rows)) { ?>
+						<?php if (is_array($rows)) { ?>
 						
 							<tr>
 								<th>Description</th>
 								<th>Points</th>
 								<th>Occurences Max.</th>
 							</tr>
-							<?
-							foreach($rows as $row) {
+							<?php 							foreach($rows as $row) {
 							
 								// htmlentities
 								JL::makeSafe($row);
 								
 								?>
 								<tr class="list">
-									<td><a href="<? echo SITE_URL_ADMIN; ?>/index.php?app=points&action=baremeedit&id=<? echo $row->id; ?>" title="Modifier le bar&egrave;me"><? echo $row->description; ?></a></td>
-									<td><? echo $row->points; ?></td>
-									<td><? echo $row->nb_max_par_data ? $row->nb_max_par_data : 'illimit&eacute;'; ?></td>
+									<td><a href="<?php echo SITE_URL_ADMIN; ?>/index.php?app=points&action=baremeedit&id=<?php echo $row->id; ?>" title="Modifier le bar&egrave;me"><?php echo $row->description; ?></a></td>
+									<td><?php echo $row->points; ?></td>
+									<td><?php echo $row->nb_max_par_data ? $row->nb_max_par_data : 'illimit&eacute;'; ?></td>
 								</tr>
-								<?
-							}
+								<?php 							}
 							
 						} else {
 						?>
 							<tr>
-								<th colspan="<? echo $tdParTr; ?>">Aucun bar&ecirc;me n'a &eacute;t&eacute; &eacute;tabli.</th>
+								<th colspan="<?php echo $tdParTr; ?>">Aucun bar&ecirc;me n'a &eacute;t&eacute; &eacute;tabli.</th>
 							</tr>
-						<? } ?>
+						<?php } ?>
 						
 					</table>
 				</div>
@@ -212,11 +209,10 @@
 					<input type="hidden" name="action" value="" />
 				</section>
 				</form>
-			<?
-		}
+			<?php 		}
 		
 		
-		// édite un point du barème
+		// ï¿½dite un point du barï¿½me
 		function gagnantEdit(&$row, &$messages) {
 		
 			// htmlentities
@@ -230,12 +226,12 @@
 						var ok = true;
 						
 						if(action == 'Annuler') {
-							if(!confirm('Êtes-vous sûr de vouloir Annuler?')) {
+							if(!confirm('ï¿½tes-vous sï¿½r de vouloir Annuler?')) {
 								ok = false;
 							}
 						} 
 						else if(action == 'Fermer') {
-							if(!confirm('Êtes-vous sûr de vouloir Fermer?')) {
+							if(!confirm('ï¿½tes-vous sï¿½r de vouloir Fermer?')) {
 								ok = false;
 								
 							}
@@ -243,12 +239,12 @@
 						
 						if(ok) {
 						
-							document.location = "<? echo SITE_URL_ADMIN; ?>/index.php?app=points&action=gagnant"; 
+							document.location = "<?php echo SITE_URL_ADMIN; ?>/index.php?app=points&action=gagnant"; 
 						}
 						
 					}
 			</script>
-			<form name="editForm" action="<? echo SITE_URL_ADMIN; ?>/index.php" method="post">
+			<form name="editForm" action="<?php echo SITE_URL_ADMIN; ?>/index.php" method="post">
 				<section class="panel">
                   <header class="panel-heading">
                      	<h2>SoloFleurs: Modifier Gagnant</h2>
@@ -263,36 +259,36 @@
 					</div>
 				  </div>
 				  </div>
-				<? // messages d'erreurs
-				if(count($messages)) { ?>
+				<?php // messages d'erreurs
+				if (is_array($messages)) { ?>
 					<div class="messages">
-						<? JL::messages($messages); ?>
+						<?php JL::messages($messages); ?>
 					</div>
 					<br />
-				<? } ?>
+				<?php } ?>
 				<div class="tableAdmin">
 					<h3>Suivi</h3>
 					<br />
 					<table cellpadding="0" cellspacing="0" class="table table-bordered table-striped table-condensed cf editer">
 						<tr>
 							<td class="key"><b>Pseudo:</b></td>
-							<td><a href="<? echo SITE_URL_ADMIN; ?>/index.php?app=profil&action=editer&id=<? echo $row->user_id; ?>" title="Modifier le profil de <? echo $row->username; ?>" target="_blank"><? echo $row->username; ?></a></td>
+							<td><a href="<?php echo SITE_URL_ADMIN; ?>/index.php?app=profil&action=editer&id=<?php echo $row->user_id; ?>" title="Modifier le profil de <?php echo $row->username; ?>" target="_blank"><?php echo $row->username; ?></a></td>
 						</tr>
 						<tr>
 							<td class="key"><b>P&eacute;riode:</b></td>
-							<td><? echo $row->annee_mois; ?></td>
+							<td><?php echo $row->annee_mois; ?></td>
 						</tr>
 						<tr>
 							<td class="key"><b>Position:</b></td>
-							<td style="background:url(<? echo SITE_URL; ?>/parentsolo/images/pos<? echo $row->position; ?>.gif) no-repeat;background-position:8px 8px;padding: 0 0 0 25px;"><? echo $row->position; ?></td>
+							<td style="background:url(<?php echo SITE_URL; ?>/parentsolo/images/pos<?php echo $row->position; ?>.gif) no-repeat;background-position:8px 8px;padding: 0 0 0 25px;"><?php echo $row->position; ?></td>
 						</tr>
 						<tr>
 							<td class="key"><label for="commentaire">Commentaire:</label></td>
-							<td><textarea id="commentaire" cols="72" rows="10" name="commentaire"><? echo $row->commentaire; ?></textarea></td>
+							<td><textarea id="commentaire" cols="72" rows="10" name="commentaire"><?php echo $row->commentaire; ?></textarea></td>
 						</tr>
 						<tr>
 							<td class="key"><b>Trait&eacute;:</b></td>
-							<td><input type="radio" id="traite1" name="traite" value="1" <? if($row->traite == 1) { ?>checked<? } ?> /> <label for="traite1">Oui</label>&nbsp;<input type="radio" id="traite0" name="traite" value="0" <? if($row->traite == 0) { ?>checked<? } ?> /> <label for="traite0">Non</label></td>
+							<td><input type="radio" id="traite1" name="traite" value="1" <?php if($row->traite == 1) { ?>checked<?php } ?> /> <label for="traite1">Oui</label>&nbsp;<input type="radio" id="traite0" name="traite" value="0" <?php if($row->traite == 0) { ?>checked<?php } ?> /> <label for="traite0">Non</label></td>
 						</tr>
 					</table>
 				</div>
@@ -303,51 +299,50 @@
 					<table cellpadding="0" cellspacing="0" class="table table-bordered table-striped table-condensed cf editer">
 						<tr>
 							<td class="key"><label for="nom">Nom:</label></td>
-							<td><input type="text" id="nom" class="msgtxt" name="nom" maxlength="255" value="<? echo $row->nom; ?>"></td>
+							<td><input type="text" id="nom" class="msgtxt" name="nom" maxlength="255" value="<?php echo $row->nom; ?>"></td>
 						</tr>
 						<tr>
 							<td class="key"><label for="prenom">Pr&eacute;nom:</label></td>
-							<td><input type="text" id="prenom" class="msgtxt" name="prenom" maxlength="255" value="<? echo $row->prenom; ?>"></td>
+							<td><input type="text" id="prenom" class="msgtxt" name="prenom" maxlength="255" value="<?php echo $row->prenom; ?>"></td>
 						</tr>
 						<tr>
 							<td class="key"><label for="adresse">Adresse:</label></td>
-							<td><textarea id="adresse" cols="72" rows="10" name="adresse"><? echo $row->adresse; ?></textarea></td>
+							<td><textarea id="adresse" cols="72" rows="10" name="adresse"><?php echo $row->adresse; ?></textarea></td>
 						</tr>
 						<tr>
 							<td class="key"><label for="code_postal">Code postal:</label></td>
-							<td><input type="text" id="code_postal" class="msgtxt" name="code_postal" maxlength="255" value="<? echo $row->code_postal; ?>"></td>
+							<td><input type="text" id="code_postal" class="msgtxt" name="code_postal" maxlength="255" value="<?php echo $row->code_postal; ?>"></td>
 						</tr>
 						<tr>
 							<td class="key"><label for="ville">Ville:</label></td>
-							<td><input type="text" id="ville" class="msgtxt" name="ville" maxlength="255" value="<? echo $row->ville; ?>"></td>
+							<td><input type="text" id="ville" class="msgtxt" name="ville" maxlength="255" value="<?php echo $row->ville; ?>"></td>
 						</tr>
 					</table>
 				</div>
 				<br />
 				<div class="tableAdmin">
-					<h3>Témoignage</h3>
+					<h3>Tï¿½moignage</h3>
 					<br />
 					<table cellpadding="0" cellspacing="0" class="table table-bordered table-striped table-condensed cf editer">
 						<tr>
 							<td class="key"><label for="temoignage_date">Date:</label></td>
-							<td><input type="text" name="temoignage_date" value="<? echo $row->temoignage_date != '0000-00-00' ? date('d/m/Y', strtotime($row->temoignage_date)) : ''; ?>" size="9" /> <i>(jj/mm/aaaa)</i></td>
+							<td><input type="text" name="temoignage_date" value="<?php echo $row->temoignage_date != '0000-00-00' ? date('d/m/Y', strtotime($row->temoignage_date)) : ''; ?>" size="9" /> <i>(jj/mm/aaaa)</i></td>
 						</tr>
 						<tr>
 							<td class="key"><label for="temoignage">T&eacute;moignage:</label></td>
-							<td><textarea id="temoignage" cols="72" rows="10" name="temoignage"><? echo $row->temoignage; ?></textarea></td>
+							<td><textarea id="temoignage" cols="72" rows="10" name="temoignage"><?php echo $row->temoignage; ?></textarea></td>
 						</tr>
 					</table>
 				</div>
-				<input type="hidden" name="id" value="<? echo $row->id; ?>" />
+				<input type="hidden" name="id" value="<?php echo $row->id; ?>" />
 				<input type="hidden" name="app" value="points" />
 				<input type="hidden" name="action" value="gagnantsave" />
 				</section>
 			</form>
-			<?
-		}
+			<?php 		}
 		
 		
-		// liste les points du barème
+		// liste les points du barï¿½me
 		function gagnantList(&$rows, &$messages) {
 		
 			// variables
@@ -362,7 +357,7 @@
 						
 						
 						 if(action == 'Fermer') {
-							if(!confirm('Êtes-vous sûr de vouloir Fermer?')) {
+							if(!confirm('ï¿½tes-vous sï¿½r de vouloir Fermer?')) {
 								ok = false;
 								
 							}
@@ -370,13 +365,13 @@
 						
 						if(ok) {
 						
-							document.location = "<? echo SITE_URL_ADMIN; ?>"; 
+							document.location = "<?php echo SITE_URL_ADMIN; ?>"; 
 						}
 						
 					}
 					
 			</script>
-				<form name="listForm" action="<? echo SITE_URL_ADMIN; ?>/index.php" method="post">
+				<form name="listForm" action="<?php echo SITE_URL_ADMIN; ?>/index.php" method="post">
 				<section class="panel">
                   <header class="panel-heading">
                     <h2>SoloFleurs: Gagnants</h2>
@@ -389,15 +384,15 @@
 					</div>
 				  </div>
 				  </div>
-				<? if(count($messages)) { ?>
+				<?php if (is_array($messages)) { ?>
 						<div class="messages">
-							<? JL::messages($messages); ?>
+							<?php JL::messages($messages); ?>
 						</div>
 						<br />
-				<? } ?>
+				<?php } ?>
 				<div class="tableAdmin">
 					<table cellpadding="0" cellspacing="0" class="table table-bordered table-striped table-condensed cf lister">
-						<? if(count($rows)) { ?>
+						<?php if (is_array($rows)) { ?>
 						
 							<tr>
 								<th width="60px">Mois</th>
@@ -407,30 +402,28 @@
 								<th width="60px" align="center">T&eacute;moign&eacute;</th>
 								<th>Commentaire</th>
 							</tr>
-							<?
-							foreach($rows as $row) {
+							<?php 							foreach($rows as $row) {
 							
 								// htmlentities
 								JL::makeSafe($row);
 								
 								?>
 								<tr class="list">
-									<td><? echo date('m/Y', strtotime($row->annee_mois.'-01')); ?></td>
-									<td align="center"><? echo $row->position; ?></td>
-									<td><a href="<? echo SITE_URL_ADMIN; ?>/index.php?app=points&action=gagnantedit&id=<? echo $row->id; ?>" title="Modifier le gagnant"><? echo $row->username; ?></a></td>
-									<td align="center"><img src="<? echo SITE_URL_ADMIN; ?>/images/<? echo $row->traite; ?>.png" alt="<? echo $row->traite ? 'Trait&eacute;' : 'Non trait&eacute;'; ?>" /></td>
-									<td align="center"><img src="<? echo SITE_URL_ADMIN; ?>/images/<? echo $row->temoigne; ?>.png" alt="<? echo $row->temoigne ? 'T&eacute;moignage publi&eacute;' : 'T&eacute;moignage non publi&eacute;'; ?>" /></td>
-									<td><? echo $row->commentaire; ?></td>
+									<td><?php echo date('m/Y', strtotime($row->annee_mois.'-01')); ?></td>
+									<td align="center"><?php echo $row->position; ?></td>
+									<td><a href="<?php echo SITE_URL_ADMIN; ?>/index.php?app=points&action=gagnantedit&id=<?php echo $row->id; ?>" title="Modifier le gagnant"><?php echo $row->username; ?></a></td>
+									<td align="center"><img src="<?php echo SITE_URL_ADMIN; ?>/images/<?php echo $row->traite; ?>.png" alt="<?php echo $row->traite ? 'Trait&eacute;' : 'Non trait&eacute;'; ?>" /></td>
+									<td align="center"><img src="<?php echo SITE_URL_ADMIN; ?>/images/<?php echo $row->temoigne; ?>.png" alt="<?php echo $row->temoigne ? 'T&eacute;moignage publi&eacute;' : 'T&eacute;moignage non publi&eacute;'; ?>" /></td>
+									<td><?php echo $row->commentaire; ?></td>
 								</tr>
-								<?
-							}
+								<?php 							}
 							
 						} else {
 						?>
 							<tr>
-								<th colspan="<? echo $tdParTr; ?>">Aucun gagnant n'a encore &eacute;t&eacute; d&eacute;sign&eacute;.</th>
+								<th colspan="<?php echo $tdParTr; ?>">Aucun gagnant n'a encore &eacute;t&eacute; d&eacute;sign&eacute;.</th>
 							</tr>
-						<? } ?>
+						<?php } ?>
 						
 					</table>
 				</div>
@@ -438,11 +431,10 @@
 					<input type="hidden" name="action" value="" />
 				</section>
 				</form>
-			<?
-		}
+			<?php 		}
 		
 		
-		// liste les points du barème
+		// liste les points du barï¿½me
 		function classementList(&$rows, &$list) {
 		
 			// variables
@@ -457,7 +449,7 @@
 						
 						
 						 if(action == 'Fermer') {
-							if(!confirm('Êtes-vous sûr de vouloir Fermer?')) {
+							if(!confirm('ï¿½tes-vous sï¿½r de vouloir Fermer?')) {
 								ok = false;
 								
 							}
@@ -465,12 +457,12 @@
 						
 						if(ok) {
 						
-							document.location = "<? echo SITE_URL_ADMIN; ?>"; 
+							document.location = "<?php echo SITE_URL_ADMIN; ?>"; 
 						}
 						
 					}
 			</script>
-				<form name="adminForm" action="<? echo SITE_URL_ADMIN; ?>/index.php" method="post">
+				<form name="adminForm" action="<?php echo SITE_URL_ADMIN; ?>/index.php" method="post">
 				<section class="panel">
                   <header class="panel-heading">
                      	<h2>SoloFleurs: Classement</h2>
@@ -487,18 +479,17 @@
 					<table cellpadding="0" cellspacing="0" class="table table-bordered table-striped table-condensed cf lister">
 						<tr>
 							<td><label for="annee_mois"><b>P&eacute;riode:</b></label></td>
-							<td colspan="<? echo $tdParTr-1; ?>"><? echo $list['annee_mois']; ?></td>
+							<td colspan="<?php echo $tdParTr-1; ?>"><?php echo $list['annee_mois']; ?></td>
 						</tr>
 						
-						<? if(count($rows)) { ?>
+						<?php if (is_array($rows)) { ?>
 						
 							<tr>
 								<th align="center" width="60px">Position</th>
 								<th>Pseudo</th>
 								<th width="60px">Points</th>
 							</tr>
-							<?
-							$pos = 1;
+							<?php 							$pos = 1;
 							foreach($rows as $row) {
 							
 								// htmlentities
@@ -506,20 +497,19 @@
 								
 								?>
 								<tr class="list">
-									<td align="center"><? echo $pos; ?></td>
-									<td><? echo $row->username; ?></td>
-									<td><? echo $row->points; ?></td>
+									<td align="center"><?php echo $pos; ?></td>
+									<td><?php echo $row->username; ?></td>
+									<td><?php echo $row->points; ?></td>
 								</tr>
-								<?
-								$pos++;
+								<?php 								$pos++;
 							}
 							
 						} else {
 						?>
 							<tr>
-								<th colspan="<? echo $tdParTr; ?>">Aucun classement n'a encore &eacute;t&eacute; &eacute;tabli.</th>
+								<th colspan="<?php echo $tdParTr; ?>">Aucun classement n'a encore &eacute;t&eacute; &eacute;tabli.</th>
 							</tr>
-						<? } ?>
+						<?php } ?>
 						
 					</table>
 				</div>
@@ -527,8 +517,7 @@
 					<input type="hidden" name="action" value="classement" />
 				</section>
 				</form>
-			<?
-		}
+			<?php 		}
 		
 	}
 ?>

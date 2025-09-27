@@ -6,7 +6,7 @@ RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteCond %{HTTP_HOST} ^(www\.)?parentsolo\.ch$ [NC]
 RewriteCond %{REQUEST_URI} !(swfupload) [NC]
-RewriteRule ^(.*)$ https://www.parentsolo.ch/$1 [L,R=301]
+RewriteRule ^(.*)$ https://www.solocircl.com/$1 [L,R=301]
 
 
 # Enable Compression

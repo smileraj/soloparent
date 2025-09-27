@@ -5,36 +5,36 @@ $lang_apphome = array(
 	//View
 	//*Partie gauche
 	
-	"SiteDeRencontrePour..." => "Le site de rencontre des parents célibataires en Suisse",
-	"DescriptionCallCenter" => "<h3 class='titlecallcenter'><a title='1e mondiale' href='".SITE_URL."/index.php?app=contenu&id=2&lang=fr'>UNE GARANTIE UNIQUE EN SUISSE </a></h3> <p class='descriptioncallcenter'>Notre équipe basée en Suisse <b>appelle</b> chaque <b>nouveau</b> profil PAR TELEPHONE. Un gage de qualité et de sérieux : Fini les rencontres à l'autre bout du monde... ",
-	"UnGage..." => "Un gage de qualité et de sérieux : Fini les rencontres à l'autre bout du monde...",
+	"SiteDeRencontrePour..." => "Le site de rencontre des parents cï¿½libataires en Suisse",
+	"DescriptionCallCenter" => "<h3 class='titlecallcenter'><a title='1e mondiale' href='".SITE_URL."/index.php?app=contenu&id=2&lang=fr'>UNE GARANTIE UNIQUE EN SUISSE </a></h3> <p class='descriptioncallcenter'>Notre ï¿½quipe basï¿½e en Suisse <b>appelle</b> chaque <b>nouveau</b> profil PAR TELEPHONE. Un gage de qualitï¿½ et de sï¿½rieux : Fini les rencontres ï¿½ l'autre bout du monde... ",
+	"UnGage..." => "Un gage de qualitï¿½ et de sï¿½rieux : Fini les rencontres ï¿½ l'autre bout du monde...",
 	"Inscription" => "<p class='p1'>Inscription</p>",
     "free" => "<p class='p3'>gratuite!</p>",
     "NewMembers" => "Derniers Inscrits",
-    "testimonial"=>"Témoignage",
+    "testimonial"=>"Tï¿½moignage",
 	"readmore"=>"Lire la suite",
-	"unique" => "<b class='title_top'> Sécurité </b><br> Notre équipe basée en Suisse appelle chaque nouveau profil PAR TELEPHONE. Un gage de qualité et de sérieux : Fini les rencontres à l'autre bout du monde...",
-	"nouveau" => "<b class='title_top'> Nouveauté </b><br> Retrouvez les événements à partager en familles ou en amoureux pour apprendre à vous découvrir! ",
-	"acces" =>  "<b class='title_top'> Accessible sur tous les supports Mobiles & Tablettes  </b><br> De nouvelles rencontres à portée de main !  Parentsolo vous accompagne partout . Communiquez avec qui vous voulez, où vous voulez et quand vous voulez.",
-	"concept" =>  "<b class='title_top'> CONCEPT UNIQUE EN EUROPE </b><br> Exclusivement destiné aux parents résidant en  Suisse, Parentsolo.ch se distingue des sites déjà existants par sa spécialisation, les parents célibataires, et par sa volonté d'offrir un service de qualité etc.. ",
+	"unique" => "<b class='title_top'> Sï¿½curitï¿½ </b><br> Notre ï¿½quipe basï¿½e en Suisse appelle chaque nouveau profil PAR TELEPHONE. Un gage de qualitï¿½ et de sï¿½rieux : Fini les rencontres ï¿½ l'autre bout du monde...",
+	"nouveau" => "<b class='title_top'> Nouveautï¿½ </b><br> Retrouvez les ï¿½vï¿½nements ï¿½ partager en familles ou en amoureux pour apprendre ï¿½ vous dï¿½couvrir! ",
+	"acces" =>  "<b class='title_top'> Accessible sur tous les supports Mobiles & Tablettes  </b><br> De nouvelles rencontres ï¿½ portï¿½e de main !  Parentsolo vous accompagne partout . Communiquez avec qui vous voulez, oï¿½ vous voulez et quand vous voulez.",
+	"concept" =>  "<b class='title_top'> CONCEPT UNIQUE EN EUROPE </b><br> Exclusivement destinï¿½ aux parents rï¿½sidant en  Suissolocircl.como.ch se distingue des sites dï¿½jï¿½ existants par sa spï¿½cialisation, les parents cï¿½libataires, et par sa volontï¿½ d'offrir un service de qualitï¿½ etc.. ",
 	
 	
 	//**Inscription
 	"InscriptionGratuite" => "INSCRIPTION GRATUITE",
 	
 	"JeSuis" => "Je suis",
-	"NeeLe" => "Né(e) le",
+	"NeeLe" => "Nï¿½(e) le",
 	"Jai" => "J'ai",
 	"Enfant(s)" => "enfant(s)",
-	"JhabiteDansLeCantonDe" => "Canton de résidence",
-	"A(Ville)" => "à",
+	"JhabiteDansLeCantonDe" => "Canton de rï¿½sidence",
+	"A(Ville)" => "ï¿½",
 	
 	"JeMinscris" => "Je m'inscris gratuitement",
 	
 	"PourquoiChoisirParentsolo" => "Pourquoi choisir Parentsolo",
-	"ReserveAuxParentsCelibataires" => "Réservé aux parents célibataires",
-	"QualiteDesProfilsResidantEnSuisse" => "Qualité des profils résidant en Suisse",
-	"ProtectionDesDonnees" => "Protection des données",
+	"ReserveAuxParentsCelibataires" => "Rï¿½servï¿½ aux parents cï¿½libataires",
+	"QualiteDesProfilsResidantEnSuisse" => "Qualitï¿½ des profils rï¿½sidant en Suisse",
+	"ProtectionDesDonnees" => "Protection des donnï¿½es",
 	
 	"Mamans" => "Mamans : 57 %",
 	"Papas" => "Papas : 43 %",
@@ -44,15 +44,15 @@ $lang_apphome = array(
 	
 	
 	"EcoutezLaRadioEnLive" => "Ecoutez la radio en live!",
-	"EcoutezLFMAvecParentSolo" => "Ecoutez LFM avec Parentsolo.ch",
-	"EcoutezOneFMAvecParentSolo" => "Ecoutez One FM avec Parentsolo.ch",
+	"EcoutezLFMAvecParentSolo" => "Ecoutez LFM avec solocircl.com",
+	"EcoutezOneFMAvecParentSolo" => "Ecoutez One FM avec solocircl.com",
 	
 	"SuivezNous" => "Suivez-nous!",
 	
-	"Publicite" => "Publicité",
+	"Publicite" => "Publicitï¿½",
 	"Partenaire" =>"Partenaire",
-	"Actualites" => "Actualités",
-	"Events_lan" => "Événements",
+	"Actualites" => "Actualitï¿½s",
+	"Events_lan" => "ï¿½vï¿½nements",
 	"gendre_lan_m" => "une&nbsp;maman",
 		"gendre_lan_f" => "un&nbsp;papa",
 		"Join_lan" => "INSCRIPTION",
@@ -74,7 +74,7 @@ $lang_apphome = array(
 	"Canton" => "Canton",
 	"Ville" => "Ville",
 	"ANY_DEVICE" => "Accessible sur tous les supports Mobiles & Tablettes",
-	"ANY_DEVICE_para" => "De nouvelles rencontres à portée de main !  Parentsolo vous accompagne partout . Communiquez avec qui vous voulez, où vous voulez et quand vous voulez.",
+	"ANY_DEVICE_para" => "De nouvelles rencontres ï¿½ portï¿½e de main !  Parentsolo vous accompagne partout . Communiquez avec qui vous voulez, oï¿½ vous voulez et quand vous voulez.",
 
 
 );

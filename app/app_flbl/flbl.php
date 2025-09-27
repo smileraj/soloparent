@@ -70,7 +70,7 @@
 		$where[]	= "uf.user_id_from = '".$user->id."'";
 		$where[]	= "u.id NOT IN (SELECT user_id_from FROM user_flbl WHERE user_id_to = ".$user->id." AND list_type=0)";
 
-		if(count($where)) {
+		if (is_array($where)) {
 			$_where = " WHERE ".implode(" AND ", $where);
 		}
 

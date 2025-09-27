@@ -1,22 +1,21 @@
-<?
-	require_once('ajax.php');
+<?php 	require_once('ajax.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" >
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" >
         <head>
-			<title><? echo $langChat["ParentSoloChat"];?></title>
+			<title><?php echo $langChat["ParentSoloChat"];?></title>
 			<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 			<meta http-equiv="X-UA-Compatible" content="IE=9" />
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
-			<link href="<? echo SITE_URL;?>/chat2/parentsolo.css" rel="stylesheet" type="text/css" />
+			<link href="<?php echo SITE_URL;?>/chat2/parentsolo.css" rel="stylesheet" type="text/css" />
 		
-			<link href="<? echo SITE_URL;?>/chat2/chat.css" rel="stylesheet" type="text/css">
-			<link href="<? echo SITE_URL;?>/parentsolo/favicon.ico" rel="shortcut icon" type="image/x-icon">
-	<link href="<? echo SITE_URL;?>/parentsolo/favicon.ico" rel="shortcut icon" type="image/x-icon">
+			<link href="<?php echo SITE_URL;?>/chat2/chat.css" rel="stylesheet" type="text/css">
+			<link href="<?php echo SITE_URL;?>/parentsolo/favicon.ico" rel="shortcut icon" type="image/x-icon">
+	<link href="<?php echo SITE_URL;?>/parentsolo/favicon.ico" rel="shortcut icon" type="image/x-icon">
 			<!--chat css-->
-			<link rel="stylesheet" href="<? echo SITE_URL;?>/chat2/templates/font/font-awesome.min.css">
-   <!-- <link rel="stylesheet" href="<? echo SITE_URL;?>/chat2/templates/css/reset.css">-->
-    <link rel="stylesheet" href="<? echo SITE_URL;?>/chat2/templates/css/style.css">
+			<link rel="stylesheet" href="<?php echo SITE_URL;?>/chat2/templates/font/font-awesome.min.css">
+   <!-- <link rel="stylesheet" href="<?php echo SITE_URL;?>/chat2/templates/css/reset.css">-->
+    <link rel="stylesheet" href="<?php echo SITE_URL;?>/chat2/templates/css/style.css">
 	<style>
         /*Loader start*/
 
@@ -40,10 +39,10 @@
         /*Loader end*/
 
     </style>
-			<script type="text/javascript" src="<? echo SITE_URL;?>/js/jquery-1.4.1.min.js"></script>
-			<script type="text/javascript" src="<? echo SITE_URL;?>/js/jquery-ui-1.7.2.custom.min.js"></script>
-			<script type="text/javascript" src="<? echo SITE_URL;?>/chat2/ajax.js"></script>
-			<script type="text/javascript" src="<? echo SITE_URL;?>/chat2/chat.js"></script>
+			<script type="text/javascript" src="<?php echo SITE_URL;?>/js/jquery-1.4.1.min.js"></script>
+			<script type="text/javascript" src="<?php echo SITE_URL;?>/js/jquery-ui-1.7.2.custom.min.js"></script>
+			<script type="text/javascript" src="<?php echo SITE_URL;?>/chat2/ajax.js"></script>
+			<script type="text/javascript" src="<?php echo SITE_URL;?>/chat2/chat.js"></script>
 			<script type="text/javascript">
 				function initPage(){
 
@@ -90,7 +89,7 @@
         </head>
         <body>
 			<div class="Dboot-preloader text-center">
-    <img src="<? echo SITE_URL;?>/chat2/templates/img/loader.gif" width="400"/>
+    <img src="<?php echo SITE_URL;?>/chat2/templates/img/loader.gif" width="400"/>
 </div>
 
 
@@ -99,7 +98,7 @@
 		<div class="row">
 			<div class="col-md-4  col-sm-4 parentsolo_plr_0">
         <div class="left"><div id="aide" class="helpLink" onclick="affichAide();"><p>
-				<i class="fa fa-info-circle"></i> <? echo $langChat["Aide"];?></p></div>            
+				<i class="fa fa-info-circle"></i> <?php echo $langChat["Aide"];?></p></div>            
             <ul class="live-search-list people" style="overflow-y:scroll; height:469px;overflow-x:hidden">                
 							<div id="openConv">
 							</div>
@@ -113,16 +112,15 @@
           
 
             <div id="resultchat">
-				<div id="chatHelp" <? if (isset($_GET["id"])&&$_GET["id"]>0){echo 'style="display:none;"';}?>>
-					<?
-						loadAide();
+				<div id="chatHelp" <?php if (isset($_GET["id"])&&$_GET["id"]>0){echo 'style="display:none;"';}?>>
+					<?php 						loadAide();
 					?>
 					</div>
-					<div id="chatConversation" <? if (!isset($_GET["id"])||$_GET["id"]<=0){echo 'style="display:none;"';}?>>
+					<div id="chatConversation" <?php if (!isset($_GET["id"])||$_GET["id"]<=0){echo 'style="display:none;"';}?>>
 						<div class="chatProfileTo" id="chatProfileTo">
 						</div>
 						<!--<div class="chatWarning">
-							<img src="<? echo SITE_URL;?>/chat2/images/warning.jpg" alt="warning"/><p><? echo $langChat["warning"];?></p>
+							<img src="<?php echo SITE_URL;?>/chat2/images/warning.jpg" alt="warning"/><p><?php echo $langChat["warning"];?></p>
 						</div>-->
 						<div class="chatMessages">
 							<div class="chatMessagesContent" id="chatMessagesContent">
@@ -201,7 +199,7 @@
 								<input type="hidden" name="site_url" id="site_url" value="<?php echo SITE_URL;?>">
 								<input type="hidden" name="id_corresp" id="id_corresp" value="<?php echo (isset($_GET["id_corresp"])&&$_GET["id_corresp"]>0)?$_GET["id_corresp"]:"0" ; ?>">
 								<input type="hidden" name="user_id_to_close" id="user_id_to_close" value="0">
-								<input type="hidden" name="closeConfirm" value="<? echo utf8_decode($langChat["closeConvConfirm"]); ?>">
+								<input type="hidden" name="closeConfirm" value="<?php echo utf8_decode($langChat["closeConvConfirm"]); ?>">
 								<textarea name="texte" id="texte" class="texte" onKeyUp="badwordreplace(this);actionMessage(event);"></textarea>
 								<div class="envoyer1_btn" class="chatboxtextarea" onClick="sendMessage();"><i class="fa fa-paper-plane" aria-hidden="true"></i></div>
 								<span class="hidecontent"></span>
@@ -225,28 +223,26 @@
 				<div class="chatRight">
 					<div class="chatUsers">
 						<div class="chatUsersScroll">
-							<div id="aide" class="helpLink" onclick="affichAide();"><p><? echo $langChat["Aide"];?></p></div>
+							<div id="aide" class="helpLink" onclick="affichAide();"><p><?php echo $langChat["Aide"];?></p></div>
 							<div id="openConv">
 							</div>
 						</div>
 					</div>
 					<div class="chatProfileFrom" id="chatProfileFrom">
-						<?
-							getUtilisateur();
+						<?php 							getUtilisateur();
 						?>
 					</div>
 				</div>
 				<div class="chatLeft">
-					<div id="chatHelp" <? if (isset($_GET["id"])&&$_GET["id"]>0){echo 'style="display:none;"';}?>>
-					<?
-						loadAide();
+					<div id="chatHelp" <?php if (isset($_GET["id"])&&$_GET["id"]>0){echo 'style="display:none;"';}?>>
+					<?php 						loadAide();
 					?>
 					</div>
-					<div id="chatConversation" <? if (!isset($_GET["id"])||$_GET["id"]<=0){echo 'style="display:none;"';}?>>
+					<div id="chatConversation" <?php if (!isset($_GET["id"])||$_GET["id"]<=0){echo 'style="display:none;"';}?>>
 						<div class="chatProfileTo" id="chatProfileTo">
 						</div>
 						<div class="chatWarning">
-							<img src="<? echo SITE_URL;?>/chat2/images/warning.jpg" alt="warning"/><p><? echo $langChat["warning"];?></p>
+							<img src="<?php echo SITE_URL;?>/chat2/images/warning.jpg" alt="warning"/><p><?php echo $langChat["warning"];?></p>
 						</div>
 						<div class="chatMessages">
 							<div class="chatMessagesContent" id="chatMessagesContent">
@@ -324,19 +320,19 @@
 								<input type="hidden" name="site_url" id="site_url" value="<?php echo SITE_URL;?>">
 								<input type="hidden" name="id_corresp" id="id_corresp" value="<?php echo (isset($_GET["id_corresp"])&&$_GET["id_corresp"]>0)?$_GET["id_corresp"]:"0" ; ?>">
 								<input type="hidden" name="user_id_to_close" id="user_id_to_close" value="0">
-								<input type="hidden" name="closeConfirm" value="<? echo utf8_decode($langChat["closeConvConfirm"]); ?>">
+								<input type="hidden" name="closeConfirm" value="<?php echo utf8_decode($langChat["closeConvConfirm"]); ?>">
 								<textarea name="texte" id="texte" class="texte" onKeyUp="actionMessage(event);"></textarea>
-								<div class="envoyer" onClick="sendMessage();"><? echo $langChat["Envoyer"]; ?></div>
+								<div class="envoyer" onClick="sendMessage();"><?php echo $langChat["Envoyer"]; ?></div>
 							</form>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<script type="text/javascript" src="<? echo SITE_URL;?>/chat2/templates/chatjs/jquery.js"></script>
-<script type="text/javascript" src="<? echo SITE_URL;?>/chat2/templates/chatjs/lightbox.js"></script>
-<script type="text/javascript" src="<? echo SITE_URL;?>/chat2/templates/chatjs/inbox.js"></script>
-<script type="text/javascript" src="<? echo SITE_URL;?>/chat2/templates/js/index.js"></script>
+		<script type="text/javascript" src="<?php echo SITE_URL;?>/chat2/templates/chatjs/jquery.js"></script>
+<script type="text/javascript" src="<?php echo SITE_URL;?>/chat2/templates/chatjs/lightbox.js"></script>
+<script type="text/javascript" src="<?php echo SITE_URL;?>/chat2/templates/chatjs/inbox.js"></script>
+<script type="text/javascript" src="<?php echo SITE_URL;?>/chat2/templates/js/index.js"></script>
 --><!--start Toggle for smiley -->
 <script type = "text/javascript" language = "javascript">
 

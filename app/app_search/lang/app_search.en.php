@@ -5,7 +5,7 @@ $lang_search = array(
 	//------------------Page search.html.php ---------
 
 
-	"MessagesParentsolo" => "Parentsolo.ch messages",
+	"MessagesParentsolo" => "solocircl.com messages",
 	
 	
 	"Recherche" => "Search",

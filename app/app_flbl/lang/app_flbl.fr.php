@@ -7,7 +7,7 @@ $lang_flbl = array(
 		
 	//------------------Page flbl.html.php ---------
 
-	"MessagesParentsolo" => "Messages Parentsolo.ch",
+	"MessagesParentsolo" => "Messages solocircl.com",
 	
 	
 	"ModifierLeCommentaire" => "Modifier le commentaire",

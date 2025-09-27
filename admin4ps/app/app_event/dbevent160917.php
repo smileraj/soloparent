@@ -26,8 +26,8 @@ $query='select max(start_date)as maxdate from events_creations';
 echo json_encode($finalvalue);
 }
  if($SAVE=='Save'){
-$name=mysql_real_escape_string($_REQUEST['txt_evt_name']);
- $desc=mysql_real_escape_string($_REQUEST['txt_evt_desc']);
+$name=$db->escape($_REQUEST['txt_evt_name']);
+ $desc=$db->escape($_REQUEST['txt_evt_desc']);
  $sdate=date('Y-m-d',strtotime($_REQUEST['txt_evt_sdate']));
  $edate=date('Y-m-d',strtotime($_REQUEST['txt_evt_edate']));
   $userid=$_REQUEST['userid'];
@@ -119,8 +119,8 @@ echo json_encode($finalvalue);
 }
 if($update=='Update'){
 $id=$_REQUEST['rowid'];
- $name=mysql_real_escape_string($_REQUEST['txt_evt_name']);
- $desc=mysql_real_escape_string($_REQUEST['txt_evt_desc']);
+ $name=$db->escape($_REQUEST['txt_evt_name']);
+ $desc=$db->escape($_REQUEST['txt_evt_desc']);
  $sdate=date('Y-m-d',strtotime($_REQUEST['txt_evt_sdate']));
  $edate=date('Y-m-d',strtotime($_REQUEST['txt_evt_edate']));
  $userid=$_REQUEST['userid'];

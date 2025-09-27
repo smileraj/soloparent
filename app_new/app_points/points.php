@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 
 	require_once('points.html.php');
@@ -12,13 +12,13 @@
 		$langString = "_".$_GET[lang];
 
 	/*
-		info: présentation du système de points (content)
-		reglement: affiche le règlement(content)
+		info: prï¿½sentation du systï¿½me de points (content)
+		reglement: affiche le rï¿½glement(content)
 		cadeaux: liste des lots(content)
 		bareme: affiche le bareme
-		mespoints: liste le détail des points de l'utilsiateur log
-		classement: classement actuel en temps réel
-		archives: archives des précédents mois
+		mespoints: liste le dï¿½tail des points de l'utilsiateur log
+		classement: classement actuel en temps rï¿½el
+		archives: archives des prï¿½cï¿½dents mois
 	*/
 	switch($action) {
 
@@ -77,12 +77,12 @@
 	}
 
 
-	/*// affiche un témoignage
+	/*// affiche un tï¿½moignage
 	function pointsTemoignage($id) {
 			global $langue;
 		global $db;
 
-		// récup le dernier témoignage en date du système de points
+		// rï¿½cup le dernier tï¿½moignage en date du systï¿½me de points
 		$query = "SELECT pg.id, pg.user_id, u.username, up.photo_defaut, pg.temoignage, pg.temoignage_date"
 		." FROM points_gagnants AS pg"
 		." INNER JOIN user AS u ON u.id = pg.user_id"
@@ -97,12 +97,12 @@
 	}
 
 
-	// liste les témoignages
+	// liste les tï¿½moignages
 	function pointsTemoignages() {
 			global $langue;
 		global $db;
 
-		// récup les derniers témoignages (todo + tard: pagination)
+		// rï¿½cup les derniers tï¿½moignages (todo + tard: pagination)
 		$query = "SELECT pg.id, pg.user_id, u.username, up.photo_defaut, pg.temoignage"
 		." FROM points_gagnants AS pg"
 		." INNER JOIN user AS u ON u.id = pg.user_id"
@@ -117,12 +117,12 @@
 	}*/
 
 
-	// barème du système de points
+	// barï¿½me du systï¿½me de points
 	function pointsBareme() {
 			global $langue,$langString;
 		global $db;
 
-		// récup le bareme, ordre par nombre de points DESC
+		// rï¿½cup le bareme, ordre par nombre de points DESC
 		$query = "SELECT nom_".$_GET['lang']." as nom, points"
 		." FROM points"
 		." WHERE points > 0"
@@ -140,7 +140,7 @@
 	}
 
 
-	// points gagnés par l'utilisateur log
+	// points gagnï¿½s par l'utilisateur log
 	function pointsMesPoints() {
 			global $langue,$langString;
 		global $db, $user;
@@ -160,12 +160,12 @@
 		// WHERE
 		$where[]			= "pu.user_id = '".$db->escape($user->id)."'";
 
-		if(count($where)) {
+		if (is_array($where)) {
 			$_where = " WHERE ".implode(" AND ", $where);
 		}
 
 
-		// récup le total
+		// rï¿½cup le total
 		$query = "SELECT COUNT(*)"
 		." FROM points_user AS pu"
 		." INNER JOIN points AS p ON p.id = pu.points_id"
@@ -175,7 +175,7 @@
 		$search['page_total'] 	= ceil($search['result_total']/$resultatParPage);
 
 
-		// récup les messages de l'utilisateur log
+		// rï¿½cup les messages de l'utilisateur log
 		$query = "SELECT p.id, p.nom_".$_GET['lang']." as nom, p.points, pu.data, pu.datetime"
 		." FROM points_user AS pu"
 		." INNER JOIN points AS p ON p.id = pu.points_id"
@@ -201,7 +201,7 @@
 		global $langue, $langString;
 		global $db;
 //die($langString);
-		// récup l'article
+		// rï¿½cup l'article
 		$query = "SELECT id, titre_".$_GET['lang']." as titre, texte_".$_GET['lang']." as texte"
 		." FROM contenu".
 		" WHERE id = '".$db->escape($id)."' LIMIT 0,1";
@@ -228,12 +228,12 @@
 		$where[]	= 'u.confirmed = 1';
 		$where[]	= 'u.published = 1';
 
-		if(count($where)) {
+		if (is_array($where)) {
 			$_where = " WHERE ".implode(" AND ", $where);
 		}
 
 
-		// récup les 20 premiers du classement actuel
+		// rï¿½cup les 20 premiers du classement actuel
 		$query = "SELECT u.id, u.username, up.genre, us.points_total AS total, u.creation_date, us.last_rank, us.last_rank_date, TO_DAYS(NOW())-TO_DAYS(us.last_rank_date) AS last_rank_days"
 		." FROM user_stats AS us"
 		." INNER JOIN user AS u ON u.id = us.user_id"
@@ -244,20 +244,20 @@
 		;
 		$rows = $db->loadObjectList($query);
 
-		// pour chaque membre classé
+		// pour chaque membre classï¿½
 		$count = count($rows);
 		for($i=0; $i<$count; $i++) {
 
 			// conserve le nouveau rang
 			$rows[$i]->new_rank = $i+1;
 
-			// classement précédent date de 2 jours, on met à jour avec le nouveau
+			// classement prï¿½cï¿½dent date de 2 jours, on met ï¿½ jour avec le nouveau
 			if($rows[$i]->last_rank_days >= 2) {
 
-				// classement trop ancien, membre éjecté du classement et revient en top 20
+				// classement trop ancien, membre ï¿½jectï¿½ du classement et revient en top 20
 				if($rows[$i]->last_rank_days > 2) {
 
-					// réinitialise son rang précédent
+					// rï¿½initialise son rang prï¿½cï¿½dent
 					$rows[$i]->last_rank = 0;
 					$last_rank = 0;
 
@@ -294,7 +294,7 @@
 			global $langue,$langString;
 		global $db;
 
-		// récup les 3 derniers classements, soit 3*10 membres
+		// rï¿½cup les 3 derniers classements, soit 3*10 membres
 		$query = "SELECT u.id, u.username, up.genre, pc.points AS total, pc.annee_mois"
 		." FROM points_classements AS pc"
 		." INNER JOIN user AS u ON u.id = pc.user_id"

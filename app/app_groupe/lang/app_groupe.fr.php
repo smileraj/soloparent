@@ -5,7 +5,7 @@ $lang_groupe = array(
 
 	//------------------Page groupe.html.php ---------
 
-	"MessagesParentsolo" => "Messages Parentsolo.ch",
+	"MessagesParentsolo" => "Messages solocircl.com",
 	
 	"MesGroupes" => " Mes groupes",
 	"General" => "Général",
@@ -118,7 +118,7 @@ $lang_groupe = array(
 	
 	
 	
-	"PhotoEnAttenteValidation" => "Cette photo est en attente de validation par un modérateur de Parentsolo.ch <br/><br/>Tant que la nouvelle photo sera en attente de validation, l'ancienne photo sera toujours utilisée",
+	"PhotoEnAttenteValidation" => "Cette photo est en attente de validation par un modérateur de solocircl.com <br/><br/>Tant que la nouvelle photo sera en attente de validation, l'ancienne photo sera toujours utilisée",
 	
 	
 	"ConfirmationAnnulation" => "Voulez-vous vraiment annuler la création de ce groupe",
@@ -147,12 +147,12 @@ $lang_groupe = array(
 	"QuitterGroupeReussi" => "Vous avez quitté le groupe",
 	
 	"GroupeEnregistre" => "Groupe enregistré",
-	"GroupesSoumisAValidation" => "Toute création ou modification d'un groupe est vérifiée par un modérateur de Parentsolo.ch avant d'être publié ou non sur le site",
+	"GroupesSoumisAValidation" => "Toute création ou modification d'un groupe est vérifiée par un modérateur de solocircl.com avant d'être publié ou non sur le site",
 	"AffichageGroupeDansListe" => "Votre nouveau groupe ou les modifications apportées à celui-ci seront visibles dans l'onglet \"Tous les groupes\" après validation par ce modérateur",
 	
 	"NonFondateurGroupe" => "Vous ne pouvez pas modifer ce groupe car vous n'êtes pas le fondateur de celui-ci",
 	
-	"GroupeVerouille" => "Ce groupe a été verouillé par un modérateur de Parentsolo.ch, vous ne pouvez donc plus le modifier",
+	"GroupeVerouille" => "Ce groupe a été verouillé par un modérateur de solocircl.com, vous ne pouvez donc plus le modifier",
 	
 	"RejoindreGroupeInexistant" => "Le groupe que vous tentez de rejoindre n'existe pas ou plus",
 	
@@ -162,8 +162,8 @@ $lang_groupe = array(
 	
 	
 	
-	"VerificationModificationsGroupe" => "Toutes les modifications effectuées sur un groupe devront être vérifiées par un modérateur de ParentSolo.ch avant d'être publiées ou non sur le site",
-	"VerificationCreationGroupe" => "Votre groupe devra être vérifié par un modérateur de Parentsolo.ch avant d'être publié ou non sur le site",
+	"VerificationModificationsGroupe" => "Toutes les modifications effectuées sur un groupe devront être vérifiées par un modérateur de solocircl.com avant d'être publiées ou non sur le site",
+	"VerificationCreationGroupe" => "Votre groupe devra être vérifié par un modérateur de solocircl.com avant d'être publié ou non sur le site",
 	
 	
 	"IndiquezTitre" => "Veuillez indiquer le titre de votre groupe, s'il vous plaît",

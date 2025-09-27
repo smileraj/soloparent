@@ -4,7 +4,7 @@ $lang_inviter = array(
 
 	//------------------Message ---------
 
-	"MessagesParentsolo" => "Messages Parentsolo.ch",
+	"MessagesParentsolo" => "Messages solocircl.com",
 	
 	//---------------------Page Parrainage
 	
@@ -16,28 +16,28 @@ $lang_inviter = array(
 	"Envoyer" => "Envoyer",
 	
 	
-	"IndiquezUnEmail" => "Veuillez indiquer au moins une adresse email, s'il vous plaît",
-	"IndiquezUnMessage" => "Veuillez indiquer un message personnel pour vos amis, s'il vous plaît",
-	"Email1NonValide" => "L'email 1 n'est pas valide, veuillez le resaisir s'il vous plaît",
-	"Email2NonValide" => "L'email 2 n'est pas valide, veuillez le resaisir s'il vous plaît",
-	"Email3NonValide" => "L'email 3 n'est pas valide, veuillez le resaisir s'il vous plaît",
-	"Email4NonValide" => "L'email 4 n'est pas valide, veuillez le resaisir s'il vous plaît",
-	"Email5NonValide" => "L'email 5 n'est pas valide, veuillez le resaisir s'il vous plaît",
+	"IndiquezUnEmail" => "Veuillez indiquer au moins une adresse email, s'il vous plaï¿½t",
+	"IndiquezUnMessage" => "Veuillez indiquer un message personnel pour vos amis, s'il vous plaï¿½t",
+	"Email1NonValide" => "L'email 1 n'est pas valide, veuillez le resaisir s'il vous plaï¿½t",
+	"Email2NonValide" => "L'email 2 n'est pas valide, veuillez le resaisir s'il vous plaï¿½t",
+	"Email3NonValide" => "L'email 3 n'est pas valide, veuillez le resaisir s'il vous plaï¿½t",
+	"Email4NonValide" => "L'email 4 n'est pas valide, veuillez le resaisir s'il vous plaï¿½t",
+	"Email5NonValide" => "L'email 5 n'est pas valide, veuillez le resaisir s'il vous plaï¿½t",
 	
-	"MessageEnvoye" => "Messages envoyés",
-	"MessageDejaEnvoyes" => "Vos amis ont déjà été contactés pour un parrainage Parentsolo.ch",
+	"MessageEnvoye" => "Messages envoyï¿½s",
+	"MessageDejaEnvoyes" => "Vos amis ont dï¿½jï¿½ ï¿½tï¿½ contactï¿½s pour un psolocircl.comentsolo.ch",
 	
 	
 	
-	//-------------------Page Conseillez à vos amis
-	"ConseillezSiteAmis" => "Conseillez ce site à vos amis",
-	"VosCoordonnees" => "Vos coordonnées",
+	//-------------------Page Conseillez ï¿½ vos amis
+	"ConseillezSiteAmis" => "Conseillez ce site ï¿½ vos amis",
+	"VosCoordonnees" => "Vos coordonnï¿½es",
 	"Nom" => "Nom",
-	"Prenom" => "Prénom",
+	"Prenom" => "Prï¿½nom",
 	
-	"IndiquezVotreNom" => "Veuillez indiquer votre nom, s'il vous plaît",
-	"IndiquezVotrePrenom" => "Veuillez indiquer votre prénom, s'il vous plaît",
-	"IndiquezVotreEmail" => "Veuillez indiquer votre adresse email, s'il vous plaît",
+	"IndiquezVotreNom" => "Veuillez indiquer votre nom, s'il vous plaï¿½t",
+	"IndiquezVotrePrenom" => "Veuillez indiquer votre prï¿½nom, s'il vous plaï¿½t",
+	"IndiquezVotreEmail" => "Veuillez indiquer votre adresse email, s'il vous plaï¿½t",
 
 );
 ?>

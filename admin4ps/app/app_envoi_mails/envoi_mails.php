@@ -1,5 +1,4 @@
-<?
-
+<?php 
 // sécurité
 	defined('JL') or die('Error 401');
 	

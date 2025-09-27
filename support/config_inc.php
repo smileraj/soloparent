@@ -1,5 +1,5 @@
 <?php
-	$g_hostname = 'mysql.parentsolo.ch';
+	$g_hostname = 'mysql.solocircl.com';
 	$g_db_type = 'mysql';
 	$g_database_name = 'parentsoloch10';
 	$g_db_username = 'mother';
@@ -16,13 +16,13 @@
 	$g_webmaster_email	 = 'contact@neozaibatsu.com';
 	
 	# the sender email, part of 'From: ' header in emails
-	$g_from_email	 = 'noreply@parentsolo.ch';
+	$g_from_email	 = 'noreply@solocircl.com';
 	
 	# the sender name, part of 'From: ' header in emails
 	$g_from_name	 = 'Support';
 	
 	# the return address for bounced mail
-	$g_return_path_email	= 'support@parentsolo.ch';
+	$g_return_path_email	= 'support@solocircl.com';
 	
 	# allow email notification
 	# note that if this is disabled, sign-up and password reset messages will
@@ -122,13 +122,13 @@
 	# You can also specify a different port for each host by using this 
 	# format: [hostname:port] (e.g. "smtp1.example.com:25;smtp2.example.com").
 	# Hosts will be tried in order.
-	$g_smtp_host	 = 'mail.parentsolo.ch:465';
+	$g_smtp_host	 = 'mail.solocircl.com:465';
 	$g_smtp_connection_mode = 'ssl';
 	
 	# These options allow you to use SMTP Authentication when you use a remote
 	# SMTP host with phpMailer. If smtp_username is not '' then the username
 	# and password will be used when logging in to the SMTP server.
-	$g_smtp_username = 'support@parentsolo.ch';
+	$g_smtp_username = 'support@solocircl.com';
 	$g_smtp_password = 'parent2009';
 	
 	# It is recommended to use a cronjob or a scheduler task to send emails. 

@@ -10,7 +10,7 @@
 				"action": 'getHelp'
 		},
 		onSuccess: function(ajax_return) {
-			$('chatHelp').className = 'conversationUsernameOn';
+			$('#chatHelp').className = 'conversationUsernameOn';
 			$("chatContent").set('html', ajax_return);
 		},
 		onFailure: function(){}
@@ -19,7 +19,7 @@
 }*/
 
 function chatOpenConversation(user_id_to) {
-	$('conversationOpen'+user_id_to).className = 'conversationUsernameOn';
+	$('#conversationOpen'+user_id_to).className = 'conversationUsernameOn';
 	new Request(
 	{
 		url: $('site_url').value+'/ajaxChat.php',
@@ -151,8 +151,8 @@ function chatCloseConversation(user_id_to) {
 				"action": 'closeConversation'
 		},
 		onSuccess: function(ajax_return) {
-			$('chatConversations').removeChild($('conversationOpen'+user_id_to));
-			$('chatConversations').removeChild($('conversationClose'+user_id_to));
+			$('#chatConversations').removeChild($('#conversationOpen'+user_id_to));
+			$('#chatConversations').removeChild($('#conversationClose'+user_id_to));
 			document.location = $('site_url').value+'/index2.php?app=chat';
 		},
 		onFailure: function(){}
