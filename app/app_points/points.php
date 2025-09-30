@@ -147,8 +147,8 @@
 
 		// variables
 		$resultatParPage 	= 20;
-		$where 				= array();
-		$search 			= array();
+		$where 				= [];
+		$search 			= [];
 		$_where				= '';
 
 
@@ -219,7 +219,7 @@
 		global $db;
 
 		// variables locales
-		$where 				= array();
+		$where 				= [];
 		$_where				= '';
 
 

@@ -1,4 +1,4 @@
-<?php $lang_appexample = array(
+<?php $lang_appexample = [
 
 	//Fichier example.html.php
 	
@@ -64,6 +64,6 @@
 	"WarningMauvaisNomDomaine" => "is not a valid domain name for this email provider",
 	
 	
-);
+];
 
 ?>

@@ -5,7 +5,7 @@
 	
 	class home_HTML {		
 		
-		function home($auth='', &$profils, &$list, &$temoignage, &$home_1, &$home_2, &$home_3, &$home_4, &$partenaire_1, &$actualites, &$box_menu_2,&$events) {
+		function home($auth='', &$profils = null, &$list = null, &$temoignage = null, &$home_1 = null, &$home_2 = null, &$home_3 = null, &$home_4 = null, &$partenaire_1 = null, &$actualites = null, &$box_menu_2 = null,&$events = null) {
 			include("lang/app_home.".$_GET['lang'].".php");
 			global $db, $template;
 			
@@ -366,7 +366,7 @@
 			<div class="membercontainer demo-3">
 			<?php
 			$i=0;
-			$profils_home = array();
+			$profils_home = [];
 			foreach($profils as $profil){
 				JL::makeSafe($profil);
 				if($i != 30){
@@ -569,12 +569,12 @@
 					<?php echo $lang_apphome["testimonial"];?></h2>
 					<?php
 								// limitation de la longueur du titre
-								if(strlen($temoignage->titre) > TITRE_HOME) {
-									$temoignage->titre = substr($temoignage->titre, 0, TITRE_HOME).'...';
+								if(strlen((string) $temoignage->titre) > TITRE_HOME) {
+									$temoignage->titre = substr((string) $temoignage->titre, 0, TITRE_HOME).'...';
 								}
 								
 								// limitation de la longueur de l'intro
-								$temoignage->texte = strip_tags(html_entity_decode($temoignage->texte));
+								$temoignage->texte = strip_tags(html_entity_decode((string) $temoignage->texte));
 								if(strlen($temoignage->texte) > INTRO_HOME) {
 									$temoignage->texte = substr($temoignage->texte, 0, 280).'...';
 								}

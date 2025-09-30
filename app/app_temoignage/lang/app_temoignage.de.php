@@ -1,6 +1,6 @@
 <?php
 
-$lang_apptemoignage = array(
+$lang_apptemoignage = [
 
 	//View
 	"MessagesParentsolo" => "solocircl.com-Mitteilungen",
@@ -24,7 +24,7 @@ $lang_apptemoignage = array(
 	"VeuillezRecopierCodeVerification" => "&Uuml;bertragen Sie bitte nachfolgend diesen Pr&uuml;fungscode:",
 	"WarningCodeVerifIncorrect" => "Der eingegebene Verifizierungscode ist falsch",
 	//*Affichage d'un t&eacute;moignage en partculier
-	"TemoignagePublieLePar" => "Erfahrungsbericht ver&ouml;ffentlicht am ".date("d.m.Y",strtotime($temoignage->date_add))." von ".$temoignage->username,
+	"TemoignagePublieLePar" => "Erfahrungsbericht ver&ouml;ffentlicht am ".date("d.m.Y",strtotime((string) $temoignage->date_add))." von ".$temoignage->username,
 	
 	//*Je d&eacute;sire t&eacute;moigner
 	"VotreTemoignage" => "Ihr Erfahrungsbericht",
@@ -53,5 +53,5 @@ $lang_apptemoignage = array(
 	
 
 
-);
+];
 ?>

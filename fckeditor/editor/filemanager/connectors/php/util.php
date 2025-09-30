@@ -25,13 +25,13 @@
 function RemoveFromStart( $sourceString, $charToRemove )
 {
 	$sPattern = '|^' . $charToRemove . '+|' ;
-	return preg_replace( $sPattern, '', $sourceString ) ;
+	return preg_replace( $sPattern, '', (string) $sourceString ) ;
 }
 
 function RemoveFromEnd( $sourceString, $charToRemove )
 {
 	$sPattern = '|' . $charToRemove . '+$|' ;
-	return preg_replace( $sPattern, '', $sourceString ) ;
+	return preg_replace( $sPattern, '', (string) $sourceString ) ;
 }
 
 function FindBadUtf8( $string )
@@ -47,11 +47,11 @@ function FindBadUtf8( $string )
 	'|\xF4[\x80-\x8F][\x80-\xBF]{2}'.
 	'|(.{1}))';
 
-	while (preg_match('/'.$regex.'/S', $string, $matches)) {
+	while (preg_match('/'.$regex.'/S', (string) $string, $matches)) {
 		if ( isset($matches[2])) {
 			return true;
 		}
-		$string = substr($string, strlen($matches[0]));
+		$string = substr((string) $string, strlen($matches[0]));
 	}
 
 	return false;
@@ -70,11 +70,11 @@ function ConvertToXmlAttribute( $value )
 
 	if ( strtoupper( substr( $os, 0, 3 ) ) === 'WIN' || FindBadUtf8( $value ) )
 	{
-		return ( utf8_encode( htmlspecialchars( $value ) ) ) ;
+		return ( mb_convert_encoding( htmlspecialchars( (string) $value ), 'UTF-8', 'ISO-8859-1' ) ) ;
 	}
 	else
 	{
-		return ( htmlspecialchars( $value ) ) ;
+		return ( htmlspecialchars( (string) $value ) ) ;
 	}
 }
 
@@ -91,10 +91,10 @@ function IsHtmlExtension( $ext, $htmlExtensions )
 	{
 		return false ;
 	}
-	$lcaseHtmlExtensions = array() ;
+	$lcaseHtmlExtensions = [] ;
 	foreach ( $htmlExtensions as $key => $val )
 	{
-		$lcaseHtmlExtensions[$key] = strtolower( $val ) ;
+		$lcaseHtmlExtensions[$key] = strtolower( (string) $val ) ;
 	}
 	return in_array( $ext, $lcaseHtmlExtensions ) ;
 }
@@ -135,11 +135,11 @@ function DetectHtml( $filePath )
 		return true;
 	}
 
-	$tags = array( '<body', '<head', '<html', '<img', '<pre', '<script', '<table', '<title' ) ;
+	$tags = [ '<body', '<head', '<html', '<img', '<pre', '<script', '<table', '<title' ] ;
 
 	foreach( $tags as $tag )
 	{
-		if( false !== strpos( $chunk, $tag ) )
+		if( str_contains( $chunk, $tag ) )
 		{
 			return true ;
 		}
@@ -184,7 +184,7 @@ function IsImageValid( $filePath, $extension )
 		return -1;
 	}
 
-	$imageCheckExtensions = array('gif', 'jpeg', 'jpg', 'png', 'swf', 'psd', 'bmp', 'iff');
+	$imageCheckExtensions = ['gif', 'jpeg', 'jpg', 'png', 'swf', 'psd', 'bmp', 'iff'];
 
 	// version_compare is available since PHP4 >= 4.0.7
 	if ( function_exists( 'version_compare' ) ) {

@@ -33,7 +33,7 @@
 	
 	// variables
 	$_where			= '';
-	$where			= array();
+	$where			= [];
 	
 	// prise en compte de la case 'newsletter' dans les params du compte
 	$where[]		= "un.rappels = 1";
@@ -100,7 +100,7 @@
 		foreach($users as $user) {
 			
 			// intégration du texte et du template, ainsi que traitement des mots clés
-			$mailingTexte 	= FUNCTION_mailing_auto::getMailHtml(SITE_PATH_ADMIN.'/app/app_mailing_auto/template/'.$mailing->template, $mailing, '../../', $user->id, $user->genre, $group_id);
+			$mailingTexte 	= (new FUNCTION_mailing_auto())->getMailHtml(SITE_PATH_ADMIN.'/app/app_mailing_auto/template/'.$mailing->template, $mailing, '../../', $user->id, $user->genre, $group_id);
 			
 			
 			// envoi du mail

@@ -1,6 +1,6 @@
 <?php
 
-$lang_apphead = array(
+$lang_apphead = [
 	
 	"Finalize" => "Finalisez vos profils",
 		"online_icon"=>"En ligne",
@@ -38,5 +38,5 @@ $lang_apphead = array(
 	"contact_menu" => "Contact",
 	"join_link" => "Inscription",
 	
-);
+];
 ?>

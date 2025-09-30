@@ -1,5 +1,5 @@
 <?php
-$lang_appabonnement = array(
+$lang_appabonnement = [
 	//Fichier abonnement.html.php
 	"MessagesParentsolo" => "Messages solocircl.com",
 	"alias_acc" =>"Num&eacute;ro Alias",
@@ -112,6 +112,6 @@ $lang_appabonnement = array(
 	"IndicationAcceptationCGU" => "Vous devez lire et accepter les conditions générales d'Utilisation",	
 	//Service indisponible
 	"ServiceIndisponible" => "Ce service est indisponible",
-);
+];
 
 ?>

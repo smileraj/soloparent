@@ -1,5 +1,5 @@
 <?php
-$_pluginInfo=array(
+$_pluginInfo=[
 	'name'=>'Live/Hotmail',
 	'version'=>'1.6.8',
 	'description'=>"Get the contacts from a Windows Live/Hotmail account",
@@ -7,9 +7,9 @@ $_pluginInfo=array(
 	'type'=>'email',
 	'check_url'=>'http://login.live.com/login.srf?id=2',
 	'requirement'=>'email',
-	'allowed_domains'=>array('/(hotmail)/i','/(live)/i','/(msn)/i','/(chaishop)/i'),
-	'imported_details'=>array('first_name','email_1'),
-	);
+	'allowed_domains'=>['/(hotmail)/i','/(live)/i','/(msn)/i','/(chaishop)/i'],
+	'imported_details'=>['first_name','email_1'],
+	];
 /**
  * Live/Hotmail Plugin
  * 
@@ -26,11 +26,11 @@ class hotmail extends openinviter_base
 	protected $timeout=30;
 	protected $userAgent='Mozilla/4.1 (compatible; MSIE 5.0; Symbian OS; Nokia 3650;424) Opera 6.10  [en]';
 		
-	public $debug_array=array(
+	public $debug_array=[
 				'initial_get'=>'srf_uPost',
 				'login_post'=>'cid',				
 				'get_contacts'=>'compose',
-				);
+				];
 	
 	/**
 	 * Login function
@@ -59,8 +59,8 @@ class hotmail extends openinviter_base
 			return false;	
 			}
 		$form_action=$this->getElementString($res,"srf_uPost='","'");
-		preg_match('#name\=\"PPFT\" id\=\"(.+)\" value\=\"(.+)\"#U',$res,$matches);
-		$post_elements=array('PPFT'=>$matches[2],
+		preg_match('#name\=\"PPFT\" id\=\"(.+)\" value\=\"(.+)\"#U',(string) $res,$matches);
+		$post_elements=['PPFT'=>$matches[2],
 							 'LoginOptions'=>1,
 							 'NewUser'=>1,
 							 'MobilePost'=>1,
@@ -74,7 +74,7 @@ class hotmail extends openinviter_base
 							 'i12'=>1,
 							 'login'=>$user,
 							 'passwd'=>$pass				 
-							);
+							];
 		$res=$this->post($form_action,$post_elements);
 		if ($this->checkResponse('login_post',$res)) $this->updateDebugBuffer('login_post',$form_action,'POST',true,$post_elements);
 		else{
@@ -118,11 +118,11 @@ class hotmail extends openinviter_base
 		if (empty($pagesArray[3])) $pagesArray[3]=0;		
 		while($page<=$pagesArray[3])
 			{
-			preg_match_all("#compose\&amp;to\=(.+)\&amp\;ru\=#U",$res,$emails);
-			preg_match_all("#class=\"BoldText\" href\=\"\/contactinfo\.aspx\?contactid\=(.+)\"\>(.+)\<#U",$res,$names);
+			preg_match_all("#compose\&amp;to\=(.+)\&amp\;ru\=#U",(string) $res,$emails);
+			preg_match_all("#class=\"BoldText\" href\=\"\/contactinfo\.aspx\?contactid\=(.+)\"\>(.+)\<#U",(string) $res,$names);
 			if (!empty($emails[1]))
 				foreach($emails[1] as $id=>$email)					
-					if (!empty($names[2][$id])) $contacts[str_replace('%2540','@',$email)]=array('email_1'=>str_replace('%2540','@',$email),'first_name'=>$names[2][$id]);
+					if (!empty($names[2][$id])) $contacts[str_replace('%2540','@',$email)]=['email_1'=>str_replace('%2540','@',$email),'first_name'=>$names[2][$id]];
 			$page++;
 			$res=$this->get($url."?pg={$page}");
 			if (empty($res)) break;

@@ -56,13 +56,13 @@ function print_suggs_elem( $suggs, $index, $text_input_idx ) {
 
 # escape single quote
 function escape_quote( $str ) {
-	return preg_replace ( "/'/", "\\'", $str );
+	return preg_replace ( "/'/", "\\'", (string) $str );
 }
 
 
 # handle a server-side error.
 function error_handler( $err ) {
-	echo "error = '" . preg_replace( "/['\\\\]/", "\\\\$0", $err ) . "';\n";
+	echo "error = '" . preg_replace( "/['\\\\]/", "\\\\$0", (string) $err ) . "';\n";
 }
 
 ## get the list of misspelled words. Put the results in the javascript words array
@@ -81,12 +81,12 @@ function print_checker_results() {
 	# open temp file, add the submitted text.
 	if( $fh = fopen( $tempfile, 'w' )) {
 		for( $i = 0; $i < count( $textinputs ); $i++ ) {
-			$text = urldecode( $textinputs[$i] );
+			$text = urldecode( (string) $textinputs[$i] );
 
 			// Strip all tags for the text. (by FredCK - #339 / #681)
 			$text = preg_replace( "/<[^>]+>/", " ", $text ) ;
 
-			$lines = explode( "\n", $text );
+			$lines = explode( "\n", (string) $text );
 			fwrite ( $fh, "%\n" ); # exit terse mode
 			fwrite ( $fh, "^$input_separator\n" );
 			fwrite ( $fh, "!\n" ); # enter terse mode
@@ -116,7 +116,7 @@ function print_checker_results() {
 					if( isset( $line[4] )) {
 						$suggs = explode( ", ", $line[4] );
 					} else {
-						$suggs = array();
+						$suggs = [];
 					}
 					print_suggs_elem( $suggs, $index, $text_input_index );
 					$index++;

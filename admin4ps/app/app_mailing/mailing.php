@@ -9,31 +9,15 @@
 	
 	
 	// variables
-	$messages = array();
+	$messages = [];
 
-	switch($action) {
-	
-		case 'envoyer':
-			mailingSend();
-		break;
-		
-		case 'save':
-			mailingSave();
-		break;
-		
-		case 'edit':
-			mailingEdit();
-		break;
-		
-		case 'apercu':
-			mailingApercu();
-		break;
-		
-		default:
-			mailingLister();
-		break;
-		
-	}
+	match ($action) {
+        'envoyer' => mailingSend(),
+        'save' => mailingSave(),
+        'edit' => mailingEdit(),
+        'apercu' => mailingApercu(),
+        default => mailingLister(),
+    };
 	
 	
 	function &getData() {
@@ -69,7 +53,7 @@
 		$mailing	= $db->loadObject($query);
 		
 		// variables
-		$listGroups 	= array();
+		$listGroups 	= [];
 		$listGroups[] 	= JL::makeOption('0', '- Tous -', 'id', 'nom');
 		$listGroups[]	= JL::makeOption('1', 'Hommes', 'id', 'nom');
 		$listGroups[]	= JL::makeOption('2', 'Femmes', 'id', 'nom');
@@ -155,7 +139,7 @@
 		
 		// variables
 		$resultatParPage	= RESULTS_NB_LISTE_ADMIN;
-		$search				= array();
+		$search				= [];
 		
 		// si on passe une recherche en param, alors on force la page 1 (pour éviter de charger la page 36, s'il n'y a que 2 pages à voir)
 		$search['page']			= JL::getVar('search_at_page', JL::getSessionInt('search_at_page', 1));
@@ -195,7 +179,7 @@
 			$messages[]	= '<span class="error">Veuillez indiquer le titre du mail.</span>';
 		}
 		
-		if(strlen(html_entity_decode($data->texte)) < 10) {
+		if(strlen(html_entity_decode((string) $data->texte)) < 10) {
 			$messages[]	= '<span class="error">Veuillez indiquer le texte du mail (mini 10 caract&egrave;res).</span>';
 		}
 

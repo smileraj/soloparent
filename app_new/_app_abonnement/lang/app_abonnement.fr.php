@@ -1,6 +1,6 @@
 <?php
 
-$lang_appabonnement = array(
+$lang_appabonnement = [
 
 	//Fichier abonnement.html.php
 	"MessagesParentsolo" => "Messages solocircl.com",
@@ -68,6 +68,6 @@ $lang_appabonnement = array(
 	
 	
 
-);
+];
 
 ?>

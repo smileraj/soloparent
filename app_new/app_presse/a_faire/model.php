@@ -6,8 +6,7 @@
 	class presseModel extends JLModel {
 	
 	
-		function presseModel() {
-			parent::JLModel();
+		function __construct() {
 			//$this->_messages = JL::getMessages();
 		}
 		

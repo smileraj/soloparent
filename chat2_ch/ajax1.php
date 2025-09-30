@@ -44,7 +44,7 @@
 	
 	$id_corresp = intval(JL::getVar('id_corresp', 0));
 	$id_suppr = intval(JL::getVar('id_suppr', 0));
-	$texte = utf8_encode(JL::getVar('texte', ''));
+	$texte = mb_convert_encoding(JL::getVar('texte', ''), 'UTF-8', 'ISO-8859-1');
 	
 	switch($action) {
 
@@ -120,7 +120,7 @@
 			<p class='nickname<?php echo $utilisateur->genre; ?>'><?php echo $utilisateur->username; ?></p>
 			<p class='age'><?php echo JL::calcul_age($utilisateur->naissance_date); ?></p>
 			<p class='children'><?php echo $utilisateur->nb_enfants." ".$enfant; ?></p>
-			<p class='ville'><?php echo $utilisateur->ville ? $utilisateur->ville:"&nbsp;"; ?></p>
+			<p class='ville'><?php echo $utilisateur->ville ?: "&nbsp;"; ?></p>
 			<p class='canton'><?php echo $utilisateur->canton; ?></p>
 			<p class='online_<?php echo $utilisateur->online; ?>'><?php echo $online_2; ?></p>
 		</div>
@@ -241,8 +241,8 @@
 				<p class='nickname<?php echo $correspondant->genre; ?>'><?php echo $correspondant->username; ?></p>
 				<p class='age'><?php echo JL::calcul_age($correspondant->naissance_date); ?></p>
 				<p class='children'><?php echo $correspondant->nb_enfants." ".$enfant; ?></p>
-				<p class='ville'><?php echo $correspondant->ville ? utf8_encode($correspondant->ville):"&nbsp;"; ?></p>
-				<p class='canton'><?php echo utf8_encode($correspondant->canton); ?></p>
+				<p class='ville'><?php echo $correspondant->ville ? mb_convert_encoding((string) $correspondant->ville, 'UTF-8', 'ISO-8859-1'):"&nbsp;"; ?></p>
+				<p class='canton'><?php echo mb_convert_encoding((string) $correspondant->canton, 'UTF-8', 'ISO-8859-1'); ?></p>
 				<p class='online_<?php echo $correspondant->online; ?>'><?php echo $online_2; ?></p>
 			</div>
 		<?	
@@ -380,11 +380,11 @@
 					
 					$dest = ($user->id == $message->user_id_from)?"from":"to";
 					
-					$message->texte = utf8_encode($message->texte);
+					$message->texte = mb_convert_encoding((string) $message->texte, 'UTF-8', 'ISO-8859-1');
 				?>
 					<div class='message_<?php echo $dest; ?>'>
-						<span class='nickname<?php echo $message->genre; ?>'><?php echo $message->username; ?></span> <span class='heure'>(<?php echo date('d/m/Y', strtotime($message->date_envoi))." ".$langChat["AHeure"]." ".date('H:i:s', strtotime($message->date_envoi)); ?>)</span>
-						<p><?php echo nl2br(setSmileys($message->texte)); ?></p>
+						<span class='nickname<?php echo $message->genre; ?>'><?php echo $message->username; ?></span> <span class='heure'>(<?php echo date('d/m/Y', strtotime((string) $message->date_envoi))." ".$langChat["AHeure"]." ".date('H:i:s', strtotime((string) $message->date_envoi)); ?>)</span>
+						<p><?php echo nl2br((string) setSmileys($message->texte)); ?></p>
 					</div>
 				<?	
 				}
@@ -474,7 +474,7 @@
 			$erreur = 1;
 		}
 		
-		while(preg_match("/^<br \/><br \/>/", $texte)){
+		while(preg_match("/^<br \/><br \/>/", (string) $texte)){
 			$texte = str_replace("<br /><br />", "<br />", $texte);
 		}
 		
@@ -482,7 +482,7 @@
 			$erreur = 1;
 		}
 		
-		$texte = utf8_decode($texte);
+		$texte = mb_convert_encoding((string) $texte, 'ISO-8859-1');
 		
 		if($erreur == 0){
 			

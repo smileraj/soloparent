@@ -1,6 +1,6 @@
 <?php
 
-$lang_message = array(
+$lang_message = [
 	
 	"BoiteReception" => "Bo&icirc;te de r&eacute;ception",
 	"Envois" => "Envois",
@@ -122,5 +122,5 @@ $lang_message = array(
 	"IndiquezTitre" => "Veuillez indiquer le titre de votre message, s'il vous pla&icirc;t",
 	"IndiquezTexte" => "Veuillez indiquer le texte de votre message, s'il vous pla&icirc;t",
 
-);
+];
 ?>

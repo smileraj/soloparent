@@ -2,7 +2,7 @@
 /*This plugin import Gmail contacts
  *You can send normal email   
  */
-$_pluginInfo=array(
+$_pluginInfo=[
 	'name'=>'GMail',
 	'version'=>'1.4.9',
 	'description'=>"Get the contacts from a GMail account",
@@ -11,9 +11,9 @@ $_pluginInfo=array(
 	'check_url'=>'http://google.com',
 	'requirement'=>'email',
 	'allowed_domains'=>false,
-	'detected_domains'=>array('/(gmail.com)/i','/(googlemail.com)/i'),
-	'imported_details'=>array('first_name','email_1','email_2','email_3','organization','phone_mobile','phone_home','fax','pager','address_home','address_work'),
-	);
+	'detected_domains'=>['/(gmail.com)/i','/(googlemail.com)/i'],
+	'imported_details'=>['first_name','email_1','email_2','email_3','organization','phone_mobile','phone_home','fax','pager','address_home','address_work'],
+	];
 /**
  * GMail Plugin
  * 
@@ -28,10 +28,10 @@ class gmail extends openinviter_base
 	public $showContacts=true;
 	public $internalError=false;
 	
-	public $debug_array=array(
+	public $debug_array=[
 	  'login_post'=>'Auth=',
 	  'contact_xml'=>'xml'
-	);
+	];
 	
 	/**
 	 * Login function
@@ -51,7 +51,7 @@ class gmail extends openinviter_base
 		$this->service_password=$pass;
 		if (!$this->init()) return false;
 			
-		$post_elements=array('accountType'=>'HOSTED_OR_GOOGLE','Email'=>$user,'Passwd'=>$pass,'service'=>'cp','source'=>'OpenInviter-OpenInviter-'.$this->base_version);
+		$post_elements=['accountType'=>'HOSTED_OR_GOOGLE','Email'=>$user,'Passwd'=>$pass,'service'=>'cp','source'=>'OpenInviter-OpenInviter-'.$this->base_version];
 	    $res=$this->post("https://www.google.com/accounts/ClientLogin",$post_elements,true);
 	    if ($this->checkResponse("login_post",$res))
 			$this->updateDebugBuffer('login_post',"https://www.google.com/accounts/ClientLogin",'POST',true,$post_elements);
@@ -63,7 +63,7 @@ class gmail extends openinviter_base
 			return false;
 			}
 	    
-		$auth=substr($res,strpos($res,'Auth=')+strlen('Auth='));
+		$auth=substr((string) $res,strpos((string) $res,'Auth=')+strlen('Auth='));
 		
 		$this->login_ok=$auth;
 		return true;
@@ -86,7 +86,7 @@ class gmail extends openinviter_base
 			return false;
 			}
 		else $auth=$this->login_ok; 
-		$res=$this->get("http://www.google.com/m8/feeds/contacts/default/full?max-results=10000",true,false,true,false,array("Authorization"=>"GoogleLogin auth={$auth}"));
+		$res=$this->get("http://www.google.com/m8/feeds/contacts/default/full?max-results=10000",true,false,true,false,["Authorization"=>"GoogleLogin auth={$auth}"]);
 		if ($this->checkResponse("contact_xml",$res))
 			$this->updateDebugBuffer('contact_xml','http://www.google.com/m8/feeds/contacts/default/full?max-results=10000','GET');
 		else
@@ -97,13 +97,13 @@ class gmail extends openinviter_base
 			return false;
 			}
 		
-		$contacts=array();
+		$contacts=[];
 		$doc=new DOMDocument();libxml_use_internal_errors(true);if (!empty($res)) $doc->loadHTML('<?xml encoding="UTF-8">'.$res);libxml_use_internal_errors(false);		
 		$xpath=new DOMXPath($doc);$query="//entry";$data=$xpath->query($query);
 		foreach ($data as $node) 
 			{
 			$entry_nodes=$node->childNodes;
-			$tempArray=array();	
+			$tempArray=[];	
 			foreach($entry_nodes as $child)
 				{ 
 				$domNodesName=$child->nodeName;
@@ -113,29 +113,29 @@ class gmail extends openinviter_base
 					case 'organization': { $tempArray['organization']=$child->nodeValue; } break;
 					case 'email' : 
 						{ 
-						if (strpos($child->getAttribute('rel'),'home')!==false)
+						if (str_contains($child->getAttribute('rel'),'home'))
 							$tempArray['email_1']=$child->getAttribute('address');
-						elseif(strpos($child->getAttribute('rel'),'work')!=false)  	
+						elseif(str_contains($child->getAttribute('rel'),'work'))  	
 							$tempArray['email_2']=$child->getAttribute('address');
-						elseif(strpos($child->getAttribute('rel'),'other')!==false)  	
+						elseif(str_contains($child->getAttribute('rel'),'other'))  	
 							$tempArray['email_3']=$child->getAttribute('address');
 						} break;
 					case 'phonenumber' :
 						{
-						if (strpos($child->getAttribute('rel'),'mobile')!==false)
+						if (str_contains($child->getAttribute('rel'),'mobile'))
 							$tempArray['phone_mobile']=$child->nodeValue;
-						elseif(strpos($child->getAttribute('rel'),'home')!==false)  	
+						elseif(str_contains($child->getAttribute('rel'),'home'))  	
 							$tempArray['phone_home']=$child->nodeValue;	
-						elseif(strpos($child->getAttribute('rel'),'work_fax')!==false)  	
+						elseif(str_contains($child->getAttribute('rel'),'work_fax'))  	
 							$tempArray['fax_work']=$child->nodeValue;
-						elseif(strpos($child->getAttribute('rel'),'pager')!=false)  	
+						elseif(str_contains($child->getAttribute('rel'),'pager'))  	
 							$tempArray['pager']=$child->nodeValue;
 						} break;
 					case 'postaladdress' :
 						{
-						if (strpos($child->getAttribute('rel'),'home')!==false)
+						if (str_contains($child->getAttribute('rel'),'home'))
 							$tempArray['address_home']=$child->nodeValue;
-						elseif(strpos($child->getAttribute('rel'),'work')!==false)  	
+						elseif(str_contains($child->getAttribute('rel'),'work'))  	
 							$tempArray['address_work']=$child->nodeValue;
 						} break;	
 					}

@@ -9,7 +9,7 @@
 	
 	
 	// variables
-	$messages = array();
+	$messages = [];
 
 	switch($action) {
 		
@@ -152,7 +152,7 @@
 		
 		// variables par d�faut
 		foreach($data as $k => $v) {
-			$row->{$k} = $v ? $v : $row->{$k};
+			$row->{$k} = $v ?: $row->{$k};
 		}
 		
 		// affichage
@@ -167,8 +167,8 @@
 		
 		// variables
 		$resultatParPage	= RESULTS_NB_LISTE_ADMIN;
-		$search				= array();
-		$lists				= array();
+		$search				= [];
+		$lists				= [];
 		$where				= null;
 		$_where				= '';
 		
@@ -192,19 +192,19 @@
 		
 		
 		// crit�re de tri
-		$order				= array();
+		$order				= [];
 		$order[]			= JL::makeOption('g.date_add', 		'Date ajout');
 		$order[]			= JL::makeOption('titre', 			'Titre');
 		$lists['order']		= JL::makeSelectList($order, 'search_g_order', 'class="searchInput"', 'value', 'text', $search['order']);
 
 		// ordre croissant/d�croissant
-		$ascdesc			= array();
+		$ascdesc			= [];
 		$ascdesc[]			= JL::makeOption('asc', 			'Croissant');
 		$ascdesc[]			= JL::makeOption('desc', 			'D�croissant');
 		$lists['ascdesc']	= JL::makeSelectList($ascdesc, 'search_g_ascdesc', 'class="searchInput"', 'value', 'text', $search['ascdesc']);
 		
 		// statut
-		$active				= array();
+		$active				= [];
 		$active[]			= JL::makeOption('-1', 				'Tous');
 		$active[]			= JL::makeOption('2', 				'A valider');
 		$active[]			= JL::makeOption('1', 				'Confirm�s');
@@ -244,7 +244,7 @@
 		." FROM groupe AS g"
 		." INNER JOIN user AS u ON u.id = g.user_id"
 		.$_where
-		." ORDER BY ".strtolower($search['order'])." ".strtoupper($search['ascdesc'])
+		." ORDER BY ".strtolower((string) $search['order'])." ".strtoupper((string) $search['ascdesc'])
 		." LIMIT ".(($search['page'] - 1) * $resultatParPage).", ".$resultatParPage
 		;
 		$results	= $db->loadObjectList($query);

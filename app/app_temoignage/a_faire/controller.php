@@ -5,7 +5,7 @@
 	
 	class temoignageController extends JLController {
 	
-		function temoignageController($appLoad) {
+		function __construct($appLoad) {
 			parent::JLController($appLoad); // obligatoire pour l'instanciation
 			
 			// ajoute le model par d&eacute;faut

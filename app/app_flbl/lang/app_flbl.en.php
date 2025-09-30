@@ -1,6 +1,6 @@
 <?php
 
-$lang_flbl = array(
+$lang_flbl = [
 
 
 	
@@ -53,5 +53,5 @@ $lang_flbl = array(
 	"RetraitListeNoireReussi" => "Removal from blacklist successful",
 	
 	"ProfilIntrouvabe" => "Profile not found",
-);
+];
 ?>

@@ -71,13 +71,13 @@ class msn
 	// session.  this will slow down connecting a bit.
 	// Note: comment out $ssh_login if you experience auth failures
 
-	var $server	=	'messenger.hotmail.com';
-	var $port	=	1863;
+	public $server	=	'messenger.hotmail.com';
+	public $port	=	1863;
 
-	var $nexus	=	'https://nexus.passport.com/rdr/pprdr.asp';
-	var $ssh_login	=	'login.live.com/login2.srf';
+	public $nexus	=	'https://nexus.passport.com/rdr/pprdr.asp';
+	public $ssh_login	=	'login.live.com/login2.srf';
 
-	var $debug	=	0;
+	public $debug	=	0;
 
 
 	// curl is used for the secure login, if you don't have
@@ -86,17 +86,17 @@ class msn
 	// set $curl to the path where curl is installed.
 	// curl can be downloaded here: http://curl.haxx.se/download.html
 
-	var $curl_bin	=	0;
-	var $curl	=	'/usr/local/bin/curl';	// linux
+	public $curl_bin	=	0;
+	public $curl	=	'/usr/local/bin/curl';	// linux
 	//var $curl	=	'c:\curl.exe';		// windows
 
     //Used to prevent the script from hanging
-    var $count = 0;
+    public $count = 0;
     
     //Used to store the email addresses until all have been collected
-    var $email_input = array();
-    var $email_processing = array();
-    var $email_output = array();
+    public $email_input = [];
+    public $email_processing = [];
+    public $email_output = [];
 
 	/**
 	 *
@@ -115,14 +115,14 @@ class msn
 
 		if (!$this->fp = @fsockopen($this->server, $this->port, $errno, $errstr, 2)) {    
 			//die("Could not connect to messenger service");
-			return array();
+			return [];
 		} else {
 			stream_set_timeout($this->fp, 2);
 			$this->_put("VER $this->trID MSNP9 CVR0\r\n");
 			while (! feof($this->fp)) 
 			{
 				$data = $this->_get();
-				switch ($code = substr($data, 0, 3))
+				switch ($code = substr((string) $data, 0, 3))
 				{
 					default:
 						//echo $this->_get_error($code);
@@ -135,8 +135,8 @@ class msn
 						$this->_put("USR $this->trID TWN I $passport\r\n");
 					break;
 					case 'XFR':
-						list(, , , $ip)  = explode (' ', $data);
-						list($ip, $port) = explode (':', $ip);
+						[, , , $ip]  = explode (' ', (string) $data);
+						[$ip, $port] = explode (':', $ip);
 
 						if ($this->fp = @fsockopen($ip, $port, $errno, $errstr, 2))
 						{
@@ -159,9 +159,9 @@ class msn
 						else
 						{
 							$this->passport = $passport;
-							$this->password = urlencode($password);
+							$this->password = urlencode((string) $password);
 
-							list(,,,, $code) = explode(' ', trim($data));
+							[, , , , $code] = explode(' ', trim((string) $data));
 
 							if ($auth = $this->_ssl_auth($code))
 							{
@@ -204,7 +204,7 @@ class msn
 			if ($data)
 			{
                 
-			    switch($code = substr($data, 0, 3))
+			    switch($code = substr((string) $data, 0, 3))
 				{
 					default:
 						// uncommenting this line here would probably give a load of "error code not found" messages.
@@ -223,11 +223,11 @@ class msn
 					   
 					break;
 					case 'SYN':
-					$syn_explode = explode(" ", $data);
+					$syn_explode = explode(" ", (string) $data);
 					$email_total = $syn_explode[3];
 					break;
 					case 'CHL':
-						$bits = explode (' ', trim($data));
+						$bits = explode (' ', trim((string) $data));
 
 						$return = md5($bits[2].'Q1P7W2E4J9R8U3S5');
 						$this->_put("QRY $this->trID msmsgs@msnmsgr.com 32\r\n$return");
@@ -249,15 +249,15 @@ class msn
       foreach($this->email_input as $email_entry) {
         
         //Seperate out the email from the name and other data
-        $this->email_processing[] = explode(" ", $email_entry);
+        $this->email_processing[] = explode(" ", (string) $email_entry);
                         
       }
       
       //Get rid of the unnecessary data and clean up the name
       foreach($this->email_processing as $email_entry){
         
-        $this->email_output[] = array(0 => $email_entry['1'],
-                                        1 => urldecode($email_entry[2]));
+        $this->email_output[] = [0 => $email_entry['1'],
+                                        1 => urldecode((string) $email_entry[2])];
     }
     
     //var_dump($this->email_processing);
@@ -357,10 +357,10 @@ class msn
 		else
 		{
 			$ch = curl_init('https://'.$slogin);
-			curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+			curl_setopt($ch, CURLOPT_HTTPHEADER, [
 							'Authorization: Passport1.4 OrgVerb=GET,OrgURL=http%3A%2F%2Fmessenger%2Emsn%2Ecom,sign-in='.$this->passport.',pwd='.$this->password.','.$auth_string,
 							'Host: login.passport.com'
-							));
+							]);
 
 			curl_setopt($ch, CURLOPT_HEADER, 1);
 			curl_setopt($ch, CURLOPT_NOBODY, 1);
@@ -376,7 +376,7 @@ class msn
 
 		preg_match ("/from-PP='(.*?)'/", $header, $out);
 
-		return (isset($out[1])) ? $out[1] : false;
+		return $out[1] ?? false;
 	}
 
 
@@ -399,7 +399,7 @@ class msn
 
 	function _put($data)
 	{
-		fwrite($this->fp, $data);
+		fwrite($this->fp, (string) $data);
 
 		$this->trID++;
 
@@ -409,52 +409,22 @@ class msn
 
 	function _get_error($code)
 	{
-		switch ($code)
-		{
-			case 201:
-				return 'Error: 201 Invalid parameter';
-			break;
-			case 217:
-				return 'Error: 217 Principal not on-line';
-			break;
-			case 500:
-				return 'Error: 500 Internal server error';
-			break;
-			case 540:
-				return 'Error: 540 Challenge response failed';
-			break;
-			case 601:
-				return 'Error: 601 Server is unavailable';
-			break;
-			case 710:
-				return 'Error: 710 Bad CVR parameters sent';
-			break;
-			case 713:
-				return 'Error: 713 Calling too rapidly';
-			break;
-			case 731:
-				return 'Error: 731 Not expected';
-			break;
-			case 800:
-				return 'Error: 800 Changing too rapidly';
-			break;
-			case 910:
-			case 921:
-				return 'Error: 910/921 Server too busy';
-			break;
-			case 911:
-				return 'Error: 911 Authentication failed';
-			break;
-			case 923:
-				return 'Error: 923 Kids Passport without parental consent';
-			break;
-			case 928:
-				return 'Error: 928 Bad ticket';
-			break;
-			default:
-				return 'Error code '.$code.' not found';
-			break;
-		}
+		return match ($code) {
+            201 => 'Error: 201 Invalid parameter',
+            217 => 'Error: 217 Principal not on-line',
+            500 => 'Error: 500 Internal server error',
+            540 => 'Error: 540 Challenge response failed',
+            601 => 'Error: 601 Server is unavailable',
+            710 => 'Error: 710 Bad CVR parameters sent',
+            713 => 'Error: 713 Calling too rapidly',
+            731 => 'Error: 731 Not expected',
+            800 => 'Error: 800 Changing too rapidly',
+            910, 921 => 'Error: 910/921 Server too busy',
+            911 => 'Error: 911 Authentication failed',
+            923 => 'Error: 923 Kids Passport without parental consent',
+            928 => 'Error: 928 Bad ticket',
+            default => 'Error code '.$code.' not found',
+        };
 	}
 }
 ?>

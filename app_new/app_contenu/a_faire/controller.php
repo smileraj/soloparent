@@ -5,7 +5,7 @@
 	
 	class contenuController extends JLController {
 	
-		function contenuController($appLoad) {
+		function __construct($appLoad) {
 			parent::JLController($appLoad); // obligatoire pour l'instanciation
 			
 			// ajoute le model par défaut

@@ -33,7 +33,7 @@
 	
 		$db	= new DB();
 		
-		$_SQL = array();
+		$_SQL = [];
 		
 		$out = "";
 		

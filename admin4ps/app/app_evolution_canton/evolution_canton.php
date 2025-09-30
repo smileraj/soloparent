@@ -10,7 +10,7 @@
 
 	
 	// variables
-	$messages = array();
+	$messages = [];
 
 	
 	
@@ -27,8 +27,8 @@
 	function lister() {
 		global $db;
 		
-		$nb_membres = array();
-		$nb_abonnes = array();
+		$nb_membres = [];
+		$nb_abonnes = [];
 		
 		$query = "SELECT"
 		." pc.id,"

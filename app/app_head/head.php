@@ -6,8 +6,8 @@ require_once('head.html.php');
 global $db, $user, $action;
 
 // Initialize default objects
-$userProfilMini = $userProfilMini ?? (object)[];
-$userStats      = $userStats ?? (object)[
+$userProfilMini ??= (object)[];
+$userStats ??= (object)[
     'points_total' => 0,
     'visite_total' => 0,
     'gold'         => 0,
@@ -15,9 +15,9 @@ $userStats      = $userStats ?? (object)[
     'message_new'  => 0,
     'groupe_joined'=> 0
 ];
-$userpercentage = $userpercentage ?? 0;
-$perannounce    = $perannounce ?? (object)[];
-$useronstatus   = $useronstatus ?? (object)['on_off_status'=>''];
+$userpercentage ??= 0;
+$perannounce ??= (object)[];
+$useronstatus ??= (object)['on_off_status'=>''];
 
 if(!empty($user->id)){
     $id = (int)$user->id;
@@ -89,6 +89,6 @@ if(!empty($user->id)){
 }
 
 // Call head with safe objects
-head_HTML::head($userProfilMini, $userStats, $userpercentage, $perannounce, $userStats, $useronstatus);
+(new head_HTML())->head($userProfilMini, $userStats, $userpercentage, $perannounce, $userStats);
 
 ?>

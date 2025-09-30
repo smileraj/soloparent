@@ -85,7 +85,7 @@ $ogone_SHASIGN_val = sha1($ogone_SHASIGN_alias);
 
 $_SESSION['PSPID_saved'] = $_POST["PSPID"];
 $_SESSION['ORDERID_saved'] = $_POST["ORDERID"]; 
-$_SESSION['Amount_valenc_saved'] = base64_decode($_POST["Amount_valenc"]); 
+$_SESSION['Amount_valenc_saved'] = base64_decode((string) $_POST["Amount_valenc"]); 
 $_SESSION['CN_holder_name_saved'] = $_POST["CN_holder_name"];
 $_SESSION['Email_address_saved'] = $_POST["Email_address"];
 $_SESSION['OWNERZIP_saved'] = $_POST["OWNERZIP"];
@@ -130,7 +130,7 @@ else {
 $ogone_SHA = 'Parentsoloch@123';
 $ogone_PSPID = $_POST["PSPID"];
 $ogone_ORDERID = $_POST["ORDERID"]; 
-$ogone_AMOUNT1 = base64_decode($_POST["Amount_valenc"]);
+$ogone_AMOUNT1 = base64_decode((string) $_POST["Amount_valenc"]);
 $ogone_CN = $_POST["CN_holder_name"];
 $ogone_EMAIL = $_POST["Email_address"];
 $ogone_OWNERZIP = $_POST["OWNERZIP"];

@@ -1,6 +1,6 @@
 <?php
 
-$langChat= array(
+$langChat= [
 
 	"warning" => "Achtung, versichern Sie sich, dass Sie die Person gut kennen mit der Sie chatten bevor Sie Ihre persönlichen Kontaktdaten oder E-Mail-/msn-Adresse weitergeben.",
 	"ans" => "Jahre",
@@ -32,5 +32,5 @@ $langChat= array(
 	"MembreNonConfirme" => "Das Profil dieses Mitgliedes ist noch nicht bestätigt worden",
 	
 
-);
+];
 ?>

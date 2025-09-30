@@ -1,6 +1,6 @@
 <?php
 
-$lang_appprofil = array(
+$lang_appprofil = [
 	
 	//Fichier profil.html.php
 	"MessagesParentSolo" => "SinglEltern.ch-Mitteilungen",
@@ -462,6 +462,6 @@ $lang_appprofil = array(
 	//PROFILE
 "SELECTEDPROFILES" => "MATCHING",
 "Addbutton" => "Voeg foto toe",
-);
+];
 
 ?>

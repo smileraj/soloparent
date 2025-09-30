@@ -16,7 +16,7 @@
 	$ss_menu = 2;
 	$ss_menu = 3;
 	if($app == 'profil') {
-		if($user->id > 0 && (preg_match('/^step/', $action) || $action=="notification")) {
+		if($user->id > 0 && (preg_match('/^step/', (string) $action) || $action=="notification")) {
 			
 			if($action != 'step1' && $action != 'step1submit' && $action != 'notification'){
 				

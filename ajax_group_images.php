@@ -9,7 +9,7 @@ if($varval!=''){
         $file_name = $_FILES['file']['tmp_name'];
  $image = imagecreatefromstring( file_get_contents( $file_name ));
  $image_110 = imagecreatefromstring( file_get_contents( $file_name ));
- list($width_org, $height_org, $type, $attr) = getimagesize( $file_name );
+ [$width_org, $height_org, $type, $attr] = getimagesize( $file_name );
 $width = 35; 
 $height = 35;
 $width_110 = 110; 
@@ -32,13 +32,13 @@ imagepng($image_p_110);
 $data2 = ob_get_contents();
 ob_end_clean();
 //Store & Display
-$context = stream_context_create(array(   'gs' =>array(
+$context = stream_context_create([   'gs' =>[
         'acl'=> 'public-read', 
         'Content-Type' => 'image/jpeg', 
         'enable_cache' => true, 
         'enable_optimistic_cache' => true,
         'read_cache_expiry_seconds' => 300,
-    )));
+    ]]);
 //end resize
 $maxvalue=time();
 file_put_contents('images/groupe/temp/'.$maxvalue.'-mini.jpg', $data, false, $context);
@@ -50,7 +50,7 @@ if((isset($_FILES['file']['name'])!='') && $upload_dir!='0'){
         $file_name = $_FILES['file']['tmp_name'];
  $image = imagecreatefromstring( file_get_contents( $file_name ));
  $image_110 = imagecreatefromstring( file_get_contents( $file_name ));
- list($width_org, $height_org, $type, $attr) = getimagesize( $file_name );
+ [$width_org, $height_org, $type, $attr] = getimagesize( $file_name );
 $width = 35; 
 $height = 35;
 $width_110 = 110; 
@@ -73,13 +73,13 @@ imagepng($image_p_110);
 $data2 = ob_get_contents();
 ob_end_clean();
 //Store & Display
-$context = stream_context_create(array(   'gs' =>array(
+$context = stream_context_create([   'gs' =>[
         'acl'=> 'public-read', 
         'Content-Type' => 'image/jpeg', 
         'enable_cache' => true, 
         'enable_optimistic_cache' => true,
         'read_cache_expiry_seconds' => 300,
-    )));
+    ]]);
 //end resize
 file_put_contents('images/groupe/pending/'.$upload_dir.'-mini.jpg', $data, false, $context);
 file_put_contents('images/groupe/pending/'.$upload_dir.'.jpg', $data2, false, $context);

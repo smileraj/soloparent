@@ -59,7 +59,7 @@
 						?>
 					<br />
 						<?php 							if($userStats->points_total <= 0){
-								echo $userStats->points_total.' '.SoloFleur; 
+								echo $userStats->points_total.' '.\SOLOFLEUR; 
 							}else{
 						?>
 								<a href="<?php echo JL::url('index.php?app=points&action=mespoints'.'&'.$langue); ?>" title="<?php echo $lang_mod["DetailPoints"];?>"><span style="font-weight:bold"><?php echo $userStats->points_total; ?></span> SoloFleur<?php echo $userStats->points_total > 0 ? 's' : ''; ?></a>

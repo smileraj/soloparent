@@ -13,7 +13,7 @@
 
 
 	// gestion des messages d'erreurs
-	$messages	= array();
+	$messages	= [];
 
 	// variables
 
@@ -36,13 +36,13 @@
 
 	function signaler_data() {
 		global $langue;
-		$_data	= array(
+		$_data	= [
 			'user_id_to' => '',
 			'message' => '',
 			'msg' => '',
 
 			'codesecurite' => ''
-		);
+		];
 		return $_data;
 	}
 
@@ -56,7 +56,7 @@
 
 		// variables
 		$_data			= signaler_data();
-		$list			= array();
+		$list			= [];
 
 		// r�cup les donn�es temporaires
 		if (is_array($_data)) {
@@ -84,7 +84,7 @@
 		$row->sujet = $lang_signaler_abus["SignalerUnAbus"].' de '.$username.' par '.$user->username;
 		
 
-		$list['captcha']	= rand(2,7);
+		$list['captcha']	= random_int(2,7);
 		JL::setSession('captcha', $list['captcha']);
 
 		
@@ -100,7 +100,7 @@
 		global $db, $user;
 
 		// gestion des messages d'erreurs
-		$messages	= array();
+		$messages	= [];
 
 		// variables
 		$_data		= signaler_data();

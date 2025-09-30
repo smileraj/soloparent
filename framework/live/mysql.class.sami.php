@@ -3,8 +3,8 @@
 	// mini framework fortement inspir� du framework joomla
 	class DB {
 		
-		var	$connexion_id	= null; // connexion mysql
-		var	$ressource		= null;	// id du r�sultat d'une requ�te
+		public $connexion_id	= null; // connexion mysql
+		public $ressource		= null;	// id du r�sultat d'une requ�te
 		
 		function DB() {
 			$this->connexion_id	= null;
@@ -74,7 +74,7 @@
 			if($data = mysql_fetch_array($this->ressource)) {
 				return $data;
 			} else {
-				return array();
+				return [];
 			}
 		}
 		
@@ -93,7 +93,7 @@
 			if($query) {
 				$this->setQuery($query);
 			}
-			$datas	= array();
+			$datas	= [];
 			while($data = mysql_fetch_array($this->ressource)) {
 				$datas[]	= $data;
 			}
@@ -104,7 +104,7 @@
 			if($query) {
 				$this->setQuery($query);
 			}
-			$datas	= array();
+			$datas	= [];
 			
 			while($data = mysql_fetch_object($this->ressource)) {
 				$datas[]	= $data;
@@ -124,8 +124,8 @@
 	// mini framework fortement inspir� du framework joomla
 	class DB {
 		
-		var	$connexion_id	= null; // connexion mysql
-		var	$ressource		= null;	// id du r�sultat d'une requ�te
+		public $connexion_id	= null; // connexion mysql
+		public $ressource		= null;	// id du r�sultat d'une requ�te
 		
 		function DB() {
 			$this->connexion_id	= null;
@@ -195,7 +195,7 @@
 			if($data = mysql_fetch_array($this->ressource)) {
 				return $data;
 			} else {
-				return array();
+				return [];
 			}
 		}
 		
@@ -214,7 +214,7 @@
 			if($query) {
 				$this->setQuery($query);
 			}
-			$datas	= array();
+			$datas	= [];
 			while($data = mysql_fetch_array($this->ressource)) {
 				$datas[]	= $data;
 			}
@@ -225,7 +225,7 @@
 			if($query) {
 				$this->setQuery($query);
 			}
-			$datas	= array();
+			$datas	= [];
 			
 			while($data = mysql_fetch_object($this->ressource)) {
 				$datas[]	= $data;
@@ -245,8 +245,8 @@
 	// mini framework fortement inspir� du framework joomla
 	class DB {
 		
-		var	$connexion_id	= null; // connexion mysql
-		var	$ressource		= null;	// id du r�sultat d'une requ�te
+		public $connexion_id	= null; // connexion mysql
+		public $ressource		= null;	// id du r�sultat d'une requ�te
 		
 		function DB() {
 			$this->connexion_id	= null;
@@ -316,7 +316,7 @@
 			if($data = mysql_fetch_array($this->ressource)) {
 				return $data;
 			} else {
-				return array();
+				return [];
 			}
 		}
 		
@@ -335,7 +335,7 @@
 			if($query) {
 				$this->setQuery($query);
 			}
-			$datas	= array();
+			$datas	= [];
 			while($data = mysql_fetch_array($this->ressource)) {
 				$datas[]	= $data;
 			}
@@ -346,7 +346,7 @@
 			if($query) {
 				$this->setQuery($query);
 			}
-			$datas	= array();
+			$datas	= [];
 			
 			while($data = mysql_fetch_object($this->ressource)) {
 				$datas[]	= $data;

@@ -238,7 +238,7 @@
 		$cropimg = imagecreatetruecolor($cropW,$cropH);
 
 		// résolution de l'image
-		list($width, $height) = getimagesize($imgfile);
+		[$width, $height] = getimagesize($imgfile);
 		// résolution de l'image
 		$couleur_bg = imagecolorallocate($cropimg, 255, 255, 255);
 		imagefill($cropimg, 0, 0, $couleur_bg);

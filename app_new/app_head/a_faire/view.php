@@ -5,14 +5,14 @@
 	
 	class headView extends JLView {
 	
-		function headView() {}
+		function __construct() {}
 		
 		// vérifie si l'utilisateur veut se log ou est log, et renseigne la variable global $user
 		function display() {
 			include("lang/app_head.".$_GET['lang'].".php");
 			global $db, $template;
 			
-			$navArr=array();
+			$navArr=[];
 			$navString="";
 			if (is_array($_GET)>1){
 				foreach($_GET as $key => $value){

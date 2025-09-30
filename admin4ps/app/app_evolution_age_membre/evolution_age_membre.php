@@ -10,7 +10,7 @@
 
 	
 	// variables
-	$messages = array();
+	$messages = [];
 
 	
 	
@@ -26,7 +26,7 @@
 	// liste les utilisateurs
 	function lister() {
 		global $db;
-		$dates_naissance = array();
+		$dates_naissance = [];
 		
 		for($i=2009;$i<2016;$i++){
 			$query = "SELECT"

@@ -53,13 +53,13 @@
 									$appel_temoins = $appels_temoins[$j];
 									
 									// limitation de la longueur du titre
-									if(strlen($appel_temoins->titre) > LISTE_TITRE_CHAR) {
+									if(strlen((string) $appel_temoins->titre) > LISTE_TITRE_CHAR) {
 										//	$appel_temoins->titre = substr($appel_temoins->titre, 0, 20).'...';
-										$appel_temoins->titre = substr($appel_temoins->titre, 0, LISTE_TITRE_CHAR).'...';
+										$appel_temoins->titre = substr((string) $appel_temoins->titre, 0, LISTE_TITRE_CHAR).'...';
 									}
 									
 									// limitation de la longueur de l'intro
-									$appel_temoins->annonce = strip_tags(html_entity_decode($appel_temoins->annonce));
+									$appel_temoins->annonce = strip_tags(html_entity_decode((string) $appel_temoins->annonce));
 									if(strlen($appel_temoins->annonce) > LISTE_INTRO_CHAR) {
 										//	$appel_temoins->annonce = substr($appel_temoins->annonce, 0, LISTE_INTRO_CHAR).'...';
 										$appel_temoins->annonce = substr($appel_temoins->annonce, 0, 90).'...';
@@ -152,13 +152,13 @@
 									$appel_temoins = $appels_temoins[$j];
 									
 									// limitation de la longueur du titre
-									if(strlen($appel_temoins->titre) > LISTE_TITRE_CHAR) {
-										$appel_temoins->titre = substr($appel_temoins->titre, 0, LISTE_TITRE_CHAR).'...';
+									if(strlen((string) $appel_temoins->titre) > LISTE_TITRE_CHAR) {
+										$appel_temoins->titre = substr((string) $appel_temoins->titre, 0, LISTE_TITRE_CHAR).'...';
 										//$appel_temoins->titre = substr($appel_temoins->titre, 0, 20).'...';
 									}
 									
 									// limitation de la longueur de l'intro
-									$appel_temoins->annonce = strip_tags(html_entity_decode($appel_temoins->annonce));
+									$appel_temoins->annonce = strip_tags(html_entity_decode((string) $appel_temoins->annonce));
 									if(strlen($appel_temoins->annonce) > LISTE_INTRO_CHAR) {
 										$appel_temoins->annonce = substr($appel_temoins->annonce, 0, 90).'...';
 										//$appel_temoins->annonce = substr($appel_temoins->annonce, 0, LISTE_INTRO_CHAR).'...';
@@ -277,7 +277,7 @@
 		<br />
 		<?php 			if (is_array($messages)){
 				// affichage des messages
-				HTML_appel_a_temoins::messages($messages, false);
+				HTML_appel_a_temoins::messages($messages);
 			}
 		?>
 	<div class="row">
@@ -487,13 +487,13 @@
 			</div>
 						<p>
 							<div class="temoignage">
-									<img style="float:left;margin:0 10px 10px 0;"width="90" src="<?php echo $photo; ?>" alt="<?php echo $row->titre;?>" /> <?php echo  nl2br(htmlspecialchars_decode($row->annonce)); ?>
+									<img style="float:left;margin:0 10px 10px 0;"width="90" src="<?php echo $photo; ?>" alt="<?php echo $row->titre;?>" /> <?php echo  nl2br(htmlspecialchars_decode((string) $row->annonce)); ?>
 									<div class="clear"></div>
 									<br />
 									<div class="publication">
 										<b><?php echo $lang_appel_a_temoins["InformationComplementaires"];?>:</b><br />
 										<br />
-										<?php if($row->date_limite) { ?><b><?php echo $lang_appel_a_temoins["DateDeLappel"];?>:</b> <?php echo date('d/m/Y', strtotime($row->date_add)); ?><br /><?php } ?>
+										<?php if($row->date_limite) { ?><b><?php echo $lang_appel_a_temoins["DateDeLappel"];?>:</b> <?php echo date('d/m/Y', strtotime((string) $row->date_add)); ?><br /><?php } ?>
 										<?php if($row->date_limite) { ?><b><?php echo $lang_appel_a_temoins["DateLimiteInscription"];?>:</b> <?php echo $row->date_limite; ?><br /><?php } ?>
 										<?php if($row->date_diffusion) { ?><b><?php echo $lang_appel_a_temoins["DateDiffusion"];?>:</b> <?php echo $row->date_diffusion; ?><br /><?php } ?>
 										<br />
@@ -501,7 +501,7 @@
 										<b><?php echo $lang_appel_a_temoins["PourPlusDInformations"];?>:</b><br />
 										<br />
 										<?php echo $row->prenom.' '.$row->nom; ?><br />
-										<?php if($row->adresse) nl2br($row->adresse).'<br />'; ?>
+										<?php if($row->adresse) nl2br((string) $row->adresse).'<br />'; ?>
 										<br />
 										<b><?php echo $lang_appel_a_temoins["Email"];?>:</b> <a href="mailto:<?php echo $row->email; ?>" title="Contacter <?php echo $row->prenom.' '.$row->nom; ?> par email"><?php echo $row->email; ?></a><br />
 										<b><?php echo $lang_appel_a_temoins["Telephone"];?>:</b> <?php echo $row->telephone; ?>

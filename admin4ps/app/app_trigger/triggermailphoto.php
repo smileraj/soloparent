@@ -36,7 +36,7 @@ set_time_limit(0);
 					$headers .= "MIME-Version: 1.0\r\n";
 					$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 
-				if (mail($businessEmail, $subject, $message, $headers)) 
+				if (mail((string) $businessEmail, $subject, $message, $headers)) 
 				{
 				
 						echo '<script>

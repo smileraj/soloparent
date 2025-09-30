@@ -101,7 +101,7 @@
 								<td>
 									<a href="<?php echo SITE_URL_ADMIN; ?>/index.php?app=mailing_auto&action=edit&id=<?php echo $row->id; ?>" title="Modifier le mailing"><?php echo $row->nom; ?></a>
 								</td>
-								<td><?php echo date('d/m/Y à H:i:s', strtotime($row->datetime_update)); ?></td>
+								<td><?php echo date('d/m/Y à H:i:s', strtotime((string) $row->datetime_update)); ?></td>
 								<td align="center">
 									<a href="<?php echo JL::url('index.php?app=mailing_auto&action=envoyer&id='.$row->id); ?>" title="Envoyer ce mailing"><img src="<?php echo SITE_URL_ADMIN; ?>/images/mailing.png" alt="" />
 								</td>

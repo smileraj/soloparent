@@ -5,7 +5,7 @@ $img_width=$_POST['img_width'];
 $img_height=$_POST['img_height'];
 $searchString =109;
 $files = glob('images/profil/'.$upload_dir.'/*.*');
-$filesFound = array();
+$filesFound = [];
 //initial data
 if (is_array($files)) {
 foreach($files as $file) {
@@ -22,7 +22,7 @@ $initialcount= count($filesFound);
 //pending count//;
  function filterpending($var) 
  { 
- return preg_match("/pending/i", $var);
+ return preg_match("/pending/i", (string) $var);
  }
  $pendingfiltered = array_filter($filesFound,'filterpending');
  $pendingcount=count($pendingfiltered);
@@ -30,7 +30,7 @@ $initialcount= count($filesFound);
  
  function filtertemp($var) 
  { 
- return preg_match("/temp/i", $var);
+ return preg_match("/temp/i", (string) $var);
  }
  $tempfiltered = array_filter($filesFound,'filtertemp');
  $tempcount=count($tempfiltered);
@@ -38,7 +38,7 @@ $initialcount= count($filesFound);
 $searchvalue="solo";
 
 $files=glob('images/profil/'.$upload_dir.'/*.*');
-$profilenumber=array();
+$profilenumber=[];
 $maxodend=0;
 if (is_array($files)) {
 foreach($files as $files)
@@ -53,7 +53,7 @@ $maxodend=max($endposition);
 $maxvalue=$maxodend+1;
 if($initialcount<=6){
 if($varval!=''){if($upload_dir!=''){
-$img = preg_replace('#^data:image/[^;]+;base64,#', '', $varval);
+$img = preg_replace('#^data:image/[^;]+;base64,#', '', (string) $varval);
  $bin = base64_decode($img);
 //resize
 // Set a maximum height and width
@@ -98,13 +98,13 @@ imagepng($image_p_270);
 $data5 = ob_get_contents();
 ob_end_clean();
 //Store & Display
-$context = stream_context_create(array(   'gs' =>array(
+$context = stream_context_create([   'gs' =>[
         'acl'=> 'public-read', 
         'Content-Type' => 'image/jpeg', 
         'enable_cache' => true, 
         'enable_optimistic_cache' => true,
         'read_cache_expiry_seconds' => 300,
-    )));
+    ]]);
 //end resize
 file_put_contents('images/profil/'.$upload_dir.'/temp-parent-solo-35-profil-'.$maxvalue.'.jpg', $data, false, $context);
 file_put_contents('images/profil/'.$upload_dir.'/temp-parent-solo-89-profil-'.$maxvalue.'.jpg', $data2, false, $context);

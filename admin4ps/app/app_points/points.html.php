@@ -192,7 +192,7 @@
 								<tr class="list">
 									<td><a href="<?php echo SITE_URL_ADMIN; ?>/index.php?app=points&action=baremeedit&id=<?php echo $row->id; ?>" title="Modifier le bar&egrave;me"><?php echo $row->description; ?></a></td>
 									<td><?php echo $row->points; ?></td>
-									<td><?php echo $row->nb_max_par_data ? $row->nb_max_par_data : 'illimit&eacute;'; ?></td>
+									<td><?php echo $row->nb_max_par_data ?: 'illimit&eacute;'; ?></td>
 								</tr>
 								<?php 							}
 							
@@ -326,7 +326,7 @@
 					<table cellpadding="0" cellspacing="0" class="table table-bordered table-striped table-condensed cf editer">
 						<tr>
 							<td class="key"><label for="temoignage_date">Date:</label></td>
-							<td><input type="text" name="temoignage_date" value="<?php echo $row->temoignage_date != '0000-00-00' ? date('d/m/Y', strtotime($row->temoignage_date)) : ''; ?>" size="9" /> <i>(jj/mm/aaaa)</i></td>
+							<td><input type="text" name="temoignage_date" value="<?php echo $row->temoignage_date != '0000-00-00' ? date('d/m/Y', strtotime((string) $row->temoignage_date)) : ''; ?>" size="9" /> <i>(jj/mm/aaaa)</i></td>
 						</tr>
 						<tr>
 							<td class="key"><label for="temoignage">T&eacute;moignage:</label></td>

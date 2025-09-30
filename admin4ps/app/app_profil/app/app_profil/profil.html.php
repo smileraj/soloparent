@@ -17,9 +17,9 @@
 			$fin			= ($search['page'] + $rayon) <= $search['page_total'] ? $search['page'] + $rayon : $search['page_total'];
 						
 			// pays contrls
-			$paysVert		= array('CH');
-			$paysGris		= array('XX');
-			$paysRouge		= array('CI','SN','EG');
+			$paysVert		= ['CH'];
+			$paysGris		= ['XX'];
+			$paysRouge		= ['CI','SN','EG'];
 						
 			?>
 				<script language="javascript" type="text/javascript">
@@ -149,7 +149,7 @@
 
 							if($user->gold_limit_date != '0000-00-00') {
 							
-								$userTime				= strtotime($user->gold_limit_date);
+								$userTime				= strtotime((string) $user->gold_limit_date);
 								$time					= time();
 								$jours					= ceil(($userTime-$time)/86400);
 								
@@ -170,7 +170,7 @@
 
 							
 							// vrif tlphone
-							if($jours < 500 && !preg_match('/^0?[0-9]{9}$/', preg_replace('/[^0-9]/','', $user->telephone_origine))) {
+							if($jours < 500 && !preg_match('/^0?[0-9]{9}$/', preg_replace('/[^0-9]/','', (string) $user->telephone_origine))) {
 								$colorPhone = 'orange';
 								$warning = true;
 							} else {
@@ -204,7 +204,7 @@
 							
 							
 							// vrif nom
-							if($jours < 500 && strlen($user->nom_origine) < 3) {
+							if($jours < 500 && strlen((string) $user->nom_origine) < 3) {
 								$colorNom = 'orange';
 								$warning = true;
 							} else {
@@ -243,13 +243,13 @@
 									<td style="color: <?php echo $colorNom; ?>;"><?php echo $user->nom_origine; ?></td>
 									<td><?php echo $user->prenom_origine; ?></td>
 									<td style="color: <?php echo $colorPhone; ?>;">
-										<?php echo substr($user->telephone_origine, 0, 1) == '0' ? $user->telephone_origine : '0'.$user->telephone_origine; ?>
+										<?php echo str_starts_with((string) $user->telephone_origine, '0') ? $user->telephone_origine : '0'.$user->telephone_origine; ?>
 									</td>
 									<td>
 									<?php 										// date d'appel
 										if($user->appel_date != '0000-00-00') {
 										
-											$userTime	= strtotime($user->appel_date);
+											$userTime	= strtotime((string) $user->appel_date);
 											echo date('d/m/Y', $userTime);
 										
 										}
@@ -257,7 +257,7 @@
 										// date d'appel 2
 										if($user->appel_date2 != '0000-00-00') {
 										
-											$userTime	= strtotime($user->appel_date2);
+											$userTime	= strtotime((string) $user->appel_date2);
 											echo '<br /><span style="font-size:10px;color:#aaa;">+ '.date('d/m/Y', $userTime).'</span>';
 										
 										}
@@ -271,7 +271,7 @@
 								</td>
 							</tr>
 							<?php if($user->helvetica == 1) { 
-									$photos	= array();
+									$photos	= [];
 			
 									// rcup les photos de l'utilisateur, autres que celle par dfaut
 									$dir	= '../images/profil/'.$user->id;
@@ -557,7 +557,7 @@
 			JL::makeSafe($userObj);
 			
 			// variables
-			$photos	= array();
+			$photos	= [];
 			
 			// rp les photos de l'utilisateur, autres que celle par dut
 			$dir	= '../images/profil/'.$userObj->id;
@@ -697,7 +697,7 @@
 					<table cellpadding="0" cellspacing="0" class="table table-bordered table-striped table-condensed cf editer">
 						<tr>
 							<td class="key">Abonnement jusqu'au:</td>
-							<td><input type="text" name="gold_limit_date" value="<?php echo $userObj->gold_limit_date != '0000-00-00' ? date('d/m/Y', strtotime($userObj->gold_limit_date)) : ''; ?>" size="9" /> <i>(jj/mm/aaaa)</i></td>
+							<td><input type="text" name="gold_limit_date" value="<?php echo $userObj->gold_limit_date != '0000-00-00' ? date('d/m/Y', strtotime((string) $userObj->gold_limit_date)) : ''; ?>" size="9" /> <i>(jj/mm/aaaa)</i></td>
 						</tr>
 						<tr>
 							<td class="key">Cr&eacute;diter abonnement:</td>
@@ -785,7 +785,7 @@
 						<tr>
 							<td class="key">Inscription:</td>
 							<td>
-								<?php echo date('d/m/Y', strtotime($userObj->creation_date)); ?>
+								<?php echo date('d/m/Y', strtotime((string) $userObj->creation_date)); ?>
 							</td>
 						</tr>
 						<tr>
@@ -799,16 +799,16 @@
 						<tr>
 							<td class="key">Paiement en ligne:</td>
 							<td>
-								<?php echo $userObj->abonnement_carte ? date('d/m/Y', strtotime($userObj->abonnement_carte)).' - '.$userObj->abonnement_carte_nom.' '.$userObj->abonnement_carte_prenom.' - '.($userObj->abonnement_carte_valide==1 ? 'en cours' : 'annul&eacute;' ) : '-'; ?>
+								<?php echo $userObj->abonnement_carte ? date('d/m/Y', strtotime((string) $userObj->abonnement_carte)).' - '.$userObj->abonnement_carte_nom.' '.$userObj->abonnement_carte_prenom.' - '.($userObj->abonnement_carte_valide==1 ? 'en cours' : 'annul&eacute;' ) : '-'; ?>
 							</td>
 						</tr>
 						<tr>
 							<td class="key">1er appel:</td>
-							<td><input type="text" name="appel_date" value="<?php echo $userObj->appel_date != '0000-00-00' ? date('d/m/Y', strtotime($userObj->appel_date)) : ''; ?>" size="9" /> <i>(jj/mm/aaaa)</i></td>
+							<td><input type="text" name="appel_date" value="<?php echo $userObj->appel_date != '0000-00-00' ? date('d/m/Y', strtotime((string) $userObj->appel_date)) : ''; ?>" size="9" /> <i>(jj/mm/aaaa)</i></td>
 						</tr>
 						<tr>
 							<td class="key">2&egrave;me appel:</td>
-							<td><input type="text" name="appel_date2" value="<?php echo $userObj->appel_date2 != '0000-00-00' ? date('d/m/Y', strtotime($userObj->appel_date2)) : ''; ?>" size="9" /> <i>(jj/mm/aaaa)</i></td>
+							<td><input type="text" name="appel_date2" value="<?php echo $userObj->appel_date2 != '0000-00-00' ? date('d/m/Y', strtotime((string) $userObj->appel_date2)) : ''; ?>" size="9" /> <i>(jj/mm/aaaa)</i></td>
 						</tr>
 						<tr>
 							<td class="key">Commentaire:</td>

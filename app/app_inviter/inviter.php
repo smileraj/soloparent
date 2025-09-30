@@ -9,7 +9,7 @@
 	global $action, $user;
 
 	// gestion des messages d'erreurs
-	$messages	= array();
+	$messages	= [];
 
 	/*
 		new: formulaire nouveau t&eacute;moignage
@@ -50,7 +50,7 @@
 	}
 
 
-	function parrainage($messages = array()) {
+	function parrainage($messages = []) {
 		global $langue;
 		global $db, $user, $action;
 
@@ -76,14 +76,14 @@
 
 	function &parrainage_data() {
 		global $langue;
-		$_data	= array(
+		$_data	= [
 			'email1' 	=> '',
 			'email2' 	=> '',
 			'email3' 	=> '',
 			'email4' 	=> '',
 			'email5' 	=> '',
 			'message' 	=> ''
-		);
+		];
 		return $_data;
 	}
 
@@ -94,8 +94,8 @@
 		global $db, $user;
 
 		// gestion des messages d'erreurs
-		$messages	= array();
-		$emails 		= array();
+		$messages	= [];
+		$emails 		= [];
 		$row			= new stdClass();
 
 		// initialise les donn&eacute;es
@@ -113,35 +113,35 @@
 		}
 		
 		if($row->email1)
-			if(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,3}$/', $row->email1)) {
+			if(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,3}$/', (string) $row->email1)) {
 				$messages[]	= '<span class="error">'.$lang_inviter["Email1NonValide"].'.</span>';
 			}else{
 				$emails[] = $row->email1;
 		}
 		
 		if($row->email2)
-			if(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,3}$/', $row->email2)) {
+			if(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,3}$/', (string) $row->email2)) {
 				$messages[]	= '<span class="error">'.$lang_inviter["Email2NonValide"].'.</span>';
 			}else{
 				$emails[] = $row->email2;
 		}
 		
 		if($row->email3)
-			if(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,3}$/', $row->email3)) {
+			if(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,3}$/', (string) $row->email3)) {
 				$messages[]	= '<span class="error">'.$lang_inviter["Email3NonValide"].'.</span>';
 			}else{
 				$emails[] = $row->email3;
 		}
 		
 		if($row->email4)
-			if(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,3}$/', $row->email4)) {
+			if(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,3}$/', (string) $row->email4)) {
 				$messages[]	= '<span class="error">'.$lang_inviter["Email4NonValide"].'.</span>';
 			}else{
 				$emails[] = $row->email4;
 		}
 		
 		if($row->email5)
-			if(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,3}$/', $row->email5)) {
+			if(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,3}$/', (string) $row->email5)) {
 				$messages[]	= '<span class="error">'.$lang_inviter["Email5NonValide"].'.</span>';
 			}else{
 				$emails[] = $row->email5;
@@ -189,7 +189,7 @@
 					$mailing->titre		= str_replace('{username}', $user->username, 	$mailing->titre);
 
 					// int&eacute;gration du texte et du template, ainsi que traitement des mots cl&eacute;s
-					$mailingTexte 	= JL::getMailHtml(SITE_PATH_ADMIN.'/app/app_mailing/template/'.$mailing->template, $mailing->titre, $mailing->texte, $user->username, array($row->message, JL::url(SITE_URL.'/index.php?app=profil&action=inscription&parrain_id='.$user->id.'&'.$langue)));
+					$mailingTexte 	= JL::getMailHtml(SITE_PATH_ADMIN.'/app/app_mailing/template/'.$mailing->template, $mailing->titre, $mailing->texte, $user->username, [$row->message, JL::url(SITE_URL.'/index.php?app=profil&action=inscription&parrain_id='.$user->id.'&'.$langue)]);
 
 					// envoi du mail
 					@JL::mail($email, $mailing->titre, $mailingTexte);
@@ -226,7 +226,7 @@
 	}
 
 
-	function conseiller($messages = array()) {
+	function conseiller($messages = []) {
 		global $langue;
 		global $db, $user, $action;
 
@@ -252,7 +252,7 @@
 
 	function &conseiller_data() {
 		global $langue;
-		$_data	= array(
+		$_data	= [
 			'nom' 	=> '',
 			'prenom' 	=> '',
 			'email' 	=> '',
@@ -262,7 +262,7 @@
 			'email4' 	=> '',
 			'email5' 	=> '',
 			'message' 	=> ''
-		);
+		];
 		return $_data;
 	}
 
@@ -273,8 +273,8 @@
 		global $db, $user;
 
 		// gestion des messages d'erreurs
-		$messages	= array();
-		$emails 		= array();
+		$messages	= [];
+		$emails 		= [];
 		$row			= new stdClass();
 
 		// initialise les donn&eacute;es
@@ -304,35 +304,35 @@
 		}
 		
 		if($row->email1)
-			if(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,3}$/', $row->email1)) {
+			if(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,3}$/', (string) $row->email1)) {
 				$messages[]	= '<span class="error">'.$lang_inviter["Email1NonValide"].'.</span>';
 			}else{
 				$emails[] = $row->email1;
 		}
 		
 		if($row->email2)
-			if(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,3}$/', $row->email2)) {
+			if(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,3}$/', (string) $row->email2)) {
 				$messages[]	= '<span class="error">'.$lang_inviter["Email2NonValide"].'.</span>';
 			}else{
 				$emails[] = $row->email2;
 		}
 		
 		if($row->email3)
-			if(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,3}$/', $row->email3)) {
+			if(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,3}$/', (string) $row->email3)) {
 				$messages[]	= '<span class="error">'.$lang_inviter["Email3NonValide"].'.</span>';
 			}else{
 				$emails[] = $row->email3;
 		}
 		
 		if($row->email4)
-			if(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,3}$/', $row->email4)) {
+			if(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,3}$/', (string) $row->email4)) {
 				$messages[]	= '<span class="error">'.$lang_inviter["Email4NonValide"].'.</span>';
 			}else{
 				$emails[] = $row->email4;
 		}
 		
 		if($row->email5)
-			if(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,3}$/', $row->email5)) {
+			if(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,3}$/', (string) $row->email5)) {
 				$messages[]	= '<span class="error">'.$lang_inviter["Email5NonValide"].'.</span>';
 			}else{
 				$emails[] = $row->email5;
@@ -378,7 +378,7 @@
 				$mailing->titre		= str_replace('{username}', $row->prenom.' '.$row->nom, 	$mailing->titre);
 
 				// int&eacute;gration du texte et du template, ainsi que traitement des mots cl&eacute;s
-				$mailingTexte 	= JL::getMailHtml(SITE_PATH_ADMIN.'/app/app_mailing/template/'.$mailing->template, $mailing->titre, $mailing->texte, $row->prenom.' '.$row->nom, array($row->message));
+				$mailingTexte 	= JL::getMailHtml(SITE_PATH_ADMIN.'/app/app_mailing/template/'.$mailing->template, $mailing->titre, $mailing->texte, $row->prenom.' '.$row->nom, [$row->message]);
 
 				// envoi du mail
 				@JL::mail($email_ami, $mailing->titre, $mailingTexte);

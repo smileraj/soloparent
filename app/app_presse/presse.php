@@ -7,32 +7,14 @@
 
 	global $db, $user, $langue, $action;
 	
-	switch($action){
-				
-			case 'articles':
-				display(120);
-			break;
-			
-			case 'radios':
-				display(121);
-			break;
-			
-			case 'affiches':
-				display(122);
-			break;
-			
-			case 'communique':
-				display(27);
-			break;
-			
-			case 'dossier':
-				display(29);
-			break;
-			
-			default:
-				display(119);
-			break;
-		}
+	match ($action) {
+        'articles' => display(120),
+        'radios' => display(121),
+        'affiches' => display(122),
+        'communique' => display(27),
+        'dossier' => display(29),
+        default => display(119),
+    };
 		
 		function display($id){
 			global $db;

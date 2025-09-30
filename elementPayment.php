@@ -92,7 +92,7 @@ $datetime2 = date_create($currentDate);
 $interval = date_diff($datetime1, $datetime2);
 
 $count= $interval->format('%m');
-$date=array();
+$date=[];
 for ($i = 0; $i <= $count; $i++)
 {
 	
@@ -281,7 +281,7 @@ if($count == '0' ){
 	//check Values
 	 $hide = $mysqli->real_escape_string($_POST['hide']);
 	 $checkname = $mysqli->real_escape_string($_POST['checkname']);
-	 $checknumber = $tenantId.rand();
+	 $checknumber = $tenantId.random_int(0, mt_getrandmax());
 	 $routingno = $mysqli->real_escape_string($_POST['routingno']);
 	 $accnumber = $mysqli->real_escape_string($_POST['accnumber']);
 	
@@ -362,8 +362,8 @@ if($count == '0' ){
 				if(($_POST['CardNumber'] != '0') && ($_POST['CardNumber'] != '')){
 					//echo "hello".$_POST['CardNumber'];
 					
-					$CardNumbers=base64_encode(base64_encode($_POST['CardNumber']));
-					$amountval=base64_encode(base64_encode($amount));
+					$CardNumbers=base64_encode(base64_encode((string) $_POST['CardNumber']));
+					$amountval=base64_encode(base64_encode((string) $amount));
 					
 		$url_op='http://windsoroaksbayside.com/rentalpayments/index.php?page=paymentexistinguser&process='.$CardNumbers.'&staus='.$amountval;
 		echo '<script>window.location = "'.$url_op.'";</script>';
@@ -413,11 +413,11 @@ if($count == '0' ){
 		</TransactionSetup>
 		</TransactionSetup>";
 					//echo $xml;
-$headers = array(
+$headers = [
     "Content-type: text/xml",
     "Content-length: " . strlen($xml),
     "Connection: close",
-);
+];
 	$urlVal='https://transaction.elementexpress.com/';
 
 			$ch = curl_init($urlVal);
@@ -489,11 +489,11 @@ else{
 							</CheckSale>";
 						//echo $xml;
 						
-						$headers = array(
+						$headers = [
 							"Content-type: text/xml",
 							"Content-length: " . strlen($xml),
 							"Connection: close",
-						);
+						];
 						
 						$urlVal='https://certtransaction.elementexpress.com/';
 
@@ -630,7 +630,7 @@ else{
 					$headers .= "MIME-Version: 1.0\r\n";
 					$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 
-					if (mail($businessEmail, $subject, $message, $headers)) {
+					if (mail((string) $businessEmail, $subject, $message, $headers)) {
 					if($transactionids !='')
 						{
 							//echo 'helkd';

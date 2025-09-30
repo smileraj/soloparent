@@ -1,6 +1,6 @@
 <?php
 
-$lang_flbl = array(
+$lang_flbl = [
 
 	
 	"Favoris" => "Favoriten",
@@ -54,5 +54,5 @@ $lang_flbl = array(
 	
 	"ProfilIntrouvabe" => "Unauffindbares Profil",
 
-);
+];
 ?>

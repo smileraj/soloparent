@@ -1,6 +1,6 @@
 <?php
 
-$lang_appexpert = array(
+$lang_appexpert = [
 	
 	//*View
 	
@@ -53,6 +53,6 @@ $lang_appexpert = array(
 	//**Confirmation d'envoi
 	
 	"QuestionEnvoyee" => "Votre question a bien �t� envoy�e",
-);
+];
 
 ?>

@@ -9,19 +9,12 @@
 	if($_GET["lang"]=='fr')
 		$langString = "";
 	else
-		$langString = "_".$_GET[lang];
+		$langString = "_".$_GET[\LANG];
 
-	switch($action) {
-
-		case 'item':
-		contenuAfficher();
-		break;
-
-		default:
-		JL::loadApp('404');
-		break;
-
-	}
+	match ($action) {
+        'item' => contenuAfficher(),
+        default => JL::loadApp('404'),
+    };
 
 
 	// affiche un contenu pass� en param $id
@@ -32,7 +25,7 @@
 
 		$id = intval(JL::getVar('id', 0));
 
-		$where	= array();
+		$where	= [];
 		$_where	= '';
 
 		$where[]	= "c.id = ".$id;		// contenu

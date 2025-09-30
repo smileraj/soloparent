@@ -51,8 +51,8 @@
 						<tr class="tr<?php echo $i; ?>">
 							<td><a href="<?php echo SITE_URL_ADMIN; ?>/index.php?app=redac&action=edit&id=<?php echo $contenu->id; ?><?php if($lang!='') echo '&lang='.$lang; ?>" title="Modifier ce contenu"><?php echo $contenu->titre; ?></a></td>
 							<td align="center"><img src="images/<?php echo $contenu->published; ?>.png" /></td>
-							<td><?php echo date('d/m/Y', strtotime($contenu->date_add)); ?></td>
-							<td><?php echo $contenu->date_update != '0000-00-00 00:00:00' ? date('d/m/Y', strtotime($contenu->date_update)) : ''; ?></td>
+							<td><?php echo date('d/m/Y', strtotime((string) $contenu->date_add)); ?></td>
+							<td><?php echo $contenu->date_update != '0000-00-00 00:00:00' ? date('d/m/Y', strtotime((string) $contenu->date_update)) : ''; ?></td>
 							<?php if($type_id == 2) { ?><td align="center"><img src="images/<?php echo $contenu->footer; ?>.png" /></td><?php } ?>
 						</tr>
 						<?php 
@@ -132,14 +132,14 @@
 					<tr>
 						<td></td>
 						<td>
-							<i>Cr&eacute;&eacute; le <?php echo date('d/m/Y', strtotime($contenu->date_add)); ?> par <a href="<?php echo SITE_URL_ADMIN; ?>/index.php?app=user&action=editer&id=<?php echo $contenu->user_id_add; ?>" target="_blank"><?php echo $contenu->user_name_add; ?></a></i>
+							<i>Cr&eacute;&eacute; le <?php echo date('d/m/Y', strtotime((string) $contenu->date_add)); ?> par <a href="<?php echo SITE_URL_ADMIN; ?>/index.php?app=user&action=editer&id=<?php echo $contenu->user_id_add; ?>" target="_blank"><?php echo $contenu->user_name_add; ?></a></i>
 						</td>
 					</tr>
 					<?php if($contenu->user_id_update) { ?>
 					<tr>
 						<td></td>
 						<td>
-							<i>Mis &agrave; jour le <?php echo date('d/m/Y', strtotime($contenu->date_update)); ?> par <a href="<?php echo SITE_URL_ADMIN; ?>/index.php?app=user&action=editer&id=<?php echo $contenu->user_id_update; ?>" target="_blank"><?php echo $contenu->user_name_update; ?></a></i>
+							<i>Mis &agrave; jour le <?php echo date('d/m/Y', strtotime((string) $contenu->date_update)); ?> par <a href="<?php echo SITE_URL_ADMIN; ?>/index.php?app=user&action=editer&id=<?php echo $contenu->user_id_update; ?>" target="_blank"><?php echo $contenu->user_name_update; ?></a></i>
 						</td>
 					</tr>
 					<?php 					}

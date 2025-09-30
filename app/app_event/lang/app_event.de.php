@@ -1,6 +1,6 @@
 <?php
 
-$lang_event = array(
+$lang_event = [
 
 	//------------------Page event.html.php ---------
 
@@ -70,5 +70,5 @@ $lang_event = array(
 	
 
 	
-);
+];
 ?>

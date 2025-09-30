@@ -50,7 +50,7 @@ function cancelsubmit(action) {
                     <td><?=$row->username?> (<?=$row->id?>)</td>
                     <td><?=$row->last_online?></td>
                     <td><?=tools_HTML::input_select($compatProfile, $i);?></td>
-                    <td><?=strtoupper($row->genre);?></td>
+                    <td><?=strtoupper((string) $row->genre);?></td>
                 </tr>
                 <input type="hidden" name="action" id="action" value="default"/>
                 <?php $i++; ?>

@@ -48,7 +48,7 @@ class CropAvatar {
 
   private function setData($data) {
     if (!empty($data)) {
-      $this -> data = json_decode(stripslashes($data));
+      $this -> data = json_decode(stripslashes((string) $data));
     }
   }
 
@@ -206,7 +206,7 @@ unset($files[0]);
 else{
 $files=$files;
 }
-$filesFound = array();
+$filesFound = [];
 	  
 	  
 //initial data
@@ -223,7 +223,7 @@ $initialcount= count($filesFound);
 //pending count//;
  function filterpending($var) 
  { 
- return preg_match("/pending/i", $var);
+ return preg_match("/pending/i", (string) $var);
  }
  $pendingfiltered = array_filter($filesFound,'filterpending');
  $pendingcount=count($pendingfiltered);
@@ -231,7 +231,7 @@ $initialcount= count($filesFound);
  
  function filtertemp($var) 
  { 
- return preg_match("/temp/i", $var);
+ return preg_match("/temp/i", (string) $var);
  }
  $tempfiltered = array_filter($filesFound,'filtertemp');
  $tempcount=count($tempfiltered);
@@ -245,7 +245,7 @@ unset($files[0]);
 else{
 $files=$files;
 }
-$profilenumber=array();
+$profilenumber=[];
 $maxodend=0;
 foreach($files as $files)
 {
@@ -303,13 +303,13 @@ imagepng($image_p_270);
 $data5 = ob_get_contents();
 ob_end_clean();
 //Store & Display
-$context = stream_context_create(array('gs' =>array(
+$context = stream_context_create(['gs' =>[
         'acl'=> 'public-read', 
         'Content-Type' => 'image/jpeg', 
         'enable_cache' => true, 
         'enable_optimistic_cache' => true,
         'read_cache_expiry_seconds' => 300,
-    )));
+    ]]);
 
 //end resize
 //mysqli_query($connection, 'UPDATE user_stats SET photo_a_valider = photo_a_valider+1 WHERE user_id = '.$upload_dir.'');
@@ -349,7 +349,7 @@ echo "1";
   }
 
   private function codeToMessage($code) {
-    $errors = array(
+    $errors = [
       UPLOAD_ERR_INI_SIZE =>'The uploaded file exceeds the upload_max_filesize directive in php.ini',
       UPLOAD_ERR_FORM_SIZE =>'The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form',
       UPLOAD_ERR_PARTIAL =>'The uploaded file was only partially uploaded',
@@ -357,7 +357,7 @@ echo "1";
       UPLOAD_ERR_NO_TMP_DIR =>'Missing a temporary folder',
       UPLOAD_ERR_CANT_WRITE =>'Failed to write file to disk',
       UPLOAD_ERR_EXTENSION =>'File upload stopped by extension',
-    );
+    ];
 
     if (array_key_exists($code, $errors)) {
       return $errors[$code];
@@ -376,16 +376,16 @@ echo "1";
 }
 
 $crop = new CropAvatar(
-  isset($_POST['avatar_src']) ? $_POST['avatar_src'] : null,
-  isset($_POST['avatar_data']) ? $_POST['avatar_data'] : null,
-  isset($_FILES['avatar_file']) ? $_FILES['avatar_file'] : null
+  $_POST['avatar_src'] ?? null,
+  $_POST['avatar_data'] ?? null,
+  $_FILES['avatar_file'] ?? null
 );
 
-$response = array(
+$response = [
   'state'  => 200,
   'message' => $crop -> getMsg(),
   'result' => $crop -> getResult()
-);
+];
 
 echo json_encode($response);
 

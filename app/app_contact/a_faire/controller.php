@@ -5,7 +5,7 @@
 	
 	class contactController extends JLController {
 	
-		function contactController($appLoad) {
+		function __construct($appLoad) {
 			parent::JLController($appLoad); // obligatoire pour l'instanciation
 			
 			// ajoute le model par d&eacute;faut
@@ -43,7 +43,7 @@
 			
 			
 			// captcha
-			$this->model->_data->captcha		= rand(10,99).chr(rand(65,90)).rand(10,99).chr(rand(65,90));
+			$this->model->_data->captcha		= random_int(10,99).chr(random_int(65,90)).random_int(10,99).chr(random_int(65,90));
 			$this->model->_data->captchaAbo		= md5(date('m/Y').$this->model->_data->captcha);
 			
 			

@@ -18,8 +18,8 @@
 	$ville_id	= intval(JL::getVar('ville_id', true));
 	$prefix		= JL::getVar('prefix', true);
 
-	$options	= array();
-	$villes		= array();
+	$options	= [];
+	$villes		= [];
 
 	$options[] = JL::makeOption('0', $lang_apphome["Ville"]);
 
@@ -36,7 +36,7 @@
 		$options	= array_merge($options, $villes);
 	}
 
-	echo 'blba'.utf8_decode(JL::makeSelectList($options, $prefix.'ville_id', 'id="'.$prefix.'ville_id"', 'value', 'text', $ville_id));
+	echo 'blba'.mb_convert_encoding(JL::makeSelectList($options, $prefix.'ville_id', 'id="'.$prefix.'ville_id"', 'value', 'text', $ville_id), 'ISO-8859-1');
 
 	// déconnexion DB
 	$db->disconnect();

@@ -22,12 +22,12 @@
 	$groupe = $db->loadObject($query);
 
 	// limitation de la longueur du titre
-	if(strlen($groupe->titre) > TITRE_HOME) {
-		$groupe->titre = substr($groupe->titre, 0, TITRE_HOME).'...';
+	if(strlen((string) $groupe->titre) > TITRE_HOME) {
+		$groupe->titre = substr((string) $groupe->titre, 0, TITRE_HOME).'...';
 	}
 	
 	// limitation de la longueur de l'intro
-	$groupe->texte = strip_tags(html_entity_decode($groupe->texte));
+	$groupe->texte = strip_tags(html_entity_decode((string) $groupe->texte));
 	if(strlen($groupe->texte) > INTRO_HOME) {
 		$groupe->texte = substr($groupe->texte, 0, INTRO_HOME).'...';
 	}

@@ -20,7 +20,7 @@
 	}
 
 	// gestion des messages d'erreurs
-	$messages	= array();
+	$messages	= [];
 
 
 	// controller
@@ -72,7 +72,7 @@
 		global $db;
 
 		// variables
-		$contenu	= array();
+		$contenu	= [];
 
 		// r&eacute;cup le contenu de la page
 		$query = "SELECT  titre_".$_GET['lang']." as titre, texte_".$_GET['lang']." as texte"
@@ -136,7 +136,7 @@
 		global $db;
 
 		// r&eacute;cup les valeurs qui &eacute;taient pass&eacute;es dans custom
-		$arguments 		= explode(":", base64_decode($custom));
+		$arguments 		= explode(":", base64_decode((string) $custom));
 		$md5			= $arguments[0]; 		// md5 de v&eacute;rfication
 		$paypal_id		= isset($arguments[1]) ? (int)$arguments[1] : 0; 	// SQL: paypal.id
 
@@ -149,7 +149,7 @@
 		;
 		$duree_credite = $db->loadResult($query);
 		
-		HTML_abonnement::paypalReturn($duree_credite?$duree_credite:false);
+		HTML_abonnement::paypalReturn($duree_credite ?: false);
 
 	}
 
@@ -164,7 +164,7 @@
 		$row = $db->loadObject($query);
 
 		// abonnement ou m&eacute;thodes inconnu(e)(s)
-		if(!$row || !in_array($methode_id, array(2,3))) {
+		if(!$row || !in_array($methode_id, [2,3])) {
 			JL::redirect('index.php?app=abonnement&action=abonner&'.$langue);
 		}
 		

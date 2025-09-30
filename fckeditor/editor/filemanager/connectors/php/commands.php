@@ -28,7 +28,7 @@ function GetFolders( $resourceType, $currentFolder )
 	$sServerDir = ServerMapFolder( $resourceType, $currentFolder, 'GetFolders' ) ;
 
 	// Array that will hold the folders names.
-	$aFolders	= array() ;
+	$aFolders	= [] ;
 
 	$oCurrentFolder = opendir( $sServerDir ) ;
 
@@ -57,8 +57,8 @@ function GetFoldersAndFiles( $resourceType, $currentFolder )
 	$sServerDir = ServerMapFolder( $resourceType, $currentFolder, 'GetFoldersAndFiles' ) ;
 
 	// Arrays that will hold the folders and files names.
-	$aFolders	= array() ;
-	$aFiles		= array() ;
+	$aFolders	= [] ;
+	$aFiles		= [] ;
 
 	$oCurrentFolder = opendir( $sServerDir ) ;
 
@@ -117,7 +117,7 @@ function CreateFolder( $resourceType, $currentFolder )
 		$sNewFolderName = $_GET['NewFolderName'] ;
 		$sNewFolderName = SanitizeFolderName( $sNewFolderName ) ;
 
-		if ( strpos( $sNewFolderName, '..' ) !== FALSE )
+		if ( str_contains( (string) $sNewFolderName, '..' ) )
 			$sErrorNumber = '102' ;		// Invalid folder name.
 		else
 		{
@@ -130,19 +130,11 @@ function CreateFolder( $resourceType, $currentFolder )
 
 				$sErrorMsg = CreateServerFolder( $sServerDir ) ;
 
-				switch ( $sErrorMsg )
-				{
-					case '' :
-						$sErrorNumber = '0' ;
-						break ;
-					case 'Invalid argument' :
-					case 'No such file or directory' :
-						$sErrorNumber = '102' ;		// Path too long.
-						break ;
-					default :
-						$sErrorNumber = '110' ;
-						break ;
-				}
+				$sErrorNumber = match ($sErrorMsg) {
+                    '' => '0',
+                    'Invalid argument', 'No such file or directory' => '102',
+                    default => '110',
+                };
 			}
 			else
 				$sErrorNumber = '103' ;
@@ -179,7 +171,7 @@ function FileUpload( $resourceType, $currentFolder, $sCommand )
 		$sOriginalFileName = $sFileName ;
 
 		// Get the extension.
-		$sExtension = substr( $sFileName, ( strrpos($sFileName, '.') + 1 ) ) ;
+		$sExtension = substr( (string) $sFileName, ( strrpos((string) $sFileName, '.') + 1 ) ) ;
 		$sExtension = strtolower( $sExtension ) ;
 
 		if ( isset( $Config['SecureImageUploads'] ) )

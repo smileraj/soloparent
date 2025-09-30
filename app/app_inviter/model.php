@@ -4,17 +4,16 @@
 	defined('JL') or die('Error 401');
 
 	$location = "";
-	$cookiearr = array();
+	$cookiearr = [];
 	$csv_source_encoding='utf-8';
 
 	class fairepartModel extends JLModel {
 
-		var $pagination;
+		public $pagination;
 
 
-		function fairepartModel() {
+		function __construct() {
 			global $langue;
-			parent::JLModel();
 
 			$this->pagination = new JLPagination(PAGINATION_RAYON_BACKEND);
 
@@ -243,7 +242,7 @@
 			global $db;
 
 			// variables
-			$listTemplate 	= array();
+			$listTemplate 	= [];
 
 
 			// parcourt le dossier des templates et r&eacute;cup les fichiers

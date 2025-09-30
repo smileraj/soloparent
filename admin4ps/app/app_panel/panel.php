@@ -10,9 +10,7 @@ global $user, $action, $db;
 // Ensure $db has affected_rows method
 if (!method_exists($db, 'affected_rows')) {
     // Add this dynamically for older DB class
-    $db->affected_rows = function() use ($db) {
-        return mysqli_affected_rows($db->getConnexion());
-    };
+    $db->affected_rows = (fn() => mysqli_affected_rows($db->getConnexion()));
 }
 
 // user log
@@ -43,7 +41,7 @@ if ($user->id) {
     $maintenance->user_inscription = mysqli_affected_rows($db->getConnexion());
 
     // render panel home page
-    HTML_panel::homePage($maintenance);
+    HTML_panel::homePage();
 
 } else {
     // user non log

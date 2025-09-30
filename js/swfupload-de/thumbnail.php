@@ -9,7 +9,7 @@
 	
 	session_start();
 	
-	$image_id = isset($_GET["id"]) ? $_GET["id"] : false;
+	$image_id = $_GET["id"] ?? false;
 
 	if ($image_id === false) {
 		header("HTTP/1.1 500 Internal Server Error");
@@ -23,7 +23,7 @@
 	}
 
 	header("Content-type: image/jpeg") ;
-	header("Content-Length: ".strlen($_SESSION["file_info"][$image_id]));
+	header("Content-Length: ".strlen((string) $_SESSION["file_info"][$image_id]));
 	echo $_SESSION["file_info"][$image_id];
 	exit(0);
 	

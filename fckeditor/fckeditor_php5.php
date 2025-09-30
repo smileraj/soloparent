@@ -37,9 +37,9 @@ function FCKeditor_IsCompatibleBrowser()
 		$sAgent = $_SERVER['HTTP_USER_AGENT'] ;
 	}
 	else {
-		global $HTTP_SERVER_VARS ;
-		if ( isset( $HTTP_SERVER_VARS ) ) {
-			$sAgent = $HTTP_SERVER_VARS['HTTP_USER_AGENT'] ;
+		global $_SERVER ;
+		if ( isset( $_SERVER ) ) {
+			$sAgent = $_SERVER['HTTP_USER_AGENT'] ;
 		}
 		else {
 			global $HTTP_USER_AGENT ;
@@ -47,22 +47,22 @@ function FCKeditor_IsCompatibleBrowser()
 		}
 	}
 
-	if ( strpos($sAgent, 'MSIE') !== false && strpos($sAgent, 'mac') === false && strpos($sAgent, 'Opera') === false )
+	if ( str_contains((string) $sAgent, 'MSIE') && !str_contains((string) $sAgent, 'mac') && !str_contains((string) $sAgent, 'Opera') )
 	{
-		$iVersion = (float)substr($sAgent, strpos($sAgent, 'MSIE') + 5, 3) ;
+		$iVersion = (float)substr((string) $sAgent, strpos((string) $sAgent, 'MSIE') + 5, 3) ;
 		return ($iVersion >= 5.5) ;
 	}
-	else if ( strpos($sAgent, 'Gecko/') !== false )
+	else if ( str_contains((string) $sAgent, 'Gecko/') )
 	{
-		$iVersion = (int)substr($sAgent, strpos($sAgent, 'Gecko/') + 6, 8) ;
+		$iVersion = (int)substr((string) $sAgent, strpos((string) $sAgent, 'Gecko/') + 6, 8) ;
 		return ($iVersion >= 20030210) ;
 	}
-	else if ( strpos($sAgent, 'Opera/') !== false )
+	else if ( str_contains((string) $sAgent, 'Opera/') )
 	{
-		$fVersion = (float)substr($sAgent, strpos($sAgent, 'Opera/') + 6, 4) ;
+		$fVersion = (float)substr((string) $sAgent, strpos((string) $sAgent, 'Opera/') + 6, 4) ;
 		return ($fVersion >= 9.5) ;
 	}
-	else if ( preg_match( "|AppleWebKit/(\d+)|i", $sAgent, $matches ) )
+	else if ( preg_match( "|AppleWebKit/(\d+)|i", (string) $sAgent, $matches ) )
 	{
 		$iVersion = $matches[1] ;
 		return ( $matches[1] >= 522 ) ;
@@ -73,13 +73,6 @@ function FCKeditor_IsCompatibleBrowser()
 
 class FCKeditor
 {
-	/**
-	 * Name of the FCKeditor instance.
-	 *
-	 * @access protected
-	 * @var string
-	 */
-	public $InstanceName ;
 	/**
 	 * Path to FCKeditor relative to the document root.
 	 *
@@ -93,13 +86,6 @@ class FCKeditor
 	 * @var mixed
 	 */
 	public $Width ;
-	/**
-	 * Height of the FCKeditor.
-	 * Examples: 400, 50%
-	 *
-	 * @var mixed
-	 */
-	public $Height ;
 	/**
 	 * Name of the toolbar to load.
 	 *
@@ -122,21 +108,29 @@ class FCKeditor
 	public $Config ;
 
 	/**
-	 * Main Constructor.
-	 * Refer to the _samples/php directory for examples.
-	 *
-	 * @param string $instanceName
-	 */
-	public function __construct( $instanceName, $height = '200' )
+     * Main Constructor.
+     * Refer to the _samples/php directory for examples.
+     *
+     * @param string $InstanceName
+     * @param mixed $height
+     */
+    public function __construct( /**
+     * Name of the FCKeditor instance.
+     *
+     * @access protected
+     */
+    public $InstanceName, /**
+     * Height of the FCKeditor.
+     * Examples: 400, 50%
+     */
+    public $Height = '200' )
  	{
-		$this->InstanceName	= $instanceName ;
 		$this->BasePath		= '/fckeditor/' ;
 		$this->Width		= '100%' ;
-		$this->Height		= $height ;
 		$this->ToolbarSet	= 'Default' ;
 		$this->Value		= '' ;
 
-		$this->Config		= array() ;
+		$this->Config		= [] ;
 	}
 
 	/**
@@ -182,12 +176,12 @@ class FCKeditor
 		}
 		else
 		{
-			if ( strpos( $this->Width, '%' ) === false )
+			if ( !str_contains( (string) $this->Width, '%' ) )
 				$WidthCSS = $this->Width . 'px' ;
 			else
 				$WidthCSS = $this->Width ;
 
-			if ( strpos( $this->Height, '%' ) === false )
+			if ( !str_contains( (string) $this->Height, '%' ) )
 				$HeightCSS = $this->Height . 'px' ;
 			else
 				$HeightCSS = $this->Height ;
@@ -247,10 +241,10 @@ class FCKeditor
 	 */
 	public function EncodeConfig( $valueToEncode )
 	{
-		$chars = array(
+		$chars = [
 			'&' => '%26',
 			'=' => '%3D',
-			'"' => '%22' ) ;
+			'"' => '%22' ] ;
 
 		return strtr( $valueToEncode,  $chars ) ;
 	}

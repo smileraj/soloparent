@@ -33,7 +33,7 @@
 	
 	// variables
 	$_where			= '';
-	$where			= array();
+	$where			= [];
 	
 	// prise en compte de la case 'newsletter' dans les params du compte
 	$where[]		= "un.rappels = 1";
@@ -102,7 +102,7 @@
 			// intégration du texte et du template, ainsi que traitement des mots clés
 			$mailingTexte 	= JL::getMailHtml(SITE_PATH_ADMIN.'/app/app_mailing/template/'.$mailing->template, $mailing->titre, $mailing->texte, $user->username);
 			
-			if(in_array($user->langue_appel,array(1,0))){
+			if(in_array($user->langue_appel,[1,0])){
 				if($user->genre == 'h')
 					$mailingTexte = str_replace('{cher_titre}', 'Cher Monsieur', $mailingTexte);
 				elseif($user->genre == 'f')

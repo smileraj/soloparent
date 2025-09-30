@@ -4,7 +4,7 @@ defined('JL') or die('Error 401');
 global $user;
 
 // Include language file safely
-$lang = isset($_GET['lang']) ? $_GET['lang'] : 'en';
+$lang = $_GET['lang'] ?? 'en';
 include("lang/app_event.en.php");
 
 
@@ -46,11 +46,11 @@ class table_HTML {
                     <?php
                     for ($j = 0; $j < $nb_listdetails; $j++) {
                         $listdetail = $listdetails[$j];
-                        if (strlen($listdetail->event_desc) > 100) {
-                            $listdetail->event_desc = substr($listdetail->event_desc, 0, 100) . '...';
+                        if (strlen((string) $listdetail->event_desc) > 100) {
+                            $listdetail->event_desc = substr((string) $listdetail->event_desc, 0, 100) . '...';
                         }
-                        if (strlen($listdetail->event_name) > 10) {
-                            $listdetail->event_name = substr($listdetail->event_name, 0, 10) . '...';
+                        if (strlen((string) $listdetail->event_name) > 10) {
+                            $listdetail->event_name = substr((string) $listdetail->event_name, 0, 10) . '...';
                         }
                         $photo = SITE_URL . '/images/events/' . $listdetail->filename;
                         ?>
@@ -117,8 +117,8 @@ public static function readlist(&$readlist){
                                     </div>
                                     <?php } ?>
                                     <div class="col-md-8">
-                                        <b><?php echo $lang_event["fromdate"]; ?>:</b>&nbsp;&nbsp;<?php echo date('d-m-Y',strtotime($contenu->start_date))?>&nbsp;&nbsp;
-                                        <b><?php echo $lang_event["todate"]; ?></b> &nbsp;&nbsp;<?php echo date('d-m-Y',strtotime($contenu->end_date))?>
+                                        <b><?php echo $lang_event["fromdate"]; ?>:</b>&nbsp;&nbsp;<?php echo date('d-m-Y',strtotime((string) $contenu->start_date))?>&nbsp;&nbsp;
+                                        <b><?php echo $lang_event["todate"]; ?></b> &nbsp;&nbsp;<?php echo date('d-m-Y',strtotime((string) $contenu->end_date))?>
                                     </div><br />
                                     <div class="col-md-8"><b><?php echo $lang_event["desc"]; ?>:</b>&nbsp;&nbsp;<?php echo $contenu->event_desc?></div><br />
                                     <div class="col-md-8"><div style="text-align:right; font-style: italic"><?php echo $contenu->event_name; ?></div></div>
@@ -152,8 +152,8 @@ public static function search(&$listdetails, &$search) {
                 <?php
                 foreach ($listdetails as $listdetail) {
                     // Shorten descriptions and names
-                    $event_desc = strlen($listdetail->event_desc) > 100 ? substr($listdetail->event_desc, 0, 100) . '...' : $listdetail->event_desc;
-                    $event_name = strlen($listdetail->event_name) > 10 ? substr($listdetail->event_name, 0, 10) . '...' : $listdetail->event_name;
+                    $event_desc = strlen((string) $listdetail->event_desc) > 100 ? substr((string) $listdetail->event_desc, 0, 100) . '...' : $listdetail->event_desc;
+                    $event_name = strlen((string) $listdetail->event_name) > 10 ? substr((string) $listdetail->event_name, 0, 10) . '...' : $listdetail->event_name;
                     $photo = SITE_URL . '/images/events/' . $listdetail->filename;
                     ?>
                     <div class="col-md-6 col-sm-12">
@@ -189,26 +189,26 @@ public static function search(&$listdetails, &$search) {
             <div class="col-md-12 parentsolo_pagination parentsolo_plr_0">
                 <div class="col-md-3 text-left">
                     <?php if ($search['page'] > 1) { ?>
-                        <a href="<?php echo JL::url(SITE_URL.'/index.php?app=event&action=search&value='.urlencode($search['search_value']).'&page='.($search['page']-1).'&lang='.$_GET["lang"]); ?>" class="bouton envoyer" title="<?php echo $lang_event["PagePrecedente"]; ?>">&laquo; <?php echo $lang_event["PagePrecedente"]; ?></a>
+                        <a href="<?php echo JL::url(SITE_URL.'/index.php?app=event&action=search&value='.urlencode((string) $search['search_value']).'&page='.($search['page']-1).'&lang='.$_GET["lang"]); ?>" class="bouton envoyer" title="<?php echo $lang_event["PagePrecedente"]; ?>">&laquo; <?php echo $lang_event["PagePrecedente"]; ?></a>
                     <?php } ?>
                 </div>
                 <div class="col-md-6 text-center page_nav">
                     <span class="orange"><?php echo $search['page_total'] == 1 ? $lang_event["Page"] : $lang_event["Pages"]; ?></span>:
                     <?php
                     if ($debut > 1) { ?>
-                        <a href="<?php echo JL::url(SITE_URL.'/index.php?app=event&action=search&value='.urlencode($search['search_value']).'&page=1&lang='.$_GET["lang"]); ?>"><?php echo $lang_event["Debut"]; ?></a> ...
+                        <a href="<?php echo JL::url(SITE_URL.'/index.php?app=event&action=search&value='.urlencode((string) $search['search_value']).'&page=1&lang='.$_GET["lang"]); ?>"><?php echo $lang_event["Debut"]; ?></a> ...
                     <?php }
                     for ($i = $debut; $i <= $fin; $i++) { ?>
-                        <a href="<?php echo JL::url(SITE_URL.'/index.php?app=event&action=search&value='.urlencode($search['search_value']).'&page='.$i.'&lang='.$_GET["lang"]); ?>" <?php if ($i == $search['page']) echo 'class="active"'; ?>><?php echo $i; ?></a>
+                        <a href="<?php echo JL::url(SITE_URL.'/index.php?app=event&action=search&value='.urlencode((string) $search['search_value']).'&page='.$i.'&lang='.$_GET["lang"]); ?>" <?php if ($i == $search['page']) echo 'class="active"'; ?>><?php echo $i; ?></a>
                     <?php }
                     if ($fin < $search['page_total']) { ?>
-                        ... <a href="<?php echo JL::url(SITE_URL.'/index.php?app=event&action=search&value='.urlencode($search['search_value']).'&page='.$search['page_total'].'&lang='.$_GET["lang"]); ?>"><?php echo $lang_event["Fin"]; ?></a>
+                        ... <a href="<?php echo JL::url(SITE_URL.'/index.php?app=event&action=search&value='.urlencode((string) $search['search_value']).'&page='.$search['page_total'].'&lang='.$_GET["lang"]); ?>"><?php echo $lang_event["Fin"]; ?></a>
                     <?php } ?>
                     <i>(<?php echo $search['result_total']; ?> <?php echo $search['result_total'] > 1 ? $lang_event["AppelsATemoins"] : $lang_event["AppelATemoins"]; ?>)</i>
                 </div>
                 <div class="col-md-3 text-right">
                     <?php if ($search['page'] < $search['page_total']) { ?>
-                        <a href="<?php echo JL::url(SITE_URL.'/index.php?app=event&action=search&value='.urlencode($search['search_value']).'&page='.($search['page']+1).'&lang='.$_GET["lang"]); ?>" class="bouton envoyer" title="<?php echo $lang_event["PageSuivante"]; ?>"><?php echo $lang_event["PageSuivante"]; ?> &raquo;</a>
+                        <a href="<?php echo JL::url(SITE_URL.'/index.php?app=event&action=search&value='.urlencode((string) $search['search_value']).'&page='.($search['page']+1).'&lang='.$_GET["lang"]); ?>" class="bouton envoyer" title="<?php echo $lang_event["PageSuivante"]; ?>"><?php echo $lang_event["PageSuivante"]; ?> &raquo;</a>
                     <?php } ?>
                 </div>
             </div>

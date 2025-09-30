@@ -58,7 +58,7 @@ return true;
 
 	// variables
 	global $action, $user, $langue, $langString;
-	$messages	= array(); // gestion des messages d'erreurs
+	$messages	= []; // gestion des messages d'erreurs
 	if($_GET["lang"]=='fr')
 		$langString = "";
 	else
@@ -66,7 +66,7 @@ return true;
 	
 
 	// librairie de fonctions
-	if(in_array($action, array('panel', 'step6', 'step6submit'))) {
+	if(in_array($action, ['panel', 'step6', 'step6submit'])) {
 		require_once(SITE_PATH.'/framework/functions.php');
 	}
 
@@ -163,7 +163,7 @@ return true;
 			$messages = step5submit();
 
 			// messages pr�sents (un message seul = message de validation, donc user log)
-			if (is_array($messages)) {
+			if (!empty($messages)) {
 
 				// r�-affiche l'�tape
 				step5($messages);
@@ -190,7 +190,7 @@ return true;
 			$messages = step4submit();
 
 			// messages pr�sents (un message seul = message de validation, donc user log)
-			if (is_array($messages)) {
+			if (!empty($messages)) {
 
 				// r�-affiche l'�tape
 				step4($messages);
@@ -217,7 +217,7 @@ return true;
 			$messages = step3submit();
 
 			// messages pr�sents (un message seul = message de validation, donc user log)
-			if (is_array($messages)) {
+			if (!empty($messages)) {
 
 				// r�-affiche l'�tape
 				step3($messages);
@@ -244,7 +244,7 @@ return true;
 			$messages = step2submit();
 
 			// messages pr�sents (un message seul = message de validation, donc user log)
-			if (is_array($messages)) {
+			if (!empty($messages)) {
 
 				// r�-affiche l'�tape
 				step2($messages);
@@ -270,7 +270,7 @@ return true;
 			$messages = step1submit();
 
 			// messages pr�sents (un message seul = message de validation, donc user log)
-			if (is_array($messages)) {
+			if (!empty($messages)) {
 
 				// r�-affiche l'�tape
 				step1($messages);
@@ -349,7 +349,7 @@ return true;
 	}
 	
 
-	function step1($messages = array()) {
+	function step1($messages = []) {
 
 		global $langue,$langString;
 		include("lang/app_profil.".$_GET['lang'].".php");
@@ -365,16 +365,16 @@ return true;
 
 		// variables
 		$_data						= step1_data();
-		$row						= array();
-		$list						= array();
-		$list_genre					= array();
-		$list_naissance_jour		= array();
-		$list_naissance_mois		= array();
-		$list_naissance_annee		= array();
-		$list_signe_astrologique_id	= array();
-		$list_nb_enfants			= array();
-		$list_canton_id				= array();
-		$list_ville_id				= array();
+		$row						= [];
+		$list						= [];
+		$list_genre					= [];
+		$list_naissance_jour		= [];
+		$list_naissance_mois		= [];
+		$list_naissance_annee		= [];
+		$list_signe_astrologique_id	= [];
+		$list_nb_enfants			= [];
+		$list_canton_id				= [];
+		$list_ville_id				= [];
 		
 		
 
@@ -400,7 +400,7 @@ return true;
 			$tmp = $db->loadObjectList($query);
 
 			// extrait les valeurs de la date de naissance
-			$naissance_date	= explode('-', $tmp['naissance_date']);
+			$naissance_date	= explode('-', (string) $tmp['naissance_date']);
 			$tmp['naissance_annee'] 	= $naissance_date[0];
 			$tmp['naissance_mois'] 		= $naissance_date[1];
 			$tmp['naissance_jour'] 		= $naissance_date[2];
@@ -544,7 +544,7 @@ return true;
 
 	function step1_data() {
 		global $langue;
-		$_data	= array(
+		$_data	= [
 				'signe_astrologique_id' => 0,
 				'genre' => '',
 				'naissance_jour' => 0,
@@ -567,7 +567,7 @@ return true;
 				'conditions' => -1,
 				'offres' => '0',
 				'parrain_id' => 0
-			);
+			];
 		return $_data;
 	}
 
@@ -577,11 +577,12 @@ return true;
 		global $db, $user;
 
 		// gestion des messages d'erreurs
-		$messages			= array();
+		$messages			= [];
 
 
 		// donn�es � r�cup de l'�tape pr�c�dente + valeur par d�faut
 		$_data	= step1_data();
+		//
 		if(!$user->id){
 		// conserve les donn�es envoy�es en session
 		if (is_array($_data)) {
@@ -637,7 +638,7 @@ return true;
 		
 
 		// pr�nom non renseign�
-		if(strlen(JL::getSession('prenom', '', false)) == '') {
+		if(strlen(JL::getSession('prenom', '', false)) == 0) {
 		if(JL::getSession('conditions', -1) > 0) {
 				JL::setSession('conditions', '');
 			} else {
@@ -649,18 +650,18 @@ return true;
 		$canton=$_REQUEST['canton_id'];
 		$codepost=$_REQUEST['code_postal'];
 		$zipquery="Select zipcode_id from user_zipcode where postal_code=$codepost";
-		echo $zipquery;
+		
 	   $zipresult = $db->loadResult($zipquery);	
-	   print_R($zipresult);die;
+	   
  if($zipresult!=$canton){
- 				$messages[]	= '<span class="error">'.var_dump(zipresult).$lang_appprofil["zipcodevalidation"].'.</span>';
+ 				$messages[]	= '<span class="error">'.var_dump(\ZIPRESULT).$lang_appprofil["zipcodevalidation"].'.</span>';
 
  }
  	
 		
 //already exit validation telephone
 		$telephoneval=$_REQUEST['telephone'];
-		$telelength=strlen($telephoneval);
+		$telelength=strlen((string) $telephoneval);
 		if($telephoneval!='+41-' || $telephoneval!='+41'){
 		$telquery="select telephone from user_profil where telephone='$telephoneval' and user_active=1";
 		$telresult = $db->loadResult($telquery);
@@ -669,7 +670,7 @@ return true;
 		$messages[]	= '<span class="error">'.$lang_appprofil["telephonealreadyexist"].'.</span>';
 		}
 		}
-		if($telelength==6 || $telephoneval=='+41-' || $telephoneval==''||$telephoneval=='+41') {
+		if($telelength==6 || $telephoneval=='+91-' || $telephoneval==''||$telephoneval=='+91') {
 		if(JL::getSession('conditions', -1) > 0) {
 				JL::setSession('conditions', '');
 			} else {
@@ -678,7 +679,7 @@ return true;
 			$messages[]	= '<span class="error">'.$lang_appprofil["IndiquezNumTel"].'.</span>';
 		}
 		// nom non renseign�
-		if(strlen(JL::getSession('nom', '', false)) == '') {
+		if(strlen(JL::getSession('nom', '', false)) == 0) {
 		if(JL::getSession('conditions', -1) > 0) {
 				JL::setSession('conditions', '');
 			} else {
@@ -688,7 +689,7 @@ return true;
 		}
 
 		// adresse non renseign�
-		if(strlen(JL::getSession('adresse', '', false)) == '') {
+		if(strlen(JL::getSession('adresse', '', false)) == 0) {
 		if(JL::getSession('conditions', -1) > 0) {
 				JL::setSession('conditions', '');
 			} else {
@@ -698,7 +699,7 @@ return true;
 		}
 
 		// code postal non renseign�
-		if(strlen(JL::getSession('code_postal', '', false)) == '') {
+		if(strlen(JL::getSession('code_postal', '', false)) == 0) {
 		if(JL::getSession('conditions', -1) > 0) {
 				JL::setSession('conditions', '');
 			} else {
@@ -708,7 +709,7 @@ return true;
 		}
 		
 		// langue_appel non renseign�e
-		if(strlen(JL::getSession('langue_appel', '', false)) == '') {
+		if(strlen(JL::getSession('langue_appel', '', false)) == 0) {
 		if(JL::getSession('conditions', -1) > 0) {
 				JL::setSession('conditions', '');
 			} else {
@@ -820,7 +821,7 @@ return true;
 		
 
 		// pr�nom non renseign�
-		if(strlen(JL::getSession('prenom', '', false)) == '') {
+		if(strlen(JL::getSession('prenom', '', false)) == 0) {
 		
 			$messages[]	= '<span class="error">'.$lang_appprofil["IndiquezPrenom"].'.</span>';
 		}
@@ -834,31 +835,31 @@ return true;
 
  }                                                                                                                                                                                                                                                                  
 		// nom non renseign�
-		if(strlen(JL::getSession('nom', '', false)) == '') {
+		if(strlen(JL::getSession('nom', '', false)) == 0) {
 		
 			$messages[]	= '<span class="error">'.$lang_appprofil["IndiquezNom"].'.</span>';
 		}
 //telephone
 $telephoneval=$_REQUEST['telephone'];
-		$telelength=strlen($telephoneval);
-if($telelength==6 || $telephoneval=='+41-' || $telephoneval==''||$telephoneval=='+41') {
+		$telelength=strlen((string) $telephoneval);
+if($telelength==6 || $telephoneval=='+91-' || $telephoneval==''||$telephoneval=='+91') {
 		
 			$messages[]	= '<span class="error">'.$lang_appprofil["IndiquezNumTel"].'.</span>';
 		}
 		// adresse non renseign�
-		if(strlen(JL::getSession('adresse', '', false)) == '') {
+		if(strlen(JL::getSession('adresse', '', false)) == 0) {
 		
 			$messages[]	= '<span class="error">'.$lang_appprofil["IndiquezAdresse"].'.</span>';
 		}
 
 		// code postal non renseign�
-		if(strlen(JL::getSession('code_postal', '', false)) == '') {
+		if(strlen(JL::getSession('code_postal', '', false)) == 0) {
 		
 			$messages[]	= '<span class="error">'.$lang_appprofil["IndiquezCodePostal"].'.</span>';
 		}
 		
 		// langue_appel non renseign�e
-		if(strlen(JL::getSession('langue_appel', '', false)) == '') {
+		if(strlen(JL::getSession('langue_appel', '', false)) == 0) {
 		
 			$messages[]	= '<span class="error">'.$lang_appprofil["IndiquezLangueAppel"].'.</span>';
 		}
@@ -994,14 +995,13 @@ if($telelength==6 || $telephoneval=='+41-' || $telephoneval==''||$telephoneval==
 			}
 
 		}
-
 		// retourne la liste des messages d'erreur
 		return $messages;
 
 	}
 
 
-	function step2($messages = array()) {
+	function step2($messages = []) {
 		global $langue, $langString;
 		include("lang/app_profil.".$_GET['lang'].".php");
 		global $db, $user;
@@ -1012,8 +1012,8 @@ if($telelength==6 || $telephoneval=='+41-' || $telephoneval==''||$telephoneval==
 
 		// donn�es de l'�tape + valeurs par d�faut
 		$_data					= step2_data();
-		$row					= array();
-		$list					= array();
+		$row					= [];
+		$list					= [];
 
 
 		// utilisateur log
@@ -1053,10 +1053,10 @@ if($telelength==6 || $telephoneval=='+41-' || $telephoneval==''||$telephoneval==
 
 	function step2_data() {
 		global $langue;
-		$_data	= array(
+		$_data	= [
 			'photo_defaut' => 1,
 			'photo_home' => 1
-		);
+		];
 		return $_data;
 	}
 
@@ -1066,7 +1066,7 @@ if($telelength==6 || $telephoneval=='+41-' || $telephoneval==''||$telephoneval==
 		global $db, $user;
 
 		// gestion des messages d'erreurs
-		$messages			= array();
+		$messages			= [];
 
 
 		// donn�es � r�cup de l'�tape pr�c�dente + valeur par d�faut
@@ -1117,14 +1117,14 @@ if($telelength==6 || $telephoneval=='+41-' || $telephoneval==''||$telephoneval==
 	}
 
 
-	function step3($messages = array()) {
+	function step3($messages = []) {
 		global $langue;
 		global $db, $user;
 
 		// donn�es de l'�tape + valeurs par d�faut
 		$_data						= step3_data();
-		$row						= array();
-		$list						= array();
+		$row						= [];
+		$list						= [];
 
 
 		// utilisateur log et aucun message pr�sent
@@ -1164,10 +1164,10 @@ if($telelength==6 || $telephoneval=='+41-' || $telephoneval==''||$telephoneval==
 
 	function step3_data() {
 		global $langue;
-		$_data	= array(
+		$_data	= [
 				'annonce' => '',
 				'published' => 2
-			);
+			];
 		return $_data;
 	}
 
@@ -1177,7 +1177,7 @@ if($telelength==6 || $telephoneval=='+41-' || $telephoneval==''||$telephoneval==
 		global $db, $user;
 
 		// gestion des messages d'erreurs
-		$messages			= array();
+		$messages			= [];
 
 
 		// donn�es � r�cup de l'�tape pr�c�dente + valeur par d�faut
@@ -1210,7 +1210,7 @@ if($telelength==6 || $telephoneval=='+41-' || $telephoneval==''||$telephoneval==
 				$annonce = $db->loadResult($query);
 
 				// si l'annonce r�dig�e est diff�rente de l'ancienne
-				if(strcmp($annonce, JL::getSession('annonce', ''))) {
+				if(strcmp((string) $annonce, JL::getSession('annonce', ''))) {
 
 					// enregistre les modifs en DB (certains champs ne sont pas mis � jour volontairement ==> s�curit� oblige !)
 					$query = "UPDATE user_annonce SET"
@@ -1257,46 +1257,46 @@ if($telelength==6 || $telephoneval=='+41-' || $telephoneval==''||$telephoneval==
 	}
 
 
-	function step4($messages = array()) {
+	function step4($messages = []) {
 		global $langue,$langString;
 		include("lang/app_profil.".$_GET['lang'].".php");
 		global $db, $user;
 
 		// donn�es de l'�tape + valeurs par d�faut
 		$_data						= step4_data();
-		$row						= array();
-		$list						= array();
-		$list_taille_id				= array();
-		$list_poids_id				= array();
-		$list_silhouette_id			= array();
-		$list_style_coiffure_id		= array();
-		$list_cheveux_id			= array();
-		$list_yeux_id				= array();
-		$list_origine_id			= array();
+		$row						= [];
+		$list						= [];
+		$list_taille_id				= [];
+		$list_poids_id				= [];
+		$list_silhouette_id			= [];
+		$list_style_coiffure_id		= [];
+		$list_cheveux_id			= [];
+		$list_yeux_id				= [];
+		$list_origine_id			= [];
 
-		$list_nationalite_id 		= array();
-		$list_religion_id 			= array();
-		$list_langue_id 			= array();
+		$list_nationalite_id 		= [];
+		$list_religion_id 			= [];
+		$list_langue_id 			= [];
 		
-		$list_statut_marital_id 	= array();
-		$list_me_marier_id 			= array();
-		$list_cherche_relation_id 	= array();
-		$list_niveau_etude_id 		= array();
-		$list_secteur_activite_id 	= array();
-		$list_fumer_id 				= array();
-		$list_temperament_id 		= array();
-		$list_vouloir_enfants_id 	= array();
-		$list_garde_id 				= array();
+		$list_statut_marital_id 	= [];
+		$list_me_marier_id 			= [];
+		$list_cherche_relation_id 	= [];
+		$list_niveau_etude_id 		= [];
+		$list_secteur_activite_id 	= [];
+		$list_fumer_id 				= [];
+		$list_temperament_id 		= [];
+		$list_vouloir_enfants_id 	= [];
+		$list_garde_id 				= [];
 
-		$list_vie_id 				= array();
-		$list_cuisine_id 			= array();
-		$list_sortie_id 			= array();
-		$list_loisir_id 			= array();
-		$list_sport_id 				= array();
-		$list_musique_id 			= array();
-		$list_film_id 				= array();
-		$list_lecture_id 			= array();
-		$list_animaux_id 			= array();
+		$list_vie_id 				= [];
+		$list_cuisine_id 			= [];
+		$list_sortie_id 			= [];
+		$list_loisir_id 			= [];
+		$list_sport_id 				= [];
+		$list_musique_id 			= [];
+		$list_film_id 				= [];
+		$list_lecture_id 			= [];
+		$list_animaux_id 			= [];
 		
 		// utilisateur log et aucun message pr�sent
 		if($user->id && !count($messages)) {
@@ -1641,7 +1641,7 @@ $dbanimaux=$db->loadObjectList($query);
 
 	function step4_data() {
 		global $langue;
-		$_data	= array(
+		$_data	= [
 			'taille_id' => 0,
 			'poids_id' => 0,
 			'silhouette_id' => 0,
@@ -1670,7 +1670,7 @@ $dbanimaux=$db->loadObjectList($query);
 			'film' => 0,		// profil_film
 			'lecture' => 0,		// profil_lecture
 			'animaux' => 0,		// profil_animaux
-		);
+		];
 		return $_data;
 	}
 
@@ -1680,7 +1680,7 @@ $dbanimaux=$db->loadObjectList($query);
 		global $db, $user;
 
 		// gestion des messages d'erreurs
-		$messages			= array();
+		$messages			= [];
 
 		
 
@@ -1692,7 +1692,7 @@ $dbanimaux=$db->loadObjectList($query);
 				//exceptions checkboxs
 				if($key=='langue' || $key=='cuisine' || $key=='sortie' || $key=='loisir' || $key=='sport' || $key=='musique' || $key=='film' || $key=='lecture' || $key=='animaux'){
 					$i=1;
-					foreach(JL::getVar($key,array()) as $k){
+					foreach(JL::getVar($key,[]) as $k){
 						 JL::setSession($key.$i.'_id', $k);
 						$i++;
 					}
@@ -1789,7 +1789,7 @@ $dbanimaux=$db->loadObjectList($query);
 	
 
 
-	function step5($messages = array()) {
+	function step5($messages = []) {
 		global $langue,$langString;
 		include("lang/app_profil.".$_GET['lang'].".php");
 		global $db, $user, $action;
@@ -1802,13 +1802,13 @@ $dbanimaux=$db->loadObjectList($query);
 
 		// donn�es de l'�tape + valeurs par d�faut
 		$_data						= step5_data();
-		$row						= array();
-		$list						= array();
-		$list_genre					= array();
-		$list_naissance_jour		= array();
-		$list_naissance_mois		= array();
-		$list_naissance_annee		= array();
-		$list_signe_astrologique_id	= array();
+		$row						= [];
+		$list						= [];
+		$list_genre					= [];
+		$list_naissance_jour		= [];
+		$list_naissance_mois		= [];
+		$list_naissance_annee		= [];
+		$list_signe_astrologique_id	= [];
 
 
 		// utilisateur log et aucun message pr�sent
@@ -1828,7 +1828,7 @@ $dbanimaux=$db->loadObjectList($query);
 				foreach($tmps as $tmp) {
 
 					// extrait les valeurs de la date de naissance
-					$naissance_date	= explode('-', $tmp->naissance_date);
+					$naissance_date	= explode('-', (string) $tmp->naissance_date);
 					$tmp->naissance_annee 	= $naissance_date[0];
 					$tmp->naissance_mois 	= $naissance_date[1];
 					$tmp->naissance_jour 	= $naissance_date[2];
@@ -1919,7 +1919,7 @@ $dbanimaux=$db->loadObjectList($query);
 
 	function step5_data() {
 		global $langue;
-		$_data	= array(
+		$_data	= [
 			'child1' => 1,
 			'child2' => 0,
 			'child3' => 0,
@@ -1957,7 +1957,7 @@ $dbanimaux=$db->loadObjectList($query);
 			'signe_astrologique5_id' => 0,
 			'signe_astrologique6_id' => 0,
 			'photo_montrer' => 2
-		);
+		];
 		return $_data;
 	}
 
@@ -1967,7 +1967,7 @@ $dbanimaux=$db->loadObjectList($query);
 		global $db, $user;
 
 		// gestion des messages d'erreurs
-		$messages			= array();
+		$messages			= [];
 
 
 		// donn�es � r�cup de l'�tape pr�c�dente + valeur par d�faut
@@ -2024,7 +2024,7 @@ $dbanimaux=$db->loadObjectList($query);
 
 				}
 
-				if((JL::getSessionInt('naissance_jour'.$i, 0) + JL::getSessionInt('naissance_mois'.$i, 0) + JL::getSessionInt('naissance_annee'.$i, 0) > 0) && in_array(0, array(JL::getSessionInt('naissance_jour'.$i, 0), JL::getSessionInt('naissance_mois'.$i, 0), JL::getSessionInt('naissance_annee'.$i, 0)))) {
+				if((JL::getSessionInt('naissance_jour'.$i, 0) + JL::getSessionInt('naissance_mois'.$i, 0) + JL::getSessionInt('naissance_annee'.$i, 0) > 0) && in_array(0, [JL::getSessionInt('naissance_jour'.$i, 0), JL::getSessionInt('naissance_mois'.$i, 0), JL::getSessionInt('naissance_annee'.$i, 0)])) {
 
 					$messages[]	= '<span class="error">'.$lang_appprofil["IndiquerDateNaissanceEnfantNum"].' '.$enfant_num.' '.$lang_appprofil["enfant2"].'.</span>';
 
@@ -2458,13 +2458,13 @@ Cette lettre d'information vous a &eacute;t&eacute; envoy&eacute;e par <a href='
 	}
 
 
-	function notification($messages = array()) {
+	function notification($messages = []) {
 		global $langue,$langString;
 		include("lang/app_profil.".$_GET['lang'].".php");;
 		global $db, $user;
 
 		// variables
-		$row						= array();
+		$row						= [];
 
 		// r�cup les donn�es en db
 		$query = "SELECT *"
@@ -2485,14 +2485,14 @@ Cette lettre d'information vous a &eacute;t&eacute; envoy&eacute;e par <a href='
 
 	function &notification_data() {
 		global $langue;
-		$_data	= array(
+		$_data	= [
 			'new_message' 	=> 0,
 			'new_fleur' 	=> 0,
 			'new_flash' 	=> 0,
 			'new_inscrits' 	=> 0,
 			'new_visite' 	=> 0,
 			'rappels' 		=> 0
-		);
+		];
 		return $_data;
 	}
 
@@ -2502,8 +2502,8 @@ Cette lettre d'information vous a &eacute;t&eacute; envoy&eacute;e par <a href='
 		global $db, $user;
 
 		// gestion des messages d'erreurs
-		$messages		= array();
-		$row			= array();
+		$messages		= [];
+		$row			= [];
 
 		// initialise les donn�es
 		$_data			=& notification_data();
@@ -2546,18 +2546,18 @@ Cette lettre d'information vous a &eacute;t&eacute; envoy&eacute;e par <a href='
 		global $langue,$langString;
 		global $db, $user, $action;
 		
-		$where = array();
+		$where = [];
 		
 		// variables
-		$profilEnfants			= array();
-		$profilDescription		= array();
-		$profilInfosEnVrac1		= array();
-		$profilInfosEnVrac2		= array();
-		$profilQuotidien1		= array();
-		$profilQuotidien2		= array();
-		$profilQuotidien3		= array();
-		$profilQuotidien4		= array();
-		$profilGroupes			= array();
+		$profilEnfants			= [];
+		$profilDescription		= [];
+		$profilInfosEnVrac1		= [];
+		$profilInfosEnVrac2		= [];
+		$profilQuotidien1		= [];
+		$profilQuotidien2		= [];
+		$profilQuotidien3		= [];
+		$profilQuotidien4		= [];
+		$profilGroupes			= [];
 
 
 		// id du profil � afficher
@@ -2871,7 +2871,7 @@ $age_max_pro=(($values_select->userage)+5);
 		
 
 		// R cup search engine fields
-		$list	=& FCT::getSearchEngine();
+		$list	=& (new FCT())->getSearchEngine();
 
 $query = "SELECT at.id, at.titre, at.annonce, m.nom_en AS media"
        . " FROM appel_a_temoins AS at"
@@ -2909,7 +2909,7 @@ $appel_a_temoins = $db->loadObject($query);
 		global $langue;
 		global $db, $user;
 
-		$user_id 			= $user->id ? $user->id : JL::getSessionInt('user_id', 0);
+		$user_id 			= $user->id ?: JL::getSessionInt('user_id', 0);
 		$dest_dir			= 'images/profil/'.$user_id;
 		$photo_a_valider	= 0;
 

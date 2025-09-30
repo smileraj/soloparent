@@ -93,7 +93,7 @@
 	
 	
 	// variables
-	$where			= array();
+	$where			= [];
 	
 	// WHERE
 	$where[]			= "t.active = 1";
@@ -196,6 +196,6 @@
 	
     
 	//affichage
-	home_HTML::home(JL::getVar('auth',''), $profils,  $list, $temoignage, $home_1, $home_2, $home_3, $home_4, $partenaire_1, $actualites, $box_menu_2,$events);
+	(new home_HTML())->home(JL::getVar('auth',''), $profils, $list, $temoignage, $home_1, $home_2, $home_3, $home_4, $partenaire_1, $actualites, $box_menu_2, $events);
 ?>
 

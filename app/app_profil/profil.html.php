@@ -3,7 +3,7 @@
 	defined('JL') or die('Error 401');
 
 	class HTML_profil {
-		var $lang_appprofil;
+		public $lang_appprofil;
 
 		// affichage des messages syst&egrave;me
 		function HTML_profil() {
@@ -95,12 +95,12 @@ public static function messages(&$messages) {
 		}
 
 
-		public static function step1(&$row, &$list, &$zipcode_id,$messages = array(), $notice = '', $conditions = '') {
+		public static function step1(&$row, &$list, $messages = [], $notice = '', $conditions = '',&$zipcode_id = null) {
 			global $langue;
 			include("lang/app_profil.".$_GET['lang'].".php");
 			global $user;
 			// variables
-			$captcha	= rand(2,7);
+			$captcha	= random_int(2,7);
 
 			
 			if(!$user->id){
@@ -460,7 +460,7 @@ $('#code_postal').change(function() {
 						<span class="capQ"><?php   echo $lang_appprofil["CombienDeFleurs"];?> ?</span><br />
 									<br />
 									<?php 
-									$captcha = rand(2,7);
+									$captcha = random_int(2,7);
 									JL::setSession('captcha', $captcha);
 									for($i=0;$i<$captcha;$i++) {
 									?>
@@ -484,13 +484,8 @@ $('#code_postal').change(function() {
 				<div class="col-md-12">
 				<div class="conditions">
 										<div id="divConditions">
-    <?php
-    foreach ($conditions as $key => $value) {
-        echo htmlspecialchars($key) . ': ' . htmlspecialchars($value) . '<br>';
-    }
-    ?>
-</div>
-
+											<?php  echo $conditions; ?>
+										</div>
 										
 									
 											<center>
@@ -594,14 +589,14 @@ loadVilles();
 		}
 
 
-		public static function step2(&$data, &$row, &$list, $messages = array(), $notice = '') {
+		public static function step2(&$data, &$row, &$list, $messages = [], $notice = '') {
 			global $langue;
 			include("lang/app_profil.".$_GET['lang'].".php");
 			global $user;
 
 
 			// tableaux des photos
-			$photos		= array();
+			$photos		= [];
 			$valid		= false;
 
 			// r&eacute;cup les miniatures de photos d&eacute;j&agrave; envoy&eacute;es
@@ -650,7 +645,7 @@ loadVilles();
 			?>
 			
 			
-			<h3 class="form"><?php   echo $lang_appprofil["MesPhotos"];?></h3>
+			<h3 class="form">My photos</h3>
 			
 	<?php   if(!$user->id) { ?>
 	<div  id="crop-avatar">    <!-- Cropping modal -->
@@ -837,7 +832,7 @@ function countimg()
 	$searchString ='109-profil';	
 	$files = glob('images/profil/'.$a.'/*.*');
 
-	$filesFound = array();
+	$filesFound = [];
 
 	//initial data
 	foreach($files as $file) {
@@ -1114,7 +1109,7 @@ function countimg()
 								// affiche les miniatures de photos VALIDEES
 								if (is_array($photos_temp)) {
 									foreach($photos_temp as $photo_temp) {
-										$photo_i_temp = preg_replace('#^.*([0-9]{1}).*$#', '$1', $photo_temp);
+										$photo_i_temp = preg_replace('#^.*([0-9]{1}).*$#', '$1', (string) $photo_temp);
 										?>
 										<div class="miniature" id="<?php  echo $photo_temp; ?>">
 											<img src="<?php  echo $photo_temp; ?>" class="findface" />
@@ -1175,7 +1170,7 @@ function countimg()
 								// affiche les miniatures de photos VALIDEES
 									if (is_array($photos_attente)) {
 										foreach($photos_attente as $photo_attente) {
-											$photo_i_attente = preg_replace('#^.*([0-9]{1}).*$#', '$1', $photo_attente);
+											$photo_i_attente = preg_replace('#^.*([0-9]{1}).*$#', '$1', (string) $photo_attente);
 											?>
 											<style>
 .photo_validation_msg{
@@ -1208,7 +1203,7 @@ function countimg()
 									// affiche les miniatures de photos VALIDEES
 									if (is_array($photos_validee)) {
 										foreach($photos_validee as $photo_validee) {
-											$photo_i_validee = preg_replace('#^.*([0-9]{1}).*$#', '$1', $photo_validee);
+											$photo_i_validee = preg_replace('#^.*([0-9]{1}).*$#', '$1', (string) $photo_validee);
 											?>
 											<div class="miniature" id="<?php  echo $photo_validee; ?>">
 												<img src="<?php  echo $photo_validee; ?>" />
@@ -1254,7 +1249,7 @@ function countimg()
 									// affiche les miniatures de photos VALIDEES
 									if (is_array($photos_validee)) {
 										foreach($photos_validee as $photo_validee) {
-											$photo_i_validee = preg_replace('#^.*([0-9]{1}).*$#', '$1', $photo_validee);
+											$photo_i_validee = preg_replace('#^.*([0-9]{1}).*$#', '$1', (string) $photo_validee);
 											?>
 											<div class="miniature" id="<?php  echo $photo_validee; ?>">
 												<img src="<?php  echo $photo_validee; ?>" />
@@ -1342,7 +1337,7 @@ function countimg()
 		}
 
 
-		public static function step3(&$data, &$row, &$list, $messages = array(), $notice = '') {
+		public static function step3(&$data, &$row, &$list, $messages = [], $notice = '') {
 			global $langue;
 			include("lang/app_profil.".$_GET['lang'].".php");
 			global $user;
@@ -1370,7 +1365,7 @@ function countimg()
 				HTML_profil::messages($messages);
 			?>
 			<form action="index.php?app=profil&action=step3<?php   echo '&'.$langue;?>" name="step3" method="post">
-				<h3 class="form"><?php   echo $lang_appprofil["MonAnnonce"];?></h3>
+				<h3 class="form">My advertisement</h3>
 				<div class="col-lg-12">
 					<textarea name="annonce" class="annonce" onKeyDown="textCounter(this.form.annonce,parseInt(document.getElementById('chars_limit').innerHTML),<?php  echo $annonce_limite; ?>);" onKeyUp="textCounter(this.form.annonce,parseInt(document.getElementById('chars_limit').innerHTML),<?php  echo $annonce_limite; ?>);"><?php  echo $row['annonce']; ?></textarea>
 				    <label><?php   echo $lang_appprofil["NombreDeCaracteres"];?>: <span id="chars_limit"><?php  echo $annonce_limite-strlen(str_replace("\n",'',$row['annonce'])); ?></span></label>
@@ -1425,7 +1420,7 @@ function countimg()
 		}
 
 
-		public static function step4(&$data, &$row, &$list, $messages = array(), $notice = '') {
+		public static function step4(&$data, &$row, &$list, $messages = [], $notice = '') {
 			global $langue;
 			include("lang/app_profil.".$_GET['lang'].".php");
 			global $user;
@@ -1635,7 +1630,7 @@ function countimg()
 		
 
 
-		public static function step5(&$data, &$row, &$list, $messages = array(), $notice = '') {
+		public static function step5(&$data, &$row, &$list, $messages = [], $notice = '') {
 			global $langue;
 			include("lang/app_profil.".$_GET['lang'].".php");
 			global $user;
@@ -2029,7 +2024,7 @@ function countimg()
 				<input type="hidden" name="site_url" id="site_url" value="<?php  echo SITE_URL; ?>" />
 				<input type="hidden" name="upload_dir" id="upload_dir" value="<?php  echo JL::getSession('upload_dir', 'error'); ?>" />
 				<input type="hidden" name="hash" id="hash" value="<?php  echo md5(date('y').JL::getSession('upload_dir', 'error').date('Y')); ?>" />
-				<input type="hidden" name="key" id="key" value="<?php  echo $user->id ? md5($user->id) : md5(time()); ?>" />
+				<input type="hidden" name="key" id="key" value="<?php  echo $user->id ? md5((string) $user->id) : md5(time()); ?>" />
 				<input type="hidden" name="childNum" id="childNum" value="1" />
 
 			</form>
@@ -2263,7 +2258,7 @@ if($_GET["lang"]=="de"){
 		
 		
 		// gestion des notifications de l'utilisateur
-		public static function notification(&$row, $messages = array()) {
+		public static function notification(&$row, $messages = []) {
 			global $langue;
 			include("lang/app_profil.".$_GET['lang'].".php");
 			global $user;
@@ -2327,9 +2322,9 @@ if($_GET["lang"]=="de"){
 
 			// variables
 			$dir 			= 'images/profil/'.$profil->id; // dossier contenant les photos du membre
-			$photos			= array(); // tableaux des photos
+			$photos			= []; // tableaux des photos
 			$nonRenseigne	= $lang_appprofil["JeLeGarde"].'.';
-			$langues		= array();
+			$langues		= [];
 			
 			
 			$labelEnfant		= $lang_appprofil["Enfants"];
@@ -2438,7 +2433,7 @@ if($_GET["lang"]=="de"){
                             <h1><span class="<?php  echo $profil->genre == 'h' ? "homme" : "femme"; ?>"><?php  echo $profil->username; ?></span></h1>
                             <span class="job"><?php   echo $lang_appprofil["DerniereConnexion"];?>:
 							<span class="<?php  echo $last_online_class; ?>"><?php  echo $last_online_label; ?></span><br />
-							<!--<?php  echo $lang_appprofil["Inscription"]; ?>: <?php  echo date('d.m.Y', strtotime($profil->creation_date)); ?>--></span>
+							<!--<?php  echo $lang_appprofil["Inscription"]; ?>: <?php  echo date('d.m.Y', strtotime((string) $profil->creation_date)); ?>--></span>
                         </div><!-- .name-job -->                        
                        
 					   <!--<div class="col-md-12">
@@ -2534,36 +2529,36 @@ if($_GET["lang"]=="de"){
 													<tr><th class="key"><?php   echo $lang_appprofil["Age"];?></th><td class="result"><?php  echo JL::calcul_age($profil->naissance_date); ?></td></tr>
 													<tr><th class="key"><?php   echo $labelEnfant;?></th><td class="result"><?php  echo $profil->nb_enfants; ?> <?php  echo $profil->nb_enfants > 1 ? $lang_appprofil["enfants"] : $lang_appprofil["enfant"]; ?></td></tr>
 													<tr><th class="key"><?php   echo $lang_appprofil["Canton"];?></th><td class="result"><?php  echo $profil->canton; ?></td></tr>
-													<tr><th class="key fin"><?php   echo $lang_appprofil["Ville"];?></th><td class="result fin"><?php  echo $profil->ville ? $profil->ville : $lang_appprofil["NonRenseigne"]; ?></td></tr>
+													<tr><th class="key fin"><?php   echo $lang_appprofil["Ville"];?></th><td class="result fin"><?php  echo $profil->ville ?: $lang_appprofil["NonRenseigne"]; ?></td></tr>
 												</table>
 											
 												<h2 class="section-title"><?php   echo $lang_appprofil["General"];?></h2>
 												<table class="detail_table table" cellpadding="0" cellspacing="0" >
-													<tr><th class="key"><?php   echo $lang_appprofil["Nationalite"];?></th><td class="result"><?php  echo $profilInfosEnVrac1->nationalite ? $profilInfosEnVrac1->nationalite : $nonRenseigne; ?></td></tr>
-													<tr><th class="key"><?php   echo $lang_appprofil["Religion"];?></th><td class="result"><?php  echo $profilInfosEnVrac1->religion ? $profilInfosEnVrac1->religion : $nonRenseigne; ?></td></tr>
-													<tr><th class="key"><?php   echo $lang_appprofil["NiveauEtudes"];?></th><td class="result"><?php  echo $profilInfosEnVrac2->niveau_etude ? $profilInfosEnVrac2->niveau_etude : $nonRenseigne; ?></td></tr>
-													<tr><th class="key"><?php   echo $lang_appprofil["SecteurActivite"];?></th><td class="result"><?php  echo $profilInfosEnVrac2->secteur_activite ? $profilInfosEnVrac2->secteur_activite : $nonRenseigne; ?></td></tr>
-													<tr><th class="key"><?php   echo $lang_appprofil["StatutMarital"];?></th><td class="result"><?php  echo $profilInfosEnVrac1->statut_marital ? $profilInfosEnVrac1->statut_marital : $nonRenseigne; ?></td></tr>
-													<tr><th class="key"><?php   echo $lang_appprofil["ModeDeVie"];?></th><td class="result"><?php  echo $profilQuotidien1->vie ? $profilQuotidien1->vie : $nonRenseigne; ?></td></tr>
-													<tr><th class="key"><?php   echo $lang_appprofil["QuiLaGarde"];?>?</th><td class="result"><?php  echo $profilInfosEnVrac2->garde ? $profilInfosEnVrac2->garde : $nonRenseigne; ?></td></tr>
-													<tr><th class="key"><?php   echo $lang_appprofil["Fumeur"];?>?</th><td class="result"><?php  echo $profilInfosEnVrac2->fumer ? $profilInfosEnVrac2->fumer : $nonRenseigne; ?></td></tr>
-													<tr><th class="key"><?php   echo $lang_appprofil["Temperament"];?></th><td class="result"><?php  echo $profilInfosEnVrac2->temperament ? $profilInfosEnVrac2->temperament : $nonRenseigne; ?></td></tr>
+													<tr><th class="key"><?php   echo $lang_appprofil["Nationalite"];?></th><td class="result"><?php  echo $profilInfosEnVrac1->nationalite ?: $nonRenseigne; ?></td></tr>
+													<tr><th class="key"><?php   echo $lang_appprofil["Religion"];?></th><td class="result"><?php  echo $profilInfosEnVrac1->religion ?: $nonRenseigne; ?></td></tr>
+													<tr><th class="key"><?php   echo $lang_appprofil["NiveauEtudes"];?></th><td class="result"><?php  echo $profilInfosEnVrac2->niveau_etude ?: $nonRenseigne; ?></td></tr>
+													<tr><th class="key"><?php   echo $lang_appprofil["SecteurActivite"];?></th><td class="result"><?php  echo $profilInfosEnVrac2->secteur_activite ?: $nonRenseigne; ?></td></tr>
+													<tr><th class="key"><?php   echo $lang_appprofil["StatutMarital"];?></th><td class="result"><?php  echo $profilInfosEnVrac1->statut_marital ?: $nonRenseigne; ?></td></tr>
+													<tr><th class="key"><?php   echo $lang_appprofil["ModeDeVie"];?></th><td class="result"><?php  echo $profilQuotidien1->vie ?: $nonRenseigne; ?></td></tr>
+													<tr><th class="key"><?php   echo $lang_appprofil["QuiLaGarde"];?>?</th><td class="result"><?php  echo $profilInfosEnVrac2->garde ?: $nonRenseigne; ?></td></tr>
+													<tr><th class="key"><?php   echo $lang_appprofil["Fumeur"];?>?</th><td class="result"><?php  echo $profilInfosEnVrac2->fumer ?: $nonRenseigne; ?></td></tr>
+													<tr><th class="key"><?php   echo $lang_appprofil["Temperament"];?></th><td class="result"><?php  echo $profilInfosEnVrac2->temperament ?: $nonRenseigne; ?></td></tr>
 													<tr><th class="key"><?php   echo $lang_appprofil["LanguesParlees"];?></th><td class="result"><?php  echo $profilInfosEnVrac1->langues ?></td></tr>
 													<tr><th>&nbsp;</th><td></td></tr>
-													<tr><th class="key"><?php   echo $lang_appprofil["RelationCherchee"];?></th><td class="result"><?php  echo $profilInfosEnVrac2->cherche_relation ? $profilInfosEnVrac2->cherche_relation : $nonRenseigne; ?></td></tr>
-													<tr><th class="key"><?php   echo $lang_appprofil["LeMariageEst"];?></th><td class="result"><?php  echo $profilInfosEnVrac1->me_marier ? $profilInfosEnVrac1->me_marier : $nonRenseigne; ?></td></tr>
-													<tr><th class="key fin"><?php   echo $lang_appprofil["NombreEnfantsSouhaites"];?></th><td class="result fin"><?php  echo $profilInfosEnVrac2->vouloir_enfants ? $profilInfosEnVrac2->vouloir_enfants : $nonRenseigne; ?></td></tr>
+													<tr><th class="key"><?php   echo $lang_appprofil["RelationCherchee"];?></th><td class="result"><?php  echo $profilInfosEnVrac2->cherche_relation ?: $nonRenseigne; ?></td></tr>
+													<tr><th class="key"><?php   echo $lang_appprofil["LeMariageEst"];?></th><td class="result"><?php  echo $profilInfosEnVrac1->me_marier ?: $nonRenseigne; ?></td></tr>
+													<tr><th class="key fin"><?php   echo $lang_appprofil["NombreEnfantsSouhaites"];?></th><td class="result fin"><?php  echo $profilInfosEnVrac2->vouloir_enfants ?: $nonRenseigne; ?></td></tr>
 												</table>
 											
 												<h2 class="section-title"><?php   echo $lang_appprofil["Physique"];?></h2>
 												<table class="detail_table table" cellpadding="0" cellspacing="0">
 													<tr><th class="key"><?php   echo $lang_appprofil["Taille"];?></th><td class="result"><?php  echo $profilDescription->taille ? $profilDescription->taille.' cm' : $nonRenseigne; ?></td></tr>
 													<tr><th class="key"><?php   echo $lang_appprofil["Poids"];?></th><td class="result"><?php  echo $profilDescription->poids ? $profilDescription->poids.' kg' : $nonRenseigne; ?></td></tr>
-													<tr><th class="key"><?php   echo $lang_appprofil["Silhouette"];?></th><td class="result"><?php  echo $profilDescription->silhouette ? $profilDescription->silhouette : $nonRenseigne; ?></td></tr>
-													<tr><th class="key"><?php   echo $lang_appprofil["Yeux"];?></th><td class="result"><?php  echo $profilDescription->yeux ? $profilDescription->yeux : $nonRenseigne; ?></td></tr>
-													<tr><th class="key"><?php   echo $lang_appprofil["Cheveux"];?></th><td class="result"><?php  echo $profilDescription->cheveux ? $profilDescription->cheveux : $nonRenseigne; ?></td></tr>
-													<tr><th class="key"><?php   echo $lang_appprofil["Coiffure"];?></th><td class="result"><?php  echo $profilDescription->style_coiffure ? $profilDescription->style_coiffure : $nonRenseigne; ?></td></tr>
-													<tr><th class="key fin"><?php   echo $lang_appprofil["Origine"];?></th><td class="result fin"><?php  echo $profilDescription->origine ? $profilDescription->origine : $nonRenseigne; ?></td></tr>
+													<tr><th class="key"><?php   echo $lang_appprofil["Silhouette"];?></th><td class="result"><?php  echo $profilDescription->silhouette ?: $nonRenseigne; ?></td></tr>
+													<tr><th class="key"><?php   echo $lang_appprofil["Yeux"];?></th><td class="result"><?php  echo $profilDescription->yeux ?: $nonRenseigne; ?></td></tr>
+													<tr><th class="key"><?php   echo $lang_appprofil["Cheveux"];?></th><td class="result"><?php  echo $profilDescription->cheveux ?: $nonRenseigne; ?></td></tr>
+													<tr><th class="key"><?php   echo $lang_appprofil["Coiffure"];?></th><td class="result"><?php  echo $profilDescription->style_coiffure ?: $nonRenseigne; ?></td></tr>
+													<tr><th class="key fin"><?php   echo $lang_appprofil["Origine"];?></th><td class="result fin"><?php  echo $profilDescription->origine ?: $nonRenseigne; ?></td></tr>
 												</table>
 											
 											
@@ -2602,7 +2597,7 @@ if($_GET["lang"]=="de"){
 						 <?php  if($profil->id == $user->id){ echo "<a style='color: #ec1d24; float:right;' href='index.php?app=profil&action=step3&".$langue."'>".$lang_appprofil['edit']."</a><div class='clear'></div>";}?>
 						<table class="detail_table" cellpadding="0" cellspacing="0" width="100%">
 							<tr>
-							<td class="annonce"><?php  echo $profil->annonce ? nl2br($profil->annonce) : $lang_appprofil["NAPasRedigeAnnonce"].' .'; ?></td>
+							<td class="annonce"><?php  echo $profil->annonce ? nl2br((string) $profil->annonce) : $lang_appprofil["NAPasRedigeAnnonce"].' .'; ?></td>
 							</tr>
 						</table>
 						</div>
@@ -2852,7 +2847,7 @@ if($_GET["lang"]=="de"){
 												// pour chaque groupe
 												foreach($profilGroupes as $groupe) {
 													
-													$groupe->texte = strip_tags(html_entity_decode($groupe->texte));
+													$groupe->texte = strip_tags(html_entity_decode((string) $groupe->texte));
 													if(strlen($groupe->texte) > LISTE_INTRO_CHAR) {
 														$groupe->texte = substr($groupe->texte, 0, LISTE_INTRO_CHAR).'...';
 													}
@@ -2939,7 +2934,7 @@ if($_GET["lang"]=="de"){
 							<h3><span class="<?php  echo $profil->genre == 'h' ? "homme" : "femme"; ?>"><?php  echo $profil->username; ?></span></h2>
 							<?php   echo $lang_appprofil["DerniereConnexion"];?>:<br />
 							<span class="<?php  echo $last_online_class; ?>"><?php  echo $last_online_label; ?></span><br />
-							<?php  echo $lang_appprofil["Inscription"]; ?>: <?php  echo date('d.m.Y', strtotime($profil->creation_date)); ?>
+							<?php  echo $lang_appprofil["Inscription"]; ?>: <?php  echo date('d.m.Y', strtotime((string) $profil->creation_date)); ?>
 						</div>	
 						<br />
 						<div class="actions">
@@ -3023,14 +3018,14 @@ if($_GET["lang"]=="de"){
 
 			// limitation appel &agrave; t&eacute;moins
 			$annonceLimite	= 125;
-			if(strlen($appel_a_temoins->annonce) > $annonceLimite) {
-				$appel_a_temoins->annonce = substr($appel_a_temoins->annonce, 0, $annonceLimite).'...';
+			if(strlen((string) $appel_a_temoins->annonce) > $annonceLimite) {
+				$appel_a_temoins->annonce = substr((string) $appel_a_temoins->annonce, 0, $annonceLimite).'...';
 			}
 
 			// limitation t&eacute;moignage
 			$annonceLimite	= 125;
-			if(strlen($temoignage->texte) > $annonceLimite) {
-				$temoignage->texte = substr($temoignage->texte, 0, $annonceLimite).'...';
+			if(strlen((string) $temoignage->texte) > $annonceLimite) {
+				$temoignage->texte = substr((string) $temoignage->texte, 0, $annonceLimite).'...';
 			}
 
 			// htmlentities
@@ -3717,12 +3712,12 @@ JL::loadMod('events');
 				
 
 						// limitation de la longueur du titre
-						if(strlen($temoignage->titre) > TITRE_HOME) {
-							$temoignage->titre = substr($temoignage->titre, 0, TITRE_HOME).'...';
+						if(strlen((string) $temoignage->titre) > TITRE_HOME) {
+							$temoignage->titre = substr((string) $temoignage->titre, 0, TITRE_HOME).'...';
 						}
 						
 						// limitation de la longueur de l'intro
-						$temoignage->texte = strip_tags(html_entity_decode($temoignage->texte));
+						$temoignage->texte = strip_tags(html_entity_decode((string) $temoignage->texte));
 						if(strlen($temoignage->texte) > INTRO_HOME) {
 							$temoignage->texte = substr($temoignage->texte, 0, INTRO_HOME).'...';
 						}
@@ -3799,7 +3794,7 @@ JL::loadMod('events');
 			global $langue;
 
 			// variables
-			$tab	= array();
+			$tab	= [];
 
 			if($obj->{$field.'1'}) {
 				$tab[]	= $obj->{$field.'1'};

@@ -23,8 +23,8 @@
 
 	class grabAol {
 
-		var $_username;
-		var $_password;
+		public $_username;
+		public $_password;
 
 		/**
 		 * Constructor of the class to initialize the privates
@@ -32,10 +32,10 @@
 		 * @param $password, the password for the aol account
 		 * @return VOID, only used to initialize the privates
 		 */
-		function grabAol( $username, $password ) {
+		function __construct( $username, $password ) {
 
-			$username = trim( $username );
-			$password = trim( $password );
+			$username = trim( (string) $username );
+			$password = trim( (string) $password );
 			if( empty( $username ) || empty( $password ) ) {
 				die( 'Please fill all the fields' );
 			}
@@ -97,16 +97,16 @@
 			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 			$return 	= curl_exec( $ch );
 			$data 		= $this->_parseContent( '/<form name="AOLLoginForm"(.*?)<\/form>/s', $return );
-			$hidden 	= explode( '<input type="hidden"', $data[1][0] );
+			$hidden 	= explode( '<input type="hidden"', (string) $data[1][0] );
 			unset( $hidden[0] ); //remove the action since we don't really need it here
 			curl_setopt($ch, CURLOPT_URL, 'https://my.screenname.aol.com/_cqr/login/login.psp');
-			$uname 		= 'loginId='.urlencode( $this->_getUsername() );
-			$upass 		= 'password='.urlencode( $this->_getPassword() );
+			$uname 		= 'loginId='.urlencode( (string) $this->_getUsername() );
+			$upass 		= 'password='.urlencode( (string) $this->_getPassword() );
 			$postFields 	= '';
 			foreach( $hidden as $field ) {
 				$field	 	= trim( $field );
 				$tmp	 	= explode( ' ', $field );
-				$removal 	= array( 'name=', 'value=', '"', '>', '</div' );
+				$removal 	= [ 'name=', 'value=', '"', '>', '</div' ];
 				$tmp[0] 	= str_replace( $removal, '', $tmp[0] );
 				$tmp[1] 	= str_replace( $removal, '', $tmp[1] );
 				$postFields 	.= trim($tmp[0].'='.$tmp[1]).'&';
@@ -117,7 +117,7 @@
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
 			$return 		= curl_exec( $ch );
 			$logIn 			= $this->_parseContent( '/LoginSuccess.aspx(.*?)\'/s', $return );
-			$loginParts 		= explode( '&', $logIn[1][0] );
+			$loginParts 		= explode( '&', (string) $logIn[1][0] );
 			$targetSuccessUrl 	= '';
 			foreach( $loginParts as $part ) {
 				$tmp = explode( '=', trim( $part ) );
@@ -137,7 +137,7 @@
 			$tmpSuccessPath 	= $this->_parseContent( '/ClickHereMessage(.*?)Try Again/s', $successPath );
 			$gSuccessPath		= $this->_parseContent( '/webmail.aol.com(.*?)target/s', $tmpSuccessPath[1][0]);
 			$path 			= 'http://webmail.aol.com';
-			$gSuccessfull 		= trim( $gSuccessPath[1][0] );
+			$gSuccessfull 		= trim( (string) $gSuccessPath[1][0] );
 			$path 			.= str_replace( '"', '', $gSuccessfull );
 			curl_setopt( $ch, CURLOPT_URL, $path );
 			curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 0 );
@@ -152,7 +152,7 @@
 			
 			// now go to the landing page
 			$landingPageSubUrl	= $this->_parseContent( '/gSuccessPath(.*?)var/s', $landingPageUrl[0][0] );
-			$landingPageSubUrl	= str_replace( array( '=', ' ', '"', ';' ), '', $landingPageSubUrl[1][0] );
+			$landingPageSubUrl	= str_replace( [ '=', ' ', '"', ';' ], '', $landingPageSubUrl[1][0] );
 			$landingPageSubUrl	= str_replace( 'Suite.aspx', '', $landingPageSubUrl );
 			curl_setopt( $ch, CURLOPT_URL, 'http://webmail.aol.com'.trim( $landingPageSubUrl ).'Lite/ContactList.aspx?folder=New%20Mail&showUserFolders=False' );
 			$contactsPage		= curl_exec( $ch );
@@ -160,8 +160,8 @@
 			//we need the value of the "user" element in order to proceed
 			$firstUserPattern	= $this->_parseContent( '/ProcessCommand(.*?)toolbarType/s', $contactsPage );
 			$secondUserPattern	= $this->_parseContent( '/\.com(.*?)class/s', $firstUserPattern[1][0] );
-			$userArray	  	= explode( ',', $secondUserPattern[1][0] );
-			$user		  	= str_replace( array( '\'', ')', ';', '"' ), '', $userArray[1] );
+			$userArray	  	= explode( ',', (string) $secondUserPattern[1][0] );
+			$user		  	= str_replace( [ '\'', ')', ';', '"' ], '', $userArray[1] );
 			
 			// now we need to get all the pages that contains the contacts
 			// am not navigating through the whole pages, but rather i am using the print
@@ -172,14 +172,14 @@
 			
 			// ok, now we have the contacts bunch and we need to filter them ...
 			$firstPhaseFilter 	= $this->_parseContent( '/fullName(.*?)contactSeparator/s',$contactsRecords );
-			$contactList 		= array();
+			$contactList 		= [];
 			foreach( $firstPhaseFilter[0] as $value ) {
 				$value 		= ''.$value; //don't ask me why i did that, it just didn't work except like this!!!
 				// filter contact's full name
 				$contactName 	= $this->_parseContent( '/fullName">(.*?)<\/span/s', $value );
 				// filter contact's email
 				$contactEmail	= $this->_parseContent( '/<span>Email 1:<\/span> <span>(.*?)<\/span>/s', $value);
-				$contactList[strip_tags($contactName[1][0])] = $contactEmail[1][0];
+				$contactList[strip_tags((string) $contactName[1][0])] = $contactEmail[1][0];
 			}
 
 			// Clean up and finalize everything ...
@@ -195,8 +195,8 @@
 		 * @return Array, an array that contains the filtered content
 		 */
 		function _parseContent( $pattern, $subject ) {
-			$array = array();
-			preg_match_all( $pattern, $subject, $array );
+			$array = [];
+			preg_match_all( $pattern, (string) $subject, $array );
 			return $array;
 		}
 

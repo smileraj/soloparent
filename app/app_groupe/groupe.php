@@ -25,14 +25,14 @@
 
 
 	// gestion des messages d'erreurs
-	$messages		= array();
+	$messages		= [];
 
 	// types de groupes: tous, que ceux rejoinds par l'utilisateur, que ceux cr&eacute;&eacute;s par l'utilisateur
 	$groupe_type	= JL::getVar('groupe_type', JL::getSession('groupe_type', 'all'));
 
 
 	// type inccorect
-	if(!in_array($groupe_type, array('all', 'joined', 'created'))) {
+	if(!in_array($groupe_type, ['all', 'joined', 'created'])) {
 		JL::redirect(SITE_URL.'/index.php?app=groupe&action=list'.'&'.$langue);
 	}
 
@@ -240,12 +240,12 @@
 		$fieldTexte			= 'g.texte';
 		$_where				= '';
 		$_orderBy			= '';
-		$where 				= array();
-		$search				= array();
-		$order_by_option	= array();
+		$where 				= [];
+		$search				= [];
+		$order_by_option	= [];
 
 		// params
-		$order_by_array		= array(1,2,3,4,5);
+		$order_by_array		= [1,2,3,4,5];
 		$order_by			= (int)JL::getVar('order_by', JL::getSession('order_by', 1));
 		JL::setSession('order_by', $order_by);
 
@@ -443,7 +443,7 @@
 		// variables
 		$editAllowed 	= true;
 		$_where			= '';
-		$where 			= array();
+		$where 			= [];
 
 		// r&eacute;cup les donn&eacute;es du formulaire
 		$row	= new stdClass();
@@ -500,7 +500,7 @@
 
 
 		}
-		$groupe->captcha		= rand(10,99).chr(rand(65,90)).rand(10,99).chr(rand(65,90));
+		$groupe->captcha		= random_int(10,99).chr(random_int(65,90)).random_int(10,99).chr(random_int(65,90));
 			$groupe->captchaAbo		= md5(date('m/Y').$groupe->captcha);
 
 		// affiche le formulaire d'edition
@@ -510,12 +510,12 @@
 
 	function &groupe_data() {
 		global $langue,$groupe;
-		$_data	= array(
+		$_data	= [
 			'id'		=> 0,
 			'titre' 	=> '',
 			'texte' 	=> '',
 			'phototemp'	=> '',
-		);
+		];
 		return $_data;
 		
 	}
@@ -530,7 +530,7 @@
 		$_where			= '';
 
 		// gestion des messages d'erreurs
-		$messages		= array();
+		$messages		= [];
 
 		// r&eacute;cup les donn&eacute;es du formulaire
 		$_data 	=& groupe_data();
@@ -580,7 +580,7 @@
 		if(!$row->texte) {
 			$messages[]	= '<span class="error">'.$lang_groupe["IndiquezDescription"].'</span>';
 		}
-         if($groupe->verif == '' || md5(date('m/Y').strtoupper($groupe->verif)) != $groupe->captchaAbo) {
+         if($groupe->verif == '' || md5(date('m/Y').strtoupper((string) $groupe->verif)) != $groupe->captchaAbo) {
 				$messages[] = '<span class="error">'.$lang_groupe["WarningCodeVerifIncorrect"].'</span>';
 			}
 
@@ -652,8 +652,8 @@
 
 		// variables
 		$resultatParPage	= 8;
-		$genres				= array('h','f');
-		$search				= array();
+		$genres				= ['h','f'];
+		$search				= [];
 
 
 		// formule de popularit&eacute;

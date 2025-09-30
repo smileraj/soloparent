@@ -5,7 +5,7 @@
 	
 	class footerController extends JLController {
 	
-		function footerController($appLoad) {
+		function __construct($appLoad) {
 			parent::JLController($appLoad); // obligatoire pour l'instanciation
 			
 			// ajoute le model par défaut

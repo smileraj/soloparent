@@ -2,7 +2,7 @@
 /*Import Friends from Facebook
  * You can send message to your Friends Inbox
  */
-$_pluginInfo=array(
+$_pluginInfo=[
 	'name'=>'Facebook',
 	'version'=>'1.3.0',
 	'description'=>"Get the contacts from a Facebook account",
@@ -11,7 +11,7 @@ $_pluginInfo=array(
 	'check_url'=>'http://apps.facebook.com/causes/',
 	'requirement'=>'email',
 	'allowed_domains'=>false,
-	);
+	];
 /**
  * FaceBook Plugin
  * 
@@ -29,14 +29,14 @@ class facebook extends openinviter_base
 	protected $timeout=30;
 	protected $userId;
 	
-	public $debug_array=array(
+	public $debug_array=[
 				'initial_get'=>'pass',
 				'login_post'=>'javascript',
 				'get_user_id'=>'profile.php?id=',				
 				'url_friends'=>'fb_dtsg:"',								
 				'message_elements'=>'fb_dtsg',
 				'send_message'=>'"__ar":1',
-				);
+				];
 	
 	/**
 	 * Login function
@@ -65,7 +65,7 @@ class facebook extends openinviter_base
 			return false;
 			}		
 		$form_action="https://login.facebook.com/login.php?login_attempt=1";
-		$post_elements=array('email'=>$user,
+		$post_elements=['email'=>$user,
 							 'pass'=>$pass,
 							 'next'=>'http://apps.facebook.com/causes/home?_method=GET',
 							 'return_session'=>0,
@@ -73,7 +73,7 @@ class facebook extends openinviter_base
 							 'session_key_only'=>0,
 							 'api_key'=>$this->getElementString($res,'name="api_key" value="','"'),
 							 'version'=>'1.0',
-							 );
+							 ];
 		$res=$this->post($form_action,$post_elements,true,true);	
 		if ($this->checkResponse("login_post",$res)) $this->updateDebugBuffer('login_post',"{$form_action}",'POST',true,$post_elements);
 		else{
@@ -115,7 +115,7 @@ class facebook extends openinviter_base
 			}
 		else $url=$this->login_ok;
 		$res=$this->get("http://www.facebook.com/profile.php?id={$this->userId}",true);
-		if (strpos($res,'window.location.replace("')!==FALSE)
+		if (str_contains((string) $res,'window.location.replace("'))
 			{
 			$url_redirect=stripslashes($this->getElementString($res,'window.location.replace("','"'));
 			if (!empty($url_redirect)) $res=$this->get($url_redirect,true);	
@@ -131,7 +131,7 @@ class facebook extends openinviter_base
 		$fbDtsg=$this->getElementString($res,'fb_dtsg:"','"');
 		$page=0;
 		$form_action=$this->login_ok;
-		$post_elements=array('edge_type'=>'browse',
+		$post_elements=['edge_type'=>'browse',
 							 'page'=>$page,
 							 'limit'=>100,
 							 'node_id'=>$this->userId,
@@ -139,13 +139,13 @@ class facebook extends openinviter_base
 							 'post_form_id'=>$postFormId,
 							 'fb_dtsg'=>$fbDtsg,
 							 'post_form_id_source'=>'AsyncReques',
-							);
+							];
 		$res=$this->post($form_action,$post_elements,true);
-		$contacts=array();
-		while(preg_match_all("#\{\"id\"\:(.+)\,\"title\"\:\"(.+)\"#U",$res,$matches))
+		$contacts=[];
+		while(preg_match_all("#\{\"id\"\:(.+)\,\"title\"\:\"(.+)\"#U",(string) $res,$matches))
 			{
 			$page++;
-			$post_elements=array('edge_type'=>'browse',
+			$post_elements=['edge_type'=>'browse',
 							 'page'=>$page,
 							 'limit'=>100,
 							 'node_id'=>$this->userId,
@@ -153,7 +153,7 @@ class facebook extends openinviter_base
 							 'post_form_id'=>$postFormId,
 							 'fb_dtsg'=>$fbDtsg,
 							 'post_form_id_source'=>'AsyncReques',
-							);
+							];
 			$res=$this->post($form_action,$post_elements);
 			if (!empty($matches[1]))
 				foreach($matches[1] as $key=>$fbId)
@@ -186,13 +186,13 @@ class facebook extends openinviter_base
 		$postFormId=$this->getElementString($res,'name="post_form_id" value="','"');
 		$fbDtsg=$this->getElementString($res,'fb_dtsg:"','"');
 		$form_action="http://www.facebook.com/ajax/messaging/async.php?__a=1";
-		$post_elements=array();				
+		$post_elements=[];				
 		$countMessages=0;
 		foreach($contacts as $fbId=>$name)
 			{
 			$countMessages++;
 			if ($countMessages>$this->maxMessages) break;			
-			$post_elements=array( 'forward_msg'=>'',
+			$post_elements=[ 'forward_msg'=>'',
 								  'body'=>$message['body'],								  
 								  'action'=>'send',
 								  'recipients[0]'=>$fbId,
@@ -200,7 +200,7 @@ class facebook extends openinviter_base
 								  'post_form_id'=>$postFormId,
 								  'fb_dtsg'=>$fbDtsg,								  
 								  'post_form_id_source'=>'AsyncRequest'								  
-								  );
+								  ];
 			$res=$this->post($form_action,$post_elements);
 			if ($this->checkResponse("send_message",$res)) $this->updateDebugBuffer('send_message',"{$form_action}",'POST',true,$post_elements);
 			else{

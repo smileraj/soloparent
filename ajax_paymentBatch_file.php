@@ -21,7 +21,7 @@ session_start();
 					
 
 foreach($userProfil_val as $userProfil) { 
-$file_number='File'.rand(10,10000);
+$file_number='File'.random_int(10,10000);
 $acc_saved_alias=$userProfil->acc_saved_alias;
 $_SESSION['acc_saved_alias']=$userProfil->acc_saved_alias;
 				$username=$userProfil->acc_saved_cn;
@@ -35,7 +35,7 @@ $_SESSION['acc_saved_alias']=$userProfil->acc_saved_alias;
 					$acc_saved_ref_no=$userProfil->acc_saved_ref_no;
 					$montant=(($userProfil->montant)*100);
 					$_SESSION['montant']=(($userProfil->montant)*100);
-					$order_id_user=$userProfil->id."_00".rand(100,10000);
+					$order_id_user=$userProfil->id."_00".random_int(100,10000);
 					$_SESSION['order_id_user']=$order_id_user;
 					$_SESSION['user_id']=$userProfil->id;
 					$amount_type=$userProfil->unite_duree_paypal;
@@ -67,7 +67,7 @@ $_SESSION['acc_saved_alias']=$userProfil->acc_saved_alias;
 		} else { 
 				$cFile = '@' . realpath($filename);
 		}
-		$post = array('FILE' => $cFile,'FILE_REFERENCE' => 'File3599','PSPID' => 'Parentsolo','USERID' => 'parentsoloCH','PSWD' => 'Septembre2017*','TRANSACTION_CODE' => 'ATR','OPERATION' => 'SAL','NB_PAYMENTS' => '1','REPLY_TYPE' => 'XML','MODE' => 'SYNC','PROCESS_MODE' => 'SEND');
+		$post = ['FILE' => $cFile,'FILE_REFERENCE' => 'File3599','PSPID' => 'Parentsolo','USERID' => 'parentsoloCH','PSWD' => 'Septembre2017*','TRANSACTION_CODE' => 'ATR','OPERATION' => 'SAL','NB_PAYMENTS' => '1','REPLY_TYPE' => 'XML','MODE' => 'SYNC','PROCESS_MODE' => 'SEND'];
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
 			curl_setopt($ch, CURLOPT_URL, $urlVal);			
@@ -94,7 +94,7 @@ if($fileId!=''){
 			
 			if($row->batch_id!='1' && $fileId!=''){
 					$urlVal= 'https://e-payment.postfinance.ch/ncol/prod/AFU_agree.asp';	
-					$post1 = array('PSPID' => 'Parentsolo','USERID' => 'parentsoloCH','PSWD' => 'Septembre2017*','REPLY_TYPE' =>'XML','MODE' =>'SYNC','PFID'=>$fileId,'PROCESS_MODE' =>'PROCESS');
+					$post1 = ['PSPID' => 'Parentsolo','USERID' => 'parentsoloCH','PSWD' => 'Septembre2017*','REPLY_TYPE' =>'XML','MODE' =>'SYNC','PFID'=>$fileId,'PROCESS_MODE' =>'PROCESS'];
 						
 					$ch1 = curl_init();
 					curl_setopt($ch1, CURLOPT_SSL_VERIFYPEER, FALSE);
@@ -204,7 +204,7 @@ $query = "INSERT INTO postfinance SET"
 							$date	= explode('-', date('Y-m-d'));
 						} else {
 							// parse la date de fin d'abonnement
-							$date	= explode('-', $userProfil->date_reference);
+							$date	= explode('-', (string) $userProfil->date_reference);
 			
 						}
 	                    $jour	= $date[2];
@@ -217,7 +217,7 @@ $query = "INSERT INTO postfinance SET"
 							$gold_limit_date	= date('Y-m-d', mktime(0, 0, 0, $mois, $jour, $annee + $abonnement_paypal->duree_paypal));
 						}
 						if($payment_date){
-							$arg = explode(" PST", $payment_date);
+							$arg = explode(" PST", (string) $payment_date);
 							$arg = explode(" PDT", $arg[0]);
 							
 							$arg1 = explode(", ", $arg[0]);
@@ -227,56 +227,20 @@ $query = "INSERT INTO postfinance SET"
 							$horaire_payment_date = $arg2[0];
 							$jour_payment_date = $arg2[2];
 							
-							switch($arg2[1]){
-								
-								case 'Feb':
-									$mois_payment_date = '02';
-								break;
-								
-								case 'Mar':
-									$mois_payment_date = '03';
-								break;
-								
-								case 'Apr':
-									$mois_payment_date = '04';
-								break;
-								
-								case 'May':
-									$mois_payment_date = '05';
-								break;
-								
-								case 'Jun':
-									$mois_payment_date = '06';
-								break;
-								
-								case 'Jul':
-									$mois_payment_date = '07';
-								break;
-								
-								case 'Aug':
-									$mois_payment_date = '08';
-								break;
-								
-								case 'Sep':
-									$mois_payment_date = '09';
-								break;
-								
-								case 'Oct':
-									$mois_payment_date = '10';
-								break;
-								
-								case 'Nov':
-									$mois_payment_date = '11';
-								break;
-								
-								case 'Dec':
-									$mois_payment_date = '12';
-								break;
-								
-								default:
-									$mois_payment_date = '01';
-								break;
-							}
+							$mois_payment_date = match ($arg2[1]) {
+                                'Feb' => '02',
+                                'Mar' => '03',
+                                'Apr' => '04',
+                                'May' => '05',
+                                'Jun' => '06',
+                                'Jul' => '07',
+                                'Aug' => '08',
+                                'Sep' => '09',
+                                'Oct' => '10',
+                                'Nov' => '11',
+                                'Dec' => '12',
+                                default => '01',
+                            };
 							
 							$date_payment = $annee_payment_date.'-'.$mois_payment_date.'-'.$jour_payment_date.' '.$horaire_payment_date;
 						}

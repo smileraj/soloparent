@@ -1,6 +1,6 @@
 <?php
 
-$lang_signaler_abus = array(
+$lang_signaler_abus = [
 
 	//------------------Page search.html.php ---------
 
@@ -26,5 +26,5 @@ $lang_signaler_abus = array(
 	
 	"CodeSecuriteIncorrect" => "Le code de s&eacute;curit&eacute; entr&eacute; est incorrect",
     
-);
+];
 ?>

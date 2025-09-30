@@ -20,7 +20,7 @@
 	function gettable() {
 	global $db;
 	$resultatParPage	= RESULTS_NB_LISTE_ADMIN;
-		$search				= array();
+		$search				= [];
 		
 		$where =[];
 		// params
@@ -47,7 +47,7 @@
 		
 		// temoignage actifs
 		if($search['active'] >= 0) {
-			$where[]		= "t.active = '".addslashes($search['active'])."'";
+			$where[]		= "t.active = '".addslashes((string) $search['active'])."'";
 		}
 		
 		// génère le where

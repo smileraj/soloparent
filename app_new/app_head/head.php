@@ -37,7 +37,7 @@
 		$useronstatus = $db->loadObject($userstatus);
 
 	}
-	head_HTML::head($userProfilMini, $userStats,$userpercentage,$perannounce,$userStats,$useronstatus);
+	(new head_HTML())->head($userProfilMini, $userStats, $userpercentage, $perannounce, $userStats);
 
 
 	

@@ -153,7 +153,7 @@
 					</div>
 				</div>
 				<div class="col-md-3 text-right parentsolo_plr_0">
-					<span class="parentsolo_details"><strong><?php echo date('d.M.Y', strtotime($message->date_envoi)); ?> <?php echo date('H:i', strtotime($message->date_envoi)); ?></strong></span>
+					<span class="parentsolo_details"><strong><?php echo date('d.M.Y', strtotime((string) $message->date_envoi)); ?> <?php echo date('H:i', strtotime((string) $message->date_envoi)); ?></strong></span>
 					<span class="parentsolo_details"> &nbsp;<?php 
 										if($message->m_read == 0){
 											echo '<img src="'.SITE_URL.'/parentsolo/images/msg-valid.png"/>';
@@ -345,13 +345,13 @@
 							<div class="col-md-12 parentsolo_plr_0">
 								<div class="col-md-9 parentsolo_plr_0">
 								<i><?php echo $message->owner ? $lang_message["De"] : $lang_message["Pour"];?> <b><?php if($profilLink){ ?><a href="<?php echo $profilLink; ?>" title="<?php  echo $lang_message["VoirCeProfil"]; ?>"><?php echo $message->username; ?></a><?php }else{ echo $message->username; } ?></b><br />
-								<span class="parentsolo_details"><?php echo $lang_message["Le"];?> <?php echo date('d/m/Y', strtotime($message->date_envoi)); ?> <?php echo $lang_message["A"];?> <?php echo date('H:i:s', strtotime($message->date_envoi)); ?></i>
+								<span class="parentsolo_details"><?php echo $lang_message["Le"];?> <?php echo date('d/m/Y', strtotime((string) $message->date_envoi)); ?> <?php echo $lang_message["A"];?> <?php echo date('H:i:s', strtotime((string) $message->date_envoi)); ?></i>
 							</span>
 								</div>
 						
 						<div class="col-md-3 parentsolo_plr_0 text-right">
 						
-						<span class="parentsolo_details"><strong><?php echo date('d-M', strtotime($message->date_envoi)); ?></strong></span>
+						<span class="parentsolo_details"><strong><?php echo date('d-M', strtotime((string) $message->date_envoi)); ?></strong></span>
 						</div>
 							</div>
 						
@@ -373,7 +373,7 @@
 						?>
 					
 					<div class="col-md-12 parentsolo_mt_20 parentsolo_pt_15 border-top-inbox">
-						<?php echo nl2br($message->texte); ?>
+						<?php echo nl2br((string) $message->texte); ?>
 					</div>
 				</div>
 				
@@ -407,7 +407,7 @@
 			$envoi_type = $flower ? $lang_message["EnvoyerUneRose"] : $lang_message["EnvoyerUnMail"];
 
 			// couleurs des roses, dans l'ordre: background, foreground
-			$couleurs	= array(
+			$couleurs	= [
 				'#FF0F02', 	// "Rose Rouge"
 				'#E56F61', 	// "Rose Corail"
 				'#FFFFFF', 	// "Rose Blanche"
@@ -417,7 +417,7 @@
 				'#FE6500', 	// "Rose Orange"
 				'#CF0072', 	// "Rose Rose"
 				'#000000',	// "Rose Noire"
-			);
+			];
 			// htmlentities
 			JL::makeSafe($message);
 
@@ -451,10 +451,10 @@
 										
 						<div class="col-md-4 col-lg-4 col-sm-4 col-xs-6">
 						<div class="col-md-12">
-							<label for="fleur_id_<?php echo $fleur->id; ?>" id="label_fleur_id_<?php echo $fleur->id; ?>" title="<?php echo $fleur->signification; ?>"><img src="images/fleur/<?php echo $fleur->id; ?>.png" style="width:100px;" alt="<?php echo $fleur->nom; ?>" onClick="fleur('<?php echo $fleur->id; ?>', '<?php echo addslashes($fleur->nom); ?>', '<?php echo $couleurs[$i]; ?>');"></label>
+							<label for="fleur_id_<?php echo $fleur->id; ?>" id="label_fleur_id_<?php echo $fleur->id; ?>" title="<?php echo $fleur->signification; ?>"><img src="images/fleur/<?php echo $fleur->id; ?>.png" style="width:100px;" alt="<?php echo $fleur->nom; ?>" onClick="fleur('<?php echo $fleur->id; ?>', '<?php echo addslashes((string) $fleur->nom); ?>', '<?php echo $couleurs[$i]; ?>');"></label>
 						</div>
 						<div class="col-md-12" style="display:flex;">
-							<input type="radio" name="fleur_id" id="fleur_id_<?php echo $fleur->id; ?>" value="<?php echo $fleur->id; ?>" onClick="fleur('<?php echo $fleur->id; ?>', '<?php echo addslashes($fleur->nom); ?>', '<?php echo $couleurs[$i]; ?>');" style="width:20px;" /><label for="fleur_id_<?php echo $fleur->id; ?>" onClick="fleur('<?php echo $fleur->id; ?>', '<?php echo addslashes($fleur->nom); ?>', '<?php echo $couleurs[$i]; ?>');"><?php echo $fleur->nom; ?></label>
+							<input type="radio" name="fleur_id" id="fleur_id_<?php echo $fleur->id; ?>" value="<?php echo $fleur->id; ?>" onClick="fleur('<?php echo $fleur->id; ?>', '<?php echo addslashes((string) $fleur->nom); ?>', '<?php echo $couleurs[$i]; ?>');" style="width:20px;" /><label for="fleur_id_<?php echo $fleur->id; ?>" onClick="fleur('<?php echo $fleur->id; ?>', '<?php echo addslashes((string) $fleur->nom); ?>', '<?php echo $couleurs[$i]; ?>');"><?php echo $fleur->nom; ?></label>
 										</div></div>
 										
 								<?php 										$i++;

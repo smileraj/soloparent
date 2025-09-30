@@ -7,7 +7,7 @@
 
 	global $db, $user, $langue,$action;
 	
-	$messages	= array();
+	$messages	= [];
 	$contact = new stdClass();
 	
 	switch($action){
@@ -41,7 +41,7 @@
 			include("lang/app_contact.".$_GET['lang'].".php");
 			
 			// valeurs de type_id acceptées à modifier égalment dans submitData
-			$typesText	= array(
+			$typesText	= [
 				$lang_appcontact["- SelectionnezLeTypeDeDemande -"],
 				$lang_appcontact["ChangementAdresseEmail"],
 				$lang_appcontact["ChangementPseudo"],
@@ -50,11 +50,11 @@
 				$lang_appcontact["JeSouhaiteMeDesinscrire"],
 				$lang_appcontact["ProblemeTechnique"],
 				$lang_appcontact["Autre..."]
-			);
+			];
 			
 			
 			// préparation de la liste déroulante
-			$types	= array();
+			$types	= [];
 			$max			= count($typesText);
 			for($i=0;$i<$max; $i++) {
 				$types[]	= JL::makeOption($i, $typesText[$i]);
@@ -67,7 +67,7 @@
 				$messages[] 	= '<span class="valid">'. $lang_appcontact["MessageEnvoye"].'</span>';
 			}
 			
-			$contact->captcha		= rand(10,99).chr(rand(65,90)).rand(10,99).chr(rand(65,90));
+			$contact->captcha		= random_int(10,99).chr(random_int(65,90)).random_int(10,99).chr(random_int(65,90));
 			$contact->captchaAbo		= md5(date('m/Y').$contact->captcha);
 			
 			$lists['type_id']	= JL::makeSelectList($types, 'type_id', 'class="inputtext2"', 'value', 'text', $contact->type_id);
@@ -97,11 +97,11 @@
 			include("lang/app_contact.".$_GET['lang'].".php");
 			global $db, $contact, $messages;
 			
-			if(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,4}$/', $contact->email)) {
+			if(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,4}$/', (string) $contact->email)) {
 				$messages[] = '<span class="error">'.$lang_appcontact["WarningEmailInvalide"].'</span>';
 			}
 			
-			$typesValue	= array(1,2,3,4,5,6,7);
+			$typesValue	= [1,2,3,4,5,6,7];
 			
 			if(!in_array($contact->type_id, $typesValue)) {
 				$contact->type_id = 0;
@@ -112,7 +112,7 @@
 				$messages[] = '<span class="error">'.$lang_appcontact["WarningMessage"].'</span>';
 			}
 			
-			if($contact->verif == '' || md5(date('m/Y').strtoupper($contact->verif)) != $contact->captchaAbo) {
+			if($contact->verif == '' || md5(date('m/Y').strtoupper((string) $contact->verif)) != $contact->captchaAbo) {
 				$messages[] = '<span class="error">'.$lang_appcontact["WarningCodeVerifIncorrect"].'</span>';
 			}
 			
@@ -126,7 +126,7 @@
 			include("lang/app_contact.".$_GET['lang'].".php");
 				
 				// valeurs de type_id acceptées à modifier égalment dans edit
-				$typesText	= array(
+				$typesText	= [
 					$lang_appcontact["- SelectionnezLeTypeDeDemande -"],
 					$lang_appcontact["ChangementAdresseEmail"],
 					$lang_appcontact["ChangementPseudo"],
@@ -135,7 +135,7 @@
 					$lang_appcontact["JeSouhaiteMeDesinscrire"],
 					$lang_appcontact["ProblemeTechnique"],
 					$lang_appcontact["Autre..."]
-				);
+				];
 				
 				
 				// headers

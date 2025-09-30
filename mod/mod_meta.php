@@ -6,7 +6,7 @@
 	global $app, $action, $langue;
 			include("lang/app_mod.".$_GET['lang'].".php");
 
-	$meta					= array();
+	$meta					= [];
 	$meta['title']			= ''.$lang_mod["SiteDeRencontre"].'';
 	$meta['description']	= ''.$lang_mod["LeSiteDeRencontreDes"].' !';
 	$meta['keywords']		= ''.$lang_mod["celibatairesRencontre"].'';

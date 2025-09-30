@@ -17,7 +17,7 @@
 			?>
 				<div class="app_body">
 					<div class="contenu">
-						<h1><?php echo $contenu->titre; ?><?php if($contenu->type_id == 1) { ?><br /><span><?php echo $lang_redac["ActualiteDu"];?> <?php echo date('d/m/Y', strtotime($contenu->date_add)); ?><?php } ?></h1>
+						<h1><?php echo $contenu->titre; ?><?php if($contenu->type_id == 1) { ?><br /><span><?php echo $lang_redac["ActualiteDu"];?> <?php echo date('d/m/Y', strtotime((string) $contenu->date_add)); ?><?php } ?></h1>
 
 <script type="text/javascript" src="http://w.sharethis.com/button/sharethis.js#publisher=f2854e08-c05e-4df9-ac08-339db394a21f&amp;type=website&amp;post_services=email%2Cfacebook%2Ctwitter%2Cgbuzz%2Cmyspace%2Cdigg%2Csms%2Cwindows_live%2Cdelicious%2Cstumbleupon%2Creddit%2Cgoogle_bmarks%2Clinkedin%2Cbebo%2Cybuzz%2Cblogger%2Cyahoo_bmarks%2Cmixx%2Ctechnorati%2Cfriendfeed%2Cpropeller%2Cwordpress%2Cnewsvine&amp;button=false"></script>
 <style type="text/css">
@@ -45,7 +45,7 @@ shared_object.attachChicklet("twitter", document.getElementById("ck_twitter"));
 
 
 
-						<?php if(in_array($id, array(7, 19, 27, 29))) { ?>
+						<?php if(in_array($id, [7, 19, 27, 29])) { ?>
 <div class="radio">
 <div class="radio1">&nbsp;</div>
 <div class="radio2" style="text-align:right;"><span style="color: rgb(0, 0, 0); font-size: 14px;"><strong><?php echo $lang_redac["MenuPresse"];?></strong></span><br />

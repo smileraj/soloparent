@@ -23,7 +23,7 @@ $ss_menu = 3; // last value counts, no need multiple assignments
 
 // Determine active menu
 if ($app === 'profil') {
-    if ($user->id > 0 && (preg_match('/^step/', $action) || $action === "notification")) {
+    if ($user->id > 0 && (preg_match('/^step/', (string) $action) || $action === "notification")) {
         // any specific logic here
     } elseif ($action === 'panel') {
         $active = 0;

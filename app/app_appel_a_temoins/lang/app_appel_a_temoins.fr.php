@@ -1,6 +1,6 @@
 <?php
 
-$lang_appel_a_temoins = array(
+$lang_appel_a_temoins = [
 
 	//------------------Page appel_a_temoins.html.php ---------
 
@@ -95,5 +95,5 @@ $lang_appel_a_temoins = array(
 	"CodeSecuriteIncorrect" => "Le code de s&eacute;curit&eacute; entr&eacute; est incorrect",
 
 
-);
+];
 ?>

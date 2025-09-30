@@ -165,7 +165,7 @@ $('#alert_box_chat').hide();
 			} elseif($app == 'profil') {
 			?>
 
-				<?php if(in_array($action, array('step2', 'step2submit', 'step5', 'step5submit'))) {
+				<?php if(in_array($action, ['step2', 'step2submit', 'step5', 'step5submit'])) {
 					/*if ($_GET["lang"]!="fr") {
 						//echo $_GET["lang"];
 						$jsUpExt = "-".$_GET["lang"];
@@ -194,7 +194,7 @@ $('#alert_box_chat').hide();
 			<?php 			} elseif($app == 'redac') {
 			?>
 				
-			<?php 			} elseif($app == 'groupe' && in_array($action, array('edit', 'save'))) {
+			<?php 			} elseif($app == 'groupe' && in_array($action, ['edit', 'save'])) {
 			?>
 				<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/app_groupe.js"></script>
 				<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/swfupload/swfupload.js"></script>

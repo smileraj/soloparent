@@ -9,22 +9,22 @@ ini_set('MAX_EXECUTION_TIME', -1);
 		// retourne true si le membre est abonné, sinon false
 		public static function checkAbonnement() {
 			global $user, $langue;
-			return ($user->gold_limit_date == '0000-00-00' || ($user->gold_limit_date != '0000-00-00' && strtotime($user->gold_limit_date) < time())) ? false : true;
+			return ($user->gold_limit_date == '0000-00-00' || ($user->gold_limit_date != '0000-00-00' && strtotime((string) $user->gold_limit_date) < time())) ? false : true;
 		}
 		// crypte les adresses mail et url
 		public static function messageEncode($texte, $replacement) {
-		   $texte = preg_replace('/^[^0-9][A-z0-9_]+([.][A-z0-9_]+)*[@][A-z0-9_]+([.][A-z0-9_]+)*[.][A-z]{2,4}$/', $replacement, $texte);
+		   $texte = preg_replace('/^[^0-9][A-z0-9_]+([.][A-z0-9_]+)*[@][A-z0-9_]+([.][A-z0-9_]+)*[.][A-z]{2,4}$/', (string) $replacement, (string) $texte);
 		    // convert http://www.pogoda.in/new_york/eng/
-		    $texte = preg_replace('/^[^0-9][A-z0-9_]+([.][A-z0-9_]+)*[@][A-z0-9_]+([.][A-z0-9_]+)*[.][A-z]{2,4}$/', $replacement, $texte);
+		    $texte = preg_replace('/^[^0-9][A-z0-9_]+([.][A-z0-9_]+)*[@][A-z0-9_]+([.][A-z0-9_]+)*[.][A-z]{2,4}$/', (string) $replacement, $texte);
 		    // convert www.pogoda.in/new_york/eng/
-		    $texte = preg_replace("/(?i)\b((?:https?:\/\/|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))/", $replacement, $texte);
+		    $texte = preg_replace("/(?i)\b((?:https?:\/\/|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))/", (string) $replacement, $texte);
 		    return $texte;
 		}
 		// ajoute des htmlentities à chaque champ d'un objet, en excluant les champs présents dans la chaine $exclure
 	public static function makeSafe(&$obj, $exclure = '') {
-    $exclusion = array();
+    $exclusion = [];
     if ($exclure) {
-        $exclusion = explode(',', $exclure);
+        $exclusion = explode(',', (string) $exclure);
     }
 
     if (is_object($obj)) {
@@ -54,7 +54,7 @@ ini_set('MAX_EXECUTION_TIME', -1);
 			// variables
 			$app_ok	= true;
 			// on conserve uniquement les caractères alphanumériques et _
-			$app_load_check	= preg_replace('#[^a-z0-9_]#', '', $app_load);
+			$app_load_check	= preg_replace('#[^a-z0-9_]#', '', (string) $app_load);
 			// détermine si c'est une appli admin ou visiteur
 			if(!$admin) { // app coté front
 				$path	= SITE_PATH;
@@ -76,7 +76,7 @@ ini_set('MAX_EXECUTION_TIME', -1);
 			// variables
 			$app_ok	= true;
 			// on conserve uniquement les caractères alphanumériques et _
-			$app_load_check	= preg_replace('#[^a-z0-9_]#', '', $app_load);
+			$app_load_check	= preg_replace('#[^a-z0-9_]#', '', (string) $app_load);
 			// détermine si c'est une appli admin ou visiteur
 			
 			$path	= SITE_PATH_ADMIN_EXPERT;
@@ -183,9 +183,9 @@ ini_set('MAX_EXECUTION_TIME', -1);
 		// récup une variable en request
 		public static function getVar($key, $defaut, $addslashes = false) {
 			if($addslashes) {
-				return isset($_REQUEST[$key]) ? addslashes($_REQUEST[$key]) : addslashes($defaut);
+				return isset($_REQUEST[$key]) ? addslashes((string) $_REQUEST[$key]) : addslashes((string) $defaut);
 			} else {
-				return isset($_REQUEST[$key]) ? $_REQUEST[$key] : $defaut;
+				return $_REQUEST[$key] ?? $defaut;
 			}
 		}
 		public static function cleanVar($value) {
@@ -198,9 +198,9 @@ ini_set('MAX_EXECUTION_TIME', -1);
 		// récup une variable en session
 		public static function getSession($key, $defaut, $addslashes = false) {
 			if($addslashes) {
-				return isset($_SESSION[$key]) ? (!is_array($_SESSION[$key]) ? addslashes($_SESSION[$key]) : $_SESSION[$key]) : (!is_array($defaut) ? addslashes($defaut) : $defaut);
+				return isset($_SESSION[$key]) ? (!is_array($_SESSION[$key]) ? addslashes((string) $_SESSION[$key]) : $_SESSION[$key]) : (!is_array($defaut) ? addslashes((string) $defaut) : $defaut);
 			} else {
-				return isset($_SESSION[$key]) ? $_SESSION[$key] : $defaut;
+				return $_SESSION[$key] ?? $defaut;
 			}
 		}
 		// récup une variable en session, en retournant un int
@@ -213,7 +213,7 @@ ini_set('MAX_EXECUTION_TIME', -1);
 		}
 		// retourne le timestamp en microsecondes
 		public static function microtime_float() {
-			list($usec, $sec) = explode(" ", microtime());
+			[$usec, $sec] = explode(" ", microtime());
 			return ((float)$usec + (float)$sec);
 		}
 		// détruit complètement la session de l'utilisateur
@@ -221,10 +221,10 @@ ini_set('MAX_EXECUTION_TIME', -1);
 			global $db;
 			$user_id = $_SESSION['user_id'];
 			// détruit toutes les variables de session
-			$_SESSION = array();
+			$_SESSION = [];
 			// détruit le cookie de session.
 			if (isset($_COOKIE[session_name()])) {
-			    setcookie(session_name(), '', time()-42000, '/');
+			    setcookie(session_name(), '', ['expires' => time()-42000, 'path' => '/']);
 			}
 			// détruit la session.
 			session_destroy();
@@ -257,7 +257,7 @@ ini_set('MAX_EXECUTION_TIME', -1);
         $mail->isHTML(true); 
         if($utf8) {
         $mail->Subject=(string)$titre;
-        $mail->Body=utf8_encode($texte);
+        $mail->Body=mb_convert_encoding((string) $texte, 'UTF-8', 'ISO-8859-1');
 		}
 		else{
         $mail->Subject=$titre;
@@ -282,7 +282,7 @@ echo "<script type='text/javascript'>console.log('$message');</script>";
 			$headers .= 'Content-type: text/html; charset=utf-8'."\r\n";
 			// envoi du mail
 			
-			mail($destinataire, $titre, $texte, $headers);
+			mail((string) $destinataire, (string) $titre, (string) $texte, $headers);
 			
 		}
 		// crée le dossier d'upload temporaire, et enregistre le nom du dossier en session
@@ -299,6 +299,7 @@ echo "<script type='text/javascript'>console.log('$message');</script>";
 					} while(is_dir($dir_temp.'/'.$upload_dir));
 				}
 			}
+			
 			JL::setSession('upload_dir', $upload_dir);
 			$dest_dossier	= $dir_temp.'/'.$upload_dir;
 			if(!is_dir($dest_dossier)) {
@@ -335,9 +336,9 @@ echo "<script type='text/javascript'>console.log('$message');</script>";
 				$type=0;
 				
 				foreach($messages as $message){
-					if(preg_match('/error/', $message)){
+					if(preg_match('/error/', (string) $message)){
 						$type = 1;
-					}elseif(preg_match('/warning/', $message)){
+					}elseif(preg_match('/warning/', (string) $message)){
 						$type =2;
 					}
 				}
@@ -436,7 +437,7 @@ echo "<script type='text/javascript'>console.log('$message');</script>";
 				$info_dest = "<b>".$userStats->message_new."</b> ".($userStats->message_new > 1 ? $lang_framework["NouveauxMessages"] : $lang_framework["NouveauMessage"])."<br />"
 				."<b>".$userStats->fleur_new."</b> ".($userStats->fleur_new > 1 ? $lang_framework["NouvellesRoses"] :$lang_framework["NouvelleRose"])."<br />"
 				."<b>".$userStats->visite_total."</b> ".($userStats->visite_total > 1 ? $lang_framework["Visites"] :$lang_framework["Visite"])."<br />"
-				.($userStats->gold ? "<b>".$lang_framework['FinAbonnement'].":</b> ".date('d/m/y', strtotime($userStats->gold_limit_date))."" : "<a href='".JL::url(SITE_URL.'/index.php?app=abonnement&action=tarifs'.'&'.$_GET['lang'])."'> <b>".$lang_framework['AbonnezVous']."!</b></a>");
+				.($userStats->gold ? "<b>".$lang_framework['FinAbonnement'].":</b> ".date('d/m/y', strtotime((string) $userStats->gold_limit_date))."" : "<a href='".JL::url(SITE_URL.'/index.php?app=abonnement&action=tarifs'.'&'.$_GET['lang'])."'> <b>".$lang_framework['AbonnezVous']."!</b></a>");
 				
 				$info_exp =  "<b>".$userLog->age."</b> ".$lang_framework['Ans']."<br />"
 				."<b>".$userLog->nb_enfants."</b> ".($userLog->nb_enfants > 1 ? $lang_framework["Enfants"] : $lang_framework["Enfant"])."<br />"
@@ -482,7 +483,7 @@ echo "<script type='text/javascript'>console.log('$message');</script>";
 
 				// envoi du mail de confirmation
 				// intégration du texte et du template, ainsi que traitement des mots clés
-				$mailingTexte 	= JL::getMailHtml(SITE_PATH_ADMIN.'/app/app_mailing/template/'.$mailing->template, $mailing->titre, $mailing->texte,$profil->username, array($user->username,$info_dest,$photoDefautUser,$info_exp));
+				$mailingTexte 	= JL::getMailHtml(SITE_PATH_ADMIN.'/app/app_mailing/template/'.$mailing->template, $mailing->titre, $mailing->texte,$profil->username, [$user->username,$info_dest,$photoDefautUser,$info_exp]);
 				
 				@JL::mail($profil->email, $mailing->titre, $mailingTexte);
 			}
@@ -558,7 +559,7 @@ echo "<script type='text/javascript'>console.log('$message');</script>";
 			// si le classement n'a pas été établi
 			if(!$gagnant) {
 				// variables locales
-				$where 		= array();
+				$where 		= [];
 				$_where		= '';
 				// exclue les profils helvetica media, les inactifs et suspendus
 				$where[]	= 'up.helvetica = 0';
@@ -679,7 +680,7 @@ if($winner) {
 		public static function makeOption($value, $text='', $value_name='value', $text_name='text') {
 			$obj = new stdClass;
 			$obj->$value_name = $value;
-			$obj->$text_name = trim( $text ) ? $text : $value;
+			$obj->$text_name = trim( (string) $text ) ? $text : $value;
 			return $obj;
 		}
 		/**
@@ -810,7 +811,7 @@ if($winner) {
 			if($date_naissance == '0000-00-00')
 				return '';
 			
-			$date_naiss	= explode('/', date('d/m/Y',strtotime($date_naissance)));
+			$date_naiss	= explode('/', date('d/m/Y',strtotime((string) $date_naissance)));
 			
 									
 			$jour_naiss = $date_naiss[0];
@@ -870,7 +871,7 @@ if($winner) {
 			if($date_naissance == '0000-00-00')
 				return '';
 			
-			$date_naiss	= explode('/', date('d/m/Y',strtotime($date_naissance)));
+			$date_naiss	= explode('/', date('d/m/Y',strtotime((string) $date_naissance)));
 			
 									
 			$jour_naiss = $date_naiss[0];

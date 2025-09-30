@@ -1,6 +1,6 @@
 <?php
 
-$lang_framework = array(
+$lang_framework = [
 
 	//------------------Page functions.php ---------
 
@@ -33,5 +33,5 @@ $lang_framework = array(
 
 	"Mois" => "months",
 	"Mois1" => "month",
-);
+];
 ?>

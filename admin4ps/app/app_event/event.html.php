@@ -79,13 +79,13 @@ $i 				= 0; // compteur de tr
 						
 				 <?php 
 						foreach($eventdetails as $contenu) { 
-							if(strlen($contenu->event_desc) > LISTE_INTRO_CHAR) {
+							if(strlen((string) $contenu->event_desc) > LISTE_INTRO_CHAR) {
 										
-										$contenu->event_desc = substr($contenu->event_desc, 0, 100).'...';
+										$contenu->event_desc = substr((string) $contenu->event_desc, 0, 100).'...';
 									}
-									if(strlen($contenu->event_name) > LISTE_INTRO_CHAR) {
+									if(strlen((string) $contenu->event_name) > LISTE_INTRO_CHAR) {
 										
-										$contenu->event_name = substr($contenu->event_name, 0, 100).'...';
+										$contenu->event_name = substr((string) $contenu->event_name, 0, 100).'...';
 									}
 	
 							?>
@@ -93,8 +93,8 @@ $i 				= 0; // compteur de tr
 							
 							<td style="width:150px;"><?php echo $contenu->event_name ?></td>
 							<td style="width:300px;"><?php echo $contenu->event_desc ?></td>
-							<td style="width:100px;white-space:nowrap"><?php echo date('d-m-Y',strtotime($contenu->start_date)) ?></td>
-							<td style="width:100px;white-space:nowrap"><?php echo date('d-m-Y',strtotime($contenu->end_date ))?></td>
+							<td style="width:100px;white-space:nowrap"><?php echo date('d-m-Y',strtotime((string) $contenu->start_date)) ?></td>
+							<td style="width:100px;white-space:nowrap"><?php echo date('d-m-Y',strtotime((string) $contenu->end_date ))?></td>
 							<td style="width:100px;"><table><tr><div style="cursor:pointer" class="edit fa fa-pencil-square-o" id="edit_<?php echo $contenu->id ?>"></div>&nbsp;&nbsp;&nbsp;&nbsp;<div style="color:red;cursor:pointer" class="delete fa fa-trash-o" id="delete_<?php echo $contenu->id ?>"></div></tr></table></td>
 							</tr>
 							<?php 					}

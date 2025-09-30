@@ -134,7 +134,7 @@
 									<a href="<?php echo SITE_URL_ADMIN; ?>/index.php?app=temoignage&action=edit&id=<?php echo $row->id; ?>" title="Modifier le t&eacute;moignage"><?php echo $row->titre; ?></a><br />
 									<i>par <b><?php echo $row->username; ?></b></i>
 								</td>
-								<td><?php echo date('d/m/Y � H:i:s', strtotime($row->date_add)); ?></td>
+								<td><?php echo date('d/m/Y � H:i:s', strtotime((string) $row->date_add)); ?></td>
 							</tr>
 							<?php 						}
 						?>

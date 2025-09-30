@@ -19,7 +19,7 @@
 		JL::redirect(SITE_URL.'/index.php?app=404&lang='.$_GET['lang']);
 	}
 	
-	$messages	= array();
+	$messages	= [];
 	$contact = new stdClass();
 	
 	switch($action){
@@ -81,7 +81,7 @@
 		;
 		$questions = $db -> loadObjectList($query);
 		
-		expert_HTML::listallQ($expert, $questions, $search);				
+		(new expert_HTML())->listallQ($expert, $questions, $search);				
 	}		
 	
 	
@@ -103,7 +103,7 @@
 			$messages[] 	= '<span class="valid">'. $lang_appexpert["QuestionEnvoyee"].'</span>';
 		}
 		
-		expert_HTML::listall($contenu, $experts, $messages);				
+		(new expert_HTML())->listall($contenu, $experts, $messages);				
 	}		
 			
 		
@@ -128,7 +128,7 @@
 		$query = "Select titre_".$_GET['lang']." as titre, texte_".$_GET['lang']." as texte from contenu WHERE id =  124";
 		$contenu = $db->loadObject($query);
 		
-		expert_HTML::display($expert, $expert_avis, $contenu, $contact, $messages);
+		(new expert_HTML())->display($expert, $expert_avis, $contenu, $contact, $messages);
 	}
 		
 		
@@ -149,7 +149,7 @@
 			include("lang/app_expert.".$_GET['lang'].".php");
 			global $db, $contact, $messages;
 			
-			if(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,4}$/', $contact->email)) {
+			if(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,4}$/', (string) $contact->email)) {
 				$messages[] = '<span class="error">'.$lang_appexpert["WarningEmailInvalide"].'</span>';
 			}
 			
@@ -195,7 +195,7 @@
 				//$email = 'm.jombart@babybook.ch';
 				
 				// envoi du mail
-				mail($email, $titre, $texte, $headers);
+				mail((string) $email, $titre, $texte, $headers);
 			
 		}
 					

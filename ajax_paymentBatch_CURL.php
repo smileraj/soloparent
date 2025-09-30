@@ -26,7 +26,7 @@
 	$cFile = '@' . realpath($filename);
    }
 
-	$post = array('FILE' => $cFile,'FILE_REFERENCE' => 'File3599','PSPID' => 'parentsoloTEST','USERID' => 'parentsoloEsales','PSWD' => 'zxn=b31zl@','TRANSACTION_CODE' => 'ATR','OPERATION' => 'SAL','NB_PAYMENTS' => '3','REPLY_TYPE' => 'XML','MODE' => 'SYNC','PROCESS_MODE' => 'SEND');
+	$post = ['FILE' => $cFile,'FILE_REFERENCE' => 'File3599','PSPID' => 'parentsoloTEST','USERID' => 'parentsoloEsales','PSWD' => 'zxn=b31zl@','TRANSACTION_CODE' => 'ATR','OPERATION' => 'SAL','NB_PAYMENTS' => '3','REPLY_TYPE' => 'XML','MODE' => 'SYNC','PROCESS_MODE' => 'SEND'];
 
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);

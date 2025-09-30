@@ -39,12 +39,12 @@
 	
 	$filePath = '/images/events/'.$contenu->filename;
 	// limitation de la longueur du titre
-	if(strlen($contenu->event_name) > TITRE_HOME) {
-		$contenu->event_name = substr($contenu->event_name, 0, TITRE_HOME).'...';
+	if(strlen((string) $contenu->event_name) > TITRE_HOME) {
+		$contenu->event_name = substr((string) $contenu->event_name, 0, TITRE_HOME).'...';
 	}
 	
 	// limitation de la longueur de l'intro
-	$contenu->event_desc = strip_tags(html_entity_decode($contenu->event_desc));
+	$contenu->event_desc = strip_tags(html_entity_decode((string) $contenu->event_desc));
 	if(strlen($contenu->event_desc) > INTRO_HOME) {
 		$contenu->event_desc = substr($contenu->event_desc, 0, INTRO_HOME).'...';
 	}

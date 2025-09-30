@@ -91,7 +91,7 @@
 
 
 		// met &agrave; jour le last_online de l'utilisateur
-		$query = "UPDATE user SET last_online = NOW(), ip = '".addslashes($_SERVER["REMOTE_ADDR"])."' WHERE id = '".$user->id."'";
+		$query = "UPDATE user SET last_online = NOW(), ip = '".addslashes((string) $_SERVER["REMOTE_ADDR"])."' WHERE id = '".$user->id."'";
 		$db->query($query);
 
 		// demande d'authentification

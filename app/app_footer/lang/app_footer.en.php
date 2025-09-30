@@ -1,6 +1,6 @@
 <?php
 
-$lang_appfooter = array(
+$lang_appfooter = [
 
 	"CGU" => "Terms of use",
 	"Contact" => "Contact",
@@ -8,6 +8,6 @@ $lang_appfooter = array(
 	"Publicite" => "Ad",
 	"Tarifs" => "Rates",
 
-);
+];
 
 ?>

@@ -1,11 +1,11 @@
 <?php
 
 	// params
-	$image_file 	= isset($_REQUEST['image_file']) ? $_REQUEST['image_file'] : false;
+	$image_file 	= $_REQUEST['image_file'] ?? false;
 	
-	if(preg_match('/expert/', $image_file)) {
+	if(preg_match('/expert/', (string) $image_file)) {
 		// numéro de l'image extrait de la source (ne fonctionne que pour 0 à 9), il y a mieux à faire plus tard pour améliorer
-		$explode 	= explode('/', $image_file);
+		$explode 	= explode('/', (string) $image_file);
 		$file_name	= $explode[count($explode)-1];	
 		
 		// prefix

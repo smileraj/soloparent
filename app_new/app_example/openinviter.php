@@ -12,34 +12,34 @@
 class openinviter
 	{
 	
-	public $pluginTypes=array('email'=>'Email Providers','social'=>'Social Networks');
+	public $pluginTypes=['email'=>'Email Providers','social'=>'Social Networks'];
 	private $version='1.9.6';
-	private $configStructure=array(
-		'username'=>array('required'=>true,'default'=>''),
-		'private_key'=>array('required'=>true,'default'=>''),
-		'message_body'=>array('required'=>false,'default'=>''),
-		'message_subject'=>array('required'=>false,'default'=>''),
-		'plugins_cache_time'=>array('required'=>false,'default'=>1800),
-		'plugins_cache_file'=>array('required'=>true,'default'=>'oi_plugins.php'),
-		'cookie_path'=>array('required'=>true,'default'=>'/tmp'),
-		'local_debug'=>array('required'=>false,'default'=>false),
-		'remote_debug'=>array('required'=>false,'default'=>false),
-		'hosted'=>array('required'=>false,'default'=>false),
-		'proxies'=>array('required'=>false,'default'=>array()),
-		'stats'=>array('required'=>false,'default'=>false),
-		'stats_user'=>array('required'=>false,'default'=>''),
-		'stats_password'=>array('required'=>false,'default'=>''),
-		'update_files'=>array('required'=>false,'default'=>TRUE),
-	);
+	private $configStructure=[
+		'username'=>['required'=>true,'default'=>''],
+		'private_key'=>['required'=>true,'default'=>''],
+		'message_body'=>['required'=>false,'default'=>''],
+		'message_subject'=>['required'=>false,'default'=>''],
+		'plugins_cache_time'=>['required'=>false,'default'=>1800],
+		'plugins_cache_file'=>['required'=>true,'default'=>'oi_plugins.php'],
+		'cookie_path'=>['required'=>true,'default'=>'/tmp'],
+		'local_debug'=>['required'=>false,'default'=>false],
+		'remote_debug'=>['required'=>false,'default'=>false],
+		'hosted'=>['required'=>false,'default'=>false],
+		'proxies'=>['required'=>false,'default'=>[]],
+		'stats'=>['required'=>false,'default'=>false],
+		'stats_user'=>['required'=>false,'default'=>''],
+		'stats_password'=>['required'=>false,'default'=>''],
+		'update_files'=>['required'=>false,'default'=>TRUE],
+	];
 	private $statsDB=false;
 	private $configOK;
 	private $basePath='';
-	private $availablePlugins=array();
-	private $currentPlugin=array();
+	private $availablePlugins=[];
+	private $currentPlugin=[];
 	
 	public function __construct()
 		{
-		$this->basePath=dirname(__FILE__);
+		$this->basePath=__DIR__;
 		include($this->basePath."/config.php");
 		require_once($this->basePath."/plugins/_base.php");
 		$this->settings=$openinviter_settings;
@@ -48,7 +48,7 @@ class openinviter
 	
 	private function checkConfig()
 		{
-		$to_add=array();$ok=true;
+		$to_add=[];$ok=true;
 		foreach ($this->configStructure as $option=>$details)
 			{
 			if (!isset($this->settings[$option])) $to_add[$option]=$details['default'];
@@ -267,7 +267,7 @@ class openinviter
 	 */
 	public function getPlugins($update=false,$required_details=false)
 		{
-		$plugins=array();
+		$plugins=[];
 		if ($required_details) 
 			{
 			$valid_rcache=false;$cache_rpath=$this->settings['cookie_path'].'/'."int_{$required_details}.php";
@@ -290,15 +290,15 @@ class openinviter
 				}
 		if (!$valid_cache)
 			{
-			$array_file=array();
+			$array_file=[];
 			$temp=glob($this->basePath."/plugins/*.plg.php");
 	        foreach ($temp as $file) $array_file[basename($file,'.plg.php')]=$file;
 	        if (!$update)
 	        	{
 		        if ($this->settings['hosted'])
 		        	{
-					if ($this->startPlugin('_hosted',true)!==FALSE) { $plugins=array();$plugins['hosted']=$this->servicesLink->getHostedServices(); }
-		        	else return array();
+					if ($this->startPlugin('_hosted',true)!==FALSE) { $plugins=[];$plugins['hosted']=$this->servicesLink->getHostedServices(); }
+		        	else return [];
 		        	}
 	        	if (isset($array_file['_hosted'])) unset($array_file['_hosted']);
 	        	}	
@@ -307,8 +307,8 @@ class openinviter
 	        	$reWriteAll=false;
 				if (count($array_file)>0) 
 					{			
-					ksort($array_file);$modified_files=array();
-					if (!empty($plugins['hosted'])) { $reWriteAll=true;$plugins=array(); }
+					ksort($array_file);$modified_files=[];
+					if (!empty($plugins['hosted'])) { $reWriteAll=true;$plugins=[]; }
 					else
 						foreach ($plugins as $key=>$vals)
 							{
@@ -327,7 +327,7 @@ class openinviter
 							if ($enable AND $update==false)
 								{ include($file); if ($this->checkVersion($_pluginInfo['base_version'])) $plugins[$_pluginInfo['type']][$plugin_key]=$_pluginInfo; }
 							elseif ($update==true)
-								{ include($file); if ($this->checkVersion($_pluginInfo['base_version'])) $plugins[$_pluginInfo['type']][$plugin_key]=array_merge(array('autoupdate'=>$autoUpdate),$_pluginInfo); }
+								{ include($file); if ($this->checkVersion($_pluginInfo['base_version'])) $plugins[$_pluginInfo['type']][$plugin_key]=array_merge(['autoupdate'=>$autoUpdate],$_pluginInfo); }
 							}
 						else
 							{  include($file);if ($this->checkVersion($_pluginInfo['base_version'])) $plugins[$_pluginInfo['type']][$plugin_key]=$_pluginInfo; $this->writePlConf($plugin_key,$_pluginInfo['type']);}
@@ -347,7 +347,7 @@ class openinviter
 				}
 			}
 		if (!$this->settings['hosted']) $returnPlugins=$plugins;			
-		else $returnPlugins=(!empty($plugins['hosted'])?$plugins['hosted']:array());		
+		else $returnPlugins=(!empty($plugins['hosted'])?$plugins['hosted']:[]);		
 		if ($required_details) 
 			{			
 			if (!$valid_rcache)
@@ -367,7 +367,7 @@ class openinviter
 				}
 			return $returnPlugins;
 			}
-		$temp=array();
+		$temp=[];
 		if (!empty($returnPlugins)) 
 			foreach ($returnPlugins as $type=>$type_plugins)
 				$temp=array_merge($temp,$type_plugins);				
@@ -485,11 +485,11 @@ class openinviter
 	
 	public function getPluginByDomain($user)
 		{
-		$user_domain=explode('@',$user);if (!isset($user_domain[1])) return false;
+		$user_domain=explode('@',(string) $user);if (!isset($user_domain[1])) return false;
 		$user_domain=$user_domain[1];
 		foreach ($this->availablePlugins as $plugin=>$details)
 			{
-			$patterns=array();
+			$patterns=[];
 			if ($details['allowed_domains']) $patterns=$details['allowed_domains']; elseif (isset($details['detected_domains'])) $patterns=$details['detected_domains'];
 			foreach ($patterns as $domain_pattern)
 				if (preg_match($domain_pattern,$user_domain)) return $plugin;
@@ -508,8 +508,7 @@ class openinviter
 	public function getInternalError()
 		{
 		if (isset($this->internalError)) return $this->internalError;
-		if (isset($this->plugin->internalError)) return $this->plugin->internalError;
-		return false;
+		return $this->plugin->internalError ?? false;
 		}
 	
 	/**

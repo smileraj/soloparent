@@ -1,6 +1,6 @@
 <?php
 
-$langChat= array(
+$langChat= [
 
 	"warning" => "Note: make sure you know the person you’re chatting to before giving out your personal information or email/msn addresses.",
 	"ans" => "years",
@@ -30,5 +30,5 @@ $langChat= array(
 	
 	"MembreNonConfirme" => "This member profile has not yet been confirmed",
 	
-);
+];
 ?>

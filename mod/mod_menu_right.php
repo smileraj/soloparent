@@ -70,7 +70,7 @@ if (!$photo) {
                         : '<a href="' . JL::url('index.php?app=search&action=visits&' . $langue) . '" title="' . $lang_mod["VisiteursProfil"] . '"><span style="font-weight:bold">' . $userStats->visite_total . '</span> ' . ($userStats->visite_total > 1 ? $lang_mod["Visites"] : $lang_mod["Visite"]) . '</a>'; ?>
                     <br />
                     <?= $userStats->points_total <= 0
-                        ? $userStats->points_total . ' ' . SoloFleur
+                        ? $userStats->points_total . ' ' . \SOLOFLEUR
                         : '<a href="' . JL::url('index.php?app=points&action=mespoints&' . $langue) . '" title="' . $lang_mod["DetailPoints"] . '"><span style="font-weight:bold">' . $userStats->points_total . '</span> SoloFleur' . ($userStats->points_total > 0 ? 's' : '') . '</a>'; ?>
                 </td>
             </tr>

@@ -41,7 +41,7 @@
 			<br />
 			
 		<?php  
-		$messages = $messages ?? [];
+		$messages ??= [];
 			// messages d'erreurs
 			if (is_array($messages)){
 				// affichage des messages

@@ -32,7 +32,7 @@
 	
 	// variables
 	$_where			= '';
-	$where			= array();
+	$where			= [];
 	
 	// prise en compte de la case 'newsletter' dans les params du compte
 	$where[]		= "na.newsletter=1";

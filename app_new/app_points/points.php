@@ -9,7 +9,7 @@
 	if($_GET["lang"]=='fr')
 		$langString = "";
 	else
-		$langString = "_".$_GET[lang];
+		$langString = "_".$_GET[\LANG];
 
 	/*
 		info: pr�sentation du syst�me de points (content)
@@ -147,8 +147,8 @@
 
 		// variables
 		$resultatParPage 	= 20;
-		$where 				= array();
-		$search 			= array();
+		$where 				= [];
+		$search 			= [];
 		$_where				= '';
 
 
@@ -219,7 +219,7 @@
 		global $db;
 
 		// variables locales
-		$where 				= array();
+		$where 				= [];
 		$_where				= '';
 
 

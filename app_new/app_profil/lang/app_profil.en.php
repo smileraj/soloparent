@@ -1,6 +1,6 @@
 <?php
 
-$lang_appprofil = array(
+$lang_appprofil = [
 
 //Fichier profil.html.php
 	"MessagesParentSolo" => "solocircl.com messages",
@@ -462,6 +462,6 @@ $lang_appprofil = array(
 	//PROFILE
 "SELECTEDPROFILES" => "MATCHING",
 "Addbutton" => "Add photo",
-);
+];
 
 ?>

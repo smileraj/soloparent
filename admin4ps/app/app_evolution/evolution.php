@@ -10,7 +10,7 @@
 
 	
 	// variables
-	$messages = array();
+	$messages = [];
 
 	
 	
@@ -58,7 +58,7 @@
 		;
 		$nb_abonnes = $db->loadResult($query);
 		
-		evolution_HTML::lister($evolution, $evolution_suppr, $nb_abonnes);
+		(new evolution_HTML())->lister($evolution, $evolution_suppr, $nb_abonnes);
 		
 	}
 

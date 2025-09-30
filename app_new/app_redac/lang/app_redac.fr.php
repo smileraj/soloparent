@@ -1,6 +1,6 @@
 <?php
 
-$lang_redac = array(
+$lang_redac = [
 
 	//------------------Page redac.html.php ---------
 
@@ -28,5 +28,5 @@ $lang_redac = array(
 
 
 
-);
+];
 ?>

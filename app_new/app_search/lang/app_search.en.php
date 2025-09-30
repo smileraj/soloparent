@@ -1,6 +1,6 @@
 <?php
 
-$lang_search = array(
+$lang_search = [
 
 	//------------------Page search.html.php ---------
 
@@ -175,5 +175,5 @@ $lang_search = array(
 //PROFILE
 "SELECTEDPROFILES" => "Selected Profiles",
  
-);
+];
 ?>

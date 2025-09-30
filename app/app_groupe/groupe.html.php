@@ -175,7 +175,7 @@
 								foreach($rows as $row) {
 
 									// limitation du texte
-									$row->texte = strip_tags(html_entity_decode($row->texte));
+									$row->texte = strip_tags(html_entity_decode((string) $row->texte));
 									if(strlen($row->texte) > LISTE_INTRO_CHAR) {
 										$row->texte = substr($row->texte, 0, 100).'...';
 									}
@@ -183,7 +183,7 @@
 										$row->texte = substr($row->texte, 0, 100).'...';
 									}
 									
-									$row->titre = strip_tags(html_entity_decode($row->titre));
+									$row->titre = strip_tags(html_entity_decode((string) $row->titre));
 									if(strlen($row->titre) > LISTE_TITRE_CHAR) {
 										$row->titre = substr($row->titre, 0, 100).'...';
 									}
@@ -251,7 +251,7 @@
 						<div class="col-md-4 col-sm-3 col-xs-12">
 							<div class="hovereffect parentsolo_border_radius ">
 						<a href="<?php echo $lien; ?>" title="<?php echo $title; ?>"><img src="<?php echo SITE_URL.'/'.$image; ?>" alt="<?php echo $row->titre; ?>" class="superpose " id="img_1" style="width:100%;"/></a>
-													 <?php 														if(time()-strtotime($row->date_add) < 3600*24*3) { 
+													 <?php 														if(time()-strtotime((string) $row->date_add) < 3600*24*3) { 
 													?>
 															<a href="<?php echo $lien; ?>" title="<?php echo $title; ?>"><img src="<?php echo SITE_URL.'/images/groupe/groupe-calque-'.$_GET['lang'].'.png'; ?>" alt="<?php echo $row->titre; ?>"  style="width:100%;" class="superpose" id="img_2" /></a>
 													<?php 
@@ -393,7 +393,7 @@
 
 		public static function groupeFiche(&$row, &$membres, &$search) {
     // Include language file safely
-    $lang = isset($_GET['lang']) ? $_GET['lang'] : 'en';
+    $lang = $_GET['lang'] ?? 'en';
     $lang_groupe = include("lang/app_groupe.".$lang.".php");
 
     global $langue, $action, $user;
@@ -449,7 +449,7 @@
                 </div>
 
                 <img src="<?php echo SITE_URL.'/'.$image; ?>" alt="<?php echo $row->titre; ?>" class="superpose parentsolo_group_img" id="img_1"/>
-                <?php if (time() - strtotime($row->date_add) < 3600*24*3): ?>
+                <?php if (time() - strtotime((string) $row->date_add) < 3600*24*3): ?>
                     <img src="<?php echo SITE_URL.'/images/groupe/groupe-calque-'.$lang.'.png'; ?>" alt="<?php echo $row->titre; ?>" class="superpose" id="img_2"/>
                 <?php endif; ?>
             </div>
@@ -496,7 +496,7 @@
 
             <div class="clear"></div>
             <div class="col-md-12 text-box">
-                <?php echo nl2br($row->texte); ?>
+                <?php echo nl2br((string) $row->texte); ?>
             </div>
         </div>
     </div>
@@ -669,11 +669,11 @@
 								<br />
 								<?php echo $row->texte; ?><br />
 								<br />
-								<b><?php echo $lang_groupe["DateDeCreation"];?>:</b><?php echo date('d.m.Y', strtotime($row->date_add)); ?> <?php echo date('H:i', strtotime($row->date_add)); ?>
+								<b><?php echo $lang_groupe["DateDeCreation"];?>:</b><?php echo date('d.m.Y', strtotime((string) $row->date_add)); ?> <?php echo date('H:i', strtotime((string) $row->date_add)); ?>
 								<?php if($row->motif != '') { ?>
 									<br />
 									<br />
-									<b><?php echo $lang_groupe["Message"];?>:</b><?php echo nl2br($row->motif); ?>
+									<b><?php echo $lang_groupe["Message"];?>:</b><?php echo nl2br((string) $row->motif); ?>
 								<?php }?>
 							</td>
 						</tr>

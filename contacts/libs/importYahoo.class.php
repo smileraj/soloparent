@@ -22,9 +22,9 @@
 
 	class yahooGrabber {
 		
-		var $_username;
-		var $_password;
-		var $_cookie;
+		public $_username;
+		public $_password;
+		public $_cookie;
 		
 
 		/**
@@ -32,9 +32,9 @@
 		 * @param $username, yahoo login name
 		 * @param $password, yahoo account password
 		 */
-		function yahooGrabber( $username, $password ) {
-			$un	= trim ( $username );
-			$pw	= trim ( $password );
+		function __construct( $username, $password ) {
+			$un	= trim ( (string) $username );
+			$pw	= trim ( (string) $password );
 			if ( empty ( $un ) )
 				die( 'Please Provide your yahoo login name!' );
 			if ( empty ( $pw ) )
@@ -83,7 +83,7 @@
 			curl_setopt( $ch, CURLOPT_COOKIEJAR, $this->_getCookie() );
 			curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
 			if( strstr( curl_exec( $ch ), 'Invalid ID or password' ) ) {
-				return array();
+				return [];
 			}
 			/****************************************************************************************/
 
@@ -103,33 +103,33 @@
 			curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1 );
 
 			$contactsGrid = curl_exec( $ch );
-			$getTable = array();
-			$contactsPages = array();
+			$getTable = [];
+			$contactsPages = [];
 			preg_match_all( '/abcnav">(.*?)<\/ol>/s', $contactsGrid, $contactsPages);
 			$contactsPages[1][0] = strip_tags($contactsPages[0][0], '<a>');
 			$contactsArrPages = explode( '</a>', $contactsPages[1][0] );
 			foreach( $contactsArrPages as $key => $value ) {
-				$removedItems	= array( '<a href="', 'title="', 'abcnav">', '"' );
+				$removedItems	= [ '<a href="', 'title="', 'abcnav">', '"' ];
 				$tmp		=	trim( str_replace( $removedItems, '', $value ) );
 				$tmpArray	= explode(' ', $tmp );
 				$contactsArrPages[$key] = $tmpArray[0];
 			}
-			$contacts = array();
+			$contacts = [];
 			foreach( $contactsArrPages as $value ) {
 				$urlPages = 'http://address.mail.yahoo.com/'.$value;
 				curl_setopt( $ch, CURLOPT_URL, $urlPages );
 				$contactsGrid = curl_exec( $ch );
 
 				preg_match_all( '/datatable snippets(.*?)<\/table>/s', $contactsGrid, $getTable );
-				$getTbody  = array();
+				$getTbody  = [];
 				$tmp = ''.$getTable[0][0];
 				unset( $getTable );
 				preg_match_all( '/<tbody>(.*?)<\/tbody>/s',$tmp , $getTbody );
-				$getTr	= array();
+				$getTr	= [];
 				$tmp = ''.$getTbody[0][0];
 				unset( $getTbody );
 				preg_match_all( '/<tr (.*?)<\/tr>/s', $tmp, $getTr, PREG_SET_ORDER );
-				$tmpArray = array();
+				$tmpArray = [];
 				foreach( $getTr as $value ) {
 					$tmpArray[] = $value[0];
 				}
@@ -137,7 +137,7 @@
 				foreach( $tmpArray as $key => $value ) {
 					$value = trim( strip_tags( $value ) );
 					if ( $key % 2 != 0 ) {
-						$tmp = array();
+						$tmp = [];
 						preg_match_all( '/contactname\">(.*?)<\/span>/s',$tmpArray[$key - 1], $tmp );
 						$name = trim( $tmp[1][0] );
 						if ( !empty( $value ) ) {
@@ -153,7 +153,7 @@
 							$url		= $url . $href;
 							curl_setopt( $ch, CURLOPT_URL, $url );
 							$page		= curl_exec( $ch );
-							$yahooID	= array();
+							$yahooID	= [];
 							preg_match_all( '/ymsgr:sendIM\?(.*?)\">/s', $page, $yahooID );
 							$contacts[strip_tags( $tmp[1][0] )]	= $yahooID[1][0].'@yahoo.com';
 							//echo "<br />'SECOND-->'".$contacts[strip_tags( $tmp[1][0] )]."<br />";

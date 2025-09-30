@@ -1,6 +1,6 @@
 <?php
 
-$lang_flbl = array(
+$lang_flbl = [
 
 	"Favoris" => "Favoris",
 	"ListeNoire" => "Liste noire",
@@ -52,5 +52,5 @@ $lang_flbl = array(
 	
 	"ProfilIntrouvabe" => "Profil introuvable",
 
-);
+];
 ?>

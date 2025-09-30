@@ -10,7 +10,7 @@
 
 	
 	// variables
-	$messages = array();
+	$messages = [];
 
 	
 	
@@ -58,7 +58,7 @@
 		
 		
 		// récup les données
-		$data 		= getData(true);
+		$data 		= getData();
 		
 		// passe les variables en session
 		foreach($data as $k => $v) {
@@ -97,21 +97,21 @@
 		
 		}
 		
-		if(strlen($data->username) < 4 || strlen($data->username) > 12) {
+		if(strlen((string) $data->username) < 4 || strlen((string) $data->username) > 12) {
 			$messages[]	= '<span class="error">Votre pseudo n\'est pas valide. Celui-ci doit comporter entre 4 et 12 caractères inclus.</span>';
 		}
 		
-		if(!preg_match('/^[a-zA-Z0-9._-]+$/', $data->username)) {
+		if(!preg_match('/^[a-zA-Z0-9._-]+$/', (string) $data->username)) {
 			$messages[]	= '<span class="error">Votre pseudo n\'est pas valide. Celui-ci ne doit contenir que des caractères non accentués et des chiffres.</span>';
 		}
 		
 		// user log et change de mdp, ou user non log
-		if($data->password && !preg_match('/^[a-zA-Z0-9._-]+$/', $data->password)) {
+		if($data->password && !preg_match('/^[a-zA-Z0-9._-]+$/', (string) $data->password)) {
 			$messages[]	= '<span class="error">Votre mot de passe n\'est pas valide. Celui-ci ne doit contenir que des caractères non accentués et des chiffres.</span>';
 		}
 		
 		// user log et change de mdp, ou user non log
-		if($data->password2 && !preg_match('/^[a-zA-Z0-9._-]+$/', $data->password2)) {
+		if($data->password2 && !preg_match('/^[a-zA-Z0-9._-]+$/', (string) $data->password2)) {
 			$messages[]	= '<span class="error">La confirmation du mot de passe n\'est pas valide. Celle-ci ne doit contenir que des caractères non accentués et des chiffres.</span>';
 		}
 		
@@ -119,7 +119,7 @@
 			$messages[]	= '<span class="error">La confirmation du mot de passe ne correspond pas avec le premier mot de passe entré.</span>';
 		}
 		
-		if(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,3}$/', $data->email)) {
+		if(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,3}$/', (string) $data->email)) {
 			$messages[]	= '<span class="error">Votre adresse e-mail n\'est pas valide.</span>';
 		}
 		
@@ -224,7 +224,7 @@
 	function userActivation($published) {
 		global $db, $messages;
 		
-		$ids = JL::getVar('id', array());
+		$ids = JL::getVar('id', []);
 		
 		// s'il y a des id passés
 		if (is_array($ids)) {
@@ -291,7 +291,7 @@
 		
 		// variables
 		$resultatParPage	= RESULTS_NB_LISTE_ADMIN;
-		$search				= array();
+		$search				= [];
 		$where				= null;
 		$_where				= '';
 		
@@ -342,8 +342,8 @@
 	function userSupprimer() {
 		global $db, $messages;
 		
-		$ids 		= JL::getVar('id', array());
-		$ids_profil	= array();
+		$ids 		= JL::getVar('id', []);
+		$ids_profil	= [];
 		
 		// s'il y a des id passés
 		if (is_array($ids)) {

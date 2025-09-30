@@ -36,7 +36,7 @@
 			." FROM user_stats AS us"
 			." INNER JOIN user AS u ON u.id = us.last_event_user_id"
 			." INNER JOIN user_profil AS up ON up.user_id = us.last_event_user_id"
-			." WHERE us.user_id = '".addslashes($userTo->id)."' AND us.last_event_type > 0"
+			." WHERE us.user_id = '".addslashes((string) $userTo->id)."' AND us.last_event_type > 0"
 			;
 			$userFrom = $db->loadObject($query);
 		
@@ -55,39 +55,14 @@
 				
 				
 				// en fonction du type d'�v�nement
-				switch($userFrom->last_event_type) {
-				
-					// ami connect�
-					case 5:
-						$message = 'vient de se connecter&nbsp;!';
-					break;
-				
-					// envoi message chat
-					case 4:
-						$message = 'vous a envoy&eacute; un message sur le <a href="javascript:windowOpen(\'ParentSoloChat\',\''.JL::url('index2.php?app=chat&id='.$userFrom->id).'\',\'800px\',\'600px\');" title="Chattez avec '.$userFrom->username.'">chat</a> !';
-					break;
-				
-					// envoi fleur
-					case 3:
-						$message = 'vient de vous envoyer une <a href="'.JL::url('index.php?app=message&action=read&id='.$userFrom->last_event_data).'">rose</a> !';
-					break;
-				
-					// envoi message
-					case 2:
-						$message = 'vient de vous envoyer un <a href="'.JL::url('index.php?app=message&action=read&id='.$userFrom->last_event_data).'">message</a> !';
-					break;
-					
-					// consultation profil
-					case 1:
-						$message = 'est en train de consulter votre profil !';
-					break;
-					
-					// pas de message
-					default:
-						$message = '';
-					break;
-					
-				}
+				$message = match ($userFrom->last_event_type) {
+                    5 => 'vient de se connecter&nbsp;!',
+                    4 => 'vous a envoy&eacute; un message sur le <a href="javascript:windowOpen(\'ParentSoloChat\',\''.JL::url('index2.php?app=chat&id='.$userFrom->id).'\',\'800px\',\'600px\');" title="Chattez avec '.$userFrom->username.'">chat</a> !',
+                    3 => 'vient de vous envoyer une <a href="'.JL::url('index.php?app=message&action=read&id='.$userFrom->last_event_data).'">rose</a> !',
+                    2 => 'vient de vous envoyer un <a href="'.JL::url('index.php?app=message&action=read&id='.$userFrom->last_event_data).'">message</a> !',
+                    1 => 'est en train de consulter votre profil !',
+                    default => '',
+                };
 				
 				// s'il y a un mssage � afficher
 				if($message) {

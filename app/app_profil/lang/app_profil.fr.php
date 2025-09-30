@@ -1,6 +1,6 @@
 <?php
 
-$lang_appprofil = array(
+$lang_appprofil = [
 	"upload_file" => "Parcourir",
 "crop_photo"=>"Ajouter une photo",
 "Sauvegarder"=>"Sauvegarder",
@@ -469,6 +469,6 @@ $lang_appprofil = array(
 //PROFILE
 "SELECTEDPROFILES" => "MATCHING",	
 "Addbutton" => "Ajouter une photo",
-);
+];
 
 ?>

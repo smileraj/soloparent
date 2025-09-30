@@ -21,7 +21,7 @@
 
 $ogone_SHA = 'Parentsoloch@123';
 $ogone_PSPID = 'parentsoloTEST';
-$ogone_ORDERID = rand(100,1000); 
+$ogone_ORDERID = random_int(100,1000); 
 $ogone_AMOUNT = "20"; 
 $ogone_QUANTITY = "1"; 
 

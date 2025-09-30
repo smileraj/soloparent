@@ -1,6 +1,6 @@
 <?php
-$langAjaxChat = array(
+$langAjaxChat = [
 
 	"MsgBlackListTo" => "",
-);
+];
 ?>

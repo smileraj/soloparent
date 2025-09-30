@@ -16,10 +16,10 @@ if (isset($_REQUEST['option']) && $_REQUEST['option'] == 'common') {
     $date = date('d-m-Y');
 
     $maxdateRow = $db->loadObject("SELECT MAX(start_date) AS maxdate FROM events_creations");
-    $maxdate = $maxdateRow ? date('d-m-Y', strtotime($maxdateRow->maxdate)) : $date;
+    $maxdate = $maxdateRow ? date('d-m-Y', strtotime((string) $maxdateRow->maxdate)) : $date;
 
     $emaxdateRow = $db->loadObject("SELECT MAX(end_date) AS emaxdate FROM events_creations");
-    $emaxdate = $emaxdateRow ? date('d-m-Y', strtotime($emaxdateRow->emaxdate)) : $date;
+    $emaxdate = $emaxdateRow ? date('d-m-Y', strtotime((string) $emaxdateRow->emaxdate)) : $date;
 
     $finalvalue[] = [$maxdate, $emaxdate, $date];
     echo json_encode($finalvalue);
@@ -28,10 +28,10 @@ if (isset($_REQUEST['option']) && $_REQUEST['option'] == 'common') {
 if ($SAVE == 'Save') {
     $name = $db->escape($_REQUEST['txt_evt_name']);
     $desc = $db->escape($_REQUEST['txt_evt_desc']);
-    $sdate = date('Y-m-d', strtotime($_REQUEST['txt_evt_sdate']));
-    $edate = date('Y-m-d', strtotime($_REQUEST['txt_evt_edate']));
+    $sdate = date('Y-m-d', strtotime((string) $_REQUEST['txt_evt_sdate']));
+    $edate = date('Y-m-d', strtotime((string) $_REQUEST['txt_evt_edate']));
     $userid = (int)$_REQUEST['userid'];
-    $random = rand(1, 1000000);
+    $random = random_int(1, 1000000);
     $imgidentity = $userid . '_' . $random;
 
     $userRow = $db->loadObject("SELECT username FROM user WHERE id = $userid");
@@ -39,7 +39,7 @@ if ($SAVE == 'Save') {
 
     // File upload
     $target_dir = "../../../images/events/";
-    $filename = $imgidentity . '_' . basename($_FILES["txt_evt_logo"]["name"]);
+    $filename = $imgidentity . '_' . basename((string) $_FILES["txt_evt_logo"]["name"]);
     $target_file = $target_dir . $filename;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
@@ -78,10 +78,10 @@ if ($_REQUEST['option'] == 'edit') {
     if ($row) {
         $finalvalue[] = [
             $row->id,
-            stripslashes($row->event_name),
-            stripslashes($row->event_desc),
-            date('d-m-Y', strtotime($row->start_date)),
-            date('d-m-Y', strtotime($row->end_date)),
+            stripslashes((string) $row->event_name),
+            stripslashes((string) $row->event_desc),
+            date('d-m-Y', strtotime((string) $row->start_date)),
+            date('d-m-Y', strtotime((string) $row->end_date)),
             "../../../images/events/" . $row->filename,
             $row->filename
         ];
@@ -93,13 +93,13 @@ if ($update == 'Update') {
     $id = (int)$_REQUEST['rowid'];
     $name = $db->escape($_REQUEST['txt_evt_name']);
     $desc = $db->escape($_REQUEST['txt_evt_desc']);
-    $sdate = date('Y-m-d', strtotime($_REQUEST['txt_evt_sdate']));
-    $edate = date('Y-m-d', strtotime($_REQUEST['txt_evt_edate']));
+    $sdate = date('Y-m-d', strtotime((string) $_REQUEST['txt_evt_sdate']));
+    $edate = date('Y-m-d', strtotime((string) $_REQUEST['txt_evt_edate']));
     $userid = (int)$_REQUEST['userid'];
-    $random = rand(1, 1000000);
+    $random = random_int(1, 1000000);
     $imgidentity = $userid . '_' . $random;
 
-    $imagename = basename($_FILES["txt_evt_logo"]["name"]);
+    $imagename = basename((string) $_FILES["txt_evt_logo"]["name"]);
     if ($imagename == '') {
         $filename = $_REQUEST['imageid'];
     } else {

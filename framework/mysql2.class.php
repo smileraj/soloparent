@@ -13,10 +13,10 @@
 
 
 
-		var	$connexion_id	= null; // connexion mysql
+		public $connexion_id	= null; // connexion mysql
 
 
-		var	$ressource		= null;	// id du résultat d'une requête
+		public $ressource		= null;	// id du résultat d'une requête
 
 
 
@@ -115,7 +115,7 @@
 		function setQuery($query) {
 
 
-			$this->$db->escape(query);
+			$this->$db->escape(\QUERY);
 
 
 			if(!$this->ressource) {
@@ -232,7 +232,7 @@
 			} else {
 
 
-				return array();
+				return [];
 
 
 			}
@@ -289,7 +289,7 @@
 			}
 
 
-			$datas	= array();
+			$datas	= [];
 
 
 			while($data = mysql_fetch_array($this->ressource)) {
@@ -322,7 +322,7 @@
 			}
 
 
-			$datas	= array();
+			$datas	= [];
 
 
 

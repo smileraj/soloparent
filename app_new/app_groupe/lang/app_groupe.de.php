@@ -1,6 +1,6 @@
 <?php
 
-$lang_groupe = array(
+$lang_groupe = [
 
 	//------------------Page groupe.html.php ---------
 
@@ -172,6 +172,6 @@ $lang_groupe = array(
 	"IndiquezDescription" => "Geben Sie bitte die Beschreibung Ihrer Gruppe an",
 	
 	
-);
+];
 
 ?>

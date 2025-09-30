@@ -1,6 +1,6 @@
 <?php
 
-$lang_appcontact = array(
+$lang_appcontact = [
 	
 	//*View
 	
@@ -41,6 +41,6 @@ $lang_appcontact = array(
 	//**Confirmation d'envoi
 	
 	"MessageEnvoye" => "Ihre Mitteilung wurde erfolgreich versendet",
-);
+];
 
 ?>
