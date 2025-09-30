@@ -1,6 +1,6 @@
 <?php
 
-$lang_mainlink = array(
+$lang_mainlink = [
 
 	//--------------error404---------------------------
 	
@@ -211,5 +211,5 @@ $lang_mainlink = array(
 	"Tarifs" => "Rates",
 	"Copyright" => "Copyright © 2009 - ".date('Y')." - solocircl.com",
 	
-);
+];
 ?>

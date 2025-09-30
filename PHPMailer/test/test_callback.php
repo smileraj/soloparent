@@ -62,13 +62,13 @@ function cleanEmails($str, $type)
         $addy['Name'] = $str[1];
         return $addy;
     }
-    if (!strstr($str, ' <')) {
+    if (!strstr((string) $str, ' <')) {
         $addy['Name'] = '';
         $addy['Email'] = $addy;
         return $addy;
     }
-    $addyArr = explode(' <', $str);
-    if (substr($addyArr[1], -1) == '>') {
+    $addyArr = explode(' <', (string) $str);
+    if (str_ends_with($addyArr[1], '>')) {
         $addyArr[1] = substr($addyArr[1], 0, -1);
     }
     $addy['Name'] = $addyArr[0];

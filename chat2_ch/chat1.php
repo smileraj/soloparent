@@ -230,7 +230,7 @@
 								<input type="hidden" name="site_url" id="site_url" value="<?php echo SITE_URL;?>">
 								<input type="hidden" name="id_corresp" id="id_corresp" value="<?php echo (isset($_GET["id_corresp"])&&$_GET["id_corresp"]>0)?$_GET["id_corresp"]:"0" ; ?>">
 								<input type="hidden" name="user_id_to_close" id="user_id_to_close" value="0">
-								<input type="hidden" name="closeConfirm" value="<?php echo utf8_decode($langChat["closeConvConfirm"]); ?>">
+								<input type="hidden" name="closeConfirm" value="<?php echo mb_convert_encoding((string) $langChat["closeConvConfirm"], 'ISO-8859-1'); ?>">
 								<textarea name="texte" id="texte" class="texte" onKeyUp="actionMessage(event);"></textarea>
 								<div class="envoyer" onClick="sendMessage();"><?php echo $langChat["Envoyer"]; ?></div>
 							</form>

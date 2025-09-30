@@ -17,13 +17,13 @@
 	$user_id_to_new	= intval(JL::getVar('user_id_to_new', 0));
 	$newOnly		= intval(JL::getVar('newonly', 0));
 	$key			= JL::getVar('key', '');
-	$texte			= utf8_decode(JL::getVar('texte', '', true));
+	$texte			= mb_convert_encoding(JL::getVar('texte', '', true), 'ISO-8859-1');
 
 	
 
 	$useridval=$_POST['useridval'];
 	$cht_count=$_POST['cht_count'];
-	$where			= array();
+	$where			= [];
 		$_where			= '';
 $where[]		= "cm.user_id_to = '".$useridval."'";
 		$where[]		= "cm.new_user_to = '1'";

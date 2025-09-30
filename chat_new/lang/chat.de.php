@@ -1,6 +1,6 @@
 <?php
 
-$langChat= array(
+$langChat= [
 
 	"warning" => "Beachten Sie bitte, dass Sie Ihrem Gespr&auml;chsgegen&uuml;ber gut kennengelernt haben, bevor Sie Ihre pers&ouml;nlichen Daten oder Ihre E-Mailadresse oder MSN-Adresse weitergeben.",
 	"ans" => "Jahre",
@@ -24,5 +24,5 @@ $langChat= array(
 	"Aide" => "Hilfe"
 	
 
-);
+];
 ?>

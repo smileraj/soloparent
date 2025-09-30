@@ -1,5 +1,5 @@
 <?php
-$lang_appabonnement = array(
+$lang_appabonnement = [
 	//Fichier abonnement.html.php
 	"MessagesParentsolo" => "Mitteilungen an SinglEltern.ch",
 	"alias_acc" =>"Alias nummer",
@@ -111,6 +111,6 @@ $lang_appabonnement = array(
 	"IndicationAcceptationCGU" => "Sie haben gelesen und akzeptiere die Allgemeine Nutzungsbedingungen",
 	//Service indisponible
 	"ServiceIndisponible" => "Dieser Service ist nicht verf&uuml;gbar",
-);
+];
 
 ?>

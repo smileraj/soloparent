@@ -135,7 +135,7 @@
 									<i>par <b><?php echo $row->nom.' '.$row->prenom; ?></b></i>
 								</td>
 								<td><?php echo $row->media; ?></td>
-								<td><?php echo date('d/m/Y � H:i:s', strtotime($row->date_add)); ?></td>
+								<td><?php echo date('d/m/Y � H:i:s', strtotime((string) $row->date_add)); ?></td>
 							</tr>
 							<?php 						}
 						?>

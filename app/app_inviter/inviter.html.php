@@ -24,7 +24,7 @@
 
 		}
 
-		public static function parrainage(&$data, &$row, $messages = array()) {
+		public static function parrainage(&$data, &$row, $messages = []) {
 			global $langue;
 			include("lang/app_inviter.".$_GET['lang'].".php");
 			global $user;
@@ -108,7 +108,7 @@
 		}
 
 	
-		public static function conseiller(&$data, &$row, $messages = array()) {
+		public static function conseiller(&$data, &$row, $messages = []) {
 			global $langue;
 			include("lang/app_inviter.".$_GET['lang'].".php");
 			global $user;

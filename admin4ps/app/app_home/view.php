@@ -5,10 +5,10 @@
 	
 	class homeView extends JLModel {
 	
-		function homeView() {}
+		function __construct() {}
 		
 		// vérifie si l'utilisateur veut se log ou est log, et renseigne la variable global $user
-		function display($auth='', &$profils, &$actualites,&$colonne_1, &$colonne_2, &$colonne_3, &$colonne_4, &$partenaire_r, &$list) {
+		function display($auth='', &$profils = null, &$actualites = null,&$colonne_1 = null, &$colonne_2 = null, &$colonne_3 = null, &$colonne_4 = null, &$partenaire_r = null, &$list = null) {
 			include("lang/app_home.".$_GET['lang'].".php");
 			global $db, $template;
 						

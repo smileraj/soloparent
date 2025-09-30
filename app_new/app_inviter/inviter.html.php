@@ -24,7 +24,7 @@
 
 		}
 
-		function parrainage(&$data, &$row, $messages = array()) {
+		function parrainage(&$data, &$row, $messages = []) {
 			global $langue;
 			include("lang/app_inviter.".$_GET['lang'].".php");
 			global $user;
@@ -108,7 +108,7 @@
 		}
 
 	
-		function conseiller(&$data, &$row, $messages = array()) {
+		function conseiller(&$data, &$row, $messages = []) {
 			global $langue;
 			include("lang/app_inviter.".$_GET['lang'].".php");
 			global $user;

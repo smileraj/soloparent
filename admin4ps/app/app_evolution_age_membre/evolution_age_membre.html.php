@@ -49,9 +49,9 @@
 					</tr>
 		<?php 			for($i=2009;$i<2016;$i++){
 				
-				$date_total =array();
-				$date_total_h =array();
-				$date_total_f =array();
+				$date_total =[];
+				$date_total_h =[];
+				$date_total_f =[];
 				
 				foreach($dates_naissance[$i.'user'] AS $date)
 					$date_total[] = JL::calcul_age_adulte_admin($date->naissance_date,$i);

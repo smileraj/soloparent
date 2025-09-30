@@ -7,7 +7,7 @@ $varval=$_POST['imgval'];
 
 if($varval!=''){
 	if($upload_dir!=''){
-$img = preg_replace('#^data:image/[^;]+;base64,#', '', $varval);
+$img = preg_replace('#^data:image/[^;]+;base64,#', '', (string) $varval);
  $bin = base64_decode($img);
 //resize
 // Set a maximum height and width
@@ -52,13 +52,13 @@ imagepng($image_p_270);
 $data5 = ob_get_contents();
 ob_end_clean();
 //Store & Display
-$context = stream_context_create(array(   'gs' =>array(
+$context = stream_context_create([   'gs' =>[
         'acl'=> 'public-read', 
         'Content-Type' => 'image/jpeg', 
         'enable_cache' => true, 
         'enable_optimistic_cache' => true,
         'read_cache_expiry_seconds' => 300,
-    )));
+    ]]);
 //end resize
 file_put_contents('images/profil/'.$upload_dir.'/pending-parent-solo-35-'.$site_url.'.jpg', $data, false, $context);
 file_put_contents('images/profil/'.$upload_dir.'/pending-parent-solo-89-'.$site_url.'.jpg', $data2, false, $context);

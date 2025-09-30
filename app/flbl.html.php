@@ -81,7 +81,7 @@
 							foreach($rows as $row) {
 								
 								// limitation de la longueur de l'intro
-								$row->description = strip_tags(html_entity_decode($row->description));
+								$row->description = strip_tags(html_entity_decode((string) $row->description));
 								if(strlen($row->description) > LISTE_INTRO_CHAR) {
 									$row->description = substr($row->description, 0, LISTE_INTRO_CHAR).'...';
 								}
@@ -135,7 +135,7 @@
 								</div>
 								<div class="supplement">
 									<a href="<?php echo JL::url('index.php?app=flbl&action=add&list_type='.$list_type.'&user_id_to='.$row->id.'&'.$langue); ?>" title="<?php echo $lang_flbl["ModifierLeCommentaire"];?>"><?php echo $lang_flbl["ModifierLeCommentaire"];?></a><br />
-									<b><?php echo $lang_flbl["AjouteLe"];?></b> <?php echo date('d/m/Y', strtotime($row->datetime_add)); ?> <div class="suppr"><a href="javascript:if(confirm('<?php echo $list_type == 1 ? $lang_flbl["ConfirmationRetraitFavoris"] : $lang_flbl["ConfirmationRetraitListeNoire"] ; ?> ?')){document.location='<?php echo JL::url('index.php?app=flbl&action=remove&list_type='.$list_type.'&id='.$row->id.'&'.$langue); ?>';}" title="<?php echo $list_type == 1 ? $lang_flbl["RetraitFavoris"] : $lang_flbl["RetraitListeNoire"] ; ?>"><img src="<?php echo SITE_URL.'/images/non.gif'; ?>" alt="<?php echo $list_type == 1 ? $lang_flbl["RetraitFavoris"] : $lang_flbl["RetraitListeNoire"] ; ?>" /></a></div>
+									<b><?php echo $lang_flbl["AjouteLe"];?></b> <?php echo date('d/m/Y', strtotime((string) $row->datetime_add)); ?> <div class="suppr"><a href="javascript:if(confirm('<?php echo $list_type == 1 ? $lang_flbl["ConfirmationRetraitFavoris"] : $lang_flbl["ConfirmationRetraitListeNoire"] ; ?> ?')){document.location='<?php echo JL::url('index.php?app=flbl&action=remove&list_type='.$list_type.'&id='.$row->id.'&'.$langue); ?>';}" title="<?php echo $list_type == 1 ? $lang_flbl["RetraitFavoris"] : $lang_flbl["RetraitListeNoire"] ; ?>"><img src="<?php echo SITE_URL.'/images/non.gif'; ?>" alt="<?php echo $list_type == 1 ? $lang_flbl["RetraitFavoris"] : $lang_flbl["RetraitListeNoire"] ; ?>" /></a></div>
 								</div>
 								<div style="clear:both"> </div>
 								<div class="username">

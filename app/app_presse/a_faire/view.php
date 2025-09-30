@@ -5,7 +5,7 @@
 	
 	class presseView extends JLView {
 	
-		function presseView() {}
+		function __construct() {}
 		
 		
 		function display(&$contenu) {

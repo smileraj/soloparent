@@ -100,6 +100,7 @@ if ($user_id && $log_ok) {
     $query = "UPDATE user 
               SET last_online = NOW(), ip = '".$db->escape($ip)."', online = '1' 
               WHERE id = '".$user->id."'";
+	
     $db->query($query);
 
     // demande d'authentification

@@ -14,32 +14,19 @@
 	global $action, $langue;
 
 	// gestion des messages d'erreurs
-	$messages	= array();
+	$messages	= [];
 	
 
-	switch($action) {
-		
-		case 'send_invites':
-			send_invites();
-		break;
-
-		case 'send_invites_submit':
-			send_invites_submit();
-		break;
-
-		case 'get_contacts_submit':
-			get_contacts_submit();
-		break;
-		
-		default:
-			get_contacts();
-		break;
-
-	}
+	match ($action) {
+        'send_invites' => send_invites(),
+        'send_invites_submit' => send_invites_submit(),
+        'get_contacts_submit' => get_contacts_submit(),
+        default => get_contacts(),
+    };
 
 	
 	
-	function get_contacts($messages = array()){
+	function get_contacts($messages = []){
 		global $inviter;
 
 		// variables
@@ -62,14 +49,14 @@
 
 	function &get_contacts_data() {
 			global $langue;
-		$_data	= array(
+		$_data	= [
 			'nom_box' 	=> '',
 			'prenom_box' 	=> '',
 			'email_box' 	=> '',
 			'password_box' 	=> '',
 			'provider_box' 	=> '',
 			'newsletter' => '0',
-		);
+		];
 		return $_data;
 	}
 
@@ -80,7 +67,7 @@
 		global $db;
 
 		// gestion des messages d'erreurs
-		$messages		= array();
+		$messages		= [];
 		$row			= new stdClass();
 
 		// initialise les donn&eacute;es
@@ -158,7 +145,7 @@
 	}
 	
 		
-	function send_invites($messages = array()){
+	function send_invites($messages = []){
 		global $inviter;
 
 		// variables
@@ -186,9 +173,9 @@
 
 	function &send_invites_data() {
 		global $langue;
-		$_data	= array(
+		$_data	= [
 			'message_box' => '',
-		);
+		];
 		return $_data;
 	}
 
@@ -199,7 +186,7 @@
 		global $db;
 
 		// gestion des messages d'erreurs
-		$messages		= array();
+		$messages		= [];
 		$row			= new stdClass();
 
 		// initialise les donn&eacute;es
@@ -242,22 +229,22 @@
 					$messages[] = '<span class="error">'.$lang_appexample["WarningMessageManquant"].'</span>';
 				
 				else 
-					$row->message_box=strip_tags($row->message_box);
+					$row->message_box=strip_tags((string) $row->message_box);
 				
-				$selected_contacts=array();
-				$contacts=array();
+				$selected_contacts=[];
+				$contacts=[];
 				
-				$message=array('subject'=>$inviter->settings['message_subject'],'body'=>$inviter->settings['message_body'],'attachment'=>"\n\rAttached message: \n\r".$_POST['message_box']);
+				$message=['subject'=>$inviter->settings['message_subject'],'body'=>$inviter->settings['message_body'],'attachment'=>"\n\rAttached message: \n\r".$_POST['message_box']];
 				
 				if($inviter->showContacts()){
 					
 					foreach($_POST as $key=>$val)
-						if(strpos($key,'check_')!==false)
+						if(str_contains((string) $key,'check_'))
 							$selected_contacts[$_POST['email_'.$val]]=$_POST['name_'.$val];
 						
-						elseif(strpos($key,'email_')!==false){
+						elseif(str_contains((string) $key,'email_')){
 							
-							$temp=explode('_',$key);
+							$temp=explode('_',(string) $key);
 							$counter=$temp[1];
 							
 							if(is_numeric($temp[1]))
@@ -283,14 +270,14 @@
 				$headers="From: ".$row->email_box;
 				
 				foreach ($selected_contacts as $email=>$name)
-					mail($email,$message_subject,$message_body,$headers);
+					mail((string) $email,$message_subject,$message_body,$headers);
 				
 				$messages[] = '<span class="valid">'.$lang_appexample["SuccesMailsEnvoyes"].'</span>';
 			}
 			elseif ($sendMessage===false){
 				
 				$internal=$inviter->getInternalError();
-				$messages[] = '<span class="error">'.($internal?$internal:$lang_appexample["WarningErreursEnvois"]).'</span>';
+				$messages[] = '<span class="error">'.($internal ?: $lang_appexample["WarningErreursEnvois"]).'</span>';
 			}
 			else 
 				$messages[] = '<span class="valid">'.$lang_appexample["SuccesInvitationsEnvoyees"].'</span>';

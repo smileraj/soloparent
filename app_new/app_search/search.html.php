@@ -482,9 +482,9 @@ class HTML_search {
 							for($j=0; $j<$nb_fin; $j++) {
 								$result = $results[$j];
 								// limitation de la longueur de l'intro
-								$result->annonce = strip_tags(html_entity_decode($result->annonce));
-								if(strlen($result->annonce) > LISTE_INTRO_CHAR_text) {
-									$result->annonce = substr($result->annonce, 0, LISTE_INTRO_CHAR_text).'...';
+								$result->annonce = strip_tags(html_entity_decode((string) $result->annonce));
+								if(strlen($result->annonce) > \LISTE_INTRO_CHAR_TEXT) {
+									$result->annonce = substr($result->annonce, 0, \LISTE_INTRO_CHAR_TEXT).'...';
 								}
 								
 								// � placer toujours apr�s les 2 limitations
@@ -578,9 +578,9 @@ class HTML_search {
 								
 								$result = $results[$j];
 								// limitation de la longueur de l'intro
-								$result->annonce = strip_tags(html_entity_decode($result->annonce));
-								if(strlen($result->annonce) > LISTE_INTRO_CHAR_text) {
-									$result->annonce = substr($result->annonce, 0, LISTE_INTRO_CHAR_text).'...';
+								$result->annonce = strip_tags(html_entity_decode((string) $result->annonce));
+								if(strlen($result->annonce) > \LISTE_INTRO_CHAR_TEXT) {
+									$result->annonce = substr($result->annonce, 0, \LISTE_INTRO_CHAR_TEXT).'...';
 								}
 								
 								// � placer toujours apr�s les 2 limitations
@@ -681,9 +681,9 @@ class HTML_search {
 							for($j=0; $j<$nb_fin; $j++) {
 								$result = $results[$j];
 								// limitation de la longueur de l'intro
-								$result->annonce = strip_tags(html_entity_decode($result->annonce));
-								if(strlen($result->annonce) > LISTE_INTRO_CHAR_text) {
-									$result->annonce = substr($result->annonce, 0, LISTE_INTRO_CHAR_text).'...';
+								$result->annonce = strip_tags(html_entity_decode((string) $result->annonce));
+								if(strlen($result->annonce) > \LISTE_INTRO_CHAR_TEXT) {
+									$result->annonce = substr($result->annonce, 0, \LISTE_INTRO_CHAR_TEXT).'...';
 								}
 								
 								
@@ -797,9 +797,9 @@ class HTML_search {
 							<?php 							for($j=8; $j<$nb_results; $j++) {
 								$result = $results[$j];
 								// limitation de la longueur de l'intro
-								$result->annonce = strip_tags(html_entity_decode($result->annonce));
-								if(strlen($result->annonce) > LISTE_INTRO_CHAR_text) {
-									$result->annonce = substr($result->annonce, 0, LISTE_INTRO_CHAR_text).'...';
+								$result->annonce = strip_tags(html_entity_decode((string) $result->annonce));
+								if(strlen($result->annonce) > \LISTE_INTRO_CHAR_TEXT) {
+									$result->annonce = substr($result->annonce, 0, \LISTE_INTRO_CHAR_TEXT).'...';
 								}
 								
 								
@@ -964,7 +964,7 @@ class HTML_search {
 						for($j=0; $j<$nb_fin; $j++) {
 							$result = $results[$j];
 							// limitation de la longueur de l'intro
-							$result->annonce = strip_tags(html_entity_decode($result->annonce));
+							$result->annonce = strip_tags(html_entity_decode((string) $result->annonce));
 							if(strlen($result->annonce) > LISTE_INTRO_CHAR_text_over) {
 								$result->annonce = substr($result->annonce, 0, LISTE_INTRO_CHAR_text_over).'...';
 							}
@@ -1022,7 +1022,7 @@ class HTML_search {
 						
 						</div>
 						<div class="supplement">
-									<b><?php echo $lang_search["DerniereVisite"];?>:</b> <?php echo date('d/m/Y', strtotime($result->visite_last_date)); ?><br>
+									<b><?php echo $lang_search["DerniereVisite"];?>:</b> <?php echo date('d/m/Y', strtotime((string) $result->visite_last_date)); ?><br>
 									<b><?php echo $lang_search["NombreTotalVisites"];?>:</b> <?php echo $result->visite_nb; ?>
 								</div>
 						<div class="connect">
@@ -1084,7 +1084,7 @@ class HTML_search {
 						<?php 						for($j=8; $j<$nb_results; $j++) {
 							$result = $results[$j];
 							// limitation de la longueur de l'intro
-							$result->annonce = strip_tags(html_entity_decode($result->annonce));
+							$result->annonce = strip_tags(html_entity_decode((string) $result->annonce));
 							if(strlen($result->annonce) > LISTE_INTRO_CHAR_text_over) {
 								$result->annonce = substr($result->annonce, 0, LISTE_INTRO_CHAR_text_over).'...';
 							}
@@ -1139,7 +1139,7 @@ class HTML_search {
 						<div class="infos"><?php echo JL::calcul_age($result->naissance_date); ?> - <?php echo $result->nb_enfants; ?> <?php echo $result->nb_enfants > 1 ? $lang_search["enfants"] : $lang_search["enfant"]; ?> - <?php echo $result->canton_abrev; ?>
 						</div>
 						<div class="supplement">
-									<b><?php echo $lang_search["DerniereVisite"];?>:</b> <?php echo date('d/m/Y', strtotime($result->visite_last_date)); ?><br />
+									<b><?php echo $lang_search["DerniereVisite"];?>:</b> <?php echo date('d/m/Y', strtotime((string) $result->visite_last_date)); ?><br />
 									<b><?php echo $lang_search["NombreTotalVisites"];?>:</b> <?php echo $result->visite_nb; ?>
 								</div><div class="connect"><span class="<?php echo $last_online_class; ?>"><?php echo $last_online_label; ?></span></div>
 						</div>
@@ -1247,7 +1247,7 @@ class HTML_search {
 						for($j=0; $j<$nb_fin; $j++) {
 							$result = $results[$j];
 							// limitation de la longueur de l'intro
-							$result->annonce = strip_tags(html_entity_decode($result->annonce));
+							$result->annonce = strip_tags(html_entity_decode((string) $result->annonce));
 							if(strlen($result->annonce) > LISTE_INTRO_CHAR_text_over) {
 								$result->annonce = substr($result->annonce, 0, LISTE_INTRO_CHAR_text_over).'...';
 							}
@@ -1305,7 +1305,7 @@ class HTML_search {
 						
 						</div>
 						<div class="supplement">
-									<b><?php echo $lang_search["DerniereVisite"];?>:</b> <?php echo date('d/m/Y', strtotime($result->visite_last_date)); ?><br>
+									<b><?php echo $lang_search["DerniereVisite"];?>:</b> <?php echo date('d/m/Y', strtotime((string) $result->visite_last_date)); ?><br>
 									<b><?php echo $lang_search["NombreTotalVisites"];?>:</b> <?php echo $result->visite_nb; ?>
 								</div>
 						<div class="connect">
@@ -1367,7 +1367,7 @@ class HTML_search {
 						<?php 						for($j=8; $j<$nb_results; $j++) {
 							$result = $results[$j];
 							// limitation de la longueur de l'intro
-							$result->annonce = strip_tags(html_entity_decode($result->annonce));
+							$result->annonce = strip_tags(html_entity_decode((string) $result->annonce));
 							if(strlen($result->annonce) > LISTE_INTRO_CHAR_text_over) {
 								$result->annonce = substr($result->annonce, 0, LISTE_INTRO_CHAR_text_over).'...';
 							}
@@ -1422,7 +1422,7 @@ class HTML_search {
 						<div class="infos"><?php echo JL::calcul_age($result->naissance_date); ?> - <?php echo $result->nb_enfants; ?> <?php echo $result->nb_enfants > 1 ? $lang_search["enfants"] : $lang_search["enfant"]; ?> - <?php echo $result->canton_abrev; ?>
 						</div>
 						<div class="supplement">
-									<b><?php echo $lang_search["DerniereVisite"];?>:</b> <?php echo date('d/m/Y', strtotime($result->visite_last_date)); ?><br />
+									<b><?php echo $lang_search["DerniereVisite"];?>:</b> <?php echo date('d/m/Y', strtotime((string) $result->visite_last_date)); ?><br />
 									<b><?php echo $lang_search["NombreTotalVisites"];?>:</b> <?php echo $result->visite_nb; ?>
 								</div><div class="connect"><span class="<?php echo $last_online_class; ?>"><?php echo $last_online_label; ?></span></div>
 						</div>
@@ -1531,9 +1531,9 @@ class HTML_search {
 						for($j=0; $j<$nb_fin; $j++) {
 							$result = $results[$j];
 							// limitation de la longueur de l'intro
-							$result->annonce = strip_tags(html_entity_decode($result->annonce));
-							if(strlen($result->annonce) > LISTE_INTRO_CHAR_text) {
-								$result->annonce = substr($result->annonce, 0, LISTE_INTRO_CHAR_text).'...';
+							$result->annonce = strip_tags(html_entity_decode((string) $result->annonce));
+							if(strlen($result->annonce) > \LISTE_INTRO_CHAR_TEXT) {
+								$result->annonce = substr($result->annonce, 0, \LISTE_INTRO_CHAR_TEXT).'...';
 							}
 							
 							JL::makeSafe($result, 'annonce');
@@ -1641,9 +1641,9 @@ class HTML_search {
 						<?php 						for($j=8; $j<$nb_results; $j++) {
 							$result = $results[$j];
 							// limitation de la longueur de l'intro
-							$result->annonce = strip_tags(html_entity_decode($result->annonce));
-							if(strlen($result->annonce) > LISTE_INTRO_CHAR_text) {
-								$result->annonce = substr($result->annonce, 0, LISTE_INTRO_CHAR_text).'...';
+							$result->annonce = strip_tags(html_entity_decode((string) $result->annonce));
+							if(strlen($result->annonce) > \LISTE_INTRO_CHAR_TEXT) {
+								$result->annonce = substr($result->annonce, 0, \LISTE_INTRO_CHAR_TEXT).'...';
 							}
 							
 							JL::makeSafe($result, 'annonce');
@@ -1808,9 +1808,9 @@ class HTML_search {
 						for($j=0; $j<$nb_fin; $j++) {
 							$result = $results[$j];
 							// limitation de la longueur de l'intro
-							$result->annonce = strip_tags(html_entity_decode($result->annonce));
-							if(strlen($result->annonce) > LISTE_INTRO_CHAR_text) {
-								$result->annonce = substr($result->annonce, 0, LISTE_INTRO_CHAR_text).'...';
+							$result->annonce = strip_tags(html_entity_decode((string) $result->annonce));
+							if(strlen($result->annonce) > \LISTE_INTRO_CHAR_TEXT) {
+								$result->annonce = substr($result->annonce, 0, \LISTE_INTRO_CHAR_TEXT).'...';
 							}
 							
 							JL::makeSafe($result, 'annonce');
@@ -1865,7 +1865,7 @@ class HTML_search {
 						
 						</div>
 						<div class="supplement">
-									<b><?php echo $lang_search["DateInscription"];?>:</b> <?php echo date('d/m/Y', strtotime($result->creation_date)); ?>
+									<b><?php echo $lang_search["DateInscription"];?>:</b> <?php echo date('d/m/Y', strtotime((string) $result->creation_date)); ?>
 								</div>
 						<div class="connect">
 								<span class="<?php echo $last_online_class; ?>"><?php echo $last_online_label; ?></span>
@@ -1924,9 +1924,9 @@ class HTML_search {
 			<?php 						for($j=8; $j<$nb_results; $j++) {
 							$result = $results[$j];
 							// limitation de la longueur de l'intro
-							$result->annonce = strip_tags(html_entity_decode($result->annonce));
-							if(strlen($result->annonce) > LISTE_INTRO_CHAR_text) {
-								$result->annonce = substr($result->annonce, 0, LISTE_INTRO_CHAR_text).'...';
+							$result->annonce = strip_tags(html_entity_decode((string) $result->annonce));
+							if(strlen($result->annonce) > \LISTE_INTRO_CHAR_TEXT) {
+								$result->annonce = substr($result->annonce, 0, \LISTE_INTRO_CHAR_TEXT).'...';
 							}
 							
 							JL::makeSafe($result, 'annonce');
@@ -1979,7 +1979,7 @@ class HTML_search {
 						<div class="infos"><?php echo JL::calcul_age($result->naissance_date); ?> - <?php echo $result->nb_enfants; ?> <?php echo $result->nb_enfants > 1 ? $lang_search["enfants"] : $lang_search["enfant"]; ?> - <?php echo $result->canton_abrev; ?>
 						</div>
 						<div class="supplement">
-									<b><?php echo $lang_search["DateInscription"];?>:</b> <?php echo date('d/m/Y', strtotime($result->creation_date)); ?>
+									<b><?php echo $lang_search["DateInscription"];?>:</b> <?php echo date('d/m/Y', strtotime((string) $result->creation_date)); ?>
 								</div><div class="connect"><span class="<?php echo $last_online_class; ?>"><?php echo $last_online_label; ?></span></div>
 						</div>
 						
@@ -2091,9 +2091,9 @@ class HTML_search {
 						for($j=0; $j<$nb_fin; $j++) {
 							$result = $results[$j];
 							// limitation de la longueur de l'intro
-							$result->annonce = strip_tags(html_entity_decode($result->annonce));
-							if(strlen($result->annonce) > LISTE_INTRO_CHAR_text) {
-								$result->annonce = substr($result->annonce, 0, LISTE_INTRO_CHAR_text).'...';
+							$result->annonce = strip_tags(html_entity_decode((string) $result->annonce));
+							if(strlen($result->annonce) > \LISTE_INTRO_CHAR_TEXT) {
+								$result->annonce = substr($result->annonce, 0, \LISTE_INTRO_CHAR_TEXT).'...';
 							}
 							
 							JL::makeSafe($result, 'annonce');
@@ -2150,7 +2150,7 @@ class HTML_search {
 								<div class="infos"><?php echo JL::calcul_age($result->naissance_date); ?> - <?php echo $result->nb_enfants; ?> <?php echo $result->nb_enfants > 1 ? $lang_search["enfants"] : $lang_search["enfant"]; ?> - <?php echo $result->canton_abrev; ?>
 								</div>
 								<!--<div class="supplement">
-									<b><?php echo $lang_search["DateInscription"];?>:</b> <?php echo date('d/m/Y', strtotime($result->creation_date)); ?>
+									<b><?php echo $lang_search["DateInscription"];?>:</b> <?php echo date('d/m/Y', strtotime((string) $result->creation_date)); ?>
 								</div>-->
 								<div class="supplement">
 								<span class="<?php echo $last_online_class; ?>"><?php echo $last_online_label; ?></span>
@@ -2208,9 +2208,9 @@ class HTML_search {
 			<?php 						for($j=8; $j<$nb_results; $j++) {
 							$result = $results[$j];
 							// limitation de la longueur de l'intro
-							$result->annonce = strip_tags(html_entity_decode($result->annonce));
-							if(strlen($result->annonce) > LISTE_INTRO_CHAR_text) {
-								$result->annonce = substr($result->annonce, 0, LISTE_INTRO_CHAR_text).'...';
+							$result->annonce = strip_tags(html_entity_decode((string) $result->annonce));
+							if(strlen($result->annonce) > \LISTE_INTRO_CHAR_TEXT) {
+								$result->annonce = substr($result->annonce, 0, \LISTE_INTRO_CHAR_TEXT).'...';
 							}
 							
 							JL::makeSafe($result, 'annonce');
@@ -2266,7 +2266,7 @@ class HTML_search {
 								<div class="infos"><?php echo JL::calcul_age($result->naissance_date); ?> - <?php echo $result->nb_enfants; ?> <?php echo $result->nb_enfants > 1 ? $lang_search["enfants"] : $lang_search["enfant"]; ?> - <?php echo $result->canton_abrev; ?>
 								</div>
 								<!--<div class="supplement">
-									<b><?php echo $lang_search["DateInscription"];?>:</b> <?php echo date('d/m/Y', strtotime($result->creation_date)); ?>
+									<b><?php echo $lang_search["DateInscription"];?>:</b> <?php echo date('d/m/Y', strtotime((string) $result->creation_date)); ?>
 								</div>-->
 								<div class="supplement">
 								<span class="<?php echo $last_online_class; ?>"><?php echo $last_online_label; ?></span>
@@ -2305,7 +2305,7 @@ class HTML_search {
 						<div class="infos"><?php echo JL::calcul_age($result->naissance_date); ?> - <?php echo $result->nb_enfants; ?> <?php echo $result->nb_enfants > 1 ? $lang_search["enfants"] : $lang_search["enfant"]; ?> - <?php echo $result->canton_abrev; ?>
 						</div>
 						<div class="supplement">
-									<b><?php echo $lang_search["DateInscription"];?>:</b> <?php echo date('d/m/Y', strtotime($result->creation_date)); ?>
+									<b><?php echo $lang_search["DateInscription"];?>:</b> <?php echo date('d/m/Y', strtotime((string) $result->creation_date)); ?>
 								</div><div class="connect"><span class="<?php echo $last_online_class; ?>"><?php echo $last_online_label; ?></span></div>
 						</div>
 						
@@ -2398,7 +2398,7 @@ class HTML_search {
 					$animauxCount	= count($list);
 					$animauxCountx2	= count($list) * 2;
 					$iterationMax	= $animauxCount + $animauxCountx2%($tdParLigne/2);
-					$valuesArray	= JL::getSession($field, array(0));
+					$valuesArray	= JL::getSession($field, [0]);
 
 					// g�n�re les cases
 					for($i=0; $i<$iterationMax; $i++) {

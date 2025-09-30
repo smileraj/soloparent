@@ -1,6 +1,6 @@
 <?php
 
-$lang_apphome = array(
+$lang_apphome = [
 
 	//View
 	//*Partie gauche
@@ -74,6 +74,6 @@ $lang_apphome = array(
 "ANY_DEVICE" => "Accessible sur tous les supports Mobiles & Tablettes",
 	"ANY_DEVICE_para" => "Nieuwe ontmoetingen bij de hand! Parentsolo je overal. Bel wie je wilt, waar u wilt en wanneer u wilt.",
 
-);
+];
 
 ?>

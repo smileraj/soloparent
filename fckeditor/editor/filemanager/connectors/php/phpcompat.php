@@ -1,17 +1,17 @@
 <?php
 
 if ( !isset( $_SERVER ) ) {
-    $_SERVER = $HTTP_SERVER_VARS ;
+    $_SERVER = $_SERVER ;
 }
 if ( !isset( $_GET ) ) {
-    $_GET = $HTTP_GET_VARS ;
+    $_GET = $_GET ;
 }
 if ( !isset( $_FILES ) ) {
-    $_FILES = $HTTP_POST_FILES ;
+    $_FILES = $_FILES ;
 }
 
 if ( !defined( 'DIRECTORY_SEPARATOR' ) ) {
     define( 'DIRECTORY_SEPARATOR',
-        strtoupper(substr(PHP_OS, 0, 3) == 'WIN') ? '\\' : '/'
+        strtoupper(str_starts_with(PHP_OS, 'WIN')) ? '\\' : '/'
     ) ;
 }

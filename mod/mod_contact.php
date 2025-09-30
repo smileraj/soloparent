@@ -7,9 +7,9 @@
 			include("lang/app_mod.".$_GET['lang'].".php");
 
 	// variables
-	$captcha	= rand(2,7);
-	$messages	= array();
-	$options	= array();
+	$captcha	= random_int(2,7);
+	$messages	= [];
+	$options	= [];
 
 
 	// r&eacute;cup les donn&eacute;es du formulaire
@@ -19,7 +19,7 @@
 	$texte			= JL::getVar('texte', '');
 	$codesecurite	= JL::getVar('codesecurite', '');
 
-	$sujets			= array("".$lang_mod['Autre']."", "".$lang_mod['changementdAdresse']."", "".$lang_mod['ChangementPseudo']."", "".$lang_mod['InformationAbonnements']."", "".$lang_mod['InformationGenerales']."", "".$lang_mod['JeSouhaiteDesinscrire']."", "".$lang_mod['ProblemeTechnique']."");
+	$sujets			= ["".$lang_mod['Autre']."", "".$lang_mod['changementdAdresse']."", "".$lang_mod['ChangementPseudo']."", "".$lang_mod['InformationAbonnements']."", "".$lang_mod['InformationGenerales']."", "".$lang_mod['JeSouhaiteDesinscrire']."", "".$lang_mod['ProblemeTechnique'].""];
 
 	for($i=0;$i<count($sujets);$i++) {
 		$options[] 	= JL::makeOption($i, $sujets[$i]);

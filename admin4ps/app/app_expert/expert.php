@@ -10,7 +10,7 @@
 
 	
 	// variables
-	$messages = array();
+	$messages = [];
 
 	
 	
@@ -36,7 +36,7 @@
 		global $db;
 		
 		$resultatParPage	= RESULTS_NB_LISTE_ADMIN;
-		$search				= array();
+		$search				= [];
 		$where				= null;
 		$_where				= ' ';
 		
@@ -57,19 +57,19 @@
 		JL::setSession('search_g_active', 		$search['active']);
 		
 		// crit�re de tri
-		$order				= array();
+		$order				= [];
 		$order[]			= JL::makeOption('titre', 			'Expert');
 		$order[]			= JL::makeOption('specialite', 			'Sp�cialit�');
 		$lists['order']		= JL::makeSelectList($order, 'search_g_order', 'class="searchInput"', 'value', 'text', $search['order']);
 
 		// ordre croissant/d�croissant
-		$ascdesc			= array();
+		$ascdesc			= [];
 		$ascdesc[]			= JL::makeOption('asc', 			'Croissant');
 		$ascdesc[]			= JL::makeOption('desc', 			'D�croissant');
 		$lists['ascdesc']	= JL::makeSelectList($ascdesc, 'search_g_ascdesc', 'class="searchInput"', 'value', 'text', $search['ascdesc']);
 		
 		// statut
-		$active				= array();
+		$active				= [];
 		$active[]			= JL::makeOption('-1', 				'Tous');
 		$active[]			= JL::makeOption('1', 				'Activ�');
 		$active[]			= JL::makeOption('0', 				'Non activ�');
@@ -168,7 +168,7 @@
 		$error		= false;
 		
 		// r�cup les donn�es
-		$data 		= getData(true);
+		$data 		= getData();
 		
 	
 		// v�rifs
@@ -192,7 +192,7 @@
 		if(!$data->email) {
 			$messages[]	= '<span class="error">Veuillez indiquer une adresse email sur laquelle seront envoy&eacute;es les questions des membres svp.</span>';
 			$error		= true;
-		}elseif(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,3}$/', $data->email)) {
+		}elseif(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,3}$/', (string) $data->email)) {
 			$messages[]	= '<span class="error">Veuillez indiquer une adresse email valide sur laquelle seront envoy&eacute;es les questions des membres svp.</span>';
 			$error = true;
 		}

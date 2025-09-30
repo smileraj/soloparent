@@ -2,23 +2,13 @@
 	
 	ini_set("html_errors", "0");
 	
-	switch($_FILES["Filedata"]["error"]) {
-	case 1:
-		$error = 'The file is bigger than this PHP installation allows';
-		break;
-	case 2:
-		$error = 'The file is bigger than this form allows';
-		break;
-	case 3:
-		$error = 'Only part of the file was uploaded';
-		break;
-	case 4:
-		$error = 'No file was uploaded';
-		break;
-	default:
-		$error = 'No error';
-		break;
-	}
+	$error = match ($_FILES["Filedata"]["error"]) {
+        1 => 'The file is bigger than this PHP installation allows',
+        2 => 'The file is bigger than this form allows',
+        3 => 'Only part of the file was uploaded',
+        4 => 'No file was uploaded',
+        default => 'No error',
+    };
 	
 	// check the upload
 	if (!isset($_FILES["Filedata"]) || !is_uploaded_file($_FILES["Filedata"]["tmp_name"]) || $_FILES["Filedata"]["size"] == 0|| $_FILES["Filedata"]["error"] != 0) {
@@ -29,9 +19,9 @@
 	include('functions.php');
 	
 	
-	$upload_dir = isset($_REQUEST['upload_dir']) ? $_REQUEST['upload_dir'] : false;
-	$hash 		= isset($_REQUEST['hash']) ? $_REQUEST['hash'] : false;
-	$childNum 	= isset($_REQUEST['childNum']) ? $_REQUEST['childNum'] : 1;
+	$upload_dir = $_REQUEST['upload_dir'] ?? false;
+	$hash 		= $_REQUEST['hash'] ?? false;
+	$childNum 	= $_REQUEST['childNum'] ?? 1;
 	
 	
 	// sécurité

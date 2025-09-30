@@ -1,6 +1,6 @@
 <?php
 
-$langChat= array(
+$langChat= [
 
 	"warning" => "Attention, be sure to know the person before giving him / her your personal informations or mail address.",
 	"ans" => "years old",
@@ -23,5 +23,5 @@ $langChat= array(
 	"ParentSoloChat" => "ParentSolo's Chat",
 	"Aide" => "Help"
 	
-);
+];
 ?>

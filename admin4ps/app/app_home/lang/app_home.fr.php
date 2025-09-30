@@ -1,6 +1,6 @@
 <?php
 
-$lang_apphome = array(
+$lang_apphome = [
 	
 	//View
 	//*Partie gauche
@@ -58,6 +58,6 @@ $lang_apphome = array(
 	"Ville" => "Ville",
 	
 
-);
+];
 
 ?>

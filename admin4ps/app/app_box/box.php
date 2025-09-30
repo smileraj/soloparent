@@ -10,7 +10,7 @@
 
 	
 	// variables
-	$messages = array();
+	$messages = [];
 
 	
 	
@@ -36,7 +36,7 @@
 		global $db;
 		
 		$resultatParPage	= RESULTS_NB_LISTE_ADMIN;
-		$search				= array();
+		$search				= [];
 		$where				= null;
 		$_where				= '';
 		
@@ -51,7 +51,7 @@
 		
 		
 		// emplacement de la box
-		$emplacement				= array();
+		$emplacement				= [];
 		$emplacement[]			= JL::makeOption('0', 				'Tous');
 		
 		$query = "SELECT id AS value, nom AS text"
@@ -71,7 +71,7 @@
 		
 		// type de media
 		if($search['emplacement_id'] > 0) {
-			$where[]		= "b.box_emplacement_id = '".addslashes($search['emplacement_id'])."'";
+			$where[]		= "b.box_emplacement_id = '".addslashes((string) $search['emplacement_id'])."'";
 		}
 		
 		// g�n�re le where
@@ -135,7 +135,7 @@
 		}
 		
 		// emplacement
-		$emplacement				= array();
+		$emplacement				= [];
 		$emplacement[]			= JL::makeOption('0', '> Emplacement box');
 		
 		$query = "SELECT id AS value, nom AS text"
@@ -158,7 +158,7 @@
 		$error		= false;
 		
 		// r�cup les donn�es
-		$data 		= getData(true);
+		$data 		= getData();
 		
 	
 		// v�rifs

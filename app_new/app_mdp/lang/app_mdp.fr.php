@@ -1,6 +1,6 @@
 <?php
 
-$lang_appmdp = array(
+$lang_appmdp = [
 	
 	"MessagesParentSolo" => "Messages solocircl.com",	
 	
@@ -41,5 +41,5 @@ $lang_appmdp = array(
 
 	
 	
-);
+];
 ?>

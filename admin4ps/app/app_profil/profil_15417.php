@@ -9,7 +9,7 @@
 	
 	
 	// variables
-	$messages = array();
+	$messages = [];
 
 	
 	
@@ -67,7 +67,7 @@
 		global $db, $messages;
 		
 		// params
-		$photos 	= JL::getVar('photo', array());
+		$photos 	= JL::getVar('photo', []);
 		
 		// r�cup les donn�es
 		$data 		= getData();
@@ -104,7 +104,7 @@
 				if($datetime > $abonnement_carte) {
 				
 					// dur�e pendant laquelle l'abonn� n'a pu envoyer de messages
-					$data->abonnement_crediter += ceil((strtotime($datetime) - strtotime($abonnement_carte))/3600.0/24.0);
+					$data->abonnement_crediter += ceil((strtotime($datetime) - strtotime((string) $abonnement_carte))/3600.0/24.0);
 				
 				}
 			
@@ -114,21 +114,21 @@
 		
 		
 		// date non valide
-		if(!preg_match('/^[0-3][0-9]\/0|1[0-9]\/20[0-9][0-9]$/', $data->gold_limit_date)) {
+		if(!preg_match('/^[0-3][0-9]\/0|1[0-9]\/20[0-9][0-9]$/', (string) $data->gold_limit_date)) {
 		
 			$messages[]	= '<span class="error">La date limite d\'abonnement n\'est pas valide.</span>';
 			
 			// r�affecte la variable de date
 			JL::setVar('gold_limit_date', '');
 			
-		} elseif($data->appel_date != '' && !preg_match('/^[0-3][0-9]\/0|1[0-9]\/200|1[0-9]$/', $data->appel_date)) {
+		} elseif($data->appel_date != '' && !preg_match('/^[0-3][0-9]\/0|1[0-9]\/200|1[0-9]$/', (string) $data->appel_date)) {
 		
 			$messages[]	= '<span class="error">La date d\'appel n\'est pas valide.</span>';
 			
 			// r�affecte la variable de date
 			JL::setVar('appel_date', '');
 			
-		} elseif($data->appel_date2 != '' && !preg_match('/^[0-3][0-9]\/0|1[0-9]\/200|1[0-9]$/', $data->appel_date2)) {
+		} elseif($data->appel_date2 != '' && !preg_match('/^[0-3][0-9]\/0|1[0-9]\/200|1[0-9]$/', (string) $data->appel_date2)) {
 		
 			$messages[]	= '<span class="error">La date d\'appel 2 n\'est pas valide.</span>';
 			
@@ -138,7 +138,7 @@
 		} else { // date valide
 		
 			// modifie la date de fin d'abonnement
-			$date	= explode('/', $data->gold_limit_date);
+			$date	= explode('/', (string) $data->gold_limit_date);
 			$jour	= $date[0];
 			$mois	= $date[1];
 			$annee	= $date[2];
@@ -172,7 +172,7 @@
 			if($data->appel_date != '') {
 			
 				// modifie la date de fin d'abonnement
-				$date	= explode('/', $data->appel_date);
+				$date	= explode('/', (string) $data->appel_date);
 				$jour	= $date[0];
 				$mois	= $date[1];
 				$annee	= $date[2];
@@ -194,7 +194,7 @@
 			if($data->appel_date2 != '') {
 			
 				// modifie la date de fin d'abonnement
-				$date	= explode('/', $data->appel_date2);
+				$date	= explode('/', (string) $data->appel_date2);
 				$jour	= $date[0];
 				$mois	= $date[1];
 				$annee	= $date[2];
@@ -219,7 +219,7 @@
 			
 			foreach($photos as $photo) {
 				
-				$photoTmp	= explode('-', $photo);
+				$photoTmp	= explode('-', (string) $photo);
 				$file		= str_replace('.jpg','',$photoTmp[3].'-'.$photoTmp[4]);
 				
 				if(is_file('../images/profil/'.$data->id.'/parent-solo-'.$file.'.jpg')) {
@@ -443,7 +443,7 @@
 			
 			// variables par d�faut
 			foreach($data as $k => $v) {
-				$userObj->{$k} = $v ? $v : $userObj->{$k};
+				$userObj->{$k} = $v ?: $userObj->{$k};
 			}
 			
 			
@@ -455,9 +455,9 @@
 			." LIMIT 0,1"
 			;
 			$abonnement_carte = $db->loadObject($query);
-			$userObj->abonnement_carte = $abonnement_carte->datetime ? $abonnement_carte->datetime : false;
+			$userObj->abonnement_carte = $abonnement_carte->datetime ?: false;
 			
-			if($userObj>abonnement_carte){
+			if($userObj>\ABONNEMENT_CARTE){
 				$userObj->abonnement_carte_nom = $abonnement_carte->nom_paypal;
 				$userObj->abonnement_carte_prenom = $abonnement_carte->prenom_paypal;
 				$userObj->abonnement_carte_valide = $abonnement_carte->valide;
@@ -484,7 +484,7 @@
 	function profilSuppression(){
 		global $db, $messages;
 		
-		$ids = JL::getVar('id', array());
+		$ids = JL::getVar('id', []);
 		
 		// s'il y a des id pass�s
 		if (is_array($ids)) {
@@ -566,7 +566,7 @@
 	function profilActivation($published) {
 		global $db, $messages;
 		
-		$ids = JL::getVar('id', array());
+		$ids = JL::getVar('id', []);
 		
 		// s'il y a des id pass�s
 		if (is_array($ids)) {
@@ -662,10 +662,10 @@
 		
 		// variables
 		$resultatParPage		= RESULTS_NB_LISTE_ADMIN;
-		$stats					= array();
-		$search					= array();
-		$lists					= array();
-		$where					= array();
+		$stats					= [];
+		$search					= [];
+		$lists					= [];
+		$where					= [];
 		$_where					= '';
 		
 		// params
@@ -694,7 +694,7 @@
 		
 		
 		// crit�re de tri
-		$order					= array();
+		$order					= [];
 		$order[]				= JL::makeOption('u.creation_date', 	'Date inscription');
 		$order[]				= JL::makeOption('us.appel_date', 	'Date appel');
 		$order[]				= JL::makeOption('u.last_online', 		'Derni�re connexion');
@@ -705,13 +705,13 @@
 		$lists['order']			= JL::makeSelectList($order, 'search_order', 'class="searchInput"', 'value', 'text', $search['order']);
 
 		// ordre croissant/d�croissant
-		$ascdesc				= array();
+		$ascdesc				= [];
 		$ascdesc[]				= JL::makeOption('asc', 			'Croissant');
 		$ascdesc[]				= JL::makeOption('desc', 			'D�croissant');
 		$lists['ascdesc']		= JL::makeSelectList($ascdesc, 'search_ascdesc', 'class="searchInput"', 'value', 'text', $search['ascdesc']);
 		
 		// statut
-		$confirmed				= array();
+		$confirmed				= [];
 		$confirmed[]			= JL::makeOption('-1', 				'Tous');
 		$confirmed[]			= JL::makeOption('2', 				'A valider');
 		$confirmed[]			= JL::makeOption('1', 				'Confirm�s');
@@ -719,14 +719,14 @@
 		$lists['confirmed']		= JL::makeSelectList($confirmed, 'search_confirmed', 'class="searchInput"', 'value', 'text', $search['confirmed']);
 		
 		// genre
-		$genre					= array();
+		$genre					= [];
 		$genre[]				= JL::makeOption('', 				'Tous');
 		$genre[]				= JL::makeOption('f', 				'Femme');
 		$genre[]				= JL::makeOption('h', 				'Homme');
 		$lists['genre']			= JL::makeSelectList($genre, 'search_genre', 'class="searchInput"', 'value', 'text', $search['genre']);
 		
 		// abonnement
-		$abonnement				= array();
+		$abonnement				= [];
 		$abonnement[]			= JL::makeOption('', 				'Tous');
 		$abonnement[]			= JL::makeOption('1',				'Aucun');
 		$abonnement[]			= JL::makeOption('2', 				'En cours');
@@ -768,12 +768,12 @@
 		
 		// profils actifs
 		if($search['confirmed'] >= 0) {
-			$where[]			= "u.confirmed = '".addslashes($search['confirmed'])."'";
+			$where[]			= "u.confirmed = '".addslashes((string) $search['confirmed'])."'";
 		}
 		
 		// genre
 		if($search['genre'] != '') {
-			$where[]			= "up.genre = '".addslashes($search['genre'])."'";
+			$where[]			= "up.genre = '".addslashes((string) $search['genre'])."'";
 		}
 		
 		// profil helvetica
@@ -806,7 +806,7 @@
 		." INNER JOIN user_profil AS up ON up.user_id = u.id"
 		." INNER JOIN user_stats AS us ON us.user_id = u.id"
 		.$_where
-		." ORDER BY ".strtolower($search['order'])." ".strtoupper($search['ascdesc'])
+		." ORDER BY ".strtolower((string) $search['order'])." ".strtoupper((string) $search['ascdesc'])
 		." LIMIT ".(($search['page'] - 1) * $resultatParPage).", ".$resultatParPage
 		;
 		$results	= $db->loadObjectList($query);
@@ -862,7 +862,7 @@
 		// parcourt la lsite des utilisateurs avec photo � valider
 		$usersTotal	= count($users);
 		for($i=0; $i<$usersTotal; $i++) {
-			$users[$i]->photos = array();
+			$users[$i]->photos = [];
 			
 			// parcourt le r�pertoire de photos de l'utilisateur
 			$dir = '../images/profil/'.$users[$i]->user_id;
@@ -890,7 +890,7 @@
 		global $db, $messages;
 		
 		// params
-		$photos = JL::getVar('photo', array());
+		$photos = JL::getVar('photo', []);
 		$task 	= JL::getVar('task', '');
 		
 		// variables
@@ -901,7 +901,7 @@
 			
 			foreach($photos as $photo) {
 				
-				$photoTmp	= explode('_', $photo);
+				$photoTmp	= explode('_', (string) $photo);
 				$user_id	= $photoTmp[0];
 				$file		= $photoTmp[1];
 				
@@ -991,7 +991,7 @@
 		global $db, $messages;
 		
 		// params
-		$textes = JL::getVar('texte', array());
+		$textes = JL::getVar('texte', []);
 		$task 	= JL::getVar('task', '');
 		
 		// variables

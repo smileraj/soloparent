@@ -1,6 +1,6 @@
 <?php
 
-$lang_chat = array(
+$lang_chat = [
 
 	//------------------Page chat.html.php ---------
 
@@ -44,5 +44,5 @@ $lang_chat = array(
 	"EnCliquantSur" => "Mit einem Klick auf einen Smiley, ist es als Folge der Nachricht hinzugef&uuml;gt.",
 	"VousPouvezAussi" => 'Sie k&ouml;nnen auch direkt den Code der Smiley tippen, zum Beispiel ":) "dies wird automatisch als Smiley angezeigt',
 
-);
+];
 ?>

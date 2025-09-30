@@ -1,6 +1,6 @@
 <?php
 
-$lang_appfooter = array(
+$lang_appfooter = [
 
 	"CGU" => "C.G.U.",
 	"Temoignages" => "T&eacute;moignages",
@@ -11,6 +11,6 @@ $lang_appfooter = array(
 	"Presse" => "Presse",
 	"Publicite" => "Publicit&eacute;",
 	"Tarifs" => "Tarifs",
-	"Copyright" => "Copyright © ".date('Y')." - solocircl.com");
+	"Copyright" => "Copyright © ".date('Y')." - solocircl.com"];
 
 ?>

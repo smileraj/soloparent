@@ -1,6 +1,6 @@
 <?php
 
-$lang_message = array(
+$lang_message = [
 	
 	"BoiteReception" => "Inbox",
 	"Envois" => "Posts",
@@ -122,5 +122,5 @@ $lang_message = array(
 	
 	"IndiquezTitre" => "Please enter the title of your message",
 	"IndiquezTexte" => "Please enter the text of your message",
-);
+];
 ?>

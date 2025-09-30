@@ -10,7 +10,7 @@
 
 	
 	// variables
-	$messages = array();
+	$messages = [];
 
 	
 	
@@ -36,7 +36,7 @@
 		global $db;
 		
 		// variables
-		$where			= array();
+		$where			= [];
 		$_where			= '';
 		
 		// params
@@ -133,7 +133,7 @@
 		$error		= false;
 		
 		// r�cup les donn�es
-		$data 		= getData(true);
+		$data 		= getData();
 		
 		$lang	= JL::getVar('lang', 'fr', true);
 		

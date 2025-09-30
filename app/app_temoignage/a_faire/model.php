@@ -6,8 +6,7 @@
 	class temoignageModel extends JLModel {
 	
 	
-		function temoignageModel() {
-			parent::JLModel();
+		function __construct() {
 			//$this->_messages = JL::getMessages();
 			$this->pagination = new JLPagination(CONTENU_PAGINATION_RAYON);
 		}
@@ -24,7 +23,7 @@
 			global $db;
 			
 			// variables
-			$where			= array();
+			$where			= [];
 			
 			// WHERE
 			$where[]			= "t.active = 1";
@@ -81,7 +80,7 @@
 			global $db;
 
 			// variables
-			$where 		= array();
+			$where 		= [];
 
 			$where[]	= "t.id = '".$id."'";
 			$where[]	= "t.active = 1";

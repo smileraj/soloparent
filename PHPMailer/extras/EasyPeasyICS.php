@@ -20,23 +20,22 @@
 class EasyPeasyICS
 {
     /**
-     * The name of the calendar
-     * @var string
-     */
-    protected $calendarName;
-    /**
      * The array of events to add to this calendar
      * @var array
      */
-    protected $events = array();
+    protected $events = [];
 
     /**
      * Constructor
      * @param string $calendarName
      */
-    public function __construct($calendarName = "")
+    public function __construct(
+        /**
+         * The name of the calendar
+         */
+        protected $calendarName = ""
+    )
     {
-        $this->calendarName = $calendarName;
     }
 
     /**
@@ -54,14 +53,14 @@ class EasyPeasyICS
         if (empty($uid)) {
             $uid = md5(uniqid(mt_rand(), true)) . '@EasyPeasyICS';
         }
-        $event = array(
+        $event = [
             'start' => gmdate('Ymd', $start) . 'T' . gmdate('His', $start) . 'Z',
             'end' => gmdate('Ymd', $end) . 'T' . gmdate('His', $end) . 'Z',
             'summary' => $summary,
             'description' => $description,
             'url' => $url,
             'uid' => $uid
-        );
+        ];
         $this->events[] = $event;
         return $event;
     }
@@ -79,7 +78,7 @@ class EasyPeasyICS
      */
     public function clearEvents()
     {
-        $this->events = array();
+        $this->events = [];
     }
 
     /**
@@ -136,7 +135,7 @@ END:VCALENDAR';
             //Output
             $filename = $this->calendarName;
             //Filename needs quoting if it contains spaces
-            if (strpos($filename, ' ') !== false) {
+            if (str_contains($filename, ' ')) {
                 $filename = '"'.$filename.'"';
             }
             header('Content-type: text/calendar; charset=utf-8');

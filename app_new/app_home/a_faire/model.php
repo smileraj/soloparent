@@ -6,8 +6,7 @@
 	class homeModel extends JLModel {
 	
 	
-		function homeModel() {
-			parent::JLModel();
+		function __construct() {
 			//$this->_messages = JL::getMessages();
 		}
 		

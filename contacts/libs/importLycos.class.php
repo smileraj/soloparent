@@ -27,8 +27,8 @@
 	class grabLycos{
 
 		// Privates
-		var $_username;
-		var $_password;
+		public $_username;
+		public $_password;
 
 		/**
 		 * Constructor of the class to initialize the privates
@@ -36,10 +36,10 @@
 		 * @param $password, the password for the lycos account
 		 * @return VOID, only used to initialize the privates
 		 */
-		function grabLycos( $username, $password ){
+		function __construct( $username, $password ){
 
-			$username = trim( $username );
-			$password = trim( $password );
+			$username = trim( (string) $username );
+			$password = trim( (string) $password );
 			if ( !empty( $username ) )
 				$this->_username = $username;
 			else
@@ -81,8 +81,8 @@
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.1) Gecko/20061204 Firefox/2.0.0.1");
 			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-			$name = urlencode( $this->_getUsername() );
-			$pass = urlencode( $this->_getPassword() );
+			$name = urlencode( (string) $this->_getUsername() );
+			$pass = urlencode( (string) $this->_getPassword() );
 			curl_setopt($ch, CURLOPT_POST, 1);
 			curl_setopt($ch, CURLOPT_POSTFIELDS,"m_PR=27&m_CBURL=http%3A%2F%2Fmail.lycos.com&m_U=$name&m_P=$pass&login=Sign+In");
 			curl_exec($ch);
@@ -96,7 +96,7 @@
 			$grabbedArea = $trs[0][0];
 			preg_match_all( '/<td width=\"170\" nowrap>(.*?)<\/td>/s', $grabbedArea, $emails );
 			preg_match_all( '/<td width=\"100%\" nowrap>(.*?)<\/td>/s',$grabbedArea, $names );
-			$contactList = array();
+			$contactList = [];
 			foreach( $names[1] as $key => $name ){
 				$contactList[$name] = $emails[1][$key];
 			}

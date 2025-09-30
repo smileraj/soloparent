@@ -14,7 +14,7 @@
 
 class Contacts
 {
-  public static $arr_type = array ('Gmail', 'MSN', 'Yahoo', 'Lycos', 'AOL');
+  public static $arr_type =  ['Gmail', 'MSN', 'Yahoo', 'Lycos', 'AOL'];
 
 	public static function factory ($user, $pass, $type)
 	{
@@ -44,7 +44,7 @@ class LycosDecorator
 
 	public function getContacts ()
 	{	
-		$result = array ();
+		$result =  [];
 		if (!is_object ($this->_instance))
 			throw new Exception ("Aucune instance");
 		$contacts = (array) @$this->_instance->getContactList ();
@@ -76,7 +76,7 @@ class AOLDecorator
 
 	public function getContacts ()
 	{	
-		$result = array ();
+		$result =  [];
 		if (!is_object ($this->_instance))
 			throw new Exception ("Aucune instance");
 		$contacts = (array) @$this->_instance->getContactList ();
@@ -96,20 +96,16 @@ class AOLDecorator
 class MSNDecorator
 {
 	private $_instance;
-	private $_user;
-	private $_pass;
 
-	public function __construct ($user, $pass) 
+	public function __construct (private $_user, private $_pass) 
 	{
 		require ('libs/importMsn.class.php');
 		$this->_instance = new msn;
-		$this->_user = $user;
-		$this->_pass = $pass;
 	}
 
 	public function getContacts ()
 	{	
-		$result = array ();
+		$result =  [];
 		if (!is_object ($this->_instance))
 			throw new Exception ("Aucune instance");
 		$contacts = (array) @$this->_instance->qGrab ($this->_user, $this->_pass);
@@ -140,7 +136,7 @@ class YahooDecorator
 
 	public function getContacts ()
 	{	
-		$result = array ();
+		$result =  [];
 		if (!is_object ($this->_instance))
 			throw new Exception ("Aucune instance Yahoo Grabber");
 		$contacts = (array) @$this->_instance->grabYahoo ();
@@ -158,20 +154,16 @@ class YahooDecorator
 class GmailDecorator
 {
 	private $_instance;
-	private $_user;
-	private $_pass;
 
-	public function __construct ($user, $pass) 
+	public function __construct (private $_user, private $_pass) 
 	{
 		require ('libs/importGmail.class.php');
 		$this->_instance = new GMailer;
-		$this->_user = $user;
-		$this->_pass = $pass;
 	}
 
 	public function getContacts ()
 	{	
-		$result = array ();
+		$result =  [];
 		if (!is_object ($this->_instance))
 			throw new Exception ("Aucune instance GMailer");
 		$this->_instance->setLoginInfo ($this->_user, $this->_pass, "+1GMT");

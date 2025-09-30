@@ -5,7 +5,7 @@
 	
 	class temoignageView extends JLView {
 	
-		function temoignageView() {}
+		function __construct() {}
 		
 		
 		function infos(&$contenu) {
@@ -64,12 +64,12 @@
 									$temoignage = $temoignages[$j];
 									
 									// limitation de la longueur du titre
-									if(strlen($temoignage->titre) > LISTE_TITRE_CHAR) {
-										$temoignage->titre = substr($temoignage->titre, 0, LISTE_TITRE_CHAR).'...';
+									if(strlen((string) $temoignage->titre) > LISTE_TITRE_CHAR) {
+										$temoignage->titre = substr((string) $temoignage->titre, 0, LISTE_TITRE_CHAR).'...';
 									}
 									
 									// limitation de la longueur de l'intro
-									$temoignage->texte = strip_tags(html_entity_decode($temoignage->texte));
+									$temoignage->texte = strip_tags(html_entity_decode((string) $temoignage->texte));
 									if(strlen($temoignage->texte) > LISTE_INTRO_CHAR) {
 										$temoignage->texte = substr($temoignage->texte, 0, LISTE_INTRO_CHAR).'...';
 									}
@@ -115,12 +115,12 @@
 									$temoignage = $temoignages[$j];
 									
 									// limitation de la longueur du titre
-									if(strlen($temoignage->titre) > LISTE_TITRE_CHAR) {
-										$temoignage->titre = substr($temoignage->titre, 0, LISTE_TITRE_CHAR).'...';
+									if(strlen((string) $temoignage->titre) > LISTE_TITRE_CHAR) {
+										$temoignage->titre = substr((string) $temoignage->titre, 0, LISTE_TITRE_CHAR).'...';
 									}
 									
 									// limitation de la longueur de l'intro
-									$temoignage->texte = strip_tags(html_entity_decode($temoignage->texte));
+									$temoignage->texte = strip_tags(html_entity_decode((string) $temoignage->texte));
 									if(strlen($temoignage->texte) > LISTE_INTRO_CHAR) {
 										$temoignage->texte = substr($temoignage->texte, 0, LISTE_INTRO_CHAR).'...';
 									}

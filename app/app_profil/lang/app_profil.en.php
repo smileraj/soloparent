@@ -1,9 +1,9 @@
 <?php
-$user_email = $user_email ?? 'your email address';
-$profil = $profil ?? (object) ['username' => 'User'];
-$enfant_num = $enfant_num ?? 'child';
-$langue = $langue ?? 'fr';
-$lang_appprofil = array(
+$user_email ??= 'your email address';
+$profil ??= (object) ['username' => 'User'];
+$enfant_num ??= 'child';
+$langue ??= 'fr';
+$lang_appprofil = [
 "upload_file" => "Upload",
 "crop_photo"=>"Add Photo",
 "Sauvegarder"=>"Save",
@@ -468,6 +468,6 @@ $lang_appprofil = array(
 	//PROFILE
 "SELECTEDPROFILES" => "MATCHING",
 "Addbutton" => "Add photo",
-);
+];
 
 ?>

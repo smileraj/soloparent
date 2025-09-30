@@ -77,13 +77,13 @@ function ChangeSkin( skinName )
 // This is usefull only for these samples. A real application should use something like this:
 // $oFCKeditor->BasePath = '/fckeditor/' ;	// '/fckeditor/' is the default value.
 $sBasePath = $_SERVER['PHP_SELF'] ;
-$sBasePath = substr( $sBasePath, 0, strpos( $sBasePath, "_samples" ) ) ;
+$sBasePath = substr( (string) $sBasePath, 0, strpos( (string) $sBasePath, "_samples" ) ) ;
 
 $oFCKeditor = new FCKeditor('FCKeditor1') ;
 $oFCKeditor->BasePath = $sBasePath ;
 
 if ( isset($_GET['Skin']) )
-	$oFCKeditor->Config['SkinPath'] = $sBasePath . 'editor/skins/' . htmlspecialchars($_GET['Skin']) . '/' ;
+	$oFCKeditor->Config['SkinPath'] = $sBasePath . 'editor/skins/' . htmlspecialchars((string) $_GET['Skin']) . '/' ;
 
 $oFCKeditor->Value = '<p>This is some <strong>sample text</strong>. You are using <a href="http://www.fckeditor.net/">FCKeditor</a>.</p>' ;
 $oFCKeditor->Create() ;

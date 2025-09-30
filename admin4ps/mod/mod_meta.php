@@ -4,7 +4,7 @@
 	defined('JL') or die('Error 401');
 
 	global $app, $action;
-	$meta = array();
+	$meta = [];
 	$meta['title']       = 'solocircl.com - Administration!';
 	$meta['description'] = 'The Swiss single parents dating site with children. Discover moms and dads in India looking for a serious relationship. Registration is free!';
 	$meta['keywords']    = 'solocircl administration, single parents, dating, India';

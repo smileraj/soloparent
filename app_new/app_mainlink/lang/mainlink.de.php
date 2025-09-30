@@ -1,6 +1,6 @@
 <?php
 
-$lang_mainlink = array(
+$lang_mainlink = [
 
 	//--------------error404---------------------------
 	
@@ -218,5 +218,5 @@ $lang_mainlink = array(
 	"Tarifs" => "Preise",
 	"Copyright" => "Copyright © 2009 - ".date('Y')." - SinglEltern.ch",
 
-);
+];
 ?>

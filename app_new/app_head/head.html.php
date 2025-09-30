@@ -15,7 +15,7 @@ $value=$_REQUEST['checkvalue'];
 $user=$_REQUEST['userid'];
 $query="UPDATE user set on_off_status='$value' where id='$user'";
 $result1 = mysql_query ($query);
- if($result1!=mysql_query){
+ if($result1!=\MYSQL_QUERY){
 }
 else{
 }
@@ -29,7 +29,7 @@ else{
 		function head($userProfilMini,$userStats,$userpercentage,$perannounce,$userStats,$useronstatus) {
 			include("lang/app_head.".$_GET['lang'].".php");
 			global $db, $template, $user, $langue, $auth, $action, $app;
-			$navArr=array();
+			$navArr=[];
 			$navString="";
 			if (is_array($_GET)>1){
 				foreach($_GET as $key => $value){
@@ -231,7 +231,7 @@ background: rgba(47, 47, 47, 0.72);
 			</style>
 
 		<div class="modal fade <?php if($error_ses=='1'){
-		if (strtoupper($_SERVER['REQUEST_METHOD']) == 'POST'){
+		if (strtoupper((string) $_SERVER['REQUEST_METHOD']) == 'POST'){
 		echo "in display";
 		}
 		else{
@@ -653,9 +653,9 @@ if($photo1==0 && $perannounce->annonce!='' && ($userpercentage->taille_id!=0 || 
                                     <li>
                                      
                                             <?php 										// abonné
-										if($user->gold_limit_date != '0000-00-00' && strtotime($user->gold_limit_date) >= time()) {
+										if($user->gold_limit_date != '0000-00-00' && strtotime((string) $user->gold_limit_date) >= time()) {
 									?>
-									<small class="uppercase-bold text-strong text-transparent-black  parentsolo_sub"><b><?php echo $lang_apphead["FinDAbonnement"];?>  :</b> <span class="parentsolo_sub"><?php echo date('d/m/y', strtotime($user->gold_limit_date)); ?></span></small>
+									<small class="uppercase-bold text-strong text-transparent-black  parentsolo_sub"><b><?php echo $lang_apphead["FinDAbonnement"];?>  :</b> <span class="parentsolo_sub"><?php echo date('d/m/y', strtotime((string) $user->gold_limit_date)); ?></span></small>
 											
 									<?php 										} else {
 									?>
@@ -693,9 +693,9 @@ if($photo1==0 && $perannounce->annonce!='' && ($userpercentage->taille_id!=0 || 
 							<div class="row bgbottom">
 								 <div class="col-md-6 nopadding">
 									<?php 										// abonné
-										if($user->gold_limit_date != '0000-00-00' && strtotime($user->gold_limit_date) >= time()) {
+										if($user->gold_limit_date != '0000-00-00' && strtotime((string) $user->gold_limit_date) >= time()) {
 									?>
-											<b><?php echo $lang_apphead["FinDAbonnement"];?>:</b> <span class="black"><?php echo date('d/m/y', strtotime($user->gold_limit_date)); ?></span>
+											<b><?php echo $lang_apphead["FinDAbonnement"];?>:</b> <span class="black"><?php echo date('d/m/y', strtotime((string) $user->gold_limit_date)); ?></span>
 									<?php 										} else {
 									?>
 											<a href="<?php echo JL::url('index.php?app=abonnement&action=tarifs'.'&'.$langue); ?>" title="<?php echo $lang_apphead["AboPourToute"];?>" class="abo"><?php echo $lang_apphead["AbonnezVous"];?> !</a>

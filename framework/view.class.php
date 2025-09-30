@@ -23,9 +23,9 @@ class JLView
         // Build messages and detect type
         foreach ($messages as $message) {
             $stringMessages .= $message;
-            if (str_contains($message, '"valid"')) {
+            if (str_contains((string) $message, '"valid"')) {
                 $validMessage++;
-            } elseif (str_contains($message, '"error"')) {
+            } elseif (str_contains((string) $message, '"error"')) {
                 $errorMessage++;
             }
         }

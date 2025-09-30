@@ -1,6 +1,6 @@
 <?php
 
-$lang_apphome = array(
+$lang_apphome = [
 
 	//View
 	//*Partie gauche
@@ -74,6 +74,6 @@ $lang_apphome = array(
 	"ANY_DEVICE" => "Accessible on all Mobiles & Tablets",
 		"ANY_DEVICE_para" => "New encounters at your fingertips! Parentsolo accompanies you everywhere. Communicate with who you want, where you want and whenever you want.",
 
-);
+];
 
 ?>

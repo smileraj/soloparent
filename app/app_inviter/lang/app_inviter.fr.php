@@ -1,6 +1,6 @@
 <?php
 
-$lang_inviter = array(
+$lang_inviter = [
 
 	//------------------Message ---------
 
@@ -39,5 +39,5 @@ $lang_inviter = array(
 	"IndiquezVotrePrenom" => "Veuillez indiquer votre pr&eacute;nom, s'il vous pla&icirc;t",
 	"IndiquezVotreEmail" => "Veuillez indiquer votre adresse email, s'il vous pla&icirc;t",
 
-);
+];
 ?>

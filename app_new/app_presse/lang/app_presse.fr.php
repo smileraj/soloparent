@@ -1,10 +1,10 @@
 <?php
 
-$lang_apppresse = array(
+$lang_apppresse = [
 	
 	"Presse" => "Presse",
 	
 
-);
+];
 
 ?>

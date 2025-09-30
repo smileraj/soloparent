@@ -40,7 +40,7 @@ function GetResourceTypeDirectory( $resourceType, $sCommand )
 	global $Config ;
 	if ( $sCommand == "QuickUpload")
 	{
-		if ( strlen( $Config['QuickUploadAbsolutePath'][$resourceType] ) > 0 )
+		if ( strlen( (string) $Config['QuickUploadAbsolutePath'][$resourceType] ) > 0 )
 			return $Config['QuickUploadAbsolutePath'][$resourceType] ;
 
 		// Map the "UserFiles" path to a local directory.
@@ -48,7 +48,7 @@ function GetResourceTypeDirectory( $resourceType, $sCommand )
 	}
 	else
 	{
-		if ( strlen( $Config['FileTypesAbsolutePath'][$resourceType] ) > 0 )
+		if ( strlen( (string) $Config['FileTypesAbsolutePath'][$resourceType] ) > 0 )
 			return $Config['FileTypesAbsolutePath'][$resourceType] ;
 
 		// Map the "UserFiles" path to a local directory.
@@ -63,7 +63,7 @@ function GetUrlFromPath( $resourceType, $folderPath, $sCommand )
 
 function RemoveExtension( $fileName )
 {
-	return substr( $fileName, 0, strrpos( $fileName, '.' ) ) ;
+	return substr( (string) $fileName, 0, strrpos( (string) $fileName, '.' ) ) ;
 }
 
 function ServerMapFolder( $resourceType, $folderPath, $sCommand )
@@ -83,7 +83,7 @@ function ServerMapFolder( $resourceType, $folderPath, $sCommand )
 function GetParentFolder( $folderPath )
 {
 	$sPattern = "-[/\\\\][^/\\\\]+[/\\\\]?$-" ;
-	return preg_replace( $sPattern, '', $folderPath ) ;
+	return preg_replace( $sPattern, '', (string) $folderPath ) ;
 }
 
 function CreateServerFolder( $folderPath, $lastFolder = null )
@@ -92,7 +92,7 @@ function CreateServerFolder( $folderPath, $lastFolder = null )
 	$sParent = GetParentFolder( $folderPath ) ;
 
 	// Ensure the folder path has no double-slashes, or mkdir may fail on certain platforms
-	while ( strpos($folderPath, '//') !== false )
+	while ( str_contains((string) $folderPath, '//') )
 	{
 		$folderPath = str_replace( '//', '/', $folderPath ) ;
 	}
@@ -158,7 +158,7 @@ function GetRootPath()
 	$sRealPath = rtrim($sRealPath,"\\/");
 
 	$sSelfPath = $_SERVER['PHP_SELF'] ;
-	$sSelfPath = substr( $sSelfPath, 0, strrpos( $sSelfPath, '/' ) ) ;
+	$sSelfPath = substr( (string) $sSelfPath, 0, strrpos( (string) $sSelfPath, '/' ) ) ;
 
 	$sSelfPath = str_replace( '/', DIRECTORY_SEPARATOR, $sSelfPath ) ;
 
@@ -228,21 +228,21 @@ function GetCurrentFolder()
 	if (!isset($_GET)) {
 		global $_GET;
 	}
-	$sCurrentFolder	= isset( $_GET['CurrentFolder'] ) ? $_GET['CurrentFolder'] : '/' ;
+	$sCurrentFolder	= $_GET['CurrentFolder'] ?? '/' ;
 
 	// Check the current folder syntax (must begin and start with a slash).
-	if ( !preg_match( '|/$|', $sCurrentFolder ) )
+	if ( !preg_match( '|/$|', (string) $sCurrentFolder ) )
 		$sCurrentFolder .= '/' ;
-	if ( strpos( $sCurrentFolder, '/' ) !== 0 )
+	if ( !str_starts_with((string) $sCurrentFolder, '/') )
 		$sCurrentFolder = '/' . $sCurrentFolder ;
 
 	// Ensure the folder path has no double-slashes
-	while ( strpos ($sCurrentFolder, '//') !== false ) {
+	while ( str_contains ((string) $sCurrentFolder, '//') ) {
 		$sCurrentFolder = str_replace ('//', '/', $sCurrentFolder) ;
 	}
 
 	// Check for invalid folder paths (..)
-	if ( strpos( $sCurrentFolder, '..' ) || strpos( $sCurrentFolder, "\\" ))
+	if ( strpos( (string) $sCurrentFolder, '..' ) || strpos( (string) $sCurrentFolder, "\\" ))
 		SendError( 102, '' ) ;
 
 	return $sCurrentFolder ;
@@ -251,7 +251,7 @@ function GetCurrentFolder()
 // Do a cleanup of the folder name to avoid possible problems
 function SanitizeFolderName( $sNewFolderName )
 {
-	$sNewFolderName = stripslashes( $sNewFolderName ) ;
+	$sNewFolderName = stripslashes( (string) $sNewFolderName ) ;
 
 	// Remove . \ / | : ? * " < >
 	$sNewFolderName = preg_replace( '/\\.|\\\\|\\/|\\||\\:|\\?|\\*|"|<|>|[[:cntrl:]]/', '_', $sNewFolderName ) ;
@@ -264,20 +264,20 @@ function SanitizeFileName( $sNewFileName )
 {
 	global $Config ;
 
-	$sNewFileName = stripslashes( $sNewFileName ) ;
+	$sNewFileName = stripslashes( (string) $sNewFileName ) ;
 
 	// Replace dots in the name with underscores (only one dot can be there... security issue).
 	if ( $Config['ForceSingleExtension'] )
 		$sNewFileName = preg_replace( '/\\.(?![^.]*$)/', '_', $sNewFileName ) ;
 
 	// Remove \ / | : ? * " < >
-	$sNewFileName = preg_replace( '/\\\\|\\/|\\||\\:|\\?|\\*|"|<|>|[[:cntrl:]]/', '_', $sNewFileName ) ;
+	$sNewFileName = preg_replace( '/\\\\|\\/|\\||\\:|\\?|\\*|"|<|>|[[:cntrl:]]/', '_', (string) $sNewFileName ) ;
 
 	return $sNewFileName ;
 }
 
 // This is the function that sends the results of the uploading process.
-function SendUploadResults( $errorNumber, $fileUrl = '', $fileName = '', $customMsg = '' )
+function SendUploadResults( $errorNumber, $fileUrl = '', $fileName = '', $customMsg = '' ): never
 {
 	// Minified version of the document.domain automatic fix script (#1919).
 	// The original script can be found at _dev/domain_fix_template.js
@@ -286,7 +286,7 @@ function SendUploadResults( $errorNumber, $fileUrl = '', $fileName = '', $custom
 (function(){var d=document.domain;while (true){try{var A=window.parent.document.domain;break;}catch(e) {};d=d.replace(/.*?(?:\.|$)/,'');if (d.length==0) break;try{document.domain=d;}catch (e){break;}}})();
 EOF;
 
-	$rpl = array( '\\' => '\\\\', '"' => '\\"' ) ;
+	$rpl = [ '\\' => '\\\\', '"' => '\\"' ] ;
 	echo 'window.parent.OnUploadCompleted(' . $errorNumber . ',"' . strtr( $fileUrl, $rpl ) . '","' . strtr( $fileName, $rpl ) . '", "' . strtr( $customMsg, $rpl ) . '") ;' ;
 	echo '</script>' ;
 	exit ;

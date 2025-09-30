@@ -1,6 +1,6 @@
 <?php
 
-	$parentsolo = isset($_REQUEST['parentsolo']) ? $_REQUEST['parentsolo'] : false;
+	$parentsolo = $_REQUEST['parentsolo'] ?? false;
 	
 	if($parentsolo == 'vb3t4d3m01') {
 		$_SESSION['accesdemo'] = 'azkzerkjpfgfd';

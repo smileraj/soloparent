@@ -50,8 +50,8 @@ function dir_copy($srcdir, $dstdir, $verbose = false, $offset = '')
                 else if(is_dir($srcfile)) {
                     $res = explode(',',$ret);
                     $ret = dir_copy($srcfile, $dstfile, $verbose);
-                    $mod = explode(',',$ret);
-                    $imp = array($res[0] + $mod[0],$mod[1] + $res[1],$mod[2] + $res[2],$mod[3].$res[3]);
+                    $mod = explode(',',(string) $ret);
+                    $imp = [$res[0] + $mod[0],$mod[1] + $res[1],$mod[2] + $res[2],$mod[3].$res[3]];
                     $ret = implode(',',$imp);
                 }
             }

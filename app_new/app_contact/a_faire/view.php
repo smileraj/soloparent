@@ -5,7 +5,7 @@
 	
 	class contactView extends JLView{
 	
-		function contactView() {}
+		function __construct() {}
 		
 		
 		function display(&$contenu, &$row, &$list, &$messages) {

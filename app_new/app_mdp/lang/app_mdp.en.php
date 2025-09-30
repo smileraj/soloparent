@@ -1,6 +1,6 @@
 <?php
 
-$lang_appmdp = array(
+$lang_appmdp = [
 	
 	"MessagesParentSolo" => "solocircl.com messages",	
 	
@@ -38,5 +38,5 @@ $lang_appmdp = array(
 	"LienNonValide" => "The link you have clicked on is no longer valid",
 	"RecommencerProcedureMdpOublie" => "Please repeat the procedure \"Forgot your password?\"",
 
-);
+];
 ?>

@@ -18,7 +18,7 @@
 
 
 	// gestion des messages d'erreurs
-	$messages	= array();
+	$messages	= [];
 
 
 	switch($action) {
@@ -149,12 +149,12 @@
 
 	function message_data() {
 			global $langue;
-		$_data	= array(
+		$_data	= [
 				'user_to' => '',
 				'titre' => '',
 				'texte' => '',
 				'fleur_id' => 0
-			);
+			];
 		return $_data;
 	}
 
@@ -165,7 +165,7 @@
 		include("lang/app_message.".$_GET['lang'].".php");
 
 		// variables
-		$where 		= array();
+		$where 		= [];
 		$_where		= '';
 
 
@@ -265,8 +265,8 @@
 
 		// variables
 		$resultatParPage 	= 10;
-		$search				= array();
-		$where 				= array();
+		$search				= [];
+		$where 				= [];
 		$_where				= '';
 
 
@@ -363,7 +363,7 @@
 
 		// variables
 		$resultatParPage 	= 10;
-		$search				= array();
+		$search				= [];
 
 		// pagination
 		$search['page']		= (int)JL::getVar('page', 1);
@@ -408,13 +408,13 @@
 	}
 
 
-	function messageWrite($flower, $messages = array()) {
+	function messageWrite($flower, $messages = []) {
 		global $langue, $langString;
 		global $db, $user;
 
 		// variables
 		$_data		= message_data();
-		$fleurs		= array();
+		$fleurs		= [];
 
 		// r�cup les donn�es temporaires en session
 		if (is_array($_data)) {
@@ -449,12 +449,12 @@
 	}
 
 
-	function messageReply($id, $messages = array()) {
+	function messageReply($id, $messages = []) {
 			global $langue;
 			include("lang/app_message.".$_GET['lang'].".php");
 		global $db, $user;
 
-		$fleurs		= array();
+		$fleurs		= [];
 
 		// d�termine si le message est bien destin� � l'utilisateur log
 		$query = "SELECT m.user_id_to, u.username, m.titre, m.texte"
@@ -499,7 +499,7 @@
 		global $db, $user;
 
 		// gestion des messages d'erreurs
-		$messages	= array();
+		$messages	= [];
 
 		// variables
 		$_data		= message_data();
@@ -672,7 +672,7 @@
 
 		// variables
 		$dossier_id_origine	= 0;
-		$dossier_id_ok		= array(0,1,2); // dossiers id valides
+		$dossier_id_ok		= [0,1,2]; // dossiers id valides
 		$msg 				= 1;			// affichage (1) ou non (0) du message de confirmation
 
 		// si le param pass� est bien un tableau
@@ -681,7 +681,7 @@
 			foreach($ids as $id) {
 
 				// s�curit�
-				$id = addslashes($id);
+				$id = addslashes((string) $id);
 
 				// d�termine si le message est bien destin� � l'utilisateur log
 				$query = "SELECT m.user_id_to, m.dossier_id, u.username, m.titre, m.texte, m.non_lu, m.fleur_id"
@@ -750,22 +750,11 @@
 		}
 
 
-		switch($dossier_id_origine) {
-
-			case 2:
-				JL::redirect(SITE_URL.'/index.php?app=message&action=archive&msg='.$dossier_id.'&'.$langue);
-			break;
-
-			case 1:
-				JL::redirect(SITE_URL.'/index.php?app=message&action=trash&msg='.$dossier_id.'&'.$langue);
-			break;
-
-			case 0:
-			default:
-				JL::redirect(SITE_URL.'/index.php?app=message&action=inbox&msg='.$dossier_id.'&'.$langue);
-			break;
-
-		}
+		match ($dossier_id_origine) {
+            2 => JL::redirect(SITE_URL.'/index.php?app=message&action=archive&msg='.$dossier_id.'&'.$langue),
+            1 => JL::redirect(SITE_URL.'/index.php?app=message&action=trash&msg='.$dossier_id.'&'.$langue),
+            default => JL::redirect(SITE_URL.'/index.php?app=message&action=inbox&msg='.$dossier_id.'&'.$langue),
+        };
 
 
 

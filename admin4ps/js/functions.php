@@ -2,21 +2,11 @@
 function createPictureSansFond($source, $dest, $x, $y, $ext) {
 
 	//récup l'image d'origine
-	switch ( $ext ) {
-		case "image/jpeg":
-		case "image/pjpeg":
-			$orig = imagecreatefromjpeg( $source );
-			break;
-
-		case "image/gif":
-			$orig = imagecreatefromgif( $source );
-			break;
-
-		case "image/png":
-		default:
-			$orig = imagecreatefrompng( $source );
-			break;
-	}
+	$orig = match ($ext) {
+        "image/jpeg", "image/pjpeg" => imagecreatefromjpeg( $source ),
+        "image/gif" => imagecreatefromgif( $source ),
+        default => imagecreatefrompng( $source ),
+    };
 	
 	$imageX = imagesx($orig);
 	$imageY = imagesy($orig);
@@ -70,21 +60,11 @@ function createPictureSansFond($source, $dest, $x, $y, $ext) {
 function deplacerPhoto($source, $dest, $ext) {
 
 	//récup l'image d'origine
-	switch ( $ext ) {
-		case "image/jpeg":
-		case "image/pjpeg":
-			$orig = imagecreatefromjpeg( $source );
-			break;
-
-		case "image/gif":
-			$orig = imagecreatefromgif( $source );
-			break;
-
-		case "image/png":
-		default:
-			$orig = imagecreatefrompng( $source );
-			break;
-	}
+	$orig = match ($ext) {
+        "image/jpeg", "image/pjpeg" => imagecreatefromjpeg( $source ),
+        "image/gif" => imagecreatefromgif( $source ),
+        default => imagecreatefrompng( $source ),
+    };
 	
 	
 	$imageX = imagesx($orig);

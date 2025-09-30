@@ -186,11 +186,11 @@ class GMailer {
     * @access private
     * @var string
    */
-	var $cookie_str;
-	var $cookie_array; // Added by Neerav; 15 Mar 2007
-	var $cookie_array_serial; // Added by Neerav; 7 Nov 2007
-	var $login;
-	var $pwd;
+	public $cookie_str;
+	public $cookie_array; // Added by Neerav; 15 Mar 2007
+	public $cookie_array_serial; // Added by Neerav; 7 Nov 2007
+	public $login;
+	public $pwd;
 	/**
 	 * Email domain
 	 *
@@ -202,46 +202,46 @@ class GMailer {
 	 * @author Neerav
 	 * @since 8 Jun 2006
 	*/
-	var $domain;
-	var $GM_LNK_GMAIL 			= GM_LNK_GMAIL;
-	var $GM_LNK_GMAIL_A 		= GM_LNK_GMAIL;
-	var $GM_LNK_GMAIL_HTTP 		= GM_LNK_GMAIL_HTTP;
-	var $GM_LNK_LOGIN 			= GM_LNK_LOGIN;
-	var $GM_LNK_LOGIN_REFER 	= GM_LNK_LOGIN_REFER;
-	var $GM_LNK_INVITE_REFER 	= GM_LNK_INVITE_REFER;
-	var $GM_LNK_GMAIL_MOBILE 	= GM_LNK_GMAIL_MOBILE;
+	public $domain;
+	public $GM_LNK_GMAIL 			= GM_LNK_GMAIL;
+	public $GM_LNK_GMAIL_A 		= GM_LNK_GMAIL;
+	public $GM_LNK_GMAIL_HTTP 		= GM_LNK_GMAIL_HTTP;
+	public $GM_LNK_LOGIN 			= GM_LNK_LOGIN;
+	public $GM_LNK_LOGIN_REFER 	= GM_LNK_LOGIN_REFER;
+	public $GM_LNK_INVITE_REFER 	= GM_LNK_INVITE_REFER;
+	public $GM_LNK_GMAIL_MOBILE 	= GM_LNK_GMAIL_MOBILE;
 	
 	/**
 	 * @author Neerav
 	 * @since 13 Aug 2005
 	*/
-	var $gmail_data;
+	public $gmail_data;
 	/**
 	 * Raw packet
 	*/
-	var $raw;
+	public $raw;
 	/**
 	 * Raw packet for contact list
 	*/
-	var $contact_raw;
-	var $timezone;
-	var $use_session;
-	var $proxy_host;
-	var $proxy_auth;	
+	public $contact_raw;
+	public $timezone;
+	public $use_session;
+	public $proxy_host;
+	public $proxy_auth;	
 	/**#@-*/	 
 	
 	/**
 	 * Reserved mailbox names
 	*/
-	var $gmail_reserved_names = array("inbox", "star", "starred", "chat", "chats", "draft", "drafts", 
+	public $gmail_reserved_names = ["inbox", "star", "starred", "chat", "chats", "draft", "drafts", 
 			"sent", "sentmail", "sent-mail", "sent mail", "all", "allmail", "all-mail", "all mail",
-			"anywhere", "archive", "spam", "trash", "read", "unread");
+			"anywhere", "archive", "spam", "trash", "read", "unread"];
 	
 	/**
 	 * @access public
 	 * @var bool
 	*/
-   var $created;
+   public $created;
 
    /**
 	 * Status of GMailer
@@ -254,7 +254,7 @@ class GMailer {
 	 * @var mixed[]
 	 * @access public
 	*/
-	var $return_status = array();
+	public $return_status = [];
 
 	
    /**
@@ -265,7 +265,7 @@ class GMailer {
 	 * @var numeric
 	 * @access private
 	*/
-	var $GMAIL_GUI_VERSION;
+	public $GMAIL_GUI_VERSION;
 
 	/**
 	 * Constructor of GMailer
@@ -320,32 +320,32 @@ class GMailer {
 			// Added to gracefully handle multithreaded servers; by Neerav; 8 July 2005
 			if (isset($_ENV["NUMBER_OF_PROCESSORS"]) and ($_ENV["NUMBER_OF_PROCESSORS"] > 1)) {
 				$this->created = false;
-				$a = array(
+				$a = [
 					"action" 		=> "constructing GMailer object",
 					"status" 		=> "failed",
 					"message" 		=> "libgmailer: Using a multithread server. Ensure php_curl.dll has been enabled (uncommented) in your php.ini."
-				);
+				];
 				array_unshift($this->return_status, $a);
 
 			} else {
 				if (!dl('php_curl.dll') && !dl('curl.so')) {
 					$this->created = false;
-					$a = array(
+					$a = [
 						"action" 		=> "constructing GMailer object",
 						"status" 		=> "failed",
 						"message" 		=> "libgmailer: unable to load curl extension."
-					);
+					];
 					array_unshift($this->return_status, $a);
 				}
 			}
 		}
 		if (!function_exists("curl_setopt")) {			  
 			$this->created = false;
-			$a = array(
+			$a = [
 				"action" 		=> "constructing GMailer object",
 				"status" 		=> "failed",
 				"message" 		=> "libgmailer: No curl."
-			);
+			];
 			array_unshift($this->return_status, $a);
 		}
 
@@ -357,11 +357,11 @@ class GMailer {
 		$this->use_session 	= 2;
 
 		if ($this->created == true) {
-			$a = array(
+			$a = [
 				"action" 		=> "constructing GMailer object",
 				"status" 		=> "success",
 				"message" 		=> "libgmailer: Constructing completed."
-			);
+			];
 			array_unshift($this->return_status, $a);
 		}
 	}
@@ -380,11 +380,11 @@ class GMailer {
 		$this->timezone = strval($my_tz*-60);
 
 		// Added return_status; by Neerav; 16 July 2005
-		$a = array(
+		$a = [
 			"action" 		=> "set login info",
 			"status" 		=> "success",
 			"message" 		=> "libgmailer: LoginInfo set."
-		);
+		];
 		array_unshift($this->return_status, $a);
 	}
 	
@@ -399,11 +399,11 @@ class GMailer {
 		$this->logincaptcha 	= $text;
 		$this->logintoken 		= $token;
 
-		$a = array(
+		$a = [
 			"action" 		=> "set Captcha info",
 			"status" 		=> "success",
 			"message" 		=> "libgmailer: Captcha set."
-		);
+		];
 		array_unshift($this->return_status, $a);
 	}
 
@@ -415,23 +415,23 @@ class GMailer {
 	*/
 	function setDomain($my_domain) {
 		//return;
-		$my_domain = strtolower(trim($my_domain));
+		$my_domain = strtolower(trim((string) $my_domain));
 		if ($my_domain === "" or $my_domain === 0 ) {
-			$a = array(
+			$a = [
 				"action" 		=> "set hosted domain info",
 				"status" 		=> "sucess",
 				"message" 		=> "libgmailer: Using the default gmail/googlemail domain."
-			);
+			];
 			array_unshift($this->return_status, $a);
 			return;
 		}
 		$success = true;
-		if (preg_match("/(^gmail\.com$)|(^googlemail\.com$)/i",$my_domain)) {
-			$a = array(
+		if (preg_match("/(^gmail\.com$)|(^googlemail\.com$)/i",(string) $my_domain)) {
+			$a = [
 				"action" 		=> "set hosted domain info",
 				"status" 		=> "failed",
 				"message" 		=> "libgmailer: cannot use \"$my_domain\" as a hosted domain.  The default gmail.com or googlemail.com will be used."
-			);
+			];
 			array_unshift($this->return_status, $a);
 			return;
 		}
@@ -448,11 +448,11 @@ class GMailer {
 		// Added by Neerav; 19 Jan 2007
 		$this->GM_LNK_GMAIL_MOBILE	= "http://mail.google.com/a/".$my_domain."/x/";
 
-		$a = array(
+		$a = [
 			"action" 		=> "set hosted domain info",
 			"status" 		=> "success",
 			"message" 		=> "libgmailer: Domain set."
-		);
+		];
 		array_unshift($this->return_status, $a);
 	}
 
@@ -476,23 +476,23 @@ class GMailer {
 	* @param string $pwd Password if required
 	*/
 	function setProxy($host, $username, $pwd) {
-		if (strlen($host) > 0) { // fixed; Neerav; 14 Mar 2007
+		if (strlen((string) $host) > 0) { // fixed; Neerav; 14 Mar 2007
 			$this->proxy_host = $host;
-			if (strlen($username) > 0 || strlen($pwd) > 0) {
+			if (strlen((string) $username) > 0 || strlen((string) $pwd) > 0) {
 				$this->proxy_auth = $username.":".$pwd;
 			}
-			$a = array(
+			$a = [
 				"action" 		=> "set proxy",
 				"status" 		=> "success",
 				"message" 		=> "libgmailer: Proxy set."
-			);
+			];
 			array_unshift($this->return_status, $a);
 		} else {
-			$a = array(
+			$a = [
 				"action" 		=> "set proxy",
 				"status" 		=> "failed",
 				"message" 		=> "libgmailer: no hostname supplied."
-			);
+			];
 			array_unshift($this->return_status, $a);
 		}
 	}
@@ -515,68 +515,68 @@ class GMailer {
 				// Added to gracefully handle multithreaded servers; by Neerav; 8 July 2005
 				if (isset($_ENV["NUMBER_OF_PROCESSORS"]) and ($_ENV["NUMBER_OF_PROCESSORS"] > 1)) {
 					$this->setSessionMethod(GM_USE_COOKIE | !GM_USE_PHPSESSION);  // forced to use custom cookie
-					$a = array(
+					$a = [
 						"action" 		=> "load PHP session extension",
 						"status" 		=> "failed",
 						"message" 		=> "Using a multithread server. Ensure php_session.dll has been enabled (uncommented) in your php.ini."
-					);
+					];
 					array_unshift($this->return_status, $a);
 					return;
 				} else {
 					// Changed extension loading; by Neerav; 18 Aug 2005
 					//if (!dl('php_session.dll') && !dl('session.so')) {
 					if (dl(((PHP_SHLIB_SUFFIX == 'dll') ? 'php_' : '') . 'session.' . PHP_SHLIB_SUFFIX)) {
-						$a = array(
+						$a = [
 							"action" 		=> "load PHP session extension",
 							"status" 		=> "failed",
 							"message" 		=> "unable to load PHP session extension."
-						);
+						];
 						array_unshift($this->return_status, $a);
 						$this->setSessionMethod(GM_USE_COOKIE | !GM_USE_PHPSESSION);  // forced to use custom cookie
 						return;
 					}
 				}
 			}
-			$cookie_path = str_replace(DIRECTORY_SEPARATOR,"/",dirname($_SERVER['SCRIPT_NAME']))."/";
+			$cookie_path = str_replace(DIRECTORY_SEPARATOR,"/",dirname((string) $_SERVER['SCRIPT_NAME']))."/";
 			if ($cookie_path == "//") $cookie_path = "/";
 			@ini_set("session.cookie_path",$cookie_path);
 			if (!($method & GM_USE_COOKIE)) {
 				@ini_set("session.use_cookies",	 0);
 				@ini_set("session.use_trans_sid", 1);					 
-				$a = array(
+				$a = [
 					"action" 		=> "setSessionMethod",
 					"status" 		=> "success",
 					"message" 		=> "not using cookie"
-				);
+				];
 				array_unshift($this->return_status, $a);
 			} else {
 				@ini_set("session.use_cookies",	 1);
 				@ini_set("session.use_trans_sid", 0);
-				$a = array(
+				$a = [
 					"action" 		=> "setSessionMethod",
 					"status" 		=> "success",
 					"message" 		=> "using cookie"
-				);
+				];
 				array_unshift($this->return_status, $a);
 			}
 			@ini_set("arg_separator.output", '&amp;');
 			session_start();
-			$a = array(
+			$a = [
 				"action" 		=> "setSessionMethod",
 				"status" 		=> "success",
 				"message" 		=> "using PHP session"
-			);
+			];
 			array_unshift($this->return_status, $a);
 			$this->use_session = true;			  
 		} else {
 			//@ini_set("session.use_only_cookies", 1);
 			@ini_set("session.use_cookies",	 1);
 			@ini_set("session.use_trans_sid", 0);
-			$a = array(
+			$a = [
 				"action" 		=> "setSessionMethod",
 				"status" 		=> "success",
 				"message" 		=> "using only cookie"
-			);
+			];
 			array_unshift($this->return_status, $a);
 			$this->use_session = false;
 		}
@@ -598,7 +598,7 @@ class GMailer {
 		if (version_compare(PHP_VERSION, "5" , ">=")) {
 			$this->CURL_PROXY($c);
 		} else {
-			$this->CURL_PROXY(&$c);
+			$this->CURL_PROXY($c);
 		}
 		curl_setopt($c, CURLOPT_SSL_VERIFYHOST,  2);
 		curl_setopt($c, CURLOPT_SSL_VERIFYPEER, FALSE);
@@ -623,25 +623,25 @@ class GMailer {
 	function connectNoCookie() {
 
 		$postdata  = "";
-		$this->cookie_array = array();
+		$this->cookie_array = [];
 		
 		if ($this->domain) {
 			$postdata .= "&at=null";
-			$postdata .= "&continue=".urlencode($this->GM_LNK_GMAIL);
+			$postdata .= "&continue=".urlencode((string) $this->GM_LNK_GMAIL);
 			$postdata .= "&service=mail";
-			$postdata .= "&userName=".urlencode($this->login);
-			$postdata .= "&password=".urlencode($this->pwd);
+			$postdata .= "&userName=".urlencode((string) $this->login);
+			$postdata .= "&password=".urlencode((string) $this->pwd);
 		} else {
 			// "fixed"?!?; by Neerav; 1 Sept 2006
 /* 			$postdata .= "&ltmpl=yj_blanco"; */
 			$postdata .= "&ltmpl=default";	// changed (was "&ltmpl=yj_blanco"); Neerav; 1 Nov 2007; 
 			$postdata .= "&ltmplcache=2";
-			$postdata .= "&continue=".urlencode($this->GM_LNK_GMAIL);
+			$postdata .= "&continue=".urlencode((string) $this->GM_LNK_GMAIL);
 			$postdata .= "&service=mail";
 			$postdata .= "&rm=false";
 			$postdata .= "&hl=en";
-			$postdata .= "&Email=".urlencode($this->login);
-			$postdata .= "&Passwd=".urlencode($this->pwd);
+			$postdata .= "&Email=".urlencode((string) $this->login);
+			$postdata .= "&Passwd=".urlencode((string) $this->pwd);
 			$postdata .= "&PersistentCookie=yes";	// Added by Neerav; 21 Dec 2007
 			$postdata .= "&rmShown=1";
 			$postdata .= "signIn=Sign+in";	// changed (was "&null=Sign+in"); Neerav; 1 Nov 2007; 
@@ -657,17 +657,17 @@ class GMailer {
 
 		// Check for valid hosted domains; Added by Neerav; 10 June 2006
 		if ($this->domain) {
-			if (preg_match("/(^yahoo\.)|(^hotmail\.)|(^(sayni)\.net$)|(^(live|msn|rediffmail|gmail|googlemail|mail)\.com$)/i",$this->domain)
+			if (preg_match("/(^yahoo\.)|(^hotmail\.)|(^(sayni)\.net$)|(^(live|msn|rediffmail|gmail|googlemail|mail)\.com$)/i",(string) $this->domain)
 				or
 				// invalid domain, doesn't even have a . in it!; Added by Neerav; 15 Jan 2007
-				(strpos($this->domain,".") === false)
+				(!str_contains((string) $this->domain,"."))
 				) {
-				$a = array(
+				$a = [
 					"action" 		=> "sign in",
 					"status" 		=> "failed",
 					"message" 		=> $this->domain." cannot be used as a 'Gmail for your domain' (hosted) domain.",
 					"login_error" 	=> "invalid_domain"
-				);
+				];
 				array_unshift($this->return_status, $a);
 				///Debugger::say(basename(__FILE__).": ".__LINE__.": ".print_r($a,true));
 				return false;
@@ -687,14 +687,14 @@ class GMailer {
 			///Debugger::say(basename(__FILE__).": ".__LINE__.": "."checked for valid GAFYD: ".print_r($this->gmail_data,true));
 			//exit;
 			
-			if (	strpos($this->gmail_data,'<div class="x"> Sign in to your account at <h2>') > 0
+			if (	strpos((string) $this->gmail_data,'<div class="x"> Sign in to your account at <h2>') > 0
 						or
-					strpos($this->gmail_data,'<input type="hidden" name="continue" value="http://mail.google.com/hosted/'.$this->domain.'">') > 0
+					strpos((string) $this->gmail_data,'<input type="hidden" name="continue" value="http://mail.google.com/hosted/'.$this->domain.'">') > 0
 						or
 					// may also be in this form (using SSO/SAML?, e.g. gala.net); Neerav; 25 Sept 2007
-					(strpos($this->gmail_data,'SAMLRequest') !== false
+					(str_contains((string) $this->gmail_data,'SAMLRequest')
 						and 
-					 strpos($this->gmail_data,urlencode(urlencode('http://mail.google.com/hosted/'.$this->domain))) !== false
+					 str_contains((string) $this->gmail_data,urlencode(urlencode('http://mail.google.com/hosted/'.$this->domain)))
 					)
 				) {
 				// domain exists
@@ -703,23 +703,23 @@ class GMailer {
 			} elseif (
 					// updated domain not found error after Gmail for your Domain now known
 					// as Google apps for your domain; Neerav; 14 Sept 2006
-					strpos($this->gmail_data,"Google Apps for Your Domain - Server error") > 0
+					strpos((string) $this->gmail_data,"Google Apps for Your Domain - Server error") > 0
 						or
-					strpos($this->gmail_data,"<p>Sorry, you've reached a login page for a domain that isn't using Google Apps for Your Domain. Please check the web address and try again.</p>") > 0
+					strpos((string) $this->gmail_data,"<p>Sorry, you've reached a login page for a domain that isn't using Google Apps for Your Domain. Please check the web address and try again.</p>") > 0
 						or
-					strpos($this->gmail_data,"<p>Sorry, you&#39;ve reached a login page for a domain that isn&#39;t using Google Apps. Please check the web address and try again.</p>") > 0
+					strpos((string) $this->gmail_data,"<p>Sorry, you&#39;ve reached a login page for a domain that isn&#39;t using Google Apps. Please check the web address and try again.</p>") > 0
 						or
-					strpos($this->gmail_data,"<p>Domain does not exist</p>") > 0
+					strpos((string) $this->gmail_data,"<p>Domain does not exist</p>") > 0
 						or
-					strpos($this->gmail_data,"Gmail for your domain - Server error") > 0
+					strpos((string) $this->gmail_data,"Gmail for your domain - Server error") > 0
 				) {
 				// domain does not exist
-				$a = array(
+				$a = [
 					"action" 		=> "sign in",
 					"status" 		=> "failed",
 					"message" 		=> "Gmail for your domain - Server error -- Domain does not exist",
 					"login_error" 	=> "domain_nonexist"
-				);
+				];
 				array_unshift($this->return_status, $a);
 				///Debugger::say(basename(__FILE__).": ".__LINE__.": hosted domain NOT found: ".print_r($a,true));
 				return false;
@@ -737,13 +737,13 @@ class GMailer {
 		// The GMAIL_LOGIN cookie is now required since 31 Aug 2006; by Neerav; 1 Sept 2006
 		$time = time();
 		
-		$time_past = $time - rand(4,20);	// we fake that the user loaded the browser 4-20 seconds ago
+		$time_past = $time - random_int(4,20);	// we fake that the user loaded the browser 4-20 seconds ago
 		// create the cookie
-		$this->cookie_array['GMAIL_LOGIN'] = array("name" => 'GMAIL_LOGIN'
+		$this->cookie_array['GMAIL_LOGIN'] = ["name" => 'GMAIL_LOGIN'
 						, "value" => "T$time_past/$time_past/$time"
 						, "domain" => "manual"
 						, "path" => ""
-					);
+					];
 		$login_cookie = GMailer::gmail_cookie('GMAIL_LOGIN'); // added to use later for Gmail 2.0 accounts; Neerav; 1 Nov 2007
 		
 		//echo 'login_cookie: '.$login_cookie;
@@ -777,12 +777,12 @@ class GMailer {
 			//,false // update cookie
 		);
 
-		$a = array(
+		$a = [
 			"action" 		=> "connecting to Gmail (without cookie)",
 			"status" 		=> (($this->gmail_data != "") ? "success" : "failed"),
 			"message" 		=> (($this->gmail_data != "") ? "connected to Gmail (without cookie)" : "no response"),
 			"login_error" 	=> (($this->gmail_data != "") ? "" : "no response")
-		);
+		];
 		array_unshift($this->return_status, $a);
 		///Debugger::say(basename(__FILE__).": ".__LINE__.": ".print_r($a,true));
 		///Debugger::say(basename(__FILE__).": ".__LINE__.": "."user/pass phase: ".print_r($this->gmail_data,true));
@@ -805,10 +805,10 @@ class GMailer {
 		if (/* $this->domain and  */	// Any account may have already returned the Auth string
 										// commented out domain test; Neerav; 5 Nov 2007
 				(
-					strpos($this->gmail_data,$this->domain."/?auth=") !== false
+					str_contains((string) $this->gmail_data,$this->domain."/?auth=")
 						or
 					// may also be in this form (using SSO/SAML?, e.g. gala.net); Neerav; 25 Sept 2007
-					strpos($this->gmail_data,"&amp;auth=") !== false
+					str_contains((string) $this->gmail_data,"&amp;auth=")
 				)
 			) {
 			// no error, already have the auth code and Location
@@ -819,35 +819,35 @@ class GMailer {
 			
 		// updated if condition for hosted domains; by Neerav; 8 June 2006
 		} elseif ((
-				strpos($this->gmail_data, "errormsg_0_Passwd") > 0
+				strpos((string) $this->gmail_data, "errormsg_0_Passwd") > 0
 					or 
-				strpos($this->gmail_data, "errormsg_0_password") > 0
+				strpos((string) $this->gmail_data, "errormsg_0_password") > 0
 			) and 
-				strpos($this->gmail_data, "Username and password do not match") > 0
+				strpos((string) $this->gmail_data, "Username and password do not match") > 0
 			){
 
 			$this->cookie_str 	= "";
 			$this->cookie_ik_str= "";
-			$this->cookie_array = array();
+			$this->cookie_array = [];
 			
 			// Added appropriate error message; by Neerav; 8 July 2005
 			// Added error message for suggested username; by Neerav; 28 July 2006
-			if (preg_match("/Did you mean(.*?)\?\)/i",$this->gmail_data,$userpass_match)) {
-				$suggest = trim($userpass_match[1]);
-				$a = array(
+			if (preg_match("/Did you mean(.*?)\?\)/i",(string) $this->gmail_data,$userpass_match)) {
+				$suggest = trim((string) $userpass_match[1]);
+				$a = [
 					"action" 		=> "sign in",
 					"status" 		=> "failed",
 					"message" 		=> "Username and password do not match. (Did you mean ".$suggest." ?)",
 					"login_error" 	=> "userpass_suggest",
 					"login_suggest" => $suggest
-				);
+				];
 			} else {
-				$a = array(
+				$a = [
 					"action" 		=> "sign in",
 					"status" 		=> "failed",
 					"message" 		=> "Username and password do not match. (You provided ".$this->login.")",
 					"login_error" 	=> "userpass"
-				);
+				];
 			}
 			array_unshift($this->return_status, $a);
 			///Debugger::say(basename(__FILE__).": ".__LINE__.": ".print_r($a,true));
@@ -856,139 +856,139 @@ class GMailer {
 		// Blank username or password; Added by Neerav; 8 June 2006
 		} elseif (
 				(
-					strpos($this->gmail_data, "errormsg_0_password") > 0
+					strpos((string) $this->gmail_data, "errormsg_0_password") > 0
 						or
-					strpos($this->gmail_data, "errormsg_0_userName") > 0
+					strpos((string) $this->gmail_data, "errormsg_0_userName") > 0
 						or 
-					strpos($this->gmail_data, "errormsg_0_username") > 0
+					strpos((string) $this->gmail_data, "errormsg_0_username") > 0
 				) 	and 
-					strpos($this->gmail_data, "Required field must not be blank") > 0
+					strpos((string) $this->gmail_data, "Required field must not be blank") > 0
 			) {
 			$this->cookie_str 	= "";
 			$this->cookie_ik_str= "";
-			$this->cookie_array = array();
+			$this->cookie_array = [];
 
-			$a = array(
+			$a = [
 				"action" 		=> "sign in",
 				"status" 		=> "failed",
 				"message" 		=> "Required field must not be blank",
 				"login_error" 	=> "blank"
-			);
+			];
 			array_unshift($this->return_status, $a);
 			///Debugger::say(basename(__FILE__).": ".__LINE__.": ".print_r($a,true));
 			return false;
 
 		// Added to support login challenge; by Neerav; 8 July 2005
-		} elseif (strpos($this->gmail_data, "errormsg_0_logincaptcha") > 0) {
+		} elseif (strpos((string) $this->gmail_data, "errormsg_0_logincaptcha") > 0) {
 			$this->cookie_str 	= "";
 			$this->cookie_ik_str= "";
-			$this->cookie_array = array();
-			ereg("id=\"logintoken\" value=\"([^\"]*)\" name=\"logintoken\"", $this->gmail_data, $matches);
+			$this->cookie_array = [];
+			preg_match("#id=\"logintoken\" value=\"([^\"]*)\" name=\"logintoken\"#m", (string) $this->gmail_data, $matches);
 
 			// Added appropriate error message; by Neerav; 8 July 2005
-			$a = array(
+			$a = [
 				"action" 		=> "sign in",
 				"status" 		=> "failed",
 				"message" 		=> "login challenge",
 				"login_token"	=> $matches[1],
 				"login_error" 	=> "challenge"
 				
-			);
+			];
 			array_unshift($this->return_status, $a);
 			///Debugger::say(basename(__FILE__).": ".__LINE__.": ".print_r($a,true));
 			return false;
 
 		// Check if the Gmail URL has changed; Added by Neerav; 14 Sept 2005
-		} elseif (strpos($this->gmail_data, "Invalid request.")) {
+		} elseif (strpos((string) $this->gmail_data, "Invalid request.")) {
 			$this->cookie_str 	= "";
 			$this->cookie_ik_str= "";
-			$this->cookie_array = array();
+			$this->cookie_array = [];
 			
-			$a = array(
+			$a = [
 				"action" 		=> "sign in",
 				"status" 		=> "failed",
 				"message" 		=> "Gmail: Invalid request. (libgmailer: Gmail seems to have changed the URL again.)",
 				"login_error" 	=> "URL"
-			);
+			];
 			array_unshift($this->return_status, $a);
 			///Debugger::say(basename(__FILE__).": ".__LINE__.": ".print_r($a,true));
 			return false;
 
 		// Other custom Gmail error; Added by Neerav; 18 Jan 2007
-		} elseif (preg_match("@<div[^>]*errormsg_0_errMsg[^>]*>(.*)</div>@Uis",$this->gmail_data,$matches)) {
+		} elseif (preg_match("@<div[^>]*errormsg_0_errMsg[^>]*>(.*)</div>@Uis",(string) $this->gmail_data,$matches)) {
 			$this->cookie_str 	= "";
 			$this->cookie_ik_str= "";
-			$this->cookie_array = array();
-			$a = array(
+			$this->cookie_array = [];
+			$a = [
 				"action" 		=> "sign in",
 				"status" 		=> "failed",
 				"message" 		=> $matches[1],
 				"login_error" 	=> "custom"
-			);
+			];
 			array_unshift($this->return_status, $a);
 			return false;
 
 		// Check for first time signin for hosted domain users; Added by Neerav; 25 Jan 2007
-		} elseif (strpos($this->gmail_data, 'action="SetupAccountAction"')) {
+		} elseif (strpos((string) $this->gmail_data, 'action="SetupAccountAction"')) {
 			$this->cookie_str 	= "";
 			$this->cookie_ik_str= "";
-			$this->cookie_array = array();
-			$a = array(
+			$this->cookie_array = [];
+			$a = [
 				"action" 		=> "sign in",
 				"status" 		=> "failed",
 				"message" 		=> "User needs to signin through a PC to setup the account.",
 				"login_error" 	=> "newly_created"
-			);
+			];
 			array_unshift($this->return_status, $a);
 			return false;
 
 		// Check for hosted domains that need to be set up; Addd by Neerav; 26 Jan 2007
 		// if condition changed (remove Location:); Neerav; 6 Nov 2007
-		} elseif ($this->domain and strpos($this->gmail_data, '/a/register?n=')) {
+		} elseif ($this->domain and strpos((string) $this->gmail_data, '/a/register?n=')) {
 			$this->cookie_str 	= "";
 			$this->cookie_ik_str= "";
-			$this->cookie_array = array();
-			$a = array(
+			$this->cookie_array = [];
+			$a = [
 				"action" 		=> "sign in",
 				"status" 		=> "failed",
 				"message" 		=> "This Google Apps for Your Domain needs to be first set up.",
 				"login_error" 	=> "domain_setup"
-			);
+			];
 			array_unshift($this->return_status, $a);
 			return false;
 
 		// Check for a cookie as a way to check the Gmail URL; Added by Neerav; 14 Sept 2005
 		// For hosted domains, the cookie may be blank in some cases; changed by Neerav; 15 Mar 2007
-		} elseif ((!$this->domain and $cookies == "") or ($this->domain and strpos($this->gmail_data,"AuthEventSource=Internal&auth=") === false and $cookies == "")) {
+		} elseif ((!$this->domain and $cookies == "") or ($this->domain and !str_contains((string) $this->gmail_data,"AuthEventSource=Internal&auth=") and $cookies == "")) {
 			$this->cookie_str 	= "";
 			$this->cookie_ik_str= "";
-			$this->cookie_array = array();
+			$this->cookie_array = [];
 			
-			$a = array(
+			$a = [
 				"action" 		=> "sign in",
 				"status" 		=> "failed",
 				"message" 		=> "libgmailer: user/pass phase cookie not obtained. Gmail may be down.",
 				"login_error" 	=> "cookie"
-			);
+			];
 			array_unshift($this->return_status, $a);
 			///Debugger::say(basename(__FILE__).": ".__LINE__.": ".print_r($a,true));
 			return false;
 
 		}
 			
-		$a = array(
+		$a = [
 			"action" 		=> "user/pass phase cookie",
 			"status" 		=> "success",
 			"message" 		=> "Received: ".$cookies
-		);
+		];
 		array_unshift($this->return_status, $a);
 		///Debugger::say(basename(__FILE__).": ".__LINE__.": ".print_r($a,true));
 				
-		$this->cookie_array['TZ'] = array("name" => 'TZ'
+		$this->cookie_array['TZ'] = ["name" => 'TZ'
 						, "value" => $this->timezone
 						, "domain" => "manual"
 						, "path" => ""
-					);
+					];
 
 		$auth_received 		= false;
 		$SID_received 		= (GMailer::gmail_cookie('SID') !== "") ? true: false;
@@ -1009,55 +1009,55 @@ class GMailer {
 /* 			} elseif (preg_match("/url=['\"](http(s)?:\/\/([^'\"]*?))['\"]/s",$second,$matches)) { */
 /* 				$redirect_url = ""; */
 
-			} elseif (strpos($this->gmail_data, "You cannot log into Gmail using your Google Account username and password.") !== false) {
+			} elseif (str_contains((string) $this->gmail_data, "You cannot log into Gmail using your Google Account username and password.")) {
 				// using a Google Accounts login
-				$a = array(
+				$a = [
 					"action" 		=> "sign in",
 					"status" 		=> "failed",
 					"message" 		=> "Sorry, this is not a valid Gmail login. You cannot log into Gmail using your Google Account username and password.",
 					"login_error" 	=> "google_account"
-				);
+				];
 				array_unshift($this->return_status, $a);
 				///Debugger::say(basename(__FILE__).": ".__LINE__.": ".print_r($a,true));
 				return false;
 
-			} elseif (strpos($this->gmail_data, "500 Internal Server Error") !== false) {
+			} elseif (str_contains((string) $this->gmail_data, "500 Internal Server Error")) {
 				// internal server error
-				$a = array(
+				$a = [
 					"action" 		=> "sign in",
 					"status" 		=> "failed",
 					"message" 		=> "Gmail Internal Server Error",
 					"login_error" 	=> "500"
-				);
+				];
 				array_unshift($this->return_status, $a);
 				///Debugger::say(basename(__FILE__).": ".__LINE__.": ".print_r($a,true));
 				return false;
 
 			// Standard Location header
-			} elseif (preg_match("/Location:\s*((http(s)?:\/\/)?(.*?))\n/",$this->gmail_data,$matches)) {
-				if (strpos($matches[1],"http") !== 0) {
+			} elseif (preg_match("/Location:\s*((http(s)?:\/\/)?(.*?))\n/",(string) $this->gmail_data,$matches)) {
+				if (!str_starts_with((string) $matches[1], "http")) {
 					// relative url
 					$redirect_url = "https://mail.google.com".$matches[1];
 				} else {
 					// fully qualified url
 					$redirect_url = $matches[1];
 				}
-			} elseif (preg_match("/<meta.*content=\"0;\s*url=\&\#39\;'?([^\"\']*)'?\&\#39\;\"/",$this->gmail_data,$matches)) {
+			} elseif (preg_match("/<meta.*content=\"0;\s*url=\&\#39\;'?([^\"\']*)'?\&\#39\;\"/",(string) $this->gmail_data,$matches)) {
 				$redirect_url = str_replace("&amp;","&",$matches[1]);
 			}
 		
 			if ($redirect_url != "") {
 				
-				if (strpos($redirect_url,"/accounts") !== false) {
+				if (str_contains((string) $redirect_url,"/accounts")) {
 					$use_cookie = GMailer::gmail_cookie("","/accounts");
 				} else {
 					$use_cookie = GMailer::gmail_cookie();
 				}
-				$a = array(
+				$a = [
 					"action" 		=> "Redirection ".$redirect_count,
 					"status" 		=> "status",
 					"message" 		=> "Redirect to:\n".$redirect_url
-				);
+				];
 				$a['cookie'] = "with cookie:\n".$use_cookie;
 				array_unshift($this->return_status, $a);
 				///Debugger::say(basename(__FILE__).": ".__LINE__.": ".print_r($a,true));
@@ -1079,7 +1079,7 @@ class GMailer {
 			}
 		}
 			
-		if (strpos($this->gmail_data, "ui=2") !== false) {
+		if (str_contains((string) $this->gmail_data, "ui=2")) {
 			$this->GMAIL_GUI_VERSION = 2;
 		} else {
 			$this->GMAIL_GUI_VERSION = 1;
@@ -1099,11 +1099,11 @@ class GMailer {
 
 		$this->cookie_str = GMailer::gmail_cookie("","/accounts");
 
-		$a = array(
+		$a = [
 			"action" 		=> "final gmail cookie",
 			"status" 		=> "status",
 			"message" 		=> "Cookie:\n".$this->cookie_str
-		);
+		];
 		array_unshift($this->return_status, $a);			
 		///Debugger::say(basename(__FILE__).": ".__LINE__.": ".print_r($a,true));
 		
@@ -1125,11 +1125,11 @@ class GMailer {
 			if (!$this->getSessionFromBrowser()) {			  
 				return $this->connectNoCookie() && $this->saveSessionToBrowser();
 			} else {
-				$a = array(
+				$a = [
 					"action" 		=> "connect",
 					"status" 		=> "success",
 					"message" 		=> "Connect completed by getting cookie/session from browser/server."
-				);
+				];
 				array_unshift($this->return_status, $a);
 				return true;
 			}
@@ -1152,7 +1152,7 @@ class GMailer {
 	* @return bool
 	*/
 	function isConnected() {
-		return (strlen($this->cookie_str) > 0);
+		return (strlen((string) $this->cookie_str) > 0);
 	}
 
 	/**
@@ -1163,7 +1163,7 @@ class GMailer {
 	*/
 	function lastActionStatus($request = "message") {
 		if ($request == "message") {
-			return preg_replace("/(\s|&nbsp;)*<(a|span)[^>]*[^<]*<\/(a|span)>/","",$this->return_status[0]["$request"]);
+			return preg_replace("/(\s|&nbsp;)*<(a|span)[^>]*[^<]*<\/(a|span)>/","",(string) $this->return_status[0]["$request"]);
 		} else {
 			return $this->return_status[0]["$request"];
 		}
@@ -1182,17 +1182,17 @@ class GMailer {
 		$length = 12;
 		$seeds = 'abcdefghijklmnopqrstuvwxyz0123456789';
 		$string = '';
-		$seeds_count = strlen($seeds);
+		$seeds_count = strlen((string) $seeds);
 	 	 
 		// Generate
 		// Changed to also use without dash; by Neerav; 11 Aug 2005
 		if ($type == "nodash") {
 			for ($i = 0; $length > $i; $i++) {
-				$string .= $seeds{mt_rand(0, $seeds_count - 1)};
+				$string .= $seeds[mt_rand(0, $seeds_count - 1)];
 			}
 		} else {
 			for ($i = 0; $length > $i; $i++) {
-				$string .= $seeds{mt_rand(0, $seeds_count - 1)};
+				$string .= $seeds[mt_rand(0, $seeds_count - 1)];
 				if ($i == 5) $string .= "-";	// Added by Neerav; 28 June 2005
 			}
 		}
@@ -1251,17 +1251,17 @@ class GMailer {
 		if ($this->isConnected() == true) {
 			switch ($type) {
 				case GM_STANDARD:
-					$q = "search=".strtolower($box)."&view=tl&start=".$parameter;
+					$q = "search=".strtolower((string) $box)."&view=tl&start=".$parameter;
 					break;
 				case GM_LABEL:
 					$q = "search=cat&cat=".$box."&view=tl&start=".$parameter;
 					break;
 				case GM_CONVERSATION:
 					if ($parameter === 0 or $parameter == "") $parameter = "inbox";
-					if (in_array(strtolower($parameter),$this->gmail_reserved_names)) {
-						$q = "search=".urlencode($parameter)."&ser=1&view=cv";
+					if (in_array(strtolower((string) $parameter),$this->gmail_reserved_names)) {
+						$q = "search=".urlencode((string) $parameter)."&ser=1&view=cv";
 					} else {
-						$q = "search=cat&cat=".urlencode($parameter)."&ser=1&view=cv";
+						$q = "search=cat&cat=".urlencode((string) $parameter)."&ser=1&view=cv";
 					}
 					if (is_array($box)) {
 						$q .= "&th=".$box[0];
@@ -1273,21 +1273,21 @@ class GMailer {
 					}
 					break;
 				case GM_QUERY:
-					$q = "search=query&q=".urlencode($box)."&view=tl&start=".$parameter;
+					$q = "search=query&q=".urlencode((string) $box)."&view=tl&start=".$parameter;
 					break;
 				case GM_PREFERENCE:
 					$q = "view=pr&pnl=g";
 					break;
 				case GM_CONTACT:
-					if (strtolower($box) == "all")
+					if (strtolower((string) $box) == "all")
 						$q = "view=cl&search=contacts&pnl=a";
-					elseif (strtolower($box) == "search")	// Added by Neerav; 15 June 2005
-						$q = "view=cl&search=contacts&pnl=s&q=".rawurlencode($parameter);
-					elseif (strtolower($box) == "detail")	// Added by Neerav; 1 July 2005
+					elseif (strtolower((string) $box) == "search")	// Added by Neerav; 15 June 2005
+						$q = "view=cl&search=contacts&pnl=s&q=".rawurlencode((string) $parameter);
+					elseif (strtolower((string) $box) == "detail")	// Added by Neerav; 1 July 2005
 						$q = "search=contacts&ct_id=".$parameter."&cvm=2&view=ct".$this->proxy_defeat();
-					elseif (strtolower($box) == "group_detail")	// Added by Neerav; 6 Jan 2006
+					elseif (strtolower((string) $box) == "group_detail")	// Added by Neerav; 6 Jan 2006
 						$q = "search=contacts&ct_id=".$parameter."&cvm=1&view=ctl".$this->proxy_defeat();
-					elseif (strtolower($box) == "group")
+					elseif (strtolower((string) $box) == "group")
 						$q = "view=cl&search=contacts&pnl=l";
 					else // frequently mailed
 						$q = "view=cl&search=contacts&pnl=p";
@@ -1315,15 +1315,15 @@ class GMailer {
 	function getAttachmentsOf($convs, $path) {
 		if ($this->isConnected() == true) {
 			if (!is_array($convs)) {
-				$convs = array($convs);	 // array wrapper
+				$convs = [$convs];	 // array wrapper
 			}
-			$final = array();
+			$final = [];
 			foreach ($convs as $v) {
 				if (count($v["attachment"]) > 0) {
 					foreach ($v["attachment"] as $vv) {
 						$f = $path."/".$vv["filename"];
 						while (file_exists($f)) {
-							$f = $path."/".$vv["filename"].".".round(rand(0,1999));
+							$f = $path."/".$vv["filename"].".".round(random_int(0,1999));
 						}
 						if ($this->getAttachment($vv["id"],$v["id"],$f,false)) {
 							array_push($final, $f);
@@ -1354,7 +1354,7 @@ class GMailer {
 			if ($action == "thumb") {
 				// view thumbnail; Added by Neerav; 22 Aug 2006
 				// /mail/?realattid=0.1&attid=0.1&disp=thd&view=att&th=10f9a2dfb4xxxxx (captured 19 Dec 2006)
-				$query = $this->GM_LNK_GMAIL."?ui=1&view=att&disp=thd&attid=".urlencode($attach_id)."&th=".urlencode($msg_id);
+				$query = $this->GM_LNK_GMAIL."?ui=1&view=att&disp=thd&attid=".urlencode((string) $attach_id)."&th=".urlencode((string) $msg_id);
 /* 			} elseif ($action == "smthumb") { */
 /* 				// will need to add ui=1 to this elseif */
 /* 				// view small (mobile) thumbnail; Added by Neerav; 6 Oct 2006 */
@@ -1389,15 +1389,15 @@ class GMailer {
 			} elseif ($action == "embed" or $action == "embed_head") {
 				// html-embedded images
 	/* 	/mail/?attid=0.1&amp;disp=emb&amp;view=att&amp;th=xxxxxxx */
-				$query = $this->GM_LNK_GMAIL_HTTP."?ui=1&attid=".urlencode($attach_id)."&disp=emb&view=att&th=".urlencode($msg_id);
+				$query = $this->GM_LNK_GMAIL_HTTP."?ui=1&attid=".urlencode((string) $attach_id)."&disp=emb&view=att&th=".urlencode((string) $msg_id);
 			} elseif ($action == "zip") {
 				// all attachments zipped
-				$query = $this->GM_LNK_GMAIL."?ui=1&view=att&disp=zip&th=".urlencode($msg_id);
+				$query = $this->GM_LNK_GMAIL."?ui=1&view=att&disp=zip&th=".urlencode((string) $msg_id);
 			} elseif ($action == "convert") {
 				// ui=1 not needed since we are using Gmail Mobile
 				// pdf, rtf, xls, doc, ppt converted into html
 				// ** using Gmail Mobile to retrieve this **
-				$query = "x/".str_replace("&zx=","",$this->proxy_defeat("nodash"))."-/?disp=vah&attid=".urlencode($attach_id)."&th=".urlencode($msg_id)."&v=att";
+				$query = "x/".str_replace("&zx=","",$this->proxy_defeat("nodash"))."-/?disp=vah&attid=".urlencode((string) $attach_id)."&th=".urlencode((string) $msg_id)."&v=att";
 				$this->gmail_data = GMailer::execute_curl(
 /* 					$this->GM_LNK_GMAIL_HTTP.$query, */
 					$this->GM_LNK_GMAIL.$query,	// Google changed to using https; Neerav; 15 Mar 2007
@@ -1407,9 +1407,9 @@ class GMailer {
 					"noheader"
 				);
 				//Debugger::say(basename(__FILE__).": ".__LINE__.": ".print_r($this->gmail_data,true));
-				if (strpos($this->gmail_data,'gmail_error=') !== false) {
-					preg_match("/gmail_error=(\d+);/",$this->gmail_data,$error_num);
-					$error = (isset($error_num[1]))  ? $error_num[1] : "" ;
+				if (str_contains((string) $this->gmail_data,'gmail_error=')) {
+					preg_match("/gmail_error=(\d+);/",(string) $this->gmail_data,$error_num);
+					$error = $error_num[1] ?? "" ;
 					if (	$error != 25	// 
 						and $error != 15	// attachment cannot be viewed, e.g. trying to convert a jpeg into html!
 						and $error != 58	// server error (what's the real reason?)
@@ -1422,42 +1422,42 @@ class GMailer {
 					// tries to regex the error message from Gmail's response
 					if ($error == 58 or $error == 7 or $error == 70) {
 						// error message is the only text in <p> tags.
-						preg_match("@<p>(.*?)</p>@is",$this->gmail_data,$match_error);
+						preg_match("@<p>(.*?)</p>@is",(string) $this->gmail_data,$match_error);
 					} else {
 						// Many <p> tags found, the error message is in <font>
-						preg_match('@<p><font size="-1">(.*?)</font></p>@is',$this->gmail_data,$match_error);
+						preg_match('@<p><font size="-1">(.*?)</font></p>@is',(string) $this->gmail_data,$match_error);
 					}
 
-					if (isset($match_error[1]) and trim($match_error[1]) != "") {
-						$message = trim($match_error[1]);
+					if (isset($match_error[1]) and trim((string) $match_error[1]) != "") {
+						$message = trim((string) $match_error[1]);
 					} else {
 						Debugger::say(basename(__FILE__).": ".__LINE__.": "."The error message did not match the regex: \n".print_r($this->gmail_data,true),"error_log.glib.as_html.php");
 						$message = "Gmail reported an unknown error.<br/><br/><b>DO NOT REPEAT OR RELOAD.</b>";
 					}
 
-					$a = array(
+					$a = [
 						"action" 	=> "view as html",
 						"status" 	=> "failed",
 						"message" 	=> "<p>$message</p>",
 						"error"		=> $error
-					);
+					];
 					array_unshift($this->return_status, $a);
 					return false;
 				} 
-				preg_match("/<body>(.*)<\/body>/",$this->gmail_data,$match);
+				preg_match("/<body>(.*)<\/body>/",(string) $this->gmail_data,$match);
 				//Debugger::say(basename(__FILE__).": ".__LINE__.": ".print_r($match[1],true));
-				$a = array(
+				$a = [
 					"action" 	=> "view as html",
 					"status" 	=> "success",
 					"message" 	=> "attachment converted to html and received",
 					"error"		=> 0,
 					"as_html"	=> $match[1]
-				);
+				];
 				array_unshift($this->return_status, $a);
 				return true;
 			} else {
 				// download attachment
-				$query = $this->GM_LNK_GMAIL."?ui=1&view=att&disp=attd&attid=".urlencode($attach_id)."&th=".urlencode($msg_id);
+				$query = $this->GM_LNK_GMAIL."?ui=1&view=att&disp=attd&attid=".urlencode((string) $attach_id)."&th=".urlencode((string) $msg_id);
 			}
 
 			// view all images
@@ -1466,7 +1466,7 @@ class GMailer {
 /* 				$query = $this->GM_LNK_GMAIL."?ui=1&view=att&disp=inline&attid=".urlencode($attach_id)."&th=".urlencode($msg_id); */
 
 
-			$this->attach_info = array("size" => "", "filename" => "", "type" => "");
+			$this->attach_info = ["size" => "", "filename" => "", "type" => ""];
 			$this->send_headers = ($action == "embed") ? true: false;
 			$fp = fopen($filename, "wb");
 			if ($fp) {
@@ -1489,7 +1489,7 @@ class GMailer {
 				if (version_compare(PHP_VERSION, "5" , ">=")) {
 					$this->CURL_PROXY($c);
 				} else {
-					$this->CURL_PROXY(&$c);
+					$this->CURL_PROXY($c);
 				}
 				curl_setopt($c, CURLOPT_SSL_VERIFYHOST, 2);	 
 				curl_setopt($c, CURLOPT_SSL_VERIFYPEER, FALSE);
@@ -1498,7 +1498,7 @@ class GMailer {
 				// Get/supply details about the file; Neerav; 25 Oct 2006
 /* 				if ($action == "embed" or $action == "embed_head") { */
 /* 					//curl_setopt($c, CURLOPT_WRITEHEADER, $this->attach_info); */
-					curl_setopt($c, CURLOPT_HEADERFUNCTION, array(&$this,'_setHeader'));	
+					curl_setopt($c, CURLOPT_HEADERFUNCTION, [&$this,'_setHeader']);	
 /* 				} */
 /* 				$fd = fopen("debug_curl.txt", "a+"); */
 /* 				curl_setopt($c, CURLOPT_VERBOSE, 1); */
@@ -1522,14 +1522,14 @@ class GMailer {
 	}			
 			
 	function _setHeader($ch, $header) {
-		if (preg_match("/Content-Length: (\d*)/i",$header,$matches)) {
+		if (preg_match("/Content-Length: (\d*)/i",(string) $header,$matches)) {
 			if ($this->send_headers) header("Content-Length: ".$matches[1]);
 			//Debugger::say(basename(__FILE__).": ".__LINE__.": "."Content-Length: ".$matches[1]);
 			$this->attach_info['size'] = $matches[1];
-		} elseif (preg_match("/Content-Disposition:.*?filename=\"(.*)\"/i",$header,$matches)) {
+		} elseif (preg_match("/Content-Disposition:.*?filename=\"(.*)\"/i",(string) $header,$matches)) {
 			//if ($this->send_headers) header("Content-Disposition: ".$matches[1]);
 			$this->attach_info['filename'] = $matches[1];
-		} elseif (preg_match("/Content-Type: ([^; ]*)/i",$header,$matches)) {
+		} elseif (preg_match("/Content-Type: ([^; ]*)/i",(string) $header,$matches)) {
 			if ($this->send_headers) header("Content-Type: ".$matches[1]);
 			$this->attach_info['type'] = $matches[1];
 			//Debugger::say(basename(__FILE__).": ".__LINE__.": "."Content-Length: ".$matches[1]);
@@ -1538,7 +1538,7 @@ class GMailer {
 		$this->headers[] = $header;
 		//Debugger::say(basename(__FILE__).": ".__LINE__.": ".print_r($this->headers,true));
 		//Debugger::say(basename(__FILE__).": ".__LINE__.": ".print_r($this,true));
-		return strlen($header);
+		return strlen((string) $header);
 	}
 
 	/**
@@ -1558,7 +1558,7 @@ class GMailer {
 				$this->GM_LNK_GMAIL."?ui=1&ik=&search=inbox&view=tl&start=0&init=1".$this->proxy_defeat(), 
 				'get', "", "noheader", ""
 			);
-			Debugger::say("Finished dumping ".strlen($this->gmail_data)." bytes.");			  
+			Debugger::say("Finished dumping ".strlen((string) $this->gmail_data)." bytes.");			  
 			return $this->gmail_data;
 		} else {	  // not logged in yet				 
 			Debugger::say("FAILED to dump: not connected.");
@@ -1608,9 +1608,9 @@ class GMailer {
 	* @param array $attachments Attachments (forwards) in the form of 0_messageIDthatContainedTheAttachment_attachmentID (e.g. 0_17ab83d2f68n2b_0.1 , 0_17ab83d2f68n2b_0.2)
 	* @param string $from Send mail as this email address (personality). $from = "" to use default address in your settings. Note: the "default" behavior changed on 29 April 2006.  Note: you will NOT send your mail successfully if you do not register this address in your Gmail settings panel.
 	*/
-	function send($to, $subj, $body, $cc="", $bcc="", $mid="", $tid="", $files=0, $draft=false, $orig_df="", $is_html=0, $from="", $attachments = array()) {
+	function send($to, $subj, $body, $cc="", $bcc="", $mid="", $tid="", $files=0, $draft=false, $orig_df="", $is_html=0, $from="", $attachments = []) {
 		if ($this->isConnected()) {
-			$postdata = array();
+			$postdata = [];
 			if ($draft == true) {
 				$postdata["view"] 	= "sd";
 			} else {
@@ -1630,12 +1630,12 @@ class GMailer {
 			//$postdata["ov"] 	= "";
 			//$postdata["cmid"] = 1;		  
 
-			if (strlen($from) > 0) {
+			if (strlen((string) $from) > 0) {
 			   $postdata["from"] = $from;
 			}
-			$postdata["to"] 		= stripslashes($to);
-			$postdata["cc"] 		= stripslashes($cc);
-			$postdata["bcc"] 		= stripslashes($bcc);
+			$postdata["to"] 		= stripslashes((string) $to);
+			$postdata["cc"] 		= stripslashes((string) $cc);
+			$postdata["bcc"] 		= stripslashes((string) $bcc);
 /* 			$postdata["subject"] 	= stripslashes($subj); */
 			$postdata["subject"] 	= $subj;	// removed stripslashes; Neerav; 12 Sept 2007
 			$postdata["ishtml"] 	= ($is_html) ? 1 : 0;
@@ -1669,15 +1669,15 @@ class GMailer {
 			// hosted domains need a different url; Added by Neerav; 15 Feb 2007
 			if ($this->domain) {
 				// First, get the GMAIL_HELP and/or GMAIL_AT cookies which are now REQUIRED yet strangely missing (7 Feb 2007)
-				if (strpos($this->cookie_str, "GMAIL_HELP") === false) {
+				if (!str_contains((string) $this->cookie_str, "GMAIL_HELP")) {
 					$this->gmail_data = GMailer::execute_curl(
 						$this->GM_LNK_GMAIL_A."?ui=1&view=page&name=htmlcompose",
 						$this->GM_LNK_GMAIL_A."?ui=1&view=page&name=gp",
 						'get',
 						""
 					);
-					if (preg_match("/Location:\s*((http(s)?:\/\/)?(.*?))\n/",$this->gmail_data,$matches)) {
-						if (strpos($matches[1],"http") !== 0) {
+					if (preg_match("/Location:\s*((http(s)?:\/\/)?(.*?))\n/",(string) $this->gmail_data,$matches)) {
+						if (!str_starts_with((string) $matches[1], "http")) {
 							// be prepared for relative url
 							$host_redir_url = "https://www.google.com".$matches[1];
 						} else {
@@ -1696,7 +1696,7 @@ class GMailer {
 				
 				$this->gmail_data = GMailer::execute_curl(
 					$this->GM_LNK_GMAIL_A."?ui=1&search=inbox&newatt=".$new_attach."&rematt=0".$getdata,
-					((isset($host_redir_url)) ? $host_redir_url : "&view=cv&search=inbox&th=".$tid."&qt=".$this->proxy_defeat("nodash")),
+					($host_redir_url ?? "&view=cv&search=inbox&th=" . $tid . "&qt=" . $this->proxy_defeat("nodash")),
 					'post',
 					$postdata
 				);
@@ -1714,13 +1714,13 @@ class GMailer {
 			GMailer::parse_gmail_response($this->gmail_data);
 
 			// Added by Neerav; 12 July 2005
-			$status = (isset($this->raw["sr"][2])) ? $this->raw["sr"][2] : false;
-			$a = array(
+			$status = $this->raw["sr"][2] ?? false;
+			$a = [
 				"action" 	=> "send email",
 				// $this->raw["sr"][1] // what is this?? // always 1
 				"status" 	=> ($status ? "success" : "failed"),
-				"message" 	=> (isset($this->raw["sr"][3]) ? $this->raw["sr"][3] : ""),
-				"thread_id"	=> (isset($this->raw["sr"][4]) ? $this->raw["sr"][4] : ""),
+				"message" 	=> ($this->raw["sr"][3] ?? ""),
+				"thread_id"	=> ($this->raw["sr"][4] ?? ""),
 				// $this->raw["sr"][5] // what is this?? // always 0
 				// $this->raw["sr"][6] // what is this?? // always an empty array
 				// $this->raw["sr"][7] // what is this?? // always 0
@@ -1730,19 +1730,19 @@ class GMailer {
 				// $this->raw["sr"][11] // what is this?? // some kind of message/server id, but doesn't match any header
 				// $this->raw["sr"][12] // what is this?? // always 0
 				"sent_num"  => ((isset($this->raw["aa"][1])) ? count($this->raw["aa"][1]) : 0)
-			);
+			];
 			array_unshift($this->return_status, $a);
 			// Changed by Neerav; 12 July 2005
 			return $status;
 		} else {
 			// Added by Neerav; 12 July 2005
-			$a = array(
+			$a = [
 				"action" 		=> "send email",
 				"status" 		=> "failed",
 				"message" 		=> "libgmailer: not connected.",
 				"thread_id" 	=> $tid,
 				"sent_num"  	=> 0
-			);
+			];
 			array_unshift($this->return_status, $a);
 
 			return false;
@@ -1785,7 +1785,7 @@ class GMailer {
 			$postdata = "";
 			$query = "";
 			$referrer = $this->GM_LNK_GMAIL."?ui=1&ik=&search=inbox&view=tl&start=0&init=1".$this->proxy_defeat();
-			$action_codes = array(
+			$action_codes = [
 				"ib", 	// nothing / placeholder
 				"ac_", 	// GM_ACT_APPLYLABEL
 				"rc_", 	// GM_ACT_REMOVELABEL
@@ -1806,7 +1806,7 @@ class GMailer {
 				"dl",	// GM_ACT_DELTRASHED
 				"rtr",	// GM_ACT_UNTRASHMSG
 				"dt"	// GM_ACT_DELTRASHEDMSGS
-			);
+			];
 
 			if ($act == GM_ACT_DELFOREVER)
 				$this->performAction(GM_ACT_TRASH, $id, 0, $mailbox);	// trash it before
@@ -1815,7 +1815,7 @@ class GMailer {
 
 			$postdata .= "&act=";
 			
-			$postdata .= (isset($action_codes[$act])) ? $action_codes[$act] : $action_codes[GM_ACT_INBOX];
+			$postdata .= $action_codes[$act] ?? $action_codes[GM_ACT_INBOX];
 			if ($act == GM_ACT_APPLYLABEL || $act == GM_ACT_REMOVELABEL) {
 				$postdata .= $para;
 			}
@@ -1843,23 +1843,23 @@ class GMailer {
 			} elseif ($act == GM_ACT_DELSPAM || $act == GM_ACT_EMPTYSPAM) {
 				$query .= "&search=spam";
 			} elseif ($mailbox != "") {
-				switch ($mailbox) {
-					case "inbox": 	$box_type = "std";	break;
-					case "starred": $box_type = "std";	break;
-					case "sent": 	$box_type = "std";	break;
-					case "drafts": 	$box_type = "std";	break;
-					case "all": 	$box_type = "std";	break;
-					case "spam": 	$box_type = "std";	break;
-					case "trash": 	$box_type = "std";	break;
-					case "chats": 	$box_type = "std";	break;
-					default: 		$box_type = "label";	break;
-				}
+				$box_type = match ($mailbox) {
+                    "inbox" => "std",
+                    "starred" => "std",
+                    "sent" => "std",
+                    "drafts" => "std",
+                    "all" => "std",
+                    "spam" => "std",
+                    "trash" => "std",
+                    "chats" => "std",
+                    default => "label",
+                };
 
 				if ($box_type == "std") {
 					$query = "&search=".$mailbox;
 				} else {
-					$query = "&search=cat&cat=".urlencode($mailbox);
-					$referrer = $this->GM_LNK_GMAIL."?ui=1&search=cat&cat=".urlencode($mailbox)."&view=tl&start=0".$this->proxy_defeat();
+					$query = "&search=cat&cat=".urlencode((string) $mailbox);
+					$referrer = $this->GM_LNK_GMAIL."?ui=1&search=cat&cat=".urlencode((string) $mailbox)."&view=tl&start=0".$this->proxy_defeat();
 				}
 			} else {
 				$query = "&search=query&q=";
@@ -1895,22 +1895,22 @@ class GMailer {
 			GMailer::parse_gmail_response($this->gmail_data);
 			
 			// Added additional return info; by Neerav; 13 July 2005
-			$status  = (isset($this->raw["ar"][1])) ? $this->raw["ar"][1] : 0;
-			$message = (isset($this->raw["ar"][2])) ? $this->raw["ar"][2] : "";
-			$a = array(
+			$status  = $this->raw["ar"][1] ?? 0;
+			$message = $this->raw["ar"][2] ?? "";
+			$a = [
 				"action" 		=> "message action",
 				"status" 		=> (($status) ? "success" : "failed"),
 				"message" 		=> $message
-			);
+			];
 			array_unshift($this->return_status, $a);
 			return $status;
 		} else {
 			// Added by Neerav; 12 July 2005
-			$a = array(
+			$a = [
 				"action" 		=> "message action",
 				"status" 		=> "failed",
 				"message" 		=> "libgmailer: not connected"
-			);
+			];
 			array_unshift($this->return_status, $a);
 
 			return false;
@@ -1930,7 +1930,7 @@ class GMailer {
 		// Changed to support IK; by Neerav; 13 July 2005
 		// Last modified by Neerav; 14 Aug 2005
 		if (isset($_SESSION[GM_COOKIE_KEY])) {
-			$this->cookie_str = base64_decode($_SESSION[GM_COOKIE_KEY]);
+			$this->cookie_str = base64_decode((string) $_SESSION[GM_COOKIE_KEY]);
 			Debugger::say("Completed getting session from server: ".$this->cookie_str);
 
 			if (isset($_SESSION['id_key'])) {
@@ -1966,11 +1966,11 @@ class GMailer {
 		// Disabled IK cookie requirement
 		//if (isset($_COOKIE[GM_COOKIE_KEY]) and isset($_COOKIE[GM_COOKIE_IK_KEY])) {
  		if (isset($_COOKIE[GM_COOKIE_KEY]) and $_COOKIE[GM_COOKIE_KEY]) {
-			$this->cookie_str = base64_decode($_COOKIE[GM_COOKIE_KEY]);
+			$this->cookie_str = base64_decode((string) $_COOKIE[GM_COOKIE_KEY]);
 			Debugger::say("Completed getting cookie from browser: ".$this->cookie_str);
 
 			if (isset($_COOKIE[GM_COOKIE_IK_KEY]) and $_COOKIE[GM_COOKIE_IK_KEY]) {
-				$this->cookie_ik_str = base64_decode($_COOKIE[GM_COOKIE_IK_KEY]);
+				$this->cookie_ik_str = base64_decode((string) $_COOKIE[GM_COOKIE_IK_KEY]);
 				Debugger::say("Completed getting ik cookie from browser: ".$this->cookie_ik_str);
 			}
 			return true;
@@ -1991,21 +1991,21 @@ class GMailer {
 			if (!$this->use_session)
 				return $this->saveCookieToBrowser();				
 			
-			$_SESSION[GM_COOKIE_KEY] = base64_encode($this->cookie_str);
-			$a = array(
+			$_SESSION[GM_COOKIE_KEY] = base64_encode((string) $this->cookie_str);
+			$a = [
 				"action" 		=> "save cookie to server",
 				"status" 		=> "success",
 				"message" 		=> "Saved cookie to server"
-			);
+			];
 			array_unshift($this->return_status, $a);
 			return true;
 		}
 
-		$a = array(
+		$a = [
 			"action" 		=> "save cookie to server",
 			"status" 		=> "failed",
 			"message" 		=> "not connected"
-		);
+		];
 		array_unshift($this->return_status, $a);
 		return false;
 	}
@@ -2018,27 +2018,27 @@ class GMailer {
 	function saveCookieToBrowser() {			  
 		if ($this->isConnected()) {
 			
-			if (strpos($_SERVER["HTTP_HOST"],":"))
-				$domain = substr($_SERVER["HTTP_HOST"],0,strpos($_SERVER["HTTP_HOST"],":"));
+			if (strpos((string) $_SERVER["HTTP_HOST"],":"))
+				$domain = substr((string) $_SERVER["HTTP_HOST"],0,strpos((string) $_SERVER["HTTP_HOST"],":"));
 			else
 				$domain = $_SERVER["HTTP_HOST"];
 
 			// Fixed cookie expiration bug; by Neerav; 1 May 2006
 			//header("Set-Cookie: ".GM_COOKIE_KEY."=".base64_encode($this->cookie_str)."; Domain=".$domain.";");
-			setcookie(GM_COOKIE_KEY, base64_encode($this->cookie_str), time()+GM_COOKIE_TTL, "", $domain);
-			$a = array(
+			setcookie(GM_COOKIE_KEY, base64_encode((string) $this->cookie_str), ['expires' => time()+GM_COOKIE_TTL, 'path' => "", 'domain' => $domain]);
+			$a = [
 				"action" 		=> "save gmail cookie to browser",
 				"status" 		=> "success",
 				"message" 		=> "Saved cookie with domain: ".$domain
-			);
+			];
 			array_unshift($this->return_status, $a);
 			return true;
 		}
-		$a = array(
+		$a = [
 			"action" 		=> "save gmail cookie to browser",
 			"status" 		=> "failed",
 			"message" 		=> "not connected"
-		);
+		];
 		array_unshift($this->return_status, $a);
 		return false;
 	}
@@ -2061,26 +2061,26 @@ class GMailer {
 			// Let's unset session variables
 			if (isset($_SESSION[GM_COOKIE_KEY])) unset($_SESSION[GM_COOKIE_KEY]);
 			if (isset($_SESSION['id_key'])) unset($_SESSION['id_key']);
-			$a = array(
+			$a = [
 				"action" 		=> "clear session from browser",
 				"status" 		=> "success",
 				"message" 		=> "Cleared libgmailer related session info. Session preserved for other use."
-			);
+			];
 			array_unshift($this->return_status, $a);
 		} else {
 			// otherwise (normal) unset and destroy session
-			$cookie_path = str_replace(DIRECTORY_SEPARATOR,"/",dirname($_SERVER['SCRIPT_NAME']))."/";
+			$cookie_path = str_replace(DIRECTORY_SEPARATOR,"/",dirname((string) $_SERVER['SCRIPT_NAME']))."/";
 			if ($cookie_path == "//") $cookie_path = "/";
 			@ini_set("session.cookie_path",$cookie_path);
 			@session_unset();
 			@session_destroy();
 /* 			@session_write_close(); */
 
-			$a = array(
+			$a = [
 				"action" 		=> "destroy session from browser",
 				"status" 		=> "success",
 				"message" 		=> "Removed session: ".GM_COOKIE_KEY.". Finished removing session from browser."
-			);
+			];
 			array_unshift($this->return_status, $a);
 		}
 		return true;
@@ -2096,38 +2096,38 @@ class GMailer {
 			// Changed to include IK cookie; by Neerav; 8 July 2005
 			if (isset($_COOKIE[GM_COOKIE_KEY]) or isset($_COOKIE[GM_COOKIE_IK_KEY])) {
 				// libgmailer cookies exist
-				if (strpos($_SERVER["HTTP_HOST"],":"))
-					$domain = substr($_SERVER["HTTP_HOST"],0,strpos($_SERVER["HTTP_HOST"],":"));
+				if (strpos((string) $_SERVER["HTTP_HOST"],":"))
+					$domain = substr((string) $_SERVER["HTTP_HOST"],0,strpos((string) $_SERVER["HTTP_HOST"],":"));
 				else
 					$domain = $_SERVER["HTTP_HOST"];
 				
 /* 				header("Set-Cookie: ".GM_COOKIE_KEY."=0; Discard; Domain=".$domain.";"); */
 /* 				header("Set-Cookie: ".GM_COOKIE_IK_KEY."=0; Discard; Domain=".$domain.";"); */
 				// Fixed cookie expiration bug; by Neerav; 1 May 2006
-				setcookie(GM_COOKIE_KEY, "", 1, "", $domain);
-				setcookie(GM_COOKIE_IK_KEY, "", 1, "", $domain);
-				$a = array(
+				setcookie(GM_COOKIE_KEY, "", ['expires' => 1, 'path' => "", 'domain' => $domain]);
+				setcookie(GM_COOKIE_IK_KEY, "", ['expires' => 1, 'path' => "", 'domain' => $domain]);
+				$a = [
 					"action" 		=> "remove cookies",
 					"status" 		=> "success",
 					"message" 		=> "Removed cookies: ".GM_COOKIE_KEY." and ".GM_COOKIE_IK_KEY."with domain: ".$domain
-				);
+				];
 				array_unshift($this->return_status, $a);
 				return true;
 			} else {
-				$a = array(
+				$a = [
 					"action" 		=> "remove cookies",
 					"status" 		=> "failed",
 					"message" 		=> "Cannot find libgmailer cookies: ".GM_COOKIE_KEY." or ".GM_COOKIE_IK_KEY
-				);
+				];
 				array_unshift($this->return_status, $a);
 				return false;
 			}
 		} else {
-			$a = array(
+			$a = [
 				"action" 		=> "remove cookies",
 				"status" 		=> "failed",
 				"message" 		=> "Cannot find any cookie from browser."
-			);
+			];
 			array_unshift($this->return_status, $a);
 			return false;
 		}
@@ -2155,7 +2155,7 @@ class GMailer {
 		$this->removeSessionFromBrowser();
 		$this->cookie_str 		= "";
 		$this->cookie_ik_str 	= "";		// Added to support IK; by Neerav; 13 July 2005
-		$this->cookie_array 	= array();	// Added; by Neerav; 5 Nov 2007
+		$this->cookie_array 	= [];	// Added; by Neerav; 5 Nov 2007
 		Debugger::say("Completed disconnecting.");
 	}
 	
@@ -2205,17 +2205,17 @@ class GMailer {
 	function invite($email) {
 		// Invalid feature for hosted domains; Added by Neerav; 9 June 2006
 		if ($this->domain) {
-			$a = array(
+			$a = [
 				"action" 		=> "invite",
 				"status" 		=> "failed",
 				"message" 		=> "libgmailer: feature not available for hosted domains"
-			);
+			];
 			array_unshift($this->return_status, $a);
 			return false;
 		}
 		
 		if ($this->isConnected()) {			
-			$postdata = "act=ii&em=".urlencode($email);
+			$postdata = "act=ii&em=".urlencode((string) $email);
 			$postdata .= "&at=".$this->at_value();
 
 			$this->gmail_data = GMailer::execute_curl(
@@ -2228,23 +2228,23 @@ class GMailer {
 			GMailer::parse_gmail_response($this->gmail_data);
 			
 			// Added by Neerav; 6 Aug 2005
-			$status  = (isset($this->raw["ar"][1])) ? $this->raw["ar"][1] : 0;
-			$message = (isset($this->raw["ar"][2])) ? $this->raw["ar"][2] : "";
-			$a = array(
+			$status  = $this->raw["ar"][1] ?? 0;
+			$message = $this->raw["ar"][2] ?? "";
+			$a = [
 				"action" 		=> "invite",
 				"status" 		=> (($status) ? "success" : "failed"),
 				"message" 		=> $message
-			);
+			];
 			array_unshift($this->return_status, $a);
 
 			return $status;
 		} else {
 			// Added by Neerav; 6 Aug 2005
-			$a = array(
+			$a = [
 				"action" 		=> "invite",
 				"status" 		=> "failed",
 				"message" 		=> "libgmailer: not connected"
-			);
+			];
 			array_unshift($this->return_status, $a);
 
 			return false;
@@ -2259,7 +2259,7 @@ class GMailer {
 	* @deprecated
 	*/
 	function getStandardBox() {
-		return array("Inbox","Starred","Sent","Drafts","All","Spam","Trash");
+		return ["Inbox","Starred","Sent","Drafts","All","Spam","Trash"];
 	}		 
 	
 	/**
@@ -2292,9 +2292,9 @@ class GMailer {
 	* @param curl_descriptor $cc
 	*/
 	function CURL_PROXY(&$cc) {
-		if (strlen($this->proxy_host) > 0) {
+		if (strlen((string) $this->proxy_host) > 0) {
 			curl_setopt($cc, CURLOPT_PROXY, $this->proxy_host);
-			if (strlen($this->proxy_auth) > 0)
+			if (strlen((string) $this->proxy_auth) > 0)
 				curl_setopt($cc, CURLOPT_PROXYUSERPWD, $this->proxy_auth);
 		}
 	}
@@ -2348,8 +2348,8 @@ class GMailer {
 		$cookie = "";
 		
 		// separate headers from body
-		if (strpos($header, "\r\n\r\n") !== false) {
-			@list($headers, $body) = explode("\r\n\r\n",$header,2);
+		if (str_contains((string) $header, "\r\n\r\n")) {
+			@[$headers, $body] = explode("\r\n\r\n",(string) $header,2);
 		} else {
 			// no headers found
 			return "";
@@ -2357,7 +2357,7 @@ class GMailer {
 		// forget the body
 		$body = "";
 		// extract headers into an array
-		$header_lines = explode("\r\n",$headers);
+		$header_lines = explode("\r\n",(string) $headers);
 		//Debugger::say(basename(__FILE__).": ".__LINE__.": ".print_r($header_lines,true));
 		
 /* Results of the preg_match:
@@ -2375,9 +2375,9 @@ Array
 	)
 */
 		foreach ($header_lines as $line) {
-			$line = trim($line);
+			$line = trim((string) $line);
 			//Debugger::say(basename(__FILE__).": ".__LINE__.": "."line: ".print_r($line,true));
-			if (!preg_match('!Set-Cookie: (([^=]+)=([^;\s]+))([;]?Domain=([^;]+))?([;]?Path=([^;]+))?[;]?(.*)?$!', $line, $match)) continue;
+			if (!preg_match('!Set-Cookie: (([^=]+)=([^;\s]+))([;]?Domain=([^;]+))?([;]?Path=([^;]+))?[;]?(.*)?$!', (string) $line, $match)) continue;
 			$name = $match[2];
 			$value = $match[3];
 			$domain = $match[5];
@@ -2388,16 +2388,16 @@ Array
 			} else {
 				if ($name == "GoogleAccountsLocale_session") $value = "en";
 				// set/update cookie
-				$this->cookie_array["$name"] = array("name" => "$name"
+				$this->cookie_array["$name"] = ["name" => "$name"
 								, "value" => "$value"
 								, "domain" => "$domain"
 								, "path" => (($path == "/") ? "": "$path")
-							);
+							];
 			}
 		}
 
 		//Debugger::say(basename(__FILE__).": ".__LINE__.": updated cookies: ".print_r($this->cookie_array,true));
-		if (!is_array($this->cookie_array)) $this->cookie_array = array();
+		if (!is_array($this->cookie_array)) $this->cookie_array = [];
 		foreach($this->cookie_array as $name => $value) {
 			if ($cookie !== "") $cookie .= "; ";
 			$cookie .= $name."=".$value['value'];
@@ -2451,7 +2451,7 @@ Array
 	* @param int& $offset
 	*/
 	function parse_data_packet($input, &$offset) {
-		$output = array();
+		$output = [];
 		
 		// state variables
 		$isQuoted = false;		// track when we are inside quotes
@@ -2461,13 +2461,13 @@ Array
 /* 		if ($offset == 0) $input = stripslashes($input); */
 
 		// walk through the entire string
-		$input_length = strlen($input);
+		$input_length = strlen((string) $input);
 		for($i=1; $i < $input_length; $i++) {
 			switch($input[$i]) {
 				case "[":	// handle start of array marker
 					if(!$isQuoted) {
 						// recurse any nested arrays
-						array_push($output, GMailer::parse_data_packet(substr($input,$i), $offset));
+						array_push($output, GMailer::parse_data_packet(substr((string) $input,$i), $offset));
 						
 						// the returning recursive function write out the total length of the characters consumed
 						$i += $offset;
@@ -2660,9 +2660,9 @@ Array
 	* @author Neerav
 	* @since 15 Jun 2005
 	*/
-	function editContact($contact_id, $name, $email, $notes, $details=array()) {
+	function editContact($contact_id, $name, $email, $notes, $details=[]) {
 		if ($this->isConnected()) {
-			$postdata = array();
+			$postdata = [];
  			$postdata["act"] 	= "ec";
  	 		$postdata["ct_id"] 	= "$contact_id";
  			$postdata["ct_nm"] 	= $name;
@@ -2689,21 +2689,20 @@ Array
 /* 						} */
 						//Debugger::say(basename(__FILE__).": ".__LINE__.": "."edit contact detail: ".print_r($detail,true));
 						$field_type = "";
-						switch (strtolower($detail["type"])) {
-							case "phone":		$field_type = "p";	break;
-							case "email":		$field_type = "e";	break;
-							case "mobile":		$field_type = "m";	break;
-							case "fax":			$field_type = "f";	break;
-							case "pager":		$field_type = "b";	break;
-							case "im":			$field_type = "i";	break;
-							case "company":		$field_type = "d";	break;
-							case "position":	$field_type = "t";	break;	// t = title
-							case "other":		$field_type = "o";	break;
-							case "address":		$field_type = "a";	break;
-							case "detail_name": $field_type = "xyz";	break;
-							default:			$field_type = "o";	break;	// default to other
-							//default:			$field_type = $detail["type"];	break;	// default to the unknown detail
-						}
+						$field_type = match (strtolower((string) $detail["type"])) {
+                            "phone" => "p",
+                            "email" => "e",
+                            "mobile" => "m",
+                            "fax" => "f",
+                            "pager" => "b",
+                            "im" => "i",
+                            "company" => "d",
+                            "position" => "t",
+                            "other" => "o",
+                            "address" => "a",
+                            "detail_name" => "xyz",
+                            default => "o",
+                        };
 						if ($field_type == "xyz") {
 							$postdata["ctsn_"."$det_num"] = $detail["info"];
 						} elseif ($field_type == "a") {
@@ -2722,7 +2721,7 @@ Array
 
 					// increment detail number
 					$i++;
-					$det_num = str_pad($i, 2, '0', STR_PAD_LEFT);
+					$det_num = str_pad((string) $i, 2, '0', STR_PAD_LEFT);
 				}
 			}
 
@@ -2746,23 +2745,23 @@ Array
 			}
 
 			$status = $this->raw["ar"][1];
-			$a = array(
+			$a = [
 				"action" 		=> (($orig_contact_id == -1) ? "add contact": "edit contact"),
 				"status" 		=> (($status) ? "success" : "failed"),
 				"message" 		=> $this->raw["ar"][2],
 				"contact_id" 	=> "$contact_id"
-			);
+			];
 			array_unshift($this->return_status, $a);
 
 			return $status;
 
 		} else {
-			$a = array(
+			$a = [
 				"action" 		=> (($contact_id == -1) ? "add contact": "edit contact"),
 				"status" 		=> "failed",
 				"message" 		=> "libgmailer: not connected",
 				"contact_id" 	=> "$contact_id"
-			);
+			];
 			array_unshift($this->return_status, $a);
 			return false;
 		}
@@ -2794,7 +2793,7 @@ Array
 			if (version_compare(PHP_VERSION, "5" , ">=")) {
 				$this->CURL_PROXY($c);
 			} else {
-				$this->CURL_PROXY(&$c);
+				$this->CURL_PROXY($c);
 			}
 			curl_setopt($c, CURLOPT_HEADER, 1);
 			curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
@@ -2807,19 +2806,19 @@ Array
 			GMailer::parse_gmail_response($this->gmail_data);
 			curl_close($c);
 			
-			$a = array(
+			$a = [
 				"action" 		=> "add sender to contact list",
 				"status" 		=> "success",
 				"message" 		=> ""
-			);
+			];
 			array_unshift($this->return_status, $a);
 			return true;
 		} else {
-			$a = array(
+			$a = [
 				"action" 		=> "add sender to contact list",
 				"status" 		=> "failed",
 				"message" 		=> "libgmailer: not connected"
-			);
+			];
 			array_unshift($this->return_status, $a);
 			return false;
 		}
@@ -2857,7 +2856,7 @@ Array
 			if (version_compare(PHP_VERSION, "5" , ">=")) {
 				$this->CURL_PROXY($c);
 			} else {
-				$this->CURL_PROXY(&$c);
+				$this->CURL_PROXY($c);
 			}
 			curl_setopt($c, CURLOPT_HEADER, 1);
 			curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
@@ -2870,21 +2869,21 @@ Array
 			GMailer::parse_gmail_response($this->gmail_data);
 			curl_close($c);
 			
-			$status  = (isset($this->raw["ar"][1])) ? $this->raw["ar"][1] : 0;
-			$message = (isset($this->raw["ar"][2])) ? $this->raw["ar"][2] : "";
-			$a = array(
+			$status  = $this->raw["ar"][1] ?? 0;
+			$message = $this->raw["ar"][2] ?? "";
+			$a = [
 				"action" 		=> "$action message",
 				"status" 		=> (($status) ? "success" : "failed"),
 				"message" 		=> $message
-			);
+			];
 			array_unshift($this->return_status, $a);
 			return $status;
 		} else {
-			$a = array(
+			$a = [
 				"action" 		=> "$action message",
 				"status" 		=> "failed",
 				"message" 		=> "libgmailer: not connected"
-			);
+			];
 			array_unshift($this->return_status, $a);
 			return false;
 		}
@@ -2940,19 +2939,19 @@ Array
 			GMailer::parse_gmail_response($this->gmail_data);
 			
 			$status = $this->raw["ar"][1];
-			$a = array(
+			$a = [
 				"action" 		=> "delete contact",
 				"status" 		=> (($status) ? "success" : "failed"),
 				"message" 		=> $this->raw["ar"][2]
-			);
+			];
 			array_unshift($this->return_status, $a);
 			return $status;
 		} else {
-			$a = array(
+			$a = [
 				"action" 		=> "delete contact",
 				"status" 		=> "failed",
 				"message" 		=> "libgmailer: not connected"
-			);
+			];
 			array_unshift($this->return_status, $a);
 			return false;
 		}
@@ -2975,13 +2974,13 @@ Array
 				
 			$postdata = "";
 			if ($action == "create") {
-				if (trim($label) == "") {
+				if (trim((string) $label) == "") {
 					// throw an error if the label to create is blank; Neerav; 1 Feb 2007
-					$a = array(
+					$a = [
 						"action" 		=> "$action label",
 						"status" 		=> "failed",
 						"message" 		=> "libgmailer error: cannot create a blank label in editLabel()"
-					);
+					];
 					array_unshift($this->return_status, $a);
 					return false;
 				
@@ -2995,11 +2994,11 @@ Array
 			} else {
 				// Changed by Neerav; 28 June 2005
 				// was boolean, now array(boolean,string)
-				$a = array(
+				$a = [
 					"action" 		=> "$action label",
 					"status" 		=> "failed",
 					"message" 		=> "libgmailer error: unknown action in editLabel()"
-				);
+				];
 				array_unshift($this->return_status, $a);
 				return false;
 			}
@@ -3035,23 +3034,23 @@ Array
 /* 			Debugger::say(basename(__FILE__).": ".__LINE__.": "."editLabel: ".$this->gmail_data); */
 
 			// Changed by Neerav; 28 June 2005
-			$status  = (isset($this->raw["ar"][1])) ? $this->raw["ar"][1] : 0;
-			$message = (isset($this->raw["ar"][2])) ? $this->raw["ar"][2] : "";
-			$a = array(
+			$status  = $this->raw["ar"][1] ?? 0;
+			$message = $this->raw["ar"][2] ?? "";
+			$a = [
 				"action" 		=> "$action label",
 				"status" 		=> (($status) ? "success" : "failed"),
 				"message" 		=> $message
-			);
+			];
 			array_unshift($this->return_status, $a);
 
 			return $status;
 		} else {
 			// Added by Neerav; 12 July 2005
-			$a = array(
+			$a = [
 				"action" 		=> "$action label",
 				"status" 		=> "failed",
 				"message" 		=> "libgmailer: not connected"
-			);
+			];
 			array_unshift($this->return_status, $a);
 
 			return false;
@@ -3119,26 +3118,26 @@ Array
 				$query .= "&cf_t=rf";
 			}
 			
-			$query .= "&cf1_from="	. urlencode($from);
-			$query .= "&cf1_to="	. urlencode($to);
-			$query .= "&cf1_subj="	. urlencode($subject);
-			$query .= "&cf1_has="	. urlencode($has);
-			$query .= "&cf1_hasnot=". urlencode($hasnot);
+			$query .= "&cf1_from="	. urlencode((string) $from);
+			$query .= "&cf1_to="	. urlencode((string) $to);
+			$query .= "&cf1_subj="	. urlencode((string) $subject);
+			$query .= "&cf1_has="	. urlencode((string) $has);
+			$query .= "&cf1_hasnot=". urlencode((string) $hasnot);
 			$query .= "&cf1_attach="; $query .= ($hasAttach == true) ? "true" : "false" ;
 			$query .= "&cf2_ar="	; $query .= ($archive == true) 	? "true" : "false" ;
 			$query .= "&cf2_mr="	; $query .= ($markRead == true) ? "true" : "false" ;
 			$query .= "&cf2_st="	; $query .= ($star == true) 	? "true" : "false" ;
 			$query .= "&cf2_cat="	; $query .= ($label == true) 	? "true" : "false" ;
-			$query .= "&cf2_sel="	. urlencode($label_name);
+			$query .= "&cf2_sel="	. urlencode((string) $label_name);
 /* 			if ($action == "test") { */
 /* 				$query .= "&cf2_emc="	; $query .= ($forward == true) 	? "true" : "" ; */
 /* 			} else { */
 				$query .= "&cf2_emc="	; $query .= ($forward == true) 	? "true" : "" ;
 /* 			} */
 			if ($action == "test") {
-				$query .= "&cf2_email=" ; $query .= urlencode($forwardto);
+				$query .= "&cf2_email=" ; $query .= urlencode((string) $forwardto);
 			} else {
-				$query .= "&cf2_email=" ; $query .= ($forwardto=="") ? 'email%20address': urlencode($forwardto);
+				$query .= "&cf2_email=" ; $query .= ($forwardto=="") ? 'email%20address': urlencode((string) $forwardto);
 			}
 			$query .= "&cf2_tr="	; $query .= ($trash == true) 	? "true" : "false" ;
 
@@ -3163,22 +3162,22 @@ Array
 				$refer .= "&start=0";
 				$refer .= "&cf_f=cf1";
 				$refer .= "&cf_t=cf2";
-				$refer .= "&cf1_from="	. urlencode($from);
-				$refer .= "&cf1_to="	. urlencode($to);
-				$refer .= "&cf1_subj="	. urlencode($subject);
-				$refer .= "&cf1_has="	. urlencode($has);
-				$refer .= "&cf1_hasnot=". urlencode($hasnot);
+				$refer .= "&cf1_from="	. urlencode((string) $from);
+				$refer .= "&cf1_to="	. urlencode((string) $to);
+				$refer .= "&cf1_subj="	. urlencode((string) $subject);
+				$refer .= "&cf1_has="	. urlencode((string) $has);
+				$refer .= "&cf1_hasnot=". urlencode((string) $hasnot);
 				$refer .= "&cf1_attach="; $refer .= ($hasAttach == true) 	? "true" : "false" ;
 				if ($action == "edit") {
 					$refer .= "&cf2_ar="	; $refer .= ($archive == true) 	? "true" : "false" ;
 					$refer .= "&cf2_mr="	; $refer .= ($markRead == true) ? "true" : "false" ;
 					$refer .= "&cf2_st="	; $refer .= ($star == true) 	? "true" : "false" ;
 					$refer .= "&cf2_cat="	; $refer .= ($label == true) 	? "true" : "false" ;
-					$refer .= "&cf2_sel="	. urlencode($label_name);
+					$refer .= "&cf2_sel="	. urlencode((string) $label_name);
 					$refer .= "&cf2_emc="	; $refer .= ($forward == true) 	? "true" : "" ;
-					$refer .= "&cf2_email="	. urlencode($forwardto);
+					$refer .= "&cf2_email="	. urlencode((string) $forwardto);
 					$refer .= "&cf2_tr="	; $refer .= ($trash == true) 	? "true" : "false" ;
-					$refer .= "&ofid="		. urlencode($filter_id);
+					$refer .= "&ofid="		. urlencode((string) $filter_id);
 				}
 				$refer .= $this->proxy_defeat();	 // to fool proxy
 				$query .= $this->proxy_defeat("nodash");	 // to fool proxy
@@ -3203,25 +3202,25 @@ Array
 			//$updated_snapshot = new GMailSnapshot(GM_PREFERENCE, $this->raw, $this->use_session);
 			if ($action == "test") {
 				$status = (isset($this->raw["ts"])/*  and isset($this->raw["t"]) */) ? 1 : 0; // removed second test to prevent error when there are no matching results; changed by Neerav; 12 May 2007
-				$message = (isset($this->raw["ts"][5])) ? $this->raw["ts"][5] : "";
+				$message = $this->raw["ts"][5] ?? "";
 			} else {
-				$status = (isset($this->raw["ar"][1])) ? $this->raw["ar"][1] : 0;
-				$message = (isset($this->raw["ar"][2])) ? $this->raw["ar"][2] : "";
+				$status = $this->raw["ar"][1] ?? 0;
+				$message = $this->raw["ar"][2] ?? "";
 			}
-			$a = array(
+			$a = [
 				"action" 		=> "$action filter",
 				"status" 		=> (($status) ? "success" : "failed"),
 				"message" 		=> $message
-			);
+			];
 			array_unshift($this->return_status, $a);
 
 			return $status;
 		} else {
-			$a = array(
+			$a = [
 				"action" 		=> "$action filter",
 				"status" 		=> "failed",
 				"message" 		=> "libgmailer: not connected"
-			);
+			];
 			array_unshift($this->return_status, $a);
 			return false;
 		}
@@ -3250,10 +3249,10 @@ Array
 				$data 	.= (($thread_id) ? "&th=".$thread_id : "");
 				$data 	.= "&mg=".urlencode("3,2"); //what is this junk? &mg=3,2,2,2,2,2,2,2,3,4,3,4
 				if ($mailbox === 0 or $mailbox == "") $mailbox = "inbox";
-				if (in_array(strtolower($mailbox),$this->gmail_reserved_names)) {
-					$data .= "&search=".urlencode($mailbox);
+				if (in_array(strtolower((string) $mailbox),$this->gmail_reserved_names)) {
+					$data .= "&search=".urlencode((string) $mailbox);
 				} else {
-					$data .= "&search=cat&cat=".urlencode($mailbox);
+					$data .= "&search=cat&cat=".urlencode((string) $mailbox);
 				}
 				$data 	.= "&qt=";
 				$data 	.= "&act=rd";
@@ -3274,11 +3273,11 @@ Array
 			} elseif ($action == "preview") {
 				// retrieve feed preview; Added by Neerav; 19 Jul 2007
 				//$query 	.= "&ik=".$ik.value.here;
-				$url = urldecode(urldecode($thread_id)); // twice, to be safe!
-				if (substr($url,0,4) != "http") {
+				$url = urldecode(urldecode((string) $thread_id)); // twice, to be safe!
+				if (!str_starts_with((string) $url, "http")) {
 					$url = "http://".$url;
 				}
-				$url = urlencode(rawurlencode($url));  // needs to be double encoded
+				$url = urlencode(rawurlencode((string) $url));  // needs to be double encoded
 				$data 	.= "&view=cps";
 				$data 	.= "&cps=r";
 				$data 	.= "&q=".$url;
@@ -3289,14 +3288,14 @@ Array
 			} elseif ($action == "add" or $action == "remove") {
 				// add or remove a feed; Added by Neerav; 19 Jul 2007
 				$query 	= '&view=up';
-				$data 	= array();
+				$data 	= [];
 				$method = 'post';
 				$refer = $this->GM_LNK_GMAIL."?ui=1&view=pr&pnl=g&lm=m_prefs".$this->proxy_defeat();
 				if ($action == "remove") {
 					$url = $thread_id;
 				} else {
-					$url = urldecode(urldecode($thread_id)); // twice, to be safe!
-					if (substr($url,0,4) != "http") {
+					$url = urldecode(urldecode((string) $thread_id)); // twice, to be safe!
+					if (!str_starts_with((string) $url, "http")) {
 						$url = "http://".$url;
 					}
 				}
@@ -3308,13 +3307,13 @@ Array
 				
 				//&search=inbox&sx_dl=en&ix_nt=50&bx_hs=1&ix_pp=0&bx_pd=0&sx_sg=1&sx_sg=Neerav&bx_sc=1&bx_ns=0&bx_ve=0&sx_vs=&sx_vm=&bx_en=0
 			} else {
-				$a = array(
+				$a = [
 					"action" 		=> "web clip: ".$action,
 					"status" 		=> "failed",
 					"message" 		=> "invalid action"
-				);
+				];
 				array_unshift($this->return_status, $a);
-				return array();
+				return [];
 			}
 					
 			$this->gmail_data = GMailer::execute_curl(
@@ -3327,19 +3326,19 @@ Array
 			if ($action == "add" or $action == "remove") {
 /* 				Debugger::say(basename(__FILE__).": ".__LINE__.": ".$action." rss feed: ".print_r($this->gmail_data,true)); */
 				GMailer::parse_gmail_response($this->gmail_data);
-				$status  = (isset($this->raw["ar"][1])) ? $this->raw["ar"][1] : 0;
-				$message = (isset($this->raw["ar"][2])) ? $this->raw["ar"][2] : "";
-				$a = array(
+				$status  = $this->raw["ar"][1] ?? 0;
+				$message = $this->raw["ar"][2] ?? "";
+				$a = [
 					"action" 		=> "web clip: ".$action,
 					"status" 		=> (($status) ? "success" : "failed"),
 					"message" 		=> $message
-				);
+				];
 				array_unshift($this->return_status, $a);
 /* 				Debugger::say(basename(__FILE__).": ".__LINE__.": "."status: ".print_r($a,true)); */
 				return $status;
 			} elseif ($action == "preview") {
 				$temp = str_replace("\n","",$this->gmail_data);
-				preg_match("/\[\[\[(.*)\]([^\]]*)?\]([^\]]*)?\]/",$temp,$matches);
+				preg_match("/\[\[\[(.*)\]([^\]]*)?\]([^\]]*)?\]/",(string) $temp,$matches);
 				GMailer::parse_gmail_response($matches[1],true);
 				GMailSnapshot::web_clip_snapshot($this->raw, 'preview');
 				return $this->feed;			
@@ -3354,11 +3353,11 @@ Array
 			}
 
 		} else {
-			$a = array(
+			$a = [
 				"action" 		=> "web clip: ".$action,
 				"status" 		=> "failed",
 				"message" 		=> "libgmailer: not connected"
-			);
+			];
 			array_unshift($this->return_status, $a);
 			return false;
 		}
@@ -3388,21 +3387,21 @@ Array
 			GMailer::parse_gmail_response($this->gmail_data);
 			
 			//$updated_snapshot = new GMailSnapshot(GM_PREFERENCE, $this->raw, $this->use_session);
-			$status = (isset($this->raw["ar"][1])) ? $this->raw["ar"][1] : 0;
-			$message = (isset($this->raw["ar"][2])) ? $this->raw["ar"][2] : "";
-			$a = array(
+			$status = $this->raw["ar"][1] ?? 0;
+			$message = $this->raw["ar"][2] ?? "";
+			$a = [
 				"action" 		=> "delete filter",
 				"status" 		=> (($status) ? "success" : "failed"),
 				"message" 		=> $message
-			);
+			];
 			array_unshift($this->return_status, $a);
 			return $status;
 		} else {
-			$a = array(
+			$a = [
 				"action" 		=> "delete filter",
 				"status" 		=> "failed",
 				"message" 		=> "libgmailer: not connected"
-			);
+			];
 			array_unshift($this->return_status, $a);
 			return false;
 		}
@@ -3428,11 +3427,11 @@ Array
 			if ($action == "rename") {
 				$refer = $this->GM_LNK_GMAIL."?ui=1&search=contacts&ct_id=".$id."&cvm=1&view=ctl".$this->proxy_defeat();
 
-				$query .= "&act="."rcl_".$id."^".rawurlencode($data); // $data is the new name
+				$query .= "&act="."rcl_".$id."^".rawurlencode((string) $data); // $data is the new name
 				$query .= "&at=".$this->at_value();
 				$query .= "&cpt=cpta";
 				$query .= "&cl_id=".$id;
-				$query .= "&cl_nm=".rawurlencode($name);			// $name is the old name
+				$query .= "&cl_nm=".rawurlencode((string) $name);			// $name is the old name
 
 			} elseif ($action == "delete") {
 				$refer = $this->GM_LNK_GMAIL."?ui=1&view=cl&search=contacts&pnl=l".$this->proxy_defeat();
@@ -3441,7 +3440,7 @@ Array
 				$query .= "&at=".$this->at_value();
 				$query .= "&cpt=&cl_nw=&cl_id=&cl_nm=";
 				$query .= "&cl=".$id;
-				$query .= "&cl_nm=".rawurlencode($name);			// $name is the old name
+				$query .= "&cl_nm=".rawurlencode((string) $name);			// $name is the old name
 
 			} elseif ($action == "create") {
 				$refer = $this->GM_LNK_GMAIL."?ui=1&view=nctl&search=contacts".$this->proxy_defeat();
@@ -3450,7 +3449,7 @@ Array
 				$id_as_string = (is_array($data)) ? implode(", ",$data) : $data;
 
 				// as contact ids
-				if(strpos($id_as_string,"@") === false and !preg_match("/[^0-9a-f\,\ ]/",$id_as_string) and $id_as_string != ""){
+				if(!str_contains((string) $id_as_string,"@") and !preg_match("/[^0-9a-f\,\ ]/",(string) $id_as_string) and $id_as_string != ""){
 					$query .= "&cpt=cpti";
 					if (is_array($data)) {
 						$count_ids = count($data);
@@ -3463,11 +3462,11 @@ Array
 				// as email addresses
 				} else {
 					$query .= "&cpt=cpta";
-					$query .= "&ce=".rawurlencode($id_as_string);
+					$query .= "&ce=".rawurlencode((string) $id_as_string);
 				}
 				$query .= "&act=ancl";	// add new contact list
 				$query .= "&at=".$this->at_value();
-				$query .= "&cl_nm=".rawurlencode($name);
+				$query .= "&cl_nm=".rawurlencode((string) $name);
 				//$query['ce'] 	= (is_array($data)) ? implode(", ",$data) : $data;
 
 			} elseif ($action == "remove_from") {
@@ -3477,7 +3476,7 @@ Array
 				$id_as_string = (is_array($data)) ? implode(", ",$data) : $data;
 
 				// as contact ids
-				if(strpos($id_as_string,"@") === false and !preg_match("/[^0-9a-f\,\ ]/",$id_as_string)){
+				if(!str_contains((string) $id_as_string,"@") and !preg_match("/[^0-9a-f\,\ ]/",(string) $id_as_string)){
 					$query .= "&cpt=cpti";
 					$query .= "&cl_nw=false";
 					if (is_array($data)) {
@@ -3504,7 +3503,7 @@ Array
 				$query .= "&act=rfcl";	// remove from contact list
 				$query .= "&at=".$this->at_value();
 				$query .= "&cl_id=".$id;
-				$query .= "&cl_nm=".rawurlencode($name);
+				$query .= "&cl_nm=".rawurlencode((string) $name);
 /* 				$add_count 		= count($data); */
 /* 				for ($i = 0; $i < $add_count; $i++) { */
 /* 					$query .= "&cr=".$data[$i]['id']."/".$data[$i]['email']; */
@@ -3517,7 +3516,7 @@ Array
 				$id_as_string = (is_array($data)) ? implode(", ",$data) : $data;
 
 				// as contact ids
-				if(strpos($id_as_string,"@") === false and !preg_match("/[^0-9a-f\,\ ]/",$id_as_string)){
+				if(!str_contains((string) $id_as_string,"@") and !preg_match("/[^0-9a-f\,\ ]/",(string) $id_as_string)){
 					$query .= "&cpt=cpti";
 					$query .= "&cl_nw=false";
 					if (is_array($data)) {
@@ -3531,19 +3530,19 @@ Array
 				} else {
 					// as email addresses
 					$query .= "&cpt=cpta";
-					$query .= "&ce=".rawurlencode($id_as_string);
+					$query .= "&ce=".rawurlencode((string) $id_as_string);
 				}
 				$query .= "&act=atcl";	// add to contact list
 				$query .= "&at=".$this->at_value();
 				$query .= "&cl_id=".$id;
-				$query .= "&cl_nm=".rawurlencode($name);
+				$query .= "&cl_nm=".rawurlencode((string) $name);
 				
 			} else {
-				$a = array(
+				$a = [
 					"action" 		=> $action." contact group",
 					"status" 		=> "failed",
 					"message" 		=> "editGroup(): invalid ACTION"
-				);
+				];
 				array_unshift($this->return_status, $a);
 				return false;
 			}
@@ -3561,23 +3560,23 @@ Array
 				if (isset($this->raw["clv"][1][1])) $id = $this->raw["clv"][1][1];
 			}
 
-			$status = (isset($this->raw["ar"][1])) ? $this->raw["ar"][1] : 0;
-			$message = (isset($this->raw["ar"][2])) ? $this->raw["ar"][2] : "";
-			$a = array(
+			$status = $this->raw["ar"][1] ?? 0;
+			$message = $this->raw["ar"][2] ?? "";
+			$a = [
 				"action" 		=> $action." contact group",
 				"status" 		=> (($status) ? "success" : "failed"),
 				"message" 		=> $message,
 				"contact_id" 	=> "$id"
-			);
+			];
 			array_unshift($this->return_status, $a);
 			return $status;
 		} else {
-			$a = array(
+			$a = [
 				"action" 		=> $action." contact group",
 				"status" 		=> "failed",
 				"message" 		=> "libgmailer: not connected",
 				"contact_id" 	=> "$id"
-			);
+			];
 			array_unshift($this->return_status, $a);
 			return false;
 		}
@@ -3684,7 +3683,7 @@ Referer: http://mail.google.com/mail/?&ik=xxxxxxx&view=pr&pnl=g&zx=xorfqampe0ml
 		*/
 
 		if ($this->isConnected()) {			
-			$post_fields = array();
+			$post_fields = [];
 			$post_url = "";
 			$query = "";
 
@@ -3795,30 +3794,30 @@ Referer: http://mail.google.com/mail/?&ik=xxxxxxx&view=pr&pnl=g&zx=xorfqampe0ml
 			GMailer::parse_gmail_response($this->gmail_data);
 			
 			// get updated cookie
-			ereg("S=gmail=([^\:]*):gmail_yj=([^\:]*):gmproxy=([^\;]*);",$this->gmail_data,$matches);
-			$this->cookie_str = ereg_replace(
-									"S=gmail=([^\:]*):gmail_yj=([^\:]*):gmproxy=([^\;]*);", 
+			preg_match("#S=gmail=([^\\\\:]*):gmail_yj=([^\\\\:]*):gmproxy=([^\\\\;]*);#m",(string) $this->gmail_data,$matches);
+			$this->cookie_str = preg_replace(
+									"#S=gmail=([^\\\\:]*):gmail_yj=([^\\\\:]*):gmproxy=([^\\\\;]*);#m", 
 									"S=gmail=".$matches[1].":gmail_yj=".$matches[2].":gmproxy=".$matches[3].";", 
-									$this->cookie_str
+									(string) $this->cookie_str
 								);
 			// save updated cookie
 			GMailer::saveSessionToBrowser();
 
-			$status = (isset($this->raw["ar"][1])) ? $this->raw["ar"][1] : 0;
-			$message = (isset($this->raw["ar"][2])) ? $this->raw["ar"][2] : "";
-			$a = array(
+			$status = $this->raw["ar"][1] ?? 0;
+			$message = $this->raw["ar"][2] ?? "";
+			$a = [
 				"action" 		=> "set settings",
 				"status" 		=> (($status) ? "success" : "failed"),
 				"message" 		=> $message
-			);
+			];
 			array_unshift($this->return_status, $a);
 			return $status;
 		} else {
-			$a = array(
+			$a = [
 				"action" 		=> "set settings",
 				"status" 		=> "failed",
 				"message" 		=> "libgmailer: not connected"
-			);
+			];
 			array_unshift($this->return_status, $a);
 			return false;
 		}
@@ -3836,7 +3835,7 @@ Referer: http://mail.google.com/mail/?&ik=xxxxxxx&view=pr&pnl=g&zx=xorfqampe0ml
 
 		// error
 		if ($message != '') {
-			array_unshift($this->return_status, array("action" => "execute cURL", "status" => "failed", "message" => $message));
+			array_unshift($this->return_status, ["action" => "execute cURL", "status" => "failed", "message" => $message]);
 			return;
 		}
 		
@@ -3852,7 +3851,7 @@ Referer: http://mail.google.com/mail/?&ik=xxxxxxx&view=pr&pnl=g&zx=xorfqampe0ml
 			if (version_compare(PHP_VERSION, "5" , ">=")) {
 				$this->CURL_PROXY($c);
 			} else {
-				$this->CURL_PROXY(&$c);
+				$this->CURL_PROXY($c);
 			}
 			curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
 /* 				//if ($follow) { */
@@ -3876,7 +3875,7 @@ Referer: http://mail.google.com/mail/?&ik=xxxxxxx&view=pr&pnl=g&zx=xorfqampe0ml
 			if (version_compare(PHP_VERSION, "5" , ">=")) {
 				$this->CURL_PROXY($c);
 			} else {
-				$this->CURL_PROXY(&$c);
+				$this->CURL_PROXY($c);
 			}
 			curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
 /* 				//if ($extra_type == "nocookie" or !$follow) { */
@@ -3933,16 +3932,16 @@ Referer: http://mail.google.com/mail/?&ik=xxxxxxx&view=pr&pnl=g&zx=xorfqampe0ml
 
 		//$new_cookies = GMailer::get_cookies($data);
 		$new_cookies_array = GMailer::get_cookies($data, 'array');
-		$existing_cookies = explode(";",$this->cookie_str);
+		$existing_cookies = explode(";",(string) $this->cookie_str);
 		//Debugger::say(basename(__FILE__).": ".__LINE__.": "."existing cookies: ".print_r($existing_cookies,true));
 		//Debugger::say(basename(__FILE__).": ".__LINE__.": "."cookies returned: ".print_r($new_cookies_array,true));
 		if (is_string($new_cookies_array) or count($new_cookies_array) == 0) {
 			// no cookies to update
-			$a = array(
+			$a = [
 				"action" 		=> "update cookies",
 				"status" 		=> "success",
 				"message" 		=> "no cookies to be updated"
-			);
+			];
 			array_unshift($this->return_status, $a);
 			///Debugger::say(basename(__FILE__).": ".__LINE__.": update_cookies():\n".print_r($a,true));
 			return true;
@@ -3950,12 +3949,12 @@ Referer: http://mail.google.com/mail/?&ik=xxxxxxx&view=pr&pnl=g&zx=xorfqampe0ml
 			//Debugger::say(basename(__FILE__).": ".__LINE__.": "."new cookies: ".print_r($new_cookies_array,true));
 		}
 
-		$all_cookies = array();
+		$all_cookies = [];
 		$cookie_count = count($existing_cookies);
 		for($i = 0; $i < $cookie_count; $i++) {
-			$cookie = trim($existing_cookies[$i]);
+			$cookie = trim((string) $existing_cookies[$i]);
 			if ($cookie == "") continue;
-			list($name, $value) = explode("=",$cookie,2);
+			[$name, $value] = explode("=",(string) $cookie,2);
 			$all_cookies["$name"] = "$value"; 
 			//Debugger::say(basename(__FILE__).": ".__LINE__.": "."this cookie: \n".$cookie."\nexploded:\n".$name."\n".$value);
 		}
@@ -3972,11 +3971,11 @@ Referer: http://mail.google.com/mail/?&ik=xxxxxxx&view=pr&pnl=g&zx=xorfqampe0ml
 			$cookie_string .= ($cookie_string == "") ? $name."=".$value: "; ".$name."=".$value;
 		}
 		
-		$a = array(
+		$a = [
 			"action" 		=> "update cookies",
 			"status" 		=> "success",
 			"message" 		=> "Updated cookies"
-		);
+		];
 		array_unshift($this->return_status, $a);
 		//Debugger::say(basename(__FILE__).": ".__LINE__.": update_cookies():\n".print_r($a,true));
 
@@ -4012,7 +4011,7 @@ Referer: http://mail.google.com/mail/?&ik=xxxxxxx&view=pr&pnl=g&zx=xorfqampe0ml
 			$count_mob_display = count($mobile_display);
 			for ($i = 0; $i < $count_mob_display; $i++) {
 				if (isset($mobile_display[$i]) and $mobile_display[$i] != "") {
-					$get .= "&cfvc_".$i."=".rawurlencode($mobile_display[$i]);
+					$get .= "&cfvc_".$i."=".rawurlencode((string) $mobile_display[$i]);
 				}
 			}
 			$get .= "&nvp_bu_done=Save";
@@ -4063,15 +4062,15 @@ Referer: http://mail.google.com/mail/?&ik=xxxxxxx&view=pr&pnl=g&zx=xorfqampe0ml
 			// Gmail changed <a href="?v=cmf"> to <a href=<a id="bnm" href="?v=cmf">; Neerav; 6 Jan 2007
 			//$status = (strstr($this->gmail_data,'<a href="?v=cmf">more views</a>') === false) ? 0 : 1;
 			//Debugger::say(basename(__FILE__).": ".__LINE__.": "."setMobileSetting Gmail reply:\n".print_r($this->gmail_data,true));
-			$status = (strpos($this->gmail_data,' href="?v=cmf">') === false) 
+			$status = (!str_contains((string) $this->gmail_data,' href="?v=cmf">')) 
 				? ((isset($raw['ar'][1]) and $raw['ar'][1] == 1) ? 1: 0) 
 				: 1
 				;
-			$a = array(
+			$a = [
 				"action" 		=> "set mobile settings",
 				"status" 		=> (($status) ? "success" : "failed"),
 				"message" 		=> ""
-			);
+			];
 			array_unshift($this->return_status, $a);
 			//Debugger::say(basename(__FILE__).": ".__LINE__.": "."setMobileSetting gmail-mobile status (bool): ".$status);	
 			//Debugger::say(basename(__FILE__).": ".__LINE__.": "."setMobileSetting gmail-mobile status:\n".print_r($a,true));
@@ -4081,11 +4080,11 @@ Referer: http://mail.google.com/mail/?&ik=xxxxxxx&view=pr&pnl=g&zx=xorfqampe0ml
 	
 			return $status;
 		} else {
-			$a = array(
+			$a = [
 				"action" 		=> "set mobile settings",
 				"status" 		=> "failed",
 				"message" 		=> "libgmailer: not connected"
-			);
+			];
 			array_unshift($this->return_status, $a);
 			return false;
 		}
@@ -4130,19 +4129,19 @@ Referer: http://mail.google.com/mail/?&ik=xxxxxxx&view=pr&pnl=g&zx=xorfqampe0ml
 
 			// GMAIL DOES NOT RESPOND WITH A STATUS MESSAGE
 
-			$a = array(
+			$a = [
 				"action" 		=> "change language",
 				"status" 		=> "success",
 				"message" 		=> "(no message)"
-			);
+			];
 			array_unshift($this->return_status, $a);
 			return true;
 		} else {
-			$a = array(
+			$a = [
 				"action" 		=> "change language",
 				"status" 		=> "failed",
 				"message" 		=> "libgmailer: not connected"
-			);
+			];
 			array_unshift($this->return_status, $a);
 			return false;
 		}
@@ -4170,11 +4169,11 @@ Referer: http://mail.google.com/mail/?&ik=xxxxxxx&view=pr&pnl=g&zx=xorfqampe0ml
 
 			switch($action) {
 				case "default":	// set this as default From email address
-				 	$postdata 	 = "act=mcf_".urlencode($email);
+				 	$postdata 	 = "act=mcf_".urlencode((string) $email);
 					$postdata 	.= "&at=".$this->at_value();
  					break;
 				case "delete": 	// remove this From email address
-					$postdata  	 = "act=dcf_".urlencode($email);
+					$postdata  	 = "act=dcf_".urlencode((string) $email);
 					$postdata 	.= "&at=".$this->at_value();
  					break;
 				case "reply_sent":	// set reply address to that which the message was sent to
@@ -4188,8 +4187,8 @@ Referer: http://mail.google.com/mail/?&ik=xxxxxxx&view=pr&pnl=g&zx=xorfqampe0ml
 					$postdata 	.= "&search=";
  					break;
  				case "edit":	// update the details of an existing From address
-					$postdata 	= "cfrp=1&cfe=1&cfn=".urlencode($name)."&cfrt=".urlencode($reply_to);
-					$url 		= "&view=cf&cfe=true&cfa=".urlencode($email).$this->proxy_defeat();
+					$postdata 	= "cfrp=1&cfe=1&cfn=".urlencode((string) $name)."&cfrt=".urlencode((string) $reply_to);
+					$url 		= "&view=cf&cfe=true&cfa=".urlencode((string) $email).$this->proxy_defeat();
 					$refer 		= $url;
  					break;
  				case "edit_google":	// update the details of the Google Account info
@@ -4198,7 +4197,7 @@ Referer: http://mail.google.com/mail/?&ik=xxxxxxx&view=pr&pnl=g&zx=xorfqampe0ml
 					$postdata['cfgnr'] 	= (($name != "")?1:0);
 					$postdata['cfgn'] 	= $name;
 					$postdata['cfrt'] 	= $reply_to;
-					$url 		= "&view=cf&cfe=true&cfa=".urlencode($email).$this->proxy_defeat();
+					$url 		= "&view=cf&cfe=true&cfa=".urlencode((string) $email).$this->proxy_defeat();
 					$refer 		= $url;
  					break;
 /* 				case "add_pre": // Gmail's preparation step for adding a new From.  Not required.  Directly use "send_verify" */
@@ -4217,7 +4216,7 @@ Referer: http://mail.google.com/mail/?&ik=xxxxxxx&view=pr&pnl=g&zx=xorfqampe0ml
 /*  					break; */
 				case "send_verify":	// send the verification email to the From address
 					// also used to directly add a new From address
-					$postdata		 	= array();
+					$postdata		 	= [];
 					$postdata['cfrp'] 	= 2;
 					$postdata['cfn'] 	= $name;
 					$postdata['cfa'] 	= $email;
@@ -4227,7 +4226,7 @@ Referer: http://mail.google.com/mail/?&ik=xxxxxxx&view=pr&pnl=g&zx=xorfqampe0ml
 					$refer 				= $url;
  					break;
 				case "verify_code":	// enter verification code to verify previously added From address
-					$postdata		 	= array();
+					$postdata		 	= [];
 					$postdata['cfrp'] 	= 3;
 					$postdata['cfrs'] 	= "false";
 					$postdata['cfn'] 	= $name;
@@ -4235,16 +4234,16 @@ Referer: http://mail.google.com/mail/?&ik=xxxxxxx&view=pr&pnl=g&zx=xorfqampe0ml
 					$postdata['cfrt'] 	= $reply_to;
 					$postdata['at'] 	= $this->at_value();
 					$postdata['cfvc'] 	= $code;
-					$url 				= "&view=cf&cfe=true&cfa=".urlencode($email)."&at=".$this->at_value().$this->proxy_defeat();
+					$url 				= "&view=cf&cfe=true&cfa=".urlencode((string) $email)."&at=".$this->at_value().$this->proxy_defeat();
 					$refer 				= $url;
 					break;
 				default: 			
 					array_unshift(
 						$this->return_status, 
-						array("action" => "custom from: $action",
+						["action" => "custom from: $action",
 							 "status" => "failed",
 							 "message" => "libgmailer: Invalid action"
-						)
+						]
 					);
 					return 0;
 			}
@@ -4264,22 +4263,22 @@ Referer: http://mail.google.com/mail/?&ik=xxxxxxx&view=pr&pnl=g&zx=xorfqampe0ml
 			}
 
 /* 			$status = (isset($this->raw["ar"][1])) ? $this->raw["ar"][1] : 0; */
-			$message = (isset($this->raw["ar"][2])) ? $this->raw["ar"][2] : "";
+			$message = $this->raw["ar"][2] ?? "";
 
-			$a = array(
+			$a = [
 				"action" 		=> "custom from: $action",
 				"status" 		=> (($status) ? "success" : "failed"),
 				"message" 		=> $message
-			);
+			];
 			array_unshift($this->return_status, $a);
 
 			return $status;
 		} else {
-			$a = array(
+			$a = [
 				"action" 		=> "custom from",
 				"status" 		=> "failed",
 				"message" 		=> "libgmailer: not connected"
-			);
+			];
 			array_unshift($this->return_status, $a);
 
 			return false;
@@ -4317,23 +4316,23 @@ Referer: http://mail.google.com/mail/?&ik=xxxxxxx&view=pr&pnl=g&zx=xorfqampe0ml
             $postdata,
             "noheader"
          );
-		$a = array(
+		$a = [
 			"action" 	=> "export contacts",
 			//"status" 	=> ($status ? "success" : "failed"),
 			"status" 	=> "success",
 			"message" 	=> "Contacts exported",
 			"contacts"	=> $this->gmail_data
 			
-		);
+		];
 		array_unshift($this->return_status, $a);
 
 		return true;
       } else {
-			$a = array(
+			$a = [
 				"action" 		=> "export contacts",
 				"status" 		=> "failed",
 				"message" 		=> "libgmailer: not connected"
-			);
+			];
 			array_unshift($this->return_status, $a);
 
 			return false;
@@ -4359,10 +4358,10 @@ Referer: http://mail.google.com/mail/?&ik=xxxxxxx&view=pr&pnl=g&zx=xorfqampe0ml
 /*  */
 /* 		// the rest became defunct after implementing $this->cookie_array */
 		$at_value = "";
-		$cc = split(";", $this->cookie_str);
+		$cc = preg_split("#;#m", (string) $this->cookie_str);
 		foreach ($cc as $cc_part) {
-			$cc_parts = split("=", $cc_part);
-			if (trim($cc_parts[0]) == "GMAIL_AT") {
+			$cc_parts = preg_split("#=#m", (string) $cc_part);
+			if (trim((string) $cc_parts[0]) == "GMAIL_AT") {
 				$at_value = $cc_parts[1];
 				break;
 			}
@@ -4386,14 +4385,14 @@ Referer: http://mail.google.com/mail/?&ik=xxxxxxx&view=pr&pnl=g&zx=xorfqampe0ml
 /* 		$raw_html = str_replace("D([", "\nD([", $raw_html); */
 /* 		$raw_html = str_replace("]);", "]);\n", $raw_html); */
 		// combined multiple str_replace into one; Neerav; 12 Sept 2007
-		$raw_html = str_replace(array("D([","]);"), array("\nD([","]);\n"), $raw_html);
+		$raw_html = str_replace(["D([","]);"], ["\nD([","]);\n"], $raw_html);
 		// Fix Gmail's conversion of = and /; by Neerav; 18 Dec 2005
 		// Added < and >; by Neerav; 4 Mar 2007
 		// Added \> (Gmail is doing something wierd); Neerav; 12 Sept 2007
 		// Added &; Neerav; 10 Dec 2007
 		$raw_html = str_replace(
-						array('\u003d','\u002f','\u003c','\u003e','\>','\u0026'),
-						array('=','/','<','>','>','&'),
+						['\u003d','\u002f','\u003c','\u003e','\>','\u0026'],
+						['=','/','<','>','>','&'],
 						$raw_html
 					);
 		//Debugger::say(basename(__FILE__).": ".__LINE__.": "."parse_gmail_response(): cleaned:\n".print_r($raw_html,true));
@@ -4402,8 +4401,8 @@ Referer: http://mail.google.com/mail/?&ik=xxxxxxx&view=pr&pnl=g&zx=xorfqampe0ml
 		
 		$regexp = (!$non_standard) ? "|D\(\[(.*)\]\);|U" : "/\[(.*)\]/"; 
 		$matches = "";	 
-		preg_match_all($regexp, $raw_html, $matches, PREG_SET_ORDER); 
-		$packets = array();
+		preg_match_all($regexp, (string) $raw_html, $matches, PREG_SET_ORDER); 
+		$packets = [];
 		$matches_count = count($matches);
 		for ($i = 0; $i < $matches_count; $i++) {
 			$off = 0;
@@ -4418,7 +4417,7 @@ Referer: http://mail.google.com/mail/?&ik=xxxxxxx&view=pr&pnl=g&zx=xorfqampe0ml
 					if (array_key_exists("mg", $packets))
 						array_push($packets["mg"],$tmp);
 					else
-						$packets["mg"] = array($tmp);
+						$packets["mg"] = [$tmp];
 				}									  
 			} else {
 				$packets[$tmp[0]] = $tmp;
@@ -4439,7 +4438,7 @@ Referer: http://mail.google.com/mail/?&ik=xxxxxxx&view=pr&pnl=g&zx=xorfqampe0ml
  * @package GMailer
 */
 class GMailSnapshot {
-	var $created;
+	public $created;
 
 	/**
 	* Constructor.
@@ -4460,9 +4459,9 @@ class GMailSnapshot {
 		if ((!is_array($raw)) or (count($raw) == 0)) {
 			$this->created = 0;
 		
-			if (strpos($raw_html,'gmail_error=17;') !== false or strpos($raw_html,'(502)') !== false) {
+			if (str_contains((string) $raw_html,'gmail_error=17;') or str_contains((string) $raw_html,'(502)')) {
 				$this->snapshot_error = '502temp';
-			} elseif (ereg('gmail_error=([0-9]{3})',$raw_html,$matches)) {
+			} elseif (preg_match('#gmail_error=([0-9]{3})#m',(string) $raw_html,$matches)) {
 				$this->snapshot_error = $matches[1];
 				if ($matches[1] != 500) {
 					Debugger::say(basename(__FILE__).": ".__LINE__.": "."libgmailer: Gmail http error (".$matches[1]."), dump RAW HTML:\n".print_r($raw_html,true));
@@ -4471,27 +4470,27 @@ class GMailSnapshot {
 /* 				ereg('<p><font size="-1">(.*?)</font></p>',$raw_html,$matches); */
 /* 				$this->snapshot_error = $matches[1]; */
 
-			} elseif (ereg('<title>([0-9]{3}) Server Error</title>',$raw_html,$matches)) {
+			} elseif (preg_match('#<title>([0-9]{3}) Server Error<\/title>#m',(string) $raw_html,$matches)) {
 				$this->snapshot_error = $matches[1];
 				if ($matches[1] != 502) {
 					Debugger::say(basename(__FILE__).": ".__LINE__.": "."libgmailer: Gmail http error (".$matches[1]."), dump RAW HTML:\n".print_r($raw_html,true));
 				}
 
-			} elseif (strpos($raw_html,'500 Internal Server Error') !== false) {
+			} elseif (str_contains((string) $raw_html,'500 Internal Server Error')) {
 				$this->snapshot_error = 500;
 
-			} elseif (strpos($raw_html,'gmail_error=8;') !== false) {
+			} elseif (str_contains((string) $raw_html,'gmail_error=8;')) {
 				$this->snapshot_error = 'lockdown';
 
-			} elseif (strpos($raw_html,'gmail_error=7;') !== false) {
+			} elseif (str_contains((string) $raw_html,'gmail_error=7;')) {
 				$this->snapshot_error = '404';
 
 
-			} elseif (strpos($raw_html,'gmail_error=') !== false) {
+			} elseif (str_contains((string) $raw_html,'gmail_error=')) {
 				$this->snapshot_error = "Unknown gmail error";
 				Debugger::say(basename(__FILE__).": ".__LINE__.": "."libgmailer: unknown gmail error, dump RAW HTML:\n".print_r($raw_html,true));
 
-			} elseif (strpos($raw_html,'top.location="https://www.google.com/accounts/ServiceLogin') !== false) {
+			} elseif (str_contains((string) $raw_html,'top.location="https://www.google.com/accounts/ServiceLogin')) {
 				// Added error; by Neerav; 12 Oct 2005
 				//libgmailer: Gmail redirect to login screen
 				$this->snapshot_error = "libg110";
@@ -4535,15 +4534,15 @@ class GMailSnapshot {
 			if (!isset($_COOKIE[GM_COOKIE_IK_KEY]) or ($_COOKIE[GM_COOKIE_IK_KEY] == 0)) {
 				Debugger::say("Snapshot: Using Cookies, saving id_key(ik)...");
 				if (isset($raw["ud"][3])) {
-					if (strpos($_SERVER["HTTP_HOST"],":"))
-						$domain = substr($_SERVER["HTTP_HOST"],0,strpos($_SERVER["HTTP_HOST"],":"));
+					if (strpos((string) $_SERVER["HTTP_HOST"],":"))
+						$domain = substr((string) $_SERVER["HTTP_HOST"],0,strpos((string) $_SERVER["HTTP_HOST"],":"));
 					else
 						$domain = $_SERVER["HTTP_HOST"];
 					Debugger::say("Saving id_key as cookie ".GM_COOKIE_IK_KEY." with domain=".$domain);
 						
 /* 					header("Set-Cookie: ".GM_COOKIE_IK_KEY."=".base64_encode($raw["ud"][3])."; Domain=".$domain.";"); */
-					setcookie(GM_COOKIE_IK_KEY, base64_encode($raw["ud"][3]), time()+GM_COOKIE_TTL, "", $domain);
-					Debugger::say("Snapshot: Cookie id_key saved: ".GM_COOKIE_IK_KEY."=".base64_encode($raw["ud"][3]));
+					setcookie(GM_COOKIE_IK_KEY, base64_encode((string) $raw["ud"][3]), ['expires' => time()+GM_COOKIE_TTL, 'path' => "", 'domain' => $domain]);
+					Debugger::say("Snapshot: Cookie id_key saved: ".GM_COOKIE_IK_KEY."=".base64_encode((string) $raw["ud"][3]));
 				} else {
 					Debugger::say('Snapshot: Cookie id_key NOT saved.  $raw["ud"][3] not found.');
 				}
@@ -4613,7 +4612,7 @@ class GMailSnapshot {
 		// COUntry
 		// Added by Neerav; 20 Dec 2005
 		// (12 Feb 2007) this always seems to be US or blank. :-(  Not useful.
-		$this->country = ((isset($raw["cou"][1]))?$raw["cou"][1]:"");
+		$this->country = ($raw["cou"][1] ?? "");
 
 		// Google Accounts' name
 		// your app SHOULD cache this in session or cookie for use across pages
@@ -4630,7 +4629,7 @@ class GMailSnapshot {
 			for ($i = 0; $i < $p_count; $i++) {
 				if ($raw["p"][$i][0] == "sx_sg") {
 					// can be undefined ?!?!
-					$this->signature = (isset($raw["p"][$i][1])) ? $raw["p"][$i][1] : "" ;
+					$this->signature = $raw["p"][$i][1] ?? "" ;
 					break;	
 				}
 			}
@@ -4662,35 +4661,35 @@ class GMailSnapshot {
 
 		// cfs; Compose from source
 		// Added by Neerav: 30 Aug 2005; Modified by Gan: 9 Sep 2005
-		$this->personality = array();
-		$this->personality_unverify = array();
+		$this->personality = [];
+		$this->personality_unverify = [];
 		if (isset($raw["cfs"])) {
 			if (isset($raw["cfs"][1])) {
 				$person_verified = count($raw["cfs"][1]);
 				for($i = 0; $i < $person_verified; $i++) {
-					$this->personality[] = array(
+					$this->personality[] = [
 						"name"		=> $raw["cfs"][1][$i][0],
 						"email"		=> $raw["cfs"][1][$i][1],
 						"default"   => (($raw["cfs"][1][$i][2]==0) ? false : true),
-						"reply-to"  => ((isset($raw["cfs"][1][$i][3])) ? $raw["cfs"][1][$i][3] : ""), // [not available to everyone yet (Gan: 9 Sept)]
+						"reply-to"  => ($raw["cfs"][1][$i][3] ?? ""), // [not available to everyone yet (Gan: 9 Sept)]
 						"verified" 	=> true
-					);
+					];
 				}
 				$person_unverified = count($raw["cfs"][2]);
 				for($i = 0; $i < $person_unverified; $i++) {
-					$this->personality_unverify[] = array(
+					$this->personality_unverify[] = [
 						"name"		=> $raw["cfs"][2][$i][0],
 						"email"		=> $raw["cfs"][2][$i][1],
 						"default"   => (($raw["cfs"][2][$i][2]==0) ? false : true),
-						"reply-to"  => ((isset($raw["cfs"][2][$i][3])) ? $raw["cfs"][2][$i][3] : ""), // [not available to everyone yet (Gan: 9 Sept)]
+						"reply-to"  => ($raw["cfs"][2][$i][3] ?? ""), // [not available to everyone yet (Gan: 9 Sept)]
 						"verified" 	=> false
-					);
+					];
 				}
 			}
 		}
 
 		// web clips and advertisements
-		$this->web_clips = array();
+		$this->web_clips = [];
 		if (isset($raw["ad"]) and isset($raw["ad"][1][3])) {
 			/* $this->web_clips =  */GmailSnapshot::web_clip_snapshot($raw["ad"][1][3]);
 		}
@@ -4711,7 +4710,7 @@ class GMailSnapshot {
 				for ($i = 1; $i < $p_count; $i++) {
 					if ($raw["p"][$i][0] == "sx_sg") {
 						// can be undefined ?!?!
-						$this->signature = (isset($raw["p"][$i][1])) ? $raw["p"][$i][1] : "" ;
+						$this->signature = $raw["p"][$i][1] ?? "" ;
 						break;	
 					}
 				}
@@ -4727,8 +4726,8 @@ class GMailSnapshot {
 				}
 				// Fix for change in format of unread messages in some accounts; by Neerav; 2 Feb 2006
 				if (is_array($raw["ds"][1])) {
-					$this->std_box_new = array(0,0,0,0,0,0,0);
-					$std_boxes = array("inbox","starred","sent","drafts","all","spam","trash");
+					$this->std_box_new = [0,0,0,0,0,0,0];
+					$std_boxes = ["inbox","starred","sent","drafts","all","spam","trash"];
 					foreach ($raw["ds"][1] as $std_box) {
 						$name = $std_box[0];
 						$which_box = array_search($name,$std_boxes);
@@ -4751,8 +4750,8 @@ class GMailSnapshot {
 				return null;
 			}
 
-			$this->label_list = array();
-			$this->label_new = array();
+			$this->label_list = [];
+			$this->label_new = [];
 
 			// Labels
 			// Last changed by Neerav; 12 July 2005
@@ -4789,7 +4788,7 @@ class GMailSnapshot {
 				$this->mailbox_state = "";
 			}
 
-			$this->box = array();
+			$this->box = [];
 			if (isset($raw["t"])) {					  
 				foreach ($raw["t"] as $t) {
 					if ($t == "t") continue;
@@ -4816,8 +4815,8 @@ class GMailSnapshot {
 						//$tb["snippet"]	= ((count($t) == 12) ? "" : $t[7] );
 						$tb["snippet"]	= "(error)";
 						$tb["msgid"]	= "(error)";
-						$tb["labels"]	= array();	// gives an array even if 0 labels
-						$tb["attachment"]= array();
+						$tb["labels"]	= [];	// gives an array even if 0 labels
+						$tb["attachment"]= [];
 						//$tb["??"]		= $t[10-$less];	
 						//$tb["??"]		= $t[11-$less];
 						$tb["long_date"]	= "(error)";
@@ -4849,7 +4848,7 @@ class GMailSnapshot {
 					// Added by Neerav; 6 July 2005
 					$long_date = "";
 					$long_time = "";
-					$date_time = explode("_",$t[12-$less]);
+					$date_time = explode("_",(string) $t[12-$less]);
 					if (isset($date_time[0])) $long_date = $date_time[0];
 					if (isset($date_time[1])) $long_time = $date_time[1]; 
 											
@@ -4859,7 +4858,7 @@ class GMailSnapshot {
 					// Added by Neerav; 6 July 2005
 					// Gives an array of labels and substitutes the standard names
 					// Changed to be language compatible; by Neerav; 8 Aug 2005
-					$label_array = array();
+					$label_array = [];
 					foreach($t[8-$less] as $label_entry) {
 						switch ($label_entry) {
 							//case "^i": 	$label_array[] = "Inbox";		break;
@@ -4871,14 +4870,14 @@ class GMailSnapshot {
 						}
 					}
 
-					$tb = array();
+					$tb = [];
 					$tb["id"]		= $t[0];
 					$tb["is_read"]	= (($t[1] == 1) ? 1 : 0);
 					$tb["is_starred"]= (($t[2] == 1) ? 1 : 0);
-					$tb["date"]		= strip_tags($t[3]);
-					$tb["sender"]	= strip_tags($t[4],"<b>");
+					$tb["date"]		= strip_tags((string) $t[3]);
+					$tb["sender"]	= strip_tags((string) $t[4],"<b>");
 					$tb["flag"]		= $t[5];
-					$tb["subj"]		= strip_tags($t[6],"<b>");
+					$tb["subj"]		= strip_tags((string) $t[6],"<b>");
 					//$tb["snippet"]	= ((count($t) == 12) ? "" : $t[7] );
 					$tb["snippet"]	= (($less) ? "" : $t[7] );
 					$tb["msgid"]		= $t[10-$less];
@@ -4887,7 +4886,7 @@ class GMailSnapshot {
 					//$tb["labels_lang"]= $label_array_lang;	// for use with languages
 					// Added/Changed by Neerav; 6 July 2005
 					$tb["labels"]	= $label_array;	// gives an array even if 0 labels
-					$tb["attachment"]= ((strlen($t[9-$less]) == 0) ? array() : explode(",",$t[9-$less]));// Changed to give an array even if 0 attachments
+					$tb["attachment"]= ((strlen((string) $t[9-$less]) == 0) ? [] : explode(",",(string) $t[9-$less]));// Changed to give an array even if 0 attachments
 					//$tb["??"]		= $t[10-$less];		// what is this?? repeat of id??
 					//$tb["??"]		= $t[11-$less];			// what is this?? always 0
 					$tb["long_date"]	= $long_date;		// added
@@ -4945,7 +4944,7 @@ class GMailSnapshot {
 				// $raw["cs"][14-$less_cs]		// always one less than 8 (one less than total messages in conv)
 												// -1 for drafts?
 
-				$this->conv_labels = array ();
+				$this->conv_labels =  [];
 				$this->conv_starred = false;
 
 				// Added labels for use in multiple languages; by Neerav; 7 Aug 2005
@@ -4966,7 +4965,7 @@ class GMailSnapshot {
 					}
 				}
 				
-				$this->conv = array();
+				$this->conv = [];
 							 
 				if (!isset($raw["mg"])) {
 					// Added error; by Neerav; 24 Sept 2005
@@ -4980,7 +4979,7 @@ class GMailSnapshot {
 					for ($i = 0; $i < $mg_count; $i++) {
 						if ($raw["mg"][$i][0] == "mb" && $i > 0) {
 							if (isset($raw["mg"][$i][1])) {
-								if (!isset($b)) $b = array();	// added by Neerav; 4 Apr 2007
+								if (!isset($b)) $b = [];	// added by Neerav; 4 Apr 2007
 								$b["body"] .= $raw["mg"][$i][1];
 							}
 							if (isset($raw["mg"][$i][2])) {
@@ -5001,14 +5000,14 @@ class GMailSnapshot {
 							// Added by Neerav; 1 Dec 2005
 /* 							$more  = (isset($raw["mg"][$i][26]) and is_array($raw["mg"][$i][26])) ? 1 : 0 ; */
 							// Changed by Neerav; 24 Mar 2006
-							$more  = (isset($raw["mg"][$i][20]) and strpos($raw["mg"][$i][20],"<font color=\"#ffffff\">") !== false) ? 1 : 0 ;
+							$more  = (isset($raw["mg"][$i][20]) and str_contains((string) $raw["mg"][$i][20],"<font color=\"#ffffff\">")) ? 1 : 0 ;
 							
 							// Changed to merge "di" and "mi" routines; by Neerav; 11 July 2005
 							if (isset($b)) {
 								array_push($this->conv, $b);
 								unset($b);
 							}
-							$b = array();
+							$b = [];
 							// $raw["mg"][$i][0] is mi or di
 							$b["mbox"] 			= $raw["mg"][$i][1];	// Added by Neerav; 11 July 2005
 							$b["is_trashed"]	= ((int)$raw["mg"][$i][1] & 128) 	? true : false;	// Added by Neerav; 23 Feb 2006
@@ -5027,7 +5026,7 @@ class GMailSnapshot {
 							//$b["recv"] 			= strip_tags($raw["mg"][$i][9]);
 							// gmail changed from string to array and added email address and conversation number; by Neerav; 25 July 2006
 							if (is_string($raw["mg"][$i][9])) {
-								$b["recv"] 		= strip_tags($raw["mg"][$i][9]);
+								$b["recv"] 		= strip_tags((string) $raw["mg"][$i][9]);
 							} else {
 								$b["recv"]	 	= "";
 								$count_9 = count($raw["mg"][$i][9]);
@@ -5040,7 +5039,7 @@ class GMailSnapshot {
 											}
 										}
 									}
-									$b["recv"] 		= preg_replace("/\, $/","",$b["recv"]);
+									$b["recv"] 		= preg_replace("/\, $/","",(string) $b["recv"]);
 								}
 								//Debugger::say(basename(__FILE__).": ".__LINE__.": "."raw[mg][x][9]:\n".print_r($raw["mg"][$i][9],true)."\nFixed: ".$b["recv"]);
 							}
@@ -5069,7 +5068,7 @@ class GMailSnapshot {
 								return null;
 							}
 							$b["snippet"] 			= $raw["mg"][$i][17];
-							$b["attachment"] 		= array();
+							$b["attachment"] 		= [];
 							if (isset($raw["mg"][$i][18])) {	// attachments
 								if (!is_array($raw["mg"][$i][18])) {
 									// Added error; by Neerav; 24 Sept 2005
@@ -5082,7 +5081,7 @@ class GMailSnapshot {
 										//Debugger::say(basename(__FILE__).": ".__LINE__.": "."looking for thumbnails: ".$raw["ma"][1][1]);
 										array_push(
 											$b["attachment"], 
-											array("id"		=> $bb[0],
+											["id"		=> $bb[0],
 												"filename"	=> $bb[1],
 												"type"		=> str_replace("\"", "", $bb[2]),	 // updated to remove the "'s; by Neerav; 19 Jan 2006
 												"size"		=> $bb[3],
@@ -5090,12 +5089,12 @@ class GMailSnapshot {
 												//,""		=> $bb[5]	// looks like: f_ewm3qxd1 what is this??
 												// attachment has thumbnail; Added by Neerav; 22 Aug 2006
 												"has_thumb" => (isset($raw["ma"][1][1]) 
-													and (strpos($raw["ma"][1][1],"&disp=thd&attid=".$bb[0]."&") !== false
+													and (str_contains($raw["ma"][1][1],"&disp=thd&attid=".$bb[0]."&")
 															or
 														// updated the string to look for thumbnails; Neerav; 6 Oct 2006
-														strpos($raw["ma"][1][1],"attid=".$bb[0]."&disp=thd&") !== false
+														str_contains($raw["ma"][1][1],"attid=".$bb[0]."&disp=thd&")
 													) ? 1 : 0)
-												)
+												]
 										);
 										if (!isset($bb[1])) {
 											Debugger::say(basename(__FILE__).": ".__LINE__.": "."undefined attachment info, dumping message: ", print_r($raw["mg"][$i],true));
@@ -5126,7 +5125,7 @@ class GMailSnapshot {
 								// $raw["mg"][$i][29+$more];  // header: Sender (real sender: don't need this) // 6 Mar 2006
 								// $raw["mg"][$i][30+$more];  // header: Message-ID (don't need this in snapshot)  // 3 Mar 2006
 								// $raw["mg"][$i][31+$more];  // always 0 What is this??
-								$b["to_custom_from"] = (isset($raw["mg"][$i][32+$more])?$raw["mg"][$i][32+$more]:"");  // Custom From which this message was sent to
+								$b["to_custom_from"] = ($raw["mg"][$i][32+$more] ?? "");  // Custom From which this message was sent to
 								// $raw["mg"][$i][33+$more] array, if voicemail is attached, otherwise 0 // 11 Jun 2007
 								if (is_array($raw["mg"][$i][33+$more])) {
 									//Debugger::say(basename(__FILE__).": ".__LINE__.": "."voicemail?: ".print_r($raw["mg"][$i][33+$more],true), "debug.voicemail.php");
@@ -5175,8 +5174,8 @@ class GMailSnapshot {
 		// Changed from elseif to if; by Neerav; 5 Aug 2005
 		if  ($type & GM_CONTACT) {
 			//Debugger::say(basename(__FILE__).": ".__LINE__.": "."dumping _raw:\n".print_r($raw,true));
-			$this->contacts = array();
-			$this->contact_groups = array();	// Added by Neerav; 20 Dec 2005
+			$this->contacts = [];
+			$this->contact_groups = [];	// Added by Neerav; 20 Dec 2005
 			$this->contacts_total = 0;			// Added by Neerav; 5 Jan 2006
 						
 			// general contacts information; Added by Neerav; 5 Jan 2006
@@ -5244,14 +5243,14 @@ class GMailSnapshot {
 			} else {
 				array_push(
 					$this->contacts, 
-					array("id" 	 => "error",
+					["id" 	 => "error",
 						 "name"  => "libgmailer Error",
 						 "email" => "libgmailer@error.nonexistant",
 						 "is_group" => 0,
 						 "notes" => "libgmailer could not find the Contacts information "
 						 	. "due to a change in the email service (again!).  Please contact " 
 						 	. "the author of this program (which uses libgmailer) for a fix."
-					)
+					]
 				);
 			}
 
@@ -5263,12 +5262,12 @@ class GMailSnapshot {
 				$contacts_count = count($raw["$c_array"]);
 				for ($i = 1; $i < $contacts_count; $i++) {
 					$a = $raw["$c_array"][$i];
-					$b = array(
+					$b = [
 						"id"	=> $a[1],				// contact id; Added by Neerav; 6 May 2005
-						"name"	=> (isset($a[2]) ? $a[2]: ""),
+						"name"	=> ($a[2] ?? ""),
 /* 						"email"	=> str_replace("\"", "", $a[$c_email])	// Last Changed by Neerav; 29 June 2005 */
 						"email"	=> $a[$c_email]	// Last Changed by Neerav; 29 June 2005
-					);
+					];
 					// Last Changed by Neerav; 29 June 2005
 					if (isset($a[$c_notes])) {
 						// Contact groups support; 5 Jan 2006
@@ -5279,7 +5278,7 @@ class GMailSnapshot {
 							// "Name" <email@address.net>, "Name2" <email2@address.net>, etc
 							// and needs to be "simply" re-created for backwards compatibility
 							$gr_count = count($a[$c_notes]);
-							$group_addresses = array();
+							$group_addresses = [];
 							for ($gr_entry = 0; $gr_entry < $gr_count; $gr_entry++) {
 								$group_addresses[] = $a[$c_notes][$gr_entry][1];
 							}
@@ -5288,7 +5287,7 @@ class GMailSnapshot {
 							//$b["email"]	= str_replace("\"", "", $a[$c_addresses]);
 							$b["group_names"] = $a[$c_email];
 							$b["group_total"] = $a[3];
-							$b["group_email"] = (count($a[$c_notes]) > 0) ? $a[$c_addresses] : array();
+							$b["group_email"] = (count($a[$c_notes]) > 0) ? $a[$c_addresses] : [];
 						} else {
 							$b["notes"] = $a[$c_notes];
 							$b["is_group"] = false;
@@ -5299,7 +5298,7 @@ class GMailSnapshot {
 				}
 			} elseif ($type == "detail") {
 				//Debugger::say(basename(__FILE__).": ".__LINE__.": "."raw: ".print_r($raw,true));
-				$details = array();
+				$details = [];
 				if ($c_array == "clv") {
 					// Added by Neerav; 6 Jan 2006
 					// Group details
@@ -5310,18 +5309,18 @@ class GMailSnapshot {
 					$cov["group_names"] = $raw["$c_array"][1][$c_members];	// string of names of group members
 					$cov["group_total"] = $raw["$c_array"][1][$c_total];	// string, total number of members in group
 /* 					$cov["group_email"] = str_replace("\"", "", $raw["$c_array"][1][$c_email]);	// formatted list of addresses as: Name <address> */
-					$cov["group_email"] = (isset($raw["$c_array"][1][$c_email])) ? $raw["$c_array"][1][$c_email] : "";	// formatted list of addresses as: Name <address>
+					$cov["group_email"] = $raw["$c_array"][1][$c_email] ?? "";	// formatted list of addresses as: Name <address>
 					$cov["notes"] 		= "";								// no notes for groups... yet!
-					$group_addresses = array();								// string of flattened email addresses
-					$cov["members"] = array();								// array of group members
+					$group_addresses = [];								// string of flattened email addresses
+					$cov["members"] = [];								// array of group members
 					for ($gr_entry = 0; $gr_entry < $gr_count; $gr_entry++) {
 						
 						$group_addresses[] = $raw["$c_array"][1][$c_detail][$gr_entry][1];
-						$cov["members"][] = array(
+						$cov["members"][] = [
 							"id"	=>	$raw["$c_array"][1][$c_detail][$gr_entry][0],
-							"name"	=>	(isset($raw["$c_array"][1][$c_detail][$gr_entry][2])?$raw["$c_array"][1][$c_detail][$gr_entry][2]:""),
+							"name"	=>	($raw["$c_array"][1][$c_detail][$gr_entry][2] ?? ""),
 							"email"	=>	$raw["$c_array"][1][$c_detail][$gr_entry][1]
-						);
+						];
 					}
 					$cov["email"] = (count($group_addresses) > 0) ? implode(", ",$group_addresses) : "";
 
@@ -5330,7 +5329,7 @@ class GMailSnapshot {
 					// Added by Neerav; 1 July 2005
 					// Contact details (advanced contact information)
 					// used when a contact id was supplied for retrieval
-					$cov = array();
+					$cov = [];
 					$cov["is_group"]= false;
 					$cov["id"]		= $raw["$c_array"][1][$c_id];
 					$cov["name"] 	= $raw["$c_array"][1][$c_name];
@@ -5345,35 +5344,35 @@ class GMailSnapshot {
 					$num_details = count($raw["$c_array"][1][$c_detail]);
 					if ($num_details > 0) {
 						for ($i = 0; $i < $num_details; $i++) {
-							$details[$i][] = array(
+							$details[$i][] = [
 									"type"	=> "detail_name",
 									"info" 	=> $raw["$c_array"][1][$c_detail][$i][0]
-							);
+							];
 							if (isset($raw["$c_array"][1][$c_detail][$i][1])) {
 								$temp = $raw["$c_array"][1][$c_detail][$i][1];
 							} else {
-								$temp = array();
+								$temp = [];
 								Debugger::say(basename(__FILE__).": ".__LINE__.": ".'$raw['.$c_array.'][1]['.$c_detail.']['.$i.'][1] not defined libgmailer: 2548, dumping raw: '. print_r($raw,true));
 							}
 							$temp_count = count($temp);
 							for ($j = 0; $j < $temp_count; $j += 2) {
-								switch ($temp[$j]) {
-									case "p": $field = "phone";		break;
-									case "e": $field = "email";		break;
-									case "m": $field = "mobile";	break;
-									case "f": $field = "fax";		break;
-									case "b": $field = "pager";		break;
-									case "i": $field = "im";		break;
-									case "d": $field = "company";	break;
-									case "t": $field = "position";	break;	// t = title
-									case "o": $field = "other";		break;
-									case "a": $field = "address";	break;
-									default:  $field = $temp[$j];	break;	// default to the field type
-								}
-								$details[$i][] = array(
+								$field = match ($temp[$j]) {
+                                    "p" => "phone",
+                                    "e" => "email",
+                                    "m" => "mobile",
+                                    "f" => "fax",
+                                    "b" => "pager",
+                                    "i" => "im",
+                                    "d" => "company",
+                                    "t" => "position",
+                                    "o" => "other",
+                                    "a" => "address",
+                                    default => $temp[$j],
+                                };
+								$details[$i][] = [
 										"type" => $field, 
 										"info" => $temp[$j+1]
-								);
+								];
 							}
 						}
 					}
@@ -5389,12 +5388,12 @@ class GMailSnapshot {
 				$cla_count = count($raw["cla"][1]);
 				for ($i = 1; $i < $cla_count; $i++) {
 					$a = $raw["cla"][1][$i];
-					$b = array(
+					$b = [
 						"id"		=> $a[0],
 						"name"		=> $a[1],
 /* 						"addresses"	=> ((isset($a[2])) ? str_replace("\"", "", $a[2]) : "") */
-						"addresses"	=> ((isset($a[2])) ? $a[2] : "")
-					);
+						"addresses"	=> ($a[2] ?? "")
+					];
 					array_push($this->contact_groups, $b);
 				}
 			}
@@ -5408,28 +5407,28 @@ class GMailSnapshot {
 			// go to Preference Panel
 			// Added by Neerav; 6 July 2005
 			if (isset($raw["pp"][1])) {
-				switch ($raw["pp"][1]) {
-					case "g": 	$this->goto_pref_panel = "general";		break;
-					case "l": 	$this->goto_pref_panel = "labels";		break;
-					case "f": 	$this->goto_pref_panel = "filters";		break;
-					default:	$this->goto_pref_panel = $raw["pp"][1];	break;
-				}
+				$this->goto_pref_panel = match ($raw["pp"][1]) {
+                    "g" => "general",
+                    "l" => "labels",
+                    "f" => "filters",
+                    default => $raw["pp"][1],
+                };
 			}
 
 			// SETTINGS (NON-Filters, NON-Labels)
 			// Added by Neerav; 29 Jun 2005
 			
-			$this->setting_gen = array();
-			$this->setting_fpop = array();
-			$this->setting_other = array();
-			$this->setting_mobile = array();
-			$this->setting_chat = array();
+			$this->setting_gen = [];
+			$this->setting_fpop = [];
+			$this->setting_other = [];
+			$this->setting_mobile = [];
+			$this->setting_chat = [];
 
 			if (isset($raw["p"])) {
 				// GENERAL SETTINGS
-				$gen = array(
+				$gen = [
 					//"use_cust_name" => 0,
-					"name_google" 	=> ((isset($raw["gn"][1])) ? $raw["gn"][1] : ""),
+					"name_google" 	=> ($raw["gn"][1] ?? ""),
 					//"name_display" 	=> "",
 					//"use_reply_to"	=> 0,
 					//"reply_to" 		=> "",
@@ -5447,25 +5446,25 @@ class GMailSnapshot {
 					"vacation_contact"	=> 0,
 					"my_pict_visible"	=> 1,
 					"contact_pict_visible"	=> 0
-				);
+				];
 	
 				// FORWARDING AND POP
-				$fpop = array(
+				$fpop = [
 					"forward"		=> 0,
 					"forward_to" 	=> "",
 					"forward_action"=> "selected",
 					"pop_enabled" 	=> 0,
 					"pop_action" 	=> 0,
 					"pop_on_since"	=> ""
-				);
+				];
 	
 				// MOBILE
-				$mobile = array(
-					"display_boxes"		=> array("inbox","starred","sent","drafts","all","spam","trash")
-				);
+				$mobile = [
+					"display_boxes"		=> ["inbox","starred","sent","drafts","all","spam","trash"]
+				];
 
 				// CHAT
-				$chat = array(
+				$chat = [
 					"save_chat"				=> 0,	// added by Neerav; 10 Feb 2006
 					// added by Neerav; 6 Sept 2006
 					"new_chat_sound" 		=> 0,
@@ -5473,11 +5472,11 @@ class GMailSnapshot {
 					"quick_cont_length" 	=> 10,
 					"quick_cont_auto_add" 	=> 0,
 					"expand_chat_box"	 	=> 1
-				);
+				];
 
 				// OTHER
-				$other = array(
-					"google_display_name"	=> (isset($raw["gn"][1])?$raw["gn"][1]:""),
+				$other = [
+					"google_display_name"	=> ($raw["gn"][1] ?? ""),
 					"google_reply_to" 		=> "",
 					"expand_labels"			=> 1,
 					"expand_invites" 		=> 1,
@@ -5485,7 +5484,7 @@ class GMailSnapshot {
 					"reply_from_sent"		=> 0,
 					"rich_text" 			=> 0,		// not used yet or has been removed
 					"save_chat"				=> 0		// added by Neerav; 10 Feb 2006
-				);
+				];
 	
 				if (isset($raw["gn"][1])) {
 					$gen["name_google"] = $raw["gn"][1];
@@ -5499,7 +5498,7 @@ class GMailSnapshot {
 				$p_count = count($raw["p"]);
 				for ($i = 1; $i < $p_count; $i++) {
 					$pref = $raw["p"][$i][0];
-					$value = (isset($raw["p"][$i][1])) ? $raw["p"][$i][1] : "";
+					$value = $raw["p"][$i][1] ?? "";
 
 					switch ($pref) {
 					// GENERAL SETTINGS
@@ -5555,8 +5554,8 @@ class GMailSnapshot {
 					// MOBILE
 						// added by Neerav; 20 Dec 2005
 						case "sx_pf": 	if ($value != "") {
-											$mobile = array();
-											$temp_mobile = explode('#,~',$value);
+											$mobile = [];
+											$temp_mobile = explode('#,~',(string) $value);
 											$temp_mobile_count = count($temp_mobile);
 											for ($mob = 0; $mob < $temp_mobile_count; $mob++) {
 												if ($temp_mobile[$mob] != "") $mobile['display_boxes'][] = $temp_mobile[$mob];
@@ -5589,12 +5588,12 @@ class GMailSnapshot {
 			// LABELS
 			// Added $list_created to prevent overwriting of label_list; by Neerav; 27 April 2006
 			if (!isset($this->label_list)) {
-				$this->label_list = array();
+				$this->label_list = [];
 				$list_created = true;
 			} else {
 				$list_created = false;
 			}
-			$this->label_total = array();
+			$this->label_total = [];
 			if (isset($raw["cta"][1])) {
 				foreach ($raw["cta"][1] as $v) {
 					if ($list_created) array_push($this->label_list, $v[0]);
@@ -5605,7 +5604,7 @@ class GMailSnapshot {
 			}
 			
 			// FILTERS
-			$this->filter = array();
+			$this->filter = [];
 			if (isset($raw["fi"][1])) {
 				foreach ($raw["fi"][1] as $fi) {
 					//if (isset($fi[2]) and count($fi[2]) != 14) Debugger::say(basename(__FILE__).": ".__LINE__.": filter dump: ".print_r($fi,true),"debug_filter.txt");
@@ -5613,21 +5612,21 @@ class GMailSnapshot {
 					// filter rules/settings
 					//     (The "() ? :" notation is used because empty/false fields at the end of an
 					//         array are not always defined)
-					$b = array(
+					$b = [
 						// (integer) filter id number
 						"id" 		=> 					 	$fi[0],
 						// (string) gmail's filter summary
-						"query" 	=> ((isset($fi[1]))    ? $fi[1] : ""),						
+						"query" 	=> ($fi[1] ?? ""),						
 						// (string) from field has...
-						"from" 		=> ((isset($fi[2][0])) ? $fi[2][0] : ""),
+						"from" 		=> ($fi[2][0] ?? ""),
 						// (string) to field has...
-						"to" 		=> ((isset($fi[2][1])) ? $fi[2][1] : ""),
+						"to" 		=> ($fi[2][1] ?? ""),
 						// (string) subject has...
-						"subject" 	=> ((isset($fi[2][2])) ? $fi[2][2] : ""),
+						"subject" 	=> ($fi[2][2] ?? ""),
 						// (string) msg has the words...
-						"has" 		=> ((isset($fi[2][3])) ? $fi[2][3] : ""),
+						"has" 		=> ($fi[2][3] ?? ""),
 						// (string) msg doesn't have the words...
-						"hasnot" 	=> ((isset($fi[2][4])) ? $fi[2][4] : ""),
+						"hasnot" 	=> ($fi[2][4] ?? ""),
 						// (boolean) has an attachment
 						"hasattach" => ((isset($fi[2][5]) and ($fi[2][5] == "true" or $fi[2][5] === true)) ? true : false),
 						// (boolean) archive (skip the inbox)
@@ -5639,31 +5638,31 @@ class GMailSnapshot {
 						// (boolean) apply label
 						"label" 	=> ((isset($fi[2][9]) and ($fi[2][9] == "true" or $fi[2][9] === true)) ? true : false),
 						// (string) label name to apply
-						"label_name"=> ((isset($fi[2][10])) ? $fi[2][10] : ""),
+						"label_name"=> ($fi[2][10] ?? ""),
 						// (boolean) forward
 						"forward" 	=> ((isset($fi[2][11]) and ($fi[2][11] == "true" or $fi[2][11] === true)) ? true : false),
 						// (string email) forward to email address
-						"forwardto" => ((isset($fi[2][12])) ? $fi[2][12]: ""),
+						"forwardto" => ($fi[2][12] ?? ""),
 						// (boolean) trash the message
 						"trash" 	=> ((isset($fi[2][13]) and ($fi[2][13] == "true" or $fi[2][13] === true)) ? true : false)
-					);
+					];
 					array_push($this->filter, $b);
 				}
 			}
 
 			// WEB CLIPPINGS
 			// added by Neerav; 2 July 2007
-			$this->web_clippings = array();
+			$this->web_clippings = [];
 			if (isset($raw["fu"][1])) {
 				foreach ($raw["fu"][1] as $fu) {
-					$b = array(
+					$b = [
 						// (integer) rss id number?
 						"id" 		=> $fu[0],
 						// (string) rss feed title
 						"title" 	=> $fu[1],
 						// (string) rss feed url
 						"url" 		=> str_replace("<wbr>","",$fu[2]) // remove the non-standard <wbr> tags
-					);
+					];
 					array_push($this->web_clippings, $b);
 				}
 			}
@@ -5691,7 +5690,7 @@ class GMailSnapshot {
 	* @param array $raw
 	*/
 	function web_clip_snapshot($raw, $action = "item") {
-		$clips = array();
+		$clips = [];
 		if ($action == 'preview') {
 			$this->feed['id'] 		= $raw['fl'][2][0][0];
 			$this->feed['url'] 		= $raw['fl'][2][0][1];
@@ -5722,7 +5721,7 @@ class GMailSnapshot {
 				Debugger::say(basename(__FILE__).": ".__LINE__.": "."odd web clips: ".print_r($webclip,true));
 				continue;
 			}
-			$clip = array();
+			$clip = [];
 			//$clip[''] = $webclip[0]; // ??
 			$clip['id'] 		= $webclip[1];
 			$clip['url'] 		= $webclip[2];

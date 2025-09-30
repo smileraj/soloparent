@@ -7,8 +7,8 @@
 	include("lang/app_mod.".$_GET['lang'].".php");
 
 	// variables
-	$captcha	= rand(2,7);
-	$messages	= array();
+	$captcha	= random_int(2,7);
+	$messages	= [];
 
 
 	// r&eacute;cup les donn&eacute;es du formulaire
@@ -37,7 +37,7 @@
 	if($envoi) {
 
 		// si l'email est incorrect
-		if(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,3}$/', $email)) {
+		if(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,3}$/', (string) $email)) {
 			$messages[]	= '<span class="error">'.$lang_mod["VotreAdresseEmail"].'.</span>';
 		}
 

@@ -14,10 +14,10 @@
 
 
 	// gestion des messages d'erreurs
-	$messages	= array();
+	$messages	= [];
 
 	// variables
-	$results	= array();
+	$results	= [];
 	if($_GET["lang"]=='fr')
 		$langString = "";
 	else
@@ -99,7 +99,7 @@
 
 		case 'saved':
 			searchResults();
-			searchForm(false);
+			searchForm();
 		break;
 
 		default:
@@ -115,7 +115,7 @@
 		global $db, $user;
 
 		// variables
-		$search 			= array();
+		$search 			= [];
 
 
 		// donn&eacute;es du formulaire de recherche
@@ -196,7 +196,7 @@
 	// variables accept&eacute;es par le moteur de recherche
 	function search_data() {
 			global $langue;
-		$_data	= array(
+		$_data	= [
 
 				// navigation
 				'search_page' => 1,
@@ -222,35 +222,35 @@
 				'search_recherche_poids_max' => 0,
 
 				// crit&egrave;res facultatifs
-				'search_signe_astrologique_id' => array(0),
-				'search_silhouette_id' => array(0),
-				'search_style_coiffure_id' => array(0),
-				'search_cheveux_id' => array(0),
-				'search_yeux_id' => array(0),
-				'search_origine_id' => array(0),
-				'search_nationalite_id' => array(0),
-				'search_religion_id' => array(0),
-				'search_langue_id' => array(0),
-				'search_statut_marital_id' => array(0),
-				'search_me_marier_id' => array(0),
-				'search_cherche_relation_id' => array(0),
-				'search_niveau_etude_id' => array(0),
-				'search_secteur_activite_id' => array(0),
-				'search_fumer_id' => array(0),
-				'search_temperament_id' => array(0),
-				'search_garde_id' => array(0),
-				'search_vouloir_enfants_id' => array(0),
-				'search_vie_id' => array(0),
-				'search_cuisine_id' => array(0),
-				'search_sortie_id' => array(0),
-				'search_loisir_id' => array(0),
-				'search_sport_id' => array(0),
-				'search_musique_id' => array(0),
-				'search_film_id' => array(0),
-				'search_lecture_id' => array(0),
-				'search_animaux_id' => array(0)
+				'search_signe_astrologique_id' => [0],
+				'search_silhouette_id' => [0],
+				'search_style_coiffure_id' => [0],
+				'search_cheveux_id' => [0],
+				'search_yeux_id' => [0],
+				'search_origine_id' => [0],
+				'search_nationalite_id' => [0],
+				'search_religion_id' => [0],
+				'search_langue_id' => [0],
+				'search_statut_marital_id' => [0],
+				'search_me_marier_id' => [0],
+				'search_cherche_relation_id' => [0],
+				'search_niveau_etude_id' => [0],
+				'search_secteur_activite_id' => [0],
+				'search_fumer_id' => [0],
+				'search_temperament_id' => [0],
+				'search_garde_id' => [0],
+				'search_vouloir_enfants_id' => [0],
+				'search_vie_id' => [0],
+				'search_cuisine_id' => [0],
+				'search_sortie_id' => [0],
+				'search_loisir_id' => [0],
+				'search_sport_id' => [0],
+				'search_musique_id' => [0],
+				'search_film_id' => [0],
+				'search_lecture_id' => [0],
+				'search_animaux_id' => [0]
 
-			);
+			];
 		return $_data;
 	}
 
@@ -261,7 +261,7 @@
 		global $db, $user, $results;
 
 		// variables
-		$search 			= array();
+		$search 			= [];
 		$where				= null;
 		$_where				= '';
 
@@ -352,7 +352,7 @@
 		}
 
 		// username
-		if(strlen($search['search_username']) >= 3 && preg_match('/^[a-zA-Z0-9._-]+$/', $search['search_username'])) {
+		if(strlen((string) $search['search_username']) >= 3 && preg_match('/^[a-zA-Z0-9._-]+$/', (string) $search['search_username'])) {
 			$where[]	= "u.username LIKE '%".$search['search_username']."%'";
 		}
 
@@ -490,8 +490,8 @@
 		global $db, $user, $results;
 
 		// variables
-		$search 			= array();
-		$list 			= array();
+		$search 			= [];
+		$list 			= [];
 		$where				= null;
 		$_where				= '';
 
@@ -569,8 +569,8 @@
 		global $db, $user, $results;
 
 		// variables
-		$search 			= array();
-		$list 			= array();
+		$search 			= [];
+		$list 			= [];
 		$where				= null;
 		$_where				= '';
 
@@ -649,8 +649,8 @@
 		global $db, $user, $results;
 
 		// variables
-		$search 			= array();
-		$list 			= array();
+		$search 			= [];
+		$list 			= [];
 		$where				= null;
 		$_where				= '';
 
@@ -741,8 +741,8 @@
 		global $db, $user, $results;
 
 		// variables
-		$search 			= array();
-		$list 			= array();
+		$search 			= [];
+		$list 			= [];
 		$where				= null;
 		$_where				= '';
 
@@ -829,8 +829,8 @@
 		global $db, $user, $results;
 
 		// variables
-		$search 			= array();
-		$list 			= array();
+		$search 			= [];
+		$list 			= [];
 		$where				= null;
 		$_where				= '';
 
@@ -974,7 +974,7 @@ $age_max_pro=(($values_select->userage)+5);
 		global $db, $user, $results, $messages, $action;
 
 		// variables
-		$list 		= array();
+		$list 		= [];
 
 		// donn&eacute;es du formulaire de recherche
 		$_data	= search_data();
@@ -1368,7 +1368,7 @@ $canton= $row['search_canton_id'];
 			global $langue;
 		if (is_array($search[$field])) {
 			if(in_array(0, $search[$field])) {
-				JL::setSession($field, array(0));
+				JL::setSession($field, [0]);
 			} else {
 				$values = implode(',',$search[$field]);
 				$field	= str_replace('search_', '', $field);

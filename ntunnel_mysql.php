@@ -7,7 +7,7 @@ set_magic_quotes_runtime(0);
 
 function phpversion_int()
 {
-    list($maVer, $miVer, $edVer) = split("[/.-]", phpversion());
+    [$maVer, $miVer, $edVer] = preg_split("#[\\/\\.\\-]#m", phpversion());
     return $maVer*10000 + $miVer*100 + $edVer;
 }
 
@@ -38,7 +38,7 @@ function GetDummy($count)
 
 function GetBlock($val)
 {
-    $len = strlen($val);
+    $len = strlen((string) $val);
     if( $len < 254 )
         return chr($len).$val;
     else
@@ -167,8 +167,8 @@ function EchoData($res, $numfields, $numrows)
     }
 
     if (phpversion_int() < 40010) {
-        global $HTTP_POST_VARS;
-        $_POST = &$HTTP_POST_VARS;	
+        global $_POST;
+        $_POST = &$_POST;	
     }
 
     if (!isset($_POST["actn"]) || !isset($_POST["host"]) || !isset($_POST["port"]) || !isset($_POST["login"])) {
@@ -178,7 +178,7 @@ function EchoData($res, $numfields, $numrows)
     }
 
     $strCheckFunctions = CheckFunctions();
-    if (strlen($strCheckFunctions) > 0) {
+    if (strlen((string) $strCheckFunctions) > 0) {
         EchoHeader(203);
         echo GetBlock("function not exist: ".$strCheckFunctions);
         exit();
@@ -204,7 +204,7 @@ function EchoData($res, $numfields, $numrows)
             $query = $_POST["q"][$i];
             if($query == "") continue;
             if(get_magic_quotes_gpc())
-                $query = stripslashes($query);
+                $query = stripslashes((string) $query);
             $res = mysql_query($query, $conn);
             $errno = mysql_errno();
             $affectedrows = mysql_affected_rows($conn);

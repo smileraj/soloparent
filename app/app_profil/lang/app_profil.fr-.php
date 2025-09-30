@@ -1,6 +1,6 @@
 <?php
 
-$lang_appprofil = array(
+$lang_appprofil = [
 
 	//Fichier profil.html.php
 	"MessagesParentSolo" => "Messages solocircl.com",
@@ -473,6 +473,6 @@ $lang_appprofil = array(
 	"AppelsATemoinsH2" => "Appels &agrave; t&eacute;moins",
 	"AppelsATemoinsPlusInfosLabel" => "informations",
 
-);
+];
 
 ?>

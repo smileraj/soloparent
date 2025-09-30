@@ -10,7 +10,7 @@
 	if($_GET["lang"]=='fr')
 		$langString = "";
 	else
-		$langString = "_".$_GET[lang];
+		$langString = "_".$_GET[\LANG];
 
 	// uniquement lorsque l'on sauve
 	if($action == 'save') {
@@ -22,7 +22,7 @@
 
 
 	// gestion des messages d'erreurs
-	$messages	= array();
+	$messages	= [];
 
 	/*
 		new: formulaire nouvel appel � t�moins
@@ -63,7 +63,7 @@
 
 	function appel_a_temoins_data() {
 		global $langue;
-		$_data	= array(
+		$_data	= [
 			'nom' => '',
 			'prenom' => '',
 			'adresse' => '',
@@ -79,7 +79,7 @@
 			'file_logo' => '',
 
 			'codesecurite' => ''
-		);
+		];
 		return $_data;
 	}
 
@@ -95,7 +95,7 @@
 		}
 
 		// variables
-		$where 				= array();
+		$where 				= [];
 		$_where				= '';
 		
 			$resultatParPage	= LISTE_RESULT;
@@ -136,7 +136,7 @@
 		$rows = $db->loadObjectList($query);
 
 		// affiche la liste des appels
-		HTML_appel_a_temoins::appel_a_temoinsList($rows, $messages, $search);
+		(new HTML_appel_a_temoins())->appel_a_temoinsList($rows, $messages, $search);
 
 	}
 
@@ -146,7 +146,7 @@
 		global $db;
 
 		// variables
-		$where 		= array();
+		$where 		= [];
 		$_where		= '';
 
 		$where[]	= "at.id = '".$id."'";
@@ -172,7 +172,7 @@
 		}
 
 		// affiche la liste des messages
-		HTML_appel_a_temoins::appel_a_temoinsRead($row);
+		(new HTML_appel_a_temoins())->appel_a_temoinsRead($row);
 
 
 	}
@@ -184,8 +184,8 @@
 
 		// variables
 		$_data			= appel_a_temoins_data();
-		$list			= array();
-		$list_media_id	= array();
+		$list			= [];
+		$list_media_id	= [];
 
 		// r�cup les donn�es temporaires
 		if (is_array($_data)) {
@@ -206,7 +206,7 @@
 
 		$list['media_id'] 	= JL::makeSelectList($list_media_id, 'media_id', 'id="media_id" class="msgtxt"', 'value', 'text', $row->media_id);
 
-		$list['captcha']	= rand(2,7);
+		$list['captcha']	= random_int(2,7);
 		JL::setSession('captcha', $list['captcha']);
 
 
@@ -214,7 +214,7 @@
 		$data = $db->loadObject($query);
 		
 		// affichage du formulaire
-		HTML_appel_a_temoins::appel_a_temoinsWrite($data, $row, $messages, $list);
+		(new HTML_appel_a_temoins())->appel_a_temoinsWrite($data, $row, $messages);
 
 	}
 
@@ -225,7 +225,7 @@
 		global $db;
 
 		// gestion des messages d'erreurs
-		$messages	= array();
+		$messages	= [];
 
 		// variables
 		$_data		= appel_a_temoins_data();
@@ -269,7 +269,7 @@
 		}
 		*/
 
-		if(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,3}$/', $row->email)) {
+		if(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,3}$/', (string) $row->email)) {
 			$messages[]	= '<span class="error">'.$lang_appel_a_temoins["VeillezAdresse"].'.</span>';
 		}
 
@@ -285,7 +285,7 @@
 		if(isset($_FILES["file_logo"]) && is_uploaded_file($_FILES["file_logo"]["tmp_name"]) && $_FILES["file_logo"]["size"] > 0 && $_FILES["file_logo"]["error"] == 0) {
 
 			// d�termine l'extension en fonction du type mime
-			list($width, $height, $type, $attr) = getImageSize($_FILES["file_logo"]["tmp_name"]);
+			[$width, $height, $type, $attr] = getImageSize($_FILES["file_logo"]["tmp_name"]);
 			$mime = image_type_to_mime_type($type);
 			if(preg_match('/jpeg/', $mime)) {
 				$ext = 'jpg';
@@ -369,7 +369,7 @@
 		$row = $db->loadObject($query);
 
 		// affichage
-		HTML_appel_a_temoins::appel_a_temoinsInfo($row);
+		(new HTML_appel_a_temoins())->appel_a_temoinsInfo($row);
 
 	}
 

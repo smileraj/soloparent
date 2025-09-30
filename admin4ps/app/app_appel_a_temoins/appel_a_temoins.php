@@ -9,7 +9,7 @@
 	
 	
 	// variables
-	$messages = array();
+	$messages = [];
 
 	switch($action) {
 		
@@ -67,7 +67,7 @@
 		}
 		*/
 		
-		if(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,3}$/', $row->email)) {
+		if(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,3}$/', (string) $row->email)) {
 			$messages[]	= '<span class="error">Veuillez indiquer une adresse email valide s\'il vous pla&icirc;t.</span>';
 		}
 		
@@ -171,7 +171,7 @@
 		global $db, $messages;
 		
 		// variables
-		$lists		= array();
+		$lists		= [];
 		
 		// r�cup les donn�es par d�faut
 		$data 		=& getData();
@@ -190,12 +190,12 @@
 		
 		// variables par d�faut
 		foreach($data as $k => $v) {
-			$row->{$k} = $v ? $v : $row->{$k};
+			$row->{$k} = $v ?: $row->{$k};
 		}
 		
 		
 		// media
-		$media				= array();
+		$media				= [];
 		$media[]			= JL::makeOption('0', '> Type de media');
 		
 		$query = "SELECT id AS value, nom_fr AS text"
@@ -220,8 +220,8 @@
 		
 		// variables
 		$resultatParPage	= RESULTS_NB_LISTE_ADMIN;
-		$search				= array();
-		$lists				= array();
+		$search				= [];
+		$lists				= [];
 		$where				= null;
 		$_where				= '';
 		
@@ -247,20 +247,20 @@
 		
 		
 		// crit�re de tri
-		$order				= array();
+		$order				= [];
 		$order[]			= JL::makeOption('at.date_add', 	'Date ajout');
 		$order[]			= JL::makeOption('at.titre', 		'Titre');
 		$order[]			= JL::makeOption('at.nom', 			'Nom');
 		$lists['order']		= JL::makeSelectList($order, 'search_at_order', 'class="searchInput"', 'value', 'text', $search['order']);
 
 		// ordre croissant/d�croissant
-		$ascdesc			= array();
+		$ascdesc			= [];
 		$ascdesc[]			= JL::makeOption('asc', 			'Croissant');
 		$ascdesc[]			= JL::makeOption('desc', 			'D�croissant');
 		$lists['ascdesc']	= JL::makeSelectList($ascdesc, 'search_at_ascdesc', 'class="searchInput"', 'value', 'text', $search['ascdesc']);
 		
 		// statut
-		$active				= array();
+		$active				= [];
 		$active[]			= JL::makeOption('-1', 				'Tous');
 		$active[]			= JL::makeOption('2', 				'A valider');
 		$active[]			= JL::makeOption('1', 				'Confirm�s');
@@ -269,7 +269,7 @@
 		
 		
 		// media
-		$media				= array();
+		$media				= [];
 		$media[]			= JL::makeOption('0', 				'Tous');
 		
 		$query = "SELECT id AS value, nom_fr AS text"
@@ -289,12 +289,12 @@
 		
 		// appel_a_temoins actifs
 		if($search['active'] >= 0) {
-			$where[]		= "at.active = '".addslashes($search['active'])."'";
+			$where[]		= "at.active = '".addslashes((string) $search['active'])."'";
 		}
 		
 		// type de media
 		if($search['media_id'] > 0) {
-			$where[]		= "at.media_id = '".addslashes($search['media_id'])."'";
+			$where[]		= "at.media_id = '".addslashes((string) $search['media_id'])."'";
 		}
 		
 		// g�n�re le where
@@ -318,7 +318,7 @@
 		." FROM appel_a_temoins AS at"
 		." INNER JOIN appel_media AS am ON am.id = at.media_id"
 		.$_where
-		." ORDER BY ".strtolower($search['order'])." ".strtoupper($search['ascdesc'])
+		." ORDER BY ".strtolower((string) $search['order'])." ".strtoupper((string) $search['ascdesc'])
 		." LIMIT ".(($search['page'] - 1) * $resultatParPage).", ".$resultatParPage
 		;
 		$results	= $db->loadObjectList($query);

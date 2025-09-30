@@ -148,7 +148,7 @@
 		if(is_file($fichierSource)) {
 			
 			// récup les tailles de l'image source
-			list($width, $height, $type, $mime) = getimagesize($fichierSource);
+			[$width, $height, $type, $mime] = getimagesize($fichierSource);
 			
 			// crée l'image de fond
 			$fond 				= imagecreatetruecolor($width + $bordure_taille * 2, $height + $bordure_taille * 2);
@@ -184,7 +184,7 @@
 		$ligneHeight	= 1;
 		
 		// récup les tailles de l'image source
-		list($width, $height, $type, $mime) = getimagesize($fichierSource);
+		[$width, $height, $type, $mime] = getimagesize($fichierSource);
 		
 		// crée la ligne
 		$ligne 			= imagecreatetruecolor($width, $ligneHeight);
@@ -277,7 +277,7 @@
 			$output_height = $height;
 			
 			//	Have they given us a percentage?
-			if (substr($output_height, -1) == '%')
+			if (str_ends_with($output_height, '%'))
 			{
 				//	Yes, remove the % sign
 				$output_height = (int) substr($output_height, 0, -1);
@@ -309,7 +309,7 @@
 		
 		if (isset($fade_start))
 		{
-			if (strpos($fade_start, '%') !== false)
+			if (str_contains($fade_start, '%'))
 			{
 				$alpha_start = str_replace('%', '', $fade_start);
 				$alpha_start = (int) (127 * $alpha_start / 100);
@@ -331,7 +331,7 @@
 
 		if (isset($fade_end))
 		{
-			if (strpos($fade_end, '%') !== false)
+			if (str_contains($fade_end, '%'))
 			{
 				$alpha_end = str_replace('%', '', $fade_end);
 				$alpha_end = (int) (127 * $alpha_end / 100);
@@ -510,7 +510,7 @@
 	// retire les bordures d'une image
 	function retirerBordures($imagePath, $couleurTolerance) {
 	
-		list($width, $height, $type, $mime) = getimagesize($imagePath);
+		[$width, $height, $type, $mime] = getimagesize($imagePath);
 		
 		$im 			= imagecreatefromjpeg($imagePath);
 		$xTestDelta		= 2;

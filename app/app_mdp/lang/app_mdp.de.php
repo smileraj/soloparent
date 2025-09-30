@@ -1,6 +1,6 @@
 <?php
 
-$lang_appmdp = array(
+$lang_appmdp = [
 	
 	"MessagesParentSolo" => "SinglEltern.ch-Mitteilungen",	
 	
@@ -38,5 +38,5 @@ $lang_appmdp = array(
 	"LienNonValide" => "Dieser Link existiert nicht oder ist nicht mehr g&uuml;ltig",
 	"RecommencerProcedureMdpOublie" => "M&ouml;chten Sie den Vorgang \"Passwort vergessen\" erneut beginnen?",
 
-);
+];
 ?>

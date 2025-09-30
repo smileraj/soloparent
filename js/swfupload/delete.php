@@ -1,10 +1,10 @@
 <?php
 
 	// params
-	$upload_dir 	= isset($_REQUEST['upload_dir']) ? $_REQUEST['upload_dir'] : false;
-	$hash 			= isset($_REQUEST['hash']) ? $_REQUEST['hash'] : false;
-	$image_file 	= isset($_REQUEST['image_file']) ? $_REQUEST['image_file'] : false;
-	$phototemp 	= isset($_REQUEST['phototemp']) ? $_REQUEST['phototemp'] : false;
+	$upload_dir 	= $_REQUEST['upload_dir'] ?? false;
+	$hash 			= $_REQUEST['hash'] ?? false;
+	$image_file 	= $_REQUEST['image_file'] ?? false;
+	$phototemp 	= $_REQUEST['phototemp'] ?? false;
 	$error			= false;
 
 	// variables
@@ -19,12 +19,12 @@
 	}
 	
 	// numéro de l'image extrait de la source (ne fonctionne que pour 0 à 9), il y a mieux à faire plus tard pour améliorer
-	$image_num = substr($image_file, -5, 1);
+	$image_num = substr((string) $image_file, -5, 1);
 	
 	// type de photo à supprimer
-	if(preg_match('#enfant#', $image_file)) {
+	if(preg_match('#enfant#', (string) $image_file)) {
 		$photo_type = 'enfant';
-	} elseif(preg_match('#groupe#', $image_file)) {
+	} elseif(preg_match('#groupe#', (string) $image_file)) {
 		$photo_type = 'groupe';
 	} else {
 		$photo_type = 'profil';
@@ -42,9 +42,9 @@
 	} else {
 
 		// récup le user_id
-		$user_id = (int)preg_replace('#^images/profil/([0-9]+)/.*$#', '$1', $image_file);
+		$user_id = (int)preg_replace('#^images/profil/([0-9]+)/.*$#', '$1', (string) $image_file);
 		
-		$explode_file = explode('/',$image_file);
+		$explode_file = explode('/',(string) $image_file);
 		$user_id = $explode_file[2];
 		
 		// si le user_id (dossier) correspond bien au upload_dir de l'utilisateur log
@@ -56,9 +56,9 @@
 		
 		
 		// prefix
-		if(preg_match('#pending#', $image_file)) {
+		if(preg_match('#pending#', (string) $image_file)) {
 			$photo_prefix = 'pending-';
-		} elseif(preg_match('#temp#', $image_file)) {
+		} elseif(preg_match('#temp#', (string) $image_file)) {
 			$photo_prefix = 'temp-';
 		} else {
 			$photo_prefix = '';

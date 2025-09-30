@@ -12,7 +12,7 @@ unset($files[0]);
 else{
 $files=$files;
 }
-$filesFound = array();
+$filesFound = [];
 
 //initial data
 foreach($files as $file) {
@@ -28,7 +28,7 @@ $initialcount= count($filesFound);
 //pending count//;
  function filterpending($var) 
  { 
- return preg_match("/pending/i", $var);
+ return preg_match("/pending/i", (string) $var);
  }
  $pendingfiltered = array_filter($filesFound,'filterpending');
  $pendingcount=count($pendingfiltered);
@@ -36,7 +36,7 @@ $initialcount= count($filesFound);
  
  function filtertemp($var) 
  { 
- return preg_match("/temp/i", $var);
+ return preg_match("/temp/i", (string) $var);
  }
  $tempfiltered = array_filter($filesFound,'filtertemp');
  $tempcount=count($tempfiltered);
@@ -50,7 +50,7 @@ unset($files[0]);
 else{
 $files=$files;
 }
-$profilenumber=array();
+$profilenumber=[];
 $maxodend=0;
 foreach($files as $files)
 {
@@ -63,7 +63,7 @@ $maxodend=max($endposition);
 $maxvalue=$maxodend+1;
 if($initialcount<=6){
 if($varval!=''){if($upload_dir!=''){
-$img = preg_replace('#^data:image/[^;]+;base64,#', '', $varval);
+$img = preg_replace('#^data:image/[^;]+;base64,#', '', (string) $varval);
  $bin = base64_decode($img);
 //resize
 // Set a maximum height and width
@@ -108,13 +108,13 @@ imagepng($image_p_270);
 $data5 = ob_get_contents();
 ob_end_clean();
 //Store & Display
-$context = stream_context_create(array(   'gs' =>array(
+$context = stream_context_create([   'gs' =>[
         'acl'=> 'public-read', 
         'Content-Type' => 'image/jpeg', 
         'enable_cache' => true, 
         'enable_optimistic_cache' => true,
         'read_cache_expiry_seconds' => 300,
-    )));
+    ]]);
 //end resize
 file_put_contents('images/profil/'.$upload_dir.'/parent-solo-35-profil-'.$maxvalue.'.jpg', $data, false, $context);
 file_put_contents('images/profil/'.$upload_dir.'/parent-solo-89-profil-'.$maxvalue.'.jpg', $data2, false, $context);

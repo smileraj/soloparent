@@ -10,7 +10,7 @@
 
 	
 	// variables
-	$messages = array();
+	$messages = [];
 
 	
 	
@@ -36,7 +36,7 @@
 		global $db;
 		
 		$resultatParPage	= RESULTS_NB_LISTE_ADMIN;
-		$search				= array();
+		$search				= [];
 		$where				= null;
 		$_where				= '';
 		
@@ -138,7 +138,7 @@
 		$error		= false;
 		
 		// r�cup les donn�es
-		$data 		= getData(true);
+		$data 		= getData();
 		
 	
 		// v�rifs

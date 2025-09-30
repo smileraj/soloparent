@@ -76,14 +76,14 @@
 		}
 
 		// captcha
-		$row->captcha		= rand(1,9);
+		$row->captcha		= random_int(1,9);
 		$row->captchaMd5	= md5(date('m/Y').($row->captcha+1337));
 		
 		$query = "SELECT id, titre_".$_GET['lang']." as titre, texte_".$_GET['lang']." as texte FROM contenu WHERE id = 100";
 		$data = $db->loadObject($query);
 
 		// formulaire
-		mdp_HTML::mdp($data, $row, $messages);
+		(new mdp_HTML())->mdp($data, $row, $messages);
 
 	}
 
@@ -98,12 +98,12 @@
 		if($db->affected_rows()) {
 
 			// view
-			mdp_HTML::mdpChanged();
+			(new mdp_HTML())->mdpChanged();
 
 		} else {
 
 			// view
-			mdp_HTML::mdpError();
+			(new mdp_HTML())->mdpError();
 
 		}
 
@@ -112,14 +112,14 @@
 
 	function mdp_data() {
 		global $langue;
-		$_data	= array(
+		$_data	= [
 			'email' 		=> '',
 			'password' 		=> '',
 			'password2' 	=> '',
 			'captchaMd5' 	=> '',
 			'captcha' 		=> '',
 			'verif' 		=> ''
-		);
+		];
 		return $_data;
 	}
 
@@ -129,7 +129,7 @@
 		global $db, $user;
 
 		// gestion des messages d'erreurs
-		$messages			= array();
+		$messages			= [];
 
 
 		// données à récup
@@ -143,7 +143,7 @@
 
 
 		// email
-		if(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,3}$/', $_data['email'])) {
+		if(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,3}$/', (string) $_data['email'])) {
 			$messages[]	= '<span class="error">'.$lang_appmdp["IndiquerEmailValide"].'.</span>';
 		}else{
 
@@ -161,7 +161,7 @@
 			$messages[]	= '<span class="error">'.$lang_appmdp["IndiquezNouveauMdp"].'.</span>';
 		}
 
-		if($_data['password'] && !preg_match('/^[a-zA-Z0-9._-]+$/', $_data['password'])) {
+		if($_data['password'] && !preg_match('/^[a-zA-Z0-9._-]+$/', (string) $_data['password'])) {
 			$messages[]	= '<span class="error">'.$lang_appmdp["MdpIncorrect"].'.</span>';
 		}
 
@@ -212,7 +212,7 @@
 			
 
 			// intégration du texte et du template, ainsi que traitement des mots clés
-			$mailingTexte 	= JL::getMailHtml(SITE_PATH_ADMIN.'/app/app_mailing/template/'.$mailing->template, $mailing->titre, $mailing->texte, $userTemp->username, array($userTemp->lien,$_data['password']));
+			$mailingTexte 	= JL::getMailHtml(SITE_PATH_ADMIN.'/app/app_mailing/template/'.$mailing->template, $mailing->titre, $mailing->texte, $userTemp->username, [$userTemp->lien,$_data['password']]);
 
 			// envoi du mail
 			@JL::mail($_data['email'], $mailing->titre, $mailingTexte);

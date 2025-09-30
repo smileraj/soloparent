@@ -1,6 +1,6 @@
 <?php
 //Iniatialisation des variables
-$response = array();
+$response = [];
 // fonctions de redim d'images
 include('functions.php');
 

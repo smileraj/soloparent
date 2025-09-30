@@ -15,7 +15,7 @@
 
 
 	// gestion des messages d'erreurs
-	$messages	= array();
+	$messages	= [];
 
 
 	switch($action) {
@@ -48,12 +48,12 @@
 
 	function &flbl_data() {
 		global $langue;
-		$_data	= array(
+		$_data	= [
 				'username' 		=> '',
 				'user_id_to' 	=> '',
 				'description' 	=> '',
 				'list_type' 	=> ''
-			);
+			];
 		return $_data;
 	}
 
@@ -63,7 +63,7 @@
 		global $db, $user, $messages;
 
 		// variables
-		$where 		= array();
+		$where 		= [];
 		$_where		= '';
 
 		$where[]	= "uf.list_type = '".($list_type > 0 ? 1 : 0)."'";
@@ -92,7 +92,7 @@
 		if($added || $removed) {
 
 			// utilisateur cibl�
-			$user_id	= $added ? $added : $removed;
+			$user_id	= $added ?: $removed;
 
 			// r�cup le pseudo de l'utilisateur
 			$query = "SELECT u.username, up.genre"
@@ -128,7 +128,7 @@
 		}
 
 		// affiche la liste des messages
-		HTML_flbl::flblList($rows, $messages, $list_type);
+		(new HTML_flbl())->flblList($rows, $messages, $list_type);
 
 	}
 
@@ -183,7 +183,7 @@
 			$row->nb_enfants		= $user_to->nb_enfants;
 
 			// affiche la liste des messages
-			HTML_flbl::flblAdd($row, $messages);
+			(new HTML_flbl())->flblAdd($row, $messages);
 
 		} else {
 

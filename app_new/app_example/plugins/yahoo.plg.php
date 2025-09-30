@@ -1,5 +1,5 @@
 <?php
-$_pluginInfo=array(
+$_pluginInfo=[
 	'name'=>'Yahoo!',
 	'version'=>'1.5.5',
 	'description'=>"Get the contacts from a Yahoo! account",
@@ -7,9 +7,9 @@ $_pluginInfo=array(
 	'type'=>'email',
 	'check_url'=>'http://mail.yahoo.com',
 	'requirement'=>'email',
-	'allowed_domains'=>array('/(yahoo)/i','/(ymail)/i','/(rocketmail)/i'),
-	'imported_details'=>array('first_name','email_1'),
-	);
+	'allowed_domains'=>['/(yahoo)/i','/(ymail)/i','/(rocketmail)/i'],
+	'imported_details'=>['first_name','email_1'],
+	];
 /**
  * Yahoo! Plugin
  * 
@@ -23,12 +23,12 @@ class yahoo extends openinviter_base
 	private $login_ok=false;
 	public $showContacts=true;
 	protected $timeout=30;
-	public $debug_array=array(
+	public $debug_array=[
 			  'initial_get'=>'util.Event.addListener',
 			  'login_post'=>'window.location.replace',
 			  'print_page'=>'field[allc]',
 			  'contacts_file'=>'"'
-			  );
+			  ];
 	
 	/**
 	 * Login function
@@ -92,7 +92,7 @@ class yahoo extends openinviter_base
 			}
 		else
 			$url=$this->login_ok;
-		$contacts=array();		
+		$contacts=[];		
 		$res=$this->get($url,true);
 		if ($this->checkResponse("print_page",$res))		
 			$this->updateDebugBuffer('print_page',"{$url}",'GET');
@@ -104,15 +104,15 @@ class yahoo extends openinviter_base
 			return false;
 			}
 			
-		$post_elements=array('VPC'=>'print',
+		$post_elements=['VPC'=>'print',
 							 'field[allc]'=>1,
 							 'field[catid]'=>0,
 							 'field[style]'=>'detailed',
 							 'submit[action_display]'=>'Display for Printing'
-							);
+							];
 		$res=$this->post("http://address.mail.yahoo.com/?_src=&VPC=print",$post_elements);
-		$emailA=array();$bulk=array();
-		$res=str_replace(array('  ','	',PHP_EOL,"\n","\r\n"),array('','','','',''),$res);
+		$emailA=[];$bulk=[];
+		$res=str_replace(['  ','	',PHP_EOL,"\n","\r\n"],['','','','',''],$res);
 		preg_match_all("#\<tr class\=\"phead\"\>\<td colspan\=\"2\"\>(.+)\<\/tr\>(.+)\<div class\=\"first\"\>\<\/div\>\<div\>\<\/div\>(.+)\<\/div\>#U",$res,$bulk);
 		if (!empty($bulk))
 			{
@@ -122,9 +122,9 @@ class yahoo extends openinviter_base
 				if (preg_match('/\&nbsp\;\-\&nbsp\;/',$nameFormated)) 
 					{
 					$emailA=explode('&nbsp;-&nbsp;',$nameFormated);
-					if (!empty($emailA[1])) $contacts[$emailA[1].'@yahoo.com']=array('first_name'=>$emailA[0],'email_1'=>$emailA[1].'@yahoo.com');
+					if (!empty($emailA[1])) $contacts[$emailA[1].'@yahoo.com']=['first_name'=>$emailA[0],'email_1'=>$emailA[1].'@yahoo.com'];
 					}
-				elseif (!empty($bulk[3][$key])) { $email=strip_tags(trim($bulk[3][$key])); $contacts[$email]=array('first_name'=>$nameFormated,'email_1'=>$email); }
+				elseif (!empty($bulk[3][$key])) { $email=strip_tags(trim($bulk[3][$key])); $contacts[$email]=['first_name'=>$nameFormated,'email_1'=>$email]; }
 				}
 			}			
 		foreach ($contacts as $email=>$name) if (!$this->isEmail($email)) unset($contacts[$email]);

@@ -7,7 +7,7 @@
 
 	
 	// variables
-	$messages = array();
+	$messages = [];
 	
 	switch($action) {
 				

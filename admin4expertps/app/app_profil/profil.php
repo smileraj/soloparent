@@ -9,7 +9,7 @@
 	
 	
 	// variables
-	$messages = array();
+	$messages = [];
 
 	
 	
@@ -96,7 +96,7 @@
 			
 			// variables par d�faut
 			foreach($data as $k => $v) {
-				$userObj->{$k} = $v ? $v : $userObj->{$k};
+				$userObj->{$k} = $v ?: $userObj->{$k};
 			}
 			
 			
@@ -108,9 +108,9 @@
 			." LIMIT 0,1"
 			;
 			$abonnement_carte = $db->loadObject($query);
-			$userObj->abonnement_carte = $abonnement_carte->datetime ? $abonnement_carte->datetime : false;
+			$userObj->abonnement_carte = $abonnement_carte->datetime ?: false;
 			
-			if($userObj>abonnement_carte){
+			if($userObj>\ABONNEMENT_CARTE){
 				$userObj->abonnement_carte_nom = $abonnement_carte->nom_paypal;
 				$userObj->abonnement_carte_prenom = $abonnement_carte->prenom_paypal;
 				$userObj->abonnement_carte_valide = $abonnement_carte->valide;
@@ -141,8 +141,8 @@
 		
 		// variables
 		$resultatParPage		= RESULTS_NB_LISTE_ADMIN;
-		$search					= array();
-		$where					= array();
+		$search					= [];
+		$where					= [];
 		$_where					= '';
 		
 		// params
@@ -222,7 +222,7 @@
 		// parcourt la lsite des utilisateurs avec photo � valider
 		$usersTotal	= count($users);
 		for($i=0; $i<$usersTotal; $i++) {
-			$users[$i]->photos = array();
+			$users[$i]->photos = [];
 			
 			// parcourt le r�pertoire de photos de l'utilisateur
 			$dir = '../images/profil/'.$users[$i]->user_id;
@@ -250,7 +250,7 @@
 		global $db, $messages;
 		
 		// params
-		$photos = JL::getVar('photo', array());
+		$photos = JL::getVar('photo', []);
 		$task 	= JL::getVar('task', '');
 		
 		// variables
@@ -261,7 +261,7 @@
 			
 			foreach($photos as $photo) {
 				
-				$photoTmp	= explode('_', $photo);
+				$photoTmp	= explode('_', (string) $photo);
 				$user_id	= $photoTmp[0];
 				$file		= $photoTmp[1];
 				
@@ -351,7 +351,7 @@
 		global $db, $messages;
 		
 		// params
-		$textes = JL::getVar('texte', array());
+		$textes = JL::getVar('texte', []);
 		$task 	= JL::getVar('task', '');
 		
 		// variables

@@ -13,7 +13,7 @@ abstract class openinviter_base
 	protected $session_id;
 	private $curl;
 	private $has_errors=false;
-	private $debug_buffer=array();
+	private $debug_buffer=[];
 	public $service;
 	public $service_user;
 	public $service_password;
@@ -36,7 +36,7 @@ abstract class openinviter_base
 	 */
 	protected function getElementDOM($string_bulk,$query,$attribute=false)
 		{
-		$search_val=array();
+		$search_val=[];
 		$doc=new DOMDocument();
 		libxml_use_internal_errors(true);
 		if (!empty($string_bulk)) $doc->loadHTML($string_bulk);
@@ -67,9 +67,9 @@ abstract class openinviter_base
 	 */
 	protected function getElementString($string_to_search,$string_start,$string_end)
 		{
-		if (strpos($string_to_search,$string_start)===false)
+		if (!str_contains($string_to_search,$string_start))
 			return false;
-		if (strpos($string_to_search,$string_end)===false)
+		if (!str_contains($string_to_search,$string_end))
 			return false;
 		$start=strpos($string_to_search,$string_start)+strlen($string_start);$end=strpos($string_to_search,$string_end,$start);
 		$return=substr($string_to_search,$start,$end-$start);
@@ -126,8 +126,8 @@ abstract class openinviter_base
 			if (empty($line)) continue;
 			$fields = preg_split($expr,trim($line));
 			$fields = preg_replace("/^\"(.*)\"$/","$1",$fields);
-			$_res=array();
-			foreach ($field_names as $key => $f) $_res[$f] = (isset($fields[$key])?$fields[$key]:false);
+			$_res=[];
+			foreach ($field_names as $key => $f) $_res[$f] = ($fields[$key] ?? false);
 			$res[] = $_res;
 			}
 		if(!empty($res)) return $res;else return false;
@@ -145,11 +145,11 @@ abstract class openinviter_base
 	 */
 	protected function followLocation($result,$old_url)
 		{
-		if ((strpos($result,"HTTP/1.1 3")===false) AND (strpos($result,"HTTP/1.0 3")===false)) return false;
+		if ((!str_contains($result,"HTTP/1.1 3")) AND (!str_contains($result,"HTTP/1.0 3"))) return false;
 		$new_url=trim($this->getElementString($result,"Location: ",PHP_EOL));
 		if (empty($new_url)) $new_url=trim($this->getElementString($result,"location: ",PHP_EOL));
 		if (!empty($new_url))
-			if (strpos($new_url,'http')===false)
+			if (!str_contains($new_url,'http'))
 				{
 				$temp=parse_url($old_url);
 				$new_url=$temp['scheme'].'://'.$temp['host'].($new_url[0]=='/'?'':'/').$new_url;
@@ -179,7 +179,7 @@ abstract class openinviter_base
 	 */
 	public function getSessionID()
 		{
-		return (empty($this->session_id)?time().'.'.rand(1,10000):$this->session_id);
+		return (empty($this->session_id)?time().'.'.random_int(1,10000):$this->session_id);
 		}
 	
 	protected function startSession($session_id=false)
@@ -273,8 +273,8 @@ abstract class openinviter_base
 			curl_setopt($this->curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_0);
 			curl_setopt($this->curl, CURLOPT_RETURNTRANSFER,true);
 			curl_setopt($this->curl, CURLOPT_COOKIEJAR, $file);
-			if (strtoupper (substr(PHP_OS, 0,3))== 'WIN') curl_setopt($this->curl, CURLOPT_CONNECTTIMEOUT, (isset($this->timeout)?$this->timeout:5)/2);
-			else  curl_setopt($this->curl, CURLOPT_TIMEOUT, (isset($this->timeout)?$this->timeout:5));
+			if (strtoupper (substr(PHP_OS, 0,3))== 'WIN') curl_setopt($this->curl, CURLOPT_CONNECTTIMEOUT, ($this->timeout ?? 5)/2);
+			else  curl_setopt($this->curl, CURLOPT_TIMEOUT, ($this->timeout ?? 5));
 			curl_setopt($this->curl, CURLOPT_AUTOREFERER, TRUE);
 			if ($this->proxy)
 				{
@@ -302,7 +302,7 @@ abstract class openinviter_base
 	 * @param array $headers An array of custom headers to be sent to the server
 	 * @return mixed The request response or FALSE if the response if empty.
 	 */
-	protected function get($url,$follow=false,$header=false,$quiet=true,$referer=false,$headers=array())
+	protected function get($url,$follow=false,$header=false,$quiet=true,$referer=false,$headers=[])
 		{
 		if ($this->settings['transport']=='curl')
 			{
@@ -311,7 +311,7 @@ abstract class openinviter_base
 			curl_setopt($this->curl, CURLOPT_HTTPGET ,true);
 			if ($headers)
 				{
-				$curl_headers=array();
+				$curl_headers=[];
 				foreach ($headers as $header_name=>$value)
 					$curl_headers[]="{$header_name}: {$value}";
 				curl_setopt($this->curl,CURLOPT_HTTPHEADER,$curl_headers);
@@ -332,7 +332,7 @@ abstract class openinviter_base
 		elseif ($this->settings['transport']=='wget')
 			{	
 			$string_wget="--user-agent=\"Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.1) Gecko/2008070208 Firefox/3.0.1\"";
-			$string_wget.=" --timeout=".(isset($this->timeout)?$this->timeout:5);
+			$string_wget.=" --timeout=".($this->timeout ?? 5);
 			$string_wget.=" --no-check-certificate";
 			$string_wget.=" --load-cookies ".$this->getCookiePath();
 			if ($headers)
@@ -385,7 +385,7 @@ abstract class openinviter_base
 	 * @param bool $quiet If FALSE it will output detailed request header information
 	 * @return mixed The request response or FALSE if the response if empty.
 	 */
-	protected function post($url,$post_elements,$follow=false,$header=false,$referer=false,$headers=array(),$raw_data=false,$quiet=true)
+	protected function post($url,$post_elements,$follow=false,$header=false,$referer=false,$headers=[],$raw_data=false,$quiet=true)
 		{
 		$flag=false;
 		if ($raw_data)
@@ -397,7 +397,7 @@ abstract class openinviter_base
 				{
 				if ($flag)
 					$elements.='&';
-				$elements.="{$name}=".urlencode($value);
+				$elements.="{$name}=".urlencode((string) $value);
 				$flag=true;
 				}
 			}
@@ -407,7 +407,7 @@ abstract class openinviter_base
 			curl_setopt($this->curl, CURLOPT_POST,true);
 			if ($headers)
 				{
-				$curl_headers=array();
+				$curl_headers=[];
 				foreach ($headers as $header_name=>$value)
 					$curl_headers[]="{$header_name}: {$value}";
 				curl_setopt($this->curl,CURLOPT_HTTPHEADER,$curl_headers);
@@ -429,7 +429,7 @@ abstract class openinviter_base
 		elseif ($this->settings['transport']=='wget')
 			{
 			$string_wget="--user-agent=\"Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.1) Gecko/2008070208 Firefox/3.0.1\"";
-			$string_wget.=" --timeout=".(isset($this->timeout)?$this->timeout:5);
+			$string_wget.=" --timeout=".($this->timeout ?? 5);
 			$string_wget.=" --no-check-certificate";
 			$string_wget.=" --load-cookies ".$this->getCookiePath();
 			if (!empty($headers))
@@ -496,7 +496,7 @@ abstract class openinviter_base
 	protected function checkResponse($step,$server_response)
 		{
 		if (empty($server_response)) return false;
-		if (strpos($server_response,$this->debug_array[$step])===false) return false;
+		if (!str_contains($server_response,(string) $this->debug_array[$step])) return false;
 		return true;
 		}
 	
@@ -547,10 +547,10 @@ abstract class openinviter_base
 	 */
 	protected function updateDebugBuffer($step,$url,$method,$response=true,$elements=false)
 		{
-		$this->debug_buffer[$step]=array(
+		$this->debug_buffer[$step]=[
 			'url'=>$url,
 			'method'=>$method
-		);
+		];
 		if ($elements)
 			foreach ($elements as $name=>$value)
 				$this->debug_buffer[$step]['elements'][$name]=$value;
@@ -587,12 +587,12 @@ abstract class openinviter_base
 			$debug_xml.="<step name='{$step}'>\n";
 			$debug_xml.="<url>".makeSafe($details['url'])."</url>\n";
 			$debug_xml.="<method>{$details['method']}</method>\n";
-			if (strtoupper($details['method'])=='POST')
+			if (strtoupper((string) $details['method'])=='POST')
 				{
 				$debug_xml.="<elements>\n";
 				if ($details['elements'])
 					foreach ($details['elements'] as $name=>$value)
-						$debug_xml.="<element name='".urlencode($name)."' value='".urlencode($value)."'></element>\n";
+						$debug_xml.="<element name='".urlencode((string) $name)."' value='".urlencode((string) $value)."'></element>\n";
 				$debug_xml.="</elements>\n";
 				}
 			$debug_xml.="<response>{$details['response']}</response>\n";
@@ -622,7 +622,7 @@ abstract class openinviter_base
 			$debug_human.="\t{$step} :\n";
 			$debug_human.="\t\tURL: {$details['url']}\n";
 			$debug_human.="\t\tMETHOD: {$details['method']}\n";
-			if (strtoupper($details['method'])=='POST')
+			if (strtoupper((string) $details['method'])=='POST')
 				{
 				$debug_human.="\t\tELEMENTS: ";
 				if ($details['elements'])
@@ -675,7 +675,7 @@ abstract class openinviter_base
 		else
 			{
 			libxml_use_internal_errors(true);
-			$parse_res=simplexml_load_string($debug_response);
+			$parse_res=simplexml_load_string((string) $debug_response);
 			libxml_use_internal_errors(false);
 			if (!$parse_res)
 				{
@@ -727,13 +727,13 @@ abstract class openinviter_base
 	protected function resetDebugger()	
 		{
 		$this->has_errors=false;
-		$this->debug_buffer=array();
+		$this->debug_buffer=[];
 		}
 		 
 	protected function returnContacts($contacts)
 		{
-		$returnedContacts=array();
-		$fullImport=array('first_name','middle_name','last_name','nickname','email_1','email_2','email_3','organization','phone_mobile','phone_home','phone_work','fax','pager','address_home','address_city','address_state','address_country','postcode_home','company_work','address_work','address_work_city','address_work_country','address_work_state','address_work_postcode','fax_work','phone_work','website','isq_messenger','skype_messenger','skype_messenger','msn_messenger','yahoo_messenger','aol_messenger','other_messenger');
+		$returnedContacts=[];
+		$fullImport=['first_name','middle_name','last_name','nickname','email_1','email_2','email_3','organization','phone_mobile','phone_home','phone_work','fax','pager','address_home','address_city','address_state','address_country','postcode_home','company_work','address_work','address_work_city','address_work_country','address_work_state','address_work_postcode','fax_work','phone_work','website','isq_messenger','skype_messenger','skype_messenger','msn_messenger','yahoo_messenger','aol_messenger','other_messenger'];
 		if (empty($this->settings['fImport']))
 			{
 			foreach($contacts as $keyImport=>$arrayImport) 

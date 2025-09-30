@@ -5,7 +5,7 @@
 	
 	class footerView extends JLView {
 	
-		function footerView() {}
+		function __construct() {}
 		
 		// v&eacute;rifie si l'utilisateur veut se log ou est log, et renseigne la variable global $user
 		function display() {

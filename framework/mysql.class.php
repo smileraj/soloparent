@@ -14,7 +14,10 @@ class DB
         }
         mysqli_set_charset($this->connection, 'utf8');
     }
-    
+    public function insert_id() {
+    return mysqli_insert_id($this->connection);
+}
+
 public function query(string $sql)
 {
     $this->result = mysqli_query($this->connection, $sql);
@@ -34,16 +37,13 @@ public function escape(string $value): string
 
     public static function getVar(string $name, mixed $default = null, string $scope = 'request'): mixed
     {
-        switch (strtolower($scope)) {
-            case 'get':
-                return $_GET[$name] ?? $default;
-            case 'post':
-                return $_POST[$name] ?? $default;
-            case 'session':
-                return $_SESSION[$name] ?? $default;
-            default: // request
-                return $_REQUEST[$name] ?? $default;
-        }
+        return match (strtolower($scope)) {
+            'get' => $_GET[$name] ?? $default,
+            'post' => $_POST[$name] ?? $default,
+            'session' => $_SESSION[$name] ?? $default,
+            // request
+            default => $_REQUEST[$name] ?? $default,
+        };
     }
     public function getConnexion() {
         return $this->connection;
@@ -150,7 +150,7 @@ public function escape(string $value): string
             $mail->isHTML(true);
 
             return $mail->send();
-        } catch (Exception $e) {
+        } catch (Exception) {
             error_log("PHPMailer Error: " . $mail->ErrorInfo);
             return false;
         }

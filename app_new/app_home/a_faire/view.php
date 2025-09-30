@@ -5,10 +5,10 @@
 	
 	class homeView extends JLView {
 	
-		function homeView() {}
+		function __construct() {}
 		
 		
-		function display($auth='', &$profils, &$list, &$colonne_1, &$colonne_2, &$colonne_3, &$colonne_4, &$partenaire_l, &$actualites, &$partenaire_r) {
+		function display($auth='', &$profils = null, &$list = null, &$colonne_1 = null, &$colonne_2 = null, &$colonne_3 = null, &$colonne_4 = null, &$partenaire_l = null, &$actualites = null, &$partenaire_r = null) {
 			include("lang/app_home.".$_GET['lang'].".php");
 			global $db, $template;
 			

@@ -1,6 +1,6 @@
 <?php
 
-$lang_mod = array(
+$lang_mod = [
 "More_events"=>"Alle Veranstaltungen",
 "Events_title"=>"Veranstaltungen",
 	//--------------error404---------------------------
@@ -225,5 +225,5 @@ $lang_mod = array(
 	"Tarifs" => "Preise",
 	"Copyright" => "Copyright &copy; 2009 - ".date('Y')." - SinglEltern.ch",
 
-);
+];
 ?>

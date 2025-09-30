@@ -20,8 +20,8 @@
 			//recupere les noms et les emails dans le tableau contact
 			$j=0;
 			for($i=0; $i<sizeof($tab);$i++){
-				if(ereg("Array",$tab[$i]) == false){
-					if(ereg("=>",$tab[$i])){
+				if(preg_match("#Array#m",$tab[$i]) == false){
+					if(preg_match("#=>#m",$tab[$i])){
 						$tmp = explode("=> ",$tab[$i]);
 						$contact[$j] = $tmp[1];	
 						$j++;

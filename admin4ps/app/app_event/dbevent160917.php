@@ -14,24 +14,24 @@ $date = date('d-m-Y');
 $query='select max(start_date)as maxdate from events_creations';
  $usresult = mysql_query ($query);
  while($row=mysql_fetch_array($usresult)){
- $maxdate=date('d-m-Y',strtotime($row['maxdate']));
+ $maxdate=date('d-m-Y',strtotime((string) $row['maxdate']));
  }
  $query='select max(end_date)as emaxdate from events_creations';
  $usresult = mysql_query ($query);
  while($row=mysql_fetch_array($usresult)){
- $emaxdate=date('d-m-Y',strtotime($row['emaxdate']));
+ $emaxdate=date('d-m-Y',strtotime((string) $row['emaxdate']));
  }
 
- $finalvalue[]=array($maxdate,$emaxdate,$date);
+ $finalvalue[]=[$maxdate,$emaxdate,$date];
 echo json_encode($finalvalue);
 }
  if($SAVE=='Save'){
 $name=$db->escape($_REQUEST['txt_evt_name']);
  $desc=$db->escape($_REQUEST['txt_evt_desc']);
- $sdate=date('Y-m-d',strtotime($_REQUEST['txt_evt_sdate']));
- $edate=date('Y-m-d',strtotime($_REQUEST['txt_evt_edate']));
+ $sdate=date('Y-m-d',strtotime((string) $_REQUEST['txt_evt_sdate']));
+ $edate=date('Y-m-d',strtotime((string) $_REQUEST['txt_evt_edate']));
   $userid=$_REQUEST['userid'];
-  $random=rand(1, 1000000);
+  $random=random_int(1, 1000000);
  $imgidentity=$userid.'_'.$random;
    $usquery="select username from user where id=$userid";
  $usresult = mysql_query ($usquery);
@@ -40,8 +40,8 @@ $name=$db->escape($_REQUEST['txt_evt_name']);
  }
  //logoname
   $target_dir = "../../../images/events/";
-$target_file = $target_dir .$imgidentity.'_'.basename($_FILES["txt_evt_logo"]["name"]);
-$filename=$imgidentity.'_'.basename($_FILES["txt_evt_logo"]["name"]);
+$target_file = $target_dir .$imgidentity.'_'.basename((string) $_FILES["txt_evt_logo"]["name"]);
+$filename=$imgidentity.'_'.basename((string) $_FILES["txt_evt_logo"]["name"]);
 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
 && $imageFileType != "gif" ) {
@@ -54,7 +54,7 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
 else{
  $query1="INSERT INTO events_creations(event_name,event_desc,start_date,end_date,uservalue,username,filename)VALUES('$name','$desc','$sdate','$edate',$userid,'$useranme','$filename')";
  $result1 = mysql_query ($query1);
- if($result1!=mysql_query){
+ if($result1!=\MYSQL_QUERY){
  }
  else
  {
@@ -107,35 +107,35 @@ $result1=mysql_query($editquery);
 while($row=mysql_fetch_array($result1)){
 $id=$row['id'];
 $photoname=$row['filename'];
-$evtname=stripslashes($row['event_name']);
-$evtdesc=stripslashes($row['event_desc']);
-$sdate=date('d-m-Y',strtotime($row['start_date']));
-$edate=date('d-m-Y',strtotime($row['end_date']));
+$evtname=stripslashes((string) $row['event_name']);
+$evtdesc=stripslashes((string) $row['event_desc']);
+$sdate=date('d-m-Y',strtotime((string) $row['start_date']));
+$edate=date('d-m-Y',strtotime((string) $row['end_date']));
 }
 $target_dir = "../images/events/";
 $target_file = $target_dir .$photoname;
-$finalvalue[]=array($id,utf8_encode($evtname),utf8_encode($evtdesc),$sdate,$edate,$target_file,$photoname);
+$finalvalue[]=[$id,mb_convert_encoding((string) $evtname, 'UTF-8', 'ISO-8859-1'),mb_convert_encoding((string) $evtdesc, 'UTF-8', 'ISO-8859-1'),$sdate,$edate,$target_file,$photoname];
 echo json_encode($finalvalue);
 }
 if($update=='Update'){
 $id=$_REQUEST['rowid'];
  $name=$db->escape($_REQUEST['txt_evt_name']);
  $desc=$db->escape($_REQUEST['txt_evt_desc']);
- $sdate=date('Y-m-d',strtotime($_REQUEST['txt_evt_sdate']));
- $edate=date('Y-m-d',strtotime($_REQUEST['txt_evt_edate']));
+ $sdate=date('Y-m-d',strtotime((string) $_REQUEST['txt_evt_sdate']));
+ $edate=date('Y-m-d',strtotime((string) $_REQUEST['txt_evt_edate']));
  $userid=$_REQUEST['userid'];
-  $random=rand(1, 1000000);
+  $random=random_int(1, 1000000);
  $imgidentity=$userid.'_'.$random;
-$imagename=basename($_FILES["txt_evt_logo"]["name"]);
+$imagename=basename((string) $_FILES["txt_evt_logo"]["name"]);
  if($imagename==''){
  $filename=$_REQUEST['imageid'];
-  $imageFileType = pathinfo($filename,PATHINFO_EXTENSION);
+  $imageFileType = pathinfo((string) $filename,PATHINFO_EXTENSION);
 
  }
  else{
 $target_dir = "../../../images/events/";
-$target_file = $target_dir .$imgidentity.'_'.basename($_FILES["txt_evt_logo"]["name"]);
-$filename=$imgidentity.'_'.basename($_FILES["txt_evt_logo"]["name"]);
+$target_file = $target_dir .$imgidentity.'_'.basename((string) $_FILES["txt_evt_logo"]["name"]);
+$filename=$imgidentity.'_'.basename((string) $_FILES["txt_evt_logo"]["name"]);
 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 
 }
@@ -150,7 +150,7 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
 else{
  $update="UPDATE events_creations SET event_name='$name',event_desc='$desc',start_date='$sdate',end_date='$edate',filename='$filename' where id=$id ";
  $getvalue= mysql_query ($update);
- if($getvalue!=mysql_query){
+ if($getvalue!=\MYSQL_QUERY){
  
  }
  else
@@ -207,7 +207,7 @@ $error = $_FILES["txt_evt_logo"]["error"];
  $id=$_REQUEST['delid'];
  $delete="DELETE FROM events_creations where id=$id ";
  $delvalue= mysql_query ($delete);
- if($delvalue!=mysql_query){
+ if($delvalue!=\MYSQL_QUERY){
  echo '0';
  }
  else

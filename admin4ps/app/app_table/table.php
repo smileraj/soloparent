@@ -10,7 +10,7 @@
 
 	
 	// variables
-	$messages = array();
+	$messages = [];
 
 	
 	
@@ -48,7 +48,7 @@
 		$table 	= JL::getVar('table', '');
 		
 		$resultatParPage	= RESULTS_NB_LISTE_ADMIN;
-		$search				= array();
+		$search				= [];
 		$where				= null;
 		$_where				= '';
 		
@@ -136,7 +136,7 @@
 		$error		= false;
 		
 		// r�cup les donn�es
-		$data 		= getData(true);
+		$data 		= getData();
 		
 	
 		// v�rifs

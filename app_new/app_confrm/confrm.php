@@ -16,25 +16,19 @@
 	}else{
 		$langString = "_".$_GET['lang'];
 	}
-	switch($action) {
-
-		case 'confirmation':
-			/* if(!$user->id && $groupe_type != 'all') {
-				JL::redirect(SITE_URL.'/index.php?app=profil&action=inscription'.'&'.$langue);
-			} */
-confirmation();		
-		break;
-		default:
-			JL::loadApp('404');
-		break;
-
-	}
+	match ($action) {
+        /* if(!$user->id && $groupe_type != 'all') {
+        				JL::redirect(SITE_URL.'/index.php?app=profil&action=inscription'.'&'.$langue);
+        			} */
+        'confirmation' => confirmation(),
+        default => JL::loadApp('404'),
+    };
 	// fiche détaillées d'un groupe
 	function confirmation() {
 	global $langue;
 global $db, $user;
-		$url_ID=base64_decode(base64_decode($_GET['urlid']));
-		$user_ID=base64_decode(base64_decode($_GET['cnfrmid']));
+		$url_ID=base64_decode(base64_decode((string) $_GET['urlid']));
+		$user_ID=base64_decode(base64_decode((string) $_GET['cnfrmid']));
 	
 	if($user_ID!='' && $url_ID!='' ){
 $query = "SELECT username, email, id  FROM user WHERE id='".$user_ID."' AND email = '".$url_ID."' AND user_status_code='0'";

@@ -9,7 +9,7 @@
 
 	class fairepartController extends JLController {
 
-		function fairepartController($appLoad) {
+		function __construct($appLoad) {
 			parent::JLController($appLoad); // obligatoire pour l'instanciation
 			global $langue;
 

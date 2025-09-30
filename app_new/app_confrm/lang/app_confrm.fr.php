@@ -1,6 +1,6 @@
 <?php
 
-$lang_confrm = array(
+$lang_confrm = [
 
 	//------------------Page cnfrm.html.php ---------
 
@@ -10,6 +10,6 @@ $lang_confrm = array(
 	"click_here" => "Cliquez ici",
 
 	
-);
+];
 
 ?>

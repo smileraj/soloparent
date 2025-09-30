@@ -22,7 +22,7 @@ $NCERROR=$_GET['NCERROR'];
 $BRAND=$_GET['BRAND'];
 $SHASIGN=$_GET['SHASIGN'];
 $CARDNO=$_GET['CARDNO'];
-$custormersplit=split('_',$customerid);
+$custormersplit=preg_split('#_#m',(string) $customerid);
 $userid=$custormersplit[0];
 $query="SELECT email,id from user where username='$customername'";
 $user= $db->loadObject($query);
@@ -68,7 +68,7 @@ $query = "INSERT INTO postfinance SET"
 	$req = 'cmd=_notify-validate';
 
 	foreach ($_POST as $key => $value) {
-		$value = urlencode(stripslashes($value));
+		$value = urlencode(stripslashes((string) $value));
 		$req .= "&$key=$value";
 	}
 
@@ -142,56 +142,20 @@ $query = "INSERT INTO postfinance SET"
 							$horaire_subscr_date = $arg2[0];
 							$jour_subscr_date = $arg2[2];
 							
-							switch($arg2[1]){
-								
-								case 'Feb':
-									$mois_subscr_date = '02';
-								break;
-								
-								case 'Mar':
-									$mois_subscr_date = '03';
-								break;
-								
-								case 'Apr':
-									$mois_subscr_date = '04';
-								break;
-								
-								case 'May':
-									$mois_subscr_date = '05';
-								break;
-								
-								case 'Jun':
-									$mois_subscr_date = '06';
-								break;
-								
-								case 'Jul':
-									$mois_subscr_date = '07';
-								break;
-								
-								case 'Aug':
-									$mois_subscr_date = '08';
-								break;
-								
-								case 'Sep':
-									$mois_subscr_date = '09';
-								break;
-								
-								case 'Oct':
-									$mois_subscr_date = '10';
-								break;
-								
-								case 'Nov':
-									$mois_subscr_date = '11';
-								break;
-								
-								case 'Dec':
-									$mois_subscr_date = '12';
-								break;
-								
-								default:
-									$mois_subscr_date = '01';
-								break;
-							}
+							$mois_subscr_date = match ($arg2[1]) {
+                                'Feb' => '02',
+                                'Mar' => '03',
+                                'Apr' => '04',
+                                'May' => '05',
+                                'Jun' => '06',
+                                'Jul' => '07',
+                                'Aug' => '08',
+                                'Sep' => '09',
+                                'Oct' => '10',
+                                'Nov' => '11',
+                                'Dec' => '12',
+                                default => '01',
+                            };
 							
 							$date_souscription = $annee_subscr_date.'-'.$mois_subscr_date.'-'.$jour_subscr_date.' '.$horaire_subscr_date;
 							
@@ -237,7 +201,7 @@ $query = "INSERT INTO postfinance SET"
 							$date	= explode('-', date('Y-m-d'));
 						} else {
 							// parse la date de fin d'abonnement
-							$date	= explode('-', $userProfil->date_reference);
+							$date	= explode('-', (string) $userProfil->date_reference);
 			
 						}
 	                    $jour	= $date[2];
@@ -260,56 +224,20 @@ $query = "INSERT INTO postfinance SET"
 							$horaire_payment_date = $arg2[0];
 							$jour_payment_date = $arg2[2];
 							
-							switch($arg2[1]){
-								
-								case 'Feb':
-									$mois_payment_date = '02';
-								break;
-								
-								case 'Mar':
-									$mois_payment_date = '03';
-								break;
-								
-								case 'Apr':
-									$mois_payment_date = '04';
-								break;
-								
-								case 'May':
-									$mois_payment_date = '05';
-								break;
-								
-								case 'Jun':
-									$mois_payment_date = '06';
-								break;
-								
-								case 'Jul':
-									$mois_payment_date = '07';
-								break;
-								
-								case 'Aug':
-									$mois_payment_date = '08';
-								break;
-								
-								case 'Sep':
-									$mois_payment_date = '09';
-								break;
-								
-								case 'Oct':
-									$mois_payment_date = '10';
-								break;
-								
-								case 'Nov':
-									$mois_payment_date = '11';
-								break;
-								
-								case 'Dec':
-									$mois_payment_date = '12';
-								break;
-								
-								default:
-									$mois_payment_date = '01';
-								break;
-							}
+							$mois_payment_date = match ($arg2[1]) {
+                                'Feb' => '02',
+                                'Mar' => '03',
+                                'Apr' => '04',
+                                'May' => '05',
+                                'Jun' => '06',
+                                'Jul' => '07',
+                                'Aug' => '08',
+                                'Sep' => '09',
+                                'Oct' => '10',
+                                'Nov' => '11',
+                                'Dec' => '12',
+                                default => '01',
+                            };
 							
 							$date_payment = $annee_payment_date.'-'.$mois_payment_date.'-'.$jour_payment_date.' '.$horaire_payment_date;
 						}
@@ -500,56 +428,20 @@ table.ncoltable1 {
 							$horaire_subscr_date = $arg2[0];
 							$jour_subscr_date = $arg2[2];
 							
-							switch($arg2[1]){
-								
-								case 'Feb':
-									$mois_subscr_date = '02';
-								break;
-								
-								case 'Mar':
-									$mois_subscr_date = '03';
-								break;
-								
-								case 'Apr':
-									$mois_subscr_date = '04';
-								break;
-								
-								case 'May':
-									$mois_subscr_date = '05';
-								break;
-								
-								case 'Jun':
-									$mois_subscr_date = '06';
-								break;
-								
-								case 'Jul':
-									$mois_subscr_date = '07';
-								break;
-								
-								case 'Aug':
-									$mois_subscr_date = '08';
-								break;
-								
-								case 'Sep':
-									$mois_subscr_date = '09';
-								break;
-								
-								case 'Oct':
-									$mois_subscr_date = '10';
-								break;
-								
-								case 'Nov':
-									$mois_subscr_date = '11';
-								break;
-								
-								case 'Dec':
-									$mois_subscr_date = '12';
-								break;
-								
-								default:
-									$mois_subscr_date = '01';
-								break;
-							}
+							$mois_subscr_date = match ($arg2[1]) {
+                                'Feb' => '02',
+                                'Mar' => '03',
+                                'Apr' => '04',
+                                'May' => '05',
+                                'Jun' => '06',
+                                'Jul' => '07',
+                                'Aug' => '08',
+                                'Sep' => '09',
+                                'Oct' => '10',
+                                'Nov' => '11',
+                                'Dec' => '12',
+                                default => '01',
+                            };
 							
 							$date_annulation = $annee_subscr_date.'-'.$mois_subscr_date.'-'.$jour_subscr_date.' '.$horaire_subscr_date;
 							

@@ -11,10 +11,10 @@ if ($isLocal) {
     define('DB_PASSWORD', 'NewStrongPassword');
     define('DB_DATABASE', 'parentsolo');
 } else {
-    define('DB_SERVER',   'blatmedi.mysql.db.internal');
-    define('DB_USERNAME', 'blatmedi_soloch');
-    define('DB_PASSWORD', 'parentsoloch@dev');
-    define('DB_DATABASE', 'blatmedi_parentsoloch1');
+    define('DB_SERVER',   'localhost');
+    define('DB_USERNAME', 'root');
+    define('DB_PASSWORD', 'Admin@123');
+    define('DB_DATABASE', 'solocircle');
 }
 
 // Paths

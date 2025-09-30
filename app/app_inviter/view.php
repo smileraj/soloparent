@@ -5,7 +5,7 @@
 
 	class fairepartView extends JLView {
 
-		function fairepartView(){}
+		function __construct(){}
 
 
 		// affiche la liste des forums

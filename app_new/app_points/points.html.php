@@ -204,7 +204,7 @@
 					?>
 						<tr>
 							<td <?php if($i==count($rows)){ echo 'class="point_fin"'; }?>><?php echo $row->nom; ?></td>
-							<td class="date <?php if($i==count($rows)){ echo 'point_fin'; }?>" ><?php echo date('d.m.Y  H:i:s', strtotime($row->datetime)); ?></td>
+							<td class="date <?php if($i==count($rows)){ echo 'point_fin'; }?>" ><?php echo date('d.m.Y  H:i:s', strtotime((string) $row->datetime)); ?></td>
 							<td align="middle" <?php if($i==count($rows)){ echo 'class="point_fin"'; }?>><?php echo $row->id == 20 ? '<span class="red">- '.$row->data : '<span class="green">+ '.$row->points; ?></span></td>
 						</tr>
 					<?php 					$i++;
@@ -361,7 +361,7 @@
 							</table>
 						<?php 						}
 
-						$dateAnneeMois = explode('-', $row->annee_mois);
+						$dateAnneeMois = explode('-', (string) $row->annee_mois);
 
 					?>
 					<br />

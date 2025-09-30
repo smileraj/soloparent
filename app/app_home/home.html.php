@@ -400,7 +400,7 @@
 			<div class="membercontainer demo-3">
 			<?php 
 			$i=0;
-			$profils_home = array();
+			$profils_home = [];
 			foreach($profils as $profil){
 				JL::makeSafe($profil);
 				if($i != 30){
@@ -603,12 +603,12 @@
 					<?php  echo $lang_apphome["testimonial"];?></h2>
 					<?php 
 								// limitation de la longueur du titre
-								if(strlen($temoignage->titre) > TITRE_HOME) {
-									$temoignage->titre = substr($temoignage->titre, 0, TITRE_HOME).'...';
+								if(strlen((string) $temoignage->titre) > TITRE_HOME) {
+									$temoignage->titre = substr((string) $temoignage->titre, 0, TITRE_HOME).'...';
 								}
 								
 								// limitation de la longueur de l'intro
-								$temoignage->texte = strip_tags(html_entity_decode($temoignage->texte));
+								$temoignage->texte = strip_tags(html_entity_decode((string) $temoignage->texte));
 								if(strlen($temoignage->texte) > INTRO_HOME) {
 									$temoignage->texte = substr($temoignage->texte, 0, 280).'...';
 								}

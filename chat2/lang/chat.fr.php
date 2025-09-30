@@ -1,6 +1,6 @@
 <?php
 
-$langChat= array(
+$langChat= [
 
 	"warning" => "Attention, assurez-vous de bien conna&icirc;tre la personne avec qui vous chattez avant de donner vos coordonn&eacute;es personnelles ou adresses email/msn.",
 	"ans" => "ans",
@@ -30,5 +30,5 @@ $langChat= array(
 	"ParentsoloVousRemercie" => "solocircl.com vous remercie pour votre compréhension",
 	
 	"MembreNonConfirme" => "Le profil de ce membre n'a encore été confirmé",
-);
+];
 ?>

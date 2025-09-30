@@ -302,14 +302,14 @@
 						<tr>
 							<td></td>
 						<td>
-							<i>Cr&eacute;&eacute; le <?php echo date('d/m/Y', strtotime($contenu->date_add)); ?> par <a href="<?php echo SITE_URL_ADMIN; ?>/index.php?app=user&action=editer&id=<?php echo $contenu->user_id_add; ?>" target="_blank"><?php echo $contenu->user_name_add; ?></a></i>
+							<i>Cr&eacute;&eacute; le <?php echo date('d/m/Y', strtotime((string) $contenu->date_add)); ?> par <a href="<?php echo SITE_URL_ADMIN; ?>/index.php?app=user&action=editer&id=<?php echo $contenu->user_id_add; ?>" target="_blank"><?php echo $contenu->user_name_add; ?></a></i>
 						</td>
 					</tr>
 					<?php if($contenu->user_id_update) { ?>
 					<tr>
 						<td></td>
 						<td>
-							<i>Mis &agrave; jour le <?php echo date('d/m/Y', strtotime($contenu->date_update)); ?> par <a href="<?php echo SITE_URL_ADMIN; ?>/index.php?app=user&action=editer&id=<?php echo $contenu->user_id_update; ?>" target="_blank"><?php echo $contenu->user_name_update; ?></a></i>
+							<i>Mis &agrave; jour le <?php echo date('d/m/Y', strtotime((string) $contenu->date_update)); ?> par <a href="<?php echo SITE_URL_ADMIN; ?>/index.php?app=user&action=editer&id=<?php echo $contenu->user_id_update; ?>" target="_blank"><?php echo $contenu->user_name_update; ?></a></i>
 						</td>
 					</tr>
 					<?php 					}

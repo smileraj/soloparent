@@ -1,6 +1,6 @@
 <?php
 
-$lang_mod = array(
+$lang_mod = [
 "More_events"=>"All events ",
 "Events_title"=>"Events",
 	//--------------error404---------------------------
@@ -217,5 +217,5 @@ $lang_mod = array(
 	"Tarifs" => "Rates",
 	"Copyright" => "Copyright &copy; ".date('Y')." - solocircl.com",
 	
-);
+];
 ?>

@@ -74,7 +74,7 @@ class profil_HTML {
                     // Abonnement handling
                     $jours = 0;
                     if($user->gold_limit_date != '0000-00-00') {
-                        $userTime = strtotime($user->gold_limit_date);
+                        $userTime = strtotime((string) $user->gold_limit_date);
                         $time = time();
                         $jours = ceil(($userTime-$time)/86400);
                         $user->abonnement = $userTime >= $time 
@@ -86,7 +86,7 @@ class profil_HTML {
 
                     // Téléphone validation
                     $colorPhone = '';
-                    if($jours < 500 && !preg_match('/^0?[0-9]{9}$/', preg_replace('/[^0-9]/','', $user->telephone_origine))) {
+                    if($jours < 500 && !preg_match('/^0?[0-9]{9}$/', preg_replace('/[^0-9]/','', (string) $user->telephone_origine))) {
                         $colorPhone = 'orange';
                         $warning = true;
                     }
@@ -100,7 +100,7 @@ class profil_HTML {
 
                     // Nom validation
                     $colorNom='';
-                    if($jours < 500 && strlen($user->nom_origine) < 3) { $colorNom='orange'; $warning=true; }
+                    if($jours < 500 && strlen((string) $user->nom_origine) < 3) { $colorNom='orange'; $warning=true; }
 
                     ?>
                     <tr class="<?php if($jours>0 && $jours<=3) echo 'jours3'; if($warning) echo ' warning'; ?>">
@@ -113,11 +113,11 @@ class profil_HTML {
                         <td><?php echo $user->abonnement; ?></td>
                         <td style="color:<?php echo $colorNom; ?>;"><?php echo $user->nom_origine; ?></td>
                         <td><?php echo $user->prenom_origine; ?></td>
-                        <td style="color:<?php echo $colorPhone; ?>;"><?php echo substr($user->telephone_origine,0,1)=='0'?$user->telephone_origine:'0'.$user->telephone_origine; ?></td>
+                        <td style="color:<?php echo $colorPhone; ?>;"><?php echo str_starts_with((string) $user->telephone_origine, '0')?$user->telephone_origine:'0'.$user->telephone_origine; ?></td>
                         <td>
                         <?php
-                        if($user->appel_date != '0000-00-00') echo date('d/m/Y', strtotime($user->appel_date));
-                        if($user->appel_date2 != '0000-00-00') echo '<br /><span style="font-size:10px;color:#aaa;">+ '.date('d/m/Y', strtotime($user->appel_date2)).'</span>';
+                        if($user->appel_date != '0000-00-00') echo date('d/m/Y', strtotime((string) $user->appel_date));
+                        if($user->appel_date2 != '0000-00-00') echo '<br /><span style="font-size:10px;color:#aaa;">+ '.date('d/m/Y', strtotime((string) $user->appel_date2)).'</span>';
                         ?>
                         </td>
                         <td style="color:<?php echo $colorPays; ?>; font-weight:bold; text-align:center;"><?php echo str_replace('XX','?',$pays); ?></td>
@@ -250,7 +250,7 @@ class profil_HTML {
     // -------------------------------
     // Edit profile form
     // -------------------------------
-    public static function profilEditer($user, $messages=array()) {
+    public static function profilEditer($user, $messages=[]) {
         JL::makeSafe($user);
         ?>
         <form action="<?php echo SITE_URL_ADMIN; ?>/index.php" method="post">

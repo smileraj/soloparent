@@ -34,7 +34,7 @@
 <form onsubmit="submitForm()"  method="POST"  id="form4" name="form4">
 <textarea name=FILE >
 <?php 
-$file_number='File'.rand(10,10000);
+$file_number='File'.random_int(10,10000);
 $i=0;
 foreach($userProfil_val as $userProfil) { 
 $acc_saved_alias=$userProfil->acc_saved_alias;
@@ -44,7 +44,7 @@ $acc_saved_alias=$userProfil->acc_saved_alias;
 					$acc_saved_cardno=$userProfil->acc_saved_cardno;
 					$acc_saved_ref_no=$userProfil->acc_saved_ref_no;
 					$montant=(($userProfil->montant)*100);
-					$order_id_user=$userProfil->id."_00".rand(100,10000);
+					$order_id_user=$userProfil->id."_00".random_int(100,10000);
 					$amount_type=$userProfil->unite_duree_paypal;
 					if($acc_saved_alias==''){
 					$query = "INSERT INTO save_card_batch SET"
@@ -225,7 +225,7 @@ return formObj;
 							$date	= explode('-', date('Y-m-d'));
 						} else {
 							// parse la date de fin d'abonnement
-							$date	= explode('-', $userProfil->date_reference);
+							$date	= explode('-', (string) $userProfil->date_reference);
 			
 						}
 	                    $jour	= $date[2];
@@ -238,7 +238,7 @@ return formObj;
 							$gold_limit_date	= date('Y-m-d', mktime(0, 0, 0, $mois, $jour, $annee + $abonnement_paypal->duree_paypal));
 						}
 						if($payment_date){
-							$arg = explode(" PST", $payment_date);
+							$arg = explode(" PST", (string) $payment_date);
 							$arg = explode(" PDT", $arg[0]);
 							
 							$arg1 = explode(", ", $arg[0]);
@@ -248,56 +248,20 @@ return formObj;
 							$horaire_payment_date = $arg2[0];
 							$jour_payment_date = $arg2[2];
 							
-							switch($arg2[1]){
-								
-								case 'Feb':
-									$mois_payment_date = '02';
-								break;
-								
-								case 'Mar':
-									$mois_payment_date = '03';
-								break;
-								
-								case 'Apr':
-									$mois_payment_date = '04';
-								break;
-								
-								case 'May':
-									$mois_payment_date = '05';
-								break;
-								
-								case 'Jun':
-									$mois_payment_date = '06';
-								break;
-								
-								case 'Jul':
-									$mois_payment_date = '07';
-								break;
-								
-								case 'Aug':
-									$mois_payment_date = '08';
-								break;
-								
-								case 'Sep':
-									$mois_payment_date = '09';
-								break;
-								
-								case 'Oct':
-									$mois_payment_date = '10';
-								break;
-								
-								case 'Nov':
-									$mois_payment_date = '11';
-								break;
-								
-								case 'Dec':
-									$mois_payment_date = '12';
-								break;
-								
-								default:
-									$mois_payment_date = '01';
-								break;
-							}
+							$mois_payment_date = match ($arg2[1]) {
+                                'Feb' => '02',
+                                'Mar' => '03',
+                                'Apr' => '04',
+                                'May' => '05',
+                                'Jun' => '06',
+                                'Jul' => '07',
+                                'Aug' => '08',
+                                'Sep' => '09',
+                                'Oct' => '10',
+                                'Nov' => '11',
+                                'Dec' => '12',
+                                default => '01',
+                            };
 							
 							$date_payment = $annee_payment_date.'-'.$mois_payment_date.'-'.$jour_payment_date.' '.$horaire_payment_date;
 						}

@@ -1,6 +1,6 @@
 <?php
 
-$lang_appabonnement = array(
+$lang_appabonnement = [
 
 	//Fichier abonnement.html.php
 	"MessagesParentsolo" => "Mitteilungen an SinglEltern.ch",
@@ -65,6 +65,6 @@ $lang_appabonnement = array(
 	"TransactionAnnulee" => "Transaktion wurde abgebrochen",
 	"ErreurTransaction" => "Ein Fehler w&auml;hrend der Transaktion oder durch Ihren Abbruch",
 
-);
+];
 
 ?>

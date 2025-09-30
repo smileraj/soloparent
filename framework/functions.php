@@ -10,7 +10,7 @@
 
 
 			// variables
-			$list	= array();
+			$list	= [];
 
 			// nombre d'enfants
 			for($i=1; $i<=4; $i++) {

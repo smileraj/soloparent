@@ -19,7 +19,7 @@
 	}
 
 	// gestion des messages d'erreurs
-	$messages	= array();
+	$messages	= [];
 
 
 	// controller
@@ -166,7 +166,7 @@ else {
 		global $db;
 
 		// r�cup les valeurs qui �taient pass�es dans custom
-		$arguments 		= explode(":", base64_decode($custom));
+		$arguments 		= explode(":", base64_decode((string) $custom));
 		$md5			= $arguments[0]; 		// md5 de v�rfication
 		$paypal_id		= isset($arguments[1]) ? (int)$arguments[1] : 0; 	// SQL: paypal.id
 
@@ -193,7 +193,7 @@ else {
 		$row = $db->loadObject($query);
 
 		// abonnement ou m�thodes inconnu(e)(s)
-		if(!$row || !in_array($methode_id, array(2,3))) {
+		if(!$row || !in_array($methode_id, [2,3])) {
 			JL::redirect('index.php?app=abonnement&action=tarifs&'.$langue);
 		}
 		
@@ -298,7 +298,7 @@ else {
 		$Saved_Alias=$_GET['Alias'];
 		$Saved_status=$_GET['status'];
 		$Saved_SHASign=$_GET['SHASign'];
-		$custormersplit_id=explode('_',$Saved_OrderID);
+		$custormersplit_id=explode('_',(string) $Saved_OrderID);
 $userid=$custormersplit_id[0];
 		$time = time();
 		$query = "INSERT INTO acc_saved_cards SET"
@@ -354,7 +354,7 @@ $SHASIGN=$_GET['SHASIGN'];
 $CARDNO=$_GET['CARDNO'];
 $ALIAS=$_GET['ALIAS'];
 $ECI=$_GET['ECI'];
-$custormersplit=explode('_',$customerid);
+$custormersplit=explode('_',(string) $customerid);
 $userid=$custormersplit[0];
 $query1="SELECT up.nom as nome, up.prenom, ap.date_enregistrement,ap.id as apid,ap.valide, ap.montant, ad.nom
 FROM user_profil up, abonnemnet_postfinance ap, abonnement_description ad
@@ -424,7 +424,7 @@ $query = "INSERT INTO postfinance SET"
 							$date	= explode('-', date('Y-m-d'));
 						} else {
 							// parse la date de fin d'abonnement
-							$date	= explode('-', $userProfil->date_reference);
+							$date	= explode('-', (string) $userProfil->date_reference);
 			
 						}
 	                    $jour	= $date[2];
@@ -447,56 +447,20 @@ $query = "INSERT INTO postfinance SET"
 							$horaire_payment_date = $arg2[0];
 							$jour_payment_date = $arg2[2];
 							
-							switch($arg2[1]){
-								
-								case 'Feb':
-									$mois_payment_date = '02';
-								break;
-								
-								case 'Mar':
-									$mois_payment_date = '03';
-								break;
-								
-								case 'Apr':
-									$mois_payment_date = '04';
-								break;
-								
-								case 'May':
-									$mois_payment_date = '05';
-								break;
-								
-								case 'Jun':
-									$mois_payment_date = '06';
-								break;
-								
-								case 'Jul':
-									$mois_payment_date = '07';
-								break;
-								
-								case 'Aug':
-									$mois_payment_date = '08';
-								break;
-								
-								case 'Sep':
-									$mois_payment_date = '09';
-								break;
-								
-								case 'Oct':
-									$mois_payment_date = '10';
-								break;
-								
-								case 'Nov':
-									$mois_payment_date = '11';
-								break;
-								
-								case 'Dec':
-									$mois_payment_date = '12';
-								break;
-								
-								default:
-									$mois_payment_date = '01';
-								break;
-							}
+							$mois_payment_date = match ($arg2[1]) {
+                                'Feb' => '02',
+                                'Mar' => '03',
+                                'Apr' => '04',
+                                'May' => '05',
+                                'Jun' => '06',
+                                'Jul' => '07',
+                                'Aug' => '08',
+                                'Sep' => '09',
+                                'Oct' => '10',
+                                'Nov' => '11',
+                                'Dec' => '12',
+                                default => '01',
+                            };
 							
 							$date_payment = $annee_payment_date.'-'.$mois_payment_date.'-'.$jour_payment_date.' '.$horaire_payment_date;
 						}

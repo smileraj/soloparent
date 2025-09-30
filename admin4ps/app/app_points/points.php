@@ -9,7 +9,7 @@
 	
 	
 	// variables
-	$messages = array();
+	$messages = [];
 
 	switch($action) {
 		
@@ -123,11 +123,11 @@
 		
 		// variables par défaut
 		foreach($data as $k => $v) {
-			$row->{$k} = $v ? $v : $row->{$k};
+			$row->{$k} = $v ?: $row->{$k};
 		}
 		
 		// affichage
-		HTML_points::baremeEdit($row, $messages);
+		(new HTML_points())->baremeEdit($row, $messages);
 	
 	}
 	
@@ -197,7 +197,7 @@
 		$rows = $db->loadObjectList($query);
 		
 		
-		HTML_points::baremeList($rows, $messages);
+		(new HTML_points())->baremeList($rows, $messages);
 		
 	}
 	
@@ -244,11 +244,11 @@
 		
 		// variables par défaut
 		foreach($data as $k => $v) {
-			$row->{$k} = $v ? $v : $row->{$k};
+			$row->{$k} = $v ?: $row->{$k};
 		}
 		
 		// affichage
-		HTML_points::gagnantEdit($row, $messages);
+		(new HTML_points())->gagnantEdit($row, $messages);
 	
 	}
 	
@@ -264,7 +264,7 @@
 		// date du témoignage
 		if($row->temoignage_date) {
 		
-			$date = explode('/', $row->temoignage_date);
+			$date = explode('/', (string) $row->temoignage_date);
 			$row->temoignage_date = $date[2].'-'.$date[1].'-'.$date[0];
 		
 		} else {
@@ -316,7 +316,7 @@
 		$rows = $db->loadObjectList($query);
 		
 		
-		HTML_points::gagnantList($rows, $messages);
+		(new HTML_points())->gagnantList($rows, $messages);
 		
 	}	
 	
@@ -355,7 +355,7 @@
 		
 		
 		// affichage du classement
-		HTML_points::classementList($rows, $list);
+		(new HTML_points())->classementList($rows, $list);
 	
 	}
 	

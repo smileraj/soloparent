@@ -45,7 +45,7 @@
 	//$user_id_to		= intval(JL::getVar('id', 0));
 	$newOnly		= intval(JL::getVar('newonly', 0));
 	$key			= JL::getVar('key', '');
-	$texte			= utf8_decode(JL::getVar('texte', '', true));
+	$texte			= mb_convert_encoding(JL::getVar('texte', '', true), 'ISO-8859-1');
 
 	// crée un objet content les infos de l'utilisateur
 	JL::loadMod('auth');
@@ -82,14 +82,14 @@
 
 		case 'openConversation':
 		if($user_id_to) {
-			openConversation($user->id, $user_id_to, $newOnly);
+			openConversation($user->id, $user_id_to);
 		}
 		break;
 
 		case 'sendMessage':
 		//echo "$user->id, $user_id_to, $texte";
 		if($user_id_to) {
-			sendMessage($user->id, $user_id_to, $texte);
+			sendMessage($user->id, $user_id_to);
 		}
 		break;
 
@@ -119,7 +119,7 @@
 	function getUserInfo($user_id) {
 		global $db, $langString;
 
-		$userInfo = array();
+		$userInfo = [];
 
 		/*$query = "SELECT `u`.`id`, `u`.`username`, `u`.`confirmed`, `u`.`creation_date`, `up`.`genre`, `up`.`photo_defaut`, `us`.`gold_limit_date`,(YEAR(CURRENT_DATE)-YEAR(`up`.`naissance_date`)) - (RIGHT(CURRENT_DATE,5) < RIGHT(`up`.`naissance_date`,5)) AS `age`, (UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(u.last_online)) as `last_online_time`, `upc`.`nom` as `canton`, `upv`.`nom` as `ville`"
 		." FROM `user` AS `u`"
@@ -147,18 +147,18 @@
 		if ($userInfo->canton_id) {
 			$sqlCanton="SELECT `nom` FROM `profil_canton` WHERE `id` = $userInfo->canton_id ;" ;
 			$userCanton = $db->loadObject($sqlCanton);
-			$userInfo->canton = utf8_encode($userCanton->nom);
+			$userInfo->canton = mb_convert_encoding((string) $userCanton->nom, 'UTF-8', 'ISO-8859-1');
 		}
 		if ($userInfo->ville_id) {
 			$sqlVille="SELECT `nom` FROM `profil_ville` WHERE `id` = $userInfo->ville_id ;";
 			$userVille = $db->loadObject($sqlVille);
-			$userInfo->ville = utf8_encode($userVille->nom);
+			$userInfo->ville = mb_convert_encoding((string) $userVille->nom, 'UTF-8', 'ISO-8859-1');
 		}
 
 
 
 
-		$userInfo->gold = ($userInfo->gold_limit_date == '0000-00-00' || ($userInfo->gold_limit_date != '0000-00-00' && strtotime($userInfo->gold_limit_date) < time())) ? false : true;
+		$userInfo->gold = ($userInfo->gold_limit_date == '0000-00-00' || ($userInfo->gold_limit_date != '0000-00-00' && strtotime((string) $userInfo->gold_limit_date) < time())) ? false : true;
 
 		// Ajout par SC
 		/*$sqlEnf="SELECT COUNT(*) as qty FROM `user_enfant` WHERE `user_id` = '".$user_id."' ;";
@@ -217,7 +217,7 @@
 		global $db;
 
 		// variables
-		$where			= array();
+		$where			= [];
 		$_where			= '';
 
 		$where[]		= "cm.user_id_to = '".$user_id_from."'";
@@ -257,12 +257,12 @@
 			if($blacklist->user_to_bl) {
 
 				// message système d'info
-				$messages					= array();
+				$messages					= [];
 				$messages[0]				= new stdClass();
 				$messages[0]->genre			= 'system';
 				$messages[0]->username		= 'ParentSolo';
 				$messages[0]->date_envoi	= date('Y-m-d H:i:s');
-				$messages[0]->texte			= utf8_decode($langChat["sysMessage_1"]);//'Vous ne pouvez pas envoyer de message à un utilisateur de votre liste noire.';
+				$messages[0]->texte			= mb_convert_encoding((string) $langChat["sysMessage_1"], 'ISO-8859-1');//'Vous ne pouvez pas envoyer de message à un utilisateur de votre liste noire.';
 
 				// affiche le messages
 				displayMessages($messages);
@@ -270,12 +270,12 @@
 			} elseif($blacklist->user_from_bl) {
 
 				// message système d'info
-				$messages					= array();
+				$messages					= [];
 				$messages[0]				= new stdClass();
 				$messages[0]->genre			= 'system';
 				$messages[0]->username		= 'ParentSolo';
 				$messages[0]->date_envoi	= date('Y-m-d H:i:s');
-				$messages[0]->texte			= utf8_decode($langChat["sysMessage_2"]);//'Vous ne pouvez pas envoyer de message à cet utilisateur car vous êtes dans sa liste noire.';
+				$messages[0]->texte			= mb_convert_encoding((string) $langChat["sysMessage_2"], 'ISO-8859-1');//'Vous ne pouvez pas envoyer de message à cet utilisateur car vous êtes dans sa liste noire.';
 
 				// affiche le messages
 				displayMessages($messages);
@@ -311,7 +311,7 @@
 				} elseif($user->gold && $user->confirmed == 2) { // confirmation en attente
 
 					// message système d'info
-					$messages					= array();
+					$messages					= [];
 					$messages[0]				= new stdClass();
 					$messages[0]->genre			= 'system';
 					$messages[0]->username		= 'ParentSolo';
@@ -337,7 +337,7 @@
 				} else { // membre non abonné
 
 					// message système d'info
-					$messages					= array();
+					$messages					= [];
 					$messages[0]				= new stdClass();
 					$messages[0]->genre			= 'system';
 					$messages[0]->username		= 'ParentSolo';
@@ -361,10 +361,10 @@
 		global $db;
 
 		// variables
-		$messages		= array();
-		$messagesOld	= array();
-		$messagesNew	= array();
-		$where			= array();
+		$messages		= [];
+		$messagesOld	= [];
+		$messagesNew	= [];
+		$where			= [];
 		$_where			= '';
 		$_where_custom	= '';
 		$datetime		= date('Y-m-d H:i:s'); // on arrête le temps, pour ne pas avoir d'erreur de message qui sont insérés entre le SELECT et le UPDATE
@@ -471,7 +471,7 @@
 				?>
 				<div class="message_<?php echo ($user->id==$message->user_id_from)?"from":"to";?>">
 					<span class="<?php echo $message->genre; ?>"><?php echo $message->username; ?></span><br>
-					<span class="heure"><?php echo date('d/m/Y', strtotime($message->date_envoi)); ?> &agrave; <?php echo date('H:i:s', strtotime($message->date_envoi)); ?></span>
+					<span class="heure"><?php echo date('d/m/Y', strtotime((string) $message->date_envoi)); ?> &agrave; <?php echo date('H:i:s', strtotime((string) $message->date_envoi)); ?></span>
 					<p><?php echo $texte; ?></p>
 				</div>
 			<?php 			}
@@ -527,8 +527,8 @@
 		global $db;
 
 		// variables
-		$conversations	= array();
-		$where			= array();
+		$conversations	= [];
+		$where			= [];
 		$_where			= '';
 
 		$where[]		= "cc.user_id_from = '".$user_id_from."'";

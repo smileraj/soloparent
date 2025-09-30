@@ -1,6 +1,6 @@
 <?php
 
-$lang_points = array(
+$lang_points = [
 
 	//------------------Page points.html.php ---------
 
@@ -59,5 +59,5 @@ $lang_points = array(
 
 
 
-);
+];
 ?>

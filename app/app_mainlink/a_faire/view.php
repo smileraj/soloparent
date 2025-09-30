@@ -5,7 +5,7 @@
 	
 	class contenuView extends JLView {
 	
-		function contenuView() {}
+		function __construct() {}
 		
 		
 		function display(&$contenu) {

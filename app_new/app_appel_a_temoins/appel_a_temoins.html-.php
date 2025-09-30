@@ -31,31 +31,19 @@
 				$h1 = $h1Force;
 			} else {
 			
-				switch($action) {
-				
-					case 'new':
-					case 'save':
-						$h1 = 'Lancer un appel &agrave; t&eacute;moins';
-					break;
-					
-					case 'info':
-						$h1 = 'Informations appels &agrave; t&eacute;moins';
-					break;
-					
-					case 'list':
-					default:
-						$h1 = 'Liste des appels &agrave; t&eacute;moins';
-					break;
-				
-				}
+				$h1 = match ($action) {
+                    'new', 'save' => 'Lancer un appel &agrave; t&eacute;moins',
+                    'info' => 'Informations appels &agrave; t&eacute;moins',
+                    default => 'Liste des appels &agrave; t&eacute;moins',
+                };
 			
 			}
 			
 			?>
 				<table class="profil_menu"><tr>
-					<td <?php if(in_array($action, array('list','read'))) { ?>class="active"<?php } ?>><a href="<?php echo JL::url('index.php?app=appel_a_temoins&action=list'); ?>" title="Liste des appels &agrave; t&eacute;moins propos&eacute;s">Appels &agrave; t&eacute;moins</a></td>
+					<td <?php if(in_array($action, ['list','read'])) { ?>class="active"<?php } ?>><a href="<?php echo JL::url('index.php?app=appel_a_temoins&action=list'); ?>" title="Liste des appels &agrave; t&eacute;moins propos&eacute;s">Appels &agrave; t&eacute;moins</a></td>
 					<td <?php if($action == 'info') { ?>class="active"<?php } ?>><a href="<?php echo JL::url('index.php?app=appel_a_temoins&action=info'); ?>" title="Informations concernant les appels &agrave; t&eacute;moins">Informations</a></td>
-					<td <?php if(in_array($action, array('new','save'))) { ?>class="active"<?php } ?>><a href="<?php echo JL::url('index.php?app=appel_a_temoins&action=new'); ?>" title="Lancez votre appel &agrave; t&eacute;moins">Lancer un appel &agrave; t&eacute;moins</a></td>
+					<td <?php if(in_array($action, ['new','save'])) { ?>class="active"<?php } ?>><a href="<?php echo JL::url('index.php?app=appel_a_temoins&action=new'); ?>" title="Lancez votre appel &agrave; t&eacute;moins">Lancer un appel &agrave; t&eacute;moins</a></td>
 					<td style="width:40%;"> </td>
 				</tr></table>
 				<h1 class="aat"><?php echo $h1; ?></h1>
@@ -87,8 +75,8 @@
 					
 						// limitation de la description
 						$annonceLimite	= 470;
-						if(strlen($row->annonce) > $annonceLimite) {
-							$row->annonce = substr($row->annonce, 0, $annonceLimite).'...';
+						if(strlen((string) $row->annonce) > $annonceLimite) {
+							$row->annonce = substr((string) $row->annonce, 0, $annonceLimite).'...';
 						}
 						
 					
@@ -328,7 +316,7 @@
 					<?php if(is_file('images/appel-a-temoins/'.$row->id.'.jpg')) { ?>
 						<img src="<?php echo SITE_URL.'/images/appel-a-temoins/'.$row->id.'.jpg' ?>" alt="" class="AATlogo" />
 					<?php } ?>
-					<?php echo nl2br($row->annonce); ?>
+					<?php echo nl2br((string) $row->annonce); ?>
 					<div class="clear">&nbsp;</div>
 				</div>
 				
@@ -336,7 +324,7 @@
 				
 					<span class="infos">Informations compl&eacute;mentaires:</span><br />
 					<br />
-					<?php if($row->date_limite) { ?><b>Date de l'appel:</b> <?php echo date('d/m/Y', strtotime($row->date_add)); ?><br /><?php } ?>
+					<?php if($row->date_limite) { ?><b>Date de l'appel:</b> <?php echo date('d/m/Y', strtotime((string) $row->date_add)); ?><br /><?php } ?>
 					<?php if($row->date_limite) { ?><b>Date limite d'inscription:</b> <?php echo $row->date_limite; ?><br /><?php } ?>
 					<?php if($row->date_diffusion) { ?><b>Date de diffusion:</b> <?php echo $row->date_diffusion; ?><br /><?php } ?>
 					<br />
@@ -344,7 +332,7 @@
 					<span class="infos">Pour plus d'informations, veuillez contacter:</span><br />
 					<br />
 					<?php echo $row->prenom.' '.$row->nom; ?><br />
-					<?php if($row->adresse) nl2br($row->adresse).'<br />'; ?>
+					<?php if($row->adresse) nl2br((string) $row->adresse).'<br />'; ?>
 					<br />
 					<b>Email:</b> <a href="mailto:<?php echo $row->email; ?>" title="Contacter <?php echo $row->prenom.' '.$row->nom; ?> par email"><?php echo $row->email; ?></a><br />
 					<b>T&eacute;l&eacute;phone:</b> <?php echo $row->telephone; ?>

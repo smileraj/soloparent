@@ -93,7 +93,7 @@
 	
 	
 	// variables
-	$where			= array();
+	$where			= [];
 	
 	// WHERE
 	$where[]			= "t.active = 1";
@@ -198,6 +198,6 @@ if (is_array($box_menus_2) && count($box_menus_2) > 0) {
 	
     
 	//affichage
-	home_HTML::home($profils,  $list, $temoignage, $home_1, $home_2, $home_3, $home_4, $partenaire_1, $actualites, $box_menu_2,$events,JL::getVar('auth',''));
+	(new home_HTML())->home($profils, $list, $temoignage, $home_1, $home_2, $home_3, $home_4, $partenaire_1, $actualites, $box_menu_2, $events, JL::getVar('auth',''));
 ?>
 

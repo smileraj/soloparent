@@ -7,7 +7,7 @@
 
 	global $db, $user, $action, $langue;
 
-	$messages	= array();
+	$messages	= [];
 	$temoignage = new stdClass();
 
 	switch($action){
@@ -58,7 +58,7 @@
 		
 		
 		// variables
-		$where			= array();
+		$where			= [];
 		
 		// WHERE
 		$where[]			= "t.active = 1";
@@ -113,7 +113,7 @@
 		global $db;
 
 		// variables
-		$where 		= array();
+		$where 		= [];
 
 		$where[]	= "t.id = '".$id."'";
 		$where[]	= "t.active = 1";
@@ -154,7 +154,7 @@
 		if(JL::getVar('msg', '') == 'ok'){
 			$messages[]	= '<span class="valid">'.$lang_apptemoignage["TemoignageEnvoye"].' !</span>';
 		}
-		$temoignage->captcha		= rand(10,99).chr(rand(65,90)).rand(10,99).chr(rand(65,90));
+		$temoignage->captcha		= random_int(10,99).chr(random_int(65,90)).random_int(10,99).chr(random_int(65,90));
 			$temoignage->captchaAbo		= md5(date('m/Y').$temoignage->captcha);
 		temoignage_HTML::edit($contenu, $temoignage, $messages);
 	}
@@ -182,7 +182,7 @@
 		if($temoignage->texte==''){
 			$messages[]	= '<span class="error">'.$lang_apptemoignage["VeuillezIndiquerTexte"].' !</span>';
 		}
-		if($temoignage->verif == '' || md5(date('m/Y').strtoupper($temoignage->verif)) != $temoignage->captchaAbo) {
+		if($temoignage->verif == '' || md5(date('m/Y').strtoupper((string) $temoignage->verif)) != $temoignage->captchaAbo) {
 				$messages[] = '<span class="error">'.$lang_apptemoignage["WarningCodeVerifIncorrect"].'</span>';
 			}
 		return count($messages) ? false : true;

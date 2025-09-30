@@ -8,22 +8,14 @@
 	
 	
 	// variables
-	$messages = array();
+	$messages = [];
 
 	
 	
-	switch($action) {
-		
-		case 'envoyer':
-			envoyer();
-		break;
-		
-		
-		default:
-			editer();
-		break;
-		
-	}
+	match ($action) {
+        'envoyer' => envoyer(),
+        default => editer(),
+    };
 
 	function envoyer() {
 		global $db;
@@ -37,9 +29,9 @@
 		
 		$error		= false;
 		
-		$data = getData(true);
+		$data = getData();
 		
-		$profil				= array();
+		$profil				= [];
 		$profil[]			= JL::makeOption('0', 				'Aucun');
 		
 		$query = "SELECT u.id AS value, CONCAT(u.username,' ','(',up.genre,')') AS text"
@@ -170,7 +162,7 @@
 		
 		$data = getData();
 		
-		$profil				= array();
+		$profil				= [];
 		$profil[]			= JL::makeOption('0', 				'Aucun');
 		
 		$query = "SELECT u.id AS value, CONCAT(u.username,' ','(',up.genre,')') AS text"

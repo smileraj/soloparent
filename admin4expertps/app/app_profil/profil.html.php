@@ -286,7 +286,7 @@
 			JL::makeSafe($userObj);
 			
 			// variables
-			$photos	= array();
+			$photos	= [];
 			
 			// r�cup les photos de l'utilisateur, autres que celle par d�faut
 			$dir	= '../images/profil/'.$userObj->id;
@@ -399,7 +399,7 @@
 					<table cellpadding="0" cellspacing="0" class="editer">
 						<tr>
 							<td class="key">Abonnement jusqu'au:</td>
-							<td><input type="text" name="gold_limit_date" value="<?php echo $userObj->gold_limit_date != '0000-00-00' ? date('d/m/Y', strtotime($userObj->gold_limit_date)) : ''; ?>" size="9" /> <i>(jj/mm/aaaa)</i></td>
+							<td><input type="text" name="gold_limit_date" value="<?php echo $userObj->gold_limit_date != '0000-00-00' ? date('d/m/Y', strtotime((string) $userObj->gold_limit_date)) : ''; ?>" size="9" /> <i>(jj/mm/aaaa)</i></td>
 						</tr>
 						<tr>
 							<td class="key">Cr&eacute;diter abonnement:</td>
@@ -487,7 +487,7 @@
 						<tr>
 							<td class="key">Inscription:</td>
 							<td>
-								<?php echo date('d/m/Y', strtotime($userObj->creation_date)); ?>
+								<?php echo date('d/m/Y', strtotime((string) $userObj->creation_date)); ?>
 							</td>
 						</tr>
 						<tr>
@@ -501,16 +501,16 @@
 						<tr>
 							<td class="key">Paiement en ligne:</td>
 							<td>
-								<?php echo $userObj->abonnement_carte ? date('d/m/Y', strtotime($userObj->abonnement_carte)).' - '.$userObj->abonnement_carte_nom.' '.$userObj->abonnement_carte_prenom.' - '.($userObj->abonnement_carte_valide==1 ? 'en cours' : 'annul&eacute;' ) : '-'; ?>
+								<?php echo $userObj->abonnement_carte ? date('d/m/Y', strtotime((string) $userObj->abonnement_carte)).' - '.$userObj->abonnement_carte_nom.' '.$userObj->abonnement_carte_prenom.' - '.($userObj->abonnement_carte_valide==1 ? 'en cours' : 'annul&eacute;' ) : '-'; ?>
 							</td>
 						</tr>
 						<tr>
 							<td class="key">1er appel:</td>
-							<td><input type="text" name="appel_date" value="<?php echo $userObj->appel_date != '0000-00-00' ? date('d/m/Y', strtotime($userObj->appel_date)) : ''; ?>" size="9" /> <i>(jj/mm/aaaa)</i></td>
+							<td><input type="text" name="appel_date" value="<?php echo $userObj->appel_date != '0000-00-00' ? date('d/m/Y', strtotime((string) $userObj->appel_date)) : ''; ?>" size="9" /> <i>(jj/mm/aaaa)</i></td>
 						</tr>
 						<tr>
 							<td class="key">2&egrave;me appel:</td>
-							<td><input type="text" name="appel_date2" value="<?php echo $userObj->appel_date2 != '0000-00-00' ? date('d/m/Y', strtotime($userObj->appel_date2)) : ''; ?>" size="9" /> <i>(jj/mm/aaaa)</i></td>
+							<td><input type="text" name="appel_date2" value="<?php echo $userObj->appel_date2 != '0000-00-00' ? date('d/m/Y', strtotime((string) $userObj->appel_date2)) : ''; ?>" size="9" /> <i>(jj/mm/aaaa)</i></td>
 						</tr>
 						<tr>
 							<td class="key">Commentaire:</td>

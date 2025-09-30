@@ -1,6 +1,6 @@
 <?php
 
-$lang_event = array(
+$lang_event = [
 
 	//------------------Page appel_a_temoins.html.php ---------
 
@@ -99,5 +99,5 @@ $lang_event = array(
 	"CodeSecuriteIncorrect" => "Le code de s�curit� entr� est incorrect",
 
 
-);
+];
 ?>

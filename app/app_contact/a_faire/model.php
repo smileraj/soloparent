@@ -5,16 +5,16 @@
 	
 	class contactModel extends JLModel {
 	
-		var $types;
+		public $types;
 		
 		
-		function contactModel() {
+		function __construct() {
 			global $db;
 			include("lang/app_contact.".$_GET['lang'].".php");
 			
 			// valeurs de type_id accept&eacute;es
-			$this->typesValue	= array(1,2,3,4,5,6,7);
-			$this->typesText	= array(
+			$this->typesValue	= [1,2,3,4,5,6,7];
+			$this->typesText	= [
 				$lang_appcontact["- SelectionnezLeTypeDeDemande -"],
 				$lang_appcontact["ChangementAdresseEmail"],
 				$lang_appcontact["ChangementPseudo"],
@@ -23,10 +23,10 @@
 				$lang_appcontact["JeSouhaiteMeDesinscrire"],
 				$lang_appcontact["ProblemeTechnique"],
 				$lang_appcontact["Autre..."]
-			);
+			];
 			
 			// pr&eacute;paration de la liste d&eacute;roulante
-			$this->types	= array();
+			$this->types	= [];
 			$max			= count($this->typesText);
 			for($i=0;$i<$max; $i++) {
 				$this->types[]	= JL::makeOption($i, $this->typesText[$i]);
@@ -61,7 +61,7 @@
 			include("lang/app_contact.".$_GET['lang'].".php");
 			global $db;
 			
-			if(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,4}$/', $this->_data->email)) {
+			if(!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]{2,}[.][A-Za-z]{2,4}$/', (string) $this->_data->email)) {
 				$this->_messages[] = '<span class="error">'.$lang_appcontact["WarningEmailInvalide"].'</span>';
 			}
 			
@@ -74,7 +74,7 @@
 				$this->_messages[] = '<span class="error">'.$lang_appcontact["WarningMessage"].'</span>';
 			}
 			
-			if($this->_data->verif == '' || md5(date('m/Y').strtoupper($this->_data->verif)) != $this->_data->captchaAbo) {
+			if($this->_data->verif == '' || md5(date('m/Y').strtoupper((string) $this->_data->verif)) != $this->_data->captchaAbo) {
 				$this->_messages[] = '<span class="error">'.$lang_appcontact["WarningCodeVerifIncorrect"].'</span>';
 			}
 			

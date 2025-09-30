@@ -25,7 +25,7 @@
 									JL::makeSafe($row);
 									?>
 										<li class="li<?php echo $i; ?>"><a href="<?php echo JL::url('index.php?app=redac&action=item&id='.$row->id); ?>" title="<?php echo $row->titre; ?>">&raquo; <?php echo $row->titre; ?></a><br />
-										<span>actualit&eacute; du <?php echo date('d/m/Y', strtotime($row->date_add)); ?></span></li>
+										<span>actualit&eacute; du <?php echo date('d/m/Y', strtotime((string) $row->date_add)); ?></span></li>
 									<?php 									$i++;
 								}
 								?>
@@ -146,7 +146,7 @@
 									JL::makeSafe($row);
 									?>
 										<li class="li<?php echo $i; ?>"><a href="<?php echo JL::url('index.php?app=redac&action=item&id='.$row->id.'&'.$langue); ?>" title="<?php echo $row->titre; ?>">&raquo; <?php echo $row->titre; ?></a><br />
-										<span><?php echo $lang_apphome["ActualiteDu"];?> <?php echo date('d/m/Y', strtotime($row->date_add)); ?></span></li>
+										<span><?php echo $lang_apphome["ActualiteDu"];?> <?php echo date('d/m/Y', strtotime((string) $row->date_add)); ?></span></li>
 									<?php 									$i++;
 								}
 								?>
@@ -267,7 +267,7 @@
 									JL::makeSafe($row);
 									?>
 										<li class="li<?php echo $i; ?>"><a href="<?php echo JL::url('index.php?app=redac&action=item&id='.$row->id.'&'.$langue); ?>" title="<?php echo $row->titre; ?>">&raquo; <?php echo $row->titre; ?></a><br />
-										<span><?php echo $lang_apphome["ActualiteDu"];?> <?php echo date('d/m/Y', strtotime($row->date_add)); ?></span></li>
+										<span><?php echo $lang_apphome["ActualiteDu"];?> <?php echo date('d/m/Y', strtotime((string) $row->date_add)); ?></span></li>
 									<?php 									$i++;
 								}
 								?>
@@ -388,7 +388,7 @@
 									JL::makeSafe($row);
 									?>
 										<li class="li<?php echo $i; ?>"><a href="<?php echo JL::url('index.php?app=redac&action=item&id='.$row->id.'&'.$langue); ?>" title="<?php echo $row->titre; ?>">&raquo; <?php echo $row->titre; ?></a><br />
-										<span><?php echo $lang_apphome["ActualiteDu"];?> <?php echo date('d/m/Y', strtotime($row->date_add)); ?></span></li>
+										<span><?php echo $lang_apphome["ActualiteDu"];?> <?php echo date('d/m/Y', strtotime((string) $row->date_add)); ?></span></li>
 									<?php 									$i++;
 								}
 								?>

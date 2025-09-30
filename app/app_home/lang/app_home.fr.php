@@ -1,6 +1,6 @@
 <?php
 
-$lang_apphome = array(
+$lang_apphome = [
 	
 	//View
 	//*Partie gauche
@@ -81,6 +81,6 @@ $lang_apphome = array(
 	"ANY_DEVICE_para" => "De nouvelles rencontres &agrave; port&eacute;e de main !  Parentsolo vous accompagne partout . Communiquez avec qui vous voulez, o&ugrave; vous voulez et quand vous voulez.",
 
 
-);
+];
 
 ?>

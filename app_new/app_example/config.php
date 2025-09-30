@@ -1,5 +1,5 @@
 <?php
-	$openinviter_settings=array(
+	$openinviter_settings=[
 		"username"=>"parentsolo",
 		"private_key"=>"a12529844db3a0a1d1b9d3b75f8038ce",
 		"cookie_path"=>'/tmp',
@@ -9,7 +9,7 @@
 		"local_debug"=>"on_error", //Available options: on_error => log only requests containing errors; always => log all requests; false => don`t log anything
 		"remote_debug"=>FALSE, //When set to TRUE OpenInviter sends debug information to our servers. Set it to FALSE to disable this feature
 		"hosted"=>FALSE, //When set to TRUE OpenInviter uses the OpenInviter Hosted Solution servers to import the contacts.
-		"proxies"=>array(), //If you want to use a proxy in OpenInviter by adding another key to the array. Example: "proxy_1"=>array("host"=>"1.2.3.4","port"=>"8080","user"=>"user","password"=>"pass")
+		"proxies"=>[], //If you want to use a proxy in OpenInviter by adding another key to the array. Example: "proxy_1"=>array("host"=>"1.2.3.4","port"=>"8080","user"=>"user","password"=>"pass")
 						   //You can add as many proxies as you want and OpenInviter will randomly choose which one to use on each import.
 		"stats"=>TRUE,
 		"plugins_cache_time"=>1800,
@@ -17,5 +17,5 @@
 		"update_files"=>true,
 		"stats_user"=>"parentsolo", //Required to access the stats
 		"stats_password"=>"richardblat1301" //Required to access the stats
-	);
+	];
 	?>

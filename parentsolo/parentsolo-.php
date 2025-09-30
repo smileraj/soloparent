@@ -29,7 +29,7 @@
 			<?php 			} elseif($app == 'profil') {
 			?>
 				
-				<?php if(in_array($action, array('step2', 'step2submit', 'step7', 'step7submit'))) { ?>
+				<?php if(in_array($action, ['step2', 'step2submit', 'step7', 'step7submit'])) { ?>
 					<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/swfupload/swfupload.js"></script>
 					<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/swfupload/js/handlers.js?<?php echo $version; ?>"></script>
 					<link rel="stylesheet" type="text/css" href="<?php echo SITE_URL; ?>/js/swfupload/default.css">
@@ -51,7 +51,7 @@
 			<?php 			} elseif($app == 'redac') {
 			?>
 				<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/lightbox/lightbox.js"></script>
-			<?php 			} elseif($app == 'groupe' && in_array($action, array('edit', 'save'))) {
+			<?php 			} elseif($app == 'groupe' && in_array($action, ['edit', 'save'])) {
 			?>
 				<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/app_groupe.js"></script>
 				<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/swfupload/swfupload.js"></script>
@@ -143,7 +143,7 @@
 				swfobject.embedSWF("<?php echo SITE_URL; ?>/images/banners/ps-120x600.swf", "banner_right", "120", "600", "8.0.0", "", { "width": "120", "height": "600" }, { "wmode": "transparent"}, { "id" : "banner_rightswf" });
 			<?php } elseif($app == 'profil' && $action == 'panel') { ?>
 				swfobject.embedSWF("<?php echo SITE_URL; ?>/images/banners/dynapresse-250x250.swf", "banner_right250", "250", "250", "8.0.0", "", { "width": "250", "height": "250" }, { "wmode": "transparent"}, { "id" : "banner_right250swf" });
-			<?php } elseif($app == 'profil' && preg_match('/^view/', $action)) { ?>
+			<?php } elseif($app == 'profil' && preg_match('/^view/', (string) $action)) { ?>
 				swfobject.embedSWF("<?php echo SITE_URL; ?>/images/banners/babybook-728x90.swf", "profil_banner", "728", "90", "8.0.0", "", { "width": "728", "height": "90" }, { "wmode": "transparent"}, { "id" : "profil_banner" });
 			<?php } ?>
 			
@@ -187,7 +187,7 @@
 			<?php 			} elseif($app == 'profil') {
 			?>
 				
-				<?php if(in_array($action, array('step2', 'step2submit', 'step7', 'step7submit'))) { ?>
+				<?php if(in_array($action, ['step2', 'step2submit', 'step7', 'step7submit'])) { ?>
 					<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/swfupload/swfupload.js"></script>
 					<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/swfupload/js/handlers.js?<?php echo $version; ?>"></script>
 					<link rel="stylesheet" type="text/css" href="<?php echo SITE_URL; ?>/js/swfupload/default.css">
@@ -209,7 +209,7 @@
 			<?php 			} elseif($app == 'redac') {
 			?>
 				<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/lightbox/lightbox.js"></script>
-			<?php 			} elseif($app == 'groupe' && in_array($action, array('edit', 'save'))) {
+			<?php 			} elseif($app == 'groupe' && in_array($action, ['edit', 'save'])) {
 			?>
 				<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/app_groupe.js"></script>
 				<script type="text/javascript" src="<?php echo SITE_URL; ?>/js/swfupload/swfupload.js"></script>
@@ -297,7 +297,7 @@
 				swfobject.embedSWF("<?php echo SITE_URL; ?>/images/banners/ps-120x600.swf", "banner_right", "120", "600", "8.0.0", "", { "width": "120", "height": "600" }, { "wmode": "transparent"}, { "id" : "banner_rightswf" });
 			<?php } elseif($app == 'profil' && $action == 'panel') { ?>
 				swfobject.embedSWF("<?php echo SITE_URL; ?>/images/banners/dynapresse-250x250.swf", "banner_right250", "250", "250", "8.0.0", "", { "width": "250", "height": "250" }, { "wmode": "transparent"}, { "id" : "banner_right250swf" });
-			<?php } elseif($app == 'profil' && preg_match('/^view/', $action)) { ?>
+			<?php } elseif($app == 'profil' && preg_match('/^view/', (string) $action)) { ?>
 				swfobject.embedSWF("<?php echo SITE_URL; ?>/images/banners/babybook-728x90.swf", "profil_banner", "728", "90", "8.0.0", "", { "width": "728", "height": "90" }, { "wmode": "transparent"}, { "id" : "profil_banner" });
 			<?php } ?>
 		});

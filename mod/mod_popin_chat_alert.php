@@ -10,7 +10,7 @@ include("lang/app_mod.".$_GET['lang'].".php");
 	if($user->id) {
 
 		// variables
-		$where			= array();
+		$where			= [];
 		$_where			= '';
 
 		$where[]		= "cm.user_id_to = '".$user->id."'";

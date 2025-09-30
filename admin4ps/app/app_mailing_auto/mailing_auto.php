@@ -10,31 +10,15 @@
 	
 	
 	// variables
-	$messages = array();
+	$messages = [];
 
-	switch($action) {
-	
-		case 'envoyer':
-			mailingSend();
-		break;
-		
-		case 'save':
-			mailingSave();
-		break;
-		
-		case 'edit':
-			mailingEdit();
-		break;
-		
-		case 'apercu':
-			mailingApercu();
-		break;
-		
-		default:
-			mailingLister();
-		break;
-		
-	}
+	match ($action) {
+        'envoyer' => mailingSend(),
+        'save' => mailingSave(),
+        'edit' => mailingEdit(),
+        'apercu' => mailingApercu(),
+        default => mailingLister(),
+    };
 	
 	
 	function &getData() {
@@ -103,7 +87,7 @@
 		$mailing	= $db->loadObject($query);
 		
 		// variables
-		$listGroups 	= array();
+		$listGroups 	= [];
 		$listGroups[] 	= JL::makeOption('0', '- Tous -', 'id', 'nom');
 		$listGroups[]	= JL::makeOption('1', 'Hommes', 'id', 'nom');
 		$listGroups[]	= JL::makeOption('2', 'Femmes', 'id', 'nom');
@@ -191,7 +175,7 @@
 		
 		// variables
 		$resultatParPage	= RESULTS_NB_LISTE_ADMIN;
-		$search				= array();
+		$search				= [];
 		
 		// si on passe une recherche en param, alors on force la page 1 (pour éviter de charger la page 36, s'il n'y a que 2 pages à voir)
 		$search['page']			= JL::getVar('search_at_page', JL::getSessionInt('search_at_page', 1));
@@ -268,7 +252,7 @@
 				$messages[]	= '<span class="error">Veuillez indiquer le titre du 1er agenda Babybook.</span>';
 			}
 			
-			if(!preg_match('/^[0-9]{2}[\/][0-9]{2}[\/][0-9]{4}$/', $data->agenda1_date)&&!preg_match('/^[0-9]{2}[\/][0-9]{2}[\/][0-9]{4}[-][0-9]{2}[\/][0-9]{2}[\/][0-9]{4}$/', $data->agenda1_date)) {
+			if(!preg_match('/^[0-9]{2}[\/][0-9]{2}[\/][0-9]{4}$/', (string) $data->agenda1_date)&&!preg_match('/^[0-9]{2}[\/][0-9]{2}[\/][0-9]{4}[-][0-9]{2}[\/][0-9]{2}[\/][0-9]{4}$/', (string) $data->agenda1_date)) {
 				$messages[]	= '<span class="error">Veuillez indiquer la date du 1er agenda Babybook.</span>';
 			}
 			
@@ -293,7 +277,7 @@
 				$messages[]	= '<span class="error">Veuillez indiquer le titre du 2e agenda Babybook.</span>';
 			}
 			
-			if(!preg_match('/^[0-9]{2}[\/][0-9]{2}[\/][0-9]{4}$/', $data->agenda2_date)&&!preg_match('/^[0-9]{2}[\/][0-9]{2}[\/][0-9]{4}[-][0-9]{2}[\/][0-9]{2}[\/][0-9]{4}$/', $data->agenda2_date)) {
+			if(!preg_match('/^[0-9]{2}[\/][0-9]{2}[\/][0-9]{4}$/', (string) $data->agenda2_date)&&!preg_match('/^[0-9]{2}[\/][0-9]{2}[\/][0-9]{4}[-][0-9]{2}[\/][0-9]{2}[\/][0-9]{4}$/', (string) $data->agenda2_date)) {
 				$messages[]	= '<span class="error">Veuillez indiquer la date du 2e agenda Babybook.</span>';
 			}
 			
@@ -436,7 +420,7 @@
 			JL::redirect(SITE_URL_ADMIN.'/index.php?app=mailing_auto&id=3');
 		}
 		
-		$mailingTexte = FUNCTION_mailing_auto::getMailHtml($templatePath,$mailing);
+		$mailingTexte = (new FUNCTION_mailing_auto())->getMailHtml($templatePath, $mailing);
 		
 		HTML_mailing_auto::mailingApercu($mailingTexte);
 	}

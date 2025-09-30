@@ -1,5 +1,5 @@
 <?php
-$_pluginInfo=array(
+$_pluginInfo=[
 	'name'=>'Twitter',
 	'version'=>'1.1.2',
 	'description'=>"Get the contacts from a Twitter account",
@@ -8,7 +8,7 @@ $_pluginInfo=array(
 	'check_url'=>'http://twitter.com',
 	'requirement'=>'user',
 	'allowed_domains'=>false,
-	);
+	];
 /**
  * Twitter Plugin
  * 
@@ -28,13 +28,13 @@ class twitter extends OpenInviter_Base
 	protected $timeout=30;
 	protected $maxUsers=100;
 	
-	public $debug_array=array(
+	public $debug_array=[
 				'initial_get'=>'username',
 				'login_post'=>'inbox',
 				'friends_url'=>'list-tweet',
 				'wall_message'=>'latest_text',
 				'send_message'=>'inbox'
-				);
+				];
 	
 	/**
 	 * Login function
@@ -65,7 +65,7 @@ class twitter extends OpenInviter_Base
 			}
 		
 		$form_action="https://mobile.twitter.com/session";
-		$post_elements=array('authenticity_token'=>$this->getElementString($res,'name="authenticity_token" type="hidden" value="','"'),'username'=>$user,'password'=>$pass);
+		$post_elements=['authenticity_token'=>$this->getElementString($res,'name="authenticity_token" type="hidden" value="','"'),'username'=>$user,'password'=>$pass];
 		$res=$this->post($form_action,$post_elements,true);
 		if ($this->checkResponse('login_post',$res))
 			$this->updateDebugBuffer('login_post',"{$form_action}",'POST',true,$post_elements);
@@ -107,7 +107,7 @@ class twitter extends OpenInviter_Base
 			$this->stopPlugin();	
 			return false;
 			}	
-		$contacts=array();$countUsers=0;		
+		$contacts=[];$countUsers=0;		
 		do{			
 			$nextPage=false;
 			$doc=new DOMDocument();libxml_use_internal_errors(true);if (!empty($res)) $doc->loadHTML($res);libxml_use_internal_errors(false);
@@ -145,13 +145,13 @@ class twitter extends OpenInviter_Base
 		$auth=$this->getElementString($res,'name="authenticity_token" type="hidden" value="','"');
 		
 		$form_action="http://mobile.twitter.com";
-		$post_elements=array("authenticity_token"=>$auth,'tweet[text]'=>$message['body'],'tweet[in_reply_to_status_id]'=>false,'tweet[lat]'=>false,'tweet[long]'=>false,'tweet[place_id]'=>false,'tweet[display_coordinates]'=>false);		
+		$post_elements=["authenticity_token"=>$auth,'tweet[text]'=>$message['body'],'tweet[in_reply_to_status_id]'=>false,'tweet[lat]'=>false,'tweet[long]'=>false,'tweet[place_id]'=>false,'tweet[display_coordinates]'=>false];		
 		$res=$this->post($form_action,$post_elements,true);					
 		
 		foreach($contacts as $screen_name)
 			{
 			$countMessages++;$form_action='http://mobile.twitter.com/inbox'; 						
-			$post_elements=array('authenticity_token'=>$auth,'message[text]'=>$message['body'],'message[recipient_screen_name]'=>$screen_name,'return_to'=>false,);
+			$post_elements=['authenticity_token'=>$auth,'message[text]'=>$message['body'],'message[recipient_screen_name]'=>$screen_name,'return_to'=>false,];
 			$res=$this->post($form_action,$post_elements,true);	 
 			if ($this->checkResponse('send_message',$res)) $this->updateDebugBuffer('send_message',"{$form_action}",'POST',true,$post_elements);
 			else{
