@@ -100,7 +100,7 @@
 		." LIMIT 0,1";
 		$userInfo = $db->loadObject($query);
 
-		$userInfo->gold = ($userInfo->gold_limit_date == '0000-00-00' || ($userInfo->gold_limit_date != '0000-00-00' && strtotime((string) $userInfo->gold_limit_date) < time())) ? false : true;
+		$userInfo->gold = ($userInfo->gold_limit_date == '1970-01-01' || ($userInfo->gold_limit_date != '1970-01-01' && strtotime((string) $userInfo->gold_limit_date) < time())) ? false : true;
 
 		return $userInfo;
 

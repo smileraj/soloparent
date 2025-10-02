@@ -65,7 +65,7 @@
 	$title = ''.$lang_mod["VotreProfilAEte"].'.';
 	if($user->confirmed == 2) {
 		$title = ''.$lang_mod["VousAliezRecevoir"].'.';
-		if($user->gold_limit_date != '0000-00-00' && strtotime($user->gold_limit_date) >= time()) {
+		if($user->gold_limit_date != '1970-01-01' && strtotime($user->gold_limit_date) >= time()) {
 			$title .= ' '.$lang_mod["VotreAbonnementSera"].'.';
 		}
 	}
@@ -98,7 +98,7 @@
 				<li><b><?php echo $lang_mod["Statut"];?>:</b> <span class="statut<?php echo $user->confirmed; ?>" title="<?php echo $title; ?>"><?php echo $user->confirmed == 2 ? $lang_mod["Attente_validation"] :  $lang_mod["Confirme"]; ?></span></li>
 				<li>
 				<?php 					// abonn&eacute;
-					if($user->gold_limit_date != '0000-00-00' && $userTime >= time()) {
+					if($user->gold_limit_date != '1970-01-01' && $userTime >= time()) {
 					?>
 						<b><?php echo $lang_mod["FinDAbonnement"];?>:</b> <span class="black"><?php echo date('d/m/y', $userTime); ?></span>
 					<?php 					} else {

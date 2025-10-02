@@ -111,7 +111,7 @@
 								<td align="center"><img src="images/<?php echo $userObj->confirmed; ?>.png" /></td>
 								<td align="center"><a href="<?php echo SITE_URL_ADMIN; ?>/index.php?app=user&action=<?php echo $userObj->published ? 'desactiver' : 'activer'; ?>&id[]=<?php echo $userObj->id; ?>" title="Cliquez pour <?php echo $userObj->published ? 'd&eacute;sactiver' : 'activer'; ?> le profil de <?php echo $userObj->username; ?>"><img src="images/<?php echo $userObj->published; ?>.png" alt="<?php echo $userObj->published ? 'Oui' : 'Non'; ?>" /></a></td>
 								<td><?php echo date('d/m/Y H:i:s', strtotime((string) $userObj->creation_date)); ?></td>
-								<td><?php echo $userObj->last_online != '0000-00-00 00:00:00' ? date('d/m/Y H:i:s', strtotime((string) $userObj->last_online)) : 'jamais'; ?></td>
+								<td><?php echo $userObj->last_online != '1970-01-01 00:00:00' ? date('d/m/Y H:i:s', strtotime((string) $userObj->last_online)) : 'jamais'; ?></td>
 							</tr>
 						<?php 						} ?>
 					
@@ -228,7 +228,7 @@
 						<tr>
 							<td></td>
 							<td>
-								<i><?php if($userObj->last_online != '0000-00-00') { ?>Derni&egrave;re connexion le <?php echo date('d/m/Y � H:i:s', strtotime((string) $userObj->last_online)); } else { ?>Jamais connect&eacute;<?php } ?></i>
+								<i><?php if($userObj->last_online != '1970-01-01') { ?>Derni&egrave;re connexion le <?php echo date('d/m/Y � H:i:s', strtotime((string) $userObj->last_online)); } else { ?>Jamais connect&eacute;<?php } ?></i>
 							</td>
 						</tr>
 					</table>

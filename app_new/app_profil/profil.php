@@ -660,7 +660,7 @@ return true;
 //already exit validation telephone
 		$telephoneval=$_REQUEST['telephone'];
 		$telelength=strlen((string) $telephoneval);
-		if($telephoneval!='+41-' || $telephoneval!='+41'){
+		if($telephoneval!='+91-' || $telephoneval!='+91'){
 		$telquery="select telephone from user_profil where telephone='$telephoneval'";
 		$telresult = $db->loadResult($telquery);
 		if(($telresult!='') && ($telelength>5))
@@ -668,7 +668,7 @@ return true;
 		$messages[]	= '<span class="error">'.$lang_appprofil["telephonealreadyexist"].'.</span>';
 		}
 		}
-		if($telelength==6 || $telephoneval=='+41-' || $telephoneval==''||$telephoneval=='+41') {
+		if($telelength==6 || $telephoneval=='+91-' || $telephoneval==''||$telephoneval=='+91') {
 		if(JL::getSession('conditions', -1) > 0) {
 				JL::setSession('conditions', '');
 			} else {
@@ -840,7 +840,7 @@ return true;
 //telephone
 $telephoneval=$_REQUEST['telephone'];
 		$telelength=strlen((string) $telephoneval);
-if($telelength==6 || $telephoneval=='+41-' || $telephoneval==''||$telephoneval=='+41') {
+if($telelength==6 || $telephoneval=='+91-' || $telephoneval==''||$telephoneval=='+91') {
 		
 			$messages[]	= '<span class="error">'.$lang_appprofil["IndiquezNumTel"].'.</span>';
 		}
@@ -2240,7 +2240,7 @@ $dbanimaux=$db->loadObjectList($query);
 
 
 			// abonnement initial
-			$gold_limit_date	= '0000-00-00';
+			$gold_limit_date	= '1970-01-01';
 
 			// si des jours sont offerts (d�fini dans config.php)
 			if(ABONNEMENT_INITIAL > 0) {

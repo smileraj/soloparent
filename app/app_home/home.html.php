@@ -264,30 +264,36 @@
 					
 				</div>
 				<!-- Join its free Section end -->
-				
+				<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
 				<script type="text/javascript">
 					function loadVilles(prefix) {
-						if(prefix==null){
-							prefix='';
-						} 
-						
-						new Request({
-							url: $('site_url').value+'/app/app_home/ajax.php',
-							method: 'get',
-							headers: {'If-Modified-Since': 'Sat, 1 Jan 2000 00:00:00 GMT'},
-							data: {
-								"canton_id": $(prefix+'canton_id').value, 
-								"ville_id": $(prefix+'ville_id').value, 
-								"lang": $(prefix+'lang').value, 
-								"prefix": prefix
-							},
-							onSuccess: function(ajax_return) {
-								$("villes").set('html', ajax_return);
-							},
-							onFailure: function(){
-							}
-						}).send();
-					}
+    if (!prefix) {
+        prefix = '';
+    }
+    console.log('#' + prefix + 'canton_id');
+	console.log('#' + prefix + 'canton_id');
+    console.log($('precanton_id').get('value'));
+	console.log($('ville_id').get('value'));
+
+    //console.log($('.' + prefix + 'canton_id').val());
+
+    new Request({
+        url: $('site_url').value + '/app/app_home/ajax.php',
+        method: 'get',
+        headers: {'If-Modified-Since': 'Sat, 1 Jan 2000 00:00:00 GMT'},
+        data: {
+            "canton_id": $('precanton_id').get('value'),
+            "ville_id": $('ville_id').get('value'),
+            "lang": $('lang').get('value'),
+            "prefix": prefix
+        },
+        onSuccess: function(ajax_return) {
+            $("villes").set('html', ajax_return);
+        }
+    }).send();
+}
+
 				</script>
                         </div>
                         <div class="cell-md-6" >
@@ -908,15 +914,15 @@
 						if(prefix==null){
 							prefix='';
 						} 
-						
+						console.log(canton_id);
 						new Request({
 							url: $('site_url').value+'/app/app_home/ajax.php',
 							method: 'get',
 							headers: {'If-Modified-Since': 'Sat, 1 Jan 2000 00:00:00 GMT'},
 							data: {
-								"canton_id": $(prefix+'canton_id').value, 
-								"ville_id": $(prefix+'ville_id').value, 
-								"lang": $(prefix+'lang').value, 
+								"canton_id": $( prefix +'canton_id').val(), 
+								"ville_id": $( prefix +'ville_id').val(), 
+								"lang": $( prefix +'lang').val(), 
 								"prefix": prefix
 							},
 							onSuccess: function(ajax_return) {

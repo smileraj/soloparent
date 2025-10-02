@@ -140,7 +140,7 @@
 					
 					<div class="formwidth bottompadding">
 					<div class="col-md-3"><label><?php echo $lang_appprofil["Telephone"];?> *</label></div>
-					<div class="col-md-9"><input type="text" name="telephone" value="<?php echo ($row['telephone']=='')?"+41":$row['telephone']; ?>" class="telephone" /></div>						
+					<div class="col-md-9"><input type="text" name="telephone" value="<?php echo ($row['telephone']=='')?"+91":$row['telephone']; ?>" class="telephone" /></div>						
 					</div>
 					
 					
@@ -471,9 +471,9 @@
 							method: 'get',
 							headers: {'If-Modified-Since': 'Sat, 1 Jan 2000 00:00:00 GMT'},
 							data: {
-								"canton_id": $(prefix+'canton_id').value, 
-								"ville_id": $(prefix+'ville_id').value, 
-								"lang": $(prefix+'lang').value, 
+								"canton_id": $( prefix +'canton_id').val(), 
+								"ville_id": $( prefix +'ville_id').val(), 
+								"lang": $( prefix +'lang').val(), 
 								"prefix": prefix
 							},
 							onSuccess: function(ajax_return) {
@@ -2486,15 +2486,15 @@
 								if(prefix==null){
 									prefix='';
 								} 
-								
+								    
 								new Request({
 									url: $('site_url').value+'/app/app_home/ajax.php',
 									method: 'get',
 									headers: {'If-Modified-Since': 'Sat, 1 Jan 2000 00:00:00 GMT'},
 									data: {
-										"canton_id": $(prefix+'canton_id').value, 
-										"ville_id": $(prefix+'ville_id').value, 
-										"lang": $(prefix+'lang').value, 
+										"canton_id": $( prefix + 'canton_id').val() || '',
+										"ville_id": $( prefix + 'ville_id').val() || '',
+										"lang": $( prefix + 'lang').val() || '', 
 										"prefix": prefix
 									},
 									onSuccess: function(ajax_return) {

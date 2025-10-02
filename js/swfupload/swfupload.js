@@ -3,7 +3,7 @@
  *
  * mmSWFUpload 1.0: Flash upload dialog - http://profandesign.se/swfupload/,  http://www.vinterwebb.se/
  *
- * SWFUpload is (c) 2006-2007 Lars Huring, Olov Nilzén and Mammon Media and is released under the MIT License:
+ * SWFUpload is (c) 2006-2007 Lars Huring, Olov Nilzï¿½n and Mammon Media and is released under the MIT License:
  * http://www.opensource.org/licenses/mit-license.php
  *
  * SWFUpload 2 is (c) 2007-2008 Jake Roberts and is released under the MIT License:
@@ -24,7 +24,7 @@ if (SWFUpload == undefined) {
 }
 
 SWFUpload.prototype.initSWFUpload = function (settings) {
-	try {
+	// try {
 		this.customSettings = {};	// A container where developers can place their own settings associated with this instance.
 		this.settings = settings;
 		this.eventQueue = [];
@@ -39,10 +39,10 @@ SWFUpload.prototype.initSWFUpload = function (settings) {
 		this.initSettings();
 		this.loadFlash();
 		this.displayDebugInfo();
-	} catch (ex) {
-		delete SWFUpload.instances[this.movieName];
-		throw ex;
-	}
+	// } catch (ex) {
+	// 	delete SWFUpload.instances[this.movieName];
+	// 	throw ex;
+	// }
 };
 
 /* *************** */
@@ -213,12 +213,12 @@ SWFUpload.prototype.appendFlash = function () {
 // Private: replaceWithFlash replaces the button_placeholder element with the flash movie.
 SWFUpload.prototype.replaceWithFlash = function () {
 	var targetElement, tempParent;
-
+//console.log(this.movieName);
 	// Make sure an element with the ID we are going to use doesn't already exist
 	if (document.getElementById(this.movieName) !== null) {
 		throw "ID " + this.movieName + " is already in use. The Flash Object could not be added";
 	}
-
+	console.log(this.settings.button_placeholder_id);
 	// Get the element where we will be placing the flash movie
 	targetElement = document.getElementById(this.settings.button_placeholder_id);
 

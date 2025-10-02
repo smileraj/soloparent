@@ -1,11 +1,12 @@
 ﻿function step1GenderChange(new_value) {
 	if(new_value == 'f') {
-		new_text	= '<span class="homme">un homme</span>';
-	} else if(new_value == 'h') {
-		new_text	= '<span class="femme">une femme</span>';
-	} else {
-		new_text	= 'choisissez votre genre';
-	}
+    new_text = '<span class="man">a man</span>';
+} else if(new_value == 'h') {
+    new_text = '<span class="woman">a woman</span>';
+} else {
+    new_text = 'choose your gender';
+}
+
 	document.getElementById('step1gender').innerHTML = new_text;
 }
 

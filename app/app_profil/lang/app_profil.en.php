@@ -288,7 +288,7 @@ $lang_appprofil = [
 	"Prenom" => "First name",
 	"Telephone" => "Phone",
 	"Adresse" => "Address",
-	"CodePostal" => "Zip code",
+	"CodePostal" => "Postal code",
 	
 	"Finaliser" => "Finalize",
 	

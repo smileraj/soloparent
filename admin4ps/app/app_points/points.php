@@ -1,6 +1,6 @@
 <?php
 
-	// sécurité
+	// sï¿½curitï¿½
 	defined('JL') or die('Error 401');
 	
 	require_once('points.html.php');
@@ -13,14 +13,14 @@
 
 	switch($action) {
 		
-		// point: éditer
+		// point: ï¿½diter
 		case 'baremeedit':
 			$id = (int)JL::getVar('id',0);
 			if($id > 0) {
 			
 				baremeEdit($id);
 				
-			} else { // si pas d'id, on retourne à la liste
+			} else { // si pas d'id, on retourne ï¿½ la liste
 				JL::redirect(SITE_URL_ADMIN.'/index.php?app=points&action=bareme');
 			}
 		break;
@@ -34,7 +34,7 @@
 				$messages = baremeSave();
 				baremeEdit($id);
 				
-			} else { // si pas d'id, on retourne à la liste
+			} else { // si pas d'id, on retourne ï¿½ la liste
 				JL::redirect(SITE_URL_ADMIN.'/index.php?app=points&action=bareme');
 			}
 		break;
@@ -52,14 +52,14 @@
 		break;
 		
 		
-		// gagnant: éditer
+		// gagnant: ï¿½diter
 		case 'gagnantedit':
 			$id = (int)JL::getVar('id',0);
 			if($id > 0) {
 			
 				gagnantEdit($id);
 				
-			} else { // si pas d'id, on retourne à la liste
+			} else { // si pas d'id, on retourne ï¿½ la liste
 				JL::redirect(SITE_URL_ADMIN.'/index.php?app=points&action=gagnant');
 			}
 		break;
@@ -72,7 +72,7 @@
 				$messages = gagnantSave();
 				gagnantEdit($id);
 				
-			} else { // si pas d'id, on retourne à la liste
+			} else { // si pas d'id, on retourne ï¿½ la liste
 				JL::redirect(SITE_URL_ADMIN.'/index.php?app=points&action=gagnant');
 			}
 		break;
@@ -86,7 +86,7 @@
 	}
 	
 	
-	// données du barème
+	// donnï¿½es du barï¿½me
 	function &baremeGetData() {
 	
 		$data = new StdClass();
@@ -105,14 +105,14 @@
 	}
 	
 	
-	// édite un point du barème
+	// ï¿½dite un point du barï¿½me
 	function baremeEdit($id) {
 		global $db, $messages;
 		
-		// récup les données par défaut
+		// rï¿½cup les donnï¿½es par dï¿½faut
 		$data 		=& baremeGetData();
 	
-		// récup les données
+		// rï¿½cup les donnï¿½es
 		$query = "SELECT id, description, nom_fr, nom_de, nom_en, points, nb_max_par_data"
 		." FROM points"
 		." WHERE id = '".$db->escape($data->id)."'"
@@ -121,7 +121,7 @@
 		$row = $db->loadObject($query);
 		
 		
-		// variables par défaut
+		// variables par dï¿½faut
 		foreach($data as $k => $v) {
 			$row->{$k} = $v ?: $row->{$k};
 		}
@@ -132,15 +132,15 @@
 	}
 	
 	
-	// sauvegarde les données dans la DB
+	// sauvegarde les donnï¿½es dans la DB
 	function baremeSave() {
 		global $db, $messages;
 		
-		// récup les données
+		// rï¿½cup les donnï¿½es
 		$row 		=& baremeGetData();
 		
 
-		// vérifications des champs
+		// vï¿½rifications des champs
 		if(!$row->description) {
 			$messages[]	= '<span class="error">Veuillez indiquer la description du bar&egrave;me s\'il vous pla&icirc;t.</span>';
 		}
@@ -162,7 +162,7 @@
 		// s'il n'y a pas d'erreur
 		if(!count($messages)) {
 		
-			// mise à jour dans la DB
+			// mise ï¿½ jour dans la DB
 			$query = "UPDATE points SET"
 			." description = '".$db->escape($row->description)."',"
 			." nom_fr = '".$db->escape($row->nom_fr)."',"
@@ -185,11 +185,11 @@
 	}
 	
 	
-	// liste les points du barème
+	// liste les points du barï¿½me
 	function baremeList() {
 		global $db, $messages;
 		
-		// recherche des données
+		// recherche des donnï¿½es
 		$query = "SELECT id, description, points, nb_max_par_data"
 		." FROM points"
 		." ORDER BY description ASC"
@@ -203,7 +203,7 @@
 	
 	
 
-	// données du gagnant
+	// donnï¿½es du gagnant
 	function &gagnantGetData() {
 	
 		$data = new StdClass();
@@ -225,14 +225,14 @@
 	}
 	
 	
-	// édite un point du gagnant
+	// ï¿½dite un point du gagnant
 	function gagnantEdit($id) {
 		global $db, $messages;
 		
-		// récup les données par défaut
+		// rï¿½cup les donnï¿½es par dï¿½faut
 		$data 		=& gagnantGetData();
 	
-		// récup les données
+		// rï¿½cup les donnï¿½es
 		$query = "SELECT pg.id, pg.nom, pg.prenom, pg.adresse, pg.code_postal, pg.ville, pg.commentaire, pg.traite, pg.temoignage, pg.temoignage_date, pg.position, pg.user_id, pg.annee_mois, u.username"
 		." FROM points_gagnants AS pg"
 		." INNER JOIN user AS u ON u.id = pg.user_id"
@@ -242,7 +242,7 @@
 		$row = $db->loadObject($query);
 		
 		
-		// variables par défaut
+		// variables par dï¿½faut
 		foreach($data as $k => $v) {
 			$row->{$k} = $v ?: $row->{$k};
 		}
@@ -253,15 +253,15 @@
 	}
 	
 	
-	// sauvegarde les données dans la DB
+	// sauvegarde les donnï¿½es dans la DB
 	function gagnantSave() {
 		global $db, $messages;
 		
-		// récup les données
+		// rï¿½cup les donnï¿½es
 		$row 		=& gagnantGetData();
 		
 		
-		// date du témoignage
+		// date du tï¿½moignage
 		if($row->temoignage_date) {
 		
 			$date = explode('/', (string) $row->temoignage_date);
@@ -269,7 +269,7 @@
 		
 		} else {
 		
-			$row->temoignage_date = '0000-00-00';
+			$row->temoignage_date = '1970-01-01';
 		
 		}
 		
@@ -277,7 +277,7 @@
 		// s'il n'y a pas d'erreur
 		if(!count($messages)) {
 		
-			// mise à jour dans la DB
+			// mise ï¿½ jour dans la DB
 			$query = "UPDATE points_gagnants SET"
 			." nom = '".$db->escape($row->nom)."',"
 			." prenom = '".$db->escape($row->prenom)."',"
@@ -303,11 +303,11 @@
 	}
 	
 	
-	// liste les points du barème
+	// liste les points du barï¿½me
 	function gagnantList() {
 		global $db, $messages;
 		
-		// recherche des données
+		// recherche des donnï¿½es
 		$query = "SELECT pg.id, u.username, pg.annee_mois, pg.position, pg.traite, IF(pg.temoignage!='', 1, 0) as temoigne, pg.commentaire"
 		." FROM points_gagnants AS pg"
 		." INNER JOIN user AS u ON u.id = pg.user_id"
@@ -321,14 +321,14 @@
 	}	
 	
 	
-	// affiche le classement d'un mois donné
+	// affiche le classement d'un mois donnï¿½
 	function classementList() {
 		global $db;
 		
 		// params
 		$annee_mois = JL::getVar('annee_mois', '');
 		
-		// liste déroulante des années-mois
+		// liste dï¿½roulante des annï¿½es-mois
 		$query = "SELECT annee_mois"
 		." FROM points_classements"
 		." GROUP BY annee_mois"
@@ -336,7 +336,7 @@
 		;
 		$anneesMoisList = $db->loadObjectList($query);
 		
-		// correction du paramètre annee_mois si celui-ci n'est pas défini
+		// correction du paramï¿½tre annee_mois si celui-ci n'est pas dï¿½fini
 		if(is_array($anneesMoisList) && count($anneesMoisList) > 0 && $annee_mois == '') {
 			$annee_mois = $anneesMoisList[0]->annee_mois;
 		}
@@ -344,7 +344,7 @@
 		$list['annee_mois'] = JL::makeSelectList($anneesMoisList, 'annee_mois', 'onChange="document.adminForm.submit();" class="anneesMoisList" id="annee_mois"', 'annee_mois', 'annee_mois', $annee_mois);
 		
 		
-		// récup le classement de l'$annee_mois
+		// rï¿½cup le classement de l'$annee_mois
 		$query = "SELECT IFNULL(u.username, 'inconnu') AS username, pc.points"
 		." FROM points_classements AS pc"
 		." LEFT JOIN user AS u ON u.id = pc.user_id"

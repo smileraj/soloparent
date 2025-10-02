@@ -73,7 +73,7 @@ class profil_HTML {
 
                     // Abonnement handling
                     $jours = 0;
-                    if($user->gold_limit_date != '0000-00-00') {
+                    if($user->gold_limit_date != '1970-01-01') {
                         $userTime = strtotime((string) $user->gold_limit_date);
                         $time = time();
                         $jours = ceil(($userTime-$time)/86400);
@@ -116,8 +116,8 @@ class profil_HTML {
                         <td style="color:<?php echo $colorPhone; ?>;"><?php echo str_starts_with((string) $user->telephone_origine, '0')?$user->telephone_origine:'0'.$user->telephone_origine; ?></td>
                         <td>
                         <?php
-                        if($user->appel_date != '0000-00-00') echo date('d/m/Y', strtotime((string) $user->appel_date));
-                        if($user->appel_date2 != '0000-00-00') echo '<br /><span style="font-size:10px;color:#aaa;">+ '.date('d/m/Y', strtotime((string) $user->appel_date2)).'</span>';
+                        if($user->appel_date != '1970-01-01') echo date('d/m/Y', strtotime((string) $user->appel_date));
+                        if($user->appel_date2 != '1970-01-01') echo '<br /><span style="font-size:10px;color:#aaa;">+ '.date('d/m/Y', strtotime((string) $user->appel_date2)).'</span>';
                         ?>
                         </td>
                         <td style="color:<?php echo $colorPays; ?>; font-weight:bold; text-align:center;"><?php echo str_replace('XX','?',$pays); ?></td>

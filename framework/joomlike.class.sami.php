@@ -10,7 +10,7 @@
 		// retourne true si le membre est abonn�, sinon false
 		function checkAbonnement() {
 			global $user;
-			return ($user->gold_limit_date == '0000-00-00' || ($user->gold_limit_date != '0000-00-00' && strtotime($user->gold_limit_date) < time())) ? false : true;
+			return ($user->gold_limit_date == '1970-01-01' || ($user->gold_limit_date != '1970-01-01' && strtotime($user->gold_limit_date) < time())) ? false : true;
 		}
 		
 		// crypte les adresses mail et url
@@ -365,7 +365,7 @@
 				
 				
 				$imgUrl	= SITE_URL."/images/mail";
-				$sujet 	= "ParentSolo.ch - ".$titre[$type];
+				$sujet 	= "SoloCircl.com - ".$titre[$type];
 				$headers ='From: "'.SITE_MAIL_FROM.'" <'.SITE_MAIL.'>'."\n";
 				$headers .='Reply-To: '.SITE_MAIL."\n";
 				$headers .='Content-Type: text/html; charset="iso-8859-1"'."\n";
@@ -396,7 +396,7 @@
 				
 				."<td style='width:120px;height:164px;vertical-align:top;padding:0px;' valign='top'><a href='".JL::url(SITE_URL.'/index.php?app=message&action=flower&user_to='.$user->username)."'\n style='display:block;width:119px;height:32px;margin:0px;padding:0px;'><img\n src='".$imgUrl."/rose2.jpg' border='0' /></a><img\n src='".$imgUrl."/".$icone[$type]."' style='display:block;margin:0px;padding:0px;width:119px;height:100px;' /><a\n href='".JL::url(SITE_URL.'/index.php?app=message&action=write&user_to='.$user->username)."'\n style='display:block;width:119px;height:29px;margin:0px;padding:0px;'><img\n src='".$imgUrl."/message2.jpg' border='0' /></a></td></tr></table></div>\n"
 				
-				."<span style='font-family:Verdana;display:block;padding:80px 0px 0px 20px;width:570px;\n color:rgb(55,55,55);\n font-size:11px;font-style:italic;'>\nSi vous ne souhaitez\n plus recevoir cet email, connectez-vous &agrave; votre compte sur Parentsolo.ch,\n puis allez dans &quot;Mes notifications&quot;, et d&eacute;cochez la case\n qui correspond &agrave; cet email.</span>\n"
+				."<span style='font-family:Verdana;display:block;padding:80px 0px 0px 20px;width:570px;\n color:rgb(55,55,55);\n font-size:11px;font-style:italic;'>\nSi vous ne souhaitez\n plus recevoir cet email, connectez-vous &agrave; votre compte sur SoloCircl.com,\n puis allez dans &quot;Mes notifications&quot;, et d&eacute;cochez la case\n qui correspond &agrave; cet email.</span>\n"
 				
 				."</td></tr>\n"
 				
@@ -722,7 +722,7 @@
 		// retourne true si le membre est abonn�, sinon false
 		function checkAbonnement() {
 			global $user;
-			return ($user->gold_limit_date == '0000-00-00' || ($user->gold_limit_date != '0000-00-00' && strtotime($user->gold_limit_date) < time())) ? false : true;
+			return ($user->gold_limit_date == '1970-01-01' || ($user->gold_limit_date != '1970-01-01' && strtotime($user->gold_limit_date) < time())) ? false : true;
 		}
 		
 		// crypte les adresses mail et url
@@ -1078,7 +1078,7 @@ include("lang/app_framework.".$_GET['lang'].".php");
 				
 				
 				$imgUrl	= SITE_URL."/images/mail";
-				$sujet 	= "ParentSolo.ch - ".$titre[$type];
+				$sujet 	= "SoloCircl.com - ".$titre[$type];
 				$headers ='From: "'.SITE_MAIL_FROM.'" <'.SITE_MAIL.'>'."\n";
 				$headers .='Reply-To: '.SITE_MAIL."\n";
 				$headers .='Content-Type: text/html; charset="iso-8859-1"'."\n";
@@ -1436,7 +1436,7 @@ include("lang/app_framework.".$_GET['lang'].".php");
 		// retourne true si le membre est abonn�, sinon false
 		function checkAbonnement() {
 			global $user;
-			return ($user->gold_limit_date == '0000-00-00' || ($user->gold_limit_date != '0000-00-00' && strtotime($user->gold_limit_date) < time())) ? false : true;
+			return ($user->gold_limit_date == '1970-01-01' || ($user->gold_limit_date != '1970-01-01' && strtotime($user->gold_limit_date) < time())) ? false : true;
 		}
 		
 		// crypte les adresses mail et url
@@ -1792,7 +1792,7 @@ include("lang/app_framework.".$_GET['lang'].".php");
 				
 				
 				$imgUrl	= SITE_URL."/images/mail";
-				$sujet 	= "ParentSolo.ch - ".$titre[$type];
+				$sujet 	= "SoloCircl.com - ".$titre[$type];
 				$headers ='From: "'.SITE_MAIL_FROM.'" <'.SITE_MAIL.'>'."\n";
 				$headers .='Reply-To: '.SITE_MAIL."\n";
 				$headers .='Content-Type: text/html; charset="iso-8859-1"'."\n";

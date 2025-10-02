@@ -77,7 +77,7 @@
 								<td align="center"><img src="images/<?php echo $contenu->published; ?>.png" /></td>
 								<td align="center"><img src="images/<?php echo $contenu->footer; ?>.png" /></td>
 								<td align="center"><?php echo date('d/m/Y', strtotime((string) $contenu->date_add)); ?></td>
-								<td align="center"><?php echo $contenu->date_update != '0000-00-00 00:00:00' ? date('d/m/Y', strtotime((string) $contenu->date_update)) : ''; ?></td>
+								<td align="center"><?php echo $contenu->date_update != '1970-01-01 00:00:00' ? date('d/m/Y', strtotime((string) $contenu->date_update)) : ''; ?></td>
 							</tr>
 							<?php 						} 
 					?>

@@ -399,7 +399,7 @@
 					<table cellpadding="0" cellspacing="0" class="editer">
 						<tr>
 							<td class="key">Abonnement jusqu'au:</td>
-							<td><input type="text" name="gold_limit_date" value="<?php echo $userObj->gold_limit_date != '0000-00-00' ? date('d/m/Y', strtotime((string) $userObj->gold_limit_date)) : ''; ?>" size="9" /> <i>(jj/mm/aaaa)</i></td>
+							<td><input type="text" name="gold_limit_date" value="<?php echo $userObj->gold_limit_date != '1970-01-01' ? date('d/m/Y', strtotime((string) $userObj->gold_limit_date)) : ''; ?>" size="9" /> <i>(jj/mm/aaaa)</i></td>
 						</tr>
 						<tr>
 							<td class="key">Cr&eacute;diter abonnement:</td>
@@ -506,11 +506,11 @@
 						</tr>
 						<tr>
 							<td class="key">1er appel:</td>
-							<td><input type="text" name="appel_date" value="<?php echo $userObj->appel_date != '0000-00-00' ? date('d/m/Y', strtotime((string) $userObj->appel_date)) : ''; ?>" size="9" /> <i>(jj/mm/aaaa)</i></td>
+							<td><input type="text" name="appel_date" value="<?php echo $userObj->appel_date != '1970-01-01' ? date('d/m/Y', strtotime((string) $userObj->appel_date)) : ''; ?>" size="9" /> <i>(jj/mm/aaaa)</i></td>
 						</tr>
 						<tr>
 							<td class="key">2&egrave;me appel:</td>
-							<td><input type="text" name="appel_date2" value="<?php echo $userObj->appel_date2 != '0000-00-00' ? date('d/m/Y', strtotime((string) $userObj->appel_date2)) : ''; ?>" size="9" /> <i>(jj/mm/aaaa)</i></td>
+							<td><input type="text" name="appel_date2" value="<?php echo $userObj->appel_date2 != '1970-01-01' ? date('d/m/Y', strtotime((string) $userObj->appel_date2)) : ''; ?>" size="9" /> <i>(jj/mm/aaaa)</i></td>
 						</tr>
 						<tr>
 							<td class="key">Commentaire:</td>

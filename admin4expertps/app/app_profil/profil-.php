@@ -157,7 +157,7 @@
 				
 			} else {
 			
-				$data->gold_limit_date = '0000-00-00';
+				$data->gold_limit_date = '1970-01-01';
 				
 			}
 			
@@ -553,7 +553,7 @@
 			// aucun abo
 			if($search['abonnement'] == '1') {
 			
-				$where[]		= "us.gold_limit_date = '0000-00-00'";
+				$where[]		= "us.gold_limit_date = '1970-01-01'";
 				
 			} elseif($search['abonnement'] == '2') { // abo en cours
 			
@@ -562,7 +562,7 @@
 			} elseif($search['abonnement'] == '3') { // abo termin�
 			
 				$where[]		= "us.gold_limit_date < NOW()";
-				$where[]		= "us.gold_limit_date != '0000-00-00'";
+				$where[]		= "us.gold_limit_date != '1970-01-01'";
 				
 			}
 			

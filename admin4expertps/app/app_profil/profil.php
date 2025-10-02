@@ -101,7 +101,7 @@
 			
 			
 			// r�cup le dernier abonnement pay� par carte
-			$query = "SELECT nom_paypal, prenom_paypal, IF(date_dernier_renouvellement = '0000-00-00 00:00:00', date_souscription, date_dernier_renouvellement) as datetime, valide"
+			$query = "SELECT nom_paypal, prenom_paypal, IF(date_dernier_renouvellement = '1970-01-01 00:00:00', date_souscription, date_dernier_renouvellement) as datetime, valide"
 			." FROM abonnement_paypal"
 			." WHERE user_id = '".$userObj->id."' AND valide > 0"
 			." ORDER BY datetime DESC"

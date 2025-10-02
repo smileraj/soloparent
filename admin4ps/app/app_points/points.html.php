@@ -326,7 +326,7 @@
 					<table cellpadding="0" cellspacing="0" class="table table-bordered table-striped table-condensed cf editer">
 						<tr>
 							<td class="key"><label for="temoignage_date">Date:</label></td>
-							<td><input type="text" name="temoignage_date" value="<?php echo $row->temoignage_date != '0000-00-00' ? date('d/m/Y', strtotime((string) $row->temoignage_date)) : ''; ?>" size="9" /> <i>(jj/mm/aaaa)</i></td>
+							<td><input type="text" name="temoignage_date" value="<?php echo $row->temoignage_date != '1970-01-01' ? date('d/m/Y', strtotime((string) $row->temoignage_date)) : ''; ?>" size="9" /> <i>(jj/mm/aaaa)</i></td>
 						</tr>
 						<tr>
 							<td class="key"><label for="temoignage">T&eacute;moignage:</label></td>

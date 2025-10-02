@@ -84,7 +84,7 @@ if ($user_id && $log_ok) {
               INNER JOIN user_stats AS us ON us.user_id = u.id
               INNER JOIN user_profil AS up ON up.user_id = u.id
               WHERE u.id = '".$user_id."' LIMIT 1";
-
+//echo $query;
     $user = $db->loadObject($query);
 
     $langue = 'lang=en';
@@ -100,7 +100,7 @@ if ($user_id && $log_ok) {
     $query = "UPDATE user 
               SET last_online = NOW(), ip = '".$db->escape($ip)."', online = '1' 
               WHERE id = '".$user->id."'";
-	
+	//echo $query;
     $db->query($query);
 
     // demande d'authentification
@@ -148,7 +148,7 @@ if ($user_id && $log_ok) {
         'username' => '',
         'email' => '',
         'gid' => 0,
-        'gold_limit_date' => '0000-00-00',
+        'gold_limit_date' => '1970-01-01',
         'genre' => ''
     ];
 }

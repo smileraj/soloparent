@@ -201,7 +201,7 @@
 			$userObj->published			= JL::getSession('userForm_published', 0);
 			$userObj->confirmed			= 0;
 			$userObj->creation_date		= date('Y-m-d H:i:s');
-			$userObj->last_online		= '0000-00-00'; 
+			$userObj->last_online		= '1970-01-01'; 
 		
 		} else {
 			

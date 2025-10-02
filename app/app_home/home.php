@@ -83,7 +83,15 @@
 	;
 
 	$list_canton_id 	= array_merge($list_canton_id, $db->loadObjectList($query));
-	$list['canton_id'] 	= JL::makeSelectList( $list_canton_id, 'canton_id', 'id="canton_id" class="size5" onChange="loadVilles();"', 'value', 'text', '0');
+	$list['canton_id'] = JL::makeSelectList(
+    $list_canton_id,
+    'canton_id',
+    'id="precanton_id" class="size5 canton_id" onChange="loadVilles();"',
+    'value',
+    'text',
+    '0'
+);
+
 
 
 

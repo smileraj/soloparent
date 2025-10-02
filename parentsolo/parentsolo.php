@@ -81,7 +81,10 @@ else{ ?>
 (function($) {
 	$(document).ready(function() 
  {
-	var useridval= document.getElementById('useridval').value;
+	var userid= document.getElementById('useridval');
+	if(userid){
+		var useridval = userid.value;
+	}
 	//alert(useridval);
 	var sound_test=0;
 	
@@ -686,11 +689,11 @@ timerPaypal=setInterval("doHide()", 5000);
 <?php 						JL::loadMod('menu');
 							
 						?>
-					</div>
+					
 					<div class="hidden-md  hidden-lg">
 					<?php 					JL::loadMod('menu');
 					?>
-					</div>
+					
 					<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 parentsolo_shadow">
 						<div class="col-lg-9   parentsolo_pt_15">
 						<?php 						JL::loadMod('menu_offline');	
