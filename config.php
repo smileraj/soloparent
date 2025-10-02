@@ -10,11 +10,13 @@ if ($isLocal) {
     define('DB_USERNAME', 'root');
     define('DB_PASSWORD', 'NewStrongPassword');
     define('DB_DATABASE', 'parentsolo');
+    define('SITE_URL',                'http://localhost');
 } else {
     define('DB_SERVER',   'localhost');
     define('DB_USERNAME', 'root');
-    define('DB_PASSWORD', 'Admin@123');
+    define('DB_PASSWORD', 'kQ1Sr5MWoMM!');
     define('DB_DATABASE', 'solocircle');
+    define('SITE_URL',                'http://65.2.140.147');
 }
 
 // Paths
@@ -23,7 +25,7 @@ define('SITE_PATH_ADMIN',         SITE_PATH . 'admin4ps');
 define('SITE_PATH_ADMIN_EXPERT',  SITE_PATH . 'admin4expertps');
 
 // URLs
-define('SITE_URL',                'http://localhost');
+
 define('SITE_URL_ADMIN',          SITE_URL . '/admin4ps');
 define('SITE_URL_ADMIN_EXPERT',   SITE_URL . '/admin4expertps');
 
