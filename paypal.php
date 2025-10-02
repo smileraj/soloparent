@@ -89,7 +89,7 @@
 					$abonnement_paypal	= $db->loadObject($query);
 					
 					// récup les détails de l'utilisateur
-					$queryUser = "SELECT u.id, u.username, u.gid, IF(us.gold_limit_date < NOW(), '0000-00-00', us.gold_limit_date) AS date_reference"
+					$queryUser = "SELECT u.id, u.username, u.gid, IF(us.gold_limit_date < NOW(), '1970-01-01', us.gold_limit_date) AS date_reference"
 					." FROM user AS u"
 					." INNER JOIN user_stats AS us ON us.user_id = u.id"
 					." WHERE u.id = '".(int)$abonnement_paypal->user_id."'"
@@ -155,7 +155,7 @@
 					$abonnement_paypal	= $db->loadObject($query);
 					
 					// récup les détails de l'utilisateur
-					$queryUser = "SELECT u.id, u.username, u.gid, IF(us.gold_limit_date < NOW(), '0000-00-00', us.gold_limit_date) AS date_reference, us.gold_limit_date"
+					$queryUser = "SELECT u.id, u.username, u.gid, IF(us.gold_limit_date < NOW(), '1970-01-01', us.gold_limit_date) AS date_reference, us.gold_limit_date"
 					." FROM user AS u"
 					." INNER JOIN user_stats AS us ON us.user_id = u.id"
 					." WHERE u.id = '".(int)$abonnement_paypal->user_id."'"
@@ -166,7 +166,7 @@
 					if($abonnement_paypal && $userProfil && $mc_currency == $currency_check && $mc_gross == $abonnement_paypal->montant){
 						
 						// pas de date de fin d'abo
-						if($userProfil->date_reference == '0000-00-00') {
+						if($userProfil->date_reference == '1970-01-01') {
 							$date	= explode('-', date('Y-m-d'));
 						} else {
 							// parse la date de fin d'abonnement
@@ -267,7 +267,7 @@
 					$abonnement_paypal	= $db->loadObject($query);
 					
 					// récup les détails de l'utilisateur
-					$queryUser = "SELECT u.id, u.username, u.gid, IF(us.gold_limit_date < NOW(), '0000-00-00', us.gold_limit_date) AS date_reference"
+					$queryUser = "SELECT u.id, u.username, u.gid, IF(us.gold_limit_date < NOW(), '1970-01-01', us.gold_limit_date) AS date_reference"
 					." FROM user AS u"
 					." INNER JOIN user_stats AS us ON us.user_id = u.id"
 					." WHERE u.id = '".(int)$abonnement_paypal->user_id."'"
@@ -299,7 +299,7 @@
 					$abonnement_paypal	= $db->loadObject($query);
 					
 					// récup les détails de l'utilisateur
-					$queryUser = "SELECT u.id, u.username, u.gid, IF(us.gold_limit_date < NOW(), '0000-00-00', us.gold_limit_date) AS date_reference"
+					$queryUser = "SELECT u.id, u.username, u.gid, IF(us.gold_limit_date < NOW(), '1970-01-01', us.gold_limit_date) AS date_reference"
 					." FROM user AS u"
 					." INNER JOIN user_stats AS us ON us.user_id = u.id"
 					." WHERE u.id = '".(int)$abonnement_paypal->user_id."'"

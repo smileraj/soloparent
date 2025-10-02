@@ -647,23 +647,24 @@ return true;
 			$messages[]	= '<span class="error">'.$lang_appprofil["IndiquezPrenom"].'.</span>';
 		}
 		//zipcodevalidation 
-		$canton=$_REQUEST['canton_id'];
-		$codepost=$_REQUEST['code_postal'];
-		$zipquery="Select zipcode_id from user_zipcode where postal_code=$codepost";
+// 		$canton=$_REQUEST['canton_id'];
+// 		$codepost=$_REQUEST['code_postal'];
+// 		$zipquery="Select zipcode_id from user_zipcode where postal_code=$codepost";
 		
-	   $zipresult = $db->loadResult($zipquery);	
+// 	   $zipresult = $db->loadResult($zipquery);	
 	   
- if($zipresult!=$canton){
- 				$messages[]	= '<span class="error">'.var_dump(\ZIPRESULT).$lang_appprofil["zipcodevalidation"].'.</span>';
+//  if($zipresult!=$canton){
+//  				$messages[]	= '<span class="error">'.var_dump(\ZIPRESULT).$lang_appprofil["zipcodevalidation"].'.</span>';
 
- }
+//  }
  	
 		
 //already exit validation telephone
 		$telephoneval=$_REQUEST['telephone'];
 		$telelength=strlen((string) $telephoneval);
-		if($telephoneval!='+41-' || $telephoneval!='+41'){
+		if($telephoneval!='+91-' || $telephoneval!='+91'){
 		$telquery="select telephone from user_profil where telephone='$telephoneval' and user_active=1";
+		//echo $telquery;
 		$telresult = $db->loadResult($telquery);
 		if(($telresult!='') && ($telelength>5))
 		{
@@ -2245,7 +2246,7 @@ $dbanimaux=$db->loadObjectList($query);
 
 
 			// abonnement initial
-			$gold_limit_date	= '0000-00-00';
+			$gold_limit_date	= '1970-01-01';
 
 			// si des jours sont offerts (d�fini dans config.php)
 			if(ABONNEMENT_INITIAL > 0) {
@@ -2265,6 +2266,7 @@ $dbanimaux=$db->loadObjectList($query);
 			." gold_limit_date = '".$gold_limit_date."',"
 			." gold_total = '0'"
 			;
+			
 			$db->query($query);
 
 

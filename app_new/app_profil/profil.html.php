@@ -147,11 +147,11 @@
 					
 					<div class="formwidth bottompadding">
 					<div class="col-md-3"><label><?php echo $lang_appprofil["CodePostal"];?>&nbsp;*</label></div>
-					<div class="col-md-9"><input type="text" name="code_postal" required  id="code_postal" class="numvalidation" maxlength="4" value="<?php echo $row['code_postal']; ?>" /></div>						
+					<div class="col-md-9"><input type="text" name="code_postal" required  id="code_postal" class="numvalidation" maxlength="6" value="<?php echo $row['code_postal']; ?>" /></div>						
 					</div>
 					<div class="formwidth bottompadding">
 					<div class="col-md-3"><label><?php echo $lang_appprofil["Telephone"];?>&nbsp;*</label></div>
-					<div class="col-md-9"><input type="text" name="telephone" required id="telephone" maxlength="17"  value="<?php echo ($row['telephone']=='')?"+41":$row['telephone']; ?>" class="telephone numvalidation" /></div>						
+					<div class="col-md-9"><input type="text" name="telephone" required id="telephone" maxlength="17"  value="<?php echo ($row['telephone']=='')?"+91":$row['telephone']; ?>" class="telephone numvalidation" /></div>						
 					</div>
 					<script>
 jQuery.noConflict();
@@ -161,14 +161,14 @@ $(document).ready(function()
  var getvalue="<?php echo $zipcode_id->area_code?>";
  var tele="<?php echo $row['telephone']?>";
  if(tele==''){
- 	      $('#telephone').val('+41-'+getvalue);
+ 	      $('#telephone').val('+91-'+getvalue);
 
  }
  else{
  $('#telephone').val(tele);
  }
  //telephone validation
-  var telval='+41-';
+  var telval='+91-';
   var readOnlyLength = telval.length;
  $('#telephone').keydown(function(e) {
    if ((e.which != 37 && (e.which != 39))
@@ -207,7 +207,7 @@ $('#code_postal').change(function() {
 	{
 	var datasplit=data.split('<br>');
 	    $('#canton_id').append(datasplit[1]);
-	    $('#telephone').val('+41-');
+	    $('#telephone').val('+91-');
 		loadVilles();	
 	}
 });    
@@ -530,9 +530,9 @@ $('#code_postal').change(function() {
 							method: 'get',
 							headers: {'If-Modified-Since': 'Sat, 1 Jan 2000 00:00:00 GMT'},
 							data: {
-								"canton_id": $(prefix+'canton_id').value, 
-								"ville_id": $(prefix+'ville_id').value, 
-								"lang": $(prefix+'lang').value, 
+								"canton_id": $( prefix +'canton_id').val(), 
+								"ville_id": $( prefix +'ville_id').val(), 
+								"lang": $( prefix +'lang').val(), 
 								"prefix": prefix
 							},
 							onSuccess: function(ajax_return) {
@@ -2711,9 +2711,9 @@ $enfant_genre = $enfant->genre == 'f' ? $lang_appprofil["Fille"] : $lang_appprof
 									method: 'get',
 									headers: {'If-Modified-Since': 'Sat, 1 Jan 2000 00:00:00 GMT'},
 									data: {
-										"canton_id": $(prefix+'canton_id').value, 
-										"ville_id": $(prefix+'ville_id').value, 
-										"lang": $(prefix+'lang').value, 
+										"canton_id": $( prefix +'canton_id').val(), 
+										"ville_id": $( prefix +'ville_id').val(), 
+										"lang": $( prefix +'lang').val(), 
 										"prefix": prefix
 									},
 									onSuccess: function(ajax_return) {

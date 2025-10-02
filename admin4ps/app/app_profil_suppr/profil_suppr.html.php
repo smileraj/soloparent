@@ -98,7 +98,7 @@
 							// var locales
 							$warning 	= false;
 
-							if($user->gold_limit_date != '0000-00-00') {
+							if($user->gold_limit_date != '1970-01-01') {
 							
 								$userTime				= strtotime((string) $user->gold_limit_date);
 								$time					= time();
@@ -197,7 +197,7 @@
 									</td>
 									<td>
 									<?php 										// date d'appel
-										if($user->appel_date != '0000-00-00') {
+										if($user->appel_date != '1970-01-01') {
 										
 											$userTime	= strtotime((string) $user->appel_date);
 											echo date('d/m/Y', $userTime);
@@ -205,7 +205,7 @@
 										}
 										
 										// date d'appel 2
-										if($user->appel_date2 != '0000-00-00') {
+										if($user->appel_date2 != '1970-01-01') {
 										
 											$userTime	= strtotime((string) $user->appel_date2);
 											echo '<br /><span style="font-size:10px;color:#aaa;">+ '.date('d/m/Y', $userTime).'</span>';
@@ -364,7 +364,7 @@
 					<table cellpadding="0" cellspacing="0" class="table table-bordered table-striped table-condensed cf editer">
 						<tr>
 							<td class="key">Abonnement jusqu'au:</td>
-							<td><?php echo $userObj->gold_limit_date != '0000-00-00' ? date('d/m/Y', strtotime((string) $userObj->gold_limit_date)) : ''; ?></td>
+							<td><?php echo $userObj->gold_limit_date != '1970-01-01' ? date('d/m/Y', strtotime((string) $userObj->gold_limit_date)) : ''; ?></td>
 						</tr>
 						<tr>
 							<td class="key">Points actuels:</td>
@@ -417,11 +417,11 @@
 						</tr>
 						<tr>
 							<td class="key">1er appel:</td>
-							<td><?php echo $userObj->appel_date != '0000-00-00' ? date('d/m/Y', strtotime((string) $userObj->appel_date)) : ''; ?></td>
+							<td><?php echo $userObj->appel_date != '1970-01-01' ? date('d/m/Y', strtotime((string) $userObj->appel_date)) : ''; ?></td>
 						</tr>
 						<tr>
 							<td class="key">2&egrave;me appel:</td>
-							<td><?php echo $userObj->appel_date2 != '0000-00-00' ? date('d/m/Y', strtotime((string) $userObj->appel_date2)) : ''; ?></td>
+							<td><?php echo $userObj->appel_date2 != '1970-01-01' ? date('d/m/Y', strtotime((string) $userObj->appel_date2)) : ''; ?></td>
 						</tr>
 						<tr>
 							<td class="key">Commentaire:</td>

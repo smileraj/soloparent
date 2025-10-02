@@ -161,7 +161,7 @@
 				
 			} else {
 			
-				$data->gold_limit_date = '0000-00-00';
+				$data->gold_limit_date = '1970-01-01';
 				
 			}
 			
@@ -493,7 +493,7 @@ if ($yearIni == $yearFin) {
 			
 			
 			// récup le dernier abonnement payé par carte
-			$query = "SELECT nom_paypal, prenom_paypal, IF(date_dernier_renouvellement = '0000-00-00 00:00:00', date_souscription, date_dernier_renouvellement) as datetime, valide"
+			$query = "SELECT nom_paypal, prenom_paypal, IF(date_dernier_renouvellement = '1970-01-01 00:00:00', date_souscription, date_dernier_renouvellement) as datetime, valide"
 			." FROM abonnement_paypal"
 			." WHERE user_id = '".$userObj->id."' AND valide > 0"
 			." ORDER BY id DESC"
@@ -794,7 +794,7 @@ if ($yearIni == $yearFin) {
 			// aucun abo
 			if($search['abonnement'] == '1') {
 			
-				$where[]		= "us.gold_limit_date = '0000-00-00'";
+				$where[]		= "us.gold_limit_date = '1970-01-01'";
 				
 			} elseif($search['abonnement'] == '2') { // abo en cours
 			
@@ -803,7 +803,7 @@ if ($yearIni == $yearFin) {
 			} elseif($search['abonnement'] == '3') { // abo terminé
 			
 				$where[]		= "us.gold_limit_date < NOW()";
-				$where[]		= "us.gold_limit_date != '0000-00-00'";
+				$where[]		= "us.gold_limit_date != '1970-01-01'";
 				
 			}
 			

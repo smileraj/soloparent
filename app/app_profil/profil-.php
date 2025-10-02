@@ -3029,7 +3029,7 @@
 
 
 			// abonnement initial
-			$gold_limit_date	= '0000-00-00';
+			$gold_limit_date	= '1970-01-01';
 
 			// si des jours sont offerts (d&eacute;fini dans config.php)
 			if(ABONNEMENT_INITIAL > 0) {
@@ -3382,7 +3382,7 @@
 			if($profil->photo_montrer == 2) {
 
 				// r&eacute;cup les enfants
-				$query = "SELECT ue.num, ue.genre, IFNULL(psa.nom, '') AS signe_astrologique, IF(ue.naissance_date!='0000-00-00',(YEAR(CURRENT_DATE)-YEAR(ue.naissance_date)) - (RIGHT(CURRENT_DATE,5)<RIGHT(ue.naissance_date,5)), -1) AS age"
+				$query = "SELECT ue.num, ue.genre, IFNULL(psa.nom, '') AS signe_astrologique, IF(ue.naissance_date!='1970-01-01',(YEAR(CURRENT_DATE)-YEAR(ue.naissance_date)) - (RIGHT(CURRENT_DATE,5)<RIGHT(ue.naissance_date,5)), -1) AS age"
 				." FROM user_enfant AS ue"
 				." LEFT JOIN profil_signe_astrologique$langString AS psa ON psa.id = ue.signe_astrologique_id"
 				." WHERE ue.user_id = '".$profil->id."'"

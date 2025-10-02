@@ -346,7 +346,10 @@ top: 160px;right: 10px;position: fixed;z-index: 22;color: #fff;font-size: 13px;b
 (function($) {
 	$(document).ready(function() 
  {
-	var useridval= document.getElementById('useridval').value;
+	var userid= document.getElementById('useridval');
+	if(userid){
+		var useridval = userid.value;
+	}
 	//alert(useridval);
 	var sound_test=0;
 	var chat_test=1;

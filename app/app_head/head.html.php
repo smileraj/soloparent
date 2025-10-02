@@ -625,7 +625,7 @@ if($photo1==0 && $perannounce->annonce!='' && ($userpercentage->taille_id!=0 || 
                                     <li>
                                      
                                             <?php 										// abonn&eacute;
-										if($user->gold_limit_date != '0000-00-00' && strtotime((string) $user->gold_limit_date) >= time()) {
+										if($user->gold_limit_date != '1970-01-01' && strtotime((string) $user->gold_limit_date) >= time()) {
 									?>
 									<small class="uppercase-bold text-strong text-transparent-black  parentsolo_sub"><b><?php echo $lang_apphead["FinDAbonnement"];?>  :</b> <span class="parentsolo_sub"><?php echo date('d/m/y', strtotime((string) $user->gold_limit_date)); ?></span></small>
 											
@@ -665,7 +665,7 @@ if($photo1==0 && $perannounce->annonce!='' && ($userpercentage->taille_id!=0 || 
 							<div class="row bgbottom">
 								 <div class="col-md-6 nopadding">
 									<?php 										// abonn&eacute;
-										if($user->gold_limit_date != '0000-00-00' && strtotime((string) $user->gold_limit_date) >= time()) {
+										if($user->gold_limit_date != '1970-01-01' && strtotime((string) $user->gold_limit_date) >= time()) {
 									?>
 											<b><?php echo $lang_apphead["FinDAbonnement"];?>:</b> <span class="black"><?php echo date('d/m/y', strtotime((string) $user->gold_limit_date)); ?></span>
 									<?php 										} else {

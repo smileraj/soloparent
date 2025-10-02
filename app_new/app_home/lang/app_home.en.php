@@ -27,7 +27,7 @@ $lang_apphome = [
 	"NeeLe" => "Born on",
 	"Jai" => "I have",
 	"Enfant(s)" => "Child(ren)",
-	"JhabiteDansLeCantonDe" => "I live in the canton of",
+	"JhabiteDansLeCantonDe" => "I live in the state of",
 	"A(Ville)" => "to",
 	
 	"JeMinscris" => "I subscribe for free",

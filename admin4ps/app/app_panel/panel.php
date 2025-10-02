@@ -25,7 +25,7 @@ if ($user->id) {
     $maintenance->chat_message = mysqli_affected_rows($db->getConnexion());
 
     // supprime les conversations du chat trop anciennes (+ de 15j)
-    // Use NULL-safe comparison instead of '0000-00-00'
+    // Use NULL-safe comparison instead of '1970-01-01'
     $query = "DELETE FROM chat_conversation WHERE date_add IS NOT NULL AND (TO_DAYS(NOW()) - TO_DAYS(date_add)) > 15";
     $db->query($query);
     $maintenance->chat_conversation = mysqli_affected_rows($db->getConnexion());

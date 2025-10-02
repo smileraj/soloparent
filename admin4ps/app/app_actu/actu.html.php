@@ -73,7 +73,7 @@
 									<td><a href="<?php echo SITE_URL_ADMIN; ?>/index.php?app=actu&action=edit&id=<?php echo $contenu->id; ?><?php if($lang!='') echo '&lang='.$lang; ?>" title="Modifier cette actualit&eacute;"><?php echo $contenu->titre; ?></a></td>
 									<td align="center"><img src="images/<?php echo $contenu->published; ?>.png" /></td>
 									<td><?php echo date('d/m/Y', strtotime((string) $contenu->date_add)); ?></td>
-									<td><?php echo $contenu->date_update != '0000-00-00 00:00:00' ? date('d/m/Y', strtotime((string) $contenu->date_update)) : ''; ?></td>
+									<td><?php echo $contenu->date_update != '1970-01-01 00:00:00' ? date('d/m/Y', strtotime((string) $contenu->date_update)) : ''; ?></td>
 								</tr>
 							<?php 
 							}

@@ -1697,7 +1697,7 @@
 					</tr>
 					<tr>
 						<td class="key"><?php echo $lang_appprofil["Telephone"];?></td>
-						<td><span class="indicatif">+41</span><input type="text" name="telephone" value="<?php echo $row['telephone']; ?>" class="telephone" /></td>
+						<td><span class="indicatif">+91</span><input type="text" name="telephone" value="<?php echo $row['telephone']; ?>" class="telephone" /></td>
 					</tr>
 					<tr>
 						<td class="key"><?php echo $lang_appprofil["Adresse"];?></td>

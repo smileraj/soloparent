@@ -238,7 +238,7 @@
 		$data->texte_en		= JL::getVar('texte_en', '', $addslashes);
 		$data->published 		= JL::getVar('published', 0);
 		$data->footer 			= JL::getVar('footer', 0);
-		$data->date_update		= JL::getVar('date_update', '0000-00-00');
+		$data->date_update		= JL::getVar('date_update', '1970-01-01');
 		$data->user_id_update	= JL::getVar('user_id_update', 0);
 		$data->date_add			= JL::getVar('date_add', date('Y-m-d'));
 		$data->user_id_add		= JL::getVar('user_id_add', $user->id);

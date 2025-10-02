@@ -97,7 +97,7 @@
 		// demande d'authentification
 		if($auth == 'login') {
 
-			// reset le dernier event (pour pas se faire spam dès qu'on se log :) )
+			// reset le dernier event (pour pas se faire spam dï¿½s qu'on se log :) )
 			JL::addLastEvent($user->id, 0);
 
 			// r&eacute;cup tous les utilisateurs ayant $user en friendlist
@@ -142,7 +142,7 @@
 		$user->username			= '';
 		$user->email			= '';
 		$user->gid				= 0;
-		$user->gold_limit_date	= '0000-00-00';
+		$user->gold_limit_date	= '1970-01-01';
 
 	}
 

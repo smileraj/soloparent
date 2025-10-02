@@ -21,8 +21,8 @@
 
 	
 
-	$useridval=$_POST['useridval'];
-	$cht_count=$_POST['cht_count'];
+	$useridval=$_POST['useridval']??'';
+	$cht_count=$_POST['cht_count']??'';
 	$where			= [];
 		$_where			= '';
 $where[]		= "cm.user_id_to = '".$useridval."'";

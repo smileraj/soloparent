@@ -244,9 +244,9 @@
 							method: 'get',
 							headers: {'If-Modified-Since': 'Sat, 1 Jan 2000 00:00:00 GMT'},
 							data: {
-								"canton_id": $(prefix+'canton_id').value, 
-								"ville_id": $(prefix+'ville_id').value, 
-								"lang": $(prefix+'lang').value, 
+								"canton_id": $( prefix +'canton_id').val(), 
+								"ville_id": $( prefix +'ville_id').val(), 
+								"lang": $( prefix +'lang').val(), 
 								"prefix": prefix
 							},
 							onSuccess: function(ajax_return) {
@@ -880,9 +880,9 @@
 							method: 'get',
 							headers: {'If-Modified-Since': 'Sat, 1 Jan 2000 00:00:00 GMT'},
 							data: {
-								"canton_id": $(prefix+'canton_id').value, 
-								"ville_id": $(prefix+'ville_id').value, 
-								"lang": $(prefix+'lang').value, 
+								"canton_id": $( prefix +'canton_id').val(), 
+								"ville_id": $( prefix +'ville_id').val(), 
+								"lang": $( prefix +'lang').val(), 
 								"prefix": prefix
 							},
 							onSuccess: function(ajax_return) {

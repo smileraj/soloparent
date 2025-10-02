@@ -9,7 +9,7 @@ ini_set('MAX_EXECUTION_TIME', -1);
 		// retourne true si le membre est abonné, sinon false
 		public static function checkAbonnement() {
 			global $user, $langue;
-			return ($user->gold_limit_date == '0000-00-00' || ($user->gold_limit_date != '0000-00-00' && strtotime((string) $user->gold_limit_date) < time())) ? false : true;
+			return ($user->gold_limit_date == '1970-01-01' || ($user->gold_limit_date != '1970-01-01' && strtotime((string) $user->gold_limit_date) < time())) ? false : true;
 		}
 		// crypte les adresses mail et url
 		public static function messageEncode($texte, $replacement) {
@@ -808,7 +808,7 @@ if($winner) {
 			global $langue;
 			include("lang/app_framework.".$_GET['lang'].".php");
 			
-			if($date_naissance == '0000-00-00')
+			if($date_naissance == '1970-01-01')
 				return '';
 			
 			$date_naiss	= explode('/', date('d/m/Y',strtotime((string) $date_naissance)));
@@ -868,7 +868,7 @@ if($winner) {
 		
 		public static function calcul_age_adulte_admin(&$date_naissance, &$i){
 			
-			if($date_naissance == '0000-00-00')
+			if($date_naissance == '1970-01-01')
 				return '';
 			
 			$date_naiss	= explode('/', date('d/m/Y',strtotime((string) $date_naissance)));

@@ -150,11 +150,11 @@ public static function messages(&$messages) {
 					
 					<div class="formwidth bottompadding">
 					<div class="col-md-3"><label><?php   echo $lang_appprofil["CodePostal"];?>&nbsp;*</label></div>
-					<div class="col-md-9"><input type="text" name="code_postal" required  id="code_postal" class="numvalidation" maxlength="4" value="<?php  echo $row['code_postal']; ?>" /></div>						
+					<div class="col-md-9"><input type="text" name="code_postal" required  id="code_postal" class="numvalidation" maxlength="6" value="<?php  echo $row['code_postal']; ?>" /></div>						
 					</div>
 					<div class="formwidth bottompadding">
 					<div class="col-md-3"><label><?php   echo $lang_appprofil["Telephone"];?>&nbsp;*</label></div>
-					<div class="col-md-9"><input type="text" name="telephone" required id="telephone" maxlength="17"  value="<?php  echo ($row['telephone']=='')?"+41":$row['telephone']; ?>" class="telephone numvalidation" /></div>						
+					<div class="col-md-9"><input type="text" name="telephone" required id="telephone" maxlength="17"  value="<?php  echo ($row['telephone']=='')?"+91":$row['telephone']; ?>" class="telephone numvalidation" /></div>						
 					</div>
 					<script>
 jQuery.noConflict();
@@ -164,14 +164,14 @@ $(document).ready(function()
  var getvalue="<?php   echo $zipcode_id->area_code??''; ?>";
  var tele="<?php   echo $row['telephone']?>";
  if(tele==''){
- 	      $('#telephone').val('+41');
+ 	      $('#telephone').val('+91');
 
  }
  else{
  $('#telephone').val(tele);
  }
  //telephone validation
-  var telval='+41';
+  var telval='+91';
   var readOnlyLength = telval.length;
  $('#telephone').keydown(function(e) {
    if ((e.which != 37 && (e.which != 39))
@@ -210,44 +210,15 @@ $('#code_postal').change(function() {
 	{
 	var datasplit=data.split('<br>');
 	    $('#canton_id').append(datasplit[1]);
-	    $('#telephone').val('+41');
+	    $('#telephone').val('+91');
 		loadVilles();	
 	}
 });    
 });
 });
 })(jQuery);
-</script>
-					<div class="formwidth bottompadding">
-					<div class="col-md-12"><label><?php   echo $lang_appprofil["LangueAppel"]; ?>&nbsp;*</label></div>
-				    <div class="col-md-5">
-						<?php  if($row['langue_appel'] == 1){ ?>
-									<input type="radio" name="langue_appel" value="1" style="width:20px;" CHECKED>
-								<?php  }else{ ?>
-									<input type="radio" name="langue_appel" required value="1" style="width:20px;">
-								<?php  } ?>
-								<?php   echo $lang_appprofil['Francais']; ?>
-								
-								<br />
-								
-								<?php  if($row['langue_appel'] == 2){ ?>
-									<input type="radio" name="langue_appel"  required   value="2" style="width:20px;" CHECKED>
-								<?php  }else{ ?>
-									<input type="radio" name="langue_appel"   value="2" style="width:20px;">
-								<?php  } ?>
-								<?php   echo $lang_appprofil['Anglais']; ?>
-								
-								<br />
-								
-								<?php  if($row['langue_appel'] == 3){ ?>
-									<input type="radio" name="langue_appel"  value="3" style="width:20px;" CHECKED>
-								<?php  }else{ ?>
-									<input type="radio" name="langue_appel" value="3" style="width:20px;">
-								<?php  } ?>	
-								<?php   echo $lang_appprofil['Allemand']; ?>
-						
-					</div>
-					</div>
+</script><input type="hidden" name="langue_appel" value="2">
+
 					<br/> <hr /> <br/>
 					<div class="formwidth bottompadding">
 					<h4><?php   echo $lang_appprofil["Moi"];?></h4>
@@ -558,12 +529,13 @@ $('#code_postal').change(function() {
 					});
 					<?php  } ?>
 					function loadVilles(prefix) {
-    prefix = prefix || '';
+    prefix = prefix || '#';
 
-    var canton_id = $('#' + prefix + 'canton_id').val() || '';
-    var ville_id  = $('#' + prefix + 'ville_id').val() || '';
-    var lang      = $('#' + prefix + 'lang').val() || '';
-
+    var canton_id = $( prefix + 'canton_id').val() || '';
+    var ville_id  = $( prefix + 'ville_id').val() || '';
+    var lang      = $( prefix + 'lang').val() || '';
+console.log(canton_id);
+console.log($( prefix + 'canton_id').val());
     $.ajax({
         url: '/app/app_home/ajax.php',
         method: 'GET',
@@ -698,10 +670,11 @@ document.getElementById("preview-sm").style.display='none';
                   <div class="col-md-8">
                     <div class="avatar-wrapper" id="avatar-wrapper"> </div>
                   </div>
+				  <div id="spanButtonPlaceholder"></div>
                   <div class="col-md-4">
                     <div class="avatar-preview preview-lg" id="preview-lg"></div>
-                    <!--<div class="avatar-preview preview-md" id="preview-md" style="float:left;"></div>
-                    <div class="avatar-preview preview-sm" id="preview-sm"></div>-->
+                    <div class="avatar-preview preview-md" id="preview-md" style="float:left;"></div>
+                    <div class="avatar-preview preview-sm" id="preview-sm"></div>
                  <style>
 				 .rotate_btn{					     
     margin-left: -7px;
@@ -3280,9 +3253,9 @@ if($_GET["lang"]=="de"){
 									method: 'get',
 									headers: {'If-Modified-Since': 'Sat, 1 Jan 2000 00:00:00 GMT'},
 									data: {
-										"canton_id": $(prefix+'canton_id').value, 
-										"ville_id": $(prefix+'ville_id').value, 
-										"lang": $(prefix+'lang').value, 
+										"canton_id": $( prefix +'canton_id').val(), 
+										"ville_id": $( prefix +'ville_id').val(), 
+										"lang": $( prefix +'lang').val(), 
 										"prefix": prefix
 									},
 									onSuccess: function(ajax_return) {
@@ -3717,8 +3690,10 @@ JL::loadMod('events');
 						}
 						
 						// limitation de la longueur de l'intro
-						$temoignage->texte = strip_tags(html_entity_decode((string) $temoignage->texte));
-						if(strlen($temoignage->texte) > INTRO_HOME) {
+						if(isset($temoignage) && isset($temoignage->texte)){
+							$temoignage->texte = strip_tags(html_entity_decode((string) $temoignage->texte));
+						}
+						if(isset($temoignage->texte) && strlen($temoignage->texte) > INTRO_HOME) {
 							$temoignage->texte = substr($temoignage->texte, 0, INTRO_HOME).'...';
 						}
 						
